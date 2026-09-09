@@ -1,0 +1,33 @@
+name: BTC Weekly RSI Alert
+
+on:
+  schedule:
+    # Her gun 06:00 UTC'de calisir (Doha saatiyle 09:00).
+    # Haftalik RSI zaten yavas degistigi icin gunde 1 kez yeterli.
+    - cron: "0 6 * * *"
+  workflow_dispatch: {}   # Actions sekmesinden manuel de tetikleyebilirsin
+
+jobs:
+  check-rsi:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repo'yu indir
+        uses: actions/checkout@v4
+
+      - name: Python kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Bagimliliklari kur
+        run: pip install -r requirements.txt
+
+      - name: Botu calistir
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          SYMBOL: "BTCUSDT"
+          INTERVAL: "1w"
+          RSI_PERIOD: "14"
+          RSI_THRESHOLD: "80"
+        run: python alert_bot.py
