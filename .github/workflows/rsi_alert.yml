@@ -1,4 +1,4 @@
-name: BTC Weekly RSI Alert
+name: Multi-Coin Weekly RSI Alert
 
 on:
   schedule:
@@ -6,6 +6,13 @@ on:
     # Haftalik RSI zaten yavas degistigi icin gunde 1 kez yeterli.
     - cron: "0 6 * * *"
   workflow_dispatch: {}   # Actions sekmesinden manuel de tetikleyebilirsin
+
+# History dosyalarini (history/*.json) repo'ya geri commit edebilmek icin
+# yazma izni gerekiyor. Bu izin SADECE bu repo icin, SADECE GitHub'in
+# kendi otomatik ureteceoi GITHUB_TOKEN icindir - hicbir kisisel
+# token/sifre kullanilmaz.
+permissions:
+  contents: write
 
 jobs:
   check-rsi:
@@ -26,8 +33,21 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          SYMBOL: "BTCUSDT"
+          SYMBOLS: "BTCUSDT,ETHUSDT,SOLUSDT"
           INTERVAL: "1w"
           RSI_PERIOD: "14"
-          RSI_THRESHOLD: "80"
+          RSI_THRESHOLD: "70"
         run: python alert_bot.py
+
+      - name: Tarihceyi (history/) repo'ya kaydet
+        if: always()   # bot hata ile bitse bile o ana kadar toplanan history kaydedilsin
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add history/
+          if git diff --cached --quiet; then
+            echo "History'de degisiklik yok, commit atlanildi."
+          else
+            git commit -m "RSI history guncelle [skip ci]"
+            git push
+          fi
