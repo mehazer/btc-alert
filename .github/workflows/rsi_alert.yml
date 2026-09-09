@@ -29,5 +29,5 @@ jobs:
           SYMBOL: "BTCUSDT"
           INTERVAL: "1w"
           RSI_PERIOD: "14"
-          RSI_THRESHOLD: "1"
+          RSI_THRESHOLD: "80"
         run: python alert_bot.py
