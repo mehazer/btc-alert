@@ -1,27 +1,27 @@
 """
-Multi-Coin Weekly RSI Alert Bot
---------------------------------
+Multi-Coin Weekly RSI Alert Bot + Market Agent
+------------------------------------------------
 Binance'ten BTC/ETH/SOL (veya SYMBOLS ile belirtilen coinler) icin
 haftalik mum verisini ceker, RSI + Volume hesaplar, Bybit'ten Open
 Interest, alternative.me'den Fear & Greed Index, RSS'ten haber
-basliklarini, Reddit'ten (public JSON, key gerekmez) gundem
 basliklarini ceker, esik asilirsa (veya ALWAYS_NOTIFY=true ise)
 Telegram'a mesaj gonderir. Ayrica her calismada degerleri history/
 klasorune JSON olarak kaydeder (sembol bazli + genel piyasa ozeti).
+
+YENI: BTCUSDT verisi uzerinden agents/market_agent.py cagrilir,
+sonuc loglanir, Telegram'a ayri bir mesaj olarak gonderilir ve
+history/market_agent_history.json'a kaydedilir (dashboard'un
+"Market Agent" ve "Market Agent History" bolumleri bunu okur).
 
 Bagimlilik: sadece 'requests'. Harici RSI/TA kutuphanesi kullanilmaz.
 
 Bilinen kisitlar:
 - Open Interest icin once Binance Futures, sonra Bybit denendi;
   ikisi de GitHub Actions'in bulut IP'lerini engelliyor (451/403).
-  OI su an "alinamadi" olarak gelir; ileride sabit IP'li ayri bir
-  cozumle (kendi sunucu/VPS) tekrar ele alinacak.
-- Haber RSS kaynaklari (ozellikle CoinTelegraph) zaman zaman otomatik
-  isteklere karsi korumaya (Cloudflare vb.) takilabilir.
-- Reddit, User-Agent basligi olmayan/jenerik istekleri reddediyor;
-  bu yuzden ozel bir User-Agent gonderiliyor. Yine de Reddit zaman
-  zaman bulut IP'lerini rate-limit (429) ile gecici engelleyebilir;
-  bu durumda script cokmez, sadece o kaynagi atlar.
+  OI su an "alinamadi" olarak gelir; bu durumda Market Agent'in
+  OI-kaynakli skoru 0 katkida bulunur ve Confidence dusuk cikar.
+- Haber RSS kaynaklari zaman zaman otomatik isteklere karsi
+  korumaya (Cloudflare vb.) takilabilir.
 """
 
 import os
@@ -32,7 +32,11 @@ from datetime import datetime, timezone
 
 import requests
 
+from agents import market_agent
+
+# ---- Ayarlar (environment variable / GitHub Secrets ile gelir) ----
 SYMBOLS = [s.strip().upper() for s in os.environ.get("SYMBOLS", "BTCUSDT").split(",") if s.strip()]
+PRIMARY_SYMBOL = "BTCUSDT"  # Market Agent bu sembol uzerinden calisir
 
 INTERVAL = os.environ.get("INTERVAL", "1w")
 RSI_PERIOD = int(os.environ.get("RSI_PERIOD", "14"))
@@ -53,13 +57,14 @@ NEWS_FEEDS = [
 ]
 NEWS_HEADLINE_LIMIT = 4
 
-REDDIT_SUBREDDITS = ["CryptoCurrency"]
-REDDIT_HEADLINE_LIMIT = 4
-REDDIT_USER_AGENT = "btc-alert-bot/1.0 (personal weekly RSI alert tool)"
-
 HISTORY_DIR = "history"
 MAX_HISTORY_ENTRIES = 200
+MAX_MARKET_AGENT_ENTRIES = 200  # dashboard yine de son 30'u gosterir
 
+
+# ---------------------------------------------------------------------
+# Veri cekme
+# ---------------------------------------------------------------------
 
 def fetch_klines(symbol, interval, limit=200):
     params = {"symbol": symbol, "interval": interval, "limit": limit}
@@ -106,30 +111,9 @@ def fetch_news_headlines(limit=NEWS_HEADLINE_LIMIT):
     return headlines[:limit]
 
 
-def fetch_reddit_headlines(limit=REDDIT_HEADLINE_LIMIT):
-    """Reddit'in public JSON uc noktasindan (login gerekmez) her
-    subreddit icin en populer gonderi basliklarini ceker. Reddit
-    ozel bir User-Agent olmadan istekleri reddediyor, o yuzden
-    burada tanimlaniyor."""
-    headlines = []
-    headers = {"User-Agent": REDDIT_USER_AGENT}
-    for sub in REDDIT_SUBREDDITS:
-        url = f"https://www.reddit.com/r/{sub}/hot.json"
-        try:
-            resp = requests.get(url, headers=headers, params={"limit": limit}, timeout=15)
-            resp.raise_for_status()
-            data = resp.json()
-            children = data.get("data", {}).get("children", [])
-            for child in children[:limit]:
-                post = child.get("data", {})
-                title = post.get("title")
-                score = post.get("score", 0)
-                if title:
-                    headlines.append(f"[r/{sub}] {title} (👍{score})")
-        except Exception as e:
-            print(f"r/{sub} Reddit verisi cekilemedi (calismaya devam ediliyor): {e}")
-    return headlines[:limit]
-
+# ---------------------------------------------------------------------
+# RSI hesaplama
+# ---------------------------------------------------------------------
 
 def compute_rsi(closes, period=14):
     if len(closes) < period + 1:
@@ -149,6 +133,10 @@ def compute_rsi(closes, period=14):
     rs = avg_gain / avg_loss
     return round(100 - (100 / (1 + rs)), 2)
 
+
+# ---------------------------------------------------------------------
+# Tarihce (history) okuma / yazma
+# ---------------------------------------------------------------------
 
 def load_history(symbol):
     path = os.path.join(HISTORY_DIR, f"{symbol}.json")
@@ -170,9 +158,7 @@ def save_history(symbol, records):
         json.dump(trimmed, f, indent=2, ensure_ascii=False)
 
 
-def save_market_snapshot(fear_greed_value, fear_greed_label, news_headlines, reddit_headlines):
-    """Piyasa geneli (sembole ozel olmayan) son durumu ayri bir
-    dosyaya kaydeder, boylece dashboard sayfasi bunu okuyabilir."""
+def save_market_snapshot(fear_greed_value, fear_greed_label, news_headlines):
     os.makedirs(HISTORY_DIR, exist_ok=True)
     path = os.path.join(HISTORY_DIR, "market.json")
     snapshot = {
@@ -180,11 +166,34 @@ def save_market_snapshot(fear_greed_value, fear_greed_label, news_headlines, red
         "fear_greed_value": fear_greed_value,
         "fear_greed_label": fear_greed_label,
         "news_headlines": news_headlines,
-        "reddit_headlines": reddit_headlines,
     }
     with open(path, "w", encoding="utf-8") as f:
         json.dump(snapshot, f, indent=2, ensure_ascii=False)
 
+
+def load_market_agent_history():
+    path = os.path.join(HISTORY_DIR, "market_agent_history.json")
+    if not os.path.exists(path):
+        return []
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (json.JSONDecodeError, OSError) as e:
+        print(f"market_agent_history.json okunamadi, sifirdan baslaniyor ({e})")
+        return []
+
+
+def save_market_agent_history(records):
+    os.makedirs(HISTORY_DIR, exist_ok=True)
+    path = os.path.join(HISTORY_DIR, "market_agent_history.json")
+    trimmed = records[-MAX_MARKET_AGENT_ENTRIES:]
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(trimmed, f, indent=2, ensure_ascii=False)
+
+
+# ---------------------------------------------------------------------
+# Telegram
+# ---------------------------------------------------------------------
 
 def send_telegram_message(text):
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
@@ -203,22 +212,30 @@ def send_telegram_message(text):
     return True
 
 
-def process_symbol(symbol, fear_greed_value, fear_greed_label, news_headlines, reddit_headlines):
+# ---------------------------------------------------------------------
+# Bir sembolu isle
+# ---------------------------------------------------------------------
+
+def process_symbol(symbol, fear_greed_value, fear_greed_label, news_headlines):
+    """Bir sembolu isler. Basarili olursa, o sembole ait
+    (rsi, price, open_interest, price_change_pct, oi_change_pct)
+    degerlerini icerecek sekilde bir dict doner (Market Agent bunu
+    PRIMARY_SYMBOL icin kullanacak). Basarisiz olursa None doner."""
     try:
         closes, volumes = fetch_klines(symbol, INTERVAL, limit=RSI_PERIOD + 50)
     except Exception as e:
-        error_msg = f"⚠ {symbol}: Binance (spot) veri cekme hatasi\n{e}"
+        error_msg = f"⚠️ {symbol}: Binance (spot) veri cekme hatasi\n{e}"
         print(error_msg)
         send_telegram_message(error_msg)
-        return False
+        return None
 
     try:
         rsi = compute_rsi(closes, RSI_PERIOD)
     except Exception as e:
-        error_msg = f"⚠ {symbol}: RSI hesaplama hatasi\n{e}"
+        error_msg = f"⚠️ {symbol}: RSI hesaplama hatasi\n{e}"
         print(error_msg)
         send_telegram_message(error_msg)
-        return False
+        return None
 
     last_price = closes[-1]
     last_volume = volumes[-1]
@@ -229,13 +246,33 @@ def process_symbol(symbol, fear_greed_value, fear_greed_label, news_headlines, r
     except Exception as e:
         print(f"{symbol}: Open Interest cekilemedi (calismaya devam ediliyor): {e}")
 
+    # Bir onceki kaydi, yeni kaydi eklemeden ONCE al -- yuzde
+    # degisim hesaplari (Market Agent icin) buna dayanir.
+    history = load_history(symbol)
+    previous_entry = history[-1] if history else None
+
+    price_change_pct = None
+    if previous_entry and previous_entry.get("price"):
+        prev_price = previous_entry["price"]
+        price_change_pct = ((last_price - prev_price) / prev_price) * 100
+
+    oi_change_pct = None
+    if (
+        previous_entry
+        and previous_entry.get("open_interest") is not None
+        and open_interest is not None
+        and previous_entry["open_interest"] != 0
+    ):
+        prev_oi = previous_entry["open_interest"]
+        oi_change_pct = ((open_interest - prev_oi) / prev_oi) * 100
+
     print(
         f"{symbol} | Weekly RSI({RSI_PERIOD}) = {rsi} | Fiyat = {last_price} "
         f"| Hacim = {last_volume} | Open Interest = {open_interest} "
+        f"| Fiyat degisimi = {price_change_pct} | OI degisimi = {oi_change_pct} "
         f"| Fear&Greed = {fear_greed_value} ({fear_greed_label})"
     )
 
-    history = load_history(symbol)
     history.append({
         "date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
         "rsi": rsi,
@@ -252,10 +289,9 @@ def process_symbol(symbol, fear_greed_value, fear_greed_label, news_headlines, r
         fg_text = f"{fear_greed_value} ({fear_greed_label})" if fear_greed_value is not None else "alinamadi"
         oi_text = open_interest if open_interest is not None else "alinamadi"
         news_text = "\n".join(news_headlines) if news_headlines else "alinamadi"
-        reddit_text = "\n".join(reddit_headlines) if reddit_headlines else "alinamadi"
         reason = "GHC hedge tetikleyici seviyesi asildi" if threshold_exceeded else "Test modu (ALWAYS_NOTIFY=true)"
         message = (
-            f"⚠ {symbol} Haftalik RSI Uyarisi\n"
+            f"⚠️ {symbol} Haftalik RSI Uyarisi\n"
             f"RSI({RSI_PERIOD}): {rsi}\n"
             f"Esik: {RSI_THRESHOLD}\n"
             f"Son fiyat: {last_price}\n"
@@ -263,7 +299,6 @@ def process_symbol(symbol, fear_greed_value, fear_greed_label, news_headlines, r
             f"Open Interest: {oi_text}\n"
             f"Fear & Greed Index: {fg_text}\n"
             f"Haberler:\n{news_text}\n"
-            f"Reddit gundem:\n{reddit_text}\n"
             f"({reason})"
         )
         sent = send_telegram_message(message)
@@ -271,8 +306,71 @@ def process_symbol(symbol, fear_greed_value, fear_greed_label, news_headlines, r
     else:
         print(f"{symbol}: Esik asilmadi, bildirim gonderilmedi.")
 
-    return True
+    return {
+        "rsi": rsi,
+        "price": last_price,
+        "open_interest": open_interest,
+        "price_change_pct": price_change_pct,
+        "oi_change_pct": oi_change_pct,
+    }
 
+
+# ---------------------------------------------------------------------
+# Market Agent entegrasyonu
+# ---------------------------------------------------------------------
+
+def run_market_agent(primary_symbol_data, fear_greed_value):
+    """PRIMARY_SYMBOL (BTCUSDT) verisi uzerinden Market Agent'i
+    calistirir, loglar, Telegram'a ayri bir mesaj olarak gonderir ve
+    history/market_agent_history.json'a kaydeder. `primary_symbol_data`
+    None ise (BTCUSDT islenemediyse) Market Agent atlanir."""
+    if primary_symbol_data is None:
+        print("Market Agent atlandi: BTCUSDT verisi mevcut degil.")
+        return None
+
+    result = market_agent.evaluate(
+        rsi=primary_symbol_data["rsi"],
+        fear_greed_value=fear_greed_value,
+        oi_change_pct=primary_symbol_data["oi_change_pct"],
+        price_change_pct=primary_symbol_data["price_change_pct"],
+    )
+
+    print(
+        f"Market Agent | State={result['state']} | Risk={result['risk_score']} "
+        f"| Confidence={result['confidence']} | Reasons={result['reasons']}"
+    )
+
+    reasons_text = "\n".join(f"- {r}" for r in result["reasons"])
+    telegram_text = (
+        "🤖 Market Agent Degerlendirmesi\n"
+        f"Durum: {result['state']}\n"
+        f"Risk Skoru: {result['risk_score']}/100\n"
+        f"Guven: {result['confidence']}%\n"
+        f"Gerekceler:\n{reasons_text}"
+    )
+    sent = send_telegram_message(telegram_text)
+    print("Market Agent: Telegram mesaji " + ("gonderildi." if sent else "gonderilemedi."))
+
+    agent_history = load_market_agent_history()
+    agent_history.append({
+        "timestamp": result["evaluated_at"],
+        "state": result["state"],
+        "risk_score": result["risk_score"],
+        "confidence": result["confidence"],
+        "reasons": result["reasons"],
+        "btc_price": primary_symbol_data["price"],
+        "rsi": primary_symbol_data["rsi"],
+        "oi_change_pct": primary_symbol_data["oi_change_pct"],
+        "fear_greed_value": fear_greed_value,
+    })
+    save_market_agent_history(agent_history)
+
+    return result
+
+
+# ---------------------------------------------------------------------
+# main
+# ---------------------------------------------------------------------
 
 def main():
     fear_greed_value, fear_greed_label = None, None
@@ -288,19 +386,19 @@ def main():
         print("Guncel basliklar:")
         print(headline_text)
 
-    reddit_headlines = fetch_reddit_headlines()
-    if reddit_headlines:
-        reddit_text = "\n".join(reddit_headlines)
-        print("Reddit gundemi:")
-        print(reddit_text)
-
-    save_market_snapshot(fear_greed_value, fear_greed_label, news_headlines, reddit_headlines)
+    save_market_snapshot(fear_greed_value, fear_greed_label, news_headlines)
 
     any_failure = False
+    primary_symbol_data = None
+
     for symbol in SYMBOLS:
-        ok = process_symbol(symbol, fear_greed_value, fear_greed_label, news_headlines, reddit_headlines)
-        if not ok:
+        symbol_data = process_symbol(symbol, fear_greed_value, fear_greed_label, news_headlines)
+        if symbol_data is None:
             any_failure = True
+        elif symbol.upper() == PRIMARY_SYMBOL:
+            primary_symbol_data = symbol_data
+
+    run_market_agent(primary_symbol_data, fear_greed_value)
 
     if any_failure:
         sys.exit(1)
