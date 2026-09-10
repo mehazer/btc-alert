@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto Ajan Paneli</title>
+<style>
+  body {
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: -apple-system, sans-serif;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+  h1 { font-size: 20px; }
+  .updated { color: #8b949e; font-size: 13px; margin-bottom: 20px; }
+  .card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 16px;
+  }
+  .card h2 { font-size: 16px; margin: 0 0 10px 0; }
+  .fg-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+  }
+  .news-item { font-size: 14px; padding: 6px 0; border-top: 1px solid #21262d; }
+  .symbol-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; }
+  .rsi-high { color: #f85149; font-weight: bold; }
+  .rsi-normal { color: #3fb950; }
+  table { width: 100%; font-size: 12px; margin-top: 8px; border-collapse: collapse; }
+  td, th { padding: 4px; text-align: left; border-top: 1px solid #21262d; }
+</style>
+</head>
+<body>
+
+<h1>📊 Crypto Ajan Paneli</h1>
+<div class="updated" id="updated">Yukleniyor...</div>
+
+<div class="card">
+  <h2>Fear &amp; Greed Index</h2>
+  <div id="fear-greed">Yukleniyor...</div>
+</div>
+
+<div class="card">
+  <h2>Guncel Haberler</h2>
+  <div id="news">Yukleniyor...</div>
+</div>
+
+<div class="card">
+  <h2>Semboller</h2>
+  <div id="symbols">Yukleniyor...</div>
+</div>
+
+<script>
+const REPO = "mehazer/btc-alert";
+const BRANCH = "main";
+const SYMBOLS = ["BTCUSDT", "ETHUSDT", "SOLUSDT"];
+const RSI_THRESHOLD = 70;
+
+function rawUrl(path) {
+  const cacheBust = Date.now();
+  return `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${path}?t=${cacheBust}`;
+}
+
+async function fetchJson(path) {
+  const resp = await fetch(rawUrl(path));
+  if (!resp.ok) throw new Error(`${path} yuklenemedi (${resp.status})`);
+  return resp.json();
+}
+
+function fgColor(value) {
+  if (value === null || value === undefined) return "#8b949e";
+  if (value >= 75) return "#f85149";
+  if (value >= 55) return "#d29922";
+  if (value >= 45) return "#8b949e";
+  return "#3fb950";
+}
+
+async function loadMarket() {
+  try {
+    const data = await fetchJson("history/market.json");
+    document.getElementById("updated").textContent =
+      "Son guncelleme: " + new Date(data.updated_at).toLocaleString("tr-TR");
+
+    const fg = data.fear_greed_value;
+    const label = data.fear_greed_label || "bilinmiyor";
+    document.getElementById("fear-greed").innerHTML =
+      `<span class="fg-badge" style="background:${fgColor(fg)}20;color:${fgColor(fg)}">
+        ${fg ?? "?"} - ${label}
+      </span>`;
+
+    const news = data.news_headlines || [];
+    document.getElementById("news").innerHTML = news.length
+      ? news.map(h => `<div class="news-item">${h}</div>`).join("")
+      : "Haber bulunamadi.";
+  } catch (e) {
+    document.getElementById("updated").textContent = "Piyasa verisi yuklenemedi: " + e.message;
+  }
+}
+
+async function loadSymbols() {
+  const container = document.getElementById("symbols");
+  container.innerHTML = "";
+
+  for (const symbol of SYMBOLS) {
+    try {
+      const history = await fetchJson(`history/${symbol}.json`);
+      const last = history[history.length - 1];
+      const recent = history.slice(-5).reverse();
+
+      const rsiClass = last.rsi >= RSI_THRESHOLD ? "rsi-high" : "rsi-normal";
+
+      const rows = recent.map(r =>
+        `<tr><td>${r.date}</td><td>${r.rsi}</td><td>${r.price}</td></tr>`
+      ).join("");
+
+      container.innerHTML += `
+        <div class="symbol-row">
+          <strong>${symbol}</strong>
+          <span class="${rsiClass}">RSI ${last.rsi}</span>
+          <span>${last.price}</span>
+        </div>
+        <table>
+          <tr><th>Tarih</th><th>RSI</th><th>Fiyat</th></tr>
+          ${rows}
+        </table>
+      `;
+    } catch (e) {
+      container.innerHTML += `<div class="symbol-row">${symbol}: veri yok</div>`;
+    }
+  }
+}
+
+loadMarket();
+loadSymbols();
+</script>
+
+</body>
+</html>
