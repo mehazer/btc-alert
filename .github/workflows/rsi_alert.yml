@@ -37,6 +37,8 @@ jobs:
           INTERVAL: "1w"
           RSI_PERIOD: "14"
           RSI_THRESHOLD: "70"
+          ALWAYS_NOTIFY: "true"
+
         run: python alert_bot.py
 
       - name: Tarihceyi (history/) repo'ya kaydet
