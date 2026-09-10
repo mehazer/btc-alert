@@ -1,3 +1,5 @@
+"""
+agents/market_agent.py
 ------------------------
 Deterministik, kural-tabanli Market Agent.
 
@@ -13,7 +15,7 @@ TASARIM ILKELERI (proje gereksinimlerine gore):
 - Yeni veri kaynagi eklemez. Sadece baska yerde zaten toplanmis
   degerleri parametre olarak alir.
 - Bagimsiz modul: kendi basina hicbir veri cekmez, Telegram/dashboard/
-  """GitHub'dan haberi yoktur. Girdi alir, sozluk (dict) doner. Bu, test
+  GitHub'dan haberi yoktur. Girdi alir, sozluk (dict) doner. Bu, test
   etmeyi kolaylastirir ve ileride diger ajanlarin (Social/News/Whale/
   Decision) bu modulden habersiz, bagimsiz gelistirilebilmesini saglar.
 
