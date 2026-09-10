@@ -2,18 +2,24 @@
 Multi-Coin Weekly RSI Alert Bot
 --------------------------------
 Binance'ten BTC/ETH/SOL (veya SYMBOLS ile belirtilen coinler) icin
-haftalik mum verisini ceker, RSI + Volume hesaplar, Binance Futures'tan
-Open Interest ceker, esik asilirsa Telegram'a mesaj gonderir.
-Ayrica her calismada RSI/fiyat/volume/OI degerlerini history/ klasorune
-JSON olarak kaydeder (tarihce).
+haftalik mum verisini ceker, RSI + Volume hesaplar, Bybit'ten Open
+Interest, alternative.me'den Fear & Greed Index ceker, esik asilirsa
+(veya ALWAYS_NOTIFY=true ise) Telegram'a mesaj gonderir.
+Ayrica her calismada degerleri history/ klasorune JSON olarak kaydeder.
 
 Bagimlilik: sadece 'requests'. Harici RSI/TA kutuphanesi kullanilmaz.
 
 Guvenlik notu:
-- Sadece Binance'in resmi public API'lerine (spot + futures) istek atilir.
-- API key/secret KULLANILMAZ (hicbiri gerekmiyor, sadece public data okunur).
+- Sadece resmi public API'lere (Binance spot, Bybit, alternative.me)
+  istek atilir, hicbiri API key/secret gerektirmez.
 - Telegram token/chat_id SADECE environment variable (GitHub Secrets)
   uzerinden okunur, koda asla yazilmaz.
+
+Bilinen kisit:
+- Open Interest icin Bybit kullaniliyor cunku Binance Futures API'si
+  GitHub Actions'in bulut IP'lerini 451 hatasiyla engelliyor. Bybit
+  su an engellemiyor ama bu garantili degil; borsalar bu politikayi
+  degistirebilir. OI cekilemezse script COKMEZ, sadece None yazar.
 """
 
 import os
@@ -24,18 +30,22 @@ from datetime import datetime, timezone
 import requests
 
 # ---- Ayarlar (environment variable / GitHub Secrets ile gelir) ----
-# Birden fazla sembol icin virgul ile ayirin: "BTCUSDT,ETHUSDT,SOLUSDT"
 SYMBOLS = [s.strip().upper() for s in os.environ.get("SYMBOLS", "BTCUSDT").split(",") if s.strip()]
 
 INTERVAL = os.environ.get("INTERVAL", "1w")      # haftalik mum
 RSI_PERIOD = int(os.environ.get("RSI_PERIOD", "14"))
 RSI_THRESHOLD = float(os.environ.get("RSI_THRESHOLD", "80"))
 
+# Test modu: "true" yaparsan esik asilmasa bile her sembol icin mesaj gelir.
+# Test bitince mutlaka "false"a geri al (ya da workflow'dan bu satiri sil).
+ALWAYS_NOTIFY = os.environ.get("ALWAYS_NOTIFY", "false").lower() == "true"
+
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
 BINANCE_SPOT_KLINES_URL = "https://data-api.binance.vision/api/v3/klines"
-BINANCE_FUTURES_OI_URL = "https://fapi.binance.com/fapi/v1/openInterest"
+BYBIT_OI_URL = "https://api.bybit.com/v5/market/open-interest"
+FEAR_GREED_URL = "https://api.alternative.me/fng/"
 
 HISTORY_DIR = "history"
 MAX_HISTORY_ENTRIES = 200  # ~200 hafta (~4 yil) - dosyalarin sisirmemesi icin
@@ -52,20 +62,39 @@ def fetch_klines(symbol: str, interval: str, limit: int = 200):
     resp = requests.get(BINANCE_SPOT_KLINES_URL, params=params, timeout=15)
     resp.raise_for_status()
     data = resp.json()
-    # Her eleman: [open_time, open, high, low, close, volume, ...]
     closes = [float(candle[4]) for candle in data]
     volumes = [float(candle[5]) for candle in data]
     return closes, volumes
 
 
 def fetch_open_interest(symbol: str):
-    """Binance public FUTURES API'den anlik Open Interest ceker.
-    Not: Open Interest sadece Futures (vadeli islem) piyasasinda vardir,
-    Spot piyasada bu kavram yoktur. API key gerekmez."""
-    resp = requests.get(BINANCE_FUTURES_OI_URL, params={"symbol": symbol}, timeout=15)
+    """Bybit public API'den anlik Open Interest ceker (linear/USDT-margined).
+    API key gerekmez. Binance yerine Bybit kullaniliyor cunku Binance
+    Futures GitHub Actions IP'lerini engelliyor (451)."""
+    params = {
+        "category": "linear",
+        "symbol": symbol,
+        "intervalTime": "1h",
+        "limit": 1,
+    }
+    resp = requests.get(BYBIT_OI_URL, params=params, timeout=15)
     resp.raise_for_status()
     data = resp.json()
-    return float(data["openInterest"])
+    result_list = data.get("result", {}).get("list", [])
+    if not result_list:
+        raise ValueError(f"Bybit OI verisi bos dondu: {data}")
+    return float(result_list[0]["openInterest"])
+
+
+def fetch_fear_greed_index():
+    """alternative.me'den guncel Fear & Greed Index'i ceker (0-100).
+    Piyasa geneli icin tek bir deger, sembole ozel degildir.
+    API key gerekmez."""
+    resp = requests.get(FEAR_GREED_URL, params={"limit": 1}, timeout=15)
+    resp.raise_for_status()
+    data = resp.json()
+    entry = data["data"][0]
+    return int(entry["value"]), entry["value_classification"]
 
 
 # ---------------------------------------------------------------------
@@ -152,7 +181,7 @@ def send_telegram_message(text: str):
 # Bir sembolu isle
 # ---------------------------------------------------------------------
 
-def process_symbol(symbol: str):
+def process_symbol(symbol: str, fear_greed_value, fear_greed_label):
     # 1) Spot kline verisi (fiyat + hacim + RSI icin)
     try:
         closes, volumes = fetch_klines(symbol, INTERVAL, limit=RSI_PERIOD + 50)
@@ -173,7 +202,7 @@ def process_symbol(symbol: str):
     last_price = closes[-1]
     last_volume = volumes[-1]
 
-    # 2) Open Interest (Futures API) - kritik degil, basarisiz olursa
+    # 2) Open Interest (Bybit) - kritik degil, basarisiz olursa
     #    calismaya devam edilir ama None olarak kaydedilir.
     open_interest = None
     try:
@@ -183,7 +212,8 @@ def process_symbol(symbol: str):
 
     print(
         f"{symbol} | Weekly RSI({RSI_PERIOD}) = {rsi} | Fiyat = {last_price} "
-        f"| Hacim = {last_volume} | Open Interest = {open_interest}"
+        f"| Hacim = {last_volume} | Open Interest = {open_interest} "
+        f"| Fear&Greed = {fear_greed_value} ({fear_greed_label})"
     )
 
     # 3) Tarihceye kaydet
@@ -194,19 +224,32 @@ def process_symbol(symbol: str):
         "price": last_price,
         "volume": last_volume,
         "open_interest": open_interest,
+        "fear_greed_value": fear_greed_value,
+        "fear_greed_label": fear_greed_label,
     })
     save_history(symbol, history)
 
-    # 4) Esik kontrolu
-    if rsi >= RSI_THRESHOLD:
+    # 4) Esik kontrolu (ALWAYS_NOTIFY=true ise esik asilmasa da mesaj gider)
+    threshold_exceeded = rsi >= RSI_THRESHOLD
+    if threshold_exceeded or ALWAYS_NOTIFY:
+        fg_text = (
+            f"{fear_greed_value} ({fear_greed_label})"
+            if fear_greed_value is not None else "alinamadi"
+        )
+        oi_text = open_interest if open_interest is not None else "alinamadi"
+        reason = (
+            "GHC hedge tetikleyici seviyesi asildi"
+            if threshold_exceeded else "Test modu (ALWAYS_NOTIFY=true)"
+        )
         message = (
             f"⚠️ {symbol} Haftalik RSI Uyarisi\n"
             f"RSI({RSI_PERIOD}): {rsi}\n"
             f"Esik: {RSI_THRESHOLD}\n"
             f"Son fiyat: {last_price}\n"
             f"Hacim (son hafta): {last_volume}\n"
-            f"Open Interest: {open_interest if open_interest is not None else 'alinamadi'}\n"
-            f"(GHC hedge tetikleyici seviyesi asildi)"
+            f"Open Interest: {oi_text}\n"
+            f"Fear & Greed Index: {fg_text}\n"
+            f"({reason})"
         )
         sent = send_telegram_message(message)
         print(f"{symbol}: Telegram mesaji " + ("gonderildi." if sent else "gonderilemedi."))
@@ -221,17 +264,25 @@ def process_symbol(symbol: str):
 # ---------------------------------------------------------------------
 
 def main():
+    # Fear & Greed piyasa geneli icin tek deger, tum semboller icin
+    # bir kere cekilir.
+    fear_greed_value, fear_greed_label = None, None
+    try:
+        fear_greed_value, fear_greed_label = fetch_fear_greed_index()
+        print(f"Fear & Greed Index = {fear_greed_value} ({fear_greed_label})")
+    except Exception as e:
+        print(f"Fear & Greed Index cekilemedi (calismaya devam ediliyor): {e}")
+
     any_failure = False
     for symbol in SYMBOLS:
-        ok = process_symbol(symbol)
+        ok = process_symbol(symbol, fear_greed_value, fear_greed_label)
         if not ok:
             any_failure = True
 
     if any_failure:
-        # Workflow run'u "failed" olarak isaretlenir (Actions sekmesinde
-        # kirmizi gorunur), boylece sessiz basarisizlik olmaz.
         sys.exit(1)
 
 
 if __name__ == "__main__":
     main()
+
