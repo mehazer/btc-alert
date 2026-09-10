@@ -289,7 +289,6 @@ def process_symbol(symbol: str, fear_greed_value, fear_greed_label, news_headlin
         print(f"{symbol}: Telegram mesaji " + ("gonderildi." if sent else "gonderilemedi."))
     else:
         print(f"{symbol}: Esik asilmadi, bildirim gonderilmedi.")
-
     return True
 
 
@@ -310,4 +309,18 @@ def main():
     # Haber basliklari da piyasa geneli icin tek seferlik cekiliyor.
     news_headlines = fetch_news_headlines()
     if news_headlines:
-        print("Guncel basli
+        print("Guncel basliklar:\n" + "\n".join(news_headlines))
+
+    any_failure = False
+    for symbol in SYMBOLS:
+        ok = process_symbol(symbol, fear_greed_value, fear_greed_label, news_headlines)
+        if not ok:
+            any_failure = True
+
+    if any_failure:
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
+    
