@@ -26,6 +26,8 @@ import os
 import sys
 import json
 from datetime import datetime, timezone
+import xml.etree.ElementTree as ET
+
 
 import requests
 
@@ -48,6 +50,12 @@ BYBIT_OI_URL = "https://api.bybit.com/v5/market/open-interest"
 FEAR_GREED_URL = "https://api.alternative.me/fng/"
 
 HISTORY_DIR = "history"
+NEWS_FEEDS = [
+    ("CoinDesk", "https://www.coindesk.com/arc/outboundfeeds/rss/"),
+    ("CoinTelegraph", "https://cointelegraph.com/rss"),
+]
+NEWS_HEADLINE_LIMIT = 4  # toplam kac baslik gosterilsin
+
 MAX_HISTORY_ENTRIES = 200  # ~200 hafta (~4 yil) - dosyalarin sisirmemesi icin
 
 
@@ -87,6 +95,25 @@ def fetch_open_interest(symbol: str):
 
 
 def fetch_fear_greed_index():
+  def fetch_news_headlines(limit=NEWS_HEADLINE_LIMIT):
+    """RSS'ten guncel kripto haber basliklarini ceker. Sadece basliklar
+    alinir, tam metin/icerik alinmaz. API key gerekmez."""
+    headlines = []
+    for source, url in NEWS_FEEDS:
+        try:
+            resp = requests.get(
+                url, timeout=15, headers={"User-Agent": "Mozilla/5.0"}
+            )
+            resp.raise_for_status()
+            root = ET.fromstring(resp.content)
+            for item in root.findall(".//item")[:limit]:
+                title_el = item.find("title")
+                if title_el is not None and title_el.text:
+                    headlines.append(f"[{source}] {title_el.text.strip()}")
+        except Exception as e:
+            print(f"{source} RSS cekilemedi (calismaya devam ediliyor): {e}")
+    return headlines[:limit]
+
     """alternative.me'den guncel Fear & Greed Index'i ceker (0-100).
     Piyasa geneli icin tek bir deger, sembole ozel degildir.
     API key gerekmez."""
@@ -181,7 +208,7 @@ def send_telegram_message(text: str):
 # Bir sembolu isle
 # ---------------------------------------------------------------------
 
-def process_symbol(symbol: str, fear_greed_value, fear_greed_label):
+def process_symbol(symbol: str, fear_greed_value, fear_greed_label, news_headlines):
     # 1) Spot kline verisi (fiyat + hacim + RSI icin)
     try:
         closes, volumes = fetch_klines(symbol, INTERVAL, limit=RSI_PERIOD + 50)
@@ -249,6 +276,7 @@ def process_symbol(symbol: str, fear_greed_value, fear_greed_label):
             f"Hacim (son hafta): {last_volume}\n"
             f"Open Interest: {oi_text}\n"
             f"Fear & Greed Index: {fg_text}\n"
+            f"Haberler:\n" + ("\n".join(news_headlines) if news_headlines else "alinamadi") + "\n"
             f"({reason})"
         )
         sent = send_telegram_message(message)
@@ -272,10 +300,13 @@ def main():
         print(f"Fear & Greed Index = {fear_greed_value} ({fear_greed_label})")
     except Exception as e:
         print(f"Fear & Greed Index cekilemedi (calismaya devam ediliyor): {e}")
+    news_headlines = fetch_news_headlines()
+    if news_headlines:
+        print("Guncel basliklar:\n" + "\n".join(news_headlines))
 
     any_failure = False
     for symbol in SYMBOLS:
-        ok = process_symbol(symbol, fear_greed_value, fear_greed_label)
+        ok = process_symbol(symbol, fear_greed_value, fear_greed_label, news_headlines)
         if not ok:
             any_failure = True
 
