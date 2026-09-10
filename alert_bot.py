@@ -213,7 +213,7 @@ def send_telegram_message(text: str):
 # Bir sembolu isle
 # ---------------------------------------------------------------------
 
-def process_symbol(symbol: str):
+def process_symbol(symbol: str, fear_greed_value, fear_greed_label, news_headlines):
     # 1) Spot kline verisi (fiyat + hacim + RSI icin)
     try:
         closes, volumes = fetch_klines(symbol, INTERVAL, limit=RSI_PERIOD + 50)
@@ -264,7 +264,10 @@ def process_symbol(symbol: str):
     # 4) Esik kontrolu (ALWAYS_NOTIFY=true ise esik asilmasa da mesaj gider)
     threshold_exceeded = rsi >= RSI_THRESHOLD
     if threshold_exceeded or ALWAYS_NOTIFY:
-        
+        fg_text = (
+            f"{fear_greed_value} ({fear_greed_label})"
+            if fear_greed_value is not None else "alinamadi"
+        )
         oi_text = open_interest if open_interest is not None else "alinamadi"
         news_text = "\n".join(news_headlines) if news_headlines else "alinamadi"
         reason = (
@@ -278,6 +281,8 @@ def process_symbol(symbol: str):
             f"Son fiyat: {last_price}\n"
             f"Hacim (son hafta): {last_volume}\n"
             f"Open Interest: {oi_text}\n"
+            f"Fear & Greed Index: {fg_text}\n"
+            f"Haberler:\n{news_text}\n"
             f"({reason})"
         )
         sent = send_telegram_message(message)
@@ -290,6 +295,7 @@ def process_symbol(symbol: str):
 # ---------------------------------------------------------------------
 # main
 # ---------------------------------------------------------------------
+
 def main():
     # Fear & Greed piyasa geneli icin tek deger, tum semboller icin
     # bir kere cekilir.
@@ -303,31 +309,18 @@ def main():
     # Haber basliklari da piyasa geneli icin tek seferlik cekiliyor.
     news_headlines = fetch_news_headlines()
     if news_headlines:
-        headline_text = "\n".join(news_headlines)
-        print("Guncel basliklar:")
-        print(headline_text)
-
-    # Piyasa geneli bilgisini (F&G + haberler) TEK bir mesaj olarak,
-    # sembol basina tekrar etmeden gonder.
-    fg_text = (
-        f"{fear_greed_value} ({fear_greed_label})"
-        if fear_greed_value is not None else "alinamadi"
-    )
-    news_text = "\n".join(news_headlines) if news_headlines else "alinamadi"
-    market_message = (
-        "📊 Genel Piyasa Durumu\n"
-        f"Fear & Greed Index: {fg_text}\n"
-        f"Haberler:\n{news_text}"
-    )
-    send_telegram_message(market_message)
+        print("Guncel basliklar:\n" + "\n".join(news_headlines))
 
     any_failure = False
     for symbol in SYMBOLS:
-        ok = process_symbol(symbol)
+        ok = process_symbol(symbol, fear_greed_value, fear_greed_label, news_headlines)
         if not ok:
             any_failure = True
 
     if any_failure:
         sys.exit(1)
 
+
+if __name__ == "__main__":
+    main()
     
