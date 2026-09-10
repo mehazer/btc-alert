@@ -3,31 +3,35 @@ Multi-Coin Weekly RSI Alert Bot
 --------------------------------
 Binance'ten BTC/ETH/SOL (veya SYMBOLS ile belirtilen coinler) icin
 haftalik mum verisini ceker, RSI + Volume hesaplar, Bybit'ten Open
-Interest, alternative.me'den Fear & Greed Index ceker, esik asilirsa
-(veya ALWAYS_NOTIFY=true ise) Telegram'a mesaj gonderir.
-Ayrica her calismada degerleri history/ klasorune JSON olarak kaydeder.
+Interest, alternative.me'den Fear & Greed Index, RSS'ten guncel haber
+basliklarini ceker, esik asilirsa (veya ALWAYS_NOTIFY=true ise)
+Telegram'a mesaj gonderir. Ayrica her calismada degerleri history/
+klasorune JSON olarak kaydeder.
 
 Bagimlilik: sadece 'requests'. Harici RSI/TA kutuphanesi kullanilmaz.
 
 Guvenlik notu:
-- Sadece resmi public API'lere (Binance spot, Bybit, alternative.me)
-  istek atilir, hicbiri API key/secret gerektirmez.
+- Sadece resmi public API/RSS kaynaklarina istek atilir, hicbiri API
+  key/secret gerektirmez.
 - Telegram token/chat_id SADECE environment variable (GitHub Secrets)
   uzerinden okunur, koda asla yazilmaz.
 
 Bilinen kisit:
-- Open Interest icin Bybit kullaniliyor cunku Binance Futures API'si
-  GitHub Actions'in bulut IP'lerini 451 hatasiyla engelliyor. Bybit
-  su an engellemiyor ama bu garantili degil; borsalar bu politikayi
-  degistirebilir. OI cekilemezse script COKMEZ, sadece None yazar.
+- Open Interest icin once Binance Futures, sonra Bybit denendi;
+  ikisi de GitHub Actions'in bulut IP'lerini engelliyor (451/403).
+  OI su an "alinamadi" olarak gelir; ileride sabit IP'li ayri bir
+  cozumle (kendi sunucu/VPS) tekrar ele alinacak. Script bu yuzden
+  COKMEZ, sadece None/alinamadi yazar.
+- Haber RSS kaynaklari (ozellikle CoinTelegraph) zaman zaman otomatik
+  isteklere karsi korumaya (Cloudflare vb.) takilabilir; bu durumda
+  o kaynak atlanir, digeri calismaya devam eder.
 """
 
 import os
 import sys
 import json
-from datetime import datetime, timezone
 import xml.etree.ElementTree as ET
-
+from datetime import datetime, timezone
 
 import requests
 
@@ -49,13 +53,13 @@ BINANCE_SPOT_KLINES_URL = "https://data-api.binance.vision/api/v3/klines"
 BYBIT_OI_URL = "https://api.bybit.com/v5/market/open-interest"
 FEAR_GREED_URL = "https://api.alternative.me/fng/"
 
-HISTORY_DIR = "history"
 NEWS_FEEDS = [
     ("CoinDesk", "https://www.coindesk.com/arc/outboundfeeds/rss/"),
     ("CoinTelegraph", "https://cointelegraph.com/rss"),
 ]
 NEWS_HEADLINE_LIMIT = 4  # toplam kac baslik gosterilsin
 
+HISTORY_DIR = "history"
 MAX_HISTORY_ENTRIES = 200  # ~200 hafta (~4 yil) - dosyalarin sisirmemesi icin
 
 
@@ -77,8 +81,8 @@ def fetch_klines(symbol: str, interval: str, limit: int = 200):
 
 def fetch_open_interest(symbol: str):
     """Bybit public API'den anlik Open Interest ceker (linear/USDT-margined).
-    API key gerekmez. Binance yerine Bybit kullaniliyor cunku Binance
-    Futures GitHub Actions IP'lerini engelliyor (451)."""
+    API key gerekmez. Su an GitHub Actions IP'lerinden 403 alinabiliyor
+    (bilinen kisit, dosya basindaki nota bakin)."""
     params = {
         "category": "linear",
         "symbol": symbol,
@@ -95,7 +99,17 @@ def fetch_open_interest(symbol: str):
 
 
 def fetch_fear_greed_index():
-  def fetch_news_headlines(limit=NEWS_HEADLINE_LIMIT):
+    """alternative.me'den guncel Fear & Greed Index'i ceker (0-100).
+    Piyasa geneli icin tek bir deger, sembole ozel degildir.
+    API key gerekmez."""
+    resp = requests.get(FEAR_GREED_URL, params={"limit": 1}, timeout=15)
+    resp.raise_for_status()
+    data = resp.json()
+    entry = data["data"][0]
+    return int(entry["value"]), entry["value_classification"]
+
+
+def fetch_news_headlines(limit=NEWS_HEADLINE_LIMIT):
     """RSS'ten guncel kripto haber basliklarini ceker. Sadece basliklar
     alinir, tam metin/icerik alinmaz. API key gerekmez."""
     headlines = []
@@ -113,15 +127,6 @@ def fetch_fear_greed_index():
         except Exception as e:
             print(f"{source} RSS cekilemedi (calismaya devam ediliyor): {e}")
     return headlines[:limit]
-
-    """alternative.me'den guncel Fear & Greed Index'i ceker (0-100).
-    Piyasa geneli icin tek bir deger, sembole ozel degildir.
-    API key gerekmez."""
-    resp = requests.get(FEAR_GREED_URL, params={"limit": 1}, timeout=15)
-    resp.raise_for_status()
-    data = resp.json()
-    entry = data["data"][0]
-    return int(entry["value"]), entry["value_classification"]
 
 
 # ---------------------------------------------------------------------
@@ -264,6 +269,7 @@ def process_symbol(symbol: str, fear_greed_value, fear_greed_label, news_headlin
             if fear_greed_value is not None else "alinamadi"
         )
         oi_text = open_interest if open_interest is not None else "alinamadi"
+        news_text = "\n".join(news_headlines) if news_headlines else "alinamadi"
         reason = (
             "GHC hedge tetikleyici seviyesi asildi"
             if threshold_exceeded else "Test modu (ALWAYS_NOTIFY=true)"
@@ -276,7 +282,7 @@ def process_symbol(symbol: str, fear_greed_value, fear_greed_label, news_headlin
             f"Hacim (son hafta): {last_volume}\n"
             f"Open Interest: {oi_text}\n"
             f"Fear & Greed Index: {fg_text}\n"
-            f"Haberler:\n" + ("\n".join(news_headlines) if news_headlines else "alinamadi") + "\n"
+            f"Haberler:\n{news_text}\n"
             f"({reason})"
         )
         sent = send_telegram_message(message)
@@ -300,20 +306,8 @@ def main():
         print(f"Fear & Greed Index = {fear_greed_value} ({fear_greed_label})")
     except Exception as e:
         print(f"Fear & Greed Index cekilemedi (calismaya devam ediliyor): {e}")
+
+    # Haber basliklari da piyasa geneli icin tek seferlik cekiliyor.
     news_headlines = fetch_news_headlines()
     if news_headlines:
-        print("Guncel basliklar:\n" + "\n".join(news_headlines))
-
-    any_failure = False
-    for symbol in SYMBOLS:
-        ok = process_symbol(symbol, fear_greed_value, fear_greed_label, news_headlines)
-        if not ok:
-            any_failure = True
-
-    if any_failure:
-        sys.exit(1)
-
-
-if __name__ == "__main__":
-    main()
-
+        print("Guncel basli
