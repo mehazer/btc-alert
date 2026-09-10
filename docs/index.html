@@ -35,12 +35,25 @@
   .rsi-normal { color: #3fb950; }
   table { width: 100%; font-size: 12px; margin-top: 8px; border-collapse: collapse; }
   td, th { padding: 4px; text-align: left; border-top: 1px solid #21262d; }
+  .state-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 13px;
+  }
+  .reason-item { font-size: 13px; padding: 3px 0; color: #8b949e; }
 </style>
 </head>
 <body>
 
 <h1>📊 Crypto Ajan Paneli</h1>
 <div class="updated" id="updated">Yukleniyor...</div>
+
+<div class="card">
+  <h2>🤖 Market Agent</h2>
+  <div id="market-agent">Yukleniyor...</div>
+</div>
 
 <div class="card">
   <h2>Fear &amp; Greed Index</h2>
@@ -57,11 +70,23 @@
   <div id="symbols">Yukleniyor...</div>
 </div>
 
+<div class="card">
+  <h2>Market Agent Gecmisi (son 30)</h2>
+  <div id="market-agent-history">Yukleniyor...</div>
+</div>
+
 <script>
 const REPO = "mehazer/btc-alert";
 const BRANCH = "main";
 const SYMBOLS = ["BTCUSDT", "ETHUSDT", "SOLUSDT"];
 const RSI_THRESHOLD = 70;
+
+const STATE_COLORS = {
+  NORMAL: "#3fb950",
+  BULLISH: "#58a6ff",
+  OVERHEATED: "#d29922",
+  EXTREME_EUPHORIA: "#f85149",
+};
 
 function rawUrl(path) {
   const cacheBust = Date.now();
@@ -80,6 +105,10 @@ function fgColor(value) {
   if (value >= 55) return "#d29922";
   if (value >= 45) return "#8b949e";
   return "#3fb950";
+}
+
+function stateColor(state) {
+  return STATE_COLORS[state] || "#8b949e";
 }
 
 async function loadMarket() {
@@ -137,8 +166,61 @@ async function loadSymbols() {
   }
 }
 
+async function loadMarketAgent() {
+  const currentEl = document.getElementById("market-agent");
+  const historyEl = document.getElementById("market-agent-history");
+
+  try {
+    const history = await fetchJson("history/market_agent_history.json");
+    if (!history.length) {
+      currentEl.textContent = "Henuz Market Agent kaydi yok.";
+      historyEl.textContent = "Henuz Market Agent kaydi yok.";
+      return;
+    }
+
+    const latest = history[history.length - 1];
+    const color = stateColor(latest.state);
+    const reasonsHtml = (latest.reasons || [])
+      .map(r => `<div class="reason-item">• ${r}</div>`)
+      .join("");
+
+    currentEl.innerHTML = `
+      <span class="state-badge" style="background:${color}20;color:${color}">
+        ${latest.state}
+      </span>
+      <div style="margin-top:8px;font-size:14px;">
+        Risk Skoru: <strong>${latest.risk_score}/100</strong> &nbsp;|&nbsp;
+        Guven: <strong>${latest.confidence}%</strong>
+      </div>
+      <div style="margin-top:6px;">${reasonsHtml}</div>
+    `;
+
+    const last30 = history.slice(-30).reverse();
+    const rows = last30.map(r => {
+      const t = new Date(r.timestamp).toLocaleString("tr-TR");
+      const c = stateColor(r.state);
+      return `<tr>
+        <td>${t}</td>
+        <td style="color:${c}">${r.state}</td>
+        <td>${r.risk_score}</td>
+      </tr>`;
+    }).join("");
+
+    historyEl.innerHTML = `
+      <table>
+        <tr><th>Zaman</th><th>Durum</th><th>Skor</th></tr>
+        ${rows}
+      </table>
+    `;
+  } catch (e) {
+    currentEl.textContent = "Market Agent verisi yuklenemedi: " + e.message;
+    historyEl.textContent = "Market Agent gecmisi yuklenemedi.";
+  }
+}
+
 loadMarket();
 loadSymbols();
+loadMarketAgent();
 </script>
 
 </body>
