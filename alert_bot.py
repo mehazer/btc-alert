@@ -207,6 +207,19 @@ def send_telegram_message(text: str):
         print(f"Telegram gonderim hatasi: {resp.status_code} {resp.text}")
         return False
     return True
+def save_market_snapshot(fear_greed_value, fear_greed_label, news_headlines):
+    """Piyasa geneli (sembole ozel olmayan) son durumu ayri bir
+    dosyaya kaydeder, boylece dashboard sayfasi bunu okuyabilir."""
+    os.makedirs(HISTORY_DIR, exist_ok=True)
+    path = os.path.join(HISTORY_DIR, "market.json")
+    snapshot = {
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "fear_greed_value": fear_greed_value,
+        "fear_greed_label": fear_greed_label,
+        "news_headlines": news_headlines,
+    }
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(snapshot, f, indent=2, ensure_ascii=False)
 
 
 # ---------------------------------------------------------------------
@@ -316,6 +329,7 @@ def main():
         ok = process_symbol(symbol, fear_greed_value, fear_greed_label, news_headlines)
         if not ok:
             any_failure = True
+    save_market_snapshot(fear_greed_value, fear_greed_label, news_headlines)
 
     if any_failure:
         sys.exit(1)
