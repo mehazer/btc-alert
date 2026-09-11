@@ -3,15 +3,20 @@ Multi-Coin Weekly RSI Alert Bot + Market Agent
 ------------------------------------------------
 Binance'ten BTC/ETH/SOL (veya SYMBOLS ile belirtilen coinler) icin
 haftalik mum verisini ceker, RSI + Volume hesaplar, Bybit'ten Open
-Interest, alternative.me'den Fear & Greed Index, RSS'ten haber
-basliklarini ceker, esik asilirsa (veya ALWAYS_NOTIFY=true ise)
-Telegram'a mesaj gonderir. Ayrica her calismada degerleri history/
-klasorune JSON olarak kaydeder (sembol bazli + genel piyasa ozeti).
+Interest, alternative.me'den Fear & Greed Index ceker, esik asilirsa
+(veya ALWAYS_NOTIFY=true ise) Telegram'a mesaj gonderir. Ayrica her
+calismada degerleri history/ klasorune JSON olarak kaydeder (sembol
+bazli + genel piyasa ozeti).
 
 YENI: BTCUSDT verisi uzerinden agents/market_agent.py cagrilir,
 sonuc loglanir, Telegram'a ayri bir mesaj olarak gonderilir ve
 history/market_agent_history.json'a kaydedilir (dashboard'un
 "Market Agent" ve "Market Agent History" bolumleri bunu okur).
+
+NOT: Haber toplama (RSS + Telegram kanallari) bu dosyadan
+CIKARILDI -- artik ayri, kendi zamanlamasinda calisan news_bot.py
+tarafindan yapiliyor (bkz. news_sources.py). Bu bot artik sadece
+teknik veriye (RSI, fiyat, hacim, OI, Fear&Greed) odaklaniyor.
 
 Bagimlilik: sadece 'requests'. Harici RSI/TA kutuphanesi kullanilmaz.
 
@@ -20,14 +25,11 @@ Bilinen kisitlar:
   ikisi de GitHub Actions'in bulut IP'lerini engelliyor (451/403).
   OI su an "alinamadi" olarak gelir; bu durumda Market Agent'in
   OI-kaynakli skoru 0 katkida bulunur ve Confidence dusuk cikar.
-- Haber RSS kaynaklari zaman zaman otomatik isteklere karsi
-  korumaya (Cloudflare vb.) takilabilir.
 """
 
 import os
 import sys
 import json
-import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 
 import requests
@@ -51,12 +53,6 @@ BINANCE_SPOT_KLINES_URL = "https://data-api.binance.vision/api/v3/klines"
 BYBIT_OI_URL = "https://api.bybit.com/v5/market/open-interest"
 FEAR_GREED_URL = "https://api.alternative.me/fng/"
 
-NEWS_FEEDS = [
-    ("CoinDesk", "https://www.coindesk.com/arc/outboundfeeds/rss/"),
-    ("CoinTelegraph", "https://cointelegraph.com/rss"),
-]
-NEWS_HEADLINE_LIMIT = 4
-TELEGRAM_NEWS_CHANNELS = ["coindesk", "cointelegraph", "cbinsider"]
 HISTORY_DIR = "history"
 MAX_HISTORY_ENTRIES = 200
 MAX_MARKET_AGENT_ENTRIES = 200  # dashboard yine de son 30'u gosterir
@@ -94,53 +90,6 @@ def fetch_fear_greed_index():
     entry = data["data"][0]
     return int(entry["value"]), entry["value_classification"]
 
-
-def fetch_news_headlines(limit=NEWS_HEADLINE_LIMIT):
-    headlines = []
-    for source, url in NEWS_FEEDS:
-        try:
-            resp = requests.get(url, timeout=15, headers={"User-Agent": "Mozilla/5.0"})
-            resp.raise_for_status()
-            root = ET.fromstring(resp.content)
-            for item in root.findall(".//item")[:limit]:
-                title_el = item.find("title")
-                if title_el is not None and title_el.text:
-                    headlines.append(f"[{source}] {title_el.text.strip()}")
-        except Exception as e:
-            print(f"{source} RSS cekilemedi (calismaya devam ediliyor): {e}")
-    return headlines[:limit]
-def fetch_telegram_channel_headlines(channel_username, limit=4):
-    """Halka acik bir Telegram kanalinin web onizlemesinden
-    (t.me/s/<kanal>) son mesajlari ceker. Giris/API key gerektirmez,
-    sadece herkese acik kanallarda calisir."""
-    url = f"https://t.me/s/{channel_username}"
-    try:
-        resp = requests.get(url, timeout=15, headers={"User-Agent": "Mozilla/5.0"})
-        resp.raise_for_status()
-    except Exception as e:
-        print(f"Telegram kanali cekilemedi ({channel_username}): {e}")
-        return []
-
-    try:
-        from bs4 import BeautifulSoup
-        soup = BeautifulSoup(resp.text, "html.parser")
-        messages = soup.find_all("div", class_="tgme_widget_message_text")
-        headlines = []
-        for msg in messages[-limit:]:
-            text = msg.get_text(separator=" ", strip=True)
-            if text:
-                headlines.append(f"[Telegram/{channel_username}] {text}")
-        return headlines
-    except Exception as e:
-        print(f"Telegram kanali parse edilemedi ({channel_username}): {e}")
-        return []
-
-
-def fetch_all_telegram_headlines(limit_per_channel=4):
-    all_headlines = []
-    for channel in TELEGRAM_NEWS_CHANNELS:
-        all_headlines.extend(fetch_telegram_channel_headlines(channel, limit_per_channel))
-    return all_headlines
 
 # ---------------------------------------------------------------------
 # RSI hesaplama
@@ -189,14 +138,13 @@ def save_history(symbol, records):
         json.dump(trimmed, f, indent=2, ensure_ascii=False)
 
 
-def save_market_snapshot(fear_greed_value, fear_greed_label, news_headlines):
+def save_market_snapshot(fear_greed_value, fear_greed_label):
     os.makedirs(HISTORY_DIR, exist_ok=True)
     path = os.path.join(HISTORY_DIR, "market.json")
     snapshot = {
         "updated_at": datetime.now(timezone.utc).isoformat(),
         "fear_greed_value": fear_greed_value,
         "fear_greed_label": fear_greed_label,
-        "news_headlines": news_headlines,
     }
     with open(path, "w", encoding="utf-8") as f:
         json.dump(snapshot, f, indent=2, ensure_ascii=False)
@@ -247,7 +195,7 @@ def send_telegram_message(text):
 # Bir sembolu isle
 # ---------------------------------------------------------------------
 
-def process_symbol(symbol, fear_greed_value, fear_greed_label, news_headlines):
+def process_symbol(symbol, fear_greed_value, fear_greed_label):
     """Bir sembolu isler. Basarili olursa, o sembole ait
     (rsi, price, open_interest, price_change_pct, oi_change_pct)
     degerlerini icerecek sekilde bir dict doner (Market Agent bunu
@@ -319,7 +267,6 @@ def process_symbol(symbol, fear_greed_value, fear_greed_label, news_headlines):
     if threshold_exceeded or ALWAYS_NOTIFY:
         fg_text = f"{fear_greed_value} ({fear_greed_label})" if fear_greed_value is not None else "alinamadi"
         oi_text = open_interest if open_interest is not None else "alinamadi"
-        news_text = "\n".join(news_headlines) if news_headlines else "alinamadi"
         reason = "GHC hedge tetikleyici seviyesi asildi" if threshold_exceeded else "Test modu (ALWAYS_NOTIFY=true)"
         message = (
             f"⚠️ {symbol} Haftalik RSI Uyarisi\n"
@@ -329,7 +276,6 @@ def process_symbol(symbol, fear_greed_value, fear_greed_label, news_headlines):
             f"Hacim (son hafta): {last_volume}\n"
             f"Open Interest: {oi_text}\n"
             f"Fear & Greed Index: {fg_text}\n"
-            f"Haberler:\n{news_text}\n"
             f"({reason})"
         )
         sent = send_telegram_message(message)
@@ -402,6 +348,7 @@ def run_market_agent(primary_symbol_data, fear_greed_value):
 # ---------------------------------------------------------------------
 # main
 # ---------------------------------------------------------------------
+
 def main():
     fear_greed_value, fear_greed_label = None, None
     try:
@@ -410,23 +357,13 @@ def main():
     except Exception as e:
         print(f"Fear & Greed Index cekilemedi (calismaya devam ediliyor): {e}")
 
-    news_headlines = fetch_news_headlines()
-
-    telegram_headlines = fetch_all_telegram_headlines()
-    news_headlines.extend(telegram_headlines)
-
-    if news_headlines:
-        headline_text = "\n".join(news_headlines)
-        print("Guncel basliklar:")
-        print(headline_text)
-
-    save_market_snapshot(fear_greed_value, fear_greed_label, news_headlines)
+    save_market_snapshot(fear_greed_value, fear_greed_label)
 
     any_failure = False
     primary_symbol_data = None
 
     for symbol in SYMBOLS:
-        symbol_data = process_symbol(symbol, fear_greed_value, fear_greed_label, news_headlines)
+        symbol_data = process_symbol(symbol, fear_greed_value, fear_greed_label)
         if symbol_data is None:
             any_failure = True
         elif symbol.upper() == PRIMARY_SYMBOL:
