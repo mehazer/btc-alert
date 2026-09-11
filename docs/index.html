@@ -30,6 +30,9 @@
     font-weight: bold;
   }
   .news-item { font-size: 14px; padding: 6px 0; border-top: 1px solid #21262d; }
+  .news-source-tag { color: #8b949e; font-size: 12px; margin-right: 6px; }
+  .source-item { font-size: 13px; padding: 5px 0; border-top: 1px solid #21262d; display: flex; justify-content: space-between; }
+  .source-type { color: #8b949e; font-size: 12px; }
   .symbol-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; }
   .rsi-high { color: #f85149; font-weight: bold; }
   .rsi-normal { color: #3fb950; }
@@ -43,6 +46,7 @@
     font-size: 13px;
   }
   .reason-item { font-size: 13px; padding: 3px 0; color: #8b949e; }
+  .news-updated { color: #8b949e; font-size: 12px; margin-bottom: 8px; }
 </style>
 </head>
 <body>
@@ -62,7 +66,13 @@
 
 <div class="card">
   <h2>Guncel Haberler</h2>
+  <div class="news-updated" id="news-updated"></div>
   <div id="news">Yukleniyor...</div>
+</div>
+
+<div class="card">
+  <h2>Haber Kaynaklari</h2>
+  <div id="news-sources">Yukleniyor...</div>
 </div>
 
 <div class="card">
@@ -123,13 +133,38 @@ async function loadMarket() {
       `<span class="fg-badge" style="background:${fgColor(fg)}20;color:${fgColor(fg)}">
         ${fg ?? "?"} - ${label}
       </span>`;
-
-    const news = data.news_headlines || [];
-    document.getElementById("news").innerHTML = news.length
-      ? news.map(h => `<div class="news-item">${h}</div>`).join("")
-      : "Haber bulunamadi.";
   } catch (e) {
     document.getElementById("updated").textContent = "Piyasa verisi yuklenemedi: " + e.message;
+  }
+}
+
+async function loadNews() {
+  const newsEl = document.getElementById("news");
+  const newsUpdatedEl = document.getElementById("news-updated");
+  const sourcesEl = document.getElementById("news-sources");
+
+  try {
+    const data = await fetchJson("history/latest_news.json");
+
+    newsUpdatedEl.textContent =
+      "Son guncelleme: " + new Date(data.updated_at).toLocaleString("tr-TR");
+
+    const headlines = data.headlines || [];
+    newsEl.innerHTML = headlines.length
+      ? headlines.map(h =>
+          `<div class="news-item"><span class="news-source-tag">[${h.source}]</span>${h.headline}</div>`
+        ).join("")
+      : "Haber bulunamadi.";
+
+    const sources = data.sources || [];
+    sourcesEl.innerHTML = sources.length
+      ? sources.map(s =>
+          `<div class="source-item"><span>${s.name}</span><span class="source-type">${s.type}</span></div>`
+        ).join("")
+      : "Kaynak bilgisi yok.";
+  } catch (e) {
+    newsEl.textContent = "Haber verisi yuklenemedi: " + e.message;
+    sourcesEl.textContent = "Kaynak listesi yuklenemedi.";
   }
 }
 
@@ -219,6 +254,7 @@ async function loadMarketAgent() {
 }
 
 loadMarket();
+loadNews();
 loadSymbols();
 loadMarketAgent();
 </script>
