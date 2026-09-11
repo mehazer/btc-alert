@@ -402,7 +402,6 @@ def run_market_agent(primary_symbol_data, fear_greed_value):
 # ---------------------------------------------------------------------
 # main
 # ---------------------------------------------------------------------
-
 def main():
     fear_greed_value, fear_greed_label = None, None
     try:
@@ -416,39 +415,6 @@ def main():
     telegram_headlines = fetch_all_telegram_headlines()
     news_headlines.extend(telegram_headlines)
 
-    if news_headlines:
-        headline_text = "\n".join(news_headlines)
-        print("Guncel basliklar:")
-        print(headline_text)
-
-    telegram_headlines = fetch_all_telegram_headlines()
-    news_headlines.extend(telegram_headlines)
-
-    if news_headlines:
-        headline_text = "\n".join(news_headlines)
-        print("Guncel basliklar:")
-        print(headline_text)
-
-    save_market_snapshot(fear_greed_value, fear_greed_label, news_headlines)
-
-    any_failure = False
-    primary_symbol_data = None
-
-    for symbol in SYMBOLS:
-        symbol_data = process_symbol(symbol, fear_greed_value, fear_greed_label, news_headlines)
-        if symbol_data is None:
-            any_failure = True
-        elif symbol.upper() == PRIMARY_SYMBOL:
-            primary_symbol_data = symbol_data
-
-    run_market_agent(primary_symbol_data, fear_greed_value)
-
-    if any_failure:
-        sys.exit(1)
-
-
-if __name__ == "__main__":
-    main()
     if news_headlines:
         headline_text = "\n".join(news_headlines)
         print("Guncel basliklar:")
