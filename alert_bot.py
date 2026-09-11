@@ -412,15 +412,14 @@ def main():
         print(f"Fear & Greed Index cekilemedi (calismaya devam ediliyor): {e}")
 
     news_headlines = fetch_news_headlines()
-  def main():
-    fear_greed_value, fear_greed_label = None, None
-    try:
-        fear_greed_value, fear_greed_label = fetch_fear_greed_index()
-        print(f"Fear & Greed Index = {fear_greed_value} ({fear_greed_label})")
-    except Exception as e:
-        print(f"Fear & Greed Index cekilemedi (calismaya devam ediliyor): {e}")
 
-    news_headlines = fetch_news_headlines()
+    telegram_headlines = fetch_all_telegram_headlines()
+    news_headlines.extend(telegram_headlines)
+
+    if news_headlines:
+        headline_text = "\n".join(news_headlines)
+        print("Guncel basliklar:")
+        print(headline_text)
 
     telegram_headlines = fetch_all_telegram_headlines()
     news_headlines.extend(telegram_headlines)
