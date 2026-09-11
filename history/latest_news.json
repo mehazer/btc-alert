@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-11T09:14:25.111808+00:00",
+  "updated_at": "2026-09-11T09:30:01.319134+00:00",
   "sources": [
     {
       "name": "CoinDesk",
@@ -7,6 +7,18 @@
     },
     {
       "name": "CoinTelegraph",
+      "type": "rss"
+    },
+    {
+      "name": "Decrypt",
+      "type": "rss"
+    },
+    {
+      "name": "The Block",
+      "type": "rss"
+    },
+    {
+      "name": "Bitcoin Magazine",
       "type": "rss"
     },
     {
@@ -20,6 +32,30 @@
     {
       "name": "Coin Bureau Insider (Telegram)",
       "type": "telegram"
+    },
+    {
+      "name": "Watcher.Guru (Telegram)",
+      "type": "telegram"
+    },
+    {
+      "name": "Wu Blockchain (Telegram)",
+      "type": "telegram"
+    },
+    {
+      "name": "Whale Alert (Telegram)",
+      "type": "telegram"
+    },
+    {
+      "name": "r/CryptoCurrency",
+      "type": "reddit"
+    },
+    {
+      "name": "r/Bitcoin",
+      "type": "reddit"
+    },
+    {
+      "name": "r/ethereum",
+      "type": "reddit"
     }
   ],
   "headlines": [
@@ -64,6 +100,46 @@
       "headline": "Here’s what happened in crypto today"
     },
     {
+      "source": "Decrypt",
+      "type": "rss",
+      "headline": "Sam Bankman-Fried Asks Supreme Court to Overturn FTX Fraud Conviction"
+    },
+    {
+      "source": "Decrypt",
+      "type": "rss",
+      "headline": "Senate Republicans Release Revised Clarity Act Ahead of September 15 Vote"
+    },
+    {
+      "source": "Decrypt",
+      "type": "rss",
+      "headline": "DeepSeek's New Model Nearly Matches GPT-6 Astra on Design—at 1.4% of the Cost"
+    },
+    {
+      "source": "Decrypt",
+      "type": "rss",
+      "headline": "AI Agents Just Slashed the Cost of a Quantum Attack on Bitcoin"
+    },
+    {
+      "source": "The Block",
+      "type": "rss",
+      "headline": "Sam Bankman-Fried asks Supreme Court to overturn fraud conviction and $11 billion forfeiture"
+    },
+    {
+      "source": "The Block",
+      "type": "rss",
+      "headline": "Bitwise shuts down Dogecoin ETF less than a year after launch"
+    },
+    {
+      "source": "The Block",
+      "type": "rss",
+      "headline": "Senate Republicans unveil revised crypto bill ahead of key Clarity Act vote next week"
+    },
+    {
+      "source": "The Block",
+      "type": "rss",
+      "headline": "Coinbase rebrands Base App back to Coinbase Wallet after just over a year as social experiment falls short"
+    },
+    {
       "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
       "headline": "🇺🇸 JUST IN : Kalshi plans to seek regulatory approval to launch the first regulated US perpetual futures on single stocks like Tesla, Apple, and Nvidia, WSJ reports. News | Markets | YouTube"
@@ -97,6 +173,66 @@
       "source": "Coin Bureau Insider (Telegram)",
       "type": "telegram",
       "headline": "Coin Bureau Telegram (Old) pinned « 🚨 🚨 NOTE: The Coin Bureau Insider Telegram Channel can now be reached on @CoinBureau.   There are NO OTHER official channels. Please be aware of scammers / impersonators. »"
+    },
+    {
+      "source": "Watcher.Guru (Telegram)",
+      "type": "telegram",
+      "headline": "JUST IN: 🇺🇸 Sam Bankman-Fried asks Supreme Court to overturn his fraud conviction. @WatcherGuru"
+    },
+    {
+      "source": "Watcher.Guru (Telegram)",
+      "type": "telegram",
+      "headline": "JUST IN: 🇺🇸 Treasury Secretary Bessent says the US will sanction a large bank next week. @WatcherGuru"
+    },
+    {
+      "source": "Watcher.Guru (Telegram)",
+      "type": "telegram",
+      "headline": "JUST IN: 🇨🇳 🇷🇺 Anthropic says China and Russia attempted to use Claude AI for cyberattacks, weapons design, propaganda and mass surveillance. @WatcherGuru"
+    },
+    {
+      "source": "Watcher.Guru (Telegram)",
+      "type": "telegram",
+      "headline": "JUST IN: 🇺🇸 US lawmakers consider requiring \"kill switches\" to shut down AI systems if they become too dangerous. @WatcherGuru"
+    },
+    {
+      "source": "Wu Blockchain (Telegram)",
+      "type": "telegram",
+      "headline": "Bitcoin Spot ETFs Saw Total Net Outflows of $283 Million Yesterday, Marking Three Consecutive Days of Net Outflows On September 10 (ET), Bitcoin spot ETFs recorded total net outflows of $283 million, marking three consecutive days of net outflows. Ethereum spot ETFs saw total net outflows of $29.76 million, while BlackRock’s ETHB led inflows with $13.95 million. — link"
+    },
+    {
+      "source": "Wu Blockchain (Telegram)",
+      "type": "telegram",
+      "headline": "Onchain RWA Perpetual Trading Volume Surpasses $120 Billion, Up Approximately 120x From October 2025 Castle Labs reported that onchain RWA perpetual trading volume rose from less than $1 billion in October 2025 to more than $120 billion in August 2026, representing approximately 120x growth in under a year. RWA perpetuals accounted for about 20% of total onchain perpetual trading volume at one point in July, and around 12%–13% in most months. Monthly volume has remained above $100 billion since June. Current open interest in RWA perpetuals stands at approximately $4.9 billion, with TradeXYZ and Variational accounting for nearly 90%. — link"
+    },
+    {
+      "source": "Wu Blockchain (Telegram)",
+      "type": "telegram",
+      "headline": "Binance’s Bitcoin Reserves Hit a Two-Year High at 693k BTC, Accounting for 30% of Major Exchange Reserves According to Darkfost, Binance’s BTC reserves have risen to more than 693k BTC, accounting for around 30% of the total BTC reserves held by major exchanges. The reserves have increased by 77k BTC since late April. The increase may be related to investors moving BTC to exchanges to sell after the rallies in May and recently. It may also have been influenced by the SAFU fund’s plan to invest $1 billion to acquire around 15k BTC, as well as some investors transferring BTC to exchanges for asset security following the ColdCard incident. The sharp rise in reserves could create potential selling pressure on the market. — link"
+    },
+    {
+      "source": "Wu Blockchain (Telegram)",
+      "type": "telegram",
+      "headline": "India Launches Tokenized Bond Pilot for $620B Corporate Debt Market India’s securities regulator SEBI and the Reserve Bank of India have launched the Demat 2.0 pilot to test tokenized corporate bonds on distributed ledger technology. The pilot uses the RBI’s wholesale digital rupee for atomic settlement, allowing securities and payments to settle simultaneously on-chain. REC, L&T and IIFL have issued a combined ₹10.25 billion ($116 million) in bonds under the program, which forms part of India’s broader push to modernize its roughly $620 billion corporate debt market. — link"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "📉 📉 📉 Sam Bankman-Fried asks U.S. Supreme Court to review his FTX fraud conviction and $11 billion forfeiture order Read Analysis"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "📉 📉 📉 Bitcoin Red Team Says Blockstream Was Warned Before Liquid Exploit; Peg-Outs Still Disabled and Nearly 600 BTC Missing Read Analysis"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "📉 📉 📉 Bitcoin and major altcoins fall as oil prices, inflation worries, ETF outflows, and liquidations pressure crypto markets Read Analysis"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "📉 📉 📉 Zcash falls 16% from recent peak, triggering $28.37 million in long liquidations Read Analysis"
     }
   ]
 }
