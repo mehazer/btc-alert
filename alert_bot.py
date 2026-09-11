@@ -56,7 +56,7 @@ NEWS_FEEDS = [
     ("CoinTelegraph", "https://cointelegraph.com/rss"),
 ]
 NEWS_HEADLINE_LIMIT = 4
-
+TELEGRAM_NEWS_CHANNELS = ["coindesk", "cointelegraph", "cbinsider"]
 HISTORY_DIR = "history"
 MAX_HISTORY_ENTRIES = 200
 MAX_MARKET_AGENT_ENTRIES = 200  # dashboard yine de son 30'u gosterir
@@ -109,7 +109,38 @@ def fetch_news_headlines(limit=NEWS_HEADLINE_LIMIT):
         except Exception as e:
             print(f"{source} RSS cekilemedi (calismaya devam ediliyor): {e}")
     return headlines[:limit]
+def fetch_telegram_channel_headlines(channel_username, limit=4):
+    """Halka acik bir Telegram kanalinin web onizlemesinden
+    (t.me/s/<kanal>) son mesajlari ceker. Giris/API key gerektirmez,
+    sadece herkese acik kanallarda calisir."""
+    url = f"https://t.me/s/{channel_username}"
+    try:
+        resp = requests.get(url, timeout=15, headers={"User-Agent": "Mozilla/5.0"})
+        resp.raise_for_status()
+    except Exception as e:
+        print(f"Telegram kanali cekilemedi ({channel_username}): {e}")
+        return []
 
+    try:
+        from bs4 import BeautifulSoup
+        soup = BeautifulSoup(resp.text, "html.parser")
+        messages = soup.find_all("div", class_="tgme_widget_message_text")
+        headlines = []
+        for msg in messages[-limit:]:
+            text = msg.get_text(separator=" ", strip=True)
+            if text:
+                headlines.append(f"[Telegram/{channel_username}] {text}")
+        return headlines
+    except Exception as e:
+        print(f"Telegram kanali parse edilemedi ({channel_username}): {e}")
+        return []
+
+
+def fetch_all_telegram_headlines(limit_per_channel=4):
+    all_headlines = []
+    for channel in TELEGRAM_NEWS_CHANNELS:
+        all_headlines.extend(fetch_telegram_channel_headlines(channel, limit_per_channel))
+    return all_headlines
 
 # ---------------------------------------------------------------------
 # RSI hesaplama
@@ -381,6 +412,44 @@ def main():
         print(f"Fear & Greed Index cekilemedi (calismaya devam ediliyor): {e}")
 
     news_headlines = fetch_news_headlines()
+  def main():
+    fear_greed_value, fear_greed_label = None, None
+    try:
+        fear_greed_value, fear_greed_label = fetch_fear_greed_index()
+        print(f"Fear & Greed Index = {fear_greed_value} ({fear_greed_label})")
+    except Exception as e:
+        print(f"Fear & Greed Index cekilemedi (calismaya devam ediliyor): {e}")
+
+    news_headlines = fetch_news_headlines()
+
+    telegram_headlines = fetch_all_telegram_headlines()
+    news_headlines.extend(telegram_headlines)
+
+    if news_headlines:
+        headline_text = "\n".join(news_headlines)
+        print("Guncel basliklar:")
+        print(headline_text)
+
+    save_market_snapshot(fear_greed_value, fear_greed_label, news_headlines)
+
+    any_failure = False
+    primary_symbol_data = None
+
+    for symbol in SYMBOLS:
+        symbol_data = process_symbol(symbol, fear_greed_value, fear_greed_label, news_headlines)
+        if symbol_data is None:
+            any_failure = True
+        elif symbol.upper() == PRIMARY_SYMBOL:
+            primary_symbol_data = symbol_data
+
+    run_market_agent(primary_symbol_data, fear_greed_value)
+
+    if any_failure:
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
     if news_headlines:
         headline_text = "\n".join(news_headlines)
         print("Guncel basliklar:")
