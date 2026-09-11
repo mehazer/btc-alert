@@ -1,0 +1,46 @@
+name: News Agent
+
+on:
+  schedule:
+    # 6 saatte bir calisir (gunde 4 kez): 00:00, 06:00, 12:00, 18:00 UTC.
+    # Haberler RSI'dan cok daha hizli degistigi icin daha sik cekiliyor.
+    - cron: "0 */6 * * *"
+  workflow_dispatch: {}   # Actions sekmesinden manuel de tetikleyebilirsin
+
+# History dosyalarini (history/*.json) repo'ya geri commit edebilmek icin
+# yazma izni gerekiyor. Bu izin SADECE bu repo icin, SADECE GitHub'in
+# kendi otomatik uretecegi GITHUB_TOKEN icindir - hicbir kisisel
+# token/sifre kullanilmaz.
+permissions:
+  contents: write
+
+jobs:
+  check-news:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repo'yu indir
+        uses: actions/checkout@v4
+
+      - name: Python kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Bagimliliklari kur
+        run: pip install -r requirements.txt
+
+      - name: Botu calistir
+        run: python news_bot.py
+
+      - name: Tarihceyi (history/) repo'ya kaydet
+        if: always()   # bot hata ile bitse bile o ana kadar toplanan veri kaydedilsin
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add history/
+          if git diff --cached --quiet; then
+            echo "History'de degisiklik yok, commit atlanildi."
+          else
+            git commit -m "News history guncelle [skip ci]"
+            git push
+          fi
