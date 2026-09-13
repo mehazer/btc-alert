@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-13T10:40:51.005272+00:00",
+  "updated_at": "2026-09-13T15:07:45.647735+00:00",
   "sources": [
     {
       "name": "CoinDesk",
@@ -62,22 +62,27 @@
     {
       "source": "CoinDesk",
       "type": "rss",
+      "headline": "Fed rate hike is about Wall Street, not inflation, says economist"
+    },
+    {
+      "source": "CoinDesk",
+      "type": "rss",
+      "headline": "Circle's $400M Tazapay deal buys emerging market links that take ‘years to build’"
+    },
+    {
+      "source": "CoinDesk",
+      "type": "rss",
+      "headline": "Crypto's Clarity Act is a Schrödinger's cat in life-death limbo as U.S. Senate returns"
+    },
+    {
+      "source": "CoinDesk",
+      "type": "rss",
       "headline": "OpenAI IPO won't happen this year, says Sam Altman"
     },
     {
-      "source": "CoinDesk",
+      "source": "CoinTelegraph",
       "type": "rss",
-      "headline": "Bitcoin Suisse plans to cut up to half its Swiss jobs as it shifts work abroad"
-    },
-    {
-      "source": "CoinDesk",
-      "type": "rss",
-      "headline": "Nigel Farage’s Reform UK lands $97 million donations from two crypto billionaires in 24 hours"
-    },
-    {
-      "source": "CoinDesk",
-      "type": "rss",
-      "headline": "Anthropic CEO calls for AI race to slow down citing safety. Musk and OpenAI's Altman agrees"
+      "headline": "Anthropic chief urges slowdown in AI development to safer pace"
     },
     {
       "source": "CoinTelegraph",
@@ -95,9 +100,9 @@
       "headline": "North Korea using foreign talent to help infiltrate US companies: Report"
     },
     {
-      "source": "CoinTelegraph",
+      "source": "Decrypt",
       "type": "rss",
-      "headline": "Farage’s Reform UK gets $97M from two crypto billionaires"
+      "headline": "AI Agents Spending Money Online? New Research Says Not Really"
     },
     {
       "source": "Decrypt",
@@ -113,11 +118,6 @@
       "source": "Decrypt",
       "type": "rss",
       "headline": "Crypto Billionaires Hand Reform UK $97M in Record Donations"
-    },
-    {
-      "source": "Decrypt",
-      "type": "rss",
-      "headline": "GTA Mod Adds Flock Cameras—And Lets Players Destroy Them"
     },
     {
       "source": "The Block",
@@ -142,22 +142,22 @@
     {
       "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
-      "headline": "🚨 ALERT: Clothing prices are set to rise as the Iran conflict and El Niño drive up energy, shipping and material costs. News | Markets | YouTube"
-    },
-    {
-      "source": "CoinTelegraph (Telegram)",
-      "type": "telegram",
-      "headline": "🇫🇷 INTERESTING : More Americans are permanently moving to Paris for better work-life balance, lower living costs and an escape from US politics. News | Markets | YouTube"
-    },
-    {
-      "source": "CoinTelegraph (Telegram)",
-      "type": "telegram",
       "headline": "🇫🇷 INTERESTING : More Americans are permanently moving to Paris for better work-life balance, lower living costs and an escape from US politics. News | Markets | YouTube"
     },
     {
       "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
       "headline": "🔥 NEW: Tesla will unveil its new Roadster on October 1. News | Markets | YouTube"
+    },
+    {
+      "source": "CoinTelegraph (Telegram)",
+      "type": "telegram",
+      "headline": "🚨 ALERT: Saudi Arabia’s pipeline outage threatens up to 4% of global oil supply, with Yanbu’s export stocks lasting just 5–7 days, Reuters reports. News | Markets | YouTube"
+    },
+    {
+      "source": "CoinTelegraph (Telegram)",
+      "type": "telegram",
+      "headline": "🚨 ALERT: Saudi Arabia’s pipeline outage threatens up to 4% of global oil supply, with Yanbu’s export stocks lasting just 5–7 days, Reuters reports. News | Markets | YouTube"
     },
     {
       "source": "Coin Bureau Insider (Telegram)",
@@ -197,16 +197,6 @@
     {
       "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "Clandestine Crypto Mine Uncovered in Mexican Mountains Highlights Cartel Power Theft and Money Laundering According to Reuters, Mexican law enforcement uncovered a clandestine cryptocurrency mining facility nestled in the mountainous Sierra Norte region of Puebla state (Tlaola municipality), suspected of being operated by organized crime to launder illicit capital. Authorities seized 300 graphics processing units (GPUs), 80 medium-voltage electrical terminals, and 8 satellite dishes, while investigating allegations that the facility siphoned industrial-scale electricity directly from a nearby hydroelectric dam infrastructure—marking the fourth such covert mining operation dismantled in the region since early last year. Chainalysis specialists noted that major Latin American drug cartels are escalating their technical sophistication by establishing off-grid crypto mining nodes across territories under their territorial influence, exploiting zero-cost stolen power to mint virtual assets and launder criminal revenues off the radar of traditional banking oversight. — link"
-    },
-    {
-      "source": "Wu Blockchain (Telegram)",
-      "type": "telegram",
-      "headline": "Thailand SEC Proposes Limits on Stablecoin Transfers to Third-Party Wallets, With ~$150K Daily One-Way Cap Thailand’s SEC opened a consultation on new stablecoin rules that would require deposits and withdrawals through regulated digital asset operators to originate from and go to accounts or wallets verified as belonging to the same customer. Inbound and outbound transfers would each be capped at about $151,000 per person, per operator, per day . The cap would not apply to transfers between Thai-regulated operators that comply with the Travel Rule. The SEC said the proposal aims to reduce risks related to money laundering, cybercrime and circumvention of cross-border transfer rules. — link"
-    },
-    {
-      "source": "Wu Blockchain (Telegram)",
-      "type": "telegram",
       "headline": "Uniswap Monthly Trading Volume Surpasses $70B, Exceeding the Next Three DEXs Combined Uniswap said its protocol processed more than $70 billion in trading volume over the past month, exceeding the combined volume of the next three largest DEXs. The figures were sourced from DeFiLlama Research. Uniswap said the data reflects continued strong trading activity and its leading position in decentralized spot trading by liquidity and volume. — link"
     },
     {
@@ -215,9 +205,14 @@
       "headline": "A Bitcoin Seed Generator Is Using Radioactive Decay for Entropy An open-source project called Entropy32 Plus uses radioactive decay as a physical entropy source to generate Bitcoin BIP39 seed phrases. A Geiger counter captures decay events, whose timing is processed through SHA-256 before being mapped to the BIP39 wordlist. The device is designed to operate fully offline with no wireless connectivity or persistent seed storage. The developer notes that its entropy quality has not yet been validated under NIST SP 800-90B and describes the project as experimental rather than independently audited for securing significant funds. — link"
     },
     {
-      "source": "Whale Alert (Telegram)",
+      "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "🚨 🚨 🚨 🚨 🚨 1,019,424 $SOL (103,362,185 USD) transferred from unknown wallet to unknown wallet Details"
+      "headline": "Asia’s Weekly TOP10 Crypto News India explores tokenized US debt, Kazakhstan meets CZ on digital infrastructure, Hong Kong Eyes Independent Crypto Regulator, Uzbekistan Launches Stablecoin Pilot, and Iran Normalizes Crypto Settlements. For the complete article and weekly curated reports, subscribe to our Substack: — link"
+    },
+    {
+      "source": "Wu Blockchain (Telegram)",
+      "type": "telegram",
+      "headline": "Stolen Power and Crypto Mining Emerge as New Tools for Latin American Cartels Reuters reported that Mexican authorities uncovered a suspected illicit crypto mining operation in the mountainous Tlaola area of Puebla state, seizing 300 GPUs, 80 medium-voltage terminals and eight satellite antennas. Authorities are investigating whether the site stole electricity from a nearby hydroelectric dam, and it is the fourth similar operation discovered in the area since early 2025. Chainalysis said Latin American cartels are increasingly using crypto transfers and mining operations to launder money, often setting up infrastructure in areas where electricity is cheap or can be stolen under organized-crime influence. — link"
     },
     {
       "source": "Whale Alert (Telegram)",
@@ -233,6 +228,11 @@
       "source": "Whale Alert (Telegram)",
       "type": "telegram",
       "headline": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 2,930 $BTC (224,889,436 USD) transferred from unknown wallet to unknown new wallet Details"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "📉 📉 📉 Chainflip pauses operations after TRON USDT memo exploit drains 736,442 USDT in unauthorized payouts Read Analysis"
     }
   ]
 }
