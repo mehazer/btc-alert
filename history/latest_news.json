@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-20T01:48:29.673942+00:00",
+  "updated_at": "2026-09-20T10:09:42.081559+00:00",
   "sources": [
     {
       "name": "CoinDesk",
@@ -82,22 +82,22 @@
     {
       "source": "CoinTelegraph",
       "type": "rss",
+      "headline": "Grayscale’s Zcash ETF files for 3-for-1 forward share split"
+    },
+    {
+      "source": "CoinTelegraph",
+      "type": "rss",
+      "headline": "Anthropic tabs Accenture as embedded evaluator to help with AI slowdown proposal"
+    },
+    {
+      "source": "CoinTelegraph",
+      "type": "rss",
       "headline": "REX launches 2x leveraged ETF tied to Bitcoin treasury firm Strive"
     },
     {
       "source": "CoinTelegraph",
       "type": "rss",
-      "headline": "Kalshi joins Coinbase with filing for US stock perpetual futures"
-    },
-    {
-      "source": "CoinTelegraph",
-      "type": "rss",
-      "headline": "VanEck criticizes Metaplanet over executive dilution despite compensation cuts"
-    },
-    {
-      "source": "CoinTelegraph",
-      "type": "rss",
-      "headline": "Bastion wins conditional OCC approval for national trust bank charter"
+      "headline": "Kalshi joins Coinbase with own filing for US stock perpetual futures"
     },
     {
       "source": "Decrypt",
@@ -142,22 +142,22 @@
     {
       "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
-      "headline": "🚨 HUGE: This is now $ETH's best Q3 ever. News | Markets | YouTube"
-    },
-    {
-      "source": "CoinTelegraph (Telegram)",
-      "type": "telegram",
-      "headline": "🇺🇸 JUST IN: President Trump says he is forming an “AI Force” and will soon appoint an AI czar to oversee the rapidly growing industry. News | Markets | YouTube"
-    },
-    {
-      "source": "CoinTelegraph (Telegram)",
-      "type": "telegram",
       "headline": "📊 UPDATE: There is 13.6X more ETH waiting to be staked than there is waiting to exit. News | Markets | YouTube"
     },
     {
       "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
       "headline": "🚨 INSIGHT: Peter Schiff says the SEC’s tokenized stock announcement is bearish for Bitcoin because tokenized securities could offer the same convenience with more reliable underlying value. News | Markets | YouTube"
+    },
+    {
+      "source": "CoinTelegraph (Telegram)",
+      "type": "telegram",
+      "headline": "🚨 JUST IN: Polymarket traders see an 83% chance of a Trump-Greenland deal being signed by September 23. News | Markets | YouTube"
+    },
+    {
+      "source": "CoinTelegraph (Telegram)",
+      "type": "telegram",
+      "headline": "🚨 JUST IN: Polymarket traders see an 83% chance of a Trump-Greenland deal being signed by September 23. News | Markets | YouTube"
     },
     {
       "source": "Coin Bureau Insider (Telegram)",
@@ -177,11 +177,6 @@
     {
       "source": "Watcher.Guru (Telegram)",
       "type": "telegram",
-      "headline": "JUST IN: 🇫🇷 11% of gas stations in France are now out of gas or diesel. • Diesel has surged to €2.38 per liter, putting it within 1% of a record high. • French President Emmanuel Macron called an emergency meeting to address the situation. • The French government is preparing financial assistance for drivers who travel long distances. @WatcherGuru"
-    },
-    {
-      "source": "Watcher.Guru (Telegram)",
-      "type": "telegram",
       "headline": "JUST IN: Anthropic considers launching new Claude AI model to counter OpenAI's GPT-6 Astra. • This comes after Anthropic CEO Dario Amodei called to slowdown AI development, citing safety concerns. • Anthropic is expected to go public in November at an estimated $2 trillion valuation, making it one of the largest IPOs in history. @WatcherGuru"
     },
     {
@@ -195,44 +190,49 @@
       "headline": "JUST IN: 🇺🇸 President Trump announces creation of \"AI Force\" and says AI could make up 25% of US GDP. @WatcherGuru"
     },
     {
-      "source": "Wu Blockchain (Telegram)",
+      "source": "Watcher.Guru (Telegram)",
       "type": "telegram",
-      "headline": "Highlight Clip: Tom Lee: We've Been Advocating a 2% Crypto Position Tom Lee: We've Been Advocating a 2% Crypto Position Description: On September 11, 2026, BitMine Chairman Tom Lee said in an interview with Wealthion that he has long advocated a 2% crypto position for investors with no crypto exposure. He noted that for some Fundstrat clients who followed the recommendation, the original 2% allocation has grown to more than 85% of their portfolios due to Bitcoin’s substantial price appreciation, rather than additional purchases. Lee believes that over the next decade, crypto could provide exposure with relatively low correlation to other assets, benefit from the growth of AI, and become an important part of how the financial services industry reinvents itself. WuBlockchain notes that Tom Lee's market forecasts tend to be optimistic. His bullish targets may not materialize, and actual market performance may differ significantly from his predictions. Readers are encouraged to focus on his analytical reasoning rather than use specific price targets or timelines as a basis for investment decisions. — link"
+      "headline": "JUST IN: 🇸🇦 🇨🇳 Saudi Arabia withdraws from Chinese-led digital currency & blockchain payment system that reduces reliance on the US dollar. @WatcherGuru"
     },
     {
       "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "SlowMist: Hackers Implement Full-Chain iOS Exploit to Steal Private Keys and Mnemonic Phrases Across Versions 13 to 26.5 SlowMist Chief Information Security Officer 23pds has issued an urgent security warning advising all iOS users to update their devices immediately. He disclosed that cybercriminals have actively operationalized a full-chain exploit framework capable of silently exfiltrating private keys and mnemonic seed phrases directly from iOS devices. The attack execution pathway involves: luring targets to a malicious webpage via Safari through social engineering or watering-hole tactics, triggering memory corruption in WebKit/JavaScriptCore (JSC) to secure arbitrary read/write access at the JavaScript layer, subsequently bypassing Pointer Authentication Codes (PAC) to achieve native code execution, escaping the WebContent sandbox, and completing kernel privilege escalation to root to drain device Keychains and local crypto wallet application data. The potentially affected versions are reported to span iOS 13 through iOS 26.5 (pending final confirmation). — link"
+      "headline": "Robinhood Chain Collected $4.5M in Daily Fees, Paid Ethereum Just $400 An analysis published by South Korean outlet Digital Asset highlights the gap between Robinhood Chain’s growth and the economic value captured by Ethereum. According to Bitquery, Robinhood Chain collected approximately $4.5 million in transaction fees on September 3 while paying Ethereum just $398 in data posting and proof costs. The analysis argues that growing Layer 2 activity does not necessarily translate into proportional revenue for Ethereum, as much of the fee revenue remains within the L2 ecosystem. — link"
     },
     {
       "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "Interpol Expands Silver Notice System, Identifies at Least €36M in Criminal Assets According to AP, Interpol is expanding its Silver Notice system, which allows its 196 member countries to share information and assist in tracing and seizing cross-border criminal assets, including cash, cryptocurrency, vehicles and real estate. Trialed since January 2025, the system has involved 82 countries and identified at least €36 million in criminal assets. Interpol says criminals generally retain around 99% of their illicit proceeds. The first Silver Notice was requested by Italy for a senior mafia member, after which Brazil identified multiple properties and other assets linked to the suspect and his associates. Interpol members are expected to vote on the system’s full adoption at the General Assembly in Hong Kong in November 2026. — link"
+      "headline": "WSJ: Polymarket CEO Reportedly Told Staff to Keep Growing and Pay a Fine if Regulators Found Out Amid $10M Stolen-Card Fraud Attempt The Wall Street Journal reported that fraudsters linked stolen debit cards to Polymarket US accounts in February, attempting to move at least $10 million through wagers and withdrawals. At one point, its payment processor rejected more than 80% of the deposits it handled as fraudulent, far exceeding the industry norm of roughly 1%. According to people familiar with the events, CEO Shayne Coplan's response to employees' concerns was to keep growing and pay a fine if regulators ever found out. Polymarket said it has procedures to detect and respond to suspicious activity and is committed to working with regulators and law enforcement. — link"
     },
     {
       "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "Highlight Clip: Tom Lee: Every Crypto Winter Has Had \"Rage Quitting\" Tom Lee: Every Crypto Winter Has Had \"Rage Quitting\" On September 11, 2026, BitMine Chairman Tom Lee said in an interview with Wealthion that every crypto winter tends to share three characteristics: sharp price declines, leverage being wiped out, and some investors \"rage quitting\" after suffering heavy losses. In his view, recent public declarations by prominent figures that they have lost faith in Bitcoin are typical of what happens near the bottom of each cycle. Although many dismissed the rally over the past six weeks as a head fake, Lee said the market now appears to have technically bottomed. WuBlockchain notes that Tom Lee's market forecasts tend to be optimistic. His bullish targets may not materialize, and actual market performance may differ significantly from his predictions. Readers are encouraged to focus on his analytical reasoning rather than use specific price targets or timelines as a basis for investment decisions. — link"
+      "headline": "Highlight Clip: Bybit CEO : Bitcoin Is Still Some Way From Becoming Mature “Digital Gold” Bybit CEO : Bitcoin Is Still Some Way From Becoming Mature “Digital Gold” On April 15, 2026, Bybit CEO Ben Zhou said in a Cointelegraph interview at Paris Blockchain Week that Bitcoin is still some way from becoming mature “digital gold.” He said its recent volatility remains too high for traditional financial institutions to treat it as a reliable store of value. Meanwhile, Zhou said stablecoins are better suited for everyday payments, without changing Bitcoin’s long-term role as digital gold. — link"
     },
     {
-      "source": "Whale Alert (Telegram)",
+      "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "📈 📈 📈 Arkham data shows Morgan Stanley’s Bitcoin ETF bought $51.5 million in BTC over 20 trading days with no outflows Read Analysis"
-    },
-    {
-      "source": "Whale Alert (Telegram)",
-      "type": "telegram",
-      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 150,000,000 $USDT (149,952,050 USD) transferred from #Binance to Tether Treasury Details"
-    },
-    {
-      "source": "Whale Alert (Telegram)",
-      "type": "telegram",
-      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 172,000,000 $USDC (172,043,000 USD) transferred from #Aave to Unknown Whale 1 Details"
+      "headline": "Binance Enters the Pre-IPO Subscription Market Binance Wallet announced the launch of Pre-Access campaigns hosted by PancakeSwap, allowing users to gain indirect tokenized exposure to companies that may go public. Participation quotas can be increased through Alpha Points, onchain bStocks trading volume and holdings, while assets remain self-custodied in users’ wallets. The first project has not yet been announced. — link"
     },
     {
       "source": "Whale Alert (Telegram)",
       "type": "telegram",
       "headline": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 172,000,000 $USDC (171,993,894 USD) transferred from Unknown Whale 1 to #Aave Details"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "📉 📉 📉 North Korea-linked Waterplum used fake tech job interviews to infect 30,000 devices and steal $10.71 million from crypto wallets Read Analysis"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "🚨 250,000 $HYPE (22,746,750 USD) transferred from unknown wallet to #HyperCore Details"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "🚨 🚨 298,000 $HYPE (27,072,704 USD) transferred from unknown wallet to #HyperCore Details"
     }
   ]
 }
