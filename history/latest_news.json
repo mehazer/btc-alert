@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-01T22:02:27.174534+00:00",
+  "updated_at": "2026-10-02T02:40:35.976973+00:00",
   "sources": [
     {
       "name": "CoinDesk",
@@ -82,22 +82,22 @@
     {
       "source": "CoinTelegraph",
       "type": "rss",
+      "headline": "NEAR Intents says its identified the hacker, gives 48-hour ultimatum"
+    },
+    {
+      "source": "CoinTelegraph",
+      "type": "rss",
+      "headline": "SEC moves to clear custody hurdle for advisers offering crypto"
+    },
+    {
+      "source": "CoinTelegraph",
+      "type": "rss",
+      "headline": "China warns foreign spies about crypto, Singapore dominates Asia: Asia Express"
+    },
+    {
+      "source": "CoinTelegraph",
+      "type": "rss",
       "headline": "Evernorth clears shareholder vote ahead of Nasdaq debut with 473M XRP treasury"
-    },
-    {
-      "source": "CoinTelegraph",
-      "type": "rss",
-      "headline": "Trump to host 3rd ‘exclusive’ memecoin event amid corruption claims"
-    },
-    {
-      "source": "CoinTelegraph",
-      "type": "rss",
-      "headline": "Here’s what happened in crypto today"
-    },
-    {
-      "source": "CoinTelegraph",
-      "type": "rss",
-      "headline": "50,000 Europeans call on EU to ease stablecoin rewards restrictions in MiCA review"
     },
     {
       "source": "Decrypt",
@@ -122,6 +122,11 @@
     {
       "source": "The Block",
       "type": "rss",
+      "headline": "Ethereum Foundation launches zkAPI to let users pay for AI models without revealing identity"
+    },
+    {
+      "source": "The Block",
+      "type": "rss",
       "headline": "SEC proposes framework allowing investment advisers, funds to self-custody crypto"
     },
     {
@@ -135,29 +140,24 @@
       "headline": "Ethereum staking reward burn proposal EIP-8363 pulled from Hegota upgrade"
     },
     {
-      "source": "The Block",
-      "type": "rss",
-      "headline": "Evernorth shareholders approve $1 billion XRP treasury deal, clearing path to Nasdaq debut"
+      "source": "CoinTelegraph (Telegram)",
+      "type": "telegram",
+      "headline": "🇸🇻 JUST IN : The IMF approves a $139M payout to El Salvador after waiving its breach of the Bitcoin accumulation limit. News | Markets | YouTube"
     },
     {
       "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
-      "headline": "🇺🇸 UPDATE: August’s 162K payroll gain may overstate hiring strength, with last year’s seasonal adjustment putting growth at just 15K. News | Markets | YouTube"
+      "headline": "🇸🇻 JUST IN : The IMF approves a $139M payout to El Salvador after waiving its breach of the Bitcoin accumulation limit. News | Markets | YouTube"
     },
     {
       "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
-      "headline": "🇺🇸 JUST IN: Trump claims he eliminated Iran’s nuclear threat “in one night,” saying the remaining time is to ensure it stays that way. News | Markets | YouTube"
+      "headline": "🔥 NOW : Fiserv launches its digital asset platform on Solana, starting with Bank of North Dakota's Roughrider Coin, which lets 90+ banks and credit unions settle payments in seconds. News | Markets | YouTube"
     },
     {
       "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
-      "headline": "🇺🇸 TODAY: President Trump says prices are coming down “rapidly,” blaming Biden and Democrats for high costs and saying Republicans are fixing them. News | Markets | YouTube"
-    },
-    {
-      "source": "CoinTelegraph (Telegram)",
-      "type": "telegram",
-      "headline": "🇺🇸 NEW: The SEC proposes crypto custody rules for investment advisers and funds, allowing self-custody in certain cases and state trust companies to serve as custodians. News | Markets | YouTube"
+      "headline": "🔥 NOW : Fiserv launches its digital asset platform on Solana, starting with Bank of North Dakota's Roughrider Coin, which lets 90+ banks and credit unions settle payments in seconds. News | Markets | YouTube"
     },
     {
       "source": "Coin Bureau Insider (Telegram)",
@@ -177,11 +177,6 @@
     {
       "source": "Watcher.Guru (Telegram)",
       "type": "telegram",
-      "headline": "JUST IN: 🇷🇺 Russian President Putin says there is no stopping the technological progress of AI. @WatcherGuru"
-    },
-    {
-      "source": "Watcher.Guru (Telegram)",
-      "type": "telegram",
       "headline": "JUST IN: 🇺🇸 SEC proposes new crypto custody framework for investment advisers and regulated funds. @WatcherGuru"
     },
     {
@@ -195,9 +190,9 @@
       "headline": "JUST IN: Nike $NKE crashes to new 10-year low after missing earnings. @WatcherGuru"
     },
     {
-      "source": "Wu Blockchain (Telegram)",
+      "source": "Watcher.Guru (Telegram)",
       "type": "telegram",
-      "headline": "Castle Labs: Onchain Perp DEX Volume Share Climbs to 12.33% According to a report by Castle Labs, onchain perpetual DEXs have seen their share of global perpetual futures trading volume surge from 0.11% in January 2023 to 12.33% in September 2026. Concurrently, onchain RWA perpetuals have experienced rapid growth, covering traditional assets such as equities, commodities, and pre-IPO instruments; monthly volume peaked at approximately $147.5 billion in July 2026, accounting for 19.6% of total onchain perpetual volume that month. As of September 24, total open interest across perp DEXs stood at roughly $14.64 billion, with Hyperliquid leading at about $8.32 billion (56.8%), followed by Aster at 9.7% and Variational at 6.2%. — link"
+      "headline": "JUST IN: 🇺🇸 SEC Chair Paul Atkins says the crypto market grew from a \"niche curiosity into a multi-trillion-dollar asset class.\" @WatcherGuru"
     },
     {
       "source": "Wu Blockchain (Telegram)",
@@ -215,24 +210,29 @@
       "headline": "Ethereum Foundation and Open Anonymity Launch zkAPI for Privacy-Preserving API Payments The Ethereum Foundation and Open Anonymity Project launched zkAPI, a privacy-preserving payment layer for metered APIs that is now live on Ethereum mainnet. Users deposit ETH, USDC, or other credits into an onchain vault and authorize spending with zero-knowledge proofs, allowing providers to verify payment without learning the payer’s identity or which deposit funded the usage. zkAPI can issue short-lived, spending-capped API keys and settle based on actual usage. It is initially focused on AI inference but can extend to other pay-per-use services. The system does not provide network or content anonymity, meaning IP addresses, timing patterns, and identifying information in prompts may still be linkable. — link"
     },
     {
-      "source": "Whale Alert (Telegram)",
+      "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "💵 💵 💵 💵 💵 100,000,000 $USDC (100,017,750 USD) minted at USDC Treasury Details"
+      "headline": "Payments Giant Fiserv Launches Digital Asset Platform, With Bank of North Dakota’s Roughrider Coin as First Use Case Global payments and financial technology giant Fiserv’s digital asset platform is now live with financial institution clients. Its first live use case is Roughrider Coin, a USD-backed stablecoin launched by the Bank of North Dakota, with VersaBank as issuer, Fireblocks providing infrastructure and Solana processing transactions. More than 90 banks and credit unions are expected to access it through Fiserv’s Commercial Center. — link"
     },
     {
       "source": "Whale Alert (Telegram)",
       "type": "telegram",
-      "headline": "🚨 🚨 🚨 🚨 🚨 100,000,000 $USDC (100,041,000 USD) transferred from USDC Treasury to unknown wallet Details"
+      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 142,100,000 $USDC (142,088,632 USD) transferred from Unknown Whale 1 to #Aave Details"
     },
     {
       "source": "Whale Alert (Telegram)",
       "type": "telegram",
-      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 2,044 $BTC (173,800,505 USD) transferred from unknown wallet to unknown wallet Details"
+      "headline": "🚨 🚨 🚨 35,000,000 $XRP (52,425,783 USD) transferred from #Ripple to unknown wallet Details"
     },
     {
       "source": "Whale Alert (Telegram)",
       "type": "telegram",
-      "headline": "🚨 🚨 🚨 🚨 1,035 $BTC (87,510,970 USD) transferred from unknown wallet to #Kraken Details"
+      "headline": "🚨 🚨 🚨 🚨 🚨 110,000,000 $USDT (109,978,495 USD) transferred from #Bitfinex to Tether Treasury Details"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "🚨 🚨 🚨 🚨 🚨 110,000,000 $USDT (109,974,150 USD) transferred from Tether Treasury to #Bitfinex Details"
     }
   ]
 }
