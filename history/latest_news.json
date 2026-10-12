@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-11T21:06:53.332087+00:00",
+  "updated_at": "2026-10-12T02:45:51.000924+00:00",
   "sources": [
     {
       "name": "CoinDesk",
@@ -82,22 +82,22 @@
     {
       "source": "CoinTelegraph",
       "type": "rss",
+      "headline": "XRP Ledger defends emergency patch for unlimited XRP bug"
+    },
+    {
+      "source": "CoinTelegraph",
+      "type": "rss",
+      "headline": "Ledger attack spreads to EU, AI finds ’18 trillion XRP’ bug: Hodler’s Digest"
+    },
+    {
+      "source": "CoinTelegraph",
+      "type": "rss",
       "headline": "Saylor teases Strategy Bitcoin buying after ending September with STRC buybacks"
     },
     {
       "source": "CoinTelegraph",
       "type": "rss",
       "headline": "Here’s what happened in crypto today"
-    },
-    {
-      "source": "CoinTelegraph",
-      "type": "rss",
-      "headline": "Coldcard says it’s investigating how phishing link appeared on its X account"
-    },
-    {
-      "source": "CoinTelegraph",
-      "type": "rss",
-      "headline": "Ledger confirms unauthorized hardware implant, says losses may exceed $86M"
     },
     {
       "source": "Decrypt",
@@ -122,6 +122,16 @@
     {
       "source": "The Block",
       "type": "rss",
+      "headline": "Sui Foundation invests $30 million in DATA Network as AI data protocol migrates to Sui"
+    },
+    {
+      "source": "The Block",
+      "type": "rss",
+      "headline": "Trader nets $1.28 million on new 1,000x exchange Papertrade by moving Hyperliquid’s ETH prices"
+    },
+    {
+      "source": "The Block",
+      "type": "rss",
       "headline": "XRP Ledger patches decade-old bug that could have minted trillions of XRP"
     },
     {
@@ -130,34 +140,24 @@
       "headline": "Kalshi is investigating bets on Trump’s press secretary pick placed before announcement: WSJ"
     },
     {
-      "source": "The Block",
-      "type": "rss",
-      "headline": "Ether ETFs extend outflow streak to nine days as Solana funds snap record 14-week inflow run"
-    },
-    {
-      "source": "The Block",
-      "type": "rss",
-      "headline": "Former FTX COO says Netflix’s ‘Altruists’ trailer ‘made me physically throw up’"
+      "source": "CoinTelegraph (Telegram)",
+      "type": "telegram",
+      "headline": "🔥 BIG : Hackers took $2.68B in crypto through September, and October has already added more than $98M, led by an estimated $86M+ drained from tampered Ledger devices and a $12.5M exploit of 79th Vault. News | Markets | YouTube"
     },
     {
       "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
-      "headline": "🔥 BIG: BitMine is roughly 200,000 ETH away from owning 5% of Ethereum's entire supply, now sitting on 5.85M ETH worth $14.27B. News | Markets | YouTube"
+      "headline": "🚨 NEW : XRP Ledger Foundation says no new XRP was created by the recently patched ledger bug, with supply still capped at 100 billion and fixed in version 3.4.1. News | Markets | YouTube"
     },
     {
       "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
-      "headline": "⚡ BIG: CoinGecko now tracks over 22,000 coins, and as of late September, less than 25% of the median altcoin's supply was in profit, per Glassnode. News | Markets | YouTube"
+      "headline": "🇺🇸 🇮🇷 NOW : Iran says Washington’s reply to its seven conditions for reopening the Strait of Hormuz falls short, per Reuters. News | Markets | YouTube"
     },
     {
       "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
-      "headline": "🇺🇸 INSIGHT: The Federal Reserve reports U.S. families’ ability to stay current on debt has worsened to post-financial-crisis levels, per CNBC. News | Markets | YouTube"
-    },
-    {
-      "source": "CoinTelegraph (Telegram)",
-      "type": "telegram",
-      "headline": "⚡ UPDATE: The crypto Fear and Greed Index is back to Neutral at 58. News | Markets | YouTube"
+      "headline": "🇺🇸 🇮🇷 NOW : Iran says Washington’s reply to its seven conditions for reopening the Strait of Hormuz falls short, per Reuters. News | Markets | YouTube"
     },
     {
       "source": "Coin Bureau Insider (Telegram)",
@@ -197,32 +197,22 @@
     {
       "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "Trader alleges Papertrade exploit via Hyperliquid BBO manipulation X user Boblob alleged that two wallets exploited Papertrade’s pricing mechanism by using roughly $20 million orders on Hyperliquid to move ETH quotes by 10–20 basis points while holding much larger long positions on Papertrade. The HyperEVM-based perpetual platform reportedly uses the midpoint of Hyperliquid’s best bid and offer as its execution price, making it potentially sensitive to short-term BBO manipulation. Trader Rune noted that Papertrade’s own documentation lists BBO manipulation as an unresolved protocol risk. The allegations have not been independently verified, and Papertrade has not confirmed any losses. — link"
-    },
-    {
-      "source": "Wu Blockchain (Telegram)",
-      "type": "telegram",
-      "headline": "Ledger confirms hardware implant attack, says systems not breached Ledger said an unauthorized hardware implant was found inside an affected device, confirming physical tampering. The company said there is no evidence its own infrastructure, systems or services were compromised, while distributor CryptoBilis has suspended hardware wallet sales. Ledger advised affected users to avoid initializing unused devices and consider moving assets to wallets created with new recovery phrases. Earlier on-chain analysis estimated losses linked to the incident at more than $86 million. — link"
-    },
-    {
-      "source": "Wu Blockchain (Telegram)",
-      "type": "telegram",
-      "headline": "Asia's weekly TOP10 crypto news Kyrgyzstan Shuts Down USDKG, South Korea Tightens Cross-Border Crypto Rules, China Plans a National Blockchain Network, Thailand Finalizes Crypto ETF Rules, and Hong Kong–Malaysia Explore Stablecoin Cooperation. For the complete article and weekly curated reports, subscribe to our Substack: — link"
-    },
-    {
-      "source": "Wu Blockchain (Telegram)",
-      "type": "telegram",
       "headline": "XRPL fixes decade-old bug that could have minted trillions of XRP RippleX and the XRP Ledger Foundation disclosed that a critical payment-engine overflow bug could have allowed an attacker to create spendable XRP beyond the network’s fixed supply using a specially crafted transaction. The issue, present in code dating back to 2015, was reported through the XRPL bug bounty program and fixed in xrpld 3.4.1 on September 25, with more than 80% of default validators upgraded that day. Security researcher @Cayden_Liao said his team’s proof of concept could mint about 18 trillion XRP in a single transaction, roughly 184 times XRP’s intended 100 billion supply, and earned the program’s maximum $250,000 bounty. XRPL said it found no evidence the flaw was ever exploited on a public network. — link"
     },
     {
-      "source": "Whale Alert (Telegram)",
+      "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "💤 A dormant address containing 0.05 $BTC (4,152 USD) has just been activated after 15.9 years! Details"
+      "headline": "Ethereum Foundation-Linked Wallets Send Another 4,393 ETH to Kraken, After Moving 49,751 ETH Over a Decade According to monitoring by @EmberCN , two Ethereum Foundation-linked wallets sent 4,393 ETH, about $11.13 million, to Kraken about four hours ago. The wallets received 59,751 ETH from an Ethereum Foundation wallet 10 years ago, and 49,751 ETH of that has been moved to Kraken over the past decade at an average price of about $658. — link"
     },
     {
-      "source": "Whale Alert (Telegram)",
+      "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "📉 📉 📉 Coldcard Investigates Phishing Post From Official X Account After Earlier Seed-Generation Failure Read Analysis"
+      "headline": "Liquid Network Keeps Bitcoin Redemptions Frozen, Reserve Gap About 603 BTC Liquid Network is running again, but peg-outs that convert L-BTC back to bitcoin remain suspended, with a reserve gap of about 603 BTC. Liquid said redemptions will not resume until reserves fully back all circulating L-BTC and security reviews are complete. A Sept. 6 Elements bug allowed unauthorized L-BTC creation and redemption. About 3,996 to 4,000 BTC left the federation reserve, then worth about $320 million. White-hat actors returned about 3,400 BTC on Sept. 7, leaving 598 to 603 BTC unreturned. As of Oct. 11, peg-outs remain paused. Blockstream CEO Adam Back said the 1:1 peg will ultimately be covered, with no date given. — link"
+    },
+    {
+      "source": "Wu Blockchain (Telegram)",
+      "type": "telegram",
+      "headline": "Sui Foundation Invests $30 Million in DATA Network, Protocol to Migrate to Sui and Retire Independent Chain Sui Foundation is investing $30 million in AI training data protocol DATA Network and will become its largest institutional holder. Existing holders include PIP Labs and DATA Foundation. DATA Network will be upgraded to run natively on Sui, its independent chain will be retired, and the existing DATA token will move to Sui one-for-one. The current network will keep operating until the migration is complete, and a detailed timeline will be released before the upgrade. — link"
     },
     {
       "source": "Whale Alert (Telegram)",
@@ -233,6 +223,16 @@
       "source": "Whale Alert (Telegram)",
       "type": "telegram",
       "headline": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 4,499 $BTC (377,172,944 USD) transferred from unknown wallet to unknown new wallet Details"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 133,800,000 $USDC (133,843,217 USD) transferred from #Aave to Unknown Whale 1 Details"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 133,799,999 $USDC (133,846,093 USD) transferred from Unknown Whale 1 to #Aave Details"
     }
   ]
 }
