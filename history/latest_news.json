@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T21:45:59.616258+00:00",
+  "updated_at": "2026-10-20T02:14:29.409429+00:00",
   "sources": [
     {
       "name": "CoinDesk",
@@ -82,6 +82,11 @@
     {
       "source": "CoinTelegraph",
       "type": "rss",
+      "headline": "Bitcoin rally could revive treasury buying, but easy-money days over"
+    },
+    {
+      "source": "CoinTelegraph",
+      "type": "rss",
       "headline": "Solana treasury firm SkyAI sells all SOL holdings, launches $201M buyback"
     },
     {
@@ -95,9 +100,9 @@
       "headline": "Here’s what happened in crypto today"
     },
     {
-      "source": "CoinTelegraph",
+      "source": "Decrypt",
       "type": "rss",
-      "headline": "Market participants weigh in on SEC’s proposed crypto regulations"
+      "headline": "Strive Buys $335 Million in Bitcoin After Investors Pour In $369 Million"
     },
     {
       "source": "Decrypt",
@@ -115,9 +120,9 @@
       "headline": "Hackers Are Running Apple's iOS on Android Phones for the First Time"
     },
     {
-      "source": "Decrypt",
+      "source": "The Block",
       "type": "rss",
-      "headline": "Mastercard Brings Its Fraud-Fighting Tools to Stablecoin Payments"
+      "headline": "BlackRock files for bitcoin ETF offering downside protection and upside exposure to IBIT"
     },
     {
       "source": "The Block",
@@ -135,29 +140,24 @@
       "headline": "Galaxy’s AI data center business is undervalued amid CoreWeave debt concerns, StoneX says"
     },
     {
-      "source": "The Block",
-      "type": "rss",
-      "headline": "SkyAI sells off entire Solana treasury as it launches $201 million buyback"
-    },
-    {
-      "source": "CoinTelegraph (Telegram)",
-      "type": "telegram",
-      "headline": "🔥 JUST IN: Mesh partners with Visa to enable crypto payments at over 175 million merchant locations without a separate card. News | Markets | YouTube"
-    },
-    {
-      "source": "CoinTelegraph (Telegram)",
-      "type": "telegram",
-      "headline": "🔥 JUST IN: Mesh partners with Visa to enable crypto payments at over 175 million merchant locations without a separate card. News | Markets | YouTube"
-    },
-    {
-      "source": "CoinTelegraph (Telegram)",
-      "type": "telegram",
-      "headline": "🎥 WATCH: No CLARITY Act. No problem. Justin Sun isn’t waiting for Congress to make his next move. And his plans for TRON go beyond digital dollars. What’s the next bet? https://www.youtube.com/watch?v=53Owd8mjMgU News | Markets | YouTube"
-    },
-    {
       "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
       "headline": "🇺🇸 JUST IN: President Trump calls for New Mexico to be renamed “New America,” saying the change would boost home values, incomes and state prestige. News | Markets | YouTube"
+    },
+    {
+      "source": "CoinTelegraph (Telegram)",
+      "type": "telegram",
+      "headline": "🔥 NOW: BlackRock files for the iShares Bitcoin Managed Protection ETF under the ticker $PBIT, a “buffer” ETF trading some upside for downside protection. News | Markets | YouTube"
+    },
+    {
+      "source": "CoinTelegraph (Telegram)",
+      "type": "telegram",
+      "headline": "🔥 LATEST : Citi Research says Aave could become the go-to layer for financing tokenized assets once they move onchain, calling collateral mobility one of tokenization’s most important use cases. News | Markets | YouTube"
+    },
+    {
+      "source": "CoinTelegraph (Telegram)",
+      "type": "telegram",
+      "headline": "🔥 LATEST : Citi Research says Aave could become the go-to layer for financing tokenized assets once they move onchain, calling collateral mobility one of tokenization’s most important use cases. News | Markets | YouTube"
     },
     {
       "source": "Coin Bureau Insider (Telegram)",
@@ -177,16 +177,6 @@
     {
       "source": "Watcher.Guru (Telegram)",
       "type": "telegram",
-      "headline": "JUST IN: BlackRock pushes to bring tokenized assets into traditional banking and financial systems. @WatcherGuru"
-    },
-    {
-      "source": "Watcher.Guru (Telegram)",
-      "type": "telegram",
-      "headline": "JUST IN: 🇪🇺 Europe's largest banking network Sparkassen launches crypto trading, allowing customers to buy and sell Bitcoin, Ethereum, XRP, and Solana. @WatcherGuru"
-    },
-    {
-      "source": "Watcher.Guru (Telegram)",
-      "type": "telegram",
       "headline": "JUST IN: Mastercard $MA launches new risk intelligence tool to make crypto stablecoin payments safer. @WatcherGuru"
     },
     {
@@ -195,9 +185,14 @@
       "headline": "JUST IN: 🇺🇸 President Trump thanks Elon Musk for pledging to give SpaceX $SPCX stock to millions of American children. @WatcherGuru"
     },
     {
-      "source": "Wu Blockchain (Telegram)",
+      "source": "Watcher.Guru (Telegram)",
       "type": "telegram",
-      "headline": "BitMine Adds 12,535 ETH, Total Holdings Reach 6.04M ETH BitMine said it acquired 12,535 ETH over the past week, bringing total holdings to 6,041,481 ETH, or about 4.9% of Ethereum’s 122.1 million supply. The company has 5.07 million ETH staked, while its total crypto, cash, marketable securities and other investments were valued at $15.1 billion as of October 18. — link"
+      "headline": "JUST IN: Banking giant Citi says $AAVE represents one of the most important real-world use cases for tokenized finance. @WatcherGuru"
+    },
+    {
+      "source": "Watcher.Guru (Telegram)",
+      "type": "telegram",
+      "headline": "JUST IN: Banking giant Citi says $AAVE represents one of the most important real-world use cases for tokenized finance. @WatcherGuru"
     },
     {
       "source": "Wu Blockchain (Telegram)",
@@ -215,24 +210,29 @@
       "headline": "Multicoin Says HYPE Is Its Hedge Fund's Largest Position, Stays With Crypto Over AI According to Bloomberg, Multicoin Capital, which manages about $2.7 billion, plans to remain focused on crypto even as peers including Paradigm, Framework Ventures and Haun Ventures expand into AI. General partner Spencer Applebaum said HYPE is currently the largest position in Multicoin’s hedge fund and was acquired through the public market, though he did not disclose the size of the holding. He added that the firm sees no reason to shift away from crypto simply to follow the AI investment boom. — link"
     },
     {
-      "source": "Whale Alert (Telegram)",
+      "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 213,600,000 $USDT (213,442,363 USD) transferred from #Bitfinex to Tether Treasury Details"
-    },
-    {
-      "source": "Whale Alert (Telegram)",
-      "type": "telegram",
-      "headline": "🔥 🔥 🔥 🔥 🔥 🔥 🔥 151,482,287 $USDC (151,551,969 USD) burned at USDC Treasury Details"
-    },
-    {
-      "source": "Whale Alert (Telegram)",
-      "type": "telegram",
-      "headline": "💵 💵 💵 💵 💵 💵 💵 💵 💵 💵 250,000,000 $USDC (250,291,250 USD) minted at USDC Treasury Details"
+      "headline": "Highlight Clip: Tom Lee: Many VC Friends Say They Wish They Had Just Bought BTC Tom Lee: Many VC Friends Say They Wish They Had Just Bought BTC Speaking at TOKEN2049, Tom Lee said he recently had dinner in Taiwan, China, with some VC friends he first met ten years ago, when he had just begun researching Bitcoin. He noted that Bitcoin had risen from under $1,000 to around $80,000 over that period, delivering roughly an 80x return. He had therefore expected these investors to have earned even higher returns from their venture investments. Instead, they told him their venture returns had been okay, but they wished they had simply bought Bitcoin. Lee said investors should maximize their exposure to Bitcoin, Ethereum, and even Solana in this cycle, as he believes these Layer 1 blockchains will capture a substantial share of the value. — link"
     },
     {
       "source": "Whale Alert (Telegram)",
       "type": "telegram",
       "headline": "💵 💵 💵 💵 💵 💵 💵 💵 💵 💵 250,000,000 $USDC (249,968,500 USD) minted at USDC Treasury Details"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 133,966,000 $USDC (134,032,179 USD) transferred from #Aave to Unknown Whale 1 Details"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 133,966,000 $USDC (134,027,222 USD) transferred from Unknown Whale 1 to #Aave Details"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "🚨 🚨 🚨 🚨 🚨 82,314,668 $XRP (106,558,099 USD) transferred from unknown wallet to unknown new wallet Details"
     }
   ]
 }
