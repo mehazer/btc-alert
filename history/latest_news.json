@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T20:56:07.534563+00:00",
+  "updated_at": "2026-10-21T02:07:41.990058+00:00",
   "sources": [
     {
       "name": "CoinDesk",
@@ -62,6 +62,11 @@
     {
       "source": "CoinDesk",
       "type": "rss",
+      "headline": "U.S. CFTC sets agenda for AI forum, exploring trading and agentic finance"
+    },
+    {
+      "source": "CoinDesk",
+      "type": "rss",
       "headline": "OKX-ICE co-chair Andrew Cuomo calls corporate objections a ‘natural response’ to tokenized stock plans"
     },
     {
@@ -75,9 +80,19 @@
       "headline": "BlackRock seeks to shield bitcoin investors from losses after rival fund weathers 50% crash"
     },
     {
-      "source": "CoinDesk",
+      "source": "CoinTelegraph",
       "type": "rss",
-      "headline": "Kazakhstan court bars Coinbase, five others from unlicensed crypto services in Astana International Financial Centre"
+      "headline": "Musk says SpaceX-Tesla merger a ‘good idea’ as AI revenue jumps ninefold"
+    },
+    {
+      "source": "CoinTelegraph",
+      "type": "rss",
+      "headline": "Qubic restarts blockchain, opens recovery claims after $1.4M hack"
+    },
+    {
+      "source": "CoinTelegraph",
+      "type": "rss",
+      "headline": "Utah AG sues Kalshi, pursues profits from prediction market company"
     },
     {
       "source": "CoinTelegraph",
@@ -85,39 +100,24 @@
       "headline": "Bitwise, Hyperliquid seek SEC rule changes for token trading, airdrops"
     },
     {
-      "source": "CoinTelegraph",
+      "source": "Decrypt",
       "type": "rss",
-      "headline": "Crypto’s 2026 shutdown wave claims 82 projects. What went wrong?"
+      "headline": "People Are Vibe Coding the Ads Out of Their Smart TVs: Here's How"
     },
     {
-      "source": "CoinTelegraph",
+      "source": "Decrypt",
       "type": "rss",
-      "headline": "Here’s what happened in crypto today"
+      "headline": "OpenAI Buys Orchestra Bio to Put AI Agents in Charge of Drug Development Grunt Work"
     },
     {
-      "source": "CoinTelegraph",
+      "source": "Decrypt",
       "type": "rss",
-      "headline": "Strive closes $630M SATS IPO, leaves Bitcoin allocation unspecified"
+      "headline": "JPMorgan Puts a Number on Bitcoin for the First Time: 10% a Year, With a Big Caveat"
     },
     {
       "source": "Decrypt",
       "type": "rss",
       "headline": "Wallet Linked to Drift Exploit Sends $61 Million in Ethereum to Tornado Cash"
-    },
-    {
-      "source": "Decrypt",
-      "type": "rss",
-      "headline": "Microsoft, Alphabet, Goldman Sachs Join Growing List of Companies Objecting to Tokenized Stocks"
-    },
-    {
-      "source": "Decrypt",
-      "type": "rss",
-      "headline": "Swiss Regulator Approves First Retail Fund That Holds Bitcoin Directly"
-    },
-    {
-      "source": "Decrypt",
-      "type": "rss",
-      "headline": "Bitcoin ETFs Post Their Best Day in Nearly a Month as BlackRock Does All the Buying"
     },
     {
       "source": "The Block",
@@ -142,22 +142,22 @@
     {
       "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
-      "headline": "🔥 BIG : Strive raised $630 million through its SATS preferred stock IPO, with the company saying proceeds may be used for Bitcoin purchases but not specifying how much. News | Markets | YouTube"
-    },
-    {
-      "source": "CoinTelegraph (Telegram)",
-      "type": "telegram",
-      "headline": "🚨 UPDATE: Ethereum staking hit a record 43.8M $ETH, locking up 35.9% of supply, while 69% of SOL was staked by the end of Q3, Bitwise reports. News | Markets | YouTube"
-    },
-    {
-      "source": "CoinTelegraph (Telegram)",
-      "type": "telegram",
       "headline": "🔥 JUST IN: SpaceX reports Q3 revenue of $14.58B, beating $12.87B estimates. News | Markets | YouTube"
     },
     {
       "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
-      "headline": "🔥 JUST IN: SpaceX reports Q3 revenue of $14.58B, beating $12.87B estimates. News | Markets | YouTube"
+      "headline": "🇺🇸 ALERT: Utah sues to halt Kalshi operations. News | Markets | YouTube"
+    },
+    {
+      "source": "CoinTelegraph (Telegram)",
+      "type": "telegram",
+      "headline": "🇺🇸 ALERT: Utah sues to halt Kalshi operations. News | Markets | YouTube"
+    },
+    {
+      "source": "CoinTelegraph (Telegram)",
+      "type": "telegram",
+      "headline": "🇺🇸 LATEST : The SEC will keep accepting public comments on its Reg Crypto proposal even after today's deadline, Eleanor Terrett reports. News | Markets | YouTube"
     },
     {
       "source": "Coin Bureau Insider (Telegram)",
@@ -182,11 +182,6 @@
     {
       "source": "Watcher.Guru (Telegram)",
       "type": "telegram",
-      "headline": "JUST IN: Elon Musk says money will become \"irrelevant\" in the future, with energy and resources becoming the new measures of wealth. @WatcherGuru"
-    },
-    {
-      "source": "Watcher.Guru (Telegram)",
-      "type": "telegram",
       "headline": "JUST IN: Elon Musk's SpaceX $SPCX reports $14.58 billion in revenue for Q3 2026, beating expectations. @WatcherGuru"
     },
     {
@@ -195,9 +190,9 @@
       "headline": "JUST IN: Elon Musk's SpaceX $SPCX reports $14.58 billion in revenue for Q3 2026, beating expectations. @WatcherGuru"
     },
     {
-      "source": "Wu Blockchain (Telegram)",
+      "source": "Watcher.Guru (Telegram)",
       "type": "telegram",
-      "headline": "Highlight Clip: Justin Sun: AI and Quantum Risks Make Me More Bearish on Bitcoin Than Before Justin Sun: AI and Quantum Risks Make Me More Bearish on Bitcoin Than Before On October 16, 2026, Justin Sun said in an interview with William Joy that advances in AI algorithms and quantum computing risks had made him more bearish on Bitcoin than before. He argued that the industry and investors holding Bitcoin through ETFs had not fully priced in these risks. He also suggested that AI progress in mathematics could potentially enable classical computing to break existing cryptography, even before a quantum computing breakthrough. — link"
+      "headline": "JUST IN: OpenAI says it caught AI agent disabling its internal safety monitoring system. The agent then falsely denied removing it. @WatcherGuru"
     },
     {
       "source": "Wu Blockchain (Telegram)",
@@ -215,24 +210,29 @@
       "headline": "Bitwise: Ethereum Staking Hits Record 43.8M ETH, Accounting for 35.9% of Total Supply, Up for Sixth Consecutive Quarter Bitwise's Q4 2026 Staking Report shows that Ethereum staking reached an all-time high of 43.8 million ETH, representing 35.9% of total supply and marking six consecutive quarters of growth. Ethereum's staking yield declined from 2.81% to 2.63%. Solana's staking ratio stood at 69%, with yields falling from 6.38% to 5.99%, while NEAR's staking ratio reached 46%, with a yield of 4.87%. The report also highlighted that tokenized stock trading volume on Solana rose 45% to $6.93 billion, while daily tokenized stock trading volume on Robinhood Chain increased 22-fold during the quarter. — link"
     },
     {
-      "source": "Whale Alert (Telegram)",
+      "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "🚨 🚨 🚨 24,544 $ETH (60,159,274 USD) transferred from unknown wallet to Beacon Depositor Details"
+      "headline": "Kazakhstan Regulator Announces Court Injunctions Against Coinbase, HTX and Four Other Crypto Platforms According to an official announcement by Kazakhstan’s Astana Financial Services Authority (AFSA), the Astana International Financial Centre (AIFC) Court has issued injunctions prohibiting Coinbase, BingX, Bitcoincom, HTX, BitMart and WEEX from offering or marketing digital asset services or distributing related mobile applications within the AIFC without the required licenses. The court issued its original ruling on September 15 and amended it on September 18 to remove LBank after the platform blocked access to its services in Kazakhstan. — link"
     },
     {
       "source": "Whale Alert (Telegram)",
       "type": "telegram",
-      "headline": "🚨 🚨 🚨 610 $BTC (50,529,163 USD) transferred from unknown wallet to Coinbase Institutional Details"
+      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 1,606 $BTC (133,125,650 USD) transferred from unknown wallet to unknown wallet Details"
     },
     {
       "source": "Whale Alert (Telegram)",
       "type": "telegram",
-      "headline": "💵 💵 💵 💵 💵 💵 💵 💵 💵 💵 250,000,000 $USDC (250,092,875 USD) minted at USDC Treasury Details"
+      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 133,980,000 $USDC (133,950,390 USD) transferred from #Aave to Unknown Whale 1 Details"
     },
     {
       "source": "Whale Alert (Telegram)",
       "type": "telegram",
-      "headline": "💵 💵 💵 💵 💵 💵 💵 💵 💵 💵 250,000,000 $USDC (250,092,125 USD) minted at USDC Treasury Details"
+      "headline": "📉 📉 📉 Ngrave users lose $2.56M after attackers hijack notification provider and run phishing campaign Read Analysis"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 133,980,000 $USDC (134,024,883 USD) transferred from Unknown Whale 1 to #Aave Details"
     }
   ]
 }
