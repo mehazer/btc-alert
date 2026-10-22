@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-21T20:56:38.040577+00:00",
+  "updated_at": "2026-10-22T02:02:04.065325+00:00",
   "sources": [
     {
       "name": "CoinDesk",
@@ -82,6 +82,16 @@
     {
       "source": "CoinTelegraph",
       "type": "rss",
+      "headline": "PHP Foundation admits ‘structural failure’ delayed critical security fix"
+    },
+    {
+      "source": "CoinTelegraph",
+      "type": "rss",
+      "headline": "American Bankers Association: OCC’s GENIUS rules ‘undermine’ US Congress"
+    },
+    {
+      "source": "CoinTelegraph",
+      "type": "rss",
       "headline": "Tether backs Bolivian fintech bringing USDT payments to food delivery and banking"
     },
     {
@@ -90,14 +100,9 @@
       "headline": "Trump didn‘t mention ‘crypto’ once in White House cybercrime roundtable"
     },
     {
-      "source": "CoinTelegraph",
+      "source": "Decrypt",
       "type": "rss",
-      "headline": "Here’s what happened in crypto today"
-    },
-    {
-      "source": "CoinTelegraph",
-      "type": "rss",
-      "headline": "Cardano Foundation urges EU against expanding MiCA rules to DeFi and staking"
+      "headline": "Ken Griffin Says AI Is 'Almost Certainly' in a Bubble—And Compares GPUs to Airline Seats"
     },
     {
       "source": "Decrypt",
@@ -115,9 +120,9 @@
       "headline": "How a SpaceX and Tesla Merger Would Reshape Musk’s AI Empire"
     },
     {
-      "source": "Decrypt",
+      "source": "The Block",
       "type": "rss",
-      "headline": "Bitcoin Hits Weekly High as Crypto Market Rebounds"
+      "headline": "Aerodrome and Velodrome merge to launch Aero across seven blockchain networks"
     },
     {
       "source": "The Block",
@@ -135,16 +140,6 @@
       "headline": "Dataline raises $10.6 million for decentralized data network for AI agents, plans ICO"
     },
     {
-      "source": "The Block",
-      "type": "rss",
-      "headline": "Grayscale expands in-kind subscriptions to 10 crypto ETFs and trusts"
-    },
-    {
-      "source": "CoinTelegraph (Telegram)",
-      "type": "telegram",
-      "headline": "🇺🇸 BREAKING: The US OCC finalizes GENIUS Act rules for stablecoin issuers, covering reserves, redemptions, and custody. Effective January 18, 2027. News | Markets | YouTube"
-    },
-    {
       "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
       "headline": "🚨 ALERT: PHP developers patch two critical vulnerabilities in software used by roughly 75% of websites with identifiable programming languages. Website operators advised to update as soon as possible. News | Markets | YouTube"
@@ -158,6 +153,11 @@
       "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
       "headline": "🇺🇸 JUST IN: Polymarket traders put Democrats’ chances of winning the Senate in 2026 at 67%, versus 34% for Republicans. News | Markets | YouTube"
+    },
+    {
+      "source": "CoinTelegraph (Telegram)",
+      "type": "telegram",
+      "headline": "⚡️ NOW: CZ warns users to be “extra careful visiting ANY web site in the next few days,” as unpatched sites vulnerable to two exploited PHP flaws could be used for credential theft or device exploits. News | Markets | YouTube"
     },
     {
       "source": "Coin Bureau Insider (Telegram)",
@@ -177,11 +177,6 @@
     {
       "source": "Watcher.Guru (Telegram)",
       "type": "telegram",
-      "headline": "JUST IN: $2,500 $ETH @WatcherGuru"
-    },
-    {
-      "source": "Watcher.Guru (Telegram)",
-      "type": "telegram",
       "headline": "JUST IN: 🇺🇸 Judge orders $META to pay $25,000,000,000 for misleading users about their privacy. @WatcherGuru"
     },
     {
@@ -195,9 +190,9 @@
       "headline": "JUST IN: $META reports $64.6 billion in revenue for Q3 2026, beating expectations. @WatcherGuru"
     },
     {
-      "source": "Wu Blockchain (Telegram)",
+      "source": "Watcher.Guru (Telegram)",
       "type": "telegram",
-      "headline": "Dogecoin Labs Officially Launches to Expand DOGE into Payments and DeFi Dogecoin Labs has officially launched with support from the Dogecoin Foundation. Jordan Jefferson, founder of DogeOS, will serve as CEO. The new entity brings together the MyDoge wallet, DogeOS app platform and Such App payment product to expand DOGE use in payments, commerce, DeFi and gaming. DogeOS launched its EVM-compatible public testnet on Sept. 30, while Such App offers merchant invoicing and offline QR payments. Dogecoin Labs will operate independently, while the Foundation continues to oversee ecosystem governance and open-source development. — link"
+      "headline": "JUST IN: 🇺🇸 US Treasury says new finalized crypto stablecoin rules under the GENIUS Act \"cements American dominance in digital assets.\" @WatcherGuru"
     },
     {
       "source": "Wu Blockchain (Telegram)",
@@ -215,24 +210,29 @@
       "headline": "Critical PHP Vulnerabilities Spark Global Security Alert; SlowMist Warns Crypto Exchanges, DeFi Platforms and Wallet Providers SlowMist said its MistEye threat intelligence system conducted a global scan of PHP-related assets across the crypto industry following the disclosure of two critical remote code execution vulnerabilities, CVE-2026-109618 and CVE-2026-109619, both rated 9.2 under CVSS v4.0. The flaws could allow unauthenticated attackers to execute code on affected servers under certain conditions. PHP released security patches on October 21, covering versions 8.5.12, 8.4.27, 8.3.36, and 8.2.35. SlowMist urged crypto exchanges, DeFi platforms, and wallet providers to assess their exposure and apply the updates promptly. — link"
     },
     {
-      "source": "Whale Alert (Telegram)",
+      "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 500,000,000 $USDT (499,751,000 USD) transferred from Tether Treasury to #Binance Details"
+      "headline": "Highlight Clip: Michael Saylor: MSCI Is Biased Against Digital Assets Michael Saylor: MSCI Is Biased Against Digital Assets On October 14, 2026, Strategy Executive Chairman Michael Saylor said in a Bloomberg interview that MSCI is biased against digital assets, recognizing oil, land, and machinery as capital while refusing to recognize Bitcoin. He emphasized that, like banks and insurance companies, Strategy holds assets and sells financial products—specifically digital credit—and is therefore an operating company. If holding financial assets were grounds for exclusion from an index, the same logic should apply to banks and insurance companies. He also said the amount of capital affected by MSCI’s decision is limited and would have little impact on the company. — link"
     },
     {
       "source": "Whale Alert (Telegram)",
       "type": "telegram",
-      "headline": "💵 💵 💵 💵 💵 💵 💵 💵 💵 💵 250,000,000 $USDC (250,196,250 USD) minted at USDC Treasury Details"
+      "headline": "💵 💵 💵 💵 💵 💵 💵 💵 💵 💵 250,000,000 $USDC (250,048,881 USD) minted at USDC Treasury Details"
     },
     {
       "source": "Whale Alert (Telegram)",
       "type": "telegram",
-      "headline": "💵 💵 💵 💵 💵 💵 💵 💵 💵 💵 250,000,000 $USDC (250,046,749 USD) minted at USDC Treasury Details"
+      "headline": "💤 💤 A dormant address containing 170 $BTC (14,376,954 USD) has just been activated after 13.0 years! Details"
     },
     {
       "source": "Whale Alert (Telegram)",
       "type": "telegram",
-      "headline": "🚨 🚨 🚨 🚨 🚨 113,000,000 $USDT (112,975,027 USD) transferred from #Bitfinex to Tether Treasury Details"
+      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 133,990,000 $USDC (134,020,482 USD) transferred from #Aave to Unknown Whale 1 Details"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 133,990,000 $USDC (134,097,192 USD) transferred from Unknown Whale 1 to #Aave Details"
     }
   ]
 }
