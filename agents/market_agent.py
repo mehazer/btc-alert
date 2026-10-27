@@ -1,181 +1,227 @@
 """
 agents/market_agent.py
 ------------------------
-Deterministik, kural-tabanli Market Agent.
+Deterministik, kural-tabanli Market Agent (v2 - Directional).
 
-AMAC: Zaten toplanmis sinyalleri (RSI, Fear & Greed Index, Open
-Interest degisimi, BTC fiyat degisimi) tek bir genel piyasa durumu
-degerlendirmesine ceviren: bir Risk Skoru, bir Guven (Confidence)
-Skoru, bir Durum (State) etiketi ve okunabilir Gerekceler (Reasons)
-listesi ureten saf bir fonksiyon.
+AMAC:
+Zaten toplanmis sinyalleri (RSI, Fear & Greed, Funding Rate,
+OI degisimi, Fiyat degisimi, News Sentiment) tek bir
+yonlu (directional) piyasa degerlendirmesine cevirir.
 
-TASARIM ILKELERI (proje gereksinimlerine gore):
-- Tamamen deterministik, kural tabanli. Burada YAPAY ZEKA/LLM
-  muhakemesi YOKTUR.
-- Yeni veri kaynagi eklemez. Sadece baska yerde zaten toplanmis
-  degerleri parametre olarak alir.
-- Bagimsiz modul: kendi basina hicbir veri cekmez, Telegram/dashboard/
-  GitHub'dan haberi yoktur. Girdi alir, sozluk (dict) doner. Bu, test
-  etmeyi kolaylastirir ve ileride diger ajanlarin (Social/News/Whale/
-  Decision) bu modulden habersiz, bagimsiz gelistirilebilmesini saglar.
+Cikti:
+- state: BULLISH | BEARISH | NEUTRAL | OVERHEATED | FEAR
+- bias_score: -100 (cok bearish) ... +100 (cok bullish)
+- intensity: 0-100 (sinyalin guclu olup olmadigi)
+- confidence: 0-100 (veri tamligi)
+- reasons: okunabilir gerekceler
 
-ACIKCA BELIRTILMESI GEREKEN VARSAYIMLAR
-(orijinal istekte bu detaylar acik birakilmisti, ben asagidaki
-kararlari aldim ve gerekcelerini yaziyorum):
-
-1. Skor kademeleri KUMULATIF DEGIL. Her girdi, sadece ulastigi EN
-   YUKSEK kademenin puanini katkida bulunur (ornegin RSI=85 icin
-   +30 alinir, +20+30=+50 DEGIL). Gerekce: cakisan kademeleri ust
-   uste toplamak ayni sinyali iki kez saymak olurdu ve kademe
-   sinirlarinda skoru istikrarsizlastirirdi.
-
-2. Risk Skoru 100'de sinirlandirilir (cap), her ne kadar dort
-   girdinin maksimum degerleri toplami 110 olsa da (RSI 30 + F&G 30
-   + OI 30 + Fiyat 20), cunku istek acikca "Risk Score (0-100)"
-   diyor.
-
-3. Confidence (Guven) Skoru, istatistiksel bir model guveni DEGIL,
-   VERI TAMLIGINI yansitir: dort girdiden kacinin gercekten mevcut
-   oldugunun (None olmayan) yuzdesidir. Bu secimin sebebi: Open
-   Interest'in projenin gecmisinde sik sik alinamadigi biliniyor
-   (bkz. PROJECT_SUMMARY.md) — eksik veriyle hesaplanan bir Risk
-   Skorunun, tam veriyle hesaplanana gore daha az agirlik tasidigini
-   GORUNUR kilmak istedik.
-
-4. Nihai (capped) Risk Skoru uzerinden Durum (State) esikleri:
-     0-29   -> NORMAL
-     30-59  -> BULLISH
-     60-84  -> OVERHEATED
-     85-100 -> EXTREME_EUPHORIA
-   Bunlar ILK VE AYARLANABILIR bir gecis noktasidir — herhangi bir
-   backtest/geriye donuk test ile turetilmedi. Ayarlamak icin
-   asagidaki STATE_THRESHOLDS listesini degistirmen yeterli, skor
-   mantigina dokunmana gerek yok.
-
-5. OI_CHANGE_PCT ve PRICE_CHANGE_PCT girdileri MUTLAK DEGER (abs())
-   olarak degerlendirilir — yani hem sert bir yukselis hem sert bir
-   dusus ayni sekilde "asiri hareket" olarak puanlanir (yon degil,
-   buyukluk onemli). Bu, "overheated/euphoria" kavraminin volatilite
-   temelli oldugu varsayimina dayanir.
+Tasarim ilkeleri:
+- Tamamen deterministik, kural tabanli (LLM yok)
+- Yeni veri kaynagi eklemez, sadece parametre alir
+- Bagimsiz modul
 """
 
 from datetime import datetime, timezone
 
-# ---------------------------------------------------------------------
-# Ayarlanabilir esikler (mantiktan ayri tutuldu, ileride degistirmek
-# skor hesaplama kodunu degistirmeyi gerektirmesin diye).
-# Her tier: (esik_degeri, puan). Yuksekten dusuge SIRALI olmali.
-# ---------------------------------------------------------------------
 
-RSI_TIERS = [(80, 30), (70, 20)]
-FEAR_GREED_TIERS = [(85, 30), (75, 20)]
-OI_CHANGE_PCT_TIERS = [(20, 30), (10, 20)]      # yuzde, mutlak deger
-PRICE_CHANGE_PCT_TIERS = [(20, 20), (10, 10)]   # yuzde, mutlak deger
-
-STATE_THRESHOLDS = [
-    (85, "EXTREME_EUPHORIA"),
-    (60, "OVERHEATED"),
-    (30, "BULLISH"),
-    (0, "NORMAL"),
-]
+def _clamp(value, low, high):
+    return max(low, min(high, value))
 
 
-def _tier_score(value, tiers, label, unit=""):
-    """`value`'nun ulastigi en yuksek kademenin (puan, gerekce_metni)
-    ikilisini dondurur. `tiers` yuksek esikten dusuge sirali olmali.
-    `value` None ise (veri mevcut degilse) (0, None) doner."""
-    if value is None:
-        return 0, None
-    for threshold, score in tiers:
-        if value >= threshold:
-            return score, f"{label} >= {threshold}{unit} (+{score})"
-    return 0, None
-
-
-def _resolve_state(score):
-    for threshold, state in STATE_THRESHOLDS:
-        if score >= threshold:
-            return state
-    return "NORMAL"
-
-
-def evaluate(rsi=None, fear_greed_value=None, oi_change_pct=None, price_change_pct=None):
+def evaluate(
+    rsi=None,
+    fear_greed_value=None,
+    funding_rate=None,
+    oi_change_pct=None,
+    price_change_pct=None,
+    news_sentiment=None,
+):
     """
-    Mevcut piyasa durumunu, zaten toplanmis sinyallerden degerlendirir.
+    Directional market evaluation.
 
-    Parametreler (hepsi opsiyonel — mevcut degilse None gecin):
-        rsi: float, haftalik RSI degeri (0-100)
-        fear_greed_value: int, Fear & Greed Index (0-100)
-        oi_change_pct: float, Open Interest yuzde degisimi
-            (ornegin +12.5 icin 12.5). Fonksiyon icinde mutlak
-            deger alinir, siz pozitif/negatif gonderebilirsiniz.
-        price_change_pct: float, BTC fiyat yuzde degisimi (ayni
-            sekilde mutlak deger alinir).
+    Parameters (all optional):
+        rsi: float 0-100
+        fear_greed_value: int 0-100
+        funding_rate: float (e.g. 0.0001 = +0.01%)
+        oi_change_pct: float (percentage change)
+        price_change_pct: float (percentage change)
+        news_sentiment: float -100 to +100
 
-    Donen sozluk:
-        {
-            "state": str,
-            "risk_score": int (0-100),
-            "confidence": int (0-100),
-            "reasons": list[str],
-            "inputs": {...ham girdiler, loglama/tarihce icin...},
-            "evaluated_at": ISO8601 UTC zaman damgasi,
-        }
+    Returns dict with state, bias_score, intensity, confidence, reasons...
     """
-    raw_score = 0
+    bullish_points = 0.0
+    bearish_points = 0.0
     reasons = []
+    available = 0
+    total_possible = 6
 
     inputs = {
         "rsi": rsi,
         "fear_greed_value": fear_greed_value,
+        "funding_rate": funding_rate,
         "oi_change_pct": oi_change_pct,
         "price_change_pct": price_change_pct,
+        "news_sentiment": news_sentiment,
     }
 
-    score, reason = _tier_score(rsi, RSI_TIERS, "RSI")
-    raw_score += score
-    if reason:
-        reasons.append(reason)
+    # ------------------------------------------------------------------
+    # 1. RSI
+    # ------------------------------------------------------------------
+    if rsi is not None:
+        available += 1
+        if rsi >= 75:
+            bullish_points += 25
+            reasons.append(f"RSI yuksek ({rsi:.1f}) -> asiri alim baskisi")
+        elif rsi >= 60:
+            bullish_points += 12
+            reasons.append(f"RSI guclu ({rsi:.1f}) -> boğa egilimi")
+        elif rsi <= 25:
+            bearish_points += 25
+            reasons.append(f"RSI cok dusuk ({rsi:.1f}) -> asiri satim / korku")
+        elif rsi <= 40:
+            bearish_points += 12
+            reasons.append(f"RSI zayif ({rsi:.1f}) -> ayi egilimi")
 
-    score, reason = _tier_score(fear_greed_value, FEAR_GREED_TIERS, "Fear & Greed")
-    raw_score += score
-    if reason:
-        reasons.append(reason)
+    # ------------------------------------------------------------------
+    # 2. Fear & Greed
+    # ------------------------------------------------------------------
+    if fear_greed_value is not None:
+        available += 1
+        if fear_greed_value >= 80:
+            bullish_points += 20
+            reasons.append(f"Fear&Greed asiri acgozlu ({fear_greed_value})")
+        elif fear_greed_value >= 60:
+            bullish_points += 10
+            reasons.append(f"Fear&Greed iyimser ({fear_greed_value})")
+        elif fear_greed_value <= 20:
+            bearish_points += 20
+            reasons.append(f"Fear&Greed asiri korku ({fear_greed_value})")
+        elif fear_greed_value <= 40:
+            bearish_points += 10
+            reasons.append(f"Fear&Greed korku bolgesi ({fear_greed_value})")
 
-    abs_oi_change = abs(oi_change_pct) if oi_change_pct is not None else None
-    score, reason = _tier_score(abs_oi_change, OI_CHANGE_PCT_TIERS, "OI degisimi", "%")
-    raw_score += score
-    if reason:
-        reasons.append(reason)
+    # ------------------------------------------------------------------
+    # 3. Funding Rate (very important directional signal)
+    # ------------------------------------------------------------------
+    if funding_rate is not None:
+        available += 1
+        # Convert to percentage for readability (0.0001 -> 0.01%)
+        funding_pct = funding_rate * 100
+        if funding_rate >= 0.0003:  # >= 0.03%
+            bullish_points += 22
+            reasons.append(f"Funding Rate yuksek (+{funding_pct:.4f}%) -> long'lar kalabalik")
+        elif funding_rate >= 0.0001:
+            bullish_points += 10
+            reasons.append(f"Funding Rate pozitif (+{funding_pct:.4f}%)")
+        elif funding_rate <= -0.0003:
+            bearish_points += 22
+            reasons.append(f"Funding Rate cok negatif ({funding_pct:.4f}%) -> short'lar kalabalik")
+        elif funding_rate <= -0.0001:
+            bearish_points += 10
+            reasons.append(f"Funding Rate negatif ({funding_pct:.4f}%)")
 
-    abs_price_change = abs(price_change_pct) if price_change_pct is not None else None
-    score, reason = _tier_score(abs_price_change, PRICE_CHANGE_PCT_TIERS, "Fiyat degisimi", "%")
-    raw_score += score
-    if reason:
-        reasons.append(reason)
+    # ------------------------------------------------------------------
+    # 4. OI + Price Divergence (classic)
+    # ------------------------------------------------------------------
+    if oi_change_pct is not None and price_change_pct is not None:
+        available += 1
+        if price_change_pct > 1.5 and oi_change_pct > 3:
+            bullish_points += 18
+            reasons.append("Fiyat + OI birlikte yukseldi -> guclu boğa trendi")
+        elif price_change_pct > 1.5 and oi_change_pct < -2:
+            # Weak rally / short covering
+            bearish_points += 8
+            reasons.append("Fiyat yukseldi ama OI dustu -> zayif ralli / short covering")
+        elif price_change_pct < -1.5 and oi_change_pct > 3:
+            bearish_points += 18
+            reasons.append("Fiyat dustu + OI artti -> guclu ayi baskisi")
+        elif price_change_pct < -1.5 and oi_change_pct < -2:
+            bullish_points += 8
+            reasons.append("Fiyat dustu + OI dustu -> long temizligi (potansiyel dibe yaklasma)")
+    elif oi_change_pct is not None:
+        available += 0.5
+        if oi_change_pct > 8:
+            reasons.append(f"OI belirgin artti (+{oi_change_pct:.1f}%)")
+        elif oi_change_pct < -8:
+            reasons.append(f"OI belirgin azaldi ({oi_change_pct:.1f}%)")
 
-    risk_score = min(raw_score, 100)
+    # ------------------------------------------------------------------
+    # 5. Pure price momentum (smaller weight)
+    # ------------------------------------------------------------------
+    if price_change_pct is not None:
+        available += 0.5
+        if price_change_pct > 4:
+            bullish_points += 8
+            reasons.append(f"Guclu fiyat yukselişi (+{price_change_pct:.1f}%)")
+        elif price_change_pct < -4:
+            bearish_points += 8
+            reasons.append(f"Guclu fiyat dususu ({price_change_pct:.1f}%)")
 
-    available_inputs = sum(1 for v in inputs.values() if v is not None)
-    confidence = round((available_inputs / len(inputs)) * 100)
+    # ------------------------------------------------------------------
+    # 6. News Sentiment
+    # ------------------------------------------------------------------
+    if news_sentiment is not None:
+        available += 1
+        if news_sentiment >= 40:
+            bullish_points += 15
+            reasons.append(f"Haber sentimenti iyimser ({news_sentiment:+.0f})")
+        elif news_sentiment >= 15:
+            bullish_points += 7
+            reasons.append(f"Haber sentimenti hafif pozitif ({news_sentiment:+.0f})")
+        elif news_sentiment <= -40:
+            bearish_points += 15
+            reasons.append(f"Haber sentimenti kotumser ({news_sentiment:+.0f})")
+        elif news_sentiment <= -15:
+            bearish_points += 7
+            reasons.append(f"Haber sentimenti hafif negatif ({news_sentiment:+.0f})")
+
+    # ------------------------------------------------------------------
+    # Final scores
+    # ------------------------------------------------------------------
+    net = bullish_points - bearish_points
+    bias_score = int(_clamp(net * 1.4, -100, 100))  # scale a bit
+
+    intensity = int(_clamp(max(bullish_points, bearish_points), 0, 100))
+
+    # State decision
+    if bias_score >= 55 and intensity >= 45:
+        state = "OVERHEATED"
+    elif bias_score <= -55 and intensity >= 45:
+        state = "FEAR"
+    elif bias_score >= 25:
+        state = "BULLISH"
+    elif bias_score <= -25:
+        state = "BEARISH"
+    else:
+        state = "NEUTRAL"
+
+    confidence = int(round((available / total_possible) * 100))
 
     if not reasons:
-        reasons.append("Belirgin bir esik asilmadi, piyasa normal araliginda.")
-
-    state = _resolve_state(risk_score)
+        reasons.append("Belirgin bir sinyal yok, piyasa dengeli gorunuyor.")
 
     return {
         "state": state,
-        "risk_score": risk_score,
+        "bias_score": bias_score,
+        "intensity": intensity,
         "confidence": confidence,
         "reasons": reasons,
         "inputs": inputs,
+        "bullish_points": round(bullish_points, 1),
+        "bearish_points": round(bearish_points, 1),
         "evaluated_at": datetime.now(timezone.utc).isoformat(),
     }
 
 
 if __name__ == "__main__":
-    # Basit, disariya hicbir istek atmayan manuel test.
     import json
-    result = evaluate(rsi=82, fear_greed_value=88, oi_change_pct=15, price_change_pct=12)
+    # Quick self-test
+    result = evaluate(
+        rsi=38,
+        fear_greed_value=42,
+        funding_rate=-0.00025,
+        oi_change_pct=-4.2,
+        price_change_pct=1.8,
+        news_sentiment=-22,
+    )
     print(json.dumps(result, indent=2, ensure_ascii=False))

@@ -1,29 +1,12 @@
 """
-Multi-Coin Daily RSI Alert Bot + Market Agent
+Multi-Coin Daily RSI Alert Bot + Market Agent (v2)
 ------------------------------------------------
-Binance'ten BTC/ETH/SOL (veya SYMBOLS ile belirtilen coinler) icin
-gunluk mum verisini ceker, RSI + Volume hesaplar, OKX'ten Open
-Interest, alternative.me'den Fear & Greed Index ceker, esik asilirsa
-(veya ALWAYS_NOTIFY=true ise) Telegram'a mesaj gonderir. Ayrica her
-calismada degerleri history/ klasorune JSON olarak kaydeder (sembol
-bazli + genel piyasa ozeti).
+Binance'ten gunluk mum + RSI, OKX'ten Open Interest + Funding Rate,
+alternative.me'den Fear & Greed, mevcut haberlerden basit sentiment
+skoru toplar. Market Agent bu sinyalleri yonlu (directional) bir
+degerlendirmeye cevirir.
 
-YENI: BTCUSDT verisi uzerinden agents/market_agent.py cagrilir,
-sonuc loglanir, Telegram'a ayri bir mesaj olarak gonderilir ve
-history/market_agent_history.json'a kaydedilir (dashboard'un
-"Market Agent" ve "Market Agent History" bolumleri bunu okur).
-
-NOT: Haber toplama (RSS + Telegram kanallari) bu dosyadan
-CIKARILDI -- artik ayri, kendi zamanlamasinda calisan news_bot.py
-tarafindan yapiliyor (bkz. news_sources.py). Bu bot artik sadece
-teknik veriye (RSI, fiyat, hacim, OI, Fear&Greed) odaklaniyor.
-
-Bagimlilik: sadece 'requests'. Harici RSI/TA kutuphanesi kullanilmaz.
-
-Bilinen kisitlar:
-- Open Interest icin once Binance Futures (451) ve Bybit (403)
-  denendi; ikisi de GitHub Actions bulut IP'lerini engelliyor.
-  Simdi OKX public API kullaniliyor (calisiyor).
+Bagimlilik: sadece 'requests' (+ mevcut news_sources icin bs4).
 """
 
 import os
@@ -34,10 +17,11 @@ from datetime import datetime, timezone
 import requests
 
 from agents import market_agent
+from agents import news_sentiment
 
-# ---- Ayarlar (environment variable / GitHub Secrets ile gelir) ----
+# ---- Ayarlar ----
 SYMBOLS = [s.strip().upper() for s in os.environ.get("SYMBOLS", "BTCUSDT").split(",") if s.strip()]
-PRIMARY_SYMBOL = "BTCUSDT"  # Market Agent bu sembol uzerinden calisir
+PRIMARY_SYMBOL = "BTCUSDT"
 
 INTERVAL = os.environ.get("INTERVAL", "1d")
 RSI_PERIOD = int(os.environ.get("RSI_PERIOD", "14"))
@@ -50,18 +34,26 @@ TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
 BINANCE_SPOT_KLINES_URL = "https://data-api.binance.vision/api/v3/klines"
 OKX_OI_URL = "https://www.okx.com/api/v5/public/open-interest"
+OKX_FUNDING_URL = "https://www.okx.com/api/v5/public/funding-rate"
 FEAR_GREED_URL = "https://api.alternative.me/fng/"
 
 HISTORY_DIR = "history"
 MAX_HISTORY_ENTRIES = 200
-MAX_MARKET_AGENT_ENTRIES = 200  # dashboard yine de son 30'u gosterir
+MAX_MARKET_AGENT_ENTRIES = 200
 
-# Binance symbol -> OKX SWAP instId
 OKX_SYMBOL_MAP = {
     "BTCUSDT": "BTC-USDT-SWAP",
     "ETHUSDT": "ETH-USDT-SWAP",
     "SOLUSDT": "SOL-USDT-SWAP",
 }
+
+
+def _okx_inst_id(symbol):
+    inst_id = OKX_SYMBOL_MAP.get(symbol.upper())
+    if not inst_id:
+        base = symbol.upper().replace("USDT", "")
+        inst_id = f"{base}-USDT-SWAP"
+    return inst_id
 
 
 # ---------------------------------------------------------------------
@@ -79,30 +71,32 @@ def fetch_klines(symbol, interval, limit=200):
 
 
 def fetch_open_interest(symbol):
-    """OKX public API'den Open Interest ceker (GitHub Actions IP'lerinde calisir).
-    Donen deger base currency cinsinden OI'dir (ornek: BTC miktari).
-    """
-    inst_id = OKX_SYMBOL_MAP.get(symbol.upper())
-    if not inst_id:
-        # Generic fallback: BTCUSDT -> BTC-USDT-SWAP
-        base = symbol.upper().replace("USDT", "")
-        inst_id = f"{base}-USDT-SWAP"
-
+    inst_id = _okx_inst_id(symbol)
     params = {"instType": "SWAP", "instId": inst_id}
     resp = requests.get(OKX_OI_URL, params=params, timeout=15)
     resp.raise_for_status()
     data = resp.json()
-
     if data.get("code") != "0":
-        raise ValueError(f"OKX OI hata kodu: {data}")
-
+        raise ValueError(f"OKX OI hata: {data}")
     result_list = data.get("data", [])
     if not result_list:
-        raise ValueError(f"OKX OI verisi bos dondu: {data}")
-
-    # oiCcy = open interest in base currency (e.g. number of BTC)
-    # oiUsd = open interest in USD
+        raise ValueError(f"OKX OI bos: {data}")
     return float(result_list[0]["oiCcy"])
+
+
+def fetch_funding_rate(symbol):
+    """OKX current funding rate (e.g. 0.0001 = +0.01%)."""
+    inst_id = _okx_inst_id(symbol)
+    params = {"instId": inst_id}
+    resp = requests.get(OKX_FUNDING_URL, params=params, timeout=15)
+    resp.raise_for_status()
+    data = resp.json()
+    if data.get("code") != "0":
+        raise ValueError(f"OKX Funding hata: {data}")
+    result_list = data.get("data", [])
+    if not result_list:
+        raise ValueError(f"OKX Funding bos: {data}")
+    return float(result_list[0]["fundingRate"])
 
 
 def fetch_fear_greed_index():
@@ -114,12 +108,12 @@ def fetch_fear_greed_index():
 
 
 # ---------------------------------------------------------------------
-# RSI hesaplama
+# RSI
 # ---------------------------------------------------------------------
 
 def compute_rsi(closes, period=14):
     if len(closes) < period + 1:
-        raise ValueError(f"RSI hesaplamak icin en az {period + 1} mum gerekli, {len(closes)} mum geldi.")
+        raise ValueError(f"RSI icin en az {period + 1} mum gerekli, {len(closes)} geldi.")
     gains, losses = [], []
     for i in range(1, len(closes)):
         change = closes[i] - closes[i - 1]
@@ -137,7 +131,7 @@ def compute_rsi(closes, period=14):
 
 
 # ---------------------------------------------------------------------
-# Tarihce (history) okuma / yazma
+# History helpers
 # ---------------------------------------------------------------------
 
 def load_history(symbol):
@@ -148,7 +142,7 @@ def load_history(symbol):
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
     except (json.JSONDecodeError, OSError) as e:
-        print(f"{symbol}: history dosyasi okunamadi, sifirdan baslaniyor ({e})")
+        print(f"{symbol}: history okunamadi ({e})")
         return []
 
 
@@ -160,13 +154,15 @@ def save_history(symbol, records):
         json.dump(trimmed, f, indent=2, ensure_ascii=False)
 
 
-def save_market_snapshot(fear_greed_value, fear_greed_label):
+def save_market_snapshot(fear_greed_value, fear_greed_label, funding_rate=None, news_sentiment=None):
     os.makedirs(HISTORY_DIR, exist_ok=True)
     path = os.path.join(HISTORY_DIR, "market.json")
     snapshot = {
         "updated_at": datetime.now(timezone.utc).isoformat(),
         "fear_greed_value": fear_greed_value,
         "fear_greed_label": fear_greed_label,
+        "funding_rate": funding_rate,
+        "news_sentiment": news_sentiment,
     }
     with open(path, "w", encoding="utf-8") as f:
         json.dump(snapshot, f, indent=2, ensure_ascii=False)
@@ -179,8 +175,7 @@ def load_market_agent_history():
     try:
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
-    except (json.JSONDecodeError, OSError) as e:
-        print(f"market_agent_history.json okunamadi, sifirdan baslaniyor ({e})")
+    except (json.JSONDecodeError, OSError):
         return []
 
 
@@ -198,34 +193,30 @@ def save_market_agent_history(records):
 
 def send_telegram_message(text):
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
-        print("TELEGRAM_BOT_TOKEN veya TELEGRAM_CHAT_ID eksik, mesaj gonderilemedi.")
+        print("Telegram secrets eksik, mesaj gonderilemedi.")
         return False
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     payload = {"chat_id": TELEGRAM_CHAT_ID, "text": text}
     try:
         resp = requests.post(url, data=payload, timeout=15)
     except requests.RequestException as e:
-        print(f"Telegram'a baglanilamadi: {e}")
+        print(f"Telegram baglanti hatasi: {e}")
         return False
     if resp.status_code != 200:
-        print(f"Telegram gonderim hatasi: {resp.status_code} {resp.text}")
+        print(f"Telegram hata: {resp.status_code} {resp.text}")
         return False
     return True
 
 
 # ---------------------------------------------------------------------
-# Bir sembolu isle
+# Symbol processing
 # ---------------------------------------------------------------------
 
 def process_symbol(symbol, fear_greed_value, fear_greed_label):
-    """Bir sembolu isler. Basarili olursa, o sembole ait
-    (rsi, price, open_interest, price_change_pct, oi_change_pct)
-    degerlerini icerecek sekilde bir dict doner (Market Agent bunu
-    PRIMARY_SYMBOL icin kullanacak). Basarisiz olursa None doner."""
     try:
         closes, volumes = fetch_klines(symbol, INTERVAL, limit=RSI_PERIOD + 50)
     except Exception as e:
-        error_msg = f"⚠️ {symbol}: Binance (spot) veri cekme hatasi\n{e}"
+        error_msg = f"⚠️ {symbol}: Binance veri hatasi\n{e}"
         print(error_msg)
         send_telegram_message(error_msg)
         return None
@@ -233,7 +224,7 @@ def process_symbol(symbol, fear_greed_value, fear_greed_label):
     try:
         rsi = compute_rsi(closes, RSI_PERIOD)
     except Exception as e:
-        error_msg = f"⚠️ {symbol}: RSI hesaplama hatasi\n{e}"
+        error_msg = f"⚠️ {symbol}: RSI hatasi\n{e}"
         print(error_msg)
         send_telegram_message(error_msg)
         return None
@@ -245,10 +236,14 @@ def process_symbol(symbol, fear_greed_value, fear_greed_label):
     try:
         open_interest = fetch_open_interest(symbol)
     except Exception as e:
-        print(f"{symbol}: Open Interest cekilemedi (calismaya devam ediliyor): {e}")
+        print(f"{symbol}: OI cekilemedi: {e}")
 
-    # Bir onceki kaydi, yeni kaydi eklemeden ONCE al -- yuzde
-    # degisim hesaplari (Market Agent icin) buna dayanir.
+    funding_rate = None
+    try:
+        funding_rate = fetch_funding_rate(symbol)
+    except Exception as e:
+        print(f"{symbol}: Funding Rate cekilemedi: {e}")
+
     history = load_history(symbol)
     previous_entry = history[-1] if history else None
 
@@ -267,11 +262,11 @@ def process_symbol(symbol, fear_greed_value, fear_greed_label):
         prev_oi = previous_entry["open_interest"]
         oi_change_pct = ((open_interest - prev_oi) / prev_oi) * 100
 
+    funding_pct_str = f"{funding_rate * 100:.4f}%" if funding_rate is not None else "n/a"
+
     print(
-        f"{symbol} | Daily RSI({RSI_PERIOD}) = {rsi} | Fiyat = {last_price} "
-        f"| Hacim = {last_volume} | Open Interest = {open_interest} "
-        f"| Fiyat degisimi = {price_change_pct} | OI degisimi = {oi_change_pct} "
-        f"| Fear&Greed = {fear_greed_value} ({fear_greed_label})"
+        f"{symbol} | RSI={rsi} | Price={last_price} | OI={open_interest} "
+        f"| Funding={funding_pct_str} | dPrice={price_change_pct} | dOI={oi_change_pct}"
     )
 
     history.append({
@@ -280,87 +275,101 @@ def process_symbol(symbol, fear_greed_value, fear_greed_label):
         "price": last_price,
         "volume": last_volume,
         "open_interest": open_interest,
+        "funding_rate": funding_rate,
         "fear_greed_value": fear_greed_value,
         "fear_greed_label": fear_greed_label,
     })
     save_history(symbol, history)
 
+    # Optional per-symbol RSI alert (kept for backward compatibility)
     threshold_exceeded = rsi >= RSI_THRESHOLD
     if threshold_exceeded or ALWAYS_NOTIFY:
-        fg_text = f"{fear_greed_value} ({fear_greed_label})" if fear_greed_value is not None else "alinamadi"
-        oi_text = open_interest if open_interest is not None else "alinamadi"
-        reason = "GHC hedge tetikleyici seviyesi asildi" if threshold_exceeded else "Test modu (ALWAYS_NOTIFY=true)"
+        fg_text = f"{fear_greed_value} ({fear_greed_label})" if fear_greed_value is not None else "n/a"
+        oi_text = f"{open_interest:.2f}" if open_interest is not None else "n/a"
+        reason = "RSI esigi asildi" if threshold_exceeded else "Test modu (ALWAYS_NOTIFY)"
         message = (
-            f"⚠️ {symbol} Gunluk RSI Uyarisi\n"
+            f"⚠️ {symbol} Gunluk RSI\n"
             f"RSI({RSI_PERIOD}): {rsi}\n"
-            f"Esik: {RSI_THRESHOLD}\n"
-            f"Son fiyat: {last_price}\n"
-            f"Hacim (son gun): {last_volume}\n"
-            f"Open Interest: {oi_text}\n"
-            f"Fear & Greed Index: {fg_text}\n"
+            f"Fiyat: {last_price}\n"
+            f"OI: {oi_text}\n"
+            f"Funding: {funding_pct_str}\n"
+            f"Fear&Greed: {fg_text}\n"
             f"({reason})"
         )
         sent = send_telegram_message(message)
-        print(f"{symbol}: Telegram mesaji " + ("gonderildi." if sent else "gonderilemedi."))
-    else:
-        print(f"{symbol}: Esik asilmadi, bildirim gonderilmedi.")
+        print(f"{symbol}: Telegram " + ("gonderildi" if sent else "gonderilemedi"))
 
     return {
         "rsi": rsi,
         "price": last_price,
         "open_interest": open_interest,
+        "funding_rate": funding_rate,
         "price_change_pct": price_change_pct,
         "oi_change_pct": oi_change_pct,
     }
 
 
 # ---------------------------------------------------------------------
-# Market Agent entegrasyonu
+# Market Agent runner
 # ---------------------------------------------------------------------
 
-def run_market_agent(primary_symbol_data, fear_greed_value):
-    """PRIMARY_SYMBOL (BTCUSDT) verisi uzerinden Market Agent'i
-    calistirir, loglar, Telegram'a ayri bir mesaj olarak gonderir ve
-    history/market_agent_history.json'a kaydeder. `primary_symbol_data`
-    None ise (BTCUSDT islenemediyse) Market Agent atlanir."""
+def run_market_agent(primary_symbol_data, fear_greed_value, news_sent):
     if primary_symbol_data is None:
-        print("Market Agent atlandi: BTCUSDT verisi mevcut degil.")
+        print("Market Agent atlandi: BTCUSDT verisi yok.")
         return None
 
     result = market_agent.evaluate(
-        rsi=primary_symbol_data["rsi"],
+        rsi=primary_symbol_data.get("rsi"),
         fear_greed_value=fear_greed_value,
-        oi_change_pct=primary_symbol_data["oi_change_pct"],
-        price_change_pct=primary_symbol_data["price_change_pct"],
+        funding_rate=primary_symbol_data.get("funding_rate"),
+        oi_change_pct=primary_symbol_data.get("oi_change_pct"),
+        price_change_pct=primary_symbol_data.get("price_change_pct"),
+        news_sentiment=news_sent.get("score") if news_sent else None,
     )
 
     print(
-        f"Market Agent | State={result['state']} | Risk={result['risk_score']} "
-        f"| Confidence={result['confidence']} | Reasons={result['reasons']}"
+        f"Market Agent | State={result['state']} | Bias={result['bias_score']} "
+        f"| Intensity={result['intensity']} | Confidence={result['confidence']}%"
     )
+    for r in result["reasons"]:
+        print(f"  - {r}")
 
-    reasons_text = "\n".join(f"- {r}" for r in result["reasons"])
+    # Rich Telegram message
+    funding = primary_symbol_data.get("funding_rate")
+    funding_str = f"{funding * 100:.4f}%" if funding is not None else "n/a"
+    news_str = f"{news_sent['score']:+.0f} ({news_sent['label']})" if news_sent else "n/a"
+
+    reasons_text = "\n".join(f"• {r}" for r in result["reasons"])
     telegram_text = (
-        "🤖 Market Agent Degerlendirmesi\n"
-        f"Durum: {result['state']}\n"
-        f"Risk Skoru: {result['risk_score']}/100\n"
-        f"Guven: {result['confidence']}%\n"
+        f"🤖 Market Agent v2\n"
+        f"Durum: *{result['state']}*\n"
+        f"Bias: {result['bias_score']:+d} | Intensity: {result['intensity']}\n"
+        f"Guven: {result['confidence']}%\n\n"
+        f"RSI: {primary_symbol_data.get('rsi')}\n"
+        f"Funding: {funding_str}\n"
+        f"News Sentiment: {news_str}\n\n"
         f"Gerekceler:\n{reasons_text}"
     )
+    # Telegram Markdown can be fragile; send as plain text
+    telegram_text = telegram_text.replace("*", "")
     sent = send_telegram_message(telegram_text)
-    print("Market Agent: Telegram mesaji " + ("gonderildi." if sent else "gonderilemedi."))
+    print("Market Agent Telegram: " + ("gonderildi" if sent else "gonderilemedi"))
 
     agent_history = load_market_agent_history()
     agent_history.append({
         "timestamp": result["evaluated_at"],
         "state": result["state"],
-        "risk_score": result["risk_score"],
+        "bias_score": result["bias_score"],
+        "intensity": result["intensity"],
         "confidence": result["confidence"],
         "reasons": result["reasons"],
-        "btc_price": primary_symbol_data["price"],
-        "rsi": primary_symbol_data["rsi"],
-        "oi_change_pct": primary_symbol_data["oi_change_pct"],
+        "btc_price": primary_symbol_data.get("price"),
+        "rsi": primary_symbol_data.get("rsi"),
+        "funding_rate": primary_symbol_data.get("funding_rate"),
+        "oi_change_pct": primary_symbol_data.get("oi_change_pct"),
+        "price_change_pct": primary_symbol_data.get("price_change_pct"),
         "fear_greed_value": fear_greed_value,
+        "news_sentiment": news_sent.get("score") if news_sent else None,
     })
     save_market_agent_history(agent_history)
 
@@ -372,15 +381,23 @@ def run_market_agent(primary_symbol_data, fear_greed_value):
 # ---------------------------------------------------------------------
 
 def main():
+    # 1. Fear & Greed
     fear_greed_value, fear_greed_label = None, None
     try:
         fear_greed_value, fear_greed_label = fetch_fear_greed_index()
-        print(f"Fear & Greed Index = {fear_greed_value} ({fear_greed_label})")
+        print(f"Fear & Greed = {fear_greed_value} ({fear_greed_label})")
     except Exception as e:
-        print(f"Fear & Greed Index cekilemedi (calismaya devam ediliyor): {e}")
+        print(f"Fear & Greed cekilemedi: {e}")
 
-    save_market_snapshot(fear_greed_value, fear_greed_label)
+    # 2. News sentiment (from already collected headlines)
+    news_sent = news_sentiment.load_and_score(HISTORY_DIR)
+    print(
+        f"News Sentiment = {news_sent['score']:+.1f} ({news_sent['label']}) "
+        f"| headlines={news_sent['total_headlines']} "
+        f"| bull_hits={news_sent['bullish_hits']} bear_hits={news_sent['bearish_hits']}"
+    )
 
+    # 3. Process symbols
     any_failure = False
     primary_symbol_data = None
 
@@ -391,7 +408,17 @@ def main():
         elif symbol.upper() == PRIMARY_SYMBOL:
             primary_symbol_data = symbol_data
 
-    run_market_agent(primary_symbol_data, fear_greed_value)
+    # 4. Save market snapshot (includes funding + news)
+    funding_for_snapshot = primary_symbol_data.get("funding_rate") if primary_symbol_data else None
+    save_market_snapshot(
+        fear_greed_value,
+        fear_greed_label,
+        funding_rate=funding_for_snapshot,
+        news_sentiment=news_sent.get("score"),
+    )
+
+    # 5. Run directional Market Agent
+    run_market_agent(primary_symbol_data, fear_greed_value, news_sent)
 
     if any_failure:
         sys.exit(1)
