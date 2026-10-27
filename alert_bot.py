@@ -2,7 +2,7 @@
 Multi-Coin Daily RSI Alert Bot + Market Agent
 ------------------------------------------------
 Binance'ten BTC/ETH/SOL (veya SYMBOLS ile belirtilen coinler) icin
-gunluk mum verisini ceker, RSI + Volume hesaplar, Bybit'ten Open
+gunluk mum verisini ceker, RSI + Volume hesaplar, OKX'ten Open
 Interest, alternative.me'den Fear & Greed Index ceker, esik asilirsa
 (veya ALWAYS_NOTIFY=true ise) Telegram'a mesaj gonderir. Ayrica her
 calismada degerleri history/ klasorune JSON olarak kaydeder (sembol
@@ -21,10 +21,9 @@ teknik veriye (RSI, fiyat, hacim, OI, Fear&Greed) odaklaniyor.
 Bagimlilik: sadece 'requests'. Harici RSI/TA kutuphanesi kullanilmaz.
 
 Bilinen kisitlar:
-- Open Interest icin once Binance Futures, sonra Bybit denendi;
-  ikisi de GitHub Actions'in bulut IP'lerini engelliyor (451/403).
-  OI su an "alinamadi" olarak gelir; bu durumda Market Agent'in
-  OI-kaynakli skoru 0 katkida bulunur ve Confidence dusuk cikar.
+- Open Interest icin once Binance Futures (451) ve Bybit (403)
+  denendi; ikisi de GitHub Actions bulut IP'lerini engelliyor.
+  Simdi OKX public API kullaniliyor (calisiyor).
 """
 
 import os
@@ -50,12 +49,19 @@ TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
 BINANCE_SPOT_KLINES_URL = "https://data-api.binance.vision/api/v3/klines"
-BYBIT_OI_URL = "https://api.bybit.com/v5/market/open-interest"
+OKX_OI_URL = "https://www.okx.com/api/v5/public/open-interest"
 FEAR_GREED_URL = "https://api.alternative.me/fng/"
 
 HISTORY_DIR = "history"
 MAX_HISTORY_ENTRIES = 200
 MAX_MARKET_AGENT_ENTRIES = 200  # dashboard yine de son 30'u gosterir
+
+# Binance symbol -> OKX SWAP instId
+OKX_SYMBOL_MAP = {
+    "BTCUSDT": "BTC-USDT-SWAP",
+    "ETHUSDT": "ETH-USDT-SWAP",
+    "SOLUSDT": "SOL-USDT-SWAP",
+}
 
 
 # ---------------------------------------------------------------------
@@ -73,14 +79,30 @@ def fetch_klines(symbol, interval, limit=200):
 
 
 def fetch_open_interest(symbol):
-    params = {"category": "linear", "symbol": symbol, "intervalTime": "1h", "limit": 1}
-    resp = requests.get(BYBIT_OI_URL, params=params, timeout=15)
+    """OKX public API'den Open Interest ceker (GitHub Actions IP'lerinde calisir).
+    Donen deger base currency cinsinden OI'dir (ornek: BTC miktari).
+    """
+    inst_id = OKX_SYMBOL_MAP.get(symbol.upper())
+    if not inst_id:
+        # Generic fallback: BTCUSDT -> BTC-USDT-SWAP
+        base = symbol.upper().replace("USDT", "")
+        inst_id = f"{base}-USDT-SWAP"
+
+    params = {"instType": "SWAP", "instId": inst_id}
+    resp = requests.get(OKX_OI_URL, params=params, timeout=15)
     resp.raise_for_status()
     data = resp.json()
-    result_list = data.get("result", {}).get("list", [])
+
+    if data.get("code") != "0":
+        raise ValueError(f"OKX OI hata kodu: {data}")
+
+    result_list = data.get("data", [])
     if not result_list:
-        raise ValueError(f"Bybit OI verisi bos dondu: {data}")
-    return float(result_list[0]["openInterest"])
+        raise ValueError(f"OKX OI verisi bos dondu: {data}")
+
+    # oiCcy = open interest in base currency (e.g. number of BTC)
+    # oiUsd = open interest in USD
+    return float(result_list[0]["oiCcy"])
 
 
 def fetch_fear_greed_index():
