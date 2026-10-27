@@ -1,8 +1,8 @@
 """
-Multi-Coin Weekly RSI Alert Bot + Market Agent
+Multi-Coin Daily RSI Alert Bot + Market Agent
 ------------------------------------------------
 Binance'ten BTC/ETH/SOL (veya SYMBOLS ile belirtilen coinler) icin
-haftalik mum verisini ceker, RSI + Volume hesaplar, Bybit'ten Open
+gunluk mum verisini ceker, RSI + Volume hesaplar, Bybit'ten Open
 Interest, alternative.me'den Fear & Greed Index ceker, esik asilirsa
 (veya ALWAYS_NOTIFY=true ise) Telegram'a mesaj gonderir. Ayrica her
 calismada degerleri history/ klasorune JSON olarak kaydeder (sembol
@@ -40,7 +40,7 @@ from agents import market_agent
 SYMBOLS = [s.strip().upper() for s in os.environ.get("SYMBOLS", "BTCUSDT").split(",") if s.strip()]
 PRIMARY_SYMBOL = "BTCUSDT"  # Market Agent bu sembol uzerinden calisir
 
-INTERVAL = os.environ.get("INTERVAL", "1w")
+INTERVAL = os.environ.get("INTERVAL", "1d")
 RSI_PERIOD = int(os.environ.get("RSI_PERIOD", "14"))
 RSI_THRESHOLD = float(os.environ.get("RSI_THRESHOLD", "80"))
 
@@ -246,7 +246,7 @@ def process_symbol(symbol, fear_greed_value, fear_greed_label):
         oi_change_pct = ((open_interest - prev_oi) / prev_oi) * 100
 
     print(
-        f"{symbol} | Weekly RSI({RSI_PERIOD}) = {rsi} | Fiyat = {last_price} "
+        f"{symbol} | Daily RSI({RSI_PERIOD}) = {rsi} | Fiyat = {last_price} "
         f"| Hacim = {last_volume} | Open Interest = {open_interest} "
         f"| Fiyat degisimi = {price_change_pct} | OI degisimi = {oi_change_pct} "
         f"| Fear&Greed = {fear_greed_value} ({fear_greed_label})"
@@ -269,11 +269,11 @@ def process_symbol(symbol, fear_greed_value, fear_greed_label):
         oi_text = open_interest if open_interest is not None else "alinamadi"
         reason = "GHC hedge tetikleyici seviyesi asildi" if threshold_exceeded else "Test modu (ALWAYS_NOTIFY=true)"
         message = (
-            f"⚠️ {symbol} Haftalik RSI Uyarisi\n"
+            f"⚠️ {symbol} Gunluk RSI Uyarisi\n"
             f"RSI({RSI_PERIOD}): {rsi}\n"
             f"Esik: {RSI_THRESHOLD}\n"
             f"Son fiyat: {last_price}\n"
-            f"Hacim (son hafta): {last_volume}\n"
+            f"Hacim (son gun): {last_volume}\n"
             f"Open Interest: {oi_text}\n"
             f"Fear & Greed Index: {fg_text}\n"
             f"({reason})"
