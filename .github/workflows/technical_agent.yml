@@ -2,9 +2,8 @@ name: Multi-Coin Daily RSI Alert
 
 on:
   schedule:
-    # Her gun 06:00 UTC'de calisir (Doha saatiyle 09:00).
-    # Gunluk RSI icin gunde 1 kez yeterli.
-    - cron: "0 6 * * *"
+    # Every 4 hours for 4h timeframe analysis.
+    - cron: "0 */4 * * *"
   workflow_dispatch: {}   # Actions sekmesinden manuel de tetikleyebilirsin
 
 # History dosyalarini (history/*.json) repo'ya geri commit edebilmek icin
@@ -33,8 +32,8 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          SYMBOLS: "BTCUSDT,ETHUSDT,SOLUSDT"
-          INTERVAL: "1d"
+          SYMBOLS: "BTCUSDT,ETHUSDT,SOLUSDT,ZECUSDT,ZAMAUSDT"
+          INTERVAL: "4h"
           RSI_PERIOD: "14"
           RSI_THRESHOLD: "70"
           ALWAYS_NOTIFY: "true"
