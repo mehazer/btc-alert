@@ -14,7 +14,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: crypto-news-hourly
+  group: crypto-history-writers
   cancel-in-progress: false
 
 jobs:

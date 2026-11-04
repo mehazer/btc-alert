@@ -13,6 +13,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: crypto-history-writers
+  cancel-in-progress: false
+
 jobs:
   check-rsi:
     runs-on: ubuntu-latest

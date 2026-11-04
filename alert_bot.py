@@ -522,8 +522,10 @@ def run_mechanism_analysis(all_symbol_data):
                     f"Directions: P {dirs.get('price_dir')} | OI {dirs.get('oi_dir')} | "
                     f"V {dirs.get('volume_dir')} | F {dirs.get('funding_dir')}"
                 )
-            if symbol == PRIMARY_SYMBOL and fear_greed_value is not None:
-                extra_lines.append(f"Common F&G: {fear_greed_value} ({fear_greed_label})")
+            if symbol == PRIMARY_SYMBOL and data.get("fear_greed_value") is not None:
+                extra_lines.append(
+                    f"Common F&G: {data.get('fear_greed_value')} ({data.get('fear_greed_label', 'Unknown')})"
+                )
             if ls.get("available") and ls.get("global_ls_ratio") is not None:
                 extra_lines.append(
                     f"L/S: {ls.get('global_ls_ratio'):.3f} ({ls.get('global_ls_dir')})"
