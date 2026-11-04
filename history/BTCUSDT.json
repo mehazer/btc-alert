@@ -697,5 +697,34 @@
     "funding_rate": 7.27882850541e-05,
     "fear_greed_value": 34,
     "fear_greed_label": "Fear"
+  },
+  {
+    "date": "2026-11-04 14:30",
+    "rsi": 56.01,
+    "price": 78521.67,
+    "volume": 1888.17973,
+    "open_interest": 35344.32570000023,
+    "funding_rate": 9.45498252811e-05,
+    "fear_greed_value": 34,
+    "fear_greed_label": "Fear",
+    "directions": {
+      "price_dir": "Flat",
+      "price_chg_pct": -0.128,
+      "oi_dir": "Falling",
+      "oi_chg_pct": -0.574,
+      "volume_dir": "Falling",
+      "volume_chg_pct": -6.644,
+      "funding_dir": "Rising",
+      "funding_chg_pct": 29.897,
+      "rsi_dir": "Flat",
+      "rsi_chg_pct": -1.217
+    },
+    "global_ls_ratio": null,
+    "global_ls_dir": "Unknown",
+    "top_account_ls_ratio": null,
+    "top_position_ls_ratio": null,
+    "liq_long_usd": 40034817.0,
+    "liq_short_usd": 18931352.0,
+    "liq_bias": "Long flush dominant"
   }
 ]
