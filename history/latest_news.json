@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-04T13:19:54.994831+00:00",
+  "updated_at": "2026-11-04T14:07:42.000351+00:00",
   "sources": [
     {
       "name": "CoinDesk",
@@ -20,6 +20,30 @@
     {
       "name": "Bitcoin Magazine",
       "type": "rss"
+    },
+    {
+      "name": "Google News (BTC)",
+      "type": "google_news"
+    },
+    {
+      "name": "Google News (ETH)",
+      "type": "google_news"
+    },
+    {
+      "name": "Google News (SOL)",
+      "type": "google_news"
+    },
+    {
+      "name": "Google News (ZEC)",
+      "type": "google_news"
+    },
+    {
+      "name": "Google News (ZAMA)",
+      "type": "google_news"
+    },
+    {
+      "name": "Google News (Macro)",
+      "type": "google_news"
     },
     {
       "name": "CoinDesk (Telegram)",
@@ -62,6 +86,11 @@
     {
       "source": "CoinDesk",
       "type": "rss",
+      "headline": "Live updates: Bitcoin and stocks reverse overnight plunge following Blue Wave landslide"
+    },
+    {
+      "source": "CoinDesk",
+      "type": "rss",
       "headline": "Global asset manager Schroders brings emerging market bond fund to Solana"
     },
     {
@@ -72,12 +101,17 @@
     {
       "source": "CoinDesk",
       "type": "rss",
-      "headline": "Circle beats earnings and revenue estimates on soaring USDC transaction volume"
+      "headline": "Circle beats earnings expectations on strong revenue, but cuts 5% of its workforce"
     },
     {
-      "source": "CoinDesk",
+      "source": "CoinTelegraph",
       "type": "rss",
-      "headline": "Here's how analysts are reacting to the new blue Congress"
+      "headline": "Here’s what happened in crypto today"
+    },
+    {
+      "source": "CoinTelegraph",
+      "type": "rss",
+      "headline": "France backs reporting for self-custodied crypto worth 100K euros or more"
     },
     {
       "source": "CoinTelegraph",
@@ -90,14 +124,9 @@
       "headline": "Binance hack may be ‘temporary setback’ for crypto, Grayscale’s Pandl says"
     },
     {
-      "source": "CoinTelegraph",
+      "source": "Decrypt",
       "type": "rss",
-      "headline": "Justin Sun seeks $264K sanctions over World Liberty’s UAE disclosure"
-    },
-    {
-      "source": "CoinTelegraph",
-      "type": "rss",
-      "headline": "Bitcoin ETFs lose $1.16B as Bitwise calls selling ‘short-term’"
+      "headline": "Morning Minute: CFTC Clears Stock Perps, Gets Sued the Same Day"
     },
     {
       "source": "Decrypt",
@@ -113,11 +142,6 @@
       "source": "Decrypt",
       "type": "rss",
       "headline": "Midterms Blue Wave Makes $917K for One Polymarket Trader, If Alaska Doesn’t Flip"
-    },
-    {
-      "source": "Decrypt",
-      "type": "rss",
-      "headline": "ZachXBT Names French Bank Crédit Mutuel Arkéa as Alleged Victim of $133M Crypto Theft"
     },
     {
       "source": "The Block",
@@ -140,9 +164,172 @@
       "headline": "Morgan Stanley among first banks to tokenize US equities, Treasurys through DTCC’s service"
     },
     {
-      "source": "CoinTelegraph (Telegram)",
-      "type": "telegram",
-      "headline": "🔥 JUST IN: $10T Morgan Stanley is among the first banks to tokenize US equities and Treasuries through DTCC’s Tokenization Service. News | Markets | YouTube"
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "Bitcoin Slips as Democratic Sweep Bets Threaten Crypto Agenda",
+      "published": "Wed, 04 Nov 2026 10:31:03 GMT"
+    },
+    {
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "Current price of Bitcoin for Nov. 4, 2026",
+      "published": "Wed, 04 Nov 2026 12:15:00 GMT"
+    },
+    {
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "Mapping the Market: Bitcoin could extend losses",
+      "published": "Wed, 04 Nov 2026 13:15:45 GMT"
+    },
+    {
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "BTC price range on Nov 4, 2026 at 9am EST Crypto Prediction Market",
+      "published": "Wed, 04 Nov 2026 13:04:16 GMT"
+    },
+    {
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "Will Crypto Rally After the Midterm Elections? If History Is Any Guide, This Happens Next.",
+      "published": "Wed, 04 Nov 2026 10:35:00 GMT"
+    },
+    {
+      "source": "Google News (ETH)",
+      "type": "google_news",
+      "headline": "Current price of Ethereum for November 4, 2026",
+      "published": "Wed, 04 Nov 2026 12:15:00 GMT"
+    },
+    {
+      "source": "Google News (ETH)",
+      "type": "google_news",
+      "headline": "Is Google's New Cryptocurrency Service a Reason to Buy Ethereum or Solana?",
+      "published": "Wed, 04 Nov 2026 12:15:00 GMT"
+    },
+    {
+      "source": "Google News (ETH)",
+      "type": "google_news",
+      "headline": "ETH price on Nov 4, 2026 at 9am EST Prediction Market",
+      "published": "Wed, 04 Nov 2026 13:04:16 GMT"
+    },
+    {
+      "source": "Google News (ETH)",
+      "type": "google_news",
+      "headline": "Russia’s Moscow Exchange to Launch Bitcoin (BTC), Ethereum (ETH) and Tether (USDT) Trading Next Month",
+      "published": "Wed, 04 Nov 2026 12:58:02 GMT"
+    },
+    {
+      "source": "Google News (ETH)",
+      "type": "google_news",
+      "headline": "ETH to GBP: Ethereum Price in British Pound Sterling",
+      "published": "Wed, 04 Nov 2026 11:46:10 GMT"
+    },
+    {
+      "source": "Google News (SOL)",
+      "type": "google_news",
+      "headline": "Is Google's New Cryptocurrency Service a Reason to Buy Ethereum or Solana?",
+      "published": "Wed, 04 Nov 2026 12:15:00 GMT"
+    },
+    {
+      "source": "Google News (SOL)",
+      "type": "google_news",
+      "headline": "Global asset manager Schroders brings emerging market bond fund to Solana",
+      "published": "Wed, 04 Nov 2026 13:00:00 GMT"
+    },
+    {
+      "source": "Google News (SOL)",
+      "type": "google_news",
+      "headline": "SOL price on Nov 4, 2026 at 9am EST Crypto Prediction Market",
+      "published": "Wed, 04 Nov 2026 13:04:17 GMT"
+    },
+    {
+      "source": "Google News (SOL)",
+      "type": "google_news",
+      "headline": "MoneyGram Becomes Solana Validator in Blockchain Push",
+      "published": "Wed, 04 Nov 2026 11:00:16 GMT"
+    },
+    {
+      "source": "Google News (SOL)",
+      "type": "google_news",
+      "headline": "Solana’s price drops below $100 for 4 consecutive days: Is a recovery still possible?",
+      "published": "Wed, 04 Nov 2026 11:00:47 GMT"
+    },
+    {
+      "source": "Google News (ZEC)",
+      "type": "google_news",
+      "headline": "Zcash grants committee drops plan to redirect 98,000 ZEC to future mining rewards",
+      "published": "Wed, 04 Nov 2026 08:04:04 GMT"
+    },
+    {
+      "source": "Google News (ZEC)",
+      "type": "google_news",
+      "headline": "Zcash Is Getting a Major Upgrade in November. Could This Be a Catalyst for Further ZEC Price Gains?",
+      "published": "Wed, 04 Nov 2026 07:30:00 GMT"
+    },
+    {
+      "source": "Google News (ZEC)",
+      "type": "google_news",
+      "headline": "November 4, 2026: ZEC 15 min · 5:45–6:00 AM EST Crypto Prediction Market",
+      "published": "Wed, 04 Nov 2026 10:49:56 GMT"
+    },
+    {
+      "source": "Google News (ZEC)",
+      "type": "google_news",
+      "headline": "Zcash grants group scraps plan to move 98,000 ZEC to miners",
+      "published": "Wed, 04 Nov 2026 11:29:00 GMT"
+    },
+    {
+      "source": "Google News (ZEC)",
+      "type": "google_news",
+      "headline": "Zcash Price Surges 10% Ahead of NU7 Upgrade: Can ZEC Hit $1,500?",
+      "published": "Wed, 04 Nov 2026 11:50:56 GMT"
+    },
+    {
+      "source": "Google News (ZAMA)",
+      "type": "google_news",
+      "headline": "Paying employees through a public blockchain sounds convenie",
+      "published": "Wed, 04 Nov 2026 05:27:41 GMT"
+    },
+    {
+      "source": "Google News (ZAMA)",
+      "type": "google_news",
+      "headline": "What if a blockchain could work with your data without ever",
+      "published": "Tue, 03 Nov 2026 20:30:04 GMT"
+    },
+    {
+      "source": "Google News (ZAMA)",
+      "type": "google_news",
+      "headline": "𝐖𝐇𝐘 𝐅𝐔𝐍𝐆𝐎 𝐖𝐀𝐍𝐓𝐒 𝐍𝐅𝐓𝐒 𝐓𝐎 𝐊𝐄𝐄𝐏 𝐒𝐄𝐂𝐑",
+      "published": "Tue, 03 Nov 2026 23:32:02 GMT"
+    },
+    {
+      "source": "Google News (Macro)",
+      "type": "google_news",
+      "headline": "Current price of Bitcoin for Nov. 4, 2026",
+      "published": "Wed, 04 Nov 2026 12:15:00 GMT"
+    },
+    {
+      "source": "Google News (Macro)",
+      "type": "google_news",
+      "headline": "ETF tokenization advances on multiple fronts — but a fragmented landscape keeps U.S. issuer-sponsored launches on the horizon",
+      "published": "Wed, 04 Nov 2026 14:00:00 GMT"
+    },
+    {
+      "source": "Google News (Macro)",
+      "type": "google_news",
+      "headline": "Investors Withdrew Cash From Crypto ETFs, Except for One Altcoin",
+      "published": "Wed, 04 Nov 2026 10:24:53 GMT"
+    },
+    {
+      "source": "Google News (Macro)",
+      "type": "google_news",
+      "headline": "What is XRP? Ripple, the XRP Ledger and its use explained",
+      "published": "Wed, 04 Nov 2026 13:19:40 GMT"
+    },
+    {
+      "source": "Google News (Macro)",
+      "type": "google_news",
+      "headline": "Is Google's New Cryptocurrency Service a Reason to Buy Ethereum or Solana?",
+      "published": "Wed, 04 Nov 2026 12:15:00 GMT"
     },
     {
       "source": "CoinTelegraph (Telegram)",
@@ -158,6 +345,11 @@
       "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
       "headline": "⚡️ JUST IN: Circle cut ~5% of staff as Q3 EPS hit $0.84, over double estimates. News | Markets | YouTube"
+    },
+    {
+      "source": "CoinTelegraph (Telegram)",
+      "type": "telegram",
+      "headline": "🔥 JUST IN: The US Office of the Comptroller of the Currency has issued a regulatory framework for banks’ use of Super Intelligence. News | Markets | YouTube"
     },
     {
       "source": "Coin Bureau Insider (Telegram)",
@@ -197,16 +389,6 @@
     {
       "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "Highlight Clip: CZ: Companies Get Complacent Over Time, Many Lessons Learned From the Hack CZ: Companies Get Complacent Over Time, Many Lessons Learned From the Hack On November 3, 2026, Binance founder CZ reflected on the Binance hack in an interview with Talking Tokens Podcast. He said companies can grow complacent and overlook potential problems after long periods without security incidents. He argued that all hacks are preventable and that there were many lessons to learn from the incident. He also supported forming an industry security alliance to share best practices, conduct cross-audits and help freeze funds quickly, saying he hoped to help move the initiative forward. — link"
-    },
-    {
-      "source": "Wu Blockchain (Telegram)",
-      "type": "telegram",
-      "headline": "Hong Kong Passes Crypto Tax Reporting Law, With Data Collection Starting in 2027 Hong Kong's Legislative Council passed the Inland Revenue (Amendment) (Crypto-Asset Reporting Framework and Amended Common Reporting Standard) Bill 2026 on November 4, implementing the OECD's Crypto-Asset Reporting Framework (CARF). Under the new law, relevant crypto-asset service providers will be required to collect transaction information starting in 2027, with Hong Kong beginning automatic exchanges of crypto-related tax information with partner jurisdictions in 2028. The amended Common Reporting Standard (CRS) will take effect in 2028, with automatic exchanges of financial account information under the updated standard beginning in 2029. Hong Kong's Financial Services and the Treasury Secretary Christopher Hui said the legislation aims to strengthen international tax transparency and combat cross-border tax evasion. — link"
-    },
-    {
-      "source": "Wu Blockchain (Telegram)",
-      "type": "telegram",
       "headline": "Crypto Industry Spent Over $64M, Yet Sherrod Brown Wins Ohio Senate Race as Several Pro-Crypto Republicans Lose Seats According to crypto journalist Eleanor Terrett, Sherrod Brown won the Ohio Senate race despite more than $64 million in crypto industry spending. Pro-crypto Republican Representatives Bryan Steil, Zach Nunn and Ann Wagner lost their seats. Pro-crypto Senator Pete Ricketts won the Nebraska race, while pro-crypto Representative Andy Barr won Kentucky’s Senate seat. Terrett expects Tim Scott to become the ranking Republican on the Senate Banking Committee following the shift in Senate control. The race involving French Hill had not been called at the time of her post. — link"
     },
     {
@@ -215,24 +397,34 @@
       "headline": "Circle Reports Q3 2026 Earnings: Revenue Up 17% to $865 Million, Average USDC Circulation Reaches $73.3 Billion Circle disclosed that revenue and reserve income in the third quarter of 2026 rose 17% year-over-year to $865 million, while net income from continuing operations increased 5% to $226 million. Other income included $182 million from the ARC token presale. During the period, the average circulating supply of USDC stood at $73.3 billion, up 8% year-over-year. Circle also stated that it has completed the genesis mint of 10 billion ARC tokens and signed a definitive agreement to acquire cross-border payments platform Tazapay. The transaction is expected to close in 2027, subject to regulatory approval. Circle disclosed in its third-quarter 2026 earnings report that it reduced its workforce by approximately 5% during the quarter to better align its organizational structure with its operating model and strategic priorities. The restructuring resulted in approximately $9.15 million in charges, primarily related to severance payments, notice-period compensation, employee benefits, and associated costs. — link"
     },
     {
-      "source": "Whale Alert (Telegram)",
+      "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 186,600,000 $USDT (186,492,580 USD) transferred from unknown wallet to #Bitfinex Details"
+      "headline": "US October ADP Employment Rises by 86,000, Above Market Expectations US ADP employment in October increased by 86,000, compared with market expectations of 69,000 and a previous reading of 90,000. — link"
     },
     {
-      "source": "Whale Alert (Telegram)",
+      "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 150,000,000 $USDT (149,822,850 USD) transferred from #Bitfinex to Tether Treasury Details"
-    },
-    {
-      "source": "Whale Alert (Telegram)",
-      "type": "telegram",
-      "headline": "🚨 🚨 🚨 🚨 🚨 116,055,973 $USDT (115,926,744 USD) transferred from #Bitfinex to Tether Treasury Details"
+      "headline": "Second-Largest Bitcoin Miner Riot Sells 10,599 BTC in Q3, Holdings Drop Nearly 79% from End of June Riot Platforms, the second-largest publicly listed Bitcoin mining company, sold 10,599 Bitcoin in the third quarter, reducing its holdings from 11,380 at the end of June to 2,418 at the end of September, a decline of nearly 79%. In the first nine months of the year, Riot sold a total of 20,264 BTC for approximately $1.5 billion, primarily to fund data center construction. The company reported third-quarter revenue of $181 million, up 1% year-over-year, with net income of $4.03 million, compared with $104 million in the same period last year. Bitcoin mining revenue was $116 million, down about 28% year-over-year. Riot also signed a 15-year data center lease agreement with an unnamed leading AI lab for 910 MW of IT capacity, with an initial contract value of approximately $28 billion. The company has now contracted a total of 1,151 MW of data center capacity, with long-term contract revenue of about $38 billion. — link"
     },
     {
       "source": "Whale Alert (Telegram)",
       "type": "telegram",
       "headline": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 250,700,000 $USDT (250,420,845 USD) transferred from #Bitfinex to Tether Treasury Details"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "🚨 🚨 🚨 🚨 1,095 $BTC (85,865,317 USD) transferred from #OKX to unknown wallet Details"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 2,012 $BTC (157,748,033 USD) transferred from #OKX to unknown wallet Details"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "🚨 🚨 🚨 🚨 🚨 1,457 $BTC (114,199,954 USD) transferred from unknown wallet to unknown wallet Details"
     }
   ]
 }
