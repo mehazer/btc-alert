@@ -53,3 +53,32 @@ geleceğini göreceksin.
 
 Bunların hiçbiri şu an gerekli değil — önce bunun 3-4 gün sorunsuz
 çalıştığını gör, sonra üstüne ekle.
+
+## Crypto News Intelligence
+
+`News Agent` workflow'u saat başı çalışır. Crypto haberlerini kaynak ağırlığı ve
+yenilik değerine göre sıralar, tekrarları temizler ve şu başlıklar altında toplar:
+
+- Market & Macro
+- Bitcoin & ETF
+- Regulation & Politics
+- Security & Hacks
+- DeFi & Stablecoins
+- Ethereum & L2
+- Altcoins & Projects
+- Institutional & Exchanges
+
+Google Trends için `Bitcoin`, `BTC` ve `crypto` aramalarının günlük 0–100
+normalize edilmiş değerleri tutulur. Google Trends erişimi başarısız olursa veri
+uydurulmaz; dashboard'da `unavailable` olarak gösterilir.
+
+AI haber özeti opsiyoneldir ve GitHub Actions secrets üzerinden etkinleştirilir:
+
+- `NEWS_AI_API_KEY` — OpenAI-compatible API anahtarı
+- `NEWS_AI_BASE_URL` — isteğe bağlı; varsayılan `https://api.openai.com/v1`
+- `NEWS_AI_MODEL` — isteğe bağlı; varsayılan `gpt-4o-mini`
+
+Anahtar yoksa haber kategorileri ve deterministik özet çalışmaya devam eder; AI
+alanı dashboard'da neden üretilemediğini açıkça gösterir. AI çıktısı yalnızca
+toplanan başlıklarla sınırlıdır ve kaynaklarda bulunmayan iddialar üretmemesi
+istenir.

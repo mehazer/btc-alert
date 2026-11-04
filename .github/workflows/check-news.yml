@@ -2,9 +2,8 @@ name: News Agent
 
 on:
   schedule:
-    # 6 saatte bir calisir (gunde 4 kez): 00:00, 06:00, 12:00, 18:00 UTC.
-    # Haberler RSI'dan cok daha hizli degistigi icin daha sik cekiliyor.
-    - cron: "0 */6 * * *"
+    # Saat basi crypto haberlerini yeniler; Google Trends sadece gunde bir kez yazar.
+    - cron: "0 * * * *"
   workflow_dispatch: {}   # Actions sekmesinden manuel de tetikleyebilirsin
 
 # History dosyalarini (history/*.json) repo'ya geri commit edebilmek icin
@@ -13,6 +12,10 @@ on:
 # token/sifre kullanilmaz.
 permissions:
   contents: write
+
+concurrency:
+  group: crypto-news-hourly
+  cancel-in-progress: false
 
 jobs:
   check-news:
@@ -30,6 +33,10 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Botu calistir
+        env:
+          NEWS_AI_API_KEY: ${{ secrets.NEWS_AI_API_KEY }}
+          NEWS_AI_BASE_URL: ${{ secrets.NEWS_AI_BASE_URL }}
+          NEWS_AI_MODEL: ${{ secrets.NEWS_AI_MODEL }}
         run: python news_bot.py
 
       - name: Tarihceyi (history/) repo'ya kaydet
