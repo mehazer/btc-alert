@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "weights": {
+    "price_action": 1.0,
+    "oi_context": 1.0,
+    "volume_confirmation": 1.0,
+    "funding_context": 1.0,
+    "btc_overlay": 1.0,
+    "positioning_context": 1.0
+  },
+  "confidence_threshold": 80,
+  "min_samples": 10,
+  "updated_at": null,
+  "metrics": {
+    "samples": 0,
+    "direction_accuracy": null,
+    "risk_accuracy": null,
+    "confidence": 0,
+    "threshold_reached": false
+  }
+}

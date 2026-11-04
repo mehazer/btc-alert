@@ -18,6 +18,7 @@ import json
 from datetime import datetime, timezone
 
 import requests
+import self_improvement
 
 from agents import market_agent
 from agents import news_sentiment
@@ -34,9 +35,11 @@ RSI_PERIOD = int(os.environ.get("RSI_PERIOD", "14"))
 RSI_THRESHOLD = float(os.environ.get("RSI_THRESHOLD", "80"))
 
 ALWAYS_NOTIFY = os.environ.get("ALWAYS_NOTIFY", "false").lower() == "true"
+NOTIFY_ALL_SYMBOLS = os.environ.get("NOTIFY_ALL_SYMBOLS", "false").lower() == "true"
 
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
+_TELEGRAM_SENT_KEYS = set()
 
 BINANCE_SPOT_KLINES_URL = "https://data-api.binance.vision/api/v3/klines"
 OKX_OI_URL = "https://www.okx.com/api/v5/public/open-interest"
@@ -145,9 +148,8 @@ def load_history(symbol):
 def save_history(symbol, records):
     os.makedirs(HISTORY_DIR, exist_ok=True)
     path = os.path.join(HISTORY_DIR, f"{symbol}.json")
-    trimmed = records[-MAX_HISTORY_ENTRIES:]
     with open(path, "w", encoding="utf-8") as f:
-        json.dump(trimmed, f, indent=2, ensure_ascii=False)
+        json.dump(records, f, indent=2, ensure_ascii=False)
 
 
 def save_market_snapshot(fear_greed_value, fear_greed_label, funding_rate=None, news_sentiment=None):
@@ -178,9 +180,8 @@ def load_market_agent_history():
 def save_market_agent_history(records):
     os.makedirs(HISTORY_DIR, exist_ok=True)
     path = os.path.join(HISTORY_DIR, "market_agent_history.json")
-    trimmed = records[-MAX_MARKET_AGENT_ENTRIES:]
     with open(path, "w", encoding="utf-8") as f:
-        json.dump(trimmed, f, indent=2, ensure_ascii=False)
+        json.dump(records, f, indent=2, ensure_ascii=False)
 
 
 def load_mechanism_history():
@@ -197,15 +198,19 @@ def load_mechanism_history():
 def save_mechanism_history(records):
     os.makedirs(HISTORY_DIR, exist_ok=True)
     path = os.path.join(HISTORY_DIR, "mechanism_history.json")
-    trimmed = records[-MAX_MECHANISM_ENTRIES:]
     with open(path, "w", encoding="utf-8") as f:
-        json.dump(trimmed, f, indent=2, ensure_ascii=False)
+        json.dump(records, f, indent=2, ensure_ascii=False)
 
 
 def send_telegram_message(text):
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
         print("Telegram secrets missing, message not sent.")
         return False
+    key = " ".join(str(text).split())
+    if key in _TELEGRAM_SENT_KEYS:
+        print("Telegram duplicate skipped.")
+        return False
+    _TELEGRAM_SENT_KEYS.add(key)
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     payload = {"chat_id": TELEGRAM_CHAT_ID, "text": text}
     try:
@@ -342,6 +347,8 @@ def process_symbol(symbol, fear_greed_value, fear_greed_label):
         "directions": dirs,
         "long_short": ls,
         "liquidations": liq,
+        "fear_greed_value": fear_greed_value,
+        "fear_greed_label": fear_greed_label,
     }
 
 
@@ -372,14 +379,10 @@ def run_market_agent(primary_symbol_data, fear_greed_value, news_sent):
 
     reasons_text = "\n".join(f"• {r}" for r in result["reasons"])
     telegram_text = (
-        f"🤖 Market Agent v2\n"
-        f"State: {result['state']}\n"
-        f"Bias: {result['bias_score']:+d} | Intensity: {result['intensity']}\n"
-        f"Confidence: {result['confidence']}%\n\n"
-        f"RSI: {primary_symbol_data.get('rsi')}\n"
-        f"Funding: {funding_str}\n"
-        f"News Sentiment: {news_str}\n\n"
-        f"Reasons:\n{reasons_text}"
+        f"🤖 MARKET STATE\n"
+        f"{result['state']} | Bias {result['bias_score']:+d} | "
+        f"Intensity {result['intensity']} | Confidence {result['confidence']}%\n\n"
+        f"{reasons_text}"
     )
     sent = send_telegram_message(telegram_text)
     print("Market Agent Telegram: " + ("sent" if sent else "failed"))
@@ -404,7 +407,7 @@ def run_market_agent(primary_symbol_data, fear_greed_value, news_sent):
     return result
 
 
-def run_mechanism_analysis(all_symbol_data):
+def run_mechanism_analysis(all_symbol_data, run_id=None):
     if not all_symbol_data:
         return []
 
@@ -413,6 +416,7 @@ def run_mechanism_analysis(all_symbol_data):
     btc_chg = btc_data.get("price_change_pct") if btc_data else None
 
     results = []
+    calibration = self_improvement.get_calibration()
     mech_history = load_mechanism_history()
     edge_path = os.path.join(HISTORY_DIR, "edge_stats.json")
     edge_stats = {}
@@ -455,7 +459,7 @@ def run_mechanism_analysis(all_symbol_data):
         if analysis.get("status") == "ok" and analysis.get("sudden_drop_risk"):
             base_level = analysis["sudden_drop_risk"].get("level", "Low")
             new_level, extra = positioning_regime.adjust_sudden_drop_for_positioning(
-                base_level, positioning, regime
+                base_level, positioning, regime, calibration=calibration
             )
             analysis["sudden_drop_risk"]["level"] = new_level
             analysis["sudden_drop_risk"].setdefault("reasons", []).extend(extra)
@@ -508,7 +512,7 @@ def run_mechanism_analysis(all_symbol_data):
             sent = send_telegram_message(ttext)
             print(f"Transition alert ({symbol}): " + ("sent" if sent else "failed"))
 
-        if symbol == PRIMARY_SYMBOL or ALWAYS_NOTIFY:
+        if symbol == PRIMARY_SYMBOL or (ALWAYS_NOTIFY and NOTIFY_ALL_SYMBOLS):
             text = mechanism_interpreter.format_telegram(analysis)
             extra_lines = [
                 "",
@@ -568,6 +572,7 @@ def run_mechanism_analysis(all_symbol_data):
             "comparison_summary": analysis.get("comparison_summary"),
             "regime": regime.get("regime"),
             "positioning_pressure": positioning.get("positioning_pressure"),
+            "squeeze_risk": positioning.get("squeeze_risk"),
             "crowded_long": positioning.get("crowded_long"),
             "crowded_short": positioning.get("crowded_short"),
             "funding_percentile": positioning.get("funding_percentile"),
@@ -595,10 +600,22 @@ def run_mechanism_analysis(all_symbol_data):
     except Exception as e:
         print(f"edge_stats save failed: {e}")
 
+    if run_id:
+        try:
+            cycle = self_improvement.run_cycle(run_id, INTERVAL, all_symbol_data, results)
+            metrics = cycle.get("metrics", {})
+            print(
+                f"Self-improvement | settled={cycle.get('newly_settled', 0)} | "
+                f"samples={metrics.get('samples', 0)} | confidence={metrics.get('confidence')}% | "
+                f"threshold={metrics.get('threshold_reached', False)}"
+            )
+        except Exception as exc:
+            print(f"Self-improvement loop failed (analysis preserved): {type(exc).__name__}: {exc}")
     return results
 
 
 def main():
+    run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     fear_greed_value, fear_greed_label = None, None
     try:
         fear_greed_value, fear_greed_label = fetch_fear_greed_index()
@@ -648,7 +665,7 @@ def main():
     )
 
     run_market_agent(primary_symbol_data, fear_greed_value, news_sent)
-    run_mechanism_analysis(all_symbol_data)
+    run_mechanism_analysis(all_symbol_data, run_id=run_id)
 
     if any_failure:
         sys.exit(1)

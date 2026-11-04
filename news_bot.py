@@ -18,6 +18,18 @@ def save_json(name, payload):
         json.dump(payload, f, indent=2, ensure_ascii=False)
 
 
+def append_json(name, record):
+    os.makedirs(HISTORY_DIR, exist_ok=True)
+    path = os.path.join(HISTORY_DIR, name)
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            rows = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError, OSError):
+        rows = []
+    rows.append(record)
+    save_json(name, rows)
+
+
 def telegram_news_message(intelligence):
     """Build a compact hourly Telegram summary from the ranked news digest."""
     ai = intelligence.get("ai") or {}
@@ -29,17 +41,26 @@ def telegram_news_message(intelligence):
         f"{ai.get('summary', 'News flow should be read with price, volume, OI and funding.')}",
     ]
     points = ai.get("key_points") or []
+    seen = set()
     if points:
         lines.append("")
         lines.append("KEY NEWS")
-        lines.extend(f"• {str(point)[:220]}" for point in points[:4])
+        for point in points[:4]:
+            clean = " ".join(str(point).split())
+            if clean and clean.lower() not in seen:
+                seen.add(clean.lower())
+                lines.append(f"• {clean[:220]}")
     categories = intelligence.get("categories") or []
     if categories:
         lines.append("")
         lines.append("CATEGORIES")
         for category in categories[:5]:
             headline = (category.get("headlines") or [{}])[0].get("headline", "")
-            lines.append(f"• {category.get('category')}: {str(headline)[:180]}")
+            clean = " ".join(str(headline).split())
+            if clean.lower() in seen:
+                continue
+            seen.add(clean.lower())
+            lines.append(f"• {category.get('category')}: {clean[:180]}")
     return "\n".join(lines)[:3900]
 
 
@@ -78,6 +99,16 @@ def main():
     }
     save_json("latest_news.json", snapshot)
     trends = google_trends.collect_daily()
+    append_json("news_runs.json", {
+        "run_id": datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ"),
+        "updated_at": snapshot["updated_at"],
+        "raw_headlines": len(headlines),
+        "unique_headlines": intelligence["headline_count"],
+        "source_count": len(sources),
+        "category_count": len(intelligence["categories"]),
+        "ai_status": intelligence["ai"].get("status"),
+        "trends_status": trends.get("status"),
+    })
     try:
         send_telegram_news(intelligence)
     except Exception as exc:

@@ -189,6 +189,7 @@ def compute_positioning(history, current_funding=None, current_oi=None, current_
     if price_chg_recent is not None and abs(price_chg_recent) < 0.8 and (crowded_long or crowded_short):
         pressure += 15
     pressure = min(100, int(round(pressure)))
+    squeeze_risk = "High" if crowded_short else "Moderate" if fund_pct is not None and fund_pct <= 25 else "Low"
     return {
         "funding_percentile": fund_pct,
         "funding_extreme": fund_extreme,
@@ -196,12 +197,13 @@ def compute_positioning(history, current_funding=None, current_oi=None, current_
         "oi_change_percentile": oi_chg_pctile,
         "crowded_long": crowded_long,
         "crowded_short": crowded_short,
+        "squeeze_risk": squeeze_risk,
         "positioning_pressure": pressure,
         "reasons": reasons,
     }
 
 
-def adjust_sudden_drop_for_positioning(base_risk_level, positioning, regime):
+def adjust_sudden_drop_for_positioning(base_risk_level, positioning, regime, calibration=None):
     order = ["Low", "Moderate", "High", "Very High"]
     try:
         idx = order.index(base_risk_level)
@@ -211,9 +213,14 @@ def adjust_sudden_drop_for_positioning(base_risk_level, positioning, regime):
     if positioning.get("crowded_long"):
         idx = min(3, idx + 1)
         extra.append("Crowded-long positioning elevates sudden-drop risk")
-    if positioning.get("positioning_pressure", 0) >= 70:
+    weights = (calibration or {}).get("weights", {})
+    pressure_weight = float(weights.get("positioning_context", 1.0) or 1.0)
+    pressure_threshold = max(60.0, min(85.0, 70.0 / pressure_weight))
+    # High pressure is directional downside evidence only when longs are crowded.
+    # Crowded shorts instead create squeeze/reversal risk, recorded separately.
+    if positioning.get("crowded_long") and positioning.get("positioning_pressure", 0) >= pressure_threshold:
         idx = min(3, idx + 1)
-        extra.append("High positioning pressure")
+        extra.append(f"High long-side positioning pressure (threshold {pressure_threshold:.0f})")
     if regime.get("regime") == "HighVolChop":
         idx = min(3, idx + 1)
         extra.append("High-vol chop regime increases reversal risk")

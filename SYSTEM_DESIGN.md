@@ -1,0 +1,69 @@
+# Crypto Watch system design
+
+## Purpose
+
+Crypto Watch is a deterministic market-observation and interpretation tool. It is not an execution or trading system. Every conclusion must be reproducible from the stored input snapshot, source timestamps, timeframe, code version, and calibration weights.
+
+## Execution flow
+
+1. `technical_agent.yml` runs on the configured 4-hour schedule or by manual dispatch.
+2. `alert_bot.py` retrieves Binance spot candles/volume, OKX perpetual open interest and funding, the Alternative.me Fear & Greed index, liquidation/L-S extras when available, and the latest local news sentiment.
+3. Each symbol observation is appended to `history/<SYMBOL>.json`. No current implementation trims old records.
+4. `market_agent.py` evaluates BTC-level directional state from RSI, sentiment, funding, price/OI changes, and news sentiment.
+5. `mechanism_interpreter.py` classifies price/OI/volume relationships: fresh long buildup, short covering, spot-led buying, weakening participation, or mixed/inconclusive. OI alone is never treated as long/short direction.
+6. `positioning_regime.py` calculates funding percentile, recent OI change, positioning pressure, regime, and separate squeeze risk. Crowded shorts are not automatically treated as downside risk.
+7. `self_improvement.py` settles older forecasts after three later observations, records outcomes, calculates direction/risk accuracy, and changes evidence weights by at most 0.02 within 0.50–1.50 bounds.
+8. The workflow commits all `history/` records. Technical and news workflows share the `crypto-history-writers` concurrency group so their Git pushes do not overwrite each other.
+9. `check-news.yml` runs hourly, writes categorized news and daily Trends results, and sends one compact Telegram news update.
+10. GitHub Pages serves `docs/index.html` for current state and `docs/history.html` for full audit/history.
+
+## Data sources and definitions
+
+| Input | Source | Meaning | Limitation |
+|---|---|---|---|
+| Price and volume | Binance spot | Latest configured candle close and base-asset volume | Spot only; not derivatives volume |
+| OI and funding | OKX perpetual | Open interest and funding for the mapped perpetual | Venue-specific; OI units are coin-denominated |
+| Fear & Greed | alternative.me | External 0–100 sentiment index | Sentiment proxy, not a forecast |
+| L/S and liquidations | Exchange/API extras | Supplemental positioning/liquidation evidence | May be unavailable |
+| News | Configured RSS/web sources | Deduplicated, ranked crypto headlines | Headlines do not prove causality |
+| Google Trends | pytrends | Daily normalized search interest 0–100 | Can be unavailable/rate-limited |
+
+## Prediction and evaluation contract
+
+At every technical run, each successfully analyzed symbol creates a prediction record containing:
+
+- run ID, UTC observation time, symbol, timeframe and entry price;
+- predicted direction from the observed price direction;
+- sudden-drop risk and separate crowded-short/squeeze-risk flags;
+- the exact evidence families available at decision time;
+- the calibration-weight snapshot used for that run.
+
+After three later observations for the same symbol are available, the record is settled. Direction is a hit when the three-observation forward return has the forecast direction, using a ±0.15% flat band. A risk event is observed when the maximum adverse move reaches at least 1%. Risk accuracy measures whether the high-risk/low-risk classification matched that event definition. These are evaluation labels, not trading recommendations.
+
+Confidence is a calibration statistic, not a probability of profit. It is a blend of 65% direction accuracy and 35% risk accuracy. Until at least 10 settled samples exist, confidence is capped at 65%. The target threshold is 80%; the dashboard shows whether it has actually been reached.
+
+## Weight updates
+
+The loop tracks six evidence families: price action, OI context, volume confirmation, funding context, BTC overlay, and positioning context. For each settled forecast, an available family receives a +0.02 update when the directional forecast was correct and -0.02 when it was wrong. Weights are bounded at 0.50 and 1.50. The positioning weight changes the threshold used for **long-side** downside-risk adjustment. Crowded-short evidence is surfaced as squeeze risk rather than being silently converted into drop risk.
+
+This is intentionally a bounded online calibration loop. It does not rewrite old results, retrain a black-box model, or use future observations while making the original decision. Weight changes and metrics are written to `history/model_calibration.json` and each run records its snapshot in `history/evaluation_runs.json`.
+
+## History files
+
+- `history/<SYMBOL>.json`: append-only market observations.
+- `history/market_agent_history.json`: append-only BTC state evaluations.
+- `history/mechanism_history.json`: append-only symbol mechanism/risk evaluations.
+- `history/evaluation_runs.json`: run-level audit ledger with inputs, outputs, sources and weights.
+- `history/prediction_ledger.json`: every forecast and its decision-time snapshot.
+- `history/evaluation_results.json`: settled outcomes and hit/miss labels.
+- `history/model_calibration.json`: current bounded weights, threshold and metrics.
+- `history/news_runs.json`: every hourly news-agent execution, source count, category count and service statuses.
+- `history/edge_stats.json`: legacy mechanism forward-return aggregates.
+
+## Telegram policy
+
+The technical workflow sends one compact BTC market-state message and one primary-symbol mechanism message by default. All-symbol mechanism messages require explicit `NOTIFY_ALL_SYMBOLS=true`. Exact duplicate messages are skipped within a run. The hourly news workflow sends one compact news summary and removes repeated key-point/category headlines. Missing Telegram secrets never destroy the stored analysis.
+
+## Maintenance checklist
+
+When changing an interpretation rule, update this document, add the rule to the relevant module's docstring/comments, preserve the old history, increment the model version in `self_improvement.py`, and run syntax/schema checks. Never delete history to make a dashboard look cleaner; use `docs/history.html` and filters/pagination instead.
