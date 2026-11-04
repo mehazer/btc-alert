@@ -2,11 +2,12 @@
 Multi-Coin RSI Alert Bot + Market Agent + Mechanism Interpreter
 ---------------------------------------------------------------------
 Collects RSI, OI (OKX), Funding (OKX), Fear & Greed, news
-sentiment, then:
+sentiment, Binance L/S ratios, liquidations, then:
   1) Directional Market Agent (bias / state)
   2) Mechanism Interpreter (price-OI-volume relationship)
   3) Positioning extremes + Regime filter
   4) Transition alerts + historical edge tracking
+  5) Technical extras (L/S, liq, directions, halving)
 
 Dependencies: requests (+ bs4 for news_sources).
 """
@@ -22,6 +23,7 @@ from agents import market_agent
 from agents import news_sentiment
 from agents import mechanism_interpreter
 from agents import positioning_regime
+from agents import technical_extras
 
 # ---- Settings ----
 SYMBOLS = [s.strip().upper() for s in os.environ.get("SYMBOLS", "BTCUSDT").split(",") if s.strip()]
@@ -303,6 +305,47 @@ def process_symbol(symbol, fear_greed_value, fear_greed_label):
         sent = send_telegram_message(message)
         print(f"{symbol}: Telegram " + ("sent" if sent else "failed"))
 
+    period = INTERVAL if INTERVAL in ("5m", "15m", "30m", "1h", "2h", "4h", "6h", "12h", "1d") else "4h"
+    extras = technical_extras.enrich_symbol_technicals(
+        symbol,
+        history,
+        {
+            "price": last_price,
+            "open_interest": open_interest,
+            "volume": last_volume,
+            "funding_rate": funding_rate,
+            "rsi": rsi,
+        },
+        period=period,
+    )
+    dirs = extras.get("directions") or {}
+    ls = extras.get("long_short") or {}
+    liq = extras.get("liquidations") or {}
+    print(
+        f"  dirs: price={dirs.get('price_dir')} oi={dirs.get('oi_dir')} vol={dirs.get('volume_dir')} "
+        f"fund={dirs.get('funding_dir')} rsi={dirs.get('rsi_dir')}"
+    )
+    if ls.get("available"):
+        print(
+            f"  L/S: global={ls.get('global_ls_ratio')} ({ls.get('global_ls_dir')}) "
+            f"topAcc={ls.get('top_account_ls_ratio')} topPos={ls.get('top_position_ls_ratio')}"
+        )
+    elif ls.get("reason") or ls.get("error"):
+        print(f"  L/S unavailable: {ls.get('reason') or ls.get('error')}")
+    if liq.get("available"):
+        print(f"  Liq 24h: long=${liq.get('long_usd')} short=${liq.get('short_usd')} ({liq.get('bias')})")
+
+    if history:
+        history[-1]["directions"] = dirs
+        history[-1]["global_ls_ratio"] = ls.get("global_ls_ratio")
+        history[-1]["global_ls_dir"] = ls.get("global_ls_dir")
+        history[-1]["top_account_ls_ratio"] = ls.get("top_account_ls_ratio")
+        history[-1]["top_position_ls_ratio"] = ls.get("top_position_ls_ratio")
+        history[-1]["liq_long_usd"] = liq.get("long_usd")
+        history[-1]["liq_short_usd"] = liq.get("short_usd")
+        history[-1]["liq_bias"] = liq.get("bias")
+        save_history(symbol, history)
+
     return {
         "symbol": symbol,
         "rsi": rsi,
@@ -313,6 +356,9 @@ def process_symbol(symbol, fear_greed_value, fear_greed_label):
         "price_change_pct": price_change_pct,
         "oi_change_pct": oi_change_pct,
         "history": history,
+        "directions": dirs,
+        "long_short": ls,
+        "liquidations": liq,
     }
 
 
@@ -376,7 +422,6 @@ def run_market_agent(primary_symbol_data, fear_greed_value, news_sent):
 
 
 def run_mechanism_analysis(all_symbol_data):
-    """Run mechanism + positioning + regime + transitions + edge tracking."""
     if not all_symbol_data:
         return []
 
@@ -450,7 +495,6 @@ def run_mechanism_analysis(all_symbol_data):
         else:
             print(f"Mechanism {symbol}: inconclusive — {analysis.get('missing')}")
 
-        # Transition detection
         prev_for_symbol = None
         for h in reversed(mech_history):
             if h.get("symbol") == symbol:
@@ -490,13 +534,29 @@ def run_mechanism_analysis(all_symbol_data):
             ]
             if positioning.get("reasons"):
                 extra_lines.append("Pos: " + "; ".join(positioning["reasons"][:2]))
+            dirs = data.get("directions") or {}
+            ls = data.get("long_short") or {}
+            liq = data.get("liquidations") or {}
+            if dirs:
+                extra_lines.append(
+                    f"Dirs: price={dirs.get('price_dir')} oi={dirs.get('oi_dir')} "
+                    f"vol={dirs.get('volume_dir')} fund={dirs.get('funding_dir')} rsi={dirs.get('rsi_dir')}"
+                )
+            if ls.get("available") and ls.get("global_ls_ratio") is not None:
+                extra_lines.append(
+                    f"L/S: global={ls.get('global_ls_ratio'):.3f} ({ls.get('global_ls_dir')}) "
+                    f"topAcc={ls.get('top_account_ls_ratio')} topPos={ls.get('top_position_ls_ratio')}"
+                )
+            if liq.get("available"):
+                extra_lines.append(
+                    f"Liq24h: L=${liq.get('long_usd')} S=${liq.get('short_usd')} ({liq.get('bias')})"
+                )
             text = text + "\n" + "\n".join(extra_lines)
             if len(text) > 4000:
                 text = text[:3950] + "\n...(truncated)"
             sent = send_telegram_message(text)
             print(f"Mechanism Telegram ({symbol}): " + ("sent" if sent else "failed"))
 
-        # Edge tracking
         if prev_for_symbol and prev_for_symbol.get("price") and data.get("price"):
             try:
                 fwd = ((data["price"] - prev_for_symbol["price"]) / prev_for_symbol["price"]) * 100
@@ -529,6 +589,15 @@ def run_mechanism_analysis(all_symbol_data):
             "crowded_short": positioning.get("crowded_short"),
             "funding_percentile": positioning.get("funding_percentile"),
             "transitions": transitions,
+            "global_ls_ratio": (data.get("long_short") or {}).get("global_ls_ratio"),
+            "top_account_ls_ratio": (data.get("long_short") or {}).get("top_account_ls_ratio"),
+            "top_position_ls_ratio": (data.get("long_short") or {}).get("top_position_ls_ratio"),
+            "liq_long_usd": (data.get("liquidations") or {}).get("long_usd"),
+            "liq_short_usd": (data.get("liquidations") or {}).get("short_usd"),
+            "liq_bias": (data.get("liquidations") or {}).get("bias"),
+            "price_dir": (data.get("directions") or {}).get("price_dir"),
+            "oi_dir": (data.get("directions") or {}).get("oi_dir"),
+            "volume_dir": (data.get("directions") or {}).get("volume_dir"),
         })
 
     save_mechanism_history(mech_history)
@@ -553,6 +622,18 @@ def main():
         print(f"Fear & Greed = {fear_greed_value} ({fear_greed_label})")
     except Exception as e:
         print(f"Fear & Greed failed: {e}")
+
+    try:
+        halving = technical_extras.compute_halving(use_live_height=True)
+        print(
+            f"Halving | days_passed={halving['days_passed']} days_left={halving['days_left']} "
+            f"cycle={halving['cycle_pct']}% ({halving['source']})"
+        )
+        os.makedirs(HISTORY_DIR, exist_ok=True)
+        with open(os.path.join(HISTORY_DIR, "halving.json"), "w", encoding="utf-8") as f:
+            json.dump(halving, f, indent=2)
+    except Exception as e:
+        print(f"Halving calc failed: {e}")
 
     news_sent = news_sentiment.load_and_score(HISTORY_DIR)
     print(
