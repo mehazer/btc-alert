@@ -2,7 +2,7 @@
 agents/news_sentiment.py
 ------------------------
 Rule-based news sentiment with:
-  - Source weighting
+  - Source weighting (including Google News)
   - Macro vs coin-specific scores
   - Catalyst tags (ZEC NU7, upgrades, listings, hacks, etc.)
   - Shorter-window urgency when timestamps available
@@ -24,6 +24,7 @@ SOURCE_WEIGHTS = {
     "ft": 1.3,
     "binance": 1.2,
     "official": 1.3,
+    "google news": 1.25,
     "twitter": 0.85,
     "reddit": 0.75,
     "telegram": 0.7,
@@ -186,7 +187,14 @@ def score_headlines(headlines, max_age_hours=None):
                     if isinstance(ts, (int, float)):
                         dt = datetime.fromtimestamp(ts, tz=timezone.utc)
                     else:
-                        dt = datetime.fromisoformat(str(ts).replace("Z", "+00:00"))
+                        # RFC 2822 from Google News pubDate, or ISO
+                        from email.utils import parsedate_to_datetime
+                        try:
+                            dt = parsedate_to_datetime(str(ts))
+                            if dt.tzinfo is None:
+                                dt = dt.replace(tzinfo=timezone.utc)
+                        except Exception:
+                            dt = datetime.fromisoformat(str(ts).replace("Z", "+00:00"))
                     if (now - dt) > timedelta(hours=max_age_hours):
                         continue
                 except Exception:
