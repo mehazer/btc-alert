@@ -1,1 +1,189 @@
-[]
+[
+  {
+    "run_id": "20261104T225702Z",
+    "evaluated_at": "2026-11-04T22:57:13.935696+00:00",
+    "timeframe": "4h",
+    "model_version": "deterministic-mechanism-v3-online-calibration",
+    "sources": {
+      "price_volume": "Binance spot",
+      "oi_funding": "OKX perpetual",
+      "sentiment": "alternative.me"
+    },
+    "inputs_outputs": [
+      {
+        "symbol": "BTCUSDT",
+        "inputs": {
+          "price": 80736.01,
+          "volume": 1213.01701,
+          "open_interest": 33294.07280000013,
+          "funding_rate": 8.22012077056e-05,
+          "price_change_pct": 0.3392988081478378,
+          "oi_change_pct": -0.7604840951065077,
+          "rsi": 67.36
+        },
+        "directions": {
+          "price_dir": "Rising",
+          "price_chg_pct": 0.339,
+          "oi_dir": "Falling",
+          "oi_chg_pct": -0.76,
+          "volume_dir": "Rising",
+          "volume_chg_pct": 42.956,
+          "funding_dir": "Flat",
+          "funding_chg_pct": -2.244,
+          "rsi_dir": "Rising",
+          "rsi_chg_pct": 1.875
+        },
+        "output": {
+          "primary_mechanism": "Weakening participation",
+          "risk_level": "Moderate"
+        },
+        "reasoning": [
+          "Price is rising but volume is falling, which implies weakening participation and possible exhaustion or low-liquidity drift. Increase caution, especially near resistance."
+        ]
+      },
+      {
+        "symbol": "ETHUSDT",
+        "inputs": {
+          "price": 2437.63,
+          "volume": 21228.309,
+          "open_interest": 640954.502000002,
+          "funding_rate": 8.27248340208e-05,
+          "price_change_pct": 0.4934739411129448,
+          "oi_change_pct": 0.245579848087059,
+          "rsi": 71.73
+        },
+        "directions": {
+          "price_dir": "Rising",
+          "price_chg_pct": 0.493,
+          "oi_dir": "Flat",
+          "oi_chg_pct": 0.246,
+          "volume_dir": "Rising",
+          "volume_chg_pct": 52.442,
+          "funding_dir": "Falling",
+          "funding_chg_pct": -11.272,
+          "rsi_dir": "Rising",
+          "rsi_chg_pct": 1.557
+        },
+        "output": {
+          "primary_mechanism": "Weakening participation",
+          "risk_level": "Low"
+        },
+        "reasoning": [
+          "Price is rising but volume is falling, which implies weakening participation and possible exhaustion or low-liquidity drift. Increase caution, especially near resistance.",
+          "The asset is moving with BTC recovery without clear outperformance, so part of the move is likely a BTC-led sympathetic / relief rally."
+        ]
+      },
+      {
+        "symbol": "SOLUSDT",
+        "inputs": {
+          "price": 96.07,
+          "volume": 184941.684,
+          "open_interest": 3426705.140000001,
+          "funding_rate": 9.64996765719e-05,
+          "price_change_pct": 0.8291351805205625,
+          "oi_change_pct": -1.4053688771734856,
+          "rsi": 55.43
+        },
+        "directions": {
+          "price_dir": "Rising",
+          "price_chg_pct": 0.829,
+          "oi_dir": "Falling",
+          "oi_chg_pct": -1.405,
+          "volume_dir": "Rising",
+          "volume_chg_pct": 48.737,
+          "funding_dir": "Flat",
+          "funding_chg_pct": -3.5,
+          "rsi_dir": "Rising",
+          "rsi_chg_pct": 4.605
+        },
+        "output": {
+          "primary_mechanism": "Weakening participation",
+          "risk_level": "Moderate"
+        },
+        "reasoning": [
+          "Price is rising but volume is falling, which implies weakening participation and possible exhaustion or low-liquidity drift. Increase caution, especially near resistance.",
+          "The asset is moving with BTC recovery without clear outperformance, so part of the move is likely a BTC-led sympathetic / relief rally."
+        ]
+      },
+      {
+        "symbol": "ZECUSDT",
+        "inputs": {
+          "price": 1318.7,
+          "volume": 12842.952,
+          "open_interest": 133221.98,
+          "funding_rate": 5.04151146434e-05,
+          "price_change_pct": 1.04438842360947,
+          "oi_change_pct": -0.9509518961268689,
+          "rsi": 61.38
+        },
+        "directions": {
+          "price_dir": "Rising",
+          "price_chg_pct": 1.044,
+          "oi_dir": "Falling",
+          "oi_chg_pct": -0.951,
+          "volume_dir": "Rising",
+          "volume_chg_pct": 50.763,
+          "funding_dir": "Falling",
+          "funding_chg_pct": -26.176,
+          "rsi_dir": "Rising",
+          "rsi_chg_pct": 2.539
+        },
+        "output": {
+          "primary_mechanism": "Weakening participation",
+          "risk_level": "Moderate"
+        },
+        "reasoning": [
+          "Price is rising but volume is falling, which implies weakening participation and possible exhaustion or low-liquidity drift. Increase caution, especially near resistance.",
+          "The asset is moving with BTC recovery without clear outperformance, so part of the move is likely a BTC-led sympathetic / relief rally."
+        ]
+      },
+      {
+        "symbol": "ZAMAUSDT",
+        "inputs": {
+          "price": 0.07072,
+          "volume": 1983747.0,
+          "open_interest": 44801330.0,
+          "funding_rate": -5.87769831017e-05,
+          "price_change_pct": -0.028272547356505865,
+          "oi_change_pct": -0.4696891436315266,
+          "rsi": 55.21
+        },
+        "directions": {
+          "price_dir": "Flat",
+          "price_chg_pct": -0.028,
+          "oi_dir": "Falling",
+          "oi_chg_pct": -0.47,
+          "volume_dir": "Rising",
+          "volume_chg_pct": 26.485,
+          "funding_dir": "Falling",
+          "funding_chg_pct": -119.644,
+          "rsi_dir": "Flat",
+          "rsi_chg_pct": -0.09
+        },
+        "output": {
+          "primary_mechanism": "Mixed/inconclusive",
+          "risk_level": "Low"
+        },
+        "reasoning": [
+          "Price is effectively flat; mechanism signals are weak."
+        ]
+      }
+    ],
+    "newly_settled_count": 0,
+    "calibration_updates": [],
+    "metrics_after_run": {
+      "samples": 0,
+      "direction_accuracy": null,
+      "risk_accuracy": null,
+      "confidence": 0
+    },
+    "weights": {
+      "price_action": 1.0,
+      "oi_context": 1.0,
+      "volume_confirmation": 1.0,
+      "funding_context": 1.0,
+      "btc_overlay": 1.0,
+      "positioning_context": 1.0
+    }
+  }
+]
