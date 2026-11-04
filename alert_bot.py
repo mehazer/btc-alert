@@ -4,8 +4,9 @@ Multi-Coin RSI Alert Bot + Market Agent + Mechanism Interpreter
 Collects RSI, OI (OKX), Funding (OKX), Fear & Greed, news
 sentiment, then:
   1) Directional Market Agent (bias / state)
-  2) Mechanism Interpreter (price-OI-volume relationship, likely
-     market mechanism, previous-spike comparison, sudden-drop risk)
+  2) Mechanism Interpreter (price-OI-volume relationship)
+  3) Positioning extremes + Regime filter
+  4) Transition alerts + historical edge tracking
 
 Dependencies: requests (+ bs4 for news_sources).
 """
@@ -20,6 +21,7 @@ import requests
 from agents import market_agent
 from agents import news_sentiment
 from agents import mechanism_interpreter
+from agents import positioning_regime
 
 # ---- Settings ----
 SYMBOLS = [s.strip().upper() for s in os.environ.get("SYMBOLS", "BTCUSDT").split(",") if s.strip()]
@@ -60,10 +62,6 @@ def _okx_inst_id(symbol):
         inst_id = f"{base}-USDT-SWAP"
     return inst_id
 
-
-# ---------------------------------------------------------------------
-# Data fetch
-# ---------------------------------------------------------------------
 
 def fetch_klines(symbol, interval, limit=200):
     params = {"symbol": symbol, "interval": interval, "limit": limit}
@@ -111,10 +109,6 @@ def fetch_fear_greed_index():
     return int(entry["value"]), entry["value_classification"]
 
 
-# ---------------------------------------------------------------------
-# RSI
-# ---------------------------------------------------------------------
-
 def compute_rsi(closes, period=14):
     if len(closes) < period + 1:
         raise ValueError(f"Need at least {period + 1} candles for RSI, got {len(closes)}")
@@ -133,10 +127,6 @@ def compute_rsi(closes, period=14):
     rs = avg_gain / avg_loss
     return round(100 - (100 / (1 + rs)), 2)
 
-
-# ---------------------------------------------------------------------
-# History helpers
-# ---------------------------------------------------------------------
 
 def load_history(symbol):
     path = os.path.join(HISTORY_DIR, f"{symbol}.json")
@@ -210,10 +200,6 @@ def save_mechanism_history(records):
         json.dump(trimmed, f, indent=2, ensure_ascii=False)
 
 
-# ---------------------------------------------------------------------
-# Telegram
-# ---------------------------------------------------------------------
-
 def send_telegram_message(text):
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
         print("Telegram secrets missing, message not sent.")
@@ -230,10 +216,6 @@ def send_telegram_message(text):
         return False
     return True
 
-
-# ---------------------------------------------------------------------
-# Symbol processing
-# ---------------------------------------------------------------------
 
 def process_symbol(symbol, fear_greed_value, fear_greed_label):
     try:
@@ -304,7 +286,6 @@ def process_symbol(symbol, fear_greed_value, fear_greed_label):
     })
     save_history(symbol, history)
 
-    # Optional per-symbol RSI alert
     threshold_exceeded = rsi >= RSI_THRESHOLD
     if threshold_exceeded or ALWAYS_NOTIFY:
         fg_text = f"{fear_greed_value} ({fear_greed_label})" if fear_greed_value is not None else "n/a"
@@ -334,10 +315,6 @@ def process_symbol(symbol, fear_greed_value, fear_greed_label):
         "history": history,
     }
 
-
-# ---------------------------------------------------------------------
-# Market Agent runner
-# ---------------------------------------------------------------------
 
 def run_market_agent(primary_symbol_data, fear_greed_value, news_sent):
     if primary_symbol_data is None:
@@ -398,12 +375,8 @@ def run_market_agent(primary_symbol_data, fear_greed_value, news_sent):
     return result
 
 
-# ---------------------------------------------------------------------
-# Mechanism Interpreter runner
-# ---------------------------------------------------------------------
-
 def run_mechanism_analysis(all_symbol_data):
-    """Run mechanism interpreter for each symbol; BTC used as reference for alts."""
+    """Run mechanism + positioning + regime + transitions + edge tracking."""
     if not all_symbol_data:
         return []
 
@@ -413,18 +386,26 @@ def run_mechanism_analysis(all_symbol_data):
 
     results = []
     mech_history = load_mechanism_history()
+    edge_path = os.path.join(HISTORY_DIR, "edge_stats.json")
+    edge_stats = {}
+    if os.path.exists(edge_path):
+        try:
+            with open(edge_path, "r", encoding="utf-8") as f:
+                edge_stats = json.load(f)
+        except Exception:
+            edge_stats = {}
 
     for data in all_symbol_data:
         if not data:
             continue
         symbol = data["symbol"]
-        # For BTC itself, relative analysis is N/A (self-referential)
+        hist = data.get("history") or []
         use_btc_chg = None if symbol == PRIMARY_SYMBOL else btc_chg
         use_btc_hist = None if symbol == PRIMARY_SYMBOL else btc_history
 
         analysis = mechanism_interpreter.analyze(
             symbol=symbol,
-            history=data.get("history") or [],
+            history=hist,
             current_price=data.get("price"),
             current_oi=data.get("open_interest"),
             current_volume=data.get("volume"),
@@ -434,53 +415,138 @@ def run_mechanism_analysis(all_symbol_data):
             btc_price_change_pct=use_btc_chg,
             timeframe=INTERVAL,
         )
+
+        positioning = positioning_regime.compute_positioning(
+            hist,
+            current_funding=data.get("funding_rate"),
+            current_oi=data.get("open_interest"),
+            current_price=data.get("price"),
+        )
+        regime = positioning_regime.compute_regime(hist, current_price=data.get("price"))
+
+        if analysis.get("status") == "ok" and analysis.get("sudden_drop_risk"):
+            base_level = analysis["sudden_drop_risk"].get("level", "Low")
+            new_level, extra = positioning_regime.adjust_sudden_drop_for_positioning(
+                base_level, positioning, regime
+            )
+            analysis["sudden_drop_risk"]["level"] = new_level
+            analysis["sudden_drop_risk"].setdefault("reasons", []).extend(extra)
+            analysis["positioning"] = positioning
+            analysis["regime"] = regime
+
         results.append(analysis)
 
-        # Console summary
         if analysis.get("status") == "ok":
             m = analysis["likely_mechanism"]
             risk = analysis["sudden_drop_risk"]
             print(
-                f"Mechanism {symbol} | Primary={m['primary']} | "
-                f"Risk={risk['level']} | vsBTC={analysis['current_relationship'].get('asset_vs_btc')}"
+                f"Mechanism {symbol} | Primary={m['primary']} | Risk={risk['level']} | "
+                f"Regime={regime.get('regime')} | Pressure={positioning.get('positioning_pressure')}"
             )
             for r in m.get("reasoning", [])[:2]:
                 print(f"  - {r}")
+            if positioning.get("crowded_long") or positioning.get("crowded_short"):
+                print(f"  POSITIONING: {positioning.get('funding_extreme')}")
         else:
             print(f"Mechanism {symbol}: inconclusive — {analysis.get('missing')}")
 
-        # Telegram: full report for primary; shorter for alts
+        # Transition detection
+        prev_for_symbol = None
+        for h in reversed(mech_history):
+            if h.get("symbol") == symbol:
+                prev_for_symbol = h
+                break
+
+        transitions = []
+        cur_primary = (analysis.get("likely_mechanism") or {}).get("primary")
+        cur_risk = (analysis.get("sudden_drop_risk") or {}).get("level")
+        if prev_for_symbol and analysis.get("status") == "ok":
+            prev_primary = prev_for_symbol.get("primary_mechanism")
+            prev_risk = prev_for_symbol.get("sudden_drop_risk")
+            if prev_primary and cur_primary and prev_primary != cur_primary:
+                transitions.append(f"Mechanism flip: {prev_primary} → {cur_primary}")
+            risk_order = ["Low", "Moderate", "High", "Very High"]
+            try:
+                if risk_order.index(cur_risk) >= risk_order.index(prev_risk or "Low") + 1:
+                    transitions.append(f"Sudden-drop risk jumped: {prev_risk} → {cur_risk}")
+            except ValueError:
+                pass
+            if positioning.get("crowded_long") and not prev_for_symbol.get("crowded_long"):
+                transitions.append("NEW crowded-long flag")
+            if positioning.get("crowded_short") and not prev_for_symbol.get("crowded_short"):
+                transitions.append("NEW crowded-short flag")
+
+        if transitions:
+            ttext = f"⚡ TRANSITION {symbol}\n" + "\n".join(f"• {t}" for t in transitions)
+            sent = send_telegram_message(ttext)
+            print(f"Transition alert ({symbol}): " + ("sent" if sent else "failed"))
+
         if symbol == PRIMARY_SYMBOL or ALWAYS_NOTIFY:
             text = mechanism_interpreter.format_telegram(analysis)
+            extra_lines = [
+                "",
+                f"Regime: {regime.get('regime')} (vol {regime.get('vol_label')}, trend {regime.get('trend_label')})",
+                f"Positioning pressure: {positioning.get('positioning_pressure')} | {positioning.get('funding_extreme')}",
+            ]
+            if positioning.get("reasons"):
+                extra_lines.append("Pos: " + "; ".join(positioning["reasons"][:2]))
+            text = text + "\n" + "\n".join(extra_lines)
+            if len(text) > 4000:
+                text = text[:3950] + "\n...(truncated)"
             sent = send_telegram_message(text)
             print(f"Mechanism Telegram ({symbol}): " + ("sent" if sent else "failed"))
 
-        # Persist compact record
+        # Edge tracking
+        if prev_for_symbol and prev_for_symbol.get("price") and data.get("price"):
+            try:
+                fwd = ((data["price"] - prev_for_symbol["price"]) / prev_for_symbol["price"]) * 100
+                key = prev_for_symbol.get("primary_mechanism") or "Unknown"
+                if key not in edge_stats:
+                    edge_stats[key] = {"n": 0, "sum_fwd": 0.0, "wins": 0}
+                edge_stats[key]["n"] += 1
+                edge_stats[key]["sum_fwd"] += fwd
+                if fwd > 0:
+                    edge_stats[key]["wins"] += 1
+            except Exception:
+                pass
+
         mech_history.append({
             "timestamp": analysis.get("evaluated_at"),
             "symbol": symbol,
             "status": analysis.get("status"),
-            "primary_mechanism": (analysis.get("likely_mechanism") or {}).get("primary"),
+            "primary_mechanism": cur_primary,
             "secondary_mechanism": (analysis.get("likely_mechanism") or {}).get("secondary"),
-            "sudden_drop_risk": (analysis.get("sudden_drop_risk") or {}).get("level"),
+            "sudden_drop_risk": cur_risk,
             "price": data.get("price"),
             "oi_change_pct": data.get("oi_change_pct"),
             "price_change_pct": data.get("price_change_pct"),
             "funding_rate": data.get("funding_rate"),
             "btc_dependency": (analysis.get("current_relationship") or {}).get("btc_dependency"),
             "comparison_summary": analysis.get("comparison_summary"),
+            "regime": regime.get("regime"),
+            "positioning_pressure": positioning.get("positioning_pressure"),
+            "crowded_long": positioning.get("crowded_long"),
+            "crowded_short": positioning.get("crowded_short"),
+            "funding_percentile": positioning.get("funding_percentile"),
+            "transitions": transitions,
         })
 
     save_mechanism_history(mech_history)
+
+    for k, v in edge_stats.items():
+        if v["n"] > 0:
+            v["avg_fwd_pct"] = round(v["sum_fwd"] / v["n"], 3)
+            v["win_rate"] = round(100.0 * v["wins"] / v["n"], 1)
+    try:
+        with open(edge_path, "w", encoding="utf-8") as f:
+            json.dump(edge_stats, f, indent=2)
+    except Exception as e:
+        print(f"edge_stats save failed: {e}")
+
     return results
 
 
-# ---------------------------------------------------------------------
-# main
-# ---------------------------------------------------------------------
-
 def main():
-    # 1. Fear & Greed
     fear_greed_value, fear_greed_label = None, None
     try:
         fear_greed_value, fear_greed_label = fetch_fear_greed_index()
@@ -488,14 +554,14 @@ def main():
     except Exception as e:
         print(f"Fear & Greed failed: {e}")
 
-    # 2. News sentiment
     news_sent = news_sentiment.load_and_score(HISTORY_DIR)
     print(
         f"News Sentiment = {news_sent['score']:+.1f} ({news_sent['label']}) "
         f"| headlines={news_sent['total_headlines']}"
     )
+    if news_sent.get("top_catalysts"):
+        print("Top catalysts:", ", ".join(c["label"] for c in news_sent["top_catalysts"][:4]))
 
-    # 3. Process symbols
     any_failure = False
     all_symbol_data = []
     primary_symbol_data = None
@@ -509,7 +575,6 @@ def main():
             if symbol.upper() == PRIMARY_SYMBOL:
                 primary_symbol_data = symbol_data
 
-    # 4. Market snapshot
     funding_for_snapshot = primary_symbol_data.get("funding_rate") if primary_symbol_data else None
     save_market_snapshot(
         fear_greed_value,
@@ -518,10 +583,7 @@ def main():
         news_sentiment=news_sent.get("score"),
     )
 
-    # 5. Directional Market Agent
     run_market_agent(primary_symbol_data, fear_greed_value, news_sent)
-
-    # 6. Mechanism Interpreter (price / OI / volume / BTC dependency)
     run_mechanism_analysis(all_symbol_data)
 
     if any_failure:
