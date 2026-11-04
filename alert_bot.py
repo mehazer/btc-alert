@@ -288,23 +288,6 @@ def process_symbol(symbol, fear_greed_value, fear_greed_label):
     })
     save_history(symbol, history)
 
-    threshold_exceeded = rsi >= RSI_THRESHOLD
-    if threshold_exceeded or ALWAYS_NOTIFY:
-        fg_text = f"{fear_greed_value} ({fear_greed_label})" if fear_greed_value is not None else "n/a"
-        oi_text = f"{open_interest:.2f}" if open_interest is not None else "n/a"
-        reason = "RSI threshold exceeded" if threshold_exceeded else "Test mode (ALWAYS_NOTIFY)"
-        message = (
-            f"⚠️ {symbol} RSI\n"
-            f"RSI({RSI_PERIOD}): {rsi}\n"
-            f"Price: {last_price}\n"
-            f"OI: {oi_text}\n"
-            f"Funding: {funding_pct_str}\n"
-            f"Fear&Greed: {fg_text}\n"
-            f"({reason})"
-        )
-        sent = send_telegram_message(message)
-        print(f"{symbol}: Telegram " + ("sent" if sent else "failed"))
-
     period = INTERVAL if INTERVAL in ("5m", "15m", "30m", "1h", "2h", "4h", "6h", "12h", "1d") else "4h"
     extras = technical_extras.enrich_symbol_technicals(
         symbol,
@@ -529,27 +512,25 @@ def run_mechanism_analysis(all_symbol_data):
             text = mechanism_interpreter.format_telegram(analysis)
             extra_lines = [
                 "",
-                f"Regime: {regime.get('regime')} (vol {regime.get('vol_label')}, trend {regime.get('trend_label')})",
-                f"Positioning pressure: {positioning.get('positioning_pressure')} | {positioning.get('funding_extreme')}",
+                f"Regime: {regime.get('regime')} | Pressure: {positioning.get('positioning_pressure')} ({positioning.get('funding_extreme')})",
             ]
-            if positioning.get("reasons"):
-                extra_lines.append("Pos: " + "; ".join(positioning["reasons"][:2]))
             dirs = data.get("directions") or {}
             ls = data.get("long_short") or {}
             liq = data.get("liquidations") or {}
             if dirs:
                 extra_lines.append(
-                    f"Dirs: price={dirs.get('price_dir')} oi={dirs.get('oi_dir')} "
-                    f"vol={dirs.get('volume_dir')} fund={dirs.get('funding_dir')} rsi={dirs.get('rsi_dir')}"
+                    f"Directions: P {dirs.get('price_dir')} | OI {dirs.get('oi_dir')} | "
+                    f"V {dirs.get('volume_dir')} | F {dirs.get('funding_dir')}"
                 )
+            if symbol == PRIMARY_SYMBOL and fear_greed_value is not None:
+                extra_lines.append(f"Common F&G: {fear_greed_value} ({fear_greed_label})")
             if ls.get("available") and ls.get("global_ls_ratio") is not None:
                 extra_lines.append(
-                    f"L/S: global={ls.get('global_ls_ratio'):.3f} ({ls.get('global_ls_dir')}) "
-                    f"topAcc={ls.get('top_account_ls_ratio')} topPos={ls.get('top_position_ls_ratio')}"
+                    f"L/S: {ls.get('global_ls_ratio'):.3f} ({ls.get('global_ls_dir')})"
                 )
             if liq.get("available"):
                 extra_lines.append(
-                    f"Liq24h: L=${liq.get('long_usd')} S=${liq.get('short_usd')} ({liq.get('bias')})"
+                    f"Liq 24h: L ${liq.get('long_usd')} / S ${liq.get('short_usd')} ({liq.get('bias')})"
                 )
             text = text + "\n" + "\n".join(extra_lines)
             if len(text) > 4000:

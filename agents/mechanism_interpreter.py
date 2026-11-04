@@ -712,6 +712,8 @@ def analyze(
                 "volume_change": current_move.get("volume_change_pct"),
                 "duration_bars": current_move.get("duration_bars"),
                 "funding_end": current_move.get("end_funding"),
+                "start_date": current_move.get("start_date"),
+                "end_date": current_move.get("end_date"),
             },
             "previous": {
                 "price_change": previous_spike.get("move_pct"),
@@ -719,6 +721,8 @@ def analyze(
                 "volume_change": previous_spike.get("volume_change_pct"),
                 "duration_bars": previous_spike.get("duration_bars"),
                 "funding_end": previous_spike.get("end_funding"),
+                "start_date": previous_spike.get("start_date"),
+                "end_date": previous_spike.get("end_date"),
             },
         }
         parts = []
@@ -860,23 +864,23 @@ def format_telegram(analysis):
     risk = analysis["sudden_drop_risk"]
 
     lines = []
-    lines.append(f"=== MECHANISM ANALYSIS: {analysis['symbol']} ===")
+    lines.append(f"=== {analysis['symbol']} MECHANISM ===")
     lines.append(f"Timeframe: {analysis['timeframe']} | {analysis['evaluated_at'][:19]}Z")
     lines.append("")
     lines.append("1. MARKET SUMMARY")
-    lines.append(f"Price: {s['price']} | Trend: {s['trend']} | RSI: {s.get('rsi')}")
+    lines.append(f"Trend: {s['trend']} | Price: {s['price']}")
     if s.get("support") is not None and s.get("resistance") is not None:
         lines.append(f"Support~{s['support']:.2f} / Resistance~{s['resistance']:.2f}")
-    lines.append(f"Venue: {s['contract']}")
     lines.append("")
     lines.append("2. CURRENT RELATIONSHIP")
     lines.append(f"  {r['price']}")
     lines.append(f"  {r['oi']}")
     lines.append(f"  {r['volume']}")
     lines.append(f"  {r['funding']}")
-    lines.append(f"  {r['btc']}")
-    lines.append(f"  {r['asset_vs_btc']}")
-    lines.append(f"  Dependency: {r['btc_dependency']}")
+    if analysis['symbol'] != "BTCUSDT":
+        lines.append(f"  {r['btc']}")
+        lines.append(f"  {r['asset_vs_btc']}")
+        lines.append(f"  Dependency: {r['btc_dependency']}")
     lines.append("")
     lines.append("3. LIKELY MECHANISM")
     lines.append(f"Primary: {m['primary']}")
@@ -893,13 +897,19 @@ def format_telegram(analysis):
     if analysis.get("comparison"):
         c = analysis["comparison"]["current"]
         p = analysis["comparison"]["previous"]
+        def _move_line(label, move):
+            start = move.get("start_date") or "?"
+            end = move.get("end_date") or "?"
+            price = move.get("price_change")
+            price_text = f"{price:+.2f}%" if price is not None else "n/a"
+            oi = move.get("oi_change")
+            oi_text = f"OI {oi:+.2f}%" if oi is not None else "OI n/a"
+            return f"{label}: {start} → {end} | {price_text} | {oi_text} | {move.get('duration_bars', '?')} bars"
         lines.append(
-            f"  Current : px {c.get('price_change')}% | OI {c.get('oi_change')}% | "
-            f"{c.get('duration_bars')} bars"
+            _move_line("Current", c)
         )
         lines.append(
-            f"  Previous: px {p.get('price_change')}% | OI {p.get('oi_change')}% | "
-            f"{p.get('duration_bars')} bars"
+            _move_line("Previous", p)
         )
     lines.append("")
     lines.append("5. SUDDEN-DROP RISK")
@@ -912,10 +922,6 @@ def format_telegram(analysis):
     lines.append("6. WATCH")
     lines.append("Confirm: " + analysis["confirmation_signals"]["bullish"][0])
     lines.append("Warn: " + analysis["confirmation_signals"]["warnings"][0])
-    lines.append("")
-    lines.append("Notes: OI=OKX only; vol=Binance spot; no liquidation feed.")
-    lines.append("OI alone does not reveal long/short direction.")
-
     text = "\n".join(lines)
     if len(text) > 4000:
         text = text[:3950] + "\n...(truncated)"
