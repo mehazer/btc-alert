@@ -1,208 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Crypto Watch — Market Intelligence</title>
 <style>
-  :root {
-    --bg: #0a0e14; --bg2: #0f1419; --card: #151b23; --border: #243044;
-    --text: #e6edf3; --muted: #8b9cb3; --green: #3dd68c; --red: #f87171;
-    --blue: #60a5fa; --orange: #fbbf24; --purple: #c084fc; --cyan: #22d3ee;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif; line-height: 1.5; min-height: 100vh; }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 20px 16px 48px; }
-  header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
-  h1 { font-size: 1.4rem; font-weight: 700; } h1 span { color: var(--cyan); }
-  .updated { color: var(--muted); font-size: 0.8rem; }
-  .grid { display: grid; gap: 16px; } .grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; }
-  .card h2 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 12px; font-weight: 600; }
-  .badge { display: inline-flex; padding: 4px 10px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; }
-  .metric-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
-  .metric { flex: 1 1 100px; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
-  .metric .label { font-size: 0.68rem; color: var(--muted); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.04em; }
-  .metric .value { font-size: 1.15rem; font-weight: 700; }
-  .metric .sub { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
-  .reason { font-size: 0.8rem; color: var(--muted); padding: 3px 0; }
-  table { width: 100%; font-size: 0.78rem; border-collapse: collapse; margin-top: 8px; }
-  th { color: var(--muted); font-weight: 600; text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--border); }
-  td { padding: 6px 4px; border-top: 1px solid #1a2332; }
-  .sym-card { margin-bottom: 12px; }
-  .sym-header { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 8px; }
-  .pill { font-size: 0.72rem; padding: 2px 8px; border-radius: 999px; background: #1a2332; color: var(--muted); border: 1px solid var(--border); }
-  .pill.hot { background: #3b1c1c; color: var(--red); border-color: #5c2a2a; }
-  .pill.ok { background: #14301f; color: var(--green); border-color: #1e4a30; }
-  .pill.warn { background: #3b2e14; color: var(--orange); border-color: #5c4a20; }
-  .news-item { font-size: 0.85rem; padding: 8px 0; border-top: 1px solid #1a2332; display: flex; gap: 8px; }
-  .news-src { color: var(--muted); font-size: 0.72rem; white-space: nowrap; min-width: 70px; }
-  .section-title { font-size: 0.95rem; font-weight: 600; margin: 24px 0 12px; display: flex; align-items: center; gap: 8px; }
-  .section-title::after { content: ""; flex: 1; height: 1px; background: var(--border); }
-  .empty { color: var(--muted); font-size: 0.85rem; padding: 8px 0; }
-  .pos { color: var(--green); } .neg { color: var(--red); }
-  .flash { animation: pulse 1.5s ease-in-out infinite; }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
-  footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.72rem; text-align: center; }
+:root{--bg:#080c12;--panel:#111923;--panel2:#0d141d;--line:#243244;--text:#e7edf5;--muted:#91a1b5;--blue:#60a5fa;--cyan:#22d3ee;--green:#39d98a;--amber:#f5b942;--red:#f87171;--purple:#c084fc;--gray:#64748b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}.wrap{max-width:1280px;margin:auto;padding:22px 16px 54px}header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:20px}h1{font-size:1.35rem;margin:0}h1 span{color:var(--cyan)}h2{font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 12px}.subtitle,.updated,.meta,.note,.empty{color:var(--muted);font-size:.78rem}.subtitle{margin-top:4px}.updated{text-align:right}.section{margin:24px 0 10px;font-size:1rem;font-weight:700;display:flex;align-items:center;gap:10px}.section:after{content:"";height:1px;background:var(--line);flex:1}.grid{display:grid;gap:14px}.grid2{grid-template-columns:repeat(auto-fit,minmax(310px,1fr))}.grid3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}.metric-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:9px}.metric{background:var(--panel2);border:1px solid #1e2b3b;border-radius:9px;padding:10px}.label{font-size:.67rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}.value{font-size:1.15rem;font-weight:750;margin-top:2px}.sub{font-size:.74rem;color:var(--muted)}.pill{display:inline-flex;align-items:center;padding:3px 8px;border:1px solid var(--line);border-radius:999px;font-size:.72rem;color:var(--muted);background:#172130}.ok{color:var(--green);border-color:#205f42;background:#10291e}.warn{color:var(--amber);border-color:#69501e;background:#2b2410}.bad{color:var(--red);border-color:#713333;background:#2e1518}.info{color:var(--blue);border-color:#2e5680;background:#12243a}.neutral{color:var(--muted)}.gauge{margin:12px 0 7px}.gauge-track{height:9px;border-radius:8px;background:linear-gradient(90deg,#234d38 0 35%,#53612b 35% 55%,#775321 55% 80%,#652c32 80%);position:relative;overflow:visible}.gauge-track.risk{background:linear-gradient(90deg,#214a36 0 40%,#665c23 40% 60%,#775321 60% 85%,#652c32 85%)}.gauge-marker{position:absolute;top:-4px;width:3px;height:17px;background:#fff;border-radius:2px;transform:translateX(-50%);box-shadow:0 0 0 2px #0008}.gauge-scale{display:flex;justify-content:space-between;color:var(--muted);font-size:.65rem;margin-top:4px}.explain{border-top:1px solid #1e2b3b;margin-top:12px;padding-top:10px}.explain summary{cursor:pointer;color:var(--blue);font-size:.78rem}.explain p{color:var(--muted);font-size:.78rem;margin:8px 0}.why{font-size:.78rem;color:var(--muted);margin:10px 0}.why strong{color:var(--text)}.spark{width:100%;height:62px;display:block;margin-top:8px;background:#0b1119;border:1px solid #1c2938;border-radius:7px}.spark text{fill:var(--muted);font-size:9px}.chart-wrap{overflow-x:auto}.chart{min-width:520px;width:100%;height:150px;display:block;background:#0b1119;border:1px solid #1c2938;border-radius:8px}.legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:.72rem;margin-top:6px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}.bar{height:8px;background:#1b2a39;border-radius:8px;overflow:hidden;margin-top:6px}.bar>i{display:block;height:100%;border-radius:8px;background:var(--blue)}table{width:100%;border-collapse:collapse;font-size:.76rem}th{text-align:left;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line);padding:7px 5px}td{padding:7px 5px;border-top:1px solid #1a2635;vertical-align:top}.reason{padding:3px 0;color:var(--muted);font-size:.79rem}.reason:before{content:'•';color:var(--cyan);margin-right:7px}.alert{border-left:3px solid var(--amber);padding:9px 11px;background:#171713;margin:7px 0;font-size:.79rem}.quality{border-left:3px solid var(--amber);padding:9px 11px;background:#211b0e;color:#f7d58a;font-size:.78rem;margin-top:10px}.quality.good{border-color:var(--green);background:#0d2118;color:#a7efc7}.quality.bad{border-color:var(--red);background:#271316;color:#ffb5b5}.symbol-card{margin-bottom:12px}.symbol-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}.symbol-head strong{font-size:1rem}.two-col{display:grid;grid-template-columns:1.2fr .8fr;gap:12px}.small{font-size:.72rem}.mono{font-variant-numeric:tabular-nums}.hidden{display:none}@media(max-width:760px){header{display:block}.updated{text-align:left;margin-top:8px}.two-col{grid-template-columns:1fr}.wrap{padding:16px 11px 42px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header>
-  <h1>⚡ Crypto <span>Watch</span></h1>
-  <div class="updated" id="updated">Loading…</div>
-</header>
-<div class="grid grid-2">
-  <div class="card"><h2>Market Agent</h2><div id="market-agent"><div class="empty">Loading…</div></div></div>
-  <div class="card"><h2>Market Snapshot</h2><div id="market-snapshot"><div class="empty">Loading…</div></div></div>
-</div>
-<div class="section-title">Symbols</div>
-<div id="symbols"><div class="empty">Loading…</div></div>
-<div class="section-title">News & Catalysts</div>
-<div class="grid grid-2">
-  <div class="card"><h2>Headlines</h2><div id="news"><div class="empty">Loading…</div></div></div>
-  <div class="card"><h2>Sources</h2><div id="catalysts"><div class="empty">Loading…</div></div></div>
-</div>
-<div class="section-title">History & Edge</div>
-<div class="grid grid-2">
-  <div class="card"><h2>Market Agent History</h2><div id="agent-history" style="overflow-x:auto"><div class="empty">Loading…</div></div></div>
-  <div class="card"><h2>Mechanism Edge Stats</h2><div id="edge-stats"><div class="empty">Loading…</div></div></div>
-</div>
-<footer>
-  Data: Binance spot · OKX OI/funding · Binance L/S · edgeornot liquidations · alternative.me F&G · free news<br>
-  Deterministic rules only · Binance L/S · edgeornot liquidations · halving cycle
-</footer>
+<header><div><h1>⚡ Crypto <span>Watch</span></h1><div class="subtitle">Market intelligence with ranges, drivers, history, and data provenance</div></div><div class="updated" id="updated">Loading…</div></header>
+<div id="quality"></div>
+<div class="section">Market overview</div>
+<div class="grid grid3" id="overview"><div class="card empty">Loading market data…</div></div>
+<div class="section">Market regime</div>
+<div class="grid grid3" id="regime"><div class="card empty">Loading regime data…</div></div>
+<div class="section">Symbols and price/OI/volume interpretation</div>
+<div id="symbols"><div class="card empty">Loading symbol data…</div></div>
+<div class="section">News and catalysts</div>
+<div class="grid grid2"><div class="card"><h2>Headlines</h2><div id="news"><div class="empty">Loading…</div></div></div><div class="card"><h2>Sources and freshness</h2><div id="catalysts"><div class="empty">Loading…</div></div></div></div>
+<div class="section">History and edge</div>
+<div class="grid grid2"><div class="card"><h2>Market-agent history</h2><div id="agent-history" class="chart-wrap"><div class="empty">Loading…</div></div></div><div class="card"><h2>Mechanism edge stats</h2><div id="edge-stats"><div class="empty">Loading…</div></div></div></div>
+<footer class="meta" style="margin-top:28px;border-top:1px solid var(--line);padding-top:14px">Timezone: UTC. Price/volume: Binance spot. OI/funding: OKX perpetual, coin-denominated OI. Liquidation feed may be unavailable. OI alone does not reveal long/short direction.</footer>
 </div>
 <script>
-const REPO = "mehazer/btc-alert", BRANCH = "main";
-const SYMBOLS = ["BTCUSDT","ETHUSDT","SOLUSDT","ZECUSDT","ZAMAUSDT"];
-const RSI_THRESHOLD = 70;
-const STATE_COLORS = { BULLISH:"#60a5fa", BEARISH:"#f87171", NEUTRAL:"#8b9cb3", OVERHEATED:"#fbbf24", FEAR:"#c084fc" };
-function rawUrl(path){ return `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${path}?t=${Date.now()}`; }
-async function fetchJson(path){ const r = await fetch(rawUrl(path)); if(!r.ok) throw new Error(`${path} (${r.status})`); return r.json(); }
-function fgColor(v){ if(v==null) return "var(--muted)"; if(v>=75) return "var(--red)"; if(v>=55) return "var(--orange)"; if(v>=45) return "var(--muted)"; if(v>=25) return "var(--green)"; return "var(--purple)"; }
-function sentimentColor(s){ if(s==null) return "var(--muted)"; if(s>=15) return "var(--green)"; if(s<=-15) return "var(--red)"; return "var(--muted)"; }
-function biasColor(s){ if(s==null) return "var(--muted)"; if(s>=20) return "var(--blue)"; if(s<=-20) return "var(--red)"; return "var(--muted)"; }
-function riskPill(level){ if(!level) return '<span class="pill">—</span>'; const map={Low:"ok",Moderate:"warn",High:"hot","Very High":"hot"}; return `<span class="pill ${map[level]||""}">${level}</span>`; }
-function fmtFunding(rate){ if(rate==null) return "n/a"; const pct=rate*100; return `${pct>0?"+":""}${pct.toFixed(4)}%`; }
-function fmtNum(n,d=2){ if(n==null) return "n/a"; return Number(n).toLocaleString("en-US",{maximumFractionDigits:d}); }
-
-async function loadSnapshot(){
-  const el=document.getElementById("market-snapshot");
-  try{
-    const data=await fetchJson("history/market.json");
-    document.getElementById("updated").textContent="Updated "+new Date(data.updated_at).toLocaleString();
-    const fg=data.fear_greed_value;
-    el.innerHTML=`<div class="metric-row">
-      <div class="metric"><div class="label">Fear & Greed</div><div class="value" style="color:${fgColor(fg)}">${fg??"?"}</div><div class="sub">${data.fear_greed_label||""}</div></div>
-      <div class="metric"><div class="label">BTC Funding</div><div class="value" style="color:${data.funding_rate>=0?"var(--green)":"var(--red)"}">${fmtFunding(data.funding_rate)}</div></div>
-      <div class="metric"><div class="label">News Sentiment</div><div class="value" style="color:${sentimentColor(data.news_sentiment)}">${data.news_sentiment!=null?(data.news_sentiment>0?"+":"")+data.news_sentiment:"n/a"}</div></div>
-    </div>`;
-    try{
-      const h=await fetchJson("history/halving.json");
-      el.innerHTML+=`<div class="metric-row" style="margin-top:10px">
-        <div class="metric"><div class="label">Halving days passed</div><div class="value" style="font-size:1rem">${h.days_passed??"—"}</div></div>
-        <div class="metric"><div class="label">Days left</div><div class="value" style="font-size:1rem">${h.days_left??"—"}</div></div>
-        <div class="metric"><div class="label">Cycle</div><div class="value" style="font-size:1rem">${h.cycle_pct!=null?h.cycle_pct+"%":"—"}</div><div class="sub">${h.source||""}</div></div>
-      </div>`;
-    }catch(_){}
-  }catch(e){ el.innerHTML=`<div class="empty">${e.message}</div>`; }
-}
-
-async function loadAgent(){
-  const el=document.getElementById("market-agent");
-  const histEl=document.getElementById("agent-history");
-  try{
-    const history=await fetchJson("history/market_agent_history.json");
-    if(!history.length){ el.innerHTML='<div class="empty">No data yet</div>'; return; }
-    const latest=history[history.length-1];
-    const color=STATE_COLORS[latest.state]||"#8b9cb3";
-    const reasons=(latest.reasons||[]).slice(0,5).map(r=>`<div class="reason">• ${r}</div>`).join("");
-    el.innerHTML=`<span class="badge" style="background:${color}22;color:${color};border:1px solid ${color}55">${latest.state}</span>
-      <div class="metric-row">
-        <div class="metric"><div class="label">Bias</div><div class="value" style="color:${biasColor(latest.bias_score)}">${latest.bias_score!=null?(latest.bias_score>0?"+":"")+latest.bias_score:"n/a"}</div></div>
-        <div class="metric"><div class="label">Intensity</div><div class="value">${latest.intensity??"n/a"}</div></div>
-        <div class="metric"><div class="label">Confidence</div><div class="value">${latest.confidence!=null?latest.confidence+"%":"n/a"}</div></div>
-        <div class="metric"><div class="label">RSI / Funding</div><div class="value" style="font-size:0.95rem">${latest.rsi??"?"} / ${fmtFunding(latest.funding_rate)}</div></div>
-      </div><div style="margin-top:10px">${reasons}</div>`;
-    const rows=history.slice(-20).reverse().map(r=>{
-      const t=new Date(r.timestamp).toLocaleString(undefined,{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"});
-      const c=STATE_COLORS[r.state]||"#8b9cb3";
-      return `<tr><td>${t}</td><td style="color:${c};font-weight:600">${r.state}</td><td style="color:${biasColor(r.bias_score)}">${r.bias_score!=null?(r.bias_score>0?"+":"")+r.bias_score:"—"}</td><td>${r.intensity??"—"}</td><td>${r.rsi??"—"}</td><td>${fmtFunding(r.funding_rate)}</td></tr>`;
-    }).join("");
-    histEl.innerHTML=`<table><tr><th>Time</th><th>State</th><th>Bias</th><th>Int</th><th>RSI</th><th>Funding</th></tr>${rows}</table>`;
-  }catch(e){ el.innerHTML=`<div class="empty">${e.message}</div>`; }
-}
-
-async function loadSymbols(){
-  const container=document.getElementById("symbols");
-  container.innerHTML="";
-  let mechHist=[]; try{ mechHist=await fetchJson("history/mechanism_history.json"); }catch(_){}
-  for(const symbol of SYMBOLS){
-    try{
-      const history=await fetchJson(`history/${symbol}.json`);
-      if(!history.length){ container.innerHTML+=`<div class="card sym-card"><div class="sym-header"><strong>${symbol}</strong><span class="pill">no data</span></div></div>`; continue; }
-      const last=history[history.length-1];
-      const prev=history.length>1?history[history.length-2]:null;
-      let dPrice=null; if(prev&&prev.price) dPrice=((last.price-prev.price)/prev.price)*100;
-      let mech=null; for(let i=mechHist.length-1;i>=0;i--){ if(mechHist[i].symbol===symbol){ mech=mechHist[i]; break; } }
-      const rsiClass=last.rsi>=RSI_THRESHOLD?"hot":"ok";
-      const mechPrimary=mech?.primary_mechanism||"—";
-      const risk=mech?.sudden_drop_risk||"—";
-      const regime=mech?.regime||"—";
-      const pressure=mech?.positioning_pressure;
-      const crowded=mech?.crowded_long?"Crowded Long":mech?.crowded_short?"Crowded Short":null;
-      const recent=history.slice(-4).reverse();
-      const rows=recent.map(r=>`<tr><td>${r.date}</td><td class="${r.rsi>=RSI_THRESHOLD?"neg":""}">${r.rsi}</td><td>${fmtNum(r.price,symbol.includes("ZAMA")?5:2)}</td><td>${r.open_interest!=null?fmtNum(r.open_interest,1):"—"}</td><td>${fmtFunding(r.funding_rate)}</td></tr>`).join("");
-      container.innerHTML+=`<div class="card sym-card">
-        <div class="sym-header">
-          <strong>${symbol.replace("USDT","")}</strong>
-          <span class="pill ${rsiClass}">RSI ${last.rsi}</span>
-          <span class="pill">${fmtNum(last.price,symbol.includes("ZAMA")?5:2)}</span>
-          ${dPrice!=null?`<span class="pill">${dPrice>=0?"+":""}${dPrice.toFixed(2)}%</span>`:""}
-          ${riskPill(risk)}
-          ${crowded?`<span class="pill hot flash">${crowded}</span>`:""}
-        </div>
-        <div class="metric-row">
-          <div class="metric"><div class="label">Mechanism</div><div class="value" style="font-size:0.9rem">${mechPrimary}</div></div>
-          <div class="metric"><div class="label">Regime</div><div class="value" style="font-size:0.9rem">${regime}</div></div>
-          <div class="metric"><div class="label">Pos. Pressure</div><div class="value" style="font-size:0.9rem">${pressure!=null?pressure:"—"}</div></div>
-          <div class="metric"><div class="label">OI / Funding</div><div class="value" style="font-size:0.85rem">${last.open_interest!=null?fmtNum(last.open_interest,0):"n/a"} · ${fmtFunding(last.funding_rate)}</div></div>
-        </div>
-        <div class="metric-row">
-          <div class="metric"><div class="label">Dirs</div><div class="value" style="font-size:0.78rem">P ${last.directions?.price_dir||"—"} · OI ${last.directions?.oi_dir||"—"} · V ${last.directions?.volume_dir||"—"}</div></div>
-          <div class="metric"><div class="label">Global L/S</div><div class="value" style="font-size:0.9rem">${last.global_ls_ratio!=null?Number(last.global_ls_ratio).toFixed(3):"—"} <span class="sub">${last.global_ls_dir||""}</span></div></div>
-          <div class="metric"><div class="label">Top Acc / Pos L/S</div><div class="value" style="font-size:0.85rem">${last.top_account_ls_ratio!=null?Number(last.top_account_ls_ratio).toFixed(3):"—"} / ${last.top_position_ls_ratio!=null?Number(last.top_position_ls_ratio).toFixed(3):"—"}</div></div>
-          <div class="metric"><div class="label">Liq 24h L/S</div><div class="value" style="font-size:0.8rem">${last.liq_long_usd!=null?"$"+fmtNum(last.liq_long_usd,0):"—"} / ${last.liq_short_usd!=null?"$"+fmtNum(last.liq_short_usd,0):"—"}</div><div class="sub">${last.liq_bias||""}</div></div>
-        </div>
-        <table><tr><th>Time</th><th>RSI</th><th>Price</th><th>OI</th><th>Funding</th></tr>${rows}</table>
-      </div>`;
-    }catch(e){ container.innerHTML+=`<div class="card sym-card"><div class="sym-header"><strong>${symbol}</strong><span class="pill">error</span></div></div>`; }
-  }
-}
-
-async function loadNews(){
-  const newsEl=document.getElementById("news"); const catEl=document.getElementById("catalysts");
-  try{
-    const data=await fetchJson("history/latest_news.json");
-    const headlines=(data.headlines||[]).slice(0,14);
-    newsEl.innerHTML=headlines.length?headlines.map(h=>`<div class="news-item"><span class="news-src">[${h.source||"?"}]</span><span>${h.headline}</span></div>`).join(""):'<div class="empty">No headlines</div>';
-    const sources=data.sources||[];
-    catEl.innerHTML=`<div style="color:var(--muted);font-size:0.8rem;margin-bottom:8px">Updated ${data.updated_at?new Date(data.updated_at).toLocaleString():"—"}</div>${sources.slice(0,12).map(s=>`<div class="news-item"><span>${s.name||s}</span><span class="news-src">${s.type||""}</span></div>`).join("")||'<div class="empty">No source list</div>'}`;
-  }catch(e){ newsEl.innerHTML=`<div class="empty">${e.message}</div>`; }
-}
-
-async function loadEdge(){
-  const el=document.getElementById("edge-stats");
-  try{
-    const data=await fetchJson("history/edge_stats.json");
-    const keys=Object.keys(data);
-    if(!keys.length){ el.innerHTML='<div class="empty">Edge stats will appear after a few runs.</div>'; return; }
-    const rows=keys.map(k=>{ const v=data[k]; return `<tr><td>${k}</td><td>${v.n}</td><td class="${(v.avg_fwd_pct||0)>=0?"pos":"neg"}">${v.avg_fwd_pct!=null?(v.avg_fwd_pct>0?"+":"")+v.avg_fwd_pct+"%":"—"}</td><td>${v.win_rate!=null?v.win_rate+"%":"—"}</td></tr>`; }).join("");
-    el.innerHTML=`<table><tr><th>Mechanism</th><th>N</th><th>Avg Fwd</th><th>Win%</th></tr>${rows}</table>`;
-  }catch(_){ el.innerHTML='<div class="empty">No edge stats yet.</div>'; }
-}
-loadSnapshot(); loadAgent(); loadSymbols(); loadNews(); loadEdge();
+const REPO='mehazer/btc-alert',BRANCH='main';
+const SYMBOLS=['BTCUSDT','ETHUSDT','SOLUSDT','ZECUSDT','ZAMAUSDT'];
+const $=id=>document.getElementById(id); const esc=v=>String(v??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const raw=p=>`https://raw.githubusercontent.com/${REPO}/${BRANCH}/${p}?t=${Date.now()}`;
+async function json(p){const r=await fetch(raw(p));if(!r.ok)throw Error(`${p} (${r.status})`);return r.json()}
+function n(v,d=2){return v==null?'—':Number(v).toLocaleString('en-US',{maximumFractionDigits:d})}
+function pct(v,d=2){return v==null?'—':`${v>=0?'+':''}${Number(v).toFixed(d)}%`}
+function funding(v){return v==null?'—':`${v>=0?'+':''}${(v*100).toFixed(4)}%`}
+function dt(v){if(!v)return'—';const s=String(v).includes('T')?v:`${v.replace(' ','T')}Z`;const d=new Date(s);return isNaN(d)?esc(v):d.toLocaleString('en-GB',{timeZone:'UTC',month:'short',day:'2-digit',hour:'2-digit',minute:'2-digit'})+' UTC'}
+function age(v){if(!v)return'';const t=new Date(String(v).includes('T')?v:`${v.replace(' ','T')}Z`).getTime();if(!isFinite(t))return'';const mins=Math.max(0,Math.round((Date.now()-t)/60000));return mins<60?`${mins}m old`:mins<1440?`${Math.round(mins/60)}h old`:`${Math.round(mins/1440)}d old`}
+function colorStatus(label){const x=String(label||'').toLowerCase();return x.includes('high')||x.includes('risk')||x.includes('fear')||x.includes('bear')?'bad':x.includes('moderate')||x.includes('warn')||x.includes('overheat')?'warn':x.includes('bull')||x.includes('low')||x.includes('ok')?'ok':'info'}
+function gauge(value,min,max,status='',risk=false){if(value==null)return'<div class="empty">No score available</div>';const p=Math.max(0,Math.min(100,(value-min)/(max-min)*100));return `<div class="gauge"><div class="gauge-track ${risk?'risk':''}"><i class="gauge-marker" style="left:${p}%"></i></div><div class="gauge-scale"><span>${min}</span><span>${min+(max-min)*.4}</span><span>${min+(max-min)*.6}</span><span>${max}</span></div></div>`}
+function spark(values,color='var(--blue)',min=null,max=null){const a=values.filter(v=>v!=null).map(Number);if(a.length<2)return'<div class="empty">Not enough history</div>';min=min==null?Math.min(...a):min;max=max==null?Math.max(...a):max;const span=max-min||1,w=300,h=58,pad=4;const pts=a.map((v,i)=>`${pad+i*(w-2*pad)/(a.length-1)},${h-pad-(v-min)/span*(h-2*pad)}`).join(' ');return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><polyline fill="none" stroke="${color}" stroke-width="2" points="${pts}"/><text x="6" y="12">${esc(n(a[a.length-1],2))}</text><text x="${w-42}" y="${h-6}">${a.length} obs</text></svg>`}
+function trend(values){const a=values.filter(v=>v!=null).map(Number);if(a.length<2)return{label:'Unknown',delta:null};const half=Math.max(1,Math.floor(a.length/2));const d=a.slice(-half).reduce((x,y)=>x+y,0)/half-a.slice(0,half).reduce((x,y)=>x+y,0)/half;return{label:d>Math.abs(a[a.length-1]||1)*.01?'Rising':d<-Math.abs(a[a.length-1]||1)*.01?'Falling':'Flat',delta:d}}
+function card(title,value,sub,extra=''){return `<div class="metric"><div class="label">${title}</div><div class="value">${value}</div><div class="sub">${sub||''}</div>${extra}</div>`}
+function rangeCard({title,value,min=0,max=100,status='',unit='',source='',why='',values=[],tone='blue',risk=false,formula='',timestamp=''}){const cls=colorStatus(status);return `<div class="card"><h2>${title}</h2><div class="value mono" style="color:var(--${tone})">${esc(value)} <span class="small">${unit}</span></div>${value==null?'<div class="empty">No bounded score available</div>':gauge(Number(value),min,max,status,risk)}<div><span class="pill ${cls}">${esc(status||'Current')}</span> <span class="meta">${esc(trend(values).label)} · ${esc(source)} · ${esc(dt(timestamp))}</span></div>${values.length>1?spark(values,tone==='red'?'var(--red)':tone==='green'?'var(--green)':'var(--blue)',min,max):''}<div class="why"><strong>Why this value?</strong> ${esc(why)}</div><details class="explain"><summary>How is this calculated?</summary><p>${esc(formula||'Derived from the displayed input and the stated range.')}</p><p>Range: ${min}–${max}. Higher values are not automatically bullish; interpret the status label. Latest observation: ${esc(dt(timestamp))} · ${esc(age(timestamp))}.</p></details></div>`}
+async function loadOverview(){try{const [m,b,h]=await Promise.all([json('history/market.json'),json('history/BTCUSDT.json'),json('history/halving.json').catch(()=>null)]);const last=b.at(-1)||{}, vals=b.slice(-30).map(x=>x.rsi).filter(x=>x!=null);$('updated').textContent=`Last market update: ${dt(m.updated_at)} · ${age(m.updated_at)}`;$('overview').innerHTML=`${card('BTC price','$'+n(last.price),`Binance spot · ${dt(last.date)}`)}${rangeCard({title:'BTC RSI · 14-period',value:last.rsi,min:0,max:100,status:last.rsi>=70?'Overbought':last.rsi<=30?'Oversold':'Neutral',unit:'/ 100 · ${INTERVAL()}',source:'Binance BTC/USDT',why:'A bounded momentum oscillator for BTC only; this is not an overall-market RSI.',values:vals,tone:last.rsi>=70?'red':'blue',timestamp:last.date,formula:'RSI(14) from Binance spot closes. 0–30 is conventionally oversold, 70–100 overbought; RSI can remain extreme in trends.'})}${rangeCard({title:'Fear & Greed index',value:m.fear_greed_value,min:0,max:100,status:m.fear_greed_label||'Unknown',unit:'/ 100',source:'alternative.me',why:'Current sentiment survey/index reading; it does not measure leverage or future returns.',values:[m.fear_greed_value],tone:'purple',timestamp:m.updated_at,formula:'External 0–100 sentiment index. It is shown as a benchmark, not a forecast.'})}${card('BTC funding',funding(m.funding_rate),'OKX perpetual · 8h rate')}${card('News sentiment',m.news_sentiment==null?'—':(m.news_sentiment>=0?'+':'')+n(m.news_sentiment,1),`Score range -100 to +100 · ${dt(m.updated_at)}`)}${h?card('Cycle position',`${n(h.cycle_pct,1)}%`,`Halving days passed: ${n(h.days_passed,0)} · Source: ${esc(h.source)}`):''}`;const missing=[];if(last.rsi==null)missing.push('BTC RSI');if(m.funding_rate==null)missing.push('funding');$('quality').innerHTML=missing.length?`<div class="quality bad">Data quality warning: missing ${missing.join(', ')}. No missing value is replaced with zero.</div>`:`<div class="quality good">Data quality: BTC overview uses Binance spot history and OKX perpetual funding. All timestamps shown in UTC.</div>`}catch(e){$('overview').innerHTML=`<div class="card empty">${esc(e.message)}</div>`;$('quality').innerHTML='<div class="quality bad">Data quality warning: market overview unavailable.</div>'}}
+function INTERVAL(){return 'configured candle timeframe'}
+async function loadRegime(){try{const h=await json('history/market_agent_history.json');const a=h.slice(-30);const x=a.at(-1)||{};const bias=x.bias_score;const intensity=x.intensity;const conf=x.confidence;$('regime').innerHTML=rangeCard({title:'Directional bias',value:bias,min:-100,max:100,status:x.state||'Unknown',unit:'/ +100 to -100',source:'Deterministic Market Agent',why:'Net directional score from BTC RSI, Fear & Greed, funding, OI/price change, price change, and news sentiment. It is a model score, not a probability.',values:a.map(r=>r.bias_score),tone:bias>=0?'blue':'red',timestamp:x.timestamp,formula:'Weighted rule-based score normalized to -100…+100. Missing inputs reduce confidence; the score does not predict price.'})+rangeCard({title:'Signal intensity',value:intensity,min:0,max:100,status:intensity>=70?'Elevated':intensity>=40?'Moderate':'Low',unit:'/ 100',source:'Deterministic Market Agent',why:'Magnitude of the strongest bullish or bearish evidence available to the agent.',values:a.map(r=>r.intensity),tone:'amber',timestamp:x.timestamp,formula:'The larger of bullish or bearish rule points, clamped to 0–100.'})+rangeCard({title:'Data confidence',value:conf,min:0,max:100,status:conf>=80?'High':conf>=50?'Medium':'Low',unit:'/ 100',source:'Input completeness',why:'How much of the agent input set was available at evaluation time; it is not a forecast-confidence score.',values:a.map(r=>r.confidence),tone:'green',timestamp:x.timestamp,formula:'Available weighted inputs divided by the total expected inputs.'})}catch(e){$('regime').innerHTML=`<div class="card empty">${esc(e.message)}</div>`}}
+function comparisonTable(c){if(!c)return'<div class="empty">No previous comparable spike in the lookback window.</div>';const rows=[['Price change',c.current.price_change,c.previous.price_change,'%'],['OI change',c.current.oi_change,c.previous.oi_change,'%'],['Volume change',c.current.volume_change,c.previous.volume_change,'%'],['Duration',c.current.duration_bars,c.previous.duration_bars,'bars'],['Funding at end',c.current.funding_end,c.previous.funding_end,'']];return `<table><tr><th>Metric</th><th>Current</th><th>Previous</th><th>Unit</th></tr>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]==null?'—':n(r[1],2)}</td><td>${r[2]==null?'—':n(r[2],2)}</td><td>${r[3]}</td></tr>`).join('')}</table>`}
+function mechanismCard(mech,last,hist){const oi=last.open_interest,vol=last.volume,r=mech?.sudden_drop_risk||{},risk=r.level||'Unknown';const rel=mech?.current_relationship||{};return `<div class="two-col"><div><div class="metric-row">${card('Primary mechanism',mech?.likely_mechanism?.primary||'Inconclusive','Rule-based interpretation')}${card('Secondary',mech?.likely_mechanism?.secondary||'—','May be absent')}${card('BTC dependency',rel.btc_dependency||mech?.btc_dependency||'Unknown','Same-window comparison')}${card('Risk',risk,`Score ${r.score??'—'} · sudden-drop risk`)}</div><div class="why"><strong>Observed relationship:</strong><br>${['price','oi','volume','funding','btc','asset_vs_btc'].map(k=>`<span class="pill">${esc(rel[k]||'Unknown')}</span>`).join(' ')}</div>${(mech?.likely_mechanism?.reasoning||[]).slice(0,4).map(x=>`<div class="reason">${esc(x)}</div>`).join('')}</div><div><div class="label">Sudden-drop risk · range 0–6+ mapped to Low/Moderate/High/Very High</div>${gauge(r.score??0,0,6,risk,true)}<div class="why"><strong>Risk drivers:</strong> ${esc((r.reasons||[]).join('; ')||'No strong crowding or climax signals detected.')}</div><div class="why"><strong>Risk increases if:</strong> ${esc((r.what_increases_risk||[]).join('; '))}</div><div class="why"><strong>Interpretation improves if:</strong> ${esc((r.what_invalidates||[]).join('; '))}</div></div></div>`}
+async function loadSymbols(){const c=$('symbols');c.innerHTML='';let mech=[];try{mech=await json('history/mechanism_history.json')}catch(_){};for(const sym of SYMBOLS){try{const hist=await json(`history/${sym}.json`);const last=hist.at(-1)||{},prev=hist.at(-2)||{},m=[...mech].reverse().find(x=>x.symbol===sym);const pchg=prev.price?((last.price-prev.price)/prev.price*100):null;const oichg=prev.open_interest&&last.open_interest?((last.open_interest-prev.open_interest)/prev.open_interest*100):null;const hVol=hist.slice(-30).map(x=>x.volume).filter(x=>x!=null);const avg=hVol.length>1?hVol.slice(0,-1).reduce((a,b)=>a+b,0)/(hVol.length-1):null;const vr=avg&&last.volume?last.volume/avg:null;const volLabel=vr==null?'Unknown':vr>=2?'Climactic':vr>=1.35?'Increasing':vr<=.7?'Decreasing':'Normal';const prices=hist.slice(-30).map(x=>x.price),ois=hist.slice(-30).map(x=>x.open_interest),vols=hist.slice(-30).map(x=>x.volume);const risk=m?.sudden_drop_risk||'Unknown';const mechData={...m,current_relationship:m?.current_relationship};c.innerHTML+=`<div class="card symbol-card"><div class="symbol-head"><strong>${sym.replace('USDT','')}</strong><span class="pill ${colorStatus(risk)}">Drop risk: ${esc(risk)}</span><span class="pill">Price ${pct(pchg)}</span><span class="pill">OI ${pct(oichg)}</span><span class="pill">Volume ${esc(volLabel)}${vr?` · ${n(vr,2)}x avg`:''}</span><span class="meta">Observed ${dt(last.date)} · ${age(last.date)}</span></div><div class="metric-row">${card('Price','$'+n(last.price,sym==='ZAMAUSDT'?5:2),'Binance spot')}${card('OI',n(last.open_interest,1),'OKX perpetual · coin units')}${card('Funding',funding(last.funding_rate),'OKX perpetual · 8h')}${card('RSI',n(last.rsi,2),`14-period · ${INTERVAL()}`)}</div><div class="grid grid3" style="margin-top:12px"><div><div class="label">Price history · last 30 observations</div>${spark(prices,'var(--cyan)')}</div><div><div class="label">OI history · coin-denominated</div>${spark(ois,'var(--purple)')}</div><div><div class="label">Volume history · Binance spot</div>${spark(vols,'var(--amber)')}</div></div><div class="why"><strong>How to read this:</strong> Price ${esc(m?.price_dir||'Unknown')}; OI ${esc(m?.oi_dir||'Unknown')}; volume ${esc(m?.volume_dir||volLabel)}. OI is outstanding contracts, not a count of traders waiting to sell.</div>${m?mechanismCard(m,last,hist):'<div class="quality">Mechanism analysis unavailable for this symbol.</div>'}<details class="explain"><summary>Current move versus previous spike</summary><p>${esc(m?.comparison_summary||'No comparison available.')}</p>${comparisonTable(m?.comparison)}</details><details class="explain"><summary>Data dictionary and limitations</summary><p><strong>Price:</strong> Binance spot close; absolute quote-currency value. <strong>OI:</strong> OKX perpetual OI in coin units; not whole-market notional OI. <strong>Volume:</strong> Binance spot base-asset volume; not derivatives volume. <strong>Funding:</strong> OKX perpetual rate. <strong>RSI:</strong> 14-period RSI on the configured candle timeframe.</p><p>Missing fields are shown as unavailable. The dashboard does not infer exact long/short counts, whale activity, or causality from OI alone.</p></details></div>`}catch(e){c.innerHTML+=`<div class="card quality bad">${esc(sym)}: ${esc(e.message)}</div>`}}}
+async function loadNews(){try{const d=await json('history/latest_news.json');$('news').innerHTML=(d.headlines||[]).slice(0,12).map(h=>`<div class="reason"><strong>${esc(h.source||'Source')}:</strong> ${esc(h.headline)}</div>`).join('')||'<div class="empty">No headlines</div>';$('catalysts').innerHTML=`<div class="meta">Last update: ${dt(d.updated_at)} · ${age(d.updated_at)}</div>`+(d.sources||[]).slice(0,12).map(s=>`<div class="reason">${esc(s.name||s)} <span class="meta">${esc(s.type||'')}</span></div>`).join('')||'<div class="empty">No source list</div>'}catch(e){$('news').innerHTML=`<div class="empty">${esc(e.message)}</div>`}}
+async function loadHistory(){try{const a=await json('history/market_agent_history.json');const rows=a.slice(-20).reverse().map(r=>`<tr><td>${dt(r.timestamp)}</td><td>${esc(r.state)}</td><td>${n(r.bias_score,0)}</td><td>${n(r.intensity,0)}</td><td>${n(r.confidence,0)}%</td><td>${funding(r.funding_rate)}</td></tr>`).join('');$('agent-history').innerHTML=`<div class="meta">Trend charts above use the last 30 observations. Table shows last 20 evaluations; timestamps are UTC.</div><table><tr><th>Time</th><th>State</th><th>Bias (-100…+100)</th><th>Intensity (0…100)</th><th>Confidence (0…100)</th><th>Funding</th></tr>${rows}</table>`;const e=await json('history/edge_stats.json');const keys=Object.keys(e);$('edge-stats').innerHTML=keys.length?`<table><tr><th>Mechanism</th><th>Samples</th><th>Avg forward</th><th>Win rate</th></tr>${keys.map(k=>`<tr><td>${esc(k)}</td><td>${e[k].n}</td><td>${pct(e[k].avg_fwd_pct,3)}</td><td>${e[k].win_rate??'—'}%</td></tr>`).join('')}</table>`:'<div class="empty">Edge stats will appear after more runs.</div>'}catch(e){$('agent-history').innerHTML=`<div class="empty">${esc(e.message)}</div>`}}
+loadOverview();loadRegime();loadSymbols();loadNews();loadHistory();
 </script>
 </body>
 </html>
