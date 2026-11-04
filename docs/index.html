@@ -1,452 +1,409 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crypto Ajan Paneli</title>
+<title>Crypto Watch — Market Intelligence</title>
 <style>
   :root {
-    --bg: #0d1117;
-    --card: #161b22;
-    --border: #30363d;
-    --text: #c9d1d9;
-    --muted: #8b949e;
-    --green: #3fb950;
-    --red: #f85149;
-    --blue: #58a6ff;
-    --orange: #d29922;
-    --purple: #a371f7;
+    --bg: #0a0e14;
+    --bg2: #0f1419;
+    --card: #151b23;
+    --card-hover: #1a222d;
+    --border: #243044;
+    --text: #e6edf3;
+    --muted: #8b9cb3;
+    --green: #3dd68c;
+    --red: #f87171;
+    --blue: #60a5fa;
+    --orange: #fbbf24;
+    --purple: #c084fc;
+    --cyan: #22d3ee;
+    --pink: #f472b6;
   }
-  * { box-sizing: border-box; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 16px;
-    line-height: 1.45;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
   }
-  h1 { font-size: 22px; margin: 0 0 4px 0; }
-  .updated { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 20px 16px 48px; }
+  header {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 12px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
+  }
+  h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; }
+  h1 span { color: var(--cyan); }
+  .updated { color: var(--muted); font-size: 0.8rem; }
+  .grid { display: grid; gap: 16px; }
+  .grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
   .card {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px;
-    margin-bottom: 16px;
+    border-radius: 12px;
+    padding: 16px 18px;
+    transition: border-color 0.15s;
   }
+  .card:hover { border-color: #3a4a60; }
   .card h2 {
-    font-size: 15px;
-    margin: 0 0 12px 0;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); margin-bottom: 12px; font-weight: 600;
   }
   .badge {
-    display: inline-block;
-    padding: 5px 12px;
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: 14px;
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 4px 10px; border-radius: 6px; font-weight: 700; font-size: 0.85rem;
   }
-  .metric-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 12px;
-  }
+  .metric-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
   .metric {
-    background: #0d1117;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 10px 12px;
+    flex: 1 1 100px; background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 12px;
   }
-  .metric .label { font-size: 11px; color: var(--muted); margin-bottom: 2px; }
-  .metric .value { font-size: 18px; font-weight: 700; }
-  .reason-item { font-size: 13px; padding: 4px 0; color: var(--muted); }
-  .news-item { font-size: 14px; padding: 7px 0; border-top: 1px solid #21262d; }
-  .news-source-tag { color: var(--muted); font-size: 12px; margin-right: 6px; }
-  .source-item {
-    font-size: 13px;
-    padding: 5px 0;
-    border-top: 1px solid #21262d;
-    display: flex;
-    justify-content: space-between;
+  .metric .label { font-size: 0.68rem; color: var(--muted); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .metric .value { font-size: 1.15rem; font-weight: 700; }
+  .metric .sub { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+  .reason { font-size: 0.8rem; color: var(--muted); padding: 3px 0; }
+  .reason::before { content: "• "; color: var(--border); }
+  table { width: 100%; font-size: 0.78rem; border-collapse: collapse; margin-top: 8px; }
+  th { color: var(--muted); font-weight: 600; text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--border); }
+  td { padding: 6px 4px; border-top: 1px solid #1a2332; }
+  .sym-card { margin-bottom: 12px; }
+  .sym-header {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+    margin-bottom: 8px;
   }
-  .source-type { color: var(--muted); font-size: 12px; }
-  .symbol-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0 4px;
-    font-size: 15px;
+  .sym-header strong { font-size: 1rem; }
+  .pill {
+    font-size: 0.72rem; padding: 2px 8px; border-radius: 999px;
+    background: #1a2332; color: var(--muted); border: 1px solid var(--border);
   }
-  .symbol-meta {
-    display: flex;
-    gap: 12px;
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 6px;
+  .pill.hot { background: #3b1c1c; color: var(--red); border-color: #5c2a2a; }
+  .pill.ok { background: #14301f; color: var(--green); border-color: #1e4a30; }
+  .pill.warn { background: #3b2e14; color: var(--orange); border-color: #5c4a20; }
+  .news-item {
+    font-size: 0.85rem; padding: 8px 0; border-top: 1px solid #1a2332;
+    display: flex; gap: 8px;
   }
-  table { width: 100%; font-size: 12px; margin-top: 6px; border-collapse: collapse; }
-  td, th { padding: 5px 4px; text-align: left; border-top: 1px solid #21262d; }
-  th { color: var(--muted); font-weight: 600; }
-  .rsi-high { color: var(--red); font-weight: 700; }
-  .rsi-normal { color: var(--green); }
+  .news-src { color: var(--muted); font-size: 0.72rem; white-space: nowrap; min-width: 70px; }
+  .section-title {
+    font-size: 0.95rem; font-weight: 600; margin: 24px 0 12px; color: var(--text);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-title::after {
+    content: ""; flex: 1; height: 1px; background: var(--border);
+  }
+  .empty { color: var(--muted); font-size: 0.85rem; padding: 8px 0; }
   .pos { color: var(--green); }
   .neg { color: var(--red); }
-  .news-updated { color: var(--muted); font-size: 12px; margin-bottom: 8px; }
-  .section-spacer { height: 4px; }
+  .flash { animation: pulse 1.5s ease-in-out infinite; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+  footer {
+    margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 0.72rem; text-align: center;
+  }
+  @media (max-width: 600px) {
+    .metric .value { font-size: 1rem; }
+    h1 { font-size: 1.2rem; }
+  }
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<h1>📊 Crypto Ajan Paneli</h1>
-<div class="updated" id="updated">Yukleniyor...</div>
+<header>
+  <h1>⚡ Crypto <span>Watch</span></h1>
+  <div class="updated" id="updated">Loading…</div>
+</header>
 
-<!-- Market Agent v2 -->
-<div class="card">
-  <h2>🤖 Market Agent v2</h2>
-  <div id="market-agent">Yukleniyor...</div>
+<div class="grid grid-2">
+  <div class="card" id="card-agent">
+    <h2>Market Agent</h2>
+    <div id="market-agent"><div class="empty">Loading…</div></div>
+  </div>
+  <div class="card" id="card-snapshot">
+    <h2>Market Snapshot</h2>
+    <div id="market-snapshot"><div class="empty">Loading…</div></div>
+  </div>
 </div>
 
-<!-- Market Snapshot -->
-<div class="card">
-  <h2>Piyasa Ozeti</h2>
-  <div id="market-snapshot">Yukleniyor...</div>
+<div class="section-title">Symbols</div>
+<div id="symbols"><div class="empty">Loading…</div></div>
+
+<div class="section-title">News & Catalysts</div>
+<div class="grid grid-2">
+  <div class="card">
+    <h2>Headlines</h2>
+    <div id="news"><div class="empty">Loading…</div></div>
+  </div>
+  <div class="card">
+    <h2>Sources</h2>
+    <div id="catalysts"><div class="empty">Loading…</div></div>
+  </div>
 </div>
 
-<!-- News -->
-<div class="card">
-  <h2>Guncel Haberler</h2>
-  <div class="news-updated" id="news-updated"></div>
-  <div id="news">Yukleniyor...</div>
+<div class="section-title">History & Edge</div>
+<div class="grid grid-2">
+  <div class="card">
+    <h2>Market Agent History</h2>
+    <div id="agent-history" style="overflow-x:auto"><div class="empty">Loading…</div></div>
+  </div>
+  <div class="card">
+    <h2>Mechanism Edge Stats</h2>
+    <div id="edge-stats"><div class="empty">Loading…</div></div>
+  </div>
 </div>
 
-<div class="card">
-  <h2>Haber Kaynaklari</h2>
-  <div id="news-sources">Yukleniyor...</div>
-</div>
+<footer>
+  Data: Binance spot · OKX OI/funding · alternative.me F&G · free news sources<br>
+  Deterministic rules only · No liquidation feed · OI is venue-specific
+</footer>
 
-<!-- Symbols -->
-<div class="card">
-  <h2>Semboller</h2>
-  <div id="symbols">Yukleniyor...</div>
-</div>
-
-<!-- History -->
-<div class="card">
-  <h2>Market Agent Gecmisi (son 30)</h2>
-  <div id="market-agent-history">Yukleniyor...</div>
 </div>
 
 <script>
 const REPO = "mehazer/btc-alert";
 const BRANCH = "main";
-const SYMBOLS = ["BTCUSDT", "ETHUSDT", "SOLUSDT"];
+const SYMBOLS = ["BTCUSDT", "ETHUSDT", "SOLUSDT", "ZECUSDT", "ZAMAUSDT"];
 const RSI_THRESHOLD = 70;
 
 const STATE_COLORS = {
-  BULLISH: "#58a6ff",
-  BEARISH: "#f85149",
-  NEUTRAL: "#8b949e",
-  OVERHEATED: "#d29922",
-  FEAR: "#a371f7",
-  // legacy fallbacks
-  NORMAL: "#8b949e",
-  EXTREME_EUPHORIA: "#f85149",
+  BULLISH: "#60a5fa", BEARISH: "#f87171", NEUTRAL: "#8b9cb3",
+  OVERHEATED: "#fbbf24", FEAR: "#c084fc",
 };
 
 function rawUrl(path) {
   return `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${path}?t=${Date.now()}`;
 }
-
 async function fetchJson(path) {
-  const resp = await fetch(rawUrl(path));
-  if (!resp.ok) throw new Error(`${path} (${resp.status})`);
-  return resp.json();
+  const r = await fetch(rawUrl(path));
+  if (!r.ok) throw new Error(`${path} (${r.status})`);
+  return r.json();
 }
-
-function stateColor(state) {
-  return STATE_COLORS[state] || "#8b949e";
+function fgColor(v) {
+  if (v == null) return "var(--muted)";
+  if (v >= 75) return "var(--red)";
+  if (v >= 55) return "var(--orange)";
+  if (v >= 45) return "var(--muted)";
+  if (v >= 25) return "var(--green)";
+  return "var(--purple)";
 }
-
-function fgColor(value) {
-  if (value == null) return "#8b949e";
-  if (value >= 75) return "#f85149";
-  if (value >= 55) return "#d29922";
-  if (value >= 45) return "#8b949e";
-  if (value >= 25) return "#3fb950";
-  return "#a371f7";
+function sentimentColor(s) {
+  if (s == null) return "var(--muted)";
+  if (s >= 15) return "var(--green)";
+  if (s <= -15) return "var(--red)";
+  return "var(--muted)";
 }
-
-function sentimentColor(score) {
-  if (score == null) return "#8b949e";
-  if (score >= 20) return "#3fb950";
-  if (score <= -20) return "#f85149";
-  return "#8b949e";
+function biasColor(s) {
+  if (s == null) return "var(--muted)";
+  if (s >= 20) return "var(--blue)";
+  if (s <= -20) return "var(--red)";
+  return "var(--muted)";
 }
-
-function biasColor(score) {
-  if (score == null) return "#8b949e";
-  if (score >= 25) return "#58a6ff";
-  if (score <= -25) return "#f85149";
-  return "#8b949e";
+function riskPill(level) {
+  if (!level) return '<span class="pill">—</span>';
+  const map = { Low: "ok", Moderate: "warn", High: "hot", "Very High": "hot" };
+  return `<span class="pill ${map[level] || ""}">${level}</span>`;
 }
-
 function fmtFunding(rate) {
   if (rate == null) return "n/a";
   const pct = rate * 100;
-  const sign = pct > 0 ? "+" : "";
-  return `${sign}${pct.toFixed(4)}%`;
+  return `${pct > 0 ? "+" : ""}${pct.toFixed(4)}%`;
 }
-
-function fmtNum(n, digits = 2) {
+function fmtNum(n, d = 2) {
   if (n == null) return "n/a";
-  return Number(n).toLocaleString("en-US", { maximumFractionDigits: digits });
+  return Number(n).toLocaleString("en-US", { maximumFractionDigits: d });
 }
 
-// ------------------------------------------------------------------
-// Market Snapshot (Fear&Greed + Funding + News Sentiment)
-// ------------------------------------------------------------------
-async function loadMarketSnapshot() {
+async function loadSnapshot() {
   const el = document.getElementById("market-snapshot");
   try {
     const data = await fetchJson("history/market.json");
     document.getElementById("updated").textContent =
-      "Son guncelleme: " + new Date(data.updated_at).toLocaleString("tr-TR");
-
+      "Updated " + new Date(data.updated_at).toLocaleString();
     const fg = data.fear_greed_value;
-    const fgLabel = data.fear_greed_label || "?";
-    const funding = data.funding_rate;
-    const newsScore = data.news_sentiment;
-
     el.innerHTML = `
-      <div class="metric-grid">
+      <div class="metric-row">
         <div class="metric">
           <div class="label">Fear & Greed</div>
           <div class="value" style="color:${fgColor(fg)}">${fg ?? "?"}</div>
-          <div style="font-size:12px;color:var(--muted)">${fgLabel}</div>
+          <div class="sub">${data.fear_greed_label || ""}</div>
         </div>
         <div class="metric">
-          <div class="label">BTC Funding Rate</div>
-          <div class="value" style="color:${funding != null && funding >= 0 ? 'var(--green)' : 'var(--red)'}">
-            ${fmtFunding(funding)}
-          </div>
+          <div class="label">BTC Funding</div>
+          <div class="value" style="color:${data.funding_rate >= 0 ? "var(--green)" : "var(--red)"}">${fmtFunding(data.funding_rate)}</div>
         </div>
         <div class="metric">
           <div class="label">News Sentiment</div>
-          <div class="value" style="color:${sentimentColor(newsScore)}">
-            ${newsScore != null ? (newsScore > 0 ? "+" : "") + newsScore : "n/a"}
-          </div>
+          <div class="value" style="color:${sentimentColor(data.news_sentiment)}">${data.news_sentiment != null ? (data.news_sentiment > 0 ? "+" : "") + data.news_sentiment : "n/a"}</div>
         </div>
-        <div class="metric">
-          <div class="label">Guncelleme</div>
-          <div class="value" style="font-size:13px;font-weight:500">
-            ${new Date(data.updated_at).toLocaleTimeString("tr-TR")}
-          </div>
-        </div>
-      </div>
-    `;
+      </div>`;
   } catch (e) {
-    document.getElementById("updated").textContent = "Veri yuklenemedi: " + e.message;
-    el.textContent = "Piyasa ozeti yuklenemedi.";
+    el.innerHTML = `<div class="empty">${e.message}</div>`;
   }
 }
 
-// ------------------------------------------------------------------
-// Market Agent v2
-// ------------------------------------------------------------------
-async function loadMarketAgent() {
-  const currentEl = document.getElementById("market-agent");
-  const historyEl = document.getElementById("market-agent-history");
-
+async function loadAgent() {
+  const el = document.getElementById("market-agent");
+  const histEl = document.getElementById("agent-history");
   try {
     const history = await fetchJson("history/market_agent_history.json");
-    if (!history.length) {
-      currentEl.textContent = "Henuz kayit yok.";
-      historyEl.textContent = "Henuz kayit yok.";
-      return;
-    }
-
+    if (!history.length) { el.innerHTML = '<div class="empty">No data yet</div>'; return; }
     const latest = history[history.length - 1];
-    const color = stateColor(latest.state);
-
-    // Support both v1 (risk_score) and v2 (bias_score + intensity)
-    const bias = latest.bias_score ?? null;
-    const intensity = latest.intensity ?? latest.risk_score ?? null;
-    const confidence = latest.confidence ?? null;
-
-    const reasonsHtml = (latest.reasons || [])
-      .map(r => `<div class="reason-item">• ${r}</div>`)
-      .join("");
-
-    currentEl.innerHTML = `
-      <span class="badge" style="background:${color}22;color:${color};border:1px solid ${color}55">
-        ${latest.state}
-      </span>
-
-      <div class="metric-grid">
-        <div class="metric">
-          <div class="label">Bias Score</div>
-          <div class="value" style="color:${biasColor(bias)}">
-            ${bias != null ? (bias > 0 ? "+" : "") + bias : "n/a"}
-          </div>
-        </div>
-        <div class="metric">
-          <div class="label">Intensity</div>
-          <div class="value">${intensity ?? "n/a"}</div>
-        </div>
-        <div class="metric">
-          <div class="label">Confidence</div>
-          <div class="value">${confidence != null ? confidence + "%" : "n/a"}</div>
-        </div>
-        <div class="metric">
-          <div class="label">BTC RSI / Funding</div>
-          <div class="value" style="font-size:14px">
-            ${latest.rsi ?? "?"} / ${fmtFunding(latest.funding_rate)}
-          </div>
-        </div>
+    const color = STATE_COLORS[latest.state] || "#8b9cb3";
+    const reasons = (latest.reasons || []).slice(0, 5).map(r => `<div class="reason">${r}</div>`).join("");
+    el.innerHTML = `
+      <span class="badge" style="background:${color}22;color:${color};border:1px solid ${color}55">${latest.state}</span>
+      <div class="metric-row">
+        <div class="metric"><div class="label">Bias</div><div class="value" style="color:${biasColor(latest.bias_score)}">${latest.bias_score != null ? (latest.bias_score > 0 ? "+" : "") + latest.bias_score : "n/a"}</div></div>
+        <div class="metric"><div class="label">Intensity</div><div class="value">${latest.intensity ?? "n/a"}</div></div>
+        <div class="metric"><div class="label">Confidence</div><div class="value">${latest.confidence != null ? latest.confidence + "%" : "n/a"}</div></div>
+        <div class="metric"><div class="label">RSI / Funding</div><div class="value" style="font-size:0.95rem">${latest.rsi ?? "?"} / ${fmtFunding(latest.funding_rate)}</div></div>
       </div>
+      <div style="margin-top:10px">${reasons}</div>`;
 
-      <div style="margin-top:12px">${reasonsHtml}</div>
-    `;
-
-    // History table
-    const last30 = history.slice(-30).reverse();
-    const rows = last30.map(r => {
-      const t = new Date(r.timestamp).toLocaleString("tr-TR", {
-        month: "short", day: "numeric", hour: "2-digit", minute: "2-digit"
-      });
-      const c = stateColor(r.state);
-      const b = r.bias_score;
-      const biasStr = b != null ? (b > 0 ? "+" : "") + b : (r.risk_score ?? "-");
-      const news = r.news_sentiment;
-      const newsStr = news != null ? (news > 0 ? "+" : "") + news : "-";
+    const rows = history.slice(-20).reverse().map(r => {
+      const t = new Date(r.timestamp).toLocaleString(undefined, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
+      const c = STATE_COLORS[r.state] || "#8b9cb3";
       return `<tr>
         <td>${t}</td>
         <td style="color:${c};font-weight:600">${r.state}</td>
-        <td style="color:${biasColor(b)}">${biasStr}</td>
-        <td>${r.intensity ?? r.risk_score ?? "-"}</td>
-        <td>${r.rsi ?? "-"}</td>
+        <td style="color:${biasColor(r.bias_score)}">${r.bias_score != null ? (r.bias_score > 0 ? "+" : "") + r.bias_score : "—"}</td>
+        <td>${r.intensity ?? "—"}</td>
+        <td>${r.rsi ?? "—"}</td>
         <td>${fmtFunding(r.funding_rate)}</td>
-        <td style="color:${sentimentColor(news)}">${newsStr}</td>
       </tr>`;
     }).join("");
-
-    historyEl.innerHTML = `
-      <table>
-        <tr>
-          <th>Zaman</th>
-          <th>Durum</th>
-          <th>Bias</th>
-          <th>Int.</th>
-          <th>RSI</th>
-          <th>Funding</th>
-          <th>News</th>
-        </tr>
-        ${rows}
-      </table>
-    `;
+    histEl.innerHTML = `<table><tr><th>Time</th><th>State</th><th>Bias</th><th>Int</th><th>RSI</th><th>Funding</th></tr>${rows}</table>`;
   } catch (e) {
-    currentEl.textContent = "Market Agent yuklenemedi: " + e.message;
-    historyEl.textContent = "Gecmis yuklenemedi.";
+    el.innerHTML = `<div class="empty">${e.message}</div>`;
   }
 }
 
-// ------------------------------------------------------------------
-// News
-// ------------------------------------------------------------------
-async function loadNews() {
-  const newsEl = document.getElementById("news");
-  const newsUpdatedEl = document.getElementById("news-updated");
-  const sourcesEl = document.getElementById("news-sources");
-
-  try {
-    const data = await fetchJson("history/latest_news.json");
-    newsUpdatedEl.textContent =
-      "Son guncelleme: " + new Date(data.updated_at).toLocaleString("tr-TR");
-
-    const headlines = data.headlines || [];
-    newsEl.innerHTML = headlines.length
-      ? headlines.slice(0, 18).map(h =>
-          `<div class="news-item"><span class="news-source-tag">[${h.source}]</span>${h.headline}</div>`
-        ).join("")
-      : "Haber bulunamadi.";
-
-    const sources = data.sources || [];
-    sourcesEl.innerHTML = sources.length
-      ? sources.map(s =>
-          `<div class="source-item"><span>${s.name}</span><span class="source-type">${s.type}</span></div>`
-        ).join("")
-      : "Kaynak bilgisi yok.";
-  } catch (e) {
-    newsEl.textContent = "Haberler yuklenemedi: " + e.message;
-    sourcesEl.textContent = "Kaynak listesi yuklenemedi.";
-  }
-}
-
-// ------------------------------------------------------------------
-// Symbols
-// ------------------------------------------------------------------
 async function loadSymbols() {
   const container = document.getElementById("symbols");
   container.innerHTML = "";
+  let mechHist = [];
+  try { mechHist = await fetchJson("history/mechanism_history.json"); } catch (_) {}
 
   for (const symbol of SYMBOLS) {
     try {
       const history = await fetchJson(`history/${symbol}.json`);
       if (!history.length) {
-        container.innerHTML += `<div class="symbol-header">${symbol}: veri yok</div>`;
+        container.innerHTML += `<div class="card sym-card"><div class="sym-header"><strong>${symbol}</strong><span class="pill">no data</span></div></div>`;
         continue;
       }
-
       const last = history[history.length - 1];
-      const recent = history.slice(-5).reverse();
-      const rsiClass = last.rsi >= RSI_THRESHOLD ? "rsi-high" : "rsi-normal";
+      const prev = history.length > 1 ? history[history.length - 2] : null;
+      let dPrice = null;
+      if (prev && prev.price) dPrice = ((last.price - prev.price) / prev.price) * 100;
 
-      const rows = recent.map(r => {
-        const fr = r.funding_rate != null ? fmtFunding(r.funding_rate) : "-";
-        return `<tr>
-          <td>${r.date}</td>
-          <td class="${r.rsi >= RSI_THRESHOLD ? "rsi-high" : ""}">${r.rsi}</td>
-          <td>${fmtNum(r.price, 2)}</td>
-          <td>${r.open_interest != null ? fmtNum(r.open_interest, 1) : "-"}</td>
-          <td>${fr}</td>
-        </tr>`;
-      }).join("");
+      let mech = null;
+      for (let i = mechHist.length - 1; i >= 0; i--) {
+        if (mechHist[i].symbol === symbol) { mech = mechHist[i]; break; }
+      }
+
+      const rsiClass = last.rsi >= RSI_THRESHOLD ? "hot" : "ok";
+      const mechPrimary = mech?.primary_mechanism || "—";
+      const risk = mech?.sudden_drop_risk || "—";
+      const regime = mech?.regime || "—";
+      const pressure = mech?.positioning_pressure;
+      const crowded = mech?.crowded_long ? "Crowded Long" : mech?.crowded_short ? "Crowded Short" : null;
+
+      const recent = history.slice(-4).reverse();
+      const rows = recent.map(r => `<tr>
+        <td>${r.date}</td>
+        <td class="${r.rsi >= RSI_THRESHOLD ? "neg" : ""}">${r.rsi}</td>
+        <td>${fmtNum(r.price, symbol.includes("ZAMA") ? 5 : 2)}</td>
+        <td>${r.open_interest != null ? fmtNum(r.open_interest, 1) : "—"}</td>
+        <td>${fmtFunding(r.funding_rate)}</td>
+      </tr>`).join("");
 
       container.innerHTML += `
-        <div class="symbol-header">
-          <strong>${symbol}</strong>
-          <span class="${rsiClass}">RSI ${last.rsi}</span>
-          <span>${fmtNum(last.price, 2)}</span>
-        </div>
-        <div class="symbol-meta">
-          <span>OI: ${last.open_interest != null ? fmtNum(last.open_interest, 1) : "n/a"}</span>
-          <span>Funding: ${fmtFunding(last.funding_rate)}</span>
-        </div>
-        <table>
-          <tr>
-            <th>Tarih</th><th>RSI</th><th>Fiyat</th><th>OI</th><th>Funding</th>
-          </tr>
-          ${rows}
-        </table>
-        <div class="section-spacer"></div>
-      `;
+        <div class="card sym-card">
+          <div class="sym-header">
+            <strong>${symbol.replace("USDT", "")}</strong>
+            <span class="pill ${rsiClass}">RSI ${last.rsi}</span>
+            <span class="pill">${fmtNum(last.price, symbol.includes("ZAMA") ? 5 : 2)}</span>
+            ${dPrice != null ? `<span class="pill">${dPrice >= 0 ? "+" : ""}${dPrice.toFixed(2)}%</span>` : ""}
+            ${riskPill(risk)}
+            ${crowded ? `<span class="pill hot flash">${crowded}</span>` : ""}
+          </div>
+          <div class="metric-row">
+            <div class="metric"><div class="label">Mechanism</div><div class="value" style="font-size:0.9rem">${mechPrimary}</div></div>
+            <div class="metric"><div class="label">Regime</div><div class="value" style="font-size:0.9rem">${regime}</div></div>
+            <div class="metric"><div class="label">Pos. Pressure</div><div class="value" style="font-size:0.9rem">${pressure != null ? pressure : "—"}</div></div>
+            <div class="metric"><div class="label">OI / Funding</div><div class="value" style="font-size:0.85rem">${last.open_interest != null ? fmtNum(last.open_interest, 0) : "n/a"} · ${fmtFunding(last.funding_rate)}</div></div>
+          </div>
+          <table>
+            <tr><th>Time</th><th>RSI</th><th>Price</th><th>OI</th><th>Funding</th></tr>
+            ${rows}
+          </table>
+        </div>`;
     } catch (e) {
-      container.innerHTML += `<div class="symbol-header">${symbol}: veri yok</div>`;
+      container.innerHTML += `<div class="card sym-card"><div class="sym-header"><strong>${symbol}</strong><span class="pill">error</span></div></div>`;
     }
   }
 }
 
-// Boot
-loadMarketSnapshot();
-loadMarketAgent();
-loadNews();
-loadSymbols();
-</script>
+async function loadNews() {
+  const newsEl = document.getElementById("news");
+  const catEl = document.getElementById("catalysts");
+  try {
+    const data = await fetchJson("history/latest_news.json");
+    const headlines = (data.headlines || []).slice(0, 14);
+    newsEl.innerHTML = headlines.length
+      ? headlines.map(h => `<div class="news-item"><span class="news-src">[${h.source || "?"}]</span><span>${h.headline}</span></div>`).join("")
+      : '<div class="empty">No headlines</div>';
 
+    const sources = data.sources || [];
+    catEl.innerHTML = `
+      <div style="color:var(--muted);font-size:0.8rem;margin-bottom:8px">
+        Updated ${data.updated_at ? new Date(data.updated_at).toLocaleString() : "—"}
+      </div>
+      ${sources.slice(0, 12).map(s => `<div class="news-item"><span>${s.name || s}</span><span class="news-src">${s.type || ""}</span></div>`).join("") || '<div class="empty">No source list</div>'}
+    `;
+  } catch (e) {
+    newsEl.innerHTML = `<div class="empty">${e.message}</div>`;
+  }
+}
+
+async function loadEdge() {
+  const el = document.getElementById("edge-stats");
+  try {
+    const data = await fetchJson("history/edge_stats.json");
+    const keys = Object.keys(data);
+    if (!keys.length) {
+      el.innerHTML = '<div class="empty">Edge stats will appear after a few runs with mechanism history.</div>';
+      return;
+    }
+    const rows = keys.map(k => {
+      const v = data[k];
+      return `<tr>
+        <td>${k}</td>
+        <td>${v.n}</td>
+        <td class="${(v.avg_fwd_pct || 0) >= 0 ? "pos" : "neg"}">${v.avg_fwd_pct != null ? (v.avg_fwd_pct > 0 ? "+" : "") + v.avg_fwd_pct + "%" : "—"}</td>
+        <td>${v.win_rate != null ? v.win_rate + "%" : "—"}</td>
+      </tr>`;
+    }).join("");
+    el.innerHTML = `<table>
+      <tr><th>Mechanism</th><th>N</th><th>Avg Fwd</th><th>Win%</th></tr>
+      ${rows}
+    </table>
+    <div style="margin-top:8px;font-size:0.72rem;color:var(--muted)">Forward return measured between consecutive runs for the same symbol.</div>`;
+  } catch (_) {
+    el.innerHTML = '<div class="empty">No edge stats yet — will populate after transition runs.</div>';
+  }
+}
+
+loadSnapshot();
+loadAgent();
+loadSymbols();
+loadNews();
+loadEdge();
+</script>
 </body>
 </html>
