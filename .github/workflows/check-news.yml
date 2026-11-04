@@ -37,6 +37,8 @@ jobs:
           NEWS_AI_API_KEY: ${{ secrets.NEWS_AI_API_KEY }}
           NEWS_AI_BASE_URL: ${{ secrets.NEWS_AI_BASE_URL }}
           NEWS_AI_MODEL: ${{ secrets.NEWS_AI_MODEL }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python news_bot.py
 
       - name: Tarihceyi (history/) repo'ya kaydet
