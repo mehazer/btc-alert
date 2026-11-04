@@ -116,12 +116,9 @@ def find_recent_move(history, lookback=LOOKBACK_CANDLES, min_pct=MIN_SPIKE_PCT):
     high_i, high_p = max(prices[:-1], key=lambda x: x[1])
 
     # Prefer the move that ends at (or near) the current bar
-    # Rising move: from recent swing low to current
     rise_pct = _pct(last_price, low_p)
     fall_pct = _pct(last_price, high_p)
 
-    # Choose the dominant recent move that is still "active" toward the end
-    # If price is closer to the high side of the range -> rising context
     range_low = min(p for _, p in prices)
     range_high = max(p for _, p in prices)
     range_span = range_high - range_low if range_high != range_low else 1.0
@@ -250,7 +247,7 @@ def find_previous_spike(history, current_move, lookback=LOOKBACK_CANDLES, min_pc
 
 
 # ---------------------------------------------------------------------------
-# Mechanism classification
+# Mechanism classification  (priority fixed: sharp OI beats volume class)
 # ---------------------------------------------------------------------------
 
 def classify_mechanism(
@@ -266,6 +263,14 @@ def classify_mechanism(
 ):
     """
     Returns (primary, secondary, reasoning_sentences).
+
+    Priority rules (price rising):
+      1. OI rising sharply  → Fresh long buildup (+ crowding)  [even if volume soft]
+      2. OI rising gradually + healthy volume → Fresh long buildup
+      3. OI falling + high volume → Short covering
+      4. OI flat + high volume → Spot-led / cautious
+      5. Volume decreasing → Weakening participation (only if OI not sharp)
+      6. Else Mixed/inconclusive
     """
     primary = "Mixed/inconclusive"
     secondary = None
@@ -274,28 +279,47 @@ def classify_mechanism(
     oi_sharp = oi_chg is not None and abs(oi_chg) >= OI_SHARP_PCT
     oi_gradual = oi_chg is not None and 0 < oi_chg < OI_SHARP_PCT
     high_vol = vol_class in ("Increasing", "Climactic")
+    soft_vol = vol_class in ("Decreasing", "Normal", "Unknown")
 
     if price_dir == "Rising":
-        if oi_dir == "Rising" and oi_gradual and high_vol:
+        # --- Priority 1: Sharp OI expansion (leverage participation) ---
+        # Volume is secondary information; do not let soft volume override sharp OI.
+        if oi_dir == "Rising" and oi_sharp:
+            primary = "Fresh long buildup"
+            secondary = "Leverage crowding / mixed aggressive positioning"
+            reasons.append(
+                "Price rising with sharp OI expansion indicates strong leveraged "
+                "participation. New longs (and possibly new shorts) are entering; "
+                "crowding and liquidation risk are elevated."
+            )
+            if soft_vol:
+                reasons.append(
+                    "Volume is not confirming the OI expansion (soft/declining), "
+                    "so participation may be concentrated in derivatives rather than "
+                    "broad spot demand. Treat the move with extra caution."
+                )
+            if funding_label in ("Strongly Positive", "Positive"):
+                reasons.append(
+                    "Positive funding confirms that longs are paying shorts, "
+                    "reinforcing the crowding interpretation."
+                )
+
+        # --- Priority 2: Gradual OI + healthy volume ---
+        elif oi_dir == "Rising" and oi_gradual and high_vol:
             primary = "Fresh long buildup"
             reasons.append(
                 "Price is rising with gradual OI expansion and healthy volume, "
-                "consistent with new positions entering rather than pure covering."
+                "consistent with new positions entering rather than pure covering. "
+                "The move looks relatively healthier than a sharp-OI vertical rise."
             )
             if funding_label in ("Strongly Positive", "Positive"):
                 secondary = "Leverage crowding risk"
                 reasons.append(
-                    "Positive funding suggests longs are paying shorts, so participation "
-                    "includes leveraged longs and crowding risk is elevated."
+                    "Positive funding suggests longs are paying shorts, so "
+                    "participation includes leveraged longs and crowding risk is elevated."
                 )
-        elif oi_dir == "Rising" and oi_sharp and high_vol:
-            primary = "Fresh long buildup"
-            secondary = "Leverage crowding / mixed aggressive positioning"
-            reasons.append(
-                "Price rising with sharp OI expansion and high volume indicates strong "
-                "leveraged participation. Both new longs and new shorts may be entering; "
-                "crowding and liquidation risk are elevated."
-            )
+
+        # --- Priority 3: OI falling + high volume → short covering ---
         elif oi_dir == "Falling" and high_vol:
             primary = "Short covering"
             if preceding_bearish:
@@ -311,6 +335,8 @@ def classify_mechanism(
                     "lose fuel once shorts are exhausted."
                 )
             secondary = "Spot-led buying"
+
+        # --- Priority 4: OI flat + high volume ---
         elif oi_dir in ("Flat", "Unknown") and high_vol:
             primary = "Spot-led buying"
             secondary = "Short covering"
@@ -319,12 +345,22 @@ def classify_mechanism(
                 "spot buying and/or cautious positioning, with possible short covering. "
                 "Leverage crowding risk is lower than under sharp OI expansion."
             )
+
+        # --- Priority 5: Volume declining (only if OI not already sharp) ---
         elif vol_class == "Decreasing":
             primary = "Weakening participation"
             reasons.append(
                 "Price is rising but volume is falling, which implies weakening "
-                "participation and possible exhaustion or low-liquidity drift."
+                "participation and possible exhaustion or low-liquidity drift. "
+                "Increase caution, especially near resistance."
             )
+            if oi_dir == "Rising" and oi_gradual:
+                secondary = "Cautious / low-conviction positioning"
+                reasons.append(
+                    "OI is rising only gradually while volume fades, so any new "
+                    "positions appear low-conviction."
+                )
+
         else:
             primary = "Mixed/inconclusive"
             reasons.append(
@@ -332,10 +368,14 @@ def classify_mechanism(
                 "clearly distinguish fresh longs from covering or spot flow."
             )
 
-        # BTC overlay
+        # BTC overlay (applied after primary is set)
         if btc_dir == "Rising" and relative_label in ("Similar", "Underperforming"):
-            if primary in ("Fresh long buildup", "Spot-led buying", "Short covering", "Mixed/inconclusive"):
-                secondary = secondary or "BTC-led relief rally"
+            if primary in (
+                "Fresh long buildup", "Spot-led buying",
+                "Short covering", "Mixed/inconclusive", "Weakening participation"
+            ):
+                if secondary is None:
+                    secondary = "BTC-led relief rally"
                 reasons.append(
                     "The asset is moving with BTC recovery without clear outperformance, "
                     "so part of the move is likely a BTC-led sympathetic / relief rally."
@@ -361,6 +401,12 @@ def classify_mechanism(
             reasons.append(
                 "Price falling while OI expands on high volume can reflect fresh short "
                 "positioning and/or both sides adding during a volatile breakdown."
+            )
+        elif oi_dir == "Rising":
+            primary = "Fresh short buildup"
+            reasons.append(
+                "Price falling while OI expands is consistent with fresh short "
+                "positioning, though volume confirmation is limited."
             )
         else:
             primary = "Mixed/inconclusive"
@@ -431,6 +477,10 @@ def score_sudden_drop_risk(
             )
             decrease_factors.append("Fresh long OI begins entering gradually")
 
+        if primary_mechanism == "Weakening participation":
+            score += 1
+            reasons.append("Volume fading while price rises (exhaustion risk)")
+
         if btc_dir == "Falling":
             score += 1
             reasons.append("BTC weakening while asset rises")
@@ -454,9 +504,17 @@ def score_sudden_drop_risk(
         reasons.append("No strong crowding or climax signals detected")
 
     if not increase_factors:
-        increase_factors = ["Sharp OI jump while price stalls", "Strongly positive funding", "Long upper wicks on high volume"]
+        increase_factors = [
+            "Sharp OI jump while price stalls",
+            "Strongly positive funding",
+            "Long upper wicks on high volume",
+        ]
     if not decrease_factors:
-        decrease_factors = ["OI expands only gradually", "Pullbacks on lower volume", "Asset continues to outperform BTC"]
+        decrease_factors = [
+            "OI expands only gradually",
+            "Pullbacks on lower volume",
+            "Asset continues to outperform BTC",
+        ]
 
     return {
         "level": level,
@@ -493,6 +551,8 @@ def classify_btc_dependency(asset_chg, btc_chg):
         dep = "Asset-specific relative strength"
     elif asset_dir == "Falling" and (btc_dir in ("Flat", "Rising") or rel_label == "Underperforming"):
         dep = "Asset-specific weakness"
+    elif asset_dir == btc_dir:
+        dep = "BTC-led/sympathetic move"
     else:
         dep = "Mixed or inconclusive"
 
@@ -500,19 +560,33 @@ def classify_btc_dependency(asset_chg, btc_chg):
 
 
 # ---------------------------------------------------------------------------
-# Support / resistance approximation
+# Approximate support / resistance from recent history
 # ---------------------------------------------------------------------------
 
 def approx_levels(history, lookback=30):
+    """Simple recent high/low as rough resistance/support."""
     window = history[-lookback:] if len(history) >= lookback else history
-    prices = [h["price"] for h in window if h.get("price") is not None]
-    if not prices:
+    prices = [h.get("price") for h in window if h.get("price") is not None]
+    if len(prices) < 5:
         return None, None
     return min(prices), max(prices)
 
 
+def oi_near_recent_high(history, current_oi, lookback=30, pct_band=3.0):
+    if current_oi is None:
+        return False
+    window = history[-lookback:] if len(history) >= lookback else history
+    ois = [h.get("open_interest") for h in window if h.get("open_interest") is not None]
+    if not ois:
+        return False
+    recent_high = max(ois)
+    if recent_high == 0:
+        return False
+    return (recent_high - current_oi) / recent_high * 100 <= pct_band
+
+
 # ---------------------------------------------------------------------------
-# Main entry
+# Main analysis entry point
 # ---------------------------------------------------------------------------
 
 def analyze(
@@ -567,7 +641,6 @@ def analyze(
     # Preceding context: was the prior swing bearish?
     preceding_bearish = False
     if current_move and current_move["direction"] == "Rising":
-        # Check if before the move start, price had declined
         if current_move.get("move_pct") and current_move["move_pct"] > 0:
             preceding_bearish = True  # rising after a swing low implies prior decline
 
@@ -592,17 +665,12 @@ def analyze(
     )
 
     # OI near high?
-    oi_series = [h.get("open_interest") for h in history[-30:] if h.get("open_interest") is not None]
-    oi_near_high = False
-    if current_oi is not None and oi_series:
-        oi_max = max(oi_series)
-        if oi_max > 0 and current_oi >= 0.92 * oi_max:
-            oi_near_high = True
+    oi_high = oi_near_recent_high(history, current_oi)
 
     risk = score_sudden_drop_risk(
         price_dir=price_dir,
         oi_chg=oi_chg_1,
-        oi_near_high=oi_near_high,
+        oi_near_high=oi_high,
         vol_class=vol_class,
         funding_label=funding_label,
         primary_mechanism=primary,
@@ -633,7 +701,7 @@ def analyze(
     else:
         trend = price_dir
 
-    # Comparison table data
+    # Comparison table data + narrative
     comparison = None
     comparison_summary = None
     if current_move and previous_spike:
@@ -653,7 +721,6 @@ def analyze(
                 "funding_end": previous_spike.get("end_funding"),
             },
         }
-        # Narrative comparison
         parts = []
         c_oi = current_move.get("oi_change_pct")
         p_oi = previous_spike.get("oi_change_pct")
@@ -672,6 +739,8 @@ def analyze(
             parts.append("more consistent with short covering than aggressive new long accumulation")
         elif primary == "Fresh long buildup":
             parts.append("more consistent with fresh position building")
+        elif primary == "Weakening participation":
+            parts.append("weaker participation (volume fading) than a healthy accumulation spike")
 
         if dep_label.startswith("BTC-led"):
             parts.append("more BTC-dependent than asset-specific")
@@ -709,33 +778,54 @@ def analyze(
         "Funding becomes strongly positive",
         "Long upper wicks appear on high volume",
         "BTC loses its recovery",
-        "Price falls with rapidly declining OI (long flush)",
-        "Asset underperforms BTC on the next session",
-        "Price returns below the breakout / swing level",
+        "Price falls with rapidly declining OI",
+        "Asset underperforms BTC",
+        "Price returns below the breakout level",
     ]
+
+    # Build relationship strings
+    def _fmt_chg(label, chg):
+        if chg is None:
+            return f"{label}: Unknown"
+        return f"{label}: {_dir_label(chg)} — {chg:+.2f}%"
+
+    rel_price = _fmt_chg("Price", price_chg_1)
+    rel_oi = _fmt_chg("OI", oi_chg_1)
+    vol_str = f"Volume: {vol_class}"
+    if vol_ratio is not None:
+        vol_str += f" ({vol_ratio:.2f}x avg)"
+    fund_str = f"Funding: {funding_label}"
+    if current_funding is not None:
+        fund_str += f" ({current_funding * 100:.4f}%)"
+    btc_str = _fmt_chg("BTC", btc_chg) if btc_chg is not None else "BTC: Unknown"
+    vs_btc = f"Asset versus BTC: {rel_label or 'Unknown'}"
 
     return {
         "symbol": symbol,
         "status": "ok",
-        "timeframe": timeframe,
         "evaluated_at": ts,
-        "venue_oi": venue_oi,
-        "venue_volume": venue_volume,
+        "timeframe": timeframe,
         "market_summary": {
             "price": current_price,
             "trend": trend,
             "rsi": current_rsi,
             "support": support,
             "resistance": resistance,
-            "contract": "OKX USDT perpetual (OI); Binance spot (price/volume)",
+            "contract": f"OI={venue_oi}; Volume={venue_volume}",
+            "data_notes": (
+                "OI is OKX perpetual only (may not represent whole market). "
+                "Volume is Binance spot (not derivatives volume). "
+                "No liquidation feed available from free endpoints. "
+                "OI units are coin-margined; do not mix with USD notional without conversion."
+            ),
         },
         "current_relationship": {
-            "price": f"{price_dir} — {price_chg_1:+.2f}%" if price_chg_1 is not None else price_dir,
-            "oi": f"{oi_dir} — {oi_chg_1:+.2f}%" if oi_chg_1 is not None else oi_dir,
-            "volume": f"{vol_class}" + (f" ({vol_ratio:.2f}x avg)" if vol_ratio else ""),
-            "funding": f"{funding_label}" + (f" ({current_funding * 100:.4f}%)" if current_funding is not None else ""),
-            "btc": f"{btc_dir} — {btc_chg:+.2f}%" if btc_chg is not None else "Unknown",
-            "asset_vs_btc": rel_label or "Unknown",
+            "price": rel_price,
+            "oi": rel_oi,
+            "volume": vol_str,
+            "funding": fund_str,
+            "btc": btc_str,
+            "asset_vs_btc": vs_btc,
             "btc_dependency": dep_label,
         },
         "likely_mechanism": {
@@ -743,8 +833,6 @@ def analyze(
             "secondary": secondary,
             "reasoning": mech_reasons,
         },
-        "current_move": current_move,
-        "previous_spike": previous_spike,
         "comparison": comparison,
         "comparison_summary": comparison_summary,
         "sudden_drop_risk": risk,
@@ -752,14 +840,9 @@ def analyze(
             "bullish": bullish_conf,
             "warnings": warnings,
         },
-        "missing_data": missing,
-        "data_notes": [
-            "OI is from OKX only and does not represent the entire market.",
-            "Volume is Binance spot; derivatives volume is not included.",
-            "OI units are base-currency contracts from OKX (oiCcy), not USD notional.",
-            "Liquidation data is unavailable from free public endpoints used here.",
-            "Every futures contract has both a long and a short side; OI alone does not reveal net positioning.",
-        ],
+        "missing": missing,
+        "current_move": current_move,
+        "previous_spike": previous_spike,
     }
 
 
@@ -782,24 +865,24 @@ def format_telegram(analysis):
     lines.append("")
     lines.append("1. MARKET SUMMARY")
     lines.append(f"Price: {s['price']} | Trend: {s['trend']} | RSI: {s.get('rsi')}")
-    if s.get("support") and s.get("resistance"):
+    if s.get("support") is not None and s.get("resistance") is not None:
         lines.append(f"Support~{s['support']:.2f} / Resistance~{s['resistance']:.2f}")
     lines.append(f"Venue: {s['contract']}")
     lines.append("")
     lines.append("2. CURRENT RELATIONSHIP")
-    lines.append(f"Price: {r['price']}")
-    lines.append(f"OI: {r['oi']}")
-    lines.append(f"Volume: {r['volume']}")
-    lines.append(f"Funding: {r['funding']}")
-    lines.append(f"BTC: {r['btc']}")
-    lines.append(f"Asset vs BTC: {r['asset_vs_btc']}")
-    lines.append(f"Dependency: {r['btc_dependency']}")
+    lines.append(f"  {r['price']}")
+    lines.append(f"  {r['oi']}")
+    lines.append(f"  {r['volume']}")
+    lines.append(f"  {r['funding']}")
+    lines.append(f"  {r['btc']}")
+    lines.append(f"  {r['asset_vs_btc']}")
+    lines.append(f"  Dependency: {r['btc_dependency']}")
     lines.append("")
     lines.append("3. LIKELY MECHANISM")
     lines.append(f"Primary: {m['primary']}")
     if m.get("secondary"):
         lines.append(f"Secondary: {m['secondary']}")
-    for reason in m.get("reasoning", [])[:4]:
+    for reason in m.get("reasoning", [])[:5]:
         lines.append(f"- {reason}")
     lines.append("")
     lines.append("4. VS PREVIOUS SPIKE")
@@ -808,13 +891,14 @@ def format_telegram(analysis):
     else:
         lines.append("Insufficient history for spike comparison.")
     if analysis.get("comparison"):
-        c, p = analysis["comparison"]["current"], analysis["comparison"]["previous"]
+        c = analysis["comparison"]["current"]
+        p = analysis["comparison"]["previous"]
         lines.append(
-            f"Current: px {c.get('price_change')}% / OI {c.get('oi_change')}% / "
+            f"  Current : px {c.get('price_change')}% | OI {c.get('oi_change')}% | "
             f"{c.get('duration_bars')} bars"
         )
         lines.append(
-            f"Previous: px {p.get('price_change')}% / OI {p.get('oi_change')}% / "
+            f"  Previous: px {p.get('price_change')}% | OI {p.get('oi_change')}% | "
             f"{p.get('duration_bars')} bars"
         )
     lines.append("")
@@ -830,6 +914,7 @@ def format_telegram(analysis):
     lines.append("Warn: " + analysis["confirmation_signals"]["warnings"][0])
     lines.append("")
     lines.append("Notes: OI=OKX only; vol=Binance spot; no liquidation feed.")
+    lines.append("OI alone does not reveal long/short direction.")
 
     text = "\n".join(lines)
     if len(text) > 4000:
