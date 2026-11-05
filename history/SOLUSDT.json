@@ -900,5 +900,34 @@
     "liq_long_usd": 8806838.0,
     "liq_short_usd": 9881667.0,
     "liq_bias": "Balanced"
+  },
+  {
+    "date": "2026-11-05 06:06",
+    "rsi": 54.2,
+    "price": 95.79,
+    "volume": 116272.013,
+    "open_interest": 3488915.810000002,
+    "funding_rate": 2.59679725847e-05,
+    "fear_greed_value": 50,
+    "fear_greed_label": "Neutral",
+    "directions": {
+      "price_dir": "Falling",
+      "price_chg_pct": -0.26,
+      "oi_dir": "Rising",
+      "oi_chg_pct": 1.12,
+      "volume_dir": "Rising",
+      "volume_chg_pct": 102.847,
+      "funding_dir": "Falling",
+      "funding_chg_pct": -65.797,
+      "rsi_dir": "Falling",
+      "rsi_chg_pct": -2.254
+    },
+    "global_ls_ratio": null,
+    "global_ls_dir": "Unknown",
+    "top_account_ls_ratio": null,
+    "top_position_ls_ratio": null,
+    "liq_long_usd": 3658781.0,
+    "liq_short_usd": 9619333.0,
+    "liq_bias": "Short flush dominant"
   }
 ]
