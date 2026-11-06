@@ -2,8 +2,8 @@ name: News Agent
 
 on:
   schedule:
-    # Saat basi crypto haberlerini yeniler; Google Trends sadece gunde bir kez yazar.
-    - cron: "0 * * * *"
+    # Her 4 saatte crypto haberlerini yeniler; Google Trends sadece gunde bir kez yazar.
+    - cron: "0 */4 * * *"
   workflow_dispatch: {}   # Actions sekmesinden manuel de tetikleyebilirsin
 
 # History dosyalarini (history/*.json) repo'ya geri commit edebilmek icin

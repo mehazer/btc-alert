@@ -56,7 +56,7 @@ Bunların hiçbiri şu an gerekli değil — önce bunun 3-4 gün sorunsuz
 
 ## Crypto News Intelligence
 
-`News Agent` workflow'u saat başı çalışır. Crypto haberlerini kaynak ağırlığı ve
+`News Agent` workflow'u dört saatte bir çalışır. Crypto haberlerini kaynak ağırlığı ve
 yenilik değerine göre sıralar, tekrarları temizler ve şu başlıklar altında toplar:
 
 - Market & Macro

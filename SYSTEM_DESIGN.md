@@ -6,7 +6,7 @@ Crypto Watch is a deterministic market-observation and interpretation tool. It i
 
 ## Execution flow
 
-1. `technical_agent.yml` runs on the configured 4-hour schedule or by manual dispatch.
+1. `technical_agent.yml` runs every 4 hours or by manual dispatch.
 2. `alert_bot.py` retrieves Binance spot candles/volume, OKX perpetual open interest and funding, the Alternative.me Fear & Greed index, liquidation/L-S extras when available, and the latest local news sentiment.
 3. Each symbol observation is appended to `history/<SYMBOL>.json`. No current implementation trims old records.
 4. `market_agent.py` evaluates BTC-level directional state from RSI, sentiment, funding, price/OI changes, and news sentiment.
@@ -14,8 +14,9 @@ Crypto Watch is a deterministic market-observation and interpretation tool. It i
 6. `positioning_regime.py` calculates funding percentile, recent OI change, positioning pressure, regime, and separate squeeze risk. Crowded shorts are not automatically treated as downside risk.
 7. `self_improvement.py` settles older forecasts after three later observations, records outcomes, calculates direction/risk accuracy, and changes evidence weights by at most 0.02 within 0.50–1.50 bounds.
 8. The workflow commits all `history/` records. Technical and news workflows share the `crypto-history-writers` concurrency group so their Git pushes do not overwrite each other.
-9. `check-news.yml` runs hourly, writes categorized news and daily Trends results, and sends one compact Telegram news update.
-10. GitHub Pages serves `docs/index.html` for current state and `docs/history.html` for full audit/history.
+9. `check-news.yml` runs every 4 hours, writes categorized news and daily Trends results, and sends one compact Telegram news update.
+10. GitHub Pages deploys automatically from repository updates; it is not a market-analysis heartbeat and therefore has no independent empty scheduled run.
+11. GitHub Pages serves `docs/index.html` for current state and `docs/history.html` for full audit/history.
 
 ## Data sources and definitions
 
