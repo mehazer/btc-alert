@@ -1,0 +1,48 @@
+name: Intelligence v2 Shadow
+
+on:
+  workflow_dispatch:
+    inputs:
+      timeframe:
+        description: "Analysis timeframe"
+        required: false
+        default: "4h"
+      symbols:
+        description: "Comma-separated symbols"
+        required: false
+        default: "BTCUSDT,ETHUSDT,SOLUSDT,ZECUSDT,ZAMAUSDT"
+
+# Shadow mode is read-only: it cannot push history or alter production data.
+permissions:
+  contents: read
+
+jobs:
+  shadow-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout legacy baseline
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run v2 shadow analysis
+        env:
+          PYTHONPATH: .
+        run: |
+          python -m intelligence_v2.shadow_runner \
+            --timeframe "${{ inputs.timeframe }}" \
+            --symbols "${{ inputs.symbols }}" \
+            --output shadow_artifacts/latest.json
+
+      - name: Upload isolated shadow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: intelligence-v2-shadow-${{ github.run_id }}
+          path: shadow_artifacts/latest.json
+          if-no-files-found: error
