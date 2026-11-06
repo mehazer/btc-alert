@@ -1,10 +1,10 @@
 {
   "Mixed/inconclusive": {
-    "n": 34,
-    "sum_fwd": 0.5554275710228893,
+    "n": 36,
+    "sum_fwd": 0.3133226413144865,
     "wins": 19,
-    "avg_fwd_pct": 0.016,
-    "win_rate": 55.9
+    "avg_fwd_pct": 0.009,
+    "win_rate": 52.8
   },
   "Unknown": {
     "n": 4,
@@ -21,10 +21,10 @@
     "win_rate": 28.6
   },
   "Short covering": {
-    "n": 1,
-    "sum_fwd": -3.1986331897192057,
+    "n": 2,
+    "sum_fwd": -3.8061666040569913,
     "wins": 0,
-    "avg_fwd_pct": -3.199,
+    "avg_fwd_pct": -1.903,
     "win_rate": 0.0
   },
   "Fresh short buildup": {
@@ -33,5 +33,12 @@
     "wins": 4,
     "avg_fwd_pct": 1.007,
     "win_rate": 57.1
+  },
+  "Fresh long buildup": {
+    "n": 2,
+    "sum_fwd": 0.1258463397931162,
+    "wins": 1,
+    "avg_fwd_pct": 0.063,
+    "win_rate": 50.0
   }
 }
