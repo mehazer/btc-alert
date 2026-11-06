@@ -1,22 +1,22 @@
 {
   "version": 1,
   "weights": {
-    "price_action": 1.02,
-    "oi_context": 1.02,
-    "volume_confirmation": 1.02,
-    "funding_context": 1.02,
-    "btc_overlay": 1.02,
+    "price_action": 1.0,
+    "oi_context": 1.0,
+    "volume_confirmation": 1.0,
+    "funding_context": 1.0,
+    "btc_overlay": 1.0,
     "positioning_context": 1.0
   },
   "confidence_threshold": 80,
   "min_samples": 10,
-  "updated_at": "2026-11-06T06:02:55.781841+00:00",
-  "last_run_id": "20261106T060243Z",
+  "updated_at": "2026-11-06T15:49:48.615252+00:00",
+  "last_run_id": "20261106T154935Z",
   "metrics": {
-    "samples": 15,
-    "direction_accuracy": 46.7,
-    "risk_accuracy": 40.0,
-    "confidence": 44.4,
+    "samples": 20,
+    "direction_accuracy": 45.0,
+    "risk_accuracy": 30.0,
+    "confidence": 39.8,
     "confidence_threshold": 80,
     "threshold_reached": false
   }
