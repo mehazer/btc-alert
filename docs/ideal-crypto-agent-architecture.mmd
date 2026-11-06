@@ -1,0 +1,106 @@
+flowchart LR
+    U[User / Telegram / Dashboard] --> G[Alert Gateway + Human Approval]
+    G --> O[Orchestrator / Event Router]
+
+    subgraph DATA[Data and Evidence Plane]
+      EX[Exchange adapters\nBinance / OKX / multi-venue]
+      NEWS[News + regulatory sources]
+      SOC[Social / search trends]
+      ON[On-chain / whale / flows]
+      MAC[Macro calendar + market data]
+      EX --> NORM[Normalizer + Quality Gates]
+      NEWS --> NORM
+      SOC --> NORM
+      ON --> NORM
+      MAC --> NORM
+      NORM --> TS[(Time-series DB\nraw + normalized observations)]
+      NORM --> FS[(Feature store\npoint-in-time features)]
+      NORM --> EV[(Event bus\nbar close / news / liquidation)]
+    end
+
+    subgraph AGENTS[Specialist Analysis Plane]
+      TECH[Technical Agent\nprice / OI / volume / funding\nmulti-timeframe]
+      NEWSA[News Agent\nclassification / source quality / impact]
+      RISK[Risk Agent\nliquidation / crowding / stress / scenarios]
+      COIN[Selected-Coin Agent\ncoin-specific thesis + invalidation]
+      PORT[Portfolio Agent\nexposure / correlation / sizing constraints]
+      REG[Regime Agent\nBTC / market breadth / volatility]
+    end
+
+    FS --> TECH
+    FS --> RISK
+    FS --> COIN
+    FS --> PORT
+    FS --> REG
+    NEWS --> NEWSA
+    EV --> TECH
+    EV --> NEWSA
+    EV --> RISK
+    EV --> REG
+    EV --> COIN
+
+    TECH --> CTX[Canonical Evidence Pack]
+    NEWSA --> CTX
+    RISK --> CTX
+    COIN --> CTX
+    PORT --> CTX
+    REG --> CTX
+
+    subgraph INT[Interpretation and Decision Plane]
+      INTL[AI Interpreter\nexplain evidence, conflicts, catalysts]
+      CHALL[Challenge Agent\nfind missing data, contradictions, overconfidence]
+      DEC[Decision Synthesizer\nscenario tree, bias, risk, invalidation]
+      POL[Policy Engine\nno-trade / alert / paper plan / human approval]
+    end
+    CTX --> INTL
+    CTX --> CHALL
+    INTL --> DEC
+    CHALL --> DEC
+    DEC --> POL
+    POL --> G
+
+    subgraph LEARN[Evaluation and Improvement Plane]
+      TRACE[Trace + lineage store\ninputs, timestamps, prompts, outputs]
+      LABEL[Outcome labeler\nforward returns, drawdown, hit rate]
+      EVAL[Evaluator\nagent accuracy + calibration + cost]
+      CAL[Calibration / versioned weights\nsmall bounded updates]
+      REGISTRY[Prompt / model / rule registry]
+    end
+    NORM --> TRACE
+    CTX --> TRACE
+    INTL --> TRACE
+    DEC --> TRACE
+    POL --> TRACE
+    TS --> LABEL
+    TRACE --> EVAL
+    LABEL --> EVAL
+    EVAL --> CAL
+    EVAL --> REGISTRY
+    CAL --> TECH
+    CAL --> RISK
+    CAL --> DEC
+
+    subgraph OPS[Operations and Safety]
+      MON[Freshness / drift / failure monitor]
+      COST[Latency + token + API cost monitor]
+      TEST[Replay / backtest / shadow mode]
+      SEC[Secrets / least privilege / read-only APIs]
+    end
+    NORM --> MON
+    TRACE --> MON
+    EVAL --> MON
+    O --> COST
+    REGISTRY --> TEST
+    SEC -. protects .-> EX
+    SEC -. protects .-> O
+
+    classDef data fill:#102235,stroke:#38bdf8,color:#e7edf5;
+    classDef agent fill:#1d1730,stroke:#c084fc,color:#e7edf5;
+    classDef decision fill:#25351f,stroke:#39d98a,color:#e7edf5;
+    classDef learn fill:#3a2b12,stroke:#f5b942,color:#e7edf5;
+    classDef ops fill:#30151b,stroke:#f87171,color:#e7edf5;
+    class EX,NEWS,SOC,ON,MAC,NORM,TS,FS,EV data;
+    class TECH,NEWSA,RISK,COIN,PORT,REG agent;
+    class INTL,CHALL,DEC,POL,G,O,CTX decision;
+    class TRACE,LABEL,EVAL,CAL,REGISTRY learn;
+    class MON,COST,TEST,SEC ops;
