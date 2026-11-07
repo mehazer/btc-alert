@@ -1,0 +1,98 @@
+{
+  "walkforward_batch_id": "walkforward-fe02ed49d0e7",
+  "evaluation_mode": "walkforward_backtest",
+  "lookahead_safe": true,
+  "started_at": "2026-11-07T22:47:43.503399+00:00",
+  "completed_at": "2026-11-07T22:47:43.503404+00:00",
+  "symbols": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT"
+  ],
+  "timeframe": "4h",
+  "history_lengths": {
+    "BTCUSDT": 96,
+    "ETHUSDT": 96,
+    "SOLUSDT": 96
+  },
+  "common_bars": 96,
+  "warmup_bars": 20,
+  "eligible_timestamps": 76,
+  "decision_count": 228,
+  "evaluation_count": 1140,
+  "coverage": {
+    "settled": 1002,
+    "pending": 138,
+    "insufficient_data": 0
+  },
+  "leakage_checks": {
+    "violations": [],
+    "violation_count": 0,
+    "source_order_normalized": true,
+    "future_rows_used_for_decisions": false
+  },
+  "determinism_hash": "7474bc74fb4aaf573b5b173e03f2d788c8918f9fb792ba191b7f486ba7bdf95c",
+  "scorecard": {
+    "settled_records": 1002,
+    "pending_records": 138,
+    "directional_records": 194,
+    "directional_hits": 148,
+    "direction_accuracy_pct": 76.29,
+    "by_horizon": {
+      "1": {
+        "settled": 225,
+        "directional": 43,
+        "hits": 31,
+        "accuracy_pct": 72.09
+      },
+      "3": {
+        "settled": 219,
+        "directional": 43,
+        "hits": 28,
+        "accuracy_pct": 65.12
+      },
+      "6": {
+        "settled": 210,
+        "directional": 41,
+        "hits": 31,
+        "accuracy_pct": 75.61
+      },
+      "12": {
+        "settled": 192,
+        "directional": 39,
+        "hits": 33,
+        "accuracy_pct": 84.62
+      },
+      "24": {
+        "settled": 156,
+        "directional": 28,
+        "hits": 25,
+        "accuracy_pct": 89.29
+      }
+    },
+    "by_decision": {
+      "OBSERVE": {
+        "records": 780,
+        "settled": 672,
+        "pending": 108
+      },
+      "PAPER_PLAN": {
+        "records": 280,
+        "settled": 276,
+        "pending": 4
+      },
+      "ALERT": {
+        "records": 80,
+        "settled": 54,
+        "pending": 26
+      }
+    }
+  },
+  "limitations": [
+    "ZECUSDT and ZAMAUSDT are intentionally excluded because their history is too short.",
+    "Legacy date-only rows are assigned monotonic synthetic timestamps preserving source order.",
+    "Legacy mechanism comparison is only used when a mechanism record exists at or before the replay timestamp.",
+    "Historical replay is diagnostic and excluded from live promotion calibration.",
+    "This replays deterministic v2 agents; it does not recreate unavailable historical news or venue snapshots."
+  ]
+}

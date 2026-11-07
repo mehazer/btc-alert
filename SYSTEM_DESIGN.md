@@ -55,6 +55,8 @@ This is intentionally a bounded online calibration loop. It does not rewrite old
 
 Replay is diagnostic only. It must not rewrite `decision_ledger.json`, `evaluation_ledger.json`, `scorecard.json`, agent scorecards, or the promotion report. Live shadow metrics remain the evidence used by the promotion gate; replay metrics are used to validate settlement logic, inspect longer horizons, and compare robustness across historical data. Replay of existing decisions does not regenerate historical agent decisions, so it is not a substitute for a future full point-in-time decision backtest.
 
+`python -m intelligence_v2.walkforward --symbols BTCUSDT,ETHUSDT,SOLUSDT` performs that next-level diagnostic. At each eligible historical bar it writes a history prefix, rebuilds the evidence pack, runs Technical, Risk, Challenge, Comparator, and Decision Synthesizer, then evaluates the resulting decision at every configured horizon. It writes only to `history/intelligence_v2/walkforward/<batch-id>/` and the stable `walkforward/latest/` pointer. The batch ID and output hash are derived from the source history and configuration, so reruns are deterministic. ZEC and ZAMA remain excluded until their history depth is sufficient. Legacy date-only rows receive monotonic synthetic timestamps that preserve source order; original timestamps remain in each record for audit.
+
 ## History files
 
 - `history/<SYMBOL>.json`: append-only market observations.
