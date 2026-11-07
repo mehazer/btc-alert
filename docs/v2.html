@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Intelligence v2 — Promotion Checklist</title>
+<style>
+:root{--bg:#080c12;--panel:#111923;--line:#243244;--text:#e7edf5;--muted:#91a1b5;--cyan:#22d3ee;--green:#39d98a;--amber:#f5b942;--red:#f87171;--blue:#60a5fa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 system-ui,sans-serif}.wrap{max-width:1100px;margin:auto;padding:22px 16px 48px}h1{font-size:1.3rem;margin:0}h1 span{color:var(--cyan)}.sub{color:var(--muted);font-size:.8rem;margin-top:4px}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin:14px 0}.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}.pill{display:inline-flex;padding:3px 8px;border:1px solid var(--line);border-radius:999px;font-size:.72rem;color:var(--muted)}.ok{color:var(--green);border-color:#205f42}.bad{color:var(--red);border-color:#713333}.warn{color:var(--amber);border-color:#69501e}.meta{color:var(--muted);font-size:.78rem}table{width:100%;border-collapse:collapse;font-size:.78rem}th,td{text-align:left;padding:7px 5px;border-top:1px solid #1a2635}th{color:var(--muted)}.reason{padding:3px 0;color:var(--muted)}.reason:before{content:'• ';color:var(--cyan)}a{color:var(--cyan);text-decoration:none}.value{font-size:1.2rem;font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Intelligence <span>v2</span> — Promotion Checklist</h1>
+  <div class="sub">Shadow-only metrics. Never auto-promotes. <a href="index.html">← Main dashboard</a></div>
+  <div id="promo" class="card"><div class="meta">Loading…</div></div>
+  <div class="grid" id="agents"></div>
+  <div class="card">
+    <h3 style="margin:0 0 8px">Manual PR checklist</h3>
+    <div class="reason">Confirm settled samples ≥ 30 and direction accuracy ≥ 55%.</div>
+    <div class="reason">Review Technical / Risk / Challenge scorecards separately.</div>
+    <div class="reason">Do not enable Telegram or execution in the same change.</div>
+    <div class="reason">Record human approval in the PR before merging production wiring.</div>
+    <div class="reason">Keep shadow schedule running after any future promotion for regression comparison.</div>
+  </div>
+</div>
+<script>
+const REPO='mehazer/btc-alert', BRANCH='main';
+const raw=p=>`https://raw.githubusercontent.com/${REPO}/${BRANCH}/${p}?t=${Date.now()}`;
+const esc=v=>String(v??'—').replace(/[&<>"']/g,c=>({'&':'&','<':'<','>':'>','"':'"'}[c]));
+async function json(p){const r=await fetch(raw(p)); if(!r.ok) throw Error(p+' '+r.status); return r.json()}
+(async()=>{
+  const box=document.getElementById('promo');
+  const agents=document.getElementById('agents');
+  try{
+    const [promo, cards, meta] = await Promise.all([
+      json('history/intelligence_v2/promotion_report.json').catch(()=>null),
+      json('history/intelligence_v2/agent_scorecards.json').catch(()=>null),
+      json('history/intelligence_v2/ledger_meta.json').catch(()=>null),
+    ]);
+    if(!promo){ box.innerHTML='<div class="meta">No promotion_report.json yet. Run Intelligence v2 Shadow once.</div>'; return; }
+    const st=promo.status||'unknown';
+    const cls=st==='ready_for_human_review'?'ok':st==='not_ready'?'warn':'meta';
+    const checks=(promo.checks||[]).map(c=>`<tr><td>${esc(c.name)}</td><td><span class="pill ${c.passed?'ok':'bad'}">${c.passed?'pass':'fail'}</span></td><td class="meta">${esc(c.detail)}</td></tr>`).join('');
+    const blockers=(promo.blockers||[]).map(b=>`<div class="reason">${esc(b)}</div>`).join('')||'<div class="meta">None</div>';
+    box.innerHTML=`<div><span class="pill ${cls}">${esc(st)}</span> <span class="pill ok">auto_promote=${esc(promo.auto_promote)}</span>
+      <span class="meta">runs=${esc(meta&&meta.total_runs)} decisions=${esc(meta&&meta.total_decisions)} phase=${esc(meta&&meta.phase)}</span></div>
+      <table style="margin-top:12px"><tr><th>Check</th><th>Result</th><th>Detail</th></tr>${checks}</table>
+      <div style="margin-top:12px"><strong>Blockers</strong>${blockers}</div>`;
+    if(cards&&cards.agents){
+      const mk=(name,a)=>`<div class="card"><div class="meta">${esc(name)}</div><div class="value">${a.primary_metric_pct==null?'—':a.primary_metric_pct+'%'}</div>
+        <div class="meta">${esc(a.primary_metric)} · samples ${esc(a.samples)}</div>
+        ${(a.notes||[]).slice(0,2).map(n=>`<div class="reason">${esc(n)}</div>`).join('')}</div>`;
+      agents.innerHTML=mk('Technical',cards.agents.technical||{})+mk('Risk',cards.agents.risk||{})+mk('Challenge',cards.agents.challenge||{});
+    }
+  }catch(e){ box.innerHTML=`<div class="meta">${esc(e.message)}</div>`; }
+})();
+</script>
+</body>
+</html>
