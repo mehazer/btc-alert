@@ -47,5 +47,32 @@
     },
     "appended_at": "2026-11-07T11:12:35.047851+00:00",
     "phase": 7
+  },
+  {
+    "run_id": "shadow-20261107T111925Z-7a7bfaaa",
+    "started_at": "2026-11-07T11:19:25.911623+00:00",
+    "completed_at": "2026-11-07T11:19:25.923313+00:00",
+    "timeframe": "4h",
+    "mode": "shadow-read-only",
+    "symbols": [
+      "BTCUSDT",
+      "ETHUSDT",
+      "SOLUSDT",
+      "ZECUSDT",
+      "ZAMAUSDT"
+    ],
+    "decision_count": 5,
+    "safety": {
+      "legacy_system_touched": false,
+      "telegram_sent": false,
+      "orders_submitted": false,
+      "legacy_history_written": false,
+      "v2_ledger_written": true,
+      "promotion_required": true,
+      "auto_promote": false,
+      "phase": 8
+    },
+    "appended_at": "2026-11-07T11:19:25.923883+00:00",
+    "phase": 7
   }
 ]
