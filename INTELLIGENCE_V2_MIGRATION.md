@@ -2,41 +2,29 @@
 
 ## Current state
 
-The legacy system remains the production system. Its scheduled workflows, Telegram notifications, dashboard, history writers, and self-improvement loop are unchanged by the v2 shadow implementation.
+The legacy system remains the production system. v2 runs in shadow mode (manual or scheduled), writes only under `history/intelligence_v2/`, and never sends Telegram or submits orders.
 
-The v2 code is isolated under `intelligence_v2/`. Shadow mode (manual or scheduled) reads existing `history/` files, appends only to `history/intelligence_v2/`, and does not send Telegram messages, rewrite legacy history, access exchange credentials, or submit orders.
+## Phase 8 implemented
 
-## How to run v2 safely
+- **Interpreter**: evidence-ID grounded deterministic narrative (`intelligence_v2/interpreter.py`); cites only known evidence IDs; no required LLM API.
+- **Selected-Coin agent**: per-symbol thesis with BTC-beta vs idiosyncratic drivers (`coin_agent.py`).
+- **Portfolio agent**: paper book from `history/intelligence_v2/paper_portfolio.json`; concentration and decision alignment warnings; `execution_allowed=false`.
+- **Promotion gate**: scorecard thresholds evaluated into `promotion_report.json`; status is `not_ready` or `ready_for_human_review`; **`auto_promote` is always false**.
+- Shadow artifact includes interpretations, coin theses, portfolio, and promotion report.
 
-From GitHub Actions, select **Intelligence v2 Shadow** and choose the timeframe and symbols. The output is uploaded as an artifact named `intelligence-v2-shadow-<run_id>`. The persistent ledger is also committed under `history/intelligence_v2/`.
+## Promotion criteria (human review only)
 
-Locally:
-
-```bash
-python -m intelligence_v2.shadow_runner \
-  --timeframe 4h \
-  --symbols BTCUSDT,ETHUSDT,SOLUSDT,ZECUSDT,ZAMAUSDT \
-  --output /tmp/intelligence-v2-shadow.json
-```
+- Settled evaluation rows >= 30
+- Direction accuracy >= 55%
+- Technical samples >= 15
+- Risk samples >= 10
+- False-calm rate <= 35% (when available)
+- Explicit human PR approval still required; no automatic production switch
 
 ## Rollback
 
-The legacy production path is preserved in the `main` branch. To disable v2 shadow scheduling, remove the cron from `shadow-intelligence.yml`. No scheduled production workflow imports `intelligence_v2` for alerts.
+Disable the shadow workflow schedule or stop running it. Production `alert_bot.py` path is unchanged.
 
-If v2 is later promoted, promotion must happen in a separate pull request with human approval.
+## Phase 9 next (optional)
 
-## Phase 1-6 implemented
-
-See prior commits: contracts, Risk/Challenge, comparator, paper decision, evaluation, persistent ledger.
-
-## Phase 7 implemented
-
-- Agent-specific scorecards in `history/intelligence_v2/agent_scorecards.json` (Technical, Risk, Challenge).
-- Longer replay horizons: 1, 3, 6, 12, 24 bars (older decisions backfill new horizons as pending).
-- Decision rows store per-agent snapshots (`agents.technical|risk|challenge`) at issue time.
-- Optional scheduled shadow cadence: every 4 hours at :30 (`cron: 30 */4 * * *`), still no Telegram and no production promotion.
-- Schema version 2; production alert path unchanged.
-
-## Phase 8 next (ideal track)
-
-AI Interpreter grounded by evidence IDs, Selected-Coin and Portfolio specialists, multi-venue data plane, and controlled promotion criteria from shadow scorecards into production.
+LLM-assisted interpreter behind an API key (still evidence-grounded), multi-venue live adapters, and a formal promotion PR checklist UI on the dashboard.
