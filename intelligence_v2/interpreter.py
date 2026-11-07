@@ -1,8 +1,7 @@
-"""Evidence-ID grounded interpreter (Phase 8).
+"""Evidence-ID grounded interpreter (Phase 8-9).
 
-Deterministic by default: synthesizes specialist outputs into a human-readable
-narrative that only cites evidence_ids present in the pack / agent outputs.
-Optional LLM enrichment is never required; this module does not call external APIs.
+Deterministic by default. Optional LLM enrichment runs only when an API key
+is present and validated evidence-ID constraints pass.
 """
 from __future__ import annotations
 
@@ -84,12 +83,13 @@ def interpret(
     if pack.quality_status != "pass":
         unknown.append(f"Quality status is {pack.quality_status}.")
 
-    return InterpretationReport(
+    summary = " ".join(summary_parts)
+    report = InterpretationReport(
         agent="interpreter",
         run_id=pack.run_id,
         symbol=pack.symbol,
         timeframe=pack.timeframe,
-        summary=" ".join(summary_parts),
+        summary=summary,
         bullets=bullets,
         conflicts=conflicts,
         unknowns=unknown,
@@ -104,3 +104,28 @@ def interpret(
         evaluated_at=datetime.now(timezone.utc).isoformat(),
         model_version="interpreter-deterministic-v0.1-evidence-grounded",
     )
+
+    try:
+        from . import llm_enrich
+        enriched = llm_enrich.enrich(report)
+        if enriched:
+            bullets2 = list(report.bullets) + [f"LLM enrichment: {enriched}"]
+            report = InterpretationReport(
+                agent=report.agent,
+                run_id=report.run_id,
+                symbol=report.symbol,
+                timeframe=report.timeframe,
+                summary=report.summary,
+                bullets=bullets2,
+                conflicts=report.conflicts,
+                unknowns=report.unknowns,
+                evidence_ids=report.evidence_ids,
+                unsupported_claims=report.unsupported_claims,
+                confidence=report.confidence,
+                evaluated_at=datetime.now(timezone.utc).isoformat(),
+                model_version="interpreter-llm-enriched-v0.1-evidence-grounded",
+            )
+    except Exception:
+        pass
+
+    return report
