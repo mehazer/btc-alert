@@ -218,6 +218,71 @@ class Scorecard:
 
 
 @dataclass(frozen=True)
+class InterpretationReport:
+    agent: str
+    run_id: str
+    symbol: str
+    timeframe: str
+    summary: str
+    bullets: List[str]
+    conflicts: List[str]
+    unknowns: List[str]
+    evidence_ids: List[str]
+    unsupported_claims: List[str]
+    confidence: int
+    evaluated_at: str
+    model_version: str
+
+
+@dataclass(frozen=True)
+class CoinThesis:
+    agent: str
+    run_id: str
+    symbol: str
+    timeframe: str
+    thesis: str
+    btc_relationship: str
+    drivers: List[str]
+    invalidation: List[str]
+    risk_flags: List[str]
+    confidence: int
+    evidence_ids: List[str]
+    evaluated_at: str
+    model_version: str
+
+
+@dataclass(frozen=True)
+class PortfolioReport:
+    agent: str
+    run_id: str
+    timeframe: str
+    positions: List[Dict[str, Any]]
+    exposures_pct: Dict[str, float]
+    aggregate_weight_pct: float
+    scenario_summary: str
+    warnings: List[str]
+    confidence: int
+    evidence_ids: List[str]
+    evaluated_at: str
+    model_version: str
+    execution_allowed: bool = False
+
+
+@dataclass(frozen=True)
+class PromotionReport:
+    agent: str
+    run_id: str
+    status: str  # not_ready, ready_for_human_review
+    ready_for_review: bool
+    auto_promote: bool
+    checks: List[Dict[str, Any]]
+    blockers: List[str]
+    metrics: Dict[str, Any]
+    evaluated_at: str
+    model_version: str
+
+
+@dataclass(frozen=True)
 class ShadowRun:
     run_id: str
     started_at: str
@@ -232,6 +297,10 @@ class ShadowRun:
     decisions: List[DecisionRecord] = field(default_factory=list)
     evaluations: List[EvaluationRecord] = field(default_factory=list)
     scorecard: Optional[Scorecard] = None
+    interpretations: List[InterpretationReport] = field(default_factory=list)
+    coin_theses: List[CoinThesis] = field(default_factory=list)
+    portfolio: Optional[PortfolioReport] = None
+    promotion: Optional[PromotionReport] = None
     safety: Dict[str, Any] = field(default_factory=dict)
 
 
