@@ -153,6 +153,27 @@ class ComparisonRecord:
 
 
 @dataclass(frozen=True)
+class DecisionRecord:
+    agent: str
+    run_id: str
+    symbol: str
+    timeframe: str
+    decision: str  # OBSERVE, ALERT, PAPER_PLAN
+    approval_required: bool
+    execution_allowed: bool
+    gate: str  # blocked, paper-only, human-approval-required
+    thesis: str
+    paper_conditions: List[str]
+    invalidation: List[str]
+    blocking_reasons: List[str]
+    contributing_agents: List[str]
+    confidence: int
+    evidence_ids: List[str]
+    evaluated_at: str
+    model_version: str
+
+
+@dataclass(frozen=True)
 class ShadowRun:
     run_id: str
     started_at: str
@@ -164,6 +185,7 @@ class ShadowRun:
     risk_assessments: List[RiskAssessment] = field(default_factory=list)
     challenge_reports: List[ChallengeReport] = field(default_factory=list)
     comparisons: List[ComparisonRecord] = field(default_factory=list)
+    decisions: List[DecisionRecord] = field(default_factory=list)
     safety: Dict[str, Any] = field(default_factory=dict)
 
 

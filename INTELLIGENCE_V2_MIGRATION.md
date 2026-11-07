@@ -57,6 +57,15 @@ If v2 is later promoted, promotion must happen in a separate pull request. The p
 - Difference list explaining state, risk, challenge, and freshness discrepancies.
 - Comparisons are included only in the manual shadow artifact.
 
-## Phase 4 next
+## Phase 4 implemented
 
-The next safe increment is a paper-only Decision Synthesizer that consumes the v2 agent outputs and comparator records. It may propose scenarios, but must not send alerts or make portfolio decisions. Only after several weeks of comparison should the system consider a limited production integration.
+- Paper-only Decision Synthesizer consuming Technical, Risk, Challenge, and Comparator outputs.
+- Decision states: `OBSERVE`, `ALERT`, and `PAPER_PLAN`.
+- Explicit gates: `blocked`, `paper-only`, and `human-approval-required`.
+- Every decision has `approval_required=true` and `execution_allowed=false`.
+- Paper plans contain conditions and invalidation rules, not orders, leverage, sizing, or broker calls.
+- Decisions are included only in the manual shadow artifact.
+
+## Phase 5 next
+
+The next safe increment is a historical evaluation and decision scorecard. It should measure whether v2 paper scenarios, risk vetoes, confidence caps, and invalidation conditions were useful before any production alert integration is considered.
