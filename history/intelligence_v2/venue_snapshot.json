@@ -1,0 +1,179 @@
+{
+  "retrieved_at": "2026-11-07T11:39:50.444055+00:00",
+  "symbols": {
+    "BTCUSDT": {
+      "venues": [
+        {
+          "venue": "Binance",
+          "status": "unavailable"
+        },
+        {
+          "venue": "OKX",
+          "status": "ok",
+          "inst_id": "BTC-USDT-SWAP",
+          "last_price": 75984.7,
+          "volume_24h": 6320682.77,
+          "dataset": "swap-ticker"
+        },
+        {
+          "venue": "OKX",
+          "status": "ok",
+          "inst_id": "BTC-USDT-SWAP",
+          "open_interest": 3448980.7800000147,
+          "dataset": "open-interest"
+        },
+        {
+          "venue": "Bybit",
+          "status": "unavailable",
+          "symbol": "BTCUSDT"
+        }
+      ],
+      "price_disagreement_pct": null,
+      "venue_count_ok": 2
+    },
+    "ETHUSDT": {
+      "venues": [
+        {
+          "venue": "Binance",
+          "status": "unavailable"
+        },
+        {
+          "venue": "OKX",
+          "status": "ok",
+          "inst_id": "ETH-USDT-SWAP",
+          "last_price": 2244.68,
+          "volume_24h": 14697924.64,
+          "dataset": "swap-ticker"
+        },
+        {
+          "venue": "OKX",
+          "status": "ok",
+          "inst_id": "ETH-USDT-SWAP",
+          "open_interest": 6823212.510000016,
+          "dataset": "open-interest"
+        },
+        {
+          "venue": "Bybit",
+          "status": "unavailable",
+          "symbol": "ETHUSDT"
+        }
+      ],
+      "price_disagreement_pct": null,
+      "venue_count_ok": 2
+    },
+    "SOLUSDT": {
+      "venues": [
+        {
+          "venue": "Binance",
+          "status": "unavailable"
+        },
+        {
+          "venue": "OKX",
+          "status": "ok",
+          "inst_id": "SOL-USDT-SWAP",
+          "last_price": 90.0,
+          "volume_24h": 5362569.84,
+          "dataset": "swap-ticker"
+        },
+        {
+          "venue": "OKX",
+          "status": "ok",
+          "inst_id": "SOL-USDT-SWAP",
+          "open_interest": 3515607.7500000014,
+          "dataset": "open-interest"
+        },
+        {
+          "venue": "Bybit",
+          "status": "unavailable",
+          "symbol": "SOLUSDT"
+        }
+      ],
+      "price_disagreement_pct": null,
+      "venue_count_ok": 2
+    },
+    "ZECUSDT": {
+      "venues": [
+        {
+          "venue": "Binance",
+          "status": "unavailable"
+        },
+        {
+          "venue": "OKX",
+          "status": "ok",
+          "inst_id": "ZEC-USDT-SWAP",
+          "last_price": 1294.4,
+          "volume_24h": 110553341.0,
+          "dataset": "swap-ticker"
+        },
+        {
+          "venue": "OKX",
+          "status": "ok",
+          "inst_id": "ZEC-USDT-SWAP",
+          "open_interest": 13532578.0,
+          "dataset": "open-interest"
+        },
+        {
+          "venue": "Bybit",
+          "status": "unavailable",
+          "symbol": "ZECUSDT"
+        }
+      ],
+      "price_disagreement_pct": null,
+      "venue_count_ok": 2
+    },
+    "ZAMAUSDT": {
+      "venues": [
+        {
+          "venue": "Binance",
+          "status": "unavailable"
+        },
+        {
+          "venue": "OKX",
+          "status": "ok",
+          "inst_id": "ZAMA-USDT-SWAP",
+          "last_price": 0.06919,
+          "volume_24h": 5128012.0,
+          "dataset": "swap-ticker"
+        },
+        {
+          "venue": "OKX",
+          "status": "ok",
+          "inst_id": "ZAMA-USDT-SWAP",
+          "open_interest": 4522447.0,
+          "dataset": "open-interest"
+        },
+        {
+          "venue": "Bybit",
+          "status": "unavailable",
+          "symbol": "ZAMAUSDT"
+        }
+      ],
+      "price_disagreement_pct": null,
+      "venue_count_ok": 2
+    }
+  },
+  "cross_check": {
+    "venue": "CoinGecko",
+    "status": "ok",
+    "dataset": "simple-price",
+    "prices": {
+      "bitcoin": {
+        "usd": 75925,
+        "usd_24h_change": -0.1782385735973921
+      },
+      "ethereum": {
+        "usd": 2242.99,
+        "usd_24h_change": 0.13455435399749924
+      },
+      "solana": {
+        "usd": 89.9,
+        "usd_24h_change": -0.47658438985880536
+      }
+    }
+  },
+  "notes": [
+    "Public endpoints only; keys not required.",
+    "Venue disagreement is informational; large spreads can flag stale or broken feeds.",
+    "OI units differ by venue and are not always comparable 1:1."
+  ]
+}
