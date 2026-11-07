@@ -66,6 +66,17 @@ If v2 is later promoted, promotion must happen in a separate pull request. The p
 - Paper plans contain conditions and invalidation rules, not orders, leverage, sizing, or broker calls.
 - Decisions are included only in the manual shadow artifact.
 
-## Phase 5 next
+## Phase 5 implemented
 
-The next safe increment is a historical evaluation and decision scorecard. It should measure whether v2 paper scenarios, risk vetoes, confidence caps, and invalidation conditions were useful before any production alert integration is considered.
+- Forward-outcome evaluator for every v2 decision at 1, 3, and 6 future bars.
+- Directional accuracy for up/down signals.
+- Forward return, maximum favorable excursion, and maximum adverse excursion.
+- Risk-warning support metric for guarded decisions.
+- `settled`, `pending`, and `insufficient_data` outcome states.
+- Pending horizons are excluded from denominators rather than counted as failures.
+- Per-decision-type counts and explicit scorecard limitations.
+- Evaluation is included only in the manual shadow artifact and never writes legacy history.
+
+## Phase 6 next
+
+The next safe increment is a persistent, append-only v2 run ledger and replay evaluator. It should preserve each shadow decision until its 1/3/6-bar horizons settle, then update scorecards without changing production alerts.

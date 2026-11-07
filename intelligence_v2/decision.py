@@ -23,6 +23,14 @@ def _directional(state: str) -> bool:
     return state not in {"observe", "neutral", "mixed/inconclusive", "mixed", ""}
 
 
+def _signal_direction(state: str) -> str:
+    if state in {"fresh-long-buildup", "short-covering", "bullish", "overheated"}:
+        return "up"
+    if state in {"weakening-participation", "bearish", "fear"}:
+        return "down"
+    return "flat"
+
+
 def synthesize(
     pack: EvidencePack,
     technical: AgentOutput,
@@ -87,6 +95,7 @@ def synthesize(
         execution_allowed=False,
         gate=gate,
         thesis=thesis,
+        signal_direction=_signal_direction(technical.state),
         paper_conditions=paper_conditions if decision == "PAPER_PLAN" else [],
         invalidation=invalidation,
         blocking_reasons=blockers,

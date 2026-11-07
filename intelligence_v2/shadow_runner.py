@@ -16,6 +16,7 @@ from .comparator import compare
 from .contracts import ShadowRun, to_dict
 from .decision import synthesize
 from .evidence import build_all
+from .evaluation import build_scorecard
 from .risk import evaluate as evaluate_risk
 from .technical import evaluate
 
@@ -51,6 +52,8 @@ def run(history_dir: str, symbols: list[str], timeframe: str) -> ShadowRun:
         )
         comparisons.append(comparison)
         decisions.append(synthesize(pack, technical, risk, challenge, comparison))
+    scorecard = build_scorecard(decisions, risks, history_dir)
+    evaluations = scorecard.records
     completed = datetime.now(timezone.utc)
     return ShadowRun(
         run_id=run_id,
@@ -64,6 +67,8 @@ def run(history_dir: str, symbols: list[str], timeframe: str) -> ShadowRun:
         challenge_reports=challenges,
         comparisons=comparisons,
         decisions=decisions,
+        evaluations=evaluations,
+        scorecard=scorecard,
         safety={
             "legacy_system_touched": False,
             "telegram_sent": False,

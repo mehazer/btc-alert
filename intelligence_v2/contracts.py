@@ -163,6 +163,7 @@ class DecisionRecord:
     execution_allowed: bool
     gate: str  # blocked, paper-only, human-approval-required
     thesis: str
+    signal_direction: str  # up, down, flat, unknown
     paper_conditions: List[str]
     invalidation: List[str]
     blocking_reasons: List[str]
@@ -171,6 +172,49 @@ class DecisionRecord:
     evidence_ids: List[str]
     evaluated_at: str
     model_version: str
+
+
+@dataclass(frozen=True)
+class EvaluationRecord:
+    agent: str
+    run_id: str
+    symbol: str
+    timeframe: str
+    decision: str
+    signal_direction: str
+    horizon_bars: int
+    status: str  # settled, pending, insufficient_data
+    decision_timestamp: str
+    outcome_timestamp: Optional[str]
+    forward_return_pct: Optional[float]
+    max_favorable_excursion_pct: Optional[float]
+    max_adverse_excursion_pct: Optional[float]
+    direction_correct: Optional[bool]
+    guarded: bool
+    risk_warning_supported: Optional[bool]
+    confidence: int
+    notes: List[str]
+
+
+@dataclass(frozen=True)
+class Scorecard:
+    agent: str
+    run_id: str
+    evaluated_at: str
+    horizons: List[int]
+    decisions_total: int
+    records_total: int
+    settled_records: int
+    pending_records: int
+    directional_records: int
+    directional_hits: int
+    direction_accuracy_pct: Optional[float]
+    guarded_records: int
+    supported_risk_warnings: int
+    risk_warning_support_pct: Optional[float]
+    by_decision: Dict[str, Dict[str, int]]
+    limitations: List[str]
+    records: List[EvaluationRecord] = field(default_factory=list)
 
 
 @dataclass(frozen=True)
@@ -186,6 +230,8 @@ class ShadowRun:
     challenge_reports: List[ChallengeReport] = field(default_factory=list)
     comparisons: List[ComparisonRecord] = field(default_factory=list)
     decisions: List[DecisionRecord] = field(default_factory=list)
+    evaluations: List[EvaluationRecord] = field(default_factory=list)
+    scorecard: Optional[Scorecard] = None
     safety: Dict[str, Any] = field(default_factory=dict)
 
 
