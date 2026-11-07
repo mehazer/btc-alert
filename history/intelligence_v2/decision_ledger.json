@@ -1,0 +1,587 @@
+[
+  {
+    "decision_id": "shadow-20261107T102256Z-9b7d3cc0:BTCUSDT",
+    "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+    "symbol": "BTCUSDT",
+    "timeframe": "4h",
+    "decision": "OBSERVE",
+    "signal_direction": "flat",
+    "gate": "paper-only",
+    "confidence": 36,
+    "approval_required": true,
+    "execution_allowed": false,
+    "thesis": "Evidence does not establish a directional scenario.",
+    "blocking_reasons": [],
+    "invalidation": [
+      "New data invalidates the evidence pack",
+      "Price breaks the recent swing level",
+      "Evidence quality must remain valid",
+      "Risk veto must be resolved",
+      "price holds the swing level and pullbacks contract",
+      "OI declines gradually with stable funding"
+    ],
+    "paper_conditions": [],
+    "evaluated_at": "2026-11-07T10:22:56.373165+00:00",
+    "model_version": "decision-shadow-v0.1-paper-only",
+    "risk_overall_level": "low",
+    "risk_veto": false,
+    "guarded": false,
+    "evidence_ids": [
+      "evidence-de4f5d4a020f",
+      "src-0ed5a88effbc",
+      "src-b75f559a1b0e"
+    ],
+    "horizons": {
+      "1": {
+        "status": "pending",
+        "evaluation": {
+          "agent": "evaluator",
+          "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+          "symbol": "BTCUSDT",
+          "timeframe": "4h",
+          "decision": "OBSERVE",
+          "signal_direction": "flat",
+          "horizon_bars": 1,
+          "status": "pending",
+          "decision_timestamp": "2026-11-07T10:22:56.373165+00:00",
+          "outcome_timestamp": null,
+          "forward_return_pct": null,
+          "max_favorable_excursion_pct": null,
+          "max_adverse_excursion_pct": null,
+          "direction_correct": null,
+          "guarded": false,
+          "risk_warning_supported": null,
+          "confidence": 36,
+          "notes": [
+            "Only 0/1 future bars are available."
+          ]
+        },
+        "updated_at": "2026-11-07T10:22:56.379790+00:00"
+      },
+      "3": {
+        "status": "pending",
+        "evaluation": {
+          "agent": "evaluator",
+          "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+          "symbol": "BTCUSDT",
+          "timeframe": "4h",
+          "decision": "OBSERVE",
+          "signal_direction": "flat",
+          "horizon_bars": 3,
+          "status": "pending",
+          "decision_timestamp": "2026-11-07T10:22:56.373165+00:00",
+          "outcome_timestamp": null,
+          "forward_return_pct": null,
+          "max_favorable_excursion_pct": null,
+          "max_adverse_excursion_pct": null,
+          "direction_correct": null,
+          "guarded": false,
+          "risk_warning_supported": null,
+          "confidence": 36,
+          "notes": [
+            "Only 0/3 future bars are available."
+          ]
+        },
+        "updated_at": "2026-11-07T10:22:56.380089+00:00"
+      },
+      "6": {
+        "status": "pending",
+        "evaluation": {
+          "agent": "evaluator",
+          "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+          "symbol": "BTCUSDT",
+          "timeframe": "4h",
+          "decision": "OBSERVE",
+          "signal_direction": "flat",
+          "horizon_bars": 6,
+          "status": "pending",
+          "decision_timestamp": "2026-11-07T10:22:56.373165+00:00",
+          "outcome_timestamp": null,
+          "forward_return_pct": null,
+          "max_favorable_excursion_pct": null,
+          "max_adverse_excursion_pct": null,
+          "direction_correct": null,
+          "guarded": false,
+          "risk_warning_supported": null,
+          "confidence": 36,
+          "notes": [
+            "Only 0/6 future bars are available."
+          ]
+        },
+        "updated_at": "2026-11-07T10:22:56.380393+00:00"
+      }
+    },
+    "appended_at": "2026-11-07T10:22:56.378898+00:00",
+    "last_settled_at": "2026-11-07T10:22:56.380396+00:00"
+  },
+  {
+    "decision_id": "shadow-20261107T102256Z-9b7d3cc0:ETHUSDT",
+    "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+    "symbol": "ETHUSDT",
+    "timeframe": "4h",
+    "decision": "OBSERVE",
+    "signal_direction": "flat",
+    "gate": "paper-only",
+    "confidence": 36,
+    "approval_required": true,
+    "execution_allowed": false,
+    "thesis": "Evidence does not establish a directional scenario.",
+    "blocking_reasons": [],
+    "invalidation": [
+      "New data invalidates the evidence pack",
+      "Price breaks the recent swing level",
+      "Evidence quality must remain valid",
+      "Risk veto must be resolved",
+      "price holds the swing level and pullbacks contract",
+      "OI declines gradually with stable funding"
+    ],
+    "paper_conditions": [],
+    "evaluated_at": "2026-11-07T10:22:56.373823+00:00",
+    "model_version": "decision-shadow-v0.1-paper-only",
+    "risk_overall_level": "low",
+    "risk_veto": false,
+    "guarded": false,
+    "evidence_ids": [
+      "evidence-e59eafead5ca",
+      "src-148d95a94f6b",
+      "src-2ee7e0b22d8a"
+    ],
+    "horizons": {
+      "1": {
+        "status": "pending",
+        "evaluation": {
+          "agent": "evaluator",
+          "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+          "symbol": "ETHUSDT",
+          "timeframe": "4h",
+          "decision": "OBSERVE",
+          "signal_direction": "flat",
+          "horizon_bars": 1,
+          "status": "pending",
+          "decision_timestamp": "2026-11-07T10:22:56.373823+00:00",
+          "outcome_timestamp": null,
+          "forward_return_pct": null,
+          "max_favorable_excursion_pct": null,
+          "max_adverse_excursion_pct": null,
+          "direction_correct": null,
+          "guarded": false,
+          "risk_warning_supported": null,
+          "confidence": 36,
+          "notes": [
+            "Only 0/1 future bars are available."
+          ]
+        },
+        "updated_at": "2026-11-07T10:22:56.380698+00:00"
+      },
+      "3": {
+        "status": "pending",
+        "evaluation": {
+          "agent": "evaluator",
+          "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+          "symbol": "ETHUSDT",
+          "timeframe": "4h",
+          "decision": "OBSERVE",
+          "signal_direction": "flat",
+          "horizon_bars": 3,
+          "status": "pending",
+          "decision_timestamp": "2026-11-07T10:22:56.373823+00:00",
+          "outcome_timestamp": null,
+          "forward_return_pct": null,
+          "max_favorable_excursion_pct": null,
+          "max_adverse_excursion_pct": null,
+          "direction_correct": null,
+          "guarded": false,
+          "risk_warning_supported": null,
+          "confidence": 36,
+          "notes": [
+            "Only 0/3 future bars are available."
+          ]
+        },
+        "updated_at": "2026-11-07T10:22:56.380979+00:00"
+      },
+      "6": {
+        "status": "pending",
+        "evaluation": {
+          "agent": "evaluator",
+          "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+          "symbol": "ETHUSDT",
+          "timeframe": "4h",
+          "decision": "OBSERVE",
+          "signal_direction": "flat",
+          "horizon_bars": 6,
+          "status": "pending",
+          "decision_timestamp": "2026-11-07T10:22:56.373823+00:00",
+          "outcome_timestamp": null,
+          "forward_return_pct": null,
+          "max_favorable_excursion_pct": null,
+          "max_adverse_excursion_pct": null,
+          "direction_correct": null,
+          "guarded": false,
+          "risk_warning_supported": null,
+          "confidence": 36,
+          "notes": [
+            "Only 0/6 future bars are available."
+          ]
+        },
+        "updated_at": "2026-11-07T10:22:56.381272+00:00"
+      }
+    },
+    "appended_at": "2026-11-07T10:22:56.378904+00:00",
+    "last_settled_at": "2026-11-07T10:22:56.381299+00:00"
+  },
+  {
+    "decision_id": "shadow-20261107T102256Z-9b7d3cc0:SOLUSDT",
+    "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+    "symbol": "SOLUSDT",
+    "timeframe": "4h",
+    "decision": "OBSERVE",
+    "signal_direction": "flat",
+    "gate": "paper-only",
+    "confidence": 36,
+    "approval_required": true,
+    "execution_allowed": false,
+    "thesis": "Evidence does not establish a directional scenario.",
+    "blocking_reasons": [],
+    "invalidation": [
+      "New data invalidates the evidence pack",
+      "Price breaks the recent swing level",
+      "Evidence quality must remain valid",
+      "Risk veto must be resolved",
+      "price holds the swing level and pullbacks contract",
+      "OI declines gradually with stable funding"
+    ],
+    "paper_conditions": [],
+    "evaluated_at": "2026-11-07T10:22:56.374437+00:00",
+    "model_version": "decision-shadow-v0.1-paper-only",
+    "risk_overall_level": "low",
+    "risk_veto": false,
+    "guarded": false,
+    "evidence_ids": [
+      "evidence-045614c21c2a",
+      "src-11ad5b10701f",
+      "src-5ca4527c9f42"
+    ],
+    "horizons": {
+      "1": {
+        "status": "pending",
+        "evaluation": {
+          "agent": "evaluator",
+          "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+          "symbol": "SOLUSDT",
+          "timeframe": "4h",
+          "decision": "OBSERVE",
+          "signal_direction": "flat",
+          "horizon_bars": 1,
+          "status": "pending",
+          "decision_timestamp": "2026-11-07T10:22:56.374437+00:00",
+          "outcome_timestamp": null,
+          "forward_return_pct": null,
+          "max_favorable_excursion_pct": null,
+          "max_adverse_excursion_pct": null,
+          "direction_correct": null,
+          "guarded": false,
+          "risk_warning_supported": null,
+          "confidence": 36,
+          "notes": [
+            "Only 0/1 future bars are available."
+          ]
+        },
+        "updated_at": "2026-11-07T10:22:56.381620+00:00"
+      },
+      "3": {
+        "status": "pending",
+        "evaluation": {
+          "agent": "evaluator",
+          "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+          "symbol": "SOLUSDT",
+          "timeframe": "4h",
+          "decision": "OBSERVE",
+          "signal_direction": "flat",
+          "horizon_bars": 3,
+          "status": "pending",
+          "decision_timestamp": "2026-11-07T10:22:56.374437+00:00",
+          "outcome_timestamp": null,
+          "forward_return_pct": null,
+          "max_favorable_excursion_pct": null,
+          "max_adverse_excursion_pct": null,
+          "direction_correct": null,
+          "guarded": false,
+          "risk_warning_supported": null,
+          "confidence": 36,
+          "notes": [
+            "Only 0/3 future bars are available."
+          ]
+        },
+        "updated_at": "2026-11-07T10:22:56.381910+00:00"
+      },
+      "6": {
+        "status": "pending",
+        "evaluation": {
+          "agent": "evaluator",
+          "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+          "symbol": "SOLUSDT",
+          "timeframe": "4h",
+          "decision": "OBSERVE",
+          "signal_direction": "flat",
+          "horizon_bars": 6,
+          "status": "pending",
+          "decision_timestamp": "2026-11-07T10:22:56.374437+00:00",
+          "outcome_timestamp": null,
+          "forward_return_pct": null,
+          "max_favorable_excursion_pct": null,
+          "max_adverse_excursion_pct": null,
+          "direction_correct": null,
+          "guarded": false,
+          "risk_warning_supported": null,
+          "confidence": 36,
+          "notes": [
+            "Only 0/6 future bars are available."
+          ]
+        },
+        "updated_at": "2026-11-07T10:22:56.382208+00:00"
+      }
+    },
+    "appended_at": "2026-11-07T10:22:56.378909+00:00",
+    "last_settled_at": "2026-11-07T10:22:56.382211+00:00"
+  },
+  {
+    "decision_id": "shadow-20261107T102256Z-9b7d3cc0:ZECUSDT",
+    "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+    "symbol": "ZECUSDT",
+    "timeframe": "4h",
+    "decision": "PAPER_PLAN",
+    "signal_direction": "down",
+    "gate": "human-approval-required",
+    "confidence": 26,
+    "approval_required": true,
+    "execution_allowed": false,
+    "thesis": "Paper-only scenario review for weakening-participation; no execution is authorized.",
+    "blocking_reasons": [],
+    "invalidation": [
+      "New data invalidates the evidence pack",
+      "Price breaks the recent swing level",
+      "Evidence quality must remain valid",
+      "Risk veto must be resolved",
+      "price holds the swing level and pullbacks contract",
+      "OI declines gradually with stable funding"
+    ],
+    "paper_conditions": [
+      "price structure remains aligned",
+      "volume does not collapse",
+      "OI/price relationship weakens",
+      "risk flags remain unresolved"
+    ],
+    "evaluated_at": "2026-11-07T10:22:56.375040+00:00",
+    "model_version": "decision-shadow-v0.1-paper-only",
+    "risk_overall_level": "medium",
+    "risk_veto": false,
+    "guarded": false,
+    "evidence_ids": [
+      "evidence-c44d435402b6",
+      "src-49262df1d2a8",
+      "src-b990a626b94c"
+    ],
+    "horizons": {
+      "1": {
+        "status": "pending",
+        "evaluation": {
+          "agent": "evaluator",
+          "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+          "symbol": "ZECUSDT",
+          "timeframe": "4h",
+          "decision": "PAPER_PLAN",
+          "signal_direction": "down",
+          "horizon_bars": 1,
+          "status": "pending",
+          "decision_timestamp": "2026-11-07T10:22:56.375040+00:00",
+          "outcome_timestamp": null,
+          "forward_return_pct": null,
+          "max_favorable_excursion_pct": null,
+          "max_adverse_excursion_pct": null,
+          "direction_correct": null,
+          "guarded": false,
+          "risk_warning_supported": null,
+          "confidence": 26,
+          "notes": [
+            "Only 0/1 future bars are available."
+          ]
+        },
+        "updated_at": "2026-11-07T10:22:56.382359+00:00"
+      },
+      "3": {
+        "status": "pending",
+        "evaluation": {
+          "agent": "evaluator",
+          "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+          "symbol": "ZECUSDT",
+          "timeframe": "4h",
+          "decision": "PAPER_PLAN",
+          "signal_direction": "down",
+          "horizon_bars": 3,
+          "status": "pending",
+          "decision_timestamp": "2026-11-07T10:22:56.375040+00:00",
+          "outcome_timestamp": null,
+          "forward_return_pct": null,
+          "max_favorable_excursion_pct": null,
+          "max_adverse_excursion_pct": null,
+          "direction_correct": null,
+          "guarded": false,
+          "risk_warning_supported": null,
+          "confidence": 26,
+          "notes": [
+            "Only 0/3 future bars are available."
+          ]
+        },
+        "updated_at": "2026-11-07T10:22:56.382488+00:00"
+      },
+      "6": {
+        "status": "pending",
+        "evaluation": {
+          "agent": "evaluator",
+          "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+          "symbol": "ZECUSDT",
+          "timeframe": "4h",
+          "decision": "PAPER_PLAN",
+          "signal_direction": "down",
+          "horizon_bars": 6,
+          "status": "pending",
+          "decision_timestamp": "2026-11-07T10:22:56.375040+00:00",
+          "outcome_timestamp": null,
+          "forward_return_pct": null,
+          "max_favorable_excursion_pct": null,
+          "max_adverse_excursion_pct": null,
+          "direction_correct": null,
+          "guarded": false,
+          "risk_warning_supported": null,
+          "confidence": 26,
+          "notes": [
+            "Only 0/6 future bars are available."
+          ]
+        },
+        "updated_at": "2026-11-07T10:22:56.382618+00:00"
+      }
+    },
+    "appended_at": "2026-11-07T10:22:56.378912+00:00",
+    "last_settled_at": "2026-11-07T10:22:56.382621+00:00"
+  },
+  {
+    "decision_id": "shadow-20261107T102256Z-9b7d3cc0:ZAMAUSDT",
+    "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+    "symbol": "ZAMAUSDT",
+    "timeframe": "4h",
+    "decision": "PAPER_PLAN",
+    "signal_direction": "down",
+    "gate": "human-approval-required",
+    "confidence": 26,
+    "approval_required": true,
+    "execution_allowed": false,
+    "thesis": "Paper-only scenario review for weakening-participation; no execution is authorized.",
+    "blocking_reasons": [],
+    "invalidation": [
+      "New data invalidates the evidence pack",
+      "Price breaks the recent swing level",
+      "Evidence quality must remain valid",
+      "Risk veto must be resolved",
+      "price holds the swing level and pullbacks contract",
+      "OI declines gradually with stable funding"
+    ],
+    "paper_conditions": [
+      "price structure remains aligned",
+      "volume does not collapse",
+      "OI/price relationship weakens",
+      "risk flags remain unresolved"
+    ],
+    "evaluated_at": "2026-11-07T10:22:56.375638+00:00",
+    "model_version": "decision-shadow-v0.1-paper-only",
+    "risk_overall_level": "medium",
+    "risk_veto": false,
+    "guarded": false,
+    "evidence_ids": [
+      "evidence-866796e3c14e",
+      "src-28a50e8747c3",
+      "src-b1cdc8b9be70"
+    ],
+    "horizons": {
+      "1": {
+        "status": "pending",
+        "evaluation": {
+          "agent": "evaluator",
+          "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+          "symbol": "ZAMAUSDT",
+          "timeframe": "4h",
+          "decision": "PAPER_PLAN",
+          "signal_direction": "down",
+          "horizon_bars": 1,
+          "status": "pending",
+          "decision_timestamp": "2026-11-07T10:22:56.375638+00:00",
+          "outcome_timestamp": null,
+          "forward_return_pct": null,
+          "max_favorable_excursion_pct": null,
+          "max_adverse_excursion_pct": null,
+          "direction_correct": null,
+          "guarded": false,
+          "risk_warning_supported": null,
+          "confidence": 26,
+          "notes": [
+            "Only 0/1 future bars are available."
+          ]
+        },
+        "updated_at": "2026-11-07T10:22:56.382759+00:00"
+      },
+      "3": {
+        "status": "pending",
+        "evaluation": {
+          "agent": "evaluator",
+          "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+          "symbol": "ZAMAUSDT",
+          "timeframe": "4h",
+          "decision": "PAPER_PLAN",
+          "signal_direction": "down",
+          "horizon_bars": 3,
+          "status": "pending",
+          "decision_timestamp": "2026-11-07T10:22:56.375638+00:00",
+          "outcome_timestamp": null,
+          "forward_return_pct": null,
+          "max_favorable_excursion_pct": null,
+          "max_adverse_excursion_pct": null,
+          "direction_correct": null,
+          "guarded": false,
+          "risk_warning_supported": null,
+          "confidence": 26,
+          "notes": [
+            "Only 0/3 future bars are available."
+          ]
+        },
+        "updated_at": "2026-11-07T10:22:56.382880+00:00"
+      },
+      "6": {
+        "status": "pending",
+        "evaluation": {
+          "agent": "evaluator",
+          "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+          "symbol": "ZAMAUSDT",
+          "timeframe": "4h",
+          "decision": "PAPER_PLAN",
+          "signal_direction": "down",
+          "horizon_bars": 6,
+          "status": "pending",
+          "decision_timestamp": "2026-11-07T10:22:56.375638+00:00",
+          "outcome_timestamp": null,
+          "forward_return_pct": null,
+          "max_favorable_excursion_pct": null,
+          "max_adverse_excursion_pct": null,
+          "direction_correct": null,
+          "guarded": false,
+          "risk_warning_supported": null,
+          "confidence": 26,
+          "notes": [
+            "Only 0/6 future bars are available."
+          ]
+        },
+        "updated_at": "2026-11-07T10:22:56.382997+00:00"
+      }
+    },
+    "appended_at": "2026-11-07T10:22:56.378916+00:00",
+    "last_settled_at": "2026-11-07T10:22:56.382999+00:00"
+  }
+]

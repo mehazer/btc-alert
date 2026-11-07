@@ -1,0 +1,26 @@
+[
+  {
+    "run_id": "shadow-20261107T102256Z-9b7d3cc0",
+    "started_at": "2026-11-07T10:22:56.368419+00:00",
+    "completed_at": "2026-11-07T10:22:56.378782+00:00",
+    "timeframe": "4h",
+    "mode": "shadow-read-only",
+    "symbols": [
+      "BTCUSDT",
+      "ETHUSDT",
+      "SOLUSDT",
+      "ZECUSDT",
+      "ZAMAUSDT"
+    ],
+    "decision_count": 5,
+    "safety": {
+      "legacy_system_touched": false,
+      "telegram_sent": false,
+      "orders_submitted": false,
+      "legacy_history_written": false,
+      "v2_ledger_written": true,
+      "promotion_required": true
+    },
+    "appended_at": "2026-11-07T10:22:56.378889+00:00"
+  }
+]
