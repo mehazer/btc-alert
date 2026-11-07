@@ -1,6 +1,8 @@
 name: Intelligence v2 Shadow
 
 on:
+  schedule:
+    - cron: "30 */4 * * *"
   workflow_dispatch:
     inputs:
       timeframe:
@@ -12,7 +14,6 @@ on:
         required: false
         default: "BTCUSDT,ETHUSDT,SOLUSDT,ZECUSDT,ZAMAUSDT"
 
-# Phase 6: allow writing only the isolated v2 ledger under history/intelligence_v2/
 permissions:
   contents: write
 
@@ -35,9 +36,13 @@ jobs:
         env:
           PYTHONPATH: .
         run: |
+          TF="${{ github.event.inputs.timeframe }}"
+          SYMS="${{ github.event.inputs.symbols }}"
+          TF="${TF:-4h}"
+          SYMS="${SYMS:-BTCUSDT,ETHUSDT,SOLUSDT,ZECUSDT,ZAMAUSDT}"
           python -m intelligence_v2.shadow_runner \
-            --timeframe "${{ inputs.timeframe }}" \
-            --symbols "${{ inputs.symbols }}" \
+            --timeframe "$TF" \
+            --symbols "$SYMS" \
             --output shadow_artifacts/latest.json
 
       - name: Upload isolated shadow artifact
