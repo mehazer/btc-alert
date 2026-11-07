@@ -803,5 +803,120 @@
       "btc_overlay": true,
       "positioning_context": false
     }
+  },
+  {
+    "prediction_id": "20261106T180030Z:BTCUSDT:742e5021",
+    "settled_at": "2026-11-07T05:34:53.139789+00:00",
+    "symbol": "BTCUSDT",
+    "issued_at": "2026-11-06T18:00:38.641963+00:00",
+    "horizon_bars": 3,
+    "predicted_direction": "flat",
+    "actual_direction": "up",
+    "direction_hit": false,
+    "predicted_risk_level": "Low",
+    "risk_event_observed": false,
+    "risk_signal_hit": true,
+    "forward_return_pct": 0.4067,
+    "max_adverse_move_pct": -0.0454,
+    "components": {
+      "price_action": true,
+      "oi_context": true,
+      "volume_confirmation": true,
+      "funding_context": true,
+      "btc_overlay": true,
+      "positioning_context": false
+    }
+  },
+  {
+    "prediction_id": "20261106T180030Z:ETHUSDT:f779c72f",
+    "settled_at": "2026-11-07T05:34:53.139915+00:00",
+    "symbol": "ETHUSDT",
+    "issued_at": "2026-11-06T18:00:39.139843+00:00",
+    "horizon_bars": 3,
+    "predicted_direction": "down",
+    "actual_direction": "up",
+    "direction_hit": false,
+    "predicted_risk_level": "Moderate",
+    "risk_event_observed": false,
+    "risk_signal_hit": true,
+    "forward_return_pct": 1.0155,
+    "max_adverse_move_pct": -0.0881,
+    "components": {
+      "price_action": true,
+      "oi_context": true,
+      "volume_confirmation": true,
+      "funding_context": true,
+      "btc_overlay": true,
+      "positioning_context": false
+    }
+  },
+  {
+    "prediction_id": "20261106T180030Z:SOLUSDT:7066eed2",
+    "settled_at": "2026-11-07T05:34:53.140011+00:00",
+    "symbol": "SOLUSDT",
+    "issued_at": "2026-11-06T18:00:39.140981+00:00",
+    "horizon_bars": 3,
+    "predicted_direction": "down",
+    "actual_direction": "up",
+    "direction_hit": false,
+    "predicted_risk_level": "Low",
+    "risk_event_observed": false,
+    "risk_signal_hit": true,
+    "forward_return_pct": 0.1667,
+    "max_adverse_move_pct": -0.1334,
+    "components": {
+      "price_action": true,
+      "oi_context": true,
+      "volume_confirmation": true,
+      "funding_context": true,
+      "btc_overlay": true,
+      "positioning_context": false
+    }
+  },
+  {
+    "prediction_id": "20261106T180030Z:ZECUSDT:e3d6f3c1",
+    "settled_at": "2026-11-07T05:34:53.140023+00:00",
+    "symbol": "ZECUSDT",
+    "issued_at": "2026-11-06T18:00:39.685948+00:00",
+    "horizon_bars": 3,
+    "predicted_direction": "up",
+    "actual_direction": "down",
+    "direction_hit": false,
+    "predicted_risk_level": "Moderate",
+    "risk_event_observed": true,
+    "risk_signal_hit": false,
+    "forward_return_pct": -3.2661,
+    "max_adverse_move_pct": -3.2661,
+    "components": {
+      "price_action": true,
+      "oi_context": true,
+      "volume_confirmation": true,
+      "funding_context": true,
+      "btc_overlay": true,
+      "positioning_context": false
+    }
+  },
+  {
+    "prediction_id": "20261106T180030Z:ZAMAUSDT:acfb506e",
+    "settled_at": "2026-11-07T05:34:53.140034+00:00",
+    "symbol": "ZAMAUSDT",
+    "issued_at": "2026-11-06T18:00:39.686146+00:00",
+    "horizon_bars": 3,
+    "predicted_direction": "down",
+    "actual_direction": "down",
+    "direction_hit": true,
+    "predicted_risk_level": "Low",
+    "risk_event_observed": true,
+    "risk_signal_hit": false,
+    "forward_return_pct": -1.6478,
+    "max_adverse_move_pct": -1.6478,
+    "components": {
+      "price_action": true,
+      "oi_context": true,
+      "volume_confirmation": true,
+      "funding_context": true,
+      "btc_overlay": true,
+      "positioning_context": false
+    }
   }
 ]
