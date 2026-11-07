@@ -2337,5 +2337,229 @@
       "btc_overlay": 0.92,
       "positioning_context": 1.0
     }
+  },
+  {
+    "run_id": "20261107T092314Z",
+    "evaluated_at": "2026-11-07T09:23:24.167362+00:00",
+    "timeframe": "4h",
+    "model_version": "deterministic-mechanism-v3-online-calibration",
+    "sources": {
+      "price_volume": "Binance spot",
+      "oi_funding": "OKX perpetual",
+      "sentiment": "alternative.me"
+    },
+    "inputs_outputs": [
+      {
+        "symbol": "BTCUSDT",
+        "inputs": {
+          "price": 76165.48,
+          "volume": 290.16629,
+          "open_interest": 34520.62430000014,
+          "funding_rate": 1.3127913422e-06,
+          "price_change_pct": 0.17819281862422193,
+          "oi_change_pct": -0.006597070006512605,
+          "rsi": 41.18
+        },
+        "directions": {
+          "price_dir": "Rising",
+          "price_chg_pct": 0.178,
+          "oi_dir": "Flat",
+          "oi_chg_pct": -0.007,
+          "volume_dir": "Falling",
+          "volume_chg_pct": -51.086,
+          "funding_dir": "Falling",
+          "funding_chg_pct": -92.581,
+          "rsi_dir": "Rising",
+          "rsi_chg_pct": 3.363
+        },
+        "output": {
+          "primary_mechanism": "Mixed/inconclusive",
+          "risk_level": "Low"
+        },
+        "reasoning": [
+          "Price is effectively flat; mechanism signals are weak."
+        ]
+      },
+      {
+        "symbol": "ETHUSDT",
+        "inputs": {
+          "price": 2247.99,
+          "volume": 2643.7192,
+          "open_interest": 687513.4340000014,
+          "funding_rate": 3.5475957462e-05,
+          "price_change_pct": -0.0035586080504780536,
+          "oi_change_pct": 0.15157364065703122,
+          "rsi": 43.08
+        },
+        "directions": {
+          "price_dir": "Flat",
+          "price_chg_pct": -0.004,
+          "oi_dir": "Flat",
+          "oi_chg_pct": 0.152,
+          "volume_dir": "Falling",
+          "volume_chg_pct": -27.549,
+          "funding_dir": "Falling",
+          "funding_chg_pct": -19.702,
+          "rsi_dir": "Flat",
+          "rsi_chg_pct": 0.046
+        },
+        "output": {
+          "primary_mechanism": "Mixed/inconclusive",
+          "risk_level": "Low"
+        },
+        "reasoning": [
+          "Price is effectively flat; mechanism signals are weak."
+        ]
+      },
+      {
+        "symbol": "SOLUSDT",
+        "inputs": {
+          "price": 90.17,
+          "volume": 27559.849,
+          "open_interest": 3522144.4900000007,
+          "funding_rate": 4.55247442742e-05,
+          "price_change_pct": 0.04438033950960419,
+          "oi_change_pct": 0.3871352853341919,
+          "rsi": 40.25
+        },
+        "directions": {
+          "price_dir": "Flat",
+          "price_chg_pct": 0.044,
+          "oi_dir": "Flat",
+          "oi_chg_pct": 0.387,
+          "volume_dir": "Falling",
+          "volume_chg_pct": -9.191,
+          "funding_dir": "Falling",
+          "funding_chg_pct": -54.475,
+          "rsi_dir": "Flat",
+          "rsi_chg_pct": 0.776
+        },
+        "output": {
+          "primary_mechanism": "Mixed/inconclusive",
+          "risk_level": "Low"
+        },
+        "reasoning": [
+          "Price is effectively flat; mechanism signals are weak."
+        ]
+      },
+      {
+        "symbol": "ZECUSDT",
+        "inputs": {
+          "price": 1324.19,
+          "volume": 4632.518,
+          "open_interest": 136986.05,
+          "funding_rate": 0.0001,
+          "price_change_pct": 0.8560874366883742,
+          "oi_change_pct": -0.386286056019456,
+          "rsi": 57.24
+        },
+        "directions": {
+          "price_dir": "Rising",
+          "price_chg_pct": 0.856,
+          "oi_dir": "Flat",
+          "oi_chg_pct": -0.386,
+          "volume_dir": "Falling",
+          "volume_chg_pct": -35.133,
+          "funding_dir": "Flat",
+          "funding_chg_pct": 0.0,
+          "rsi_dir": "Rising",
+          "rsi_chg_pct": 3.714
+        },
+        "output": {
+          "primary_mechanism": "Weakening participation",
+          "risk_level": "Moderate"
+        },
+        "reasoning": [
+          "Price is rising but volume is falling, which implies weakening participation and possible exhaustion or low-liquidity drift. Increase caution, especially near resistance.",
+          "The asset is outperforming BTC (rising while BTC is flat/soft), which supports an asset-specific demand component."
+        ]
+      },
+      {
+        "symbol": "ZAMAUSDT",
+        "inputs": {
+          "price": 0.06907,
+          "volume": 979504.0,
+          "open_interest": 45018820.0,
+          "funding_rate": -0.0002440952963966,
+          "price_change_pct": 0.6264568764568762,
+          "oi_change_pct": 1.4693150957255776,
+          "rsi": 48.97
+        },
+        "directions": {
+          "price_dir": "Rising",
+          "price_chg_pct": 0.626,
+          "oi_dir": "Rising",
+          "oi_chg_pct": 1.469,
+          "volume_dir": "Rising",
+          "volume_chg_pct": 28.016,
+          "funding_dir": "Rising",
+          "funding_chg_pct": 32.383,
+          "rsi_dir": "Rising",
+          "rsi_chg_pct": 2.749
+        },
+        "output": {
+          "primary_mechanism": "Weakening participation",
+          "risk_level": "Moderate"
+        },
+        "reasoning": [
+          "Price is rising but volume is falling, which implies weakening participation and possible exhaustion or low-liquidity drift. Increase caution, especially near resistance.",
+          "OI is rising only gradually while volume fades, so any new positions appear low-conviction."
+        ]
+      }
+    ],
+    "newly_settled_count": 5,
+    "calibration_updates": [
+      {
+        "feature": "price_action",
+        "old": 0.92,
+        "new": 0.9,
+        "samples": 5,
+        "hits": 2
+      },
+      {
+        "feature": "oi_context",
+        "old": 0.92,
+        "new": 0.9,
+        "samples": 5,
+        "hits": 2
+      },
+      {
+        "feature": "volume_confirmation",
+        "old": 0.92,
+        "new": 0.9,
+        "samples": 5,
+        "hits": 2
+      },
+      {
+        "feature": "funding_context",
+        "old": 0.92,
+        "new": 0.9,
+        "samples": 5,
+        "hits": 2
+      },
+      {
+        "feature": "btc_overlay",
+        "old": 0.92,
+        "new": 0.9,
+        "samples": 5,
+        "hits": 2
+      }
+    ],
+    "metrics_after_run": {
+      "samples": 45,
+      "direction_accuracy": 33.3,
+      "risk_accuracy": 55.6,
+      "confidence": 41.1,
+      "confidence_threshold": 80,
+      "threshold_reached": false
+    },
+    "weights": {
+      "price_action": 0.9,
+      "oi_context": 0.9,
+      "volume_confirmation": 0.9,
+      "funding_context": 0.9,
+      "btc_overlay": 0.9,
+      "positioning_context": 1.0
+    }
   }
 ]
