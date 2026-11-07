@@ -17,13 +17,14 @@ from .contracts import ShadowRun, to_dict
 from .decision import synthesize
 from .evidence import build_all
 from .evaluation import build_scorecard
+from .ledger import process_shadow_run
 from .risk import evaluate as evaluate_risk
 from .technical import evaluate
 
 DEFAULT_SYMBOLS = ["BTCUSDT", "ETHUSDT", "SOLUSDT", "ZECUSDT", "ZAMAUSDT"]
 
 
-def run(history_dir: str, symbols: list[str], timeframe: str) -> ShadowRun:
+def run(history_dir: str, symbols: list[str], timeframe: str, persist_ledger: bool = True):
     started = datetime.now(timezone.utc)
     run_id = f"shadow-{started.strftime('%Y%m%dT%H%M%SZ')}-{uuid.uuid4().hex[:8]}"
     packs = build_all(history_dir, symbols, timeframe, run_id)
@@ -55,7 +56,7 @@ def run(history_dir: str, symbols: list[str], timeframe: str) -> ShadowRun:
     scorecard = build_scorecard(decisions, risks, history_dir)
     evaluations = scorecard.records
     completed = datetime.now(timezone.utc)
-    return ShadowRun(
+    shadow = ShadowRun(
         run_id=run_id,
         started_at=started.isoformat(),
         completed_at=completed.isoformat(),
@@ -74,9 +75,14 @@ def run(history_dir: str, symbols: list[str], timeframe: str) -> ShadowRun:
             "telegram_sent": False,
             "orders_submitted": False,
             "legacy_history_written": False,
+            "v2_ledger_written": bool(persist_ledger),
             "promotion_required": True,
         },
     )
+    ledger_summary = {}
+    if persist_ledger:
+        ledger_summary = process_shadow_run(history_dir, shadow)
+    return shadow, ledger_summary
 
 
 def main() -> int:
@@ -85,16 +91,25 @@ def main() -> int:
     parser.add_argument("--symbols", default=",".join(DEFAULT_SYMBOLS))
     parser.add_argument("--timeframe", default="4h")
     parser.add_argument("--output", default="shadow_artifacts/latest.json")
+    parser.add_argument("--no-ledger", action="store_true", help="Skip persistent ledger write")
     args = parser.parse_args()
-    result = run(args.history_dir, [x.strip() for x in args.symbols.split(",") if x.strip()], args.timeframe)
+    result, ledger_summary = run(
+        args.history_dir,
+        [x.strip() for x in args.symbols.split(",") if x.strip()],
+        args.timeframe,
+        persist_ledger=not args.no_ledger,
+    )
     os.makedirs(os.path.dirname(args.output) or ".", exist_ok=True)
+    payload = to_dict(result)
+    payload["ledger"] = ledger_summary
     with open(args.output, "w", encoding="utf-8") as handle:
-        json.dump(to_dict(result), handle, indent=2, ensure_ascii=False)
+        json.dump(payload, handle, indent=2, ensure_ascii=False)
     print(json.dumps({
         "run_id": result.run_id,
         "mode": result.mode,
         "symbols": len(result.agent_outputs),
         "safety": result.safety,
+        "ledger": ledger_summary,
         "output": args.output,
     }, indent=2))
     return 0
