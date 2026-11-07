@@ -1,13 +1,20 @@
 {
-  "updated_at": "2026-11-07T10:22:56.383883+00:00",
-  "last_run_id": "shadow-20261107T102256Z-9b7d3cc0",
-  "total_runs": 1,
-  "total_decisions": 5,
-  "phase": 6,
-  "schema_version": 1,
-  "last_settle_at": "2026-11-07T10:22:56.383885+00:00",
+  "updated_at": "2026-11-07T11:12:35.068785+00:00",
+  "last_run_id": "shadow-20261107T111235Z-48b818f2",
+  "total_runs": 2,
+  "total_decisions": 10,
+  "phase": 7,
+  "schema_version": 2,
+  "last_settle_at": "2026-11-07T11:12:35.068790+00:00",
   "newly_settled": 0,
-  "still_pending": 15,
+  "still_pending": 50,
   "insufficient_data": 0,
-  "total_evaluation_rows": 0
+  "total_evaluation_rows": 0,
+  "horizons": [
+    1,
+    3,
+    6,
+    12,
+    24
+  ]
 }

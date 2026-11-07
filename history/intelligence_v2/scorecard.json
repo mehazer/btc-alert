@@ -1,15 +1,17 @@
 {
   "agent": "ledger-evaluator",
-  "evaluated_at": "2026-11-07T10:22:56.383775+00:00",
+  "evaluated_at": "2026-11-07T11:12:35.068306+00:00",
   "horizons": [
     1,
     3,
-    6
+    6,
+    12,
+    24
   ],
-  "decisions_total": 5,
+  "decisions_total": 10,
   "records_total": 0,
   "settled_records": 0,
-  "pending_records": 15,
+  "pending_records": 50,
   "directional_records": 0,
   "directional_hits": 0,
   "direction_accuracy_pct": null,
@@ -21,8 +23,9 @@
   "limitations": [
     "Persistent scorecard aggregates all settled v2 evaluations; pending horizons are excluded.",
     "Does not modify production alerts, Telegram, or legacy history writers.",
-    "Direction accuracy is descriptive, not causal proof."
+    "Direction accuracy is descriptive, not causal proof.",
+    "Phase 7 horizons include 12 and 24 bars for longer replay."
   ],
-  "schema_version": 1,
-  "phase": 6
+  "schema_version": 2,
+  "phase": 7
 }
