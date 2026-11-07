@@ -1,0 +1,74 @@
+{
+  "agent": "ledger-evaluator",
+  "evaluated_at": "2026-11-07T22:30:10.480532+00:00",
+  "horizons": [
+    1,
+    3,
+    6,
+    12,
+    24
+  ],
+  "decisions_total": 25,
+  "records_total": 125,
+  "settled_records": 25,
+  "pending_records": 100,
+  "directional_records": 8,
+  "directional_hits": 4,
+  "direction_accuracy_pct": 50.0,
+  "guarded_records": 0,
+  "supported_risk_warnings": 0,
+  "risk_warning_support_pct": null,
+  "by_decision": {
+    "OBSERVE": {
+      "records": 85,
+      "settled": 17,
+      "pending": 68
+    },
+    "PAPER_PLAN": {
+      "records": 40,
+      "settled": 8,
+      "pending": 32
+    }
+  },
+  "by_horizon": {
+    "1": {
+      "settled": 25,
+      "directional": 8,
+      "hits": 4,
+      "accuracy_pct": 50.0
+    },
+    "3": {
+      "settled": 0,
+      "directional": 0,
+      "hits": 0,
+      "accuracy_pct": null
+    },
+    "6": {
+      "settled": 0,
+      "directional": 0,
+      "hits": 0,
+      "accuracy_pct": null
+    },
+    "12": {
+      "settled": 0,
+      "directional": 0,
+      "hits": 0,
+      "accuracy_pct": null
+    },
+    "24": {
+      "settled": 0,
+      "directional": 0,
+      "hits": 0,
+      "accuracy_pct": null
+    }
+  },
+  "limitations": [
+    "Persistent scorecard aggregates all settled v2 evaluations; pending horizons are excluded.",
+    "Does not modify production alerts, Telegram, or legacy history writers.",
+    "Direction accuracy is descriptive, not causal proof.",
+    "Phase 7 horizons include 12 and 24 bars for longer replay."
+  ],
+  "schema_version": 2,
+  "phase": 7,
+  "evaluation_mode": "historical_replay"
+}

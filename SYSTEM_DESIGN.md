@@ -49,6 +49,12 @@ The loop tracks six evidence families: price action, OI context, volume confirma
 
 This is intentionally a bounded online calibration loop. It does not rewrite old results, retrain a black-box model, or use future observations while making the original decision. Weight changes and metrics are written to `history/model_calibration.json` and each run records its snapshot in `history/evaluation_runs.json`.
 
+## Historical replay track
+
+`python -m intelligence_v2.replay` runs a read-only settlement replay over the existing v2 decision identities and historical symbol observations. It uses the same point-in-time evaluator as live settlement, writes to `history/intelligence_v2/replay/<batch-id>/`, and labels every output `evaluation_mode=historical_replay` with a replay batch ID and `lookahead_safe=true`.
+
+Replay is diagnostic only. It must not rewrite `decision_ledger.json`, `evaluation_ledger.json`, `scorecard.json`, agent scorecards, or the promotion report. Live shadow metrics remain the evidence used by the promotion gate; replay metrics are used to validate settlement logic, inspect longer horizons, and compare robustness across historical data. Replay of existing decisions does not regenerate historical agent decisions, so it is not a substitute for a future full point-in-time decision backtest.
+
 ## History files
 
 - `history/<SYMBOL>.json`: append-only market observations.

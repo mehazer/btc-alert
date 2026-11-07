@@ -1,0 +1,73 @@
+{
+  "replay_batch_id": "replay-20261107T223010Z",
+  "evaluation_mode": "historical_replay",
+  "lookahead_safe": true,
+  "started_at": "2026-11-07T22:30:10.426752+00:00",
+  "completed_at": "2026-11-07T22:30:10.480639+00:00",
+  "source": {
+    "decision_ledger": "history/intelligence_v2/decision_ledger.json",
+    "market_history_dir": "history",
+    "decision_count": 25,
+    "source_history_sha256": "9bbd8175bb3810060a61e6c94e6c8b8480e13f843fbed877ad50bed49360427a"
+  },
+  "coverage": {
+    "settled": 25,
+    "pending": 100,
+    "insufficient_data": 0
+  },
+  "live_scorecard_before_replay": {
+    "settled_records": 20,
+    "pending_records": 105,
+    "directional_records": 8,
+    "direction_accuracy_pct": 50.0
+  },
+  "replay_scorecard": {
+    "settled_records": 25,
+    "pending_records": 100,
+    "directional_records": 8,
+    "direction_accuracy_pct": 50.0,
+    "by_horizon": {
+      "1": {
+        "settled": 25,
+        "directional": 8,
+        "hits": 4,
+        "accuracy_pct": 50.0
+      },
+      "3": {
+        "settled": 0,
+        "directional": 0,
+        "hits": 0,
+        "accuracy_pct": null
+      },
+      "6": {
+        "settled": 0,
+        "directional": 0,
+        "hits": 0,
+        "accuracy_pct": null
+      },
+      "12": {
+        "settled": 0,
+        "directional": 0,
+        "hits": 0,
+        "accuracy_pct": null
+      },
+      "24": {
+        "settled": 0,
+        "directional": 0,
+        "hits": 0,
+        "accuracy_pct": null
+      }
+    }
+  },
+  "improvement": {
+    "additional_settled_records": 5,
+    "additional_directional_records": 0,
+    "live_ledger_modified": false,
+    "promotion_scorecard_modified": false
+  },
+  "limitations": [
+    "Replay settles existing v2 decisions only; it does not regenerate historical agent decisions.",
+    "Replay results are diagnostic and must not be mixed into the live promotion scorecard.",
+    "Historical outcomes do not prove causality or future performance."
+  ]
+}
