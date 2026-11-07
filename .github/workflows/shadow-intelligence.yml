@@ -12,9 +12,9 @@ on:
         required: false
         default: "BTCUSDT,ETHUSDT,SOLUSDT,ZECUSDT,ZAMAUSDT"
 
-# Shadow mode is read-only: it cannot push history or alter production data.
+# Phase 6: allow writing only the isolated v2 ledger under history/intelligence_v2/
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   shadow-analysis:
@@ -31,7 +31,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run v2 shadow analysis
+      - name: Run v2 shadow analysis with persistent ledger
         env:
           PYTHONPATH: .
         run: |
@@ -44,5 +44,20 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: intelligence-v2-shadow-${{ github.run_id }}
-          path: shadow_artifacts/latest.json
+          path: |
+            shadow_artifacts/latest.json
+            history/intelligence_v2/
           if-no-files-found: error
+
+      - name: Persist v2 ledger to repo
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add history/intelligence_v2/
+          if git diff --cached --quiet; then
+            echo "No v2 ledger changes to commit."
+          else
+            git commit -m "v2 ledger update [skip ci]"
+            git push
+          fi
