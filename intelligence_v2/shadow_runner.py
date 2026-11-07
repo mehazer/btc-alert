@@ -11,8 +11,10 @@ import os
 import uuid
 from datetime import datetime, timezone
 
+from .challenge import evaluate as evaluate_challenge
 from .contracts import ShadowRun, to_dict
 from .evidence import build_all
+from .risk import evaluate as evaluate_risk
 from .technical import evaluate
 
 DEFAULT_SYMBOLS = ["BTCUSDT", "ETHUSDT", "SOLUSDT", "ZECUSDT", "ZAMAUSDT"]
@@ -29,6 +31,12 @@ def run(history_dir: str, symbols: list[str], timeframe: str) -> ShadowRun:
     except (FileNotFoundError, json.JSONDecodeError, OSError):
         pass
     outputs = [evaluate(pack, history_dir, btc_history) for pack in packs]
+    risks = []
+    challenges = []
+    for pack, technical in zip(packs, outputs):
+        risk = evaluate_risk(pack, technical)
+        risks.append(risk)
+        challenges.append(evaluate_challenge(pack, technical, risk))
     completed = datetime.now(timezone.utc)
     return ShadowRun(
         run_id=run_id,
@@ -38,6 +46,8 @@ def run(history_dir: str, symbols: list[str], timeframe: str) -> ShadowRun:
         mode="shadow-read-only",
         evidence_packs=packs,
         agent_outputs=outputs,
+        risk_assessments=risks,
+        challenge_reports=challenges,
         safety={
             "legacy_system_touched": False,
             "telegram_sent": False,

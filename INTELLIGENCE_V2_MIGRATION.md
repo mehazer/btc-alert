@@ -39,8 +39,17 @@ If v2 is later promoted, promotion must happen in a separate pull request. The p
 - Safety metadata proving legacy history and Telegram were untouched.
 - Manual-only GitHub Actions workflow with read-only repository permissions.
 
-## Phase 2 next
+## Phase 2 implemented
 
-The next safe increment is to add a separate Risk Agent and a Challenge Agent in shadow mode. They should consume the same evidence pack and return structured risk flags, stress scenarios, missing-data challenges, and invalidation conditions. They should not yet alter alerts or portfolio decisions.
+- Deterministic Risk Agent consuming the same evidence pack as Technical Agent.
+- Downside, squeeze, and data-risk classifications.
+- Explicit veto flag for failed evidence or severe downside risk.
+- Stress scenarios for sudden reversal and liquidation squeeze.
+- Challenge Agent checking OI ambiguity, missing liquidation/derivatives-volume evidence, venue concentration, confidence caps, and Technical/Risk contradictions.
+- Risk and Challenge results are included in the isolated shadow artifact only.
 
-After that, add a shadow comparator that measures where v2 and legacy disagree, then store the comparison as an artifact. Only after several weeks of comparison should the system consider a limited production integration.
+## Phase 3 next
+
+The next safe increment is to add an isolated comparator that measures where v2 Technical/Risk/Challenge outputs disagree with the legacy interpretation. It should store comparison artifacts without changing alerts or portfolio decisions.
+
+After that, add a paper-only Decision Synthesizer. Only after several weeks of comparison should the system consider a limited production integration.

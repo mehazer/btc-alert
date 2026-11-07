@@ -1,8 +1,8 @@
 """Canonical contracts for the next-generation intelligence system.
 
 The v2 system exchanges these objects rather than free-form agent messages.
-Contracts are deliberately dependency-light so they can later be moved behind
-an API or a persistent store without changing agent logic.
+Contracts are dependency-light so they can later move behind an API or a
+persistent store without changing agent logic.
 """
 from __future__ import annotations
 
@@ -95,6 +95,43 @@ class AgentOutput:
 
 
 @dataclass(frozen=True)
+class RiskAssessment:
+    agent: str
+    run_id: str
+    symbol: str
+    timeframe: str
+    overall_level: str  # low, medium, high, unknown
+    downside_risk: str
+    squeeze_risk: str
+    data_risk: str
+    veto: bool
+    flags: List[str]
+    stress_scenarios: List[Scenario]
+    confidence: int
+    evidence_ids: List[str]
+    evaluated_at: str
+    model_version: str
+    reasons: List[str] = field(default_factory=list)
+
+
+@dataclass(frozen=True)
+class ChallengeReport:
+    agent: str
+    run_id: str
+    symbol: str
+    timeframe: str
+    status: str  # pass, warn, fail
+    challenges: List[str]
+    missing_evidence: List[str]
+    contradictions: List[str]
+    required_invalidation: List[str]
+    confidence_cap: int
+    evidence_ids: List[str]
+    evaluated_at: str
+    model_version: str
+
+
+@dataclass(frozen=True)
 class ShadowRun:
     run_id: str
     started_at: str
@@ -103,7 +140,9 @@ class ShadowRun:
     mode: str
     evidence_packs: List[EvidencePack]
     agent_outputs: List[AgentOutput]
-    safety: Dict[str, Any]
+    risk_assessments: List[RiskAssessment] = field(default_factory=list)
+    challenge_reports: List[ChallengeReport] = field(default_factory=list)
+    safety: Dict[str, Any] = field(default_factory=dict)
 
 
 def to_dict(value: Any) -> Dict[str, Any]:
