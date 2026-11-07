@@ -11,7 +11,7 @@ import os
 import uuid
 from datetime import datetime, timezone
 
-from . import coin_agent, interpreter, portfolio_agent, promotion
+from . import coin_agent, interpreter, portfolio_agent, promotion, venues
 from .challenge import evaluate as evaluate_challenge
 from .comparator import compare
 from .contracts import ShadowRun, to_dict
@@ -29,6 +29,14 @@ def run(history_dir: str, symbols: list[str], timeframe: str, persist_ledger: bo
     started = datetime.now(timezone.utc)
     run_id = f"shadow-{started.strftime('%Y%m%dT%H%M%SZ')}-{uuid.uuid4().hex[:8]}"
     packs = build_all(history_dir, symbols, timeframe, run_id)
+
+    venue_snapshot = {}
+    try:
+        venue_snapshot = venues.snapshot_symbols(symbols)
+        venues.save_snapshot(history_dir, venue_snapshot)
+    except Exception as exc:
+        venue_snapshot = {"status": "error", "detail": str(exc)}
+
     btc_history = []
     try:
         with open(os.path.join(history_dir, "BTCUSDT.json"), "r", encoding="utf-8") as handle:
@@ -103,7 +111,8 @@ def run(history_dir: str, symbols: list[str], timeframe: str, persist_ledger: bo
             "v2_ledger_written": bool(persist_ledger),
             "promotion_required": True,
             "auto_promote": False,
-            "phase": 8,
+            "phase": 9,
+            "venue_snapshot_saved": bool(venue_snapshot) and venue_snapshot.get("status") != "error",
         },
     )
     ledger_summary = {}
