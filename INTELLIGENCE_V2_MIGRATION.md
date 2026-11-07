@@ -48,8 +48,15 @@ If v2 is later promoted, promotion must happen in a separate pull request. The p
 - Challenge Agent checking OI ambiguity, missing liquidation/derivatives-volume evidence, venue concentration, confidence caps, and Technical/Risk contradictions.
 - Risk and Challenge results are included in the isolated shadow artifact only.
 
-## Phase 3 next
+## Phase 3 implemented
 
-The next safe increment is to add an isolated comparator that measures where v2 Technical/Risk/Challenge outputs disagree with the legacy interpretation. It should store comparison artifacts without changing alerts or portfolio decisions.
+- Read-only comparator between v2 Technical/Risk/Challenge outputs and the latest legacy mechanism record.
+- Explicit `agree`, `partial`, `disagree`, and `unavailable` states.
+- Separate comparison of mechanism state and sudden-drop risk.
+- Legacy evidence timestamp and staleness measurement.
+- Difference list explaining state, risk, challenge, and freshness discrepancies.
+- Comparisons are included only in the manual shadow artifact.
 
-After that, add a paper-only Decision Synthesizer. Only after several weeks of comparison should the system consider a limited production integration.
+## Phase 4 next
+
+The next safe increment is a paper-only Decision Synthesizer that consumes the v2 agent outputs and comparator records. It may propose scenarios, but must not send alerts or make portfolio decisions. Only after several weeks of comparison should the system consider a limited production integration.

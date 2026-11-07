@@ -132,6 +132,27 @@ class ChallengeReport:
 
 
 @dataclass(frozen=True)
+class ComparisonRecord:
+    agent: str
+    run_id: str
+    symbol: str
+    timeframe: str
+    compared_at: str
+    legacy_timestamp: Optional[str]
+    legacy_state: Optional[str]
+    v2_state: str
+    state_agreement: str  # agree, partial, disagree, unavailable
+    legacy_risk: Optional[str]
+    v2_risk: str
+    risk_agreement: str  # agree, partial, disagree, unavailable
+    challenge_status: str
+    overall_status: str  # aligned, mixed, divergent, unavailable
+    differences: List[str]
+    stale_legacy_seconds: Optional[float]
+    evidence_ids: List[str]
+
+
+@dataclass(frozen=True)
 class ShadowRun:
     run_id: str
     started_at: str
@@ -142,6 +163,7 @@ class ShadowRun:
     agent_outputs: List[AgentOutput]
     risk_assessments: List[RiskAssessment] = field(default_factory=list)
     challenge_reports: List[ChallengeReport] = field(default_factory=list)
+    comparisons: List[ComparisonRecord] = field(default_factory=list)
     safety: Dict[str, Any] = field(default_factory=dict)
 
 

@@ -12,6 +12,7 @@ import uuid
 from datetime import datetime, timezone
 
 from .challenge import evaluate as evaluate_challenge
+from .comparator import compare
 from .contracts import ShadowRun, to_dict
 from .evidence import build_all
 from .risk import evaluate as evaluate_risk
@@ -33,10 +34,19 @@ def run(history_dir: str, symbols: list[str], timeframe: str) -> ShadowRun:
     outputs = [evaluate(pack, history_dir, btc_history) for pack in packs]
     risks = []
     challenges = []
+    comparisons = []
     for pack, technical in zip(packs, outputs):
         risk = evaluate_risk(pack, technical)
         risks.append(risk)
-        challenges.append(evaluate_challenge(pack, technical, risk))
+        challenge = evaluate_challenge(pack, technical, risk)
+        challenges.append(challenge)
+        comparisons.append(compare(
+            pack,
+            technical,
+            risk,
+            challenge,
+            os.path.join(history_dir, "mechanism_history.json"),
+        ))
     completed = datetime.now(timezone.utc)
     return ShadowRun(
         run_id=run_id,
@@ -48,6 +58,7 @@ def run(history_dir: str, symbols: list[str], timeframe: str) -> ShadowRun:
         agent_outputs=outputs,
         risk_assessments=risks,
         challenge_reports=challenges,
+        comparisons=comparisons,
         safety={
             "legacy_system_touched": False,
             "telegram_sent": False,
