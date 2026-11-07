@@ -29,7 +29,12 @@ def _state(primary: str, market_state: str) -> str:
     return market_state.lower().replace(" ", "-") or "observe"
 
 
-def evaluate(pack: EvidencePack, history_dir: str, btc_history: List[dict]) -> AgentOutput:
+def evaluate(
+    pack: EvidencePack,
+    history_dir: str,
+    btc_history: List[dict],
+    news_sentiment: float | None = None,
+) -> AgentOutput:
     row = pack.observations[0]
     history = _history(history_dir, pack.symbol)
     btc_last = btc_history[-1] if btc_history else {}
@@ -43,7 +48,7 @@ def evaluate(pack: EvidencePack, history_dir: str, btc_history: List[dict]) -> A
         funding_rate=row.funding_rate,
         oi_change_pct=row.oi_change_pct,
         price_change_pct=row.price_change_pct,
-        news_sentiment=None,
+        news_sentiment=news_sentiment,
     )
     mechanism = mechanism_interpreter.analyze(
         symbol=pack.symbol,
@@ -96,6 +101,10 @@ def evaluate(pack: EvidencePack, history_dir: str, btc_history: List[dict]) -> A
         evidence_ids=[pack.evidence_id] + [s.source_id for s in row.source_refs],
         evaluated_at=mechanism.get("evaluated_at") or pack.created_at,
         model_version="technical-shadow-v0.1-adapter",
-        inputs={"market_agent": market.get("inputs", {}), "mechanism": mechanism.get("current_relationship", {})},
+        inputs={
+            "market_agent": market.get("inputs", {}),
+            "mechanism": mechanism.get("current_relationship", {}),
+            "news_sentiment": news_sentiment,
+        },
         reasons=(mechanism.get("likely_mechanism") or {}).get("reasoning", []) + market.get("reasons", [])[:3],
     )

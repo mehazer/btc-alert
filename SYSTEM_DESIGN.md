@@ -57,6 +57,8 @@ Replay is diagnostic only. It must not rewrite `decision_ledger.json`, `evaluati
 
 `python -m intelligence_v2.walkforward --symbols BTCUSDT,ETHUSDT,SOLUSDT` performs that next-level diagnostic. At each eligible historical bar it writes a history prefix, rebuilds the evidence pack, runs Technical, Risk, Challenge, Comparator, and Decision Synthesizer, then evaluates the resulting decision at every configured horizon. It writes only to `history/intelligence_v2/walkforward/<batch-id>/` and the stable `walkforward/latest/` pointer. The batch ID and output hash are derived from the source history and configuration, so reruns are deterministic. ZEC and ZAMA remain excluded until their history depth is sufficient. Legacy date-only rows receive monotonic synthetic timestamps that preserve source order; original timestamps remain in each record for audit.
 
+`python -m intelligence_v2.robustness --symbols BTCUSDT,ETHUSDT,SOLUSDT` runs controlled robustness scenarios over the same point-in-time path: baseline, bullish synthetic news shift, bearish synthetic news shift, venue disagreement, and combined bearish-news/venue-failure stress. Synthetic inputs are explicitly labelled and are not presented as reconstructed headlines or historical exchange snapshots. The report compares confidence, decision changes, risk vetoes, and horizon outcomes against baseline. It is diagnostic only and cannot update live weights or promotion status.
+
 ## History files
 
 - `history/<SYMBOL>.json`: append-only market observations.

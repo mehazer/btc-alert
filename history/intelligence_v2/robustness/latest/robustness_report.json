@@ -1,0 +1,1475 @@
+{
+  "robustness_batch_id": "robustness-57f2abc08212",
+  "evaluation_mode": "robustness_simulation",
+  "symbols": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT"
+  ],
+  "timeframe": "4h",
+  "scenarios": [
+    "baseline_no_synthetic_context",
+    "bullish_news_shift",
+    "bearish_news_shift",
+    "venue_disagreement",
+    "combined_bearish_news_venue_failure"
+  ],
+  "history_lengths": {
+    "BTCUSDT": 96,
+    "ETHUSDT": 96,
+    "SOLUSDT": 96
+  },
+  "common_bars": 96,
+  "warmup_bars": 20,
+  "lookahead_safe": true,
+  "leakage_checks": {
+    "violation_count": 0,
+    "violations": [],
+    "future_rows_used_for_decisions": false
+  },
+  "scenario_summaries": {
+    "baseline_no_synthetic_context": {
+      "decisions": 228,
+      "evaluations": 1140,
+      "context_injected_decisions": 0,
+      "settled_records": 1002,
+      "pending_records": 138,
+      "directional_records": 194,
+      "directional_hits": 148,
+      "direction_accuracy_pct": 76.29,
+      "mean_decision_confidence": 25.34,
+      "risk_veto_count": 0,
+      "challenge_statuses": {
+        "warn": 228
+      },
+      "by_horizon": {
+        "1": {
+          "settled": 225,
+          "directional": 43,
+          "hits": 31,
+          "accuracy_pct": 72.09
+        },
+        "3": {
+          "settled": 219,
+          "directional": 43,
+          "hits": 28,
+          "accuracy_pct": 65.12
+        },
+        "6": {
+          "settled": 210,
+          "directional": 41,
+          "hits": 31,
+          "accuracy_pct": 75.61
+        },
+        "12": {
+          "settled": 192,
+          "directional": 39,
+          "hits": 33,
+          "accuracy_pct": 84.62
+        },
+        "24": {
+          "settled": 156,
+          "directional": 28,
+          "hits": 25,
+          "accuracy_pct": 89.29
+        }
+      },
+      "by_decision": {
+        "OBSERVE": {
+          "records": 780,
+          "settled": 672,
+          "pending": 108
+        },
+        "PAPER_PLAN": {
+          "records": 280,
+          "settled": 276,
+          "pending": 4
+        },
+        "ALERT": {
+          "records": 80,
+          "settled": 54,
+          "pending": 26
+        }
+      },
+      "agent_scorecards": {
+        "phase": 7,
+        "schema_version": 2,
+        "horizons": [
+          1,
+          3,
+          6,
+          12,
+          24
+        ],
+        "decisions_total": 228,
+        "settled_evaluation_rows": 1002,
+        "agents": {
+          "technical": {
+            "agent": "technical",
+            "samples": 194,
+            "hits": 148,
+            "primary_metric": "direction_accuracy_pct",
+            "primary_metric_pct": 76.29,
+            "by_state": {
+              "unknown": {
+                "n": 194,
+                "hits": 148,
+                "accuracy_pct": 76.29
+              }
+            },
+            "notes": [
+              "Counts only settled horizons with an up/down signal.",
+              "Grouped by technical.state recorded at decision time."
+            ]
+          },
+          "risk": {
+            "agent": "risk",
+            "samples": 0,
+            "hits": 0,
+            "primary_metric": "warning_support_pct",
+            "primary_metric_pct": null,
+            "low_risk_samples": 0,
+            "false_calm_count": 0,
+            "false_calm_pct": null,
+            "notes": [
+              "Warning support: guarded/high/veto with >=1% adverse excursion.",
+              "False calm: low/medium risk with later >=2% adverse excursion."
+            ]
+          },
+          "challenge": {
+            "agent": "challenge",
+            "samples": 0,
+            "fail_samples": 0,
+            "warn_samples": 0,
+            "pass_samples": 0,
+            "hits": 0,
+            "primary_metric": "fail_useful_pct",
+            "primary_metric_pct": null,
+            "pass_error_pct": null,
+            "notes": [
+              "fail_useful: challenge=fail and bad outcome.",
+              "pass_error: challenge=pass but direction wrong."
+            ]
+          }
+        },
+        "limitations": [
+          "Agent scorecards require settled horizons; early runs stay empty.",
+          "Metrics are descriptive calibration aids."
+        ]
+      }
+    },
+    "bullish_news_shift": {
+      "decisions": 228,
+      "evaluations": 1140,
+      "context_injected_decisions": 36,
+      "settled_records": 1002,
+      "pending_records": 138,
+      "directional_records": 194,
+      "directional_hits": 148,
+      "direction_accuracy_pct": 76.29,
+      "mean_decision_confidence": 26.66,
+      "risk_veto_count": 0,
+      "challenge_statuses": {
+        "warn": 228
+      },
+      "by_horizon": {
+        "1": {
+          "settled": 225,
+          "directional": 43,
+          "hits": 31,
+          "accuracy_pct": 72.09
+        },
+        "3": {
+          "settled": 219,
+          "directional": 43,
+          "hits": 28,
+          "accuracy_pct": 65.12
+        },
+        "6": {
+          "settled": 210,
+          "directional": 41,
+          "hits": 31,
+          "accuracy_pct": 75.61
+        },
+        "12": {
+          "settled": 192,
+          "directional": 39,
+          "hits": 33,
+          "accuracy_pct": 84.62
+        },
+        "24": {
+          "settled": 156,
+          "directional": 28,
+          "hits": 25,
+          "accuracy_pct": 89.29
+        }
+      },
+      "by_decision": {
+        "OBSERVE": {
+          "records": 780,
+          "settled": 672,
+          "pending": 108
+        },
+        "PAPER_PLAN": {
+          "records": 280,
+          "settled": 276,
+          "pending": 4
+        },
+        "ALERT": {
+          "records": 80,
+          "settled": 54,
+          "pending": 26
+        }
+      },
+      "agent_scorecards": {
+        "phase": 7,
+        "schema_version": 2,
+        "horizons": [
+          1,
+          3,
+          6,
+          12,
+          24
+        ],
+        "decisions_total": 228,
+        "settled_evaluation_rows": 1002,
+        "agents": {
+          "technical": {
+            "agent": "technical",
+            "samples": 194,
+            "hits": 148,
+            "primary_metric": "direction_accuracy_pct",
+            "primary_metric_pct": 76.29,
+            "by_state": {
+              "unknown": {
+                "n": 194,
+                "hits": 148,
+                "accuracy_pct": 76.29
+              }
+            },
+            "notes": [
+              "Counts only settled horizons with an up/down signal.",
+              "Grouped by technical.state recorded at decision time."
+            ]
+          },
+          "risk": {
+            "agent": "risk",
+            "samples": 0,
+            "hits": 0,
+            "primary_metric": "warning_support_pct",
+            "primary_metric_pct": null,
+            "low_risk_samples": 0,
+            "false_calm_count": 0,
+            "false_calm_pct": null,
+            "notes": [
+              "Warning support: guarded/high/veto with >=1% adverse excursion.",
+              "False calm: low/medium risk with later >=2% adverse excursion."
+            ]
+          },
+          "challenge": {
+            "agent": "challenge",
+            "samples": 0,
+            "fail_samples": 0,
+            "warn_samples": 0,
+            "pass_samples": 0,
+            "hits": 0,
+            "primary_metric": "fail_useful_pct",
+            "primary_metric_pct": null,
+            "pass_error_pct": null,
+            "notes": [
+              "fail_useful: challenge=fail and bad outcome.",
+              "pass_error: challenge=pass but direction wrong."
+            ]
+          }
+        },
+        "limitations": [
+          "Agent scorecards require settled horizons; early runs stay empty.",
+          "Metrics are descriptive calibration aids."
+        ]
+      }
+    },
+    "bearish_news_shift": {
+      "decisions": 228,
+      "evaluations": 1140,
+      "context_injected_decisions": 36,
+      "settled_records": 1002,
+      "pending_records": 138,
+      "directional_records": 194,
+      "directional_hits": 148,
+      "direction_accuracy_pct": 76.29,
+      "mean_decision_confidence": 26.66,
+      "risk_veto_count": 0,
+      "challenge_statuses": {
+        "warn": 228
+      },
+      "by_horizon": {
+        "1": {
+          "settled": 225,
+          "directional": 43,
+          "hits": 31,
+          "accuracy_pct": 72.09
+        },
+        "3": {
+          "settled": 219,
+          "directional": 43,
+          "hits": 28,
+          "accuracy_pct": 65.12
+        },
+        "6": {
+          "settled": 210,
+          "directional": 41,
+          "hits": 31,
+          "accuracy_pct": 75.61
+        },
+        "12": {
+          "settled": 192,
+          "directional": 39,
+          "hits": 33,
+          "accuracy_pct": 84.62
+        },
+        "24": {
+          "settled": 156,
+          "directional": 28,
+          "hits": 25,
+          "accuracy_pct": 89.29
+        }
+      },
+      "by_decision": {
+        "OBSERVE": {
+          "records": 780,
+          "settled": 672,
+          "pending": 108
+        },
+        "PAPER_PLAN": {
+          "records": 280,
+          "settled": 276,
+          "pending": 4
+        },
+        "ALERT": {
+          "records": 80,
+          "settled": 54,
+          "pending": 26
+        }
+      },
+      "agent_scorecards": {
+        "phase": 7,
+        "schema_version": 2,
+        "horizons": [
+          1,
+          3,
+          6,
+          12,
+          24
+        ],
+        "decisions_total": 228,
+        "settled_evaluation_rows": 1002,
+        "agents": {
+          "technical": {
+            "agent": "technical",
+            "samples": 194,
+            "hits": 148,
+            "primary_metric": "direction_accuracy_pct",
+            "primary_metric_pct": 76.29,
+            "by_state": {
+              "unknown": {
+                "n": 194,
+                "hits": 148,
+                "accuracy_pct": 76.29
+              }
+            },
+            "notes": [
+              "Counts only settled horizons with an up/down signal.",
+              "Grouped by technical.state recorded at decision time."
+            ]
+          },
+          "risk": {
+            "agent": "risk",
+            "samples": 0,
+            "hits": 0,
+            "primary_metric": "warning_support_pct",
+            "primary_metric_pct": null,
+            "low_risk_samples": 0,
+            "false_calm_count": 0,
+            "false_calm_pct": null,
+            "notes": [
+              "Warning support: guarded/high/veto with >=1% adverse excursion.",
+              "False calm: low/medium risk with later >=2% adverse excursion."
+            ]
+          },
+          "challenge": {
+            "agent": "challenge",
+            "samples": 0,
+            "fail_samples": 0,
+            "warn_samples": 0,
+            "pass_samples": 0,
+            "hits": 0,
+            "primary_metric": "fail_useful_pct",
+            "primary_metric_pct": null,
+            "pass_error_pct": null,
+            "notes": [
+              "fail_useful: challenge=fail and bad outcome.",
+              "pass_error: challenge=pass but direction wrong."
+            ]
+          }
+        },
+        "limitations": [
+          "Agent scorecards require settled horizons; early runs stay empty.",
+          "Metrics are descriptive calibration aids."
+        ]
+      }
+    },
+    "venue_disagreement": {
+      "decisions": 228,
+      "evaluations": 1140,
+      "context_injected_decisions": 228,
+      "settled_records": 1002,
+      "pending_records": 138,
+      "directional_records": 194,
+      "directional_hits": 148,
+      "direction_accuracy_pct": 76.29,
+      "mean_decision_confidence": 21.26,
+      "risk_veto_count": 0,
+      "challenge_statuses": {
+        "warn": 228
+      },
+      "by_horizon": {
+        "1": {
+          "settled": 225,
+          "directional": 43,
+          "hits": 31,
+          "accuracy_pct": 72.09
+        },
+        "3": {
+          "settled": 219,
+          "directional": 43,
+          "hits": 28,
+          "accuracy_pct": 65.12
+        },
+        "6": {
+          "settled": 210,
+          "directional": 41,
+          "hits": 31,
+          "accuracy_pct": 75.61
+        },
+        "12": {
+          "settled": 192,
+          "directional": 39,
+          "hits": 33,
+          "accuracy_pct": 84.62
+        },
+        "24": {
+          "settled": 156,
+          "directional": 28,
+          "hits": 25,
+          "accuracy_pct": 89.29
+        }
+      },
+      "by_decision": {
+        "OBSERVE": {
+          "records": 780,
+          "settled": 672,
+          "pending": 108
+        },
+        "PAPER_PLAN": {
+          "records": 285,
+          "settled": 280,
+          "pending": 5
+        },
+        "ALERT": {
+          "records": 75,
+          "settled": 50,
+          "pending": 25
+        }
+      },
+      "agent_scorecards": {
+        "phase": 7,
+        "schema_version": 2,
+        "horizons": [
+          1,
+          3,
+          6,
+          12,
+          24
+        ],
+        "decisions_total": 228,
+        "settled_evaluation_rows": 1002,
+        "agents": {
+          "technical": {
+            "agent": "technical",
+            "samples": 194,
+            "hits": 148,
+            "primary_metric": "direction_accuracy_pct",
+            "primary_metric_pct": 76.29,
+            "by_state": {
+              "unknown": {
+                "n": 194,
+                "hits": 148,
+                "accuracy_pct": 76.29
+              }
+            },
+            "notes": [
+              "Counts only settled horizons with an up/down signal.",
+              "Grouped by technical.state recorded at decision time."
+            ]
+          },
+          "risk": {
+            "agent": "risk",
+            "samples": 0,
+            "hits": 0,
+            "primary_metric": "warning_support_pct",
+            "primary_metric_pct": null,
+            "low_risk_samples": 0,
+            "false_calm_count": 0,
+            "false_calm_pct": null,
+            "notes": [
+              "Warning support: guarded/high/veto with >=1% adverse excursion.",
+              "False calm: low/medium risk with later >=2% adverse excursion."
+            ]
+          },
+          "challenge": {
+            "agent": "challenge",
+            "samples": 0,
+            "fail_samples": 0,
+            "warn_samples": 0,
+            "pass_samples": 0,
+            "hits": 0,
+            "primary_metric": "fail_useful_pct",
+            "primary_metric_pct": null,
+            "pass_error_pct": null,
+            "notes": [
+              "fail_useful: challenge=fail and bad outcome.",
+              "pass_error: challenge=pass but direction wrong."
+            ]
+          }
+        },
+        "limitations": [
+          "Agent scorecards require settled horizons; early runs stay empty.",
+          "Metrics are descriptive calibration aids."
+        ]
+      }
+    },
+    "combined_bearish_news_venue_failure": {
+      "decisions": 228,
+      "evaluations": 1140,
+      "context_injected_decisions": 228,
+      "settled_records": 1002,
+      "pending_records": 138,
+      "directional_records": 194,
+      "directional_hits": 148,
+      "direction_accuracy_pct": 76.29,
+      "mean_decision_confidence": 22.32,
+      "risk_veto_count": 228,
+      "challenge_statuses": {
+        "warn": 148,
+        "fail": 80
+      },
+      "by_horizon": {
+        "1": {
+          "settled": 225,
+          "directional": 43,
+          "hits": 31,
+          "accuracy_pct": 72.09
+        },
+        "3": {
+          "settled": 219,
+          "directional": 43,
+          "hits": 28,
+          "accuracy_pct": 65.12
+        },
+        "6": {
+          "settled": 210,
+          "directional": 41,
+          "hits": 31,
+          "accuracy_pct": 75.61
+        },
+        "12": {
+          "settled": 192,
+          "directional": 39,
+          "hits": 33,
+          "accuracy_pct": 84.62
+        },
+        "24": {
+          "settled": 156,
+          "directional": 28,
+          "hits": 25,
+          "accuracy_pct": 89.29
+        }
+      },
+      "by_decision": {
+        "OBSERVE": {
+          "records": 1140,
+          "settled": 1002,
+          "pending": 138
+        }
+      },
+      "agent_scorecards": {
+        "phase": 7,
+        "schema_version": 2,
+        "horizons": [
+          1,
+          3,
+          6,
+          12,
+          24
+        ],
+        "decisions_total": 228,
+        "settled_evaluation_rows": 1002,
+        "agents": {
+          "technical": {
+            "agent": "technical",
+            "samples": 194,
+            "hits": 148,
+            "primary_metric": "direction_accuracy_pct",
+            "primary_metric_pct": 76.29,
+            "by_state": {
+              "unknown": {
+                "n": 194,
+                "hits": 148,
+                "accuracy_pct": 76.29
+              }
+            },
+            "notes": [
+              "Counts only settled horizons with an up/down signal.",
+              "Grouped by technical.state recorded at decision time."
+            ]
+          },
+          "risk": {
+            "agent": "risk",
+            "samples": 1002,
+            "hits": 586,
+            "primary_metric": "warning_support_pct",
+            "primary_metric_pct": 58.48,
+            "low_risk_samples": 0,
+            "false_calm_count": 0,
+            "false_calm_pct": null,
+            "notes": [
+              "Warning support: guarded/high/veto with >=1% adverse excursion.",
+              "False calm: low/medium risk with later >=2% adverse excursion."
+            ]
+          },
+          "challenge": {
+            "agent": "challenge",
+            "samples": 0,
+            "fail_samples": 0,
+            "warn_samples": 0,
+            "pass_samples": 0,
+            "hits": 0,
+            "primary_metric": "fail_useful_pct",
+            "primary_metric_pct": null,
+            "pass_error_pct": null,
+            "notes": [
+              "fail_useful: challenge=fail and bad outcome.",
+              "pass_error: challenge=pass but direction wrong."
+            ]
+          }
+        },
+        "limitations": [
+          "Agent scorecards require settled horizons; early runs stay empty.",
+          "Metrics are descriptive calibration aids."
+        ]
+      }
+    }
+  },
+  "comparisons_vs_baseline": {
+    "baseline_no_synthetic_context": {
+      "accuracy_delta_vs_baseline_pct": 0.0,
+      "directional_count_delta_vs_baseline": 0,
+      "settled_count_delta_vs_baseline": 0,
+      "mean_confidence_delta_vs_baseline": 0.0,
+      "decision_state_changes_vs_baseline": 0,
+      "decision_mix": {
+        "OBSERVE": {
+          "records": 780,
+          "settled": 672,
+          "pending": 108
+        },
+        "PAPER_PLAN": {
+          "records": 280,
+          "settled": 276,
+          "pending": 4
+        },
+        "ALERT": {
+          "records": 80,
+          "settled": 54,
+          "pending": 26
+        }
+      }
+    },
+    "bullish_news_shift": {
+      "accuracy_delta_vs_baseline_pct": 0.0,
+      "directional_count_delta_vs_baseline": 0,
+      "settled_count_delta_vs_baseline": 0,
+      "mean_confidence_delta_vs_baseline": 1.32,
+      "decision_state_changes_vs_baseline": 0,
+      "decision_mix": {
+        "OBSERVE": {
+          "records": 780,
+          "settled": 672,
+          "pending": 108
+        },
+        "PAPER_PLAN": {
+          "records": 280,
+          "settled": 276,
+          "pending": 4
+        },
+        "ALERT": {
+          "records": 80,
+          "settled": 54,
+          "pending": 26
+        }
+      }
+    },
+    "bearish_news_shift": {
+      "accuracy_delta_vs_baseline_pct": 0.0,
+      "directional_count_delta_vs_baseline": 0,
+      "settled_count_delta_vs_baseline": 0,
+      "mean_confidence_delta_vs_baseline": 1.32,
+      "decision_state_changes_vs_baseline": 0,
+      "decision_mix": {
+        "OBSERVE": {
+          "records": 780,
+          "settled": 672,
+          "pending": 108
+        },
+        "PAPER_PLAN": {
+          "records": 280,
+          "settled": 276,
+          "pending": 4
+        },
+        "ALERT": {
+          "records": 80,
+          "settled": 54,
+          "pending": 26
+        }
+      }
+    },
+    "venue_disagreement": {
+      "accuracy_delta_vs_baseline_pct": 0.0,
+      "directional_count_delta_vs_baseline": 0,
+      "settled_count_delta_vs_baseline": 0,
+      "mean_confidence_delta_vs_baseline": -4.08,
+      "decision_state_changes_vs_baseline": 1,
+      "decision_mix": {
+        "OBSERVE": {
+          "records": 780,
+          "settled": 672,
+          "pending": 108
+        },
+        "PAPER_PLAN": {
+          "records": 285,
+          "settled": 280,
+          "pending": 5
+        },
+        "ALERT": {
+          "records": 75,
+          "settled": 50,
+          "pending": 25
+        }
+      }
+    },
+    "combined_bearish_news_venue_failure": {
+      "accuracy_delta_vs_baseline_pct": 0.0,
+      "directional_count_delta_vs_baseline": 0,
+      "settled_count_delta_vs_baseline": 0,
+      "mean_confidence_delta_vs_baseline": -3.02,
+      "decision_state_changes_vs_baseline": 72,
+      "decision_mix": {
+        "OBSERVE": {
+          "records": 1140,
+          "settled": 1002,
+          "pending": 138
+        }
+      }
+    }
+  },
+  "decision_examples": {
+    "baseline_no_synthetic_context": [],
+    "bullish_news_shift": [
+      {
+        "index": 32,
+        "symbol": "BTCUSDT",
+        "decision": "PAPER_PLAN",
+        "signal_direction": "flat",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": 75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 32,
+        "symbol": "ETHUSDT",
+        "decision": "PAPER_PLAN",
+        "signal_direction": "flat",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": 75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 32,
+        "symbol": "SOLUSDT",
+        "decision": "PAPER_PLAN",
+        "signal_direction": "flat",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": 75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 33,
+        "symbol": "BTCUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": 75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 33,
+        "symbol": "ETHUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": 75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 33,
+        "symbol": "SOLUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": 75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 34,
+        "symbol": "BTCUSDT",
+        "decision": "PAPER_PLAN",
+        "signal_direction": "down",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": 75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 34,
+        "symbol": "ETHUSDT",
+        "decision": "PAPER_PLAN",
+        "signal_direction": "down",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": 75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 34,
+        "symbol": "SOLUSDT",
+        "decision": "PAPER_PLAN",
+        "signal_direction": "down",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": 75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 35,
+        "symbol": "BTCUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": 75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 35,
+        "symbol": "ETHUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": 75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 35,
+        "symbol": "SOLUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": 75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      }
+    ],
+    "bearish_news_shift": [
+      {
+        "index": 32,
+        "symbol": "BTCUSDT",
+        "decision": "PAPER_PLAN",
+        "signal_direction": "flat",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": -75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 32,
+        "symbol": "ETHUSDT",
+        "decision": "PAPER_PLAN",
+        "signal_direction": "flat",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": -75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 32,
+        "symbol": "SOLUSDT",
+        "decision": "PAPER_PLAN",
+        "signal_direction": "flat",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": -75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 33,
+        "symbol": "BTCUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": -75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 33,
+        "symbol": "ETHUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": -75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 33,
+        "symbol": "SOLUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": -75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 34,
+        "symbol": "BTCUSDT",
+        "decision": "PAPER_PLAN",
+        "signal_direction": "down",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": -75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 34,
+        "symbol": "ETHUSDT",
+        "decision": "PAPER_PLAN",
+        "signal_direction": "down",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": -75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 34,
+        "symbol": "SOLUSDT",
+        "decision": "PAPER_PLAN",
+        "signal_direction": "down",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": -75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 35,
+        "symbol": "BTCUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": -75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 35,
+        "symbol": "ETHUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": -75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      },
+      {
+        "index": 35,
+        "symbol": "SOLUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 26,
+        "context": {
+          "news_sentiment": -75.0,
+          "news_source": "synthetic_controlled_shift",
+          "venue_mode": "unmodeled",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "none"
+        }
+      }
+    ],
+    "venue_disagreement": [
+      {
+        "index": 20,
+        "symbol": "BTCUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "disagreement",
+          "venue_spread_pct": 1.25,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 20,
+        "symbol": "ETHUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "disagreement",
+          "venue_spread_pct": 1.25,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 20,
+        "symbol": "SOLUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "disagreement",
+          "venue_spread_pct": 1.25,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 21,
+        "symbol": "BTCUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "disagreement",
+          "venue_spread_pct": 1.25,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 21,
+        "symbol": "ETHUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "disagreement",
+          "venue_spread_pct": 1.25,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 21,
+        "symbol": "SOLUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "disagreement",
+          "venue_spread_pct": 1.25,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 22,
+        "symbol": "BTCUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "disagreement",
+          "venue_spread_pct": 1.25,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 22,
+        "symbol": "ETHUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "disagreement",
+          "venue_spread_pct": 1.25,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 22,
+        "symbol": "SOLUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "disagreement",
+          "venue_spread_pct": 1.25,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 23,
+        "symbol": "BTCUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "disagreement",
+          "venue_spread_pct": 1.25,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 23,
+        "symbol": "ETHUSDT",
+        "decision": "PAPER_PLAN",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "disagreement",
+          "venue_spread_pct": 1.25,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 23,
+        "symbol": "SOLUSDT",
+        "decision": "PAPER_PLAN",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "disagreement",
+          "venue_spread_pct": 1.25,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      }
+    ],
+    "combined_bearish_news_venue_failure": [
+      {
+        "index": 20,
+        "symbol": "BTCUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "unavailable",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 20,
+        "symbol": "ETHUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "unavailable",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 20,
+        "symbol": "SOLUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "unavailable",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 21,
+        "symbol": "BTCUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "unavailable",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 21,
+        "symbol": "ETHUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "unavailable",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 21,
+        "symbol": "SOLUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "unavailable",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 22,
+        "symbol": "BTCUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "unavailable",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 22,
+        "symbol": "ETHUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "unavailable",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 22,
+        "symbol": "SOLUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "unavailable",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 23,
+        "symbol": "BTCUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "unavailable",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 23,
+        "symbol": "ETHUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "unavailable",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      },
+      {
+        "index": 23,
+        "symbol": "SOLUSDT",
+        "decision": "OBSERVE",
+        "signal_direction": "flat",
+        "confidence": 18,
+        "context": {
+          "news_sentiment": null,
+          "news_source": "none",
+          "venue_mode": "unavailable",
+          "venue_spread_pct": null,
+          "venue_snapshot_source": "synthetic_controlled_snapshot"
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Synthetic sentiment shifts are controlled perturbations, not reconstructed historical headlines or AI interpretations.",
+    "Synthetic venue states test decision sensitivity to disagreement and feed failure; they are not historical exchange snapshots.",
+    "Results are diagnostic and excluded from live calibration and promotion.",
+    "ZECUSDT and ZAMAUSDT are excluded because their history is insufficient."
+  ],
+  "determinism_hash": "5ef4e01ded92aec95aee34dbafa3afd046c0968000b4743b0c08d539aef6b888"
+}
