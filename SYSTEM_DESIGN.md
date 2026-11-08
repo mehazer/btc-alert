@@ -18,6 +18,8 @@ Crypto Watch is a deterministic market-observation and interpretation tool. It i
 10. GitHub Pages deploys automatically from repository updates; it is not a market-analysis heartbeat and therefore has no independent empty scheduled run.
 11. GitHub Pages serves `docs/index.html` for current state and `docs/history.html` for full audit/history.
 
+The current measurement-layer increment records provenance and units on new legacy observations: retrieval time, timeframe, source venue, dataset, and units for price, volume, OI, and funding. The v2 evidence adapter also derives a compact `compact-v1` feature block without changing decision rules: EMA50 distance and slope, EMA200 regime, price momentum, realized and downside volatility, volatility percentile, relative volume, normalized OI/funding percentiles, price/OI quadrant, and BTC-relative strength. These features are exposed to shadow-agent inputs for audit and future ablation, but they are not yet allowed to change the production alert path, live weights, or promotion status.
+
 ## Data sources and definitions
 
 | Input | Source | Meaning | Limitation |
@@ -58,6 +60,8 @@ Replay is diagnostic only. It must not rewrite `decision_ledger.json`, `evaluati
 `python -m intelligence_v2.walkforward --symbols BTCUSDT,ETHUSDT,SOLUSDT` performs that next-level diagnostic. At each eligible historical bar it writes a history prefix, rebuilds the evidence pack, runs Technical, Risk, Challenge, Comparator, and Decision Synthesizer, then evaluates the resulting decision at every configured horizon. It writes only to `history/intelligence_v2/walkforward/<batch-id>/` and the stable `walkforward/latest/` pointer. The batch ID and output hash are derived from the source history and configuration, so reruns are deterministic. ZEC and ZAMA remain excluded until their history depth is sufficient. Legacy date-only rows receive monotonic synthetic timestamps that preserve source order; original timestamps remain in each record for audit.
 
 `python -m intelligence_v2.robustness --symbols BTCUSDT,ETHUSDT,SOLUSDT` runs controlled robustness scenarios over the same point-in-time path: baseline, bullish synthetic news shift, bearish synthetic news shift, venue disagreement, and combined bearish-news/venue-failure stress. Synthetic inputs are explicitly labelled and are not presented as reconstructed headlines or historical exchange snapshots. The report compares confidence, decision changes, risk vetoes, and horizon outcomes against baseline. It is diagnostic only and cannot update live weights or promotion status.
+
+The next validation step is feature ablation. Compare the existing v2 baseline with compact features added in families, not all at once: trend/volatility, participation, derivatives, then BTC-relative strength. Retain each run, evaluate by horizon, symbol, confidence band, and market regime, and promote no feature until its incremental value survives point-in-time and cost-stress checks.
 
 ## History files
 

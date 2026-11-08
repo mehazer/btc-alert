@@ -281,8 +281,23 @@ def process_symbol(symbol, fear_greed_value, fear_greed_label):
         f"| Funding={funding_pct_str} | dPrice={price_change_pct} | dOI={oi_change_pct}"
     )
 
+    observed_at = datetime.now(timezone.utc).isoformat()
     history.append({
-        "date": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M"),
+        "date": observed_at,
+        "retrieved_at": observed_at,
+        "timeframe": INTERVAL,
+        "price_venue": "Binance",
+        "price_dataset": "spot-klines",
+        "price_unit": "USDT per base asset",
+        "volume_venue": "Binance",
+        "volume_dataset": "spot-klines",
+        "volume_unit": "base asset",
+        "oi_venue": "OKX",
+        "oi_dataset": "perpetual-open-interest",
+        "oi_unit": "coin OI",
+        "funding_venue": "OKX",
+        "funding_dataset": "perpetual-funding-rate",
+        "funding_unit": "rate per funding interval",
         "rsi": rsi,
         "price": last_price,
         "volume": last_volume,

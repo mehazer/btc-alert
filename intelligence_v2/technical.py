@@ -104,6 +104,8 @@ def evaluate(
         inputs={
             "market_agent": market.get("inputs", {}),
             "mechanism": mechanism.get("current_relationship", {}),
+            "compact_indicators": pack.features.get("compact_indicators", {}),
+            "quality_status": pack.quality_status,
             "news_sentiment": news_sentiment,
         },
         reasons=(mechanism.get("likely_mechanism") or {}).get("reasoning", []) + market.get("reasons", [])[:3],
