@@ -1,5 +1,5 @@
 {
-  "evaluated_at": "2026-11-08T15:30:34.088452+00:00",
+  "evaluated_at": "2026-11-08T20:42:59.095975+00:00",
   "phase": 7,
   "schema_version": 2,
   "horizons": [
@@ -9,25 +9,30 @@
     12,
     24
   ],
-  "decisions_total": 45,
-  "settled_evaluation_rows": 75,
+  "decisions_total": 50,
+  "settled_evaluation_rows": 100,
   "agents": {
     "technical": {
       "agent": "technical",
-      "samples": 16,
-      "hits": 12,
+      "samples": 26,
+      "hits": 21,
       "primary_metric": "direction_accuracy_pct",
-      "primary_metric_pct": 75.0,
+      "primary_metric_pct": 80.77,
       "by_state": {
         "unknown": {
-          "n": 4,
-          "hits": 3,
-          "accuracy_pct": 75.0
+          "n": 6,
+          "hits": 5,
+          "accuracy_pct": 83.33
         },
         "weakening-participation": {
-          "n": 12,
-          "hits": 9,
-          "accuracy_pct": 75.0
+          "n": 19,
+          "hits": 16,
+          "accuracy_pct": 84.21
+        },
+        "fresh-long-buildup": {
+          "n": 1,
+          "hits": 0,
+          "accuracy_pct": 0.0
         }
       },
       "notes": [
@@ -41,9 +46,9 @@
       "hits": 0,
       "primary_metric": "warning_support_pct",
       "primary_metric_pct": null,
-      "low_risk_samples": 65,
-      "false_calm_count": 11,
-      "false_calm_pct": 16.92,
+      "low_risk_samples": 85,
+      "false_calm_count": 18,
+      "false_calm_pct": 21.18,
       "notes": [
         "Warning support: guarded/high/veto with >=1% adverse excursion.",
         "False calm: low/medium risk with later >=2% adverse excursion."
@@ -51,9 +56,9 @@
     },
     "challenge": {
       "agent": "challenge",
-      "samples": 65,
+      "samples": 85,
       "fail_samples": 0,
-      "warn_samples": 65,
+      "warn_samples": 85,
       "pass_samples": 0,
       "hits": 0,
       "primary_metric": "fail_useful_pct",

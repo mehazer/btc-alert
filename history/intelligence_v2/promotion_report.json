@@ -1,6 +1,6 @@
 {
   "agent": "promotion-gate",
-  "run_id": "shadow-20261108T153030Z-ae60481d",
+  "run_id": "shadow-20261108T204255Z-888e5dfa",
   "status": "not_ready",
   "ready_for_review": false,
   "auto_promote": false,
@@ -8,17 +8,17 @@
     {
       "name": "min_settled_records",
       "passed": true,
-      "detail": "settled=75, need>=30"
+      "detail": "settled=100, need>=30"
     },
     {
       "name": "direction_accuracy",
       "passed": true,
-      "detail": "accuracy=75.0, need>=55.0"
+      "detail": "accuracy=80.77, need>=55.0"
     },
     {
       "name": "technical_samples",
       "passed": true,
-      "detail": "technical_samples=16, need>=15"
+      "detail": "technical_samples=26, need>=15"
     },
     {
       "name": "risk_samples",
@@ -28,7 +28,7 @@
     {
       "name": "false_calm_ceiling",
       "passed": true,
-      "detail": "false_calm_pct=16.92, max=35.0"
+      "detail": "false_calm_pct=21.18, max=35.0"
     },
     {
       "name": "human_approval_required",
@@ -46,15 +46,15 @@
     "human_approval_required: Promotion requires explicit human PR approval."
   ],
   "metrics": {
-    "settled_records": 75,
-    "direction_accuracy_pct": 75.0,
-    "technical_samples": 16,
+    "settled_records": 100,
+    "direction_accuracy_pct": 80.77,
+    "technical_samples": 26,
     "risk_samples": 0,
-    "false_calm_pct": 16.92,
+    "false_calm_pct": 21.18,
     "challenge_fail_useful_pct": null,
-    "total_runs": 9,
-    "total_decisions": 45
+    "total_runs": 10,
+    "total_decisions": 50
   },
-  "evaluated_at": "2026-11-08T15:30:34.089325+00:00",
+  "evaluated_at": "2026-11-08T20:42:59.154856+00:00",
   "model_version": "promotion-criteria-v0.1"
 }
