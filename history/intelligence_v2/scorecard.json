@@ -1,6 +1,6 @@
 {
   "agent": "ledger-evaluator",
-  "evaluated_at": "2026-11-08T04:18:55.388728+00:00",
+  "evaluated_at": "2026-11-08T06:34:21.880980+00:00",
   "horizons": [
     1,
     3,
@@ -8,34 +8,45 @@
     12,
     24
   ],
-  "decisions_total": 35,
-  "records_total": 25,
-  "settled_records": 25,
-  "pending_records": 150,
-  "directional_records": 8,
-  "directional_hits": 4,
-  "direction_accuracy_pct": 50.0,
+  "decisions_total": 40,
+  "records_total": 60,
+  "settled_records": 60,
+  "pending_records": 140,
+  "directional_records": 16,
+  "directional_hits": 12,
+  "direction_accuracy_pct": 75.0,
   "guarded_records": 0,
   "supported_risk_warnings": 0,
   "risk_warning_support_pct": null,
   "by_decision": {
     "OBSERVE": {
-      "records": 17,
-      "settled": 17,
+      "records": 42,
+      "settled": 42,
       "pending": 0
     },
     "PAPER_PLAN": {
-      "records": 8,
-      "settled": 8,
+      "records": 16,
+      "settled": 16,
+      "pending": 0
+    },
+    "ALERT": {
+      "records": 2,
+      "settled": 2,
       "pending": 0
     }
   },
   "by_horizon": {
     "1": {
-      "settled": 25,
+      "settled": 35,
       "directional": 8,
       "hits": 4,
       "accuracy_pct": 50.0
+    },
+    "3": {
+      "settled": 25,
+      "directional": 8,
+      "hits": 8,
+      "accuracy_pct": 100.0
     }
   },
   "limitations": [
