@@ -1,6 +1,6 @@
 {
   "agent": "promotion-gate",
-  "run_id": "shadow-20261108T063417Z-165a91aa",
+  "run_id": "shadow-20261108T153030Z-ae60481d",
   "status": "not_ready",
   "ready_for_review": false,
   "auto_promote": false,
@@ -8,7 +8,7 @@
     {
       "name": "min_settled_records",
       "passed": true,
-      "detail": "settled=60, need>=30"
+      "detail": "settled=75, need>=30"
     },
     {
       "name": "direction_accuracy",
@@ -28,7 +28,7 @@
     {
       "name": "false_calm_ceiling",
       "passed": true,
-      "detail": "false_calm_pct=18.0, max=35.0"
+      "detail": "false_calm_pct=16.92, max=35.0"
     },
     {
       "name": "human_approval_required",
@@ -46,15 +46,15 @@
     "human_approval_required: Promotion requires explicit human PR approval."
   ],
   "metrics": {
-    "settled_records": 60,
+    "settled_records": 75,
     "direction_accuracy_pct": 75.0,
     "technical_samples": 16,
     "risk_samples": 0,
-    "false_calm_pct": 18.0,
+    "false_calm_pct": 16.92,
     "challenge_fail_useful_pct": null,
-    "total_runs": 8,
-    "total_decisions": 40
+    "total_runs": 9,
+    "total_decisions": 45
   },
-  "evaluated_at": "2026-11-08T06:34:21.881893+00:00",
+  "evaluated_at": "2026-11-08T15:30:34.089325+00:00",
   "model_version": "promotion-criteria-v0.1"
 }
