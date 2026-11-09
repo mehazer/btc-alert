@@ -41,7 +41,7 @@ jobs:
           RSI_PERIOD: "14"
           RSI_THRESHOLD: "70"
           ALWAYS_NOTIFY: "true"
-          NOTIFY_ALL_SYMBOLS: "false"
+          NOTIFY_ALL_SYMBOLS: "true"
 
         run: python alert_bot.py
 
