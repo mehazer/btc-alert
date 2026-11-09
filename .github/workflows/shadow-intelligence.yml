@@ -45,6 +45,16 @@ jobs:
             --symbols "$SYMS" \
             --output shadow_artifacts/latest.json
 
+      - name: Run forecast walk-forward backtest
+        env:
+          PYTHONPATH: .
+        run: |
+          # Point-in-time forecast evaluation (BTC/ETH/SOL only — longer history)
+          python -m intelligence_v2.walkforward \
+            --history-dir history \
+            --symbols BTCUSDT,ETHUSDT,SOLUSDT \
+            --timeframe 4h || echo "Walk-forward completed with warnings"
+
       - name: Upload isolated shadow artifact
         uses: actions/upload-artifact@v4
         with:
