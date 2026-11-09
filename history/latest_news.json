@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-09T08:58:02.137832+00:00",
+  "updated_at": "2026-11-09T09:42:40.040195+00:00",
   "sources": [
     {
       "name": "CoinDesk",
@@ -102,8 +102,19 @@
       "quality": "social"
     }
   ],
-  "headline_count": 32,
+  "headline_count": 38,
   "headlines": [
+    {
+      "source": "CoinDesk",
+      "type": "rss",
+      "headline": "U.S. inflation, corporate earnings: Crypto Week Ahead",
+      "category": "Market & Macro",
+      "importance": 1.973,
+      "age_hours": 24.0,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
+    },
     {
       "source": "CoinDesk",
       "type": "rss",
@@ -127,17 +138,6 @@
       "asset_scope": "market-wide"
     },
     {
-      "source": "CoinDesk",
-      "type": "rss",
-      "headline": "Binance's bitcoin mining pool finds just one block in a week as shutdown nears",
-      "category": "Bitcoin & ETF",
-      "importance": 1.973,
-      "age_hours": 24.0,
-      "source_quality": "reputable",
-      "evidence_status": "confirmed-source",
-      "asset_scope": "asset-or-sector"
-    },
-    {
       "source": "Decrypt",
       "type": "rss",
       "headline": "This Bitcoin Developer’s Idea Would Make Quantum Attacks a Losing Bet",
@@ -154,8 +154,8 @@
       "headline": "$Ethereum (ETH.CC)$ $Bitcoin (BTC.CC)$",
       "published": "Mon, 09 Nov 2026 08:29:45 GMT",
       "category": "Market & Macro",
-      "importance": 1.615,
-      "age_hours": 0.5,
+      "importance": 1.608,
+      "age_hours": 1.2,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -166,8 +166,20 @@
       "headline": "BTC price range on Nov 9, 2026 at 4am EST Crypto Prediction Market",
       "published": "Mon, 09 Nov 2026 08:14:25 GMT",
       "category": "Market & Macro",
-      "importance": 1.613,
-      "age_hours": 0.7,
+      "importance": 1.605,
+      "age_hours": 1.5,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (ETH)",
+      "type": "google_news",
+      "headline": "Move Over Bitcoin, Vitalik Buterin Is Making the Case for Ethereum as a Store of Value: 'Stability Will Be Highly Valued'",
+      "published": "Mon, 09 Nov 2026 08:09:39 GMT",
+      "category": "Market & Macro",
+      "importance": 1.604,
+      "age_hours": 1.6,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -178,8 +190,8 @@
       "headline": "Bitcoin slips to $74k as regulatory uncertainty, ETF outflows weigh",
       "published": "Mon, 09 Nov 2026 07:16:00 GMT",
       "category": "Bitcoin & ETF",
-      "importance": 1.603,
-      "age_hours": 1.7,
+      "importance": 1.596,
+      "age_hours": 2.4,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -190,32 +202,8 @@
       "headline": "Zcash developers propose cutting block times to 20 seconds",
       "published": "Mon, 09 Nov 2026 06:39:36 GMT",
       "category": "Regulation & Politics",
-      "importance": 1.597,
-      "age_hours": 2.3,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (BTC)",
-      "type": "google_news",
-      "headline": "Michigan sees rise in Bitcoin kiosk scams",
-      "published": "Mon, 09 Nov 2026 06:33:18 GMT",
-      "category": "Market & Macro",
-      "importance": 1.596,
-      "age_hours": 2.4,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (Macro)",
-      "type": "google_news",
-      "headline": "BTC, ETH, XRP Crash Again as Liquidation Wave Hits $1B",
-      "published": "Mon, 09 Nov 2026 06:26:35 GMT",
-      "category": "Market & Macro",
-      "importance": 1.595,
-      "age_hours": 2.5,
+      "importance": 1.589,
+      "age_hours": 3.1,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -226,8 +214,20 @@
       "headline": "Bitcoin, Ether Forecast: $6B Binance Hack Rattles BTC/USD and ETH/USD",
       "published": "Mon, 09 Nov 2026 06:30:32 GMT",
       "category": "Market & Macro",
-      "importance": 1.595,
-      "age_hours": 2.5,
+      "importance": 1.588,
+      "age_hours": 3.2,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "Michigan sees rise in Bitcoin kiosk scams",
+      "published": "Mon, 09 Nov 2026 06:33:18 GMT",
+      "category": "Market & Macro",
+      "importance": 1.588,
+      "age_hours": 3.2,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -238,8 +238,8 @@
       "headline": "Chinese central bank pledge to probe Solana shows crypto crackdown is continuing",
       "published": "Mon, 09 Nov 2026 06:00:34 GMT",
       "category": "Regulation & Politics",
-      "importance": 1.59,
-      "age_hours": 3.0,
+      "importance": 1.583,
+      "age_hours": 3.7,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -269,6 +269,17 @@
     {
       "source": "The Block",
       "type": "rss",
+      "headline": "Zama spin-off Raycash launches confidential stablecoin payments and private yield on Ethereum",
+      "category": "DeFi & Stablecoins",
+      "importance": 1.285,
+      "age_hours": 24.0,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "The Block",
+      "type": "rss",
       "headline": "What is Zcash (ZEC)? How shielded transactions work",
       "category": "Altcoins & Projects",
       "importance": 1.285,
@@ -276,6 +287,17 @@
       "source_quality": "reputable",
       "evidence_status": "confirmed-source",
       "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "CoinTelegraph (Telegram)",
+      "type": "telegram",
+      "headline": "⚡️ Key Economic Events This Week: Tuesday - October CPI inflation data Wednesday - OPEC Monthly Report Thursday - Initial Jobless Claims and October Existing Home Sales data Friday - October PPI inflation data Plus a total of 17 Fed speaker events this week. Which will hit crypto harder this week: CPI or the Fed speakers? News | Markets | YouTube",
+      "category": "Market & Macro",
+      "importance": 1.245,
+      "age_hours": 24.0,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "market-wide"
     },
     {
       "source": "Watcher.Guru (Telegram)",
@@ -333,13 +355,73 @@
       "asset_scope": "market-wide"
     },
     {
+      "source": "Google News (ZAMA)",
+      "type": "google_news",
+      "headline": "Ethereum slides 6% to $2,093 to start the week",
+      "published": "Mon, 09 Nov 2026 09:34:10 GMT",
+      "category": "Ethereum & L2",
+      "importance": 0.969,
+      "age_hours": 0.1,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (ETH)",
+      "type": "google_news",
+      "headline": "Ethereum Glamsterdam Contract Compatibility: Two Fixes",
+      "published": "Mon, 09 Nov 2026 09:10:53 GMT",
+      "category": "Ethereum & L2",
+      "importance": 0.965,
+      "age_hours": 0.5,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
       "source": "Google News (SOL)",
       "type": "google_news",
-      "headline": "SOL price on Nov 9, 2026 at 4am EST Crypto Prediction Market",
-      "published": "Mon, 09 Nov 2026 08:14:27 GMT",
+      "headline": "SOL price on Nov 9, 2026 at 5am EST Crypto Prediction Market",
+      "published": "Mon, 09 Nov 2026 09:03:51 GMT",
       "category": "Altcoins & Projects",
-      "importance": 0.963,
-      "age_hours": 0.7,
+      "importance": 0.964,
+      "age_hours": 0.6,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (ZAMA)",
+      "type": "google_news",
+      "headline": "Raycash launches confidential stablecoin payments on Ethereum",
+      "published": "Mon, 09 Nov 2026 09:08:58 GMT",
+      "category": "DeFi & Stablecoins",
+      "importance": 0.964,
+      "age_hours": 0.6,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (SOL)",
+      "type": "google_news",
+      "headline": "Solana Price Rebound Eyes $87.19 Test amid Daily Weakness",
+      "published": "Mon, 09 Nov 2026 08:57:02 GMT",
+      "category": "Altcoins & Projects",
+      "importance": 0.962,
+      "age_hours": 0.8,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (ETH)",
+      "type": "google_news",
+      "headline": "Ethereum(ETH) Stock Price Today | Quotes & News",
+      "published": "Mon, 09 Nov 2026 08:44:18 GMT",
+      "category": "Ethereum & L2",
+      "importance": 0.96,
+      "age_hours": 1.0,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -350,18 +432,6 @@
       "headline": "ETH price range on Nov 9, 2026 at 4am EST Prediction Market",
       "published": "Mon, 09 Nov 2026 08:03:56 GMT",
       "category": "Ethereum & L2",
-      "importance": 0.961,
-      "age_hours": 0.9,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (SOL)",
-      "type": "google_news",
-      "headline": "Ripple (XRP) ETFs Turn Into a Ghost Town, Solana (SOL) Funds Keep Bleeding",
-      "published": "Mon, 09 Nov 2026 07:23:30 GMT",
-      "category": "Altcoins & Projects",
       "importance": 0.954,
       "age_hours": 1.6,
       "source_quality": "discovery",
@@ -369,13 +439,13 @@
       "asset_scope": "asset-or-sector"
     },
     {
-      "source": "Google News (ETH)",
+      "source": "Google News (Macro)",
       "type": "google_news",
-      "headline": "Wall Street Keeps Selling Ethereum, but Whales Are Buying In",
-      "published": "Mon, 09 Nov 2026 05:16:00 GMT",
-      "category": "Ethereum & L2",
-      "importance": 0.933,
-      "age_hours": 3.7,
+      "headline": "Ripple (XRP) ETFs Turn Into a Ghost Town, Solana (SOL) Funds Keep Bleeding",
+      "published": "Mon, 09 Nov 2026 07:23:30 GMT",
+      "category": "Altcoins & Projects",
+      "importance": 0.947,
+      "age_hours": 2.3,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -386,10 +456,21 @@
       "headline": "A Hacker Swapped $3.7 Million of Ethereum Into Zcash on Hyperliquid. Is Privacy Demand Holding ZEC Above $1,200?",
       "published": "Sun, 08 Nov 2026 21:09:00 GMT",
       "category": "Altcoins & Projects",
-      "importance": 0.852,
-      "age_hours": 11.8,
+      "importance": 0.844,
+      "age_hours": 12.6,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "CoinTelegraph",
+      "type": "rss",
+      "headline": "Binance, Tether and Trump crypto firms face Senate records deadline",
+      "category": "Institutional & Exchanges",
+      "importance": 0.787,
+      "age_hours": 24.0,
+      "source_quality": "unknown",
+      "evidence_status": "unconfirmed-social",
       "asset_scope": "asset-or-sector"
     },
     {
@@ -415,17 +496,6 @@
       "asset_scope": "asset-or-sector"
     },
     {
-      "source": "CoinTelegraph (Telegram)",
-      "type": "telegram",
-      "headline": "🇺🇸 NEW : Senator Blumenthal gives Binance, Tether and Trump-linked crypto firms until January 4, 2027 to comply with his probes or face possible enforcement. News | Markets | YouTube",
-      "category": "Institutional & Exchanges",
-      "importance": 0.595,
-      "age_hours": 24.0,
-      "source_quality": "social",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "asset-or-sector"
-    },
-    {
       "source": "Watcher.Guru (Telegram)",
       "type": "telegram",
       "headline": "JUST IN: 🇺🇸 Senator Blumenthal gives Binance, Tether and Trump family crypto firms until January 4th to hand over records for investigations. @WatcherGuru",
@@ -439,8 +509,8 @@
     {
       "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "Binance Resumes HYPE and APT Withdrawals Ahead of Schedule; BTC, ETH, and Stablecoin Reserves See Noticeable Decline After Hack Binance announced on November 8 that it has resumed HYPE and APT withdrawals, earlier than previously promised. According to CryptoQuant data as of November 8, since before the October 29 hack incident, Binance’s BTC reserves have fallen from approximately 730k to 673.7k coins, a decrease of about 56k coins (7.7%); ETH reserves have dropped from roughly 3.48M to 3.08M, a decline of about 400k coins (11.5%); and Ethereum-chain stablecoin reserves have decreased from about $41B to $32B, a reduction of roughly $9B (22%). — link",
-      "category": "Ethereum & L2",
+      "headline": "Crypto Investor Luthra Details Oxford Kidnapping: Five Masked Men Force Way Into Car and Assault Him, Stealing Over $2 Million in Crypto Within 30 Minutes According to BeInCrypto, crypto investor Evan Luthra has publicly disclosed for the first time the details of his kidnapping in Oxford, UK, in November 2025. While in a private vehicle, he was driven onto a remote road where five masked men forced their way in, assaulted him, and used Face ID to unlock his phone. Within about 30 minutes, they transferred more than $1.5M in crypto from his Binance account and approximately $600k worth of ETH from his Gate account, and also stole a Richard Mille watch valued at around £450k. Luthra said that exchanges including Binance and MEXC later helped freeze and recover some of the funds, with Binance returning about $370k, bringing the total recovered to nearly $1M. Several suspects have been arrested, and the trial has been postponed to November 2027. — link",
+      "category": "Institutional & Exchanges",
       "importance": 0.445,
       "age_hours": 24.0,
       "source_quality": "social",
@@ -450,7 +520,7 @@
     {
       "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "Crypto Investor Luthra Details Oxford Kidnapping: Five Masked Men Force Way Into Car and Assault Him, Stealing Over $2 Million in Crypto Within 30 Minutes According to BeInCrypto, crypto investor Evan Luthra has publicly disclosed for the first time the details of his kidnapping in Oxford, UK, in November 2025. While in a private vehicle, he was driven onto a remote road where five masked men forced their way in, assaulted him, and used Face ID to unlock his phone. Within about 30 minutes, they transferred more than $1.5M in crypto from his Binance account and approximately $600k worth of ETH from his Gate account, and also stole a Richard Mille watch valued at around £450k. Luthra said that exchanges including Binance and MEXC later helped freeze and recover some of the funds, with Binance returning about $370k, bringing the total recovered to nearly $1M. Several suspects have been arrested, and the trial has been postponed to November 2027. — link",
+      "headline": "Binance Says Alleged 335M-User Data Leak Likely a Scam @BinanceHelpDesk said it is investigating claims that ShinyHunters stole data on 335 million users and demanded $900,000, but has found no evidence that its systems, KYC data, account credentials or wallet private keys were compromised. The exchange said parts of the listing are inconsistent with how Binance stores user data and that the dataset may instead involve infostealer data taken from users’ own devices. — link",
       "category": "Institutional & Exchanges",
       "importance": 0.445,
       "age_hours": 24.0,
@@ -501,8 +571,8 @@
           "headline": "Zcash developers propose cutting block times to 20 seconds",
           "published": "Mon, 09 Nov 2026 06:39:36 GMT",
           "category": "Regulation & Politics",
-          "importance": 1.597,
-          "age_hours": 2.3,
+          "importance": 1.589,
+          "age_hours": 3.1,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "market-wide"
@@ -513,8 +583,8 @@
           "headline": "Chinese central bank pledge to probe Solana shows crypto crackdown is continuing",
           "published": "Mon, 09 Nov 2026 06:00:34 GMT",
           "category": "Regulation & Politics",
-          "importance": 1.59,
-          "age_hours": 3.0,
+          "importance": 1.583,
+          "age_hours": 3.7,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "market-wide"
@@ -527,27 +597,16 @@
     },
     {
       "category": "Bitcoin & ETF",
-      "count": 4,
+      "count": 3,
       "headlines": [
-        {
-          "source": "CoinDesk",
-          "type": "rss",
-          "headline": "Binance's bitcoin mining pool finds just one block in a week as shutdown nears",
-          "category": "Bitcoin & ETF",
-          "importance": 1.973,
-          "age_hours": 24.0,
-          "source_quality": "reputable",
-          "evidence_status": "confirmed-source",
-          "asset_scope": "asset-or-sector"
-        },
         {
           "source": "Google News (BTC)",
           "type": "google_news",
           "headline": "Bitcoin slips to $74k as regulatory uncertainty, ETF outflows weigh",
           "published": "Mon, 09 Nov 2026 07:16:00 GMT",
           "category": "Bitcoin & ETF",
-          "importance": 1.603,
-          "age_hours": 1.7,
+          "importance": 1.596,
+          "age_hours": 2.4,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -576,7 +635,6 @@
         }
       ],
       "top_sources": [
-        "CoinDesk",
         "CoinTelegraph",
         "Google News (BTC)",
         "Wu Blockchain (Telegram)"
@@ -584,8 +642,19 @@
     },
     {
       "category": "Market & Macro",
-      "count": 11,
+      "count": 13,
       "headlines": [
+        {
+          "source": "CoinDesk",
+          "type": "rss",
+          "headline": "U.S. inflation, corporate earnings: Crypto Week Ahead",
+          "category": "Market & Macro",
+          "importance": 1.973,
+          "age_hours": 24.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "market-wide"
+        },
         {
           "source": "CoinDesk",
           "type": "rss",
@@ -614,8 +683,8 @@
           "headline": "$Ethereum (ETH.CC)$ $Bitcoin (BTC.CC)$",
           "published": "Mon, 09 Nov 2026 08:29:45 GMT",
           "category": "Market & Macro",
-          "importance": 1.615,
-          "age_hours": 0.5,
+          "importance": 1.608,
+          "age_hours": 1.2,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "market-wide"
@@ -626,20 +695,8 @@
           "headline": "BTC price range on Nov 9, 2026 at 4am EST Crypto Prediction Market",
           "published": "Mon, 09 Nov 2026 08:14:25 GMT",
           "category": "Market & Macro",
-          "importance": 1.613,
-          "age_hours": 0.7,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "market-wide"
-        },
-        {
-          "source": "Google News (BTC)",
-          "type": "google_news",
-          "headline": "Michigan sees rise in Bitcoin kiosk scams",
-          "published": "Mon, 09 Nov 2026 06:33:18 GMT",
-          "category": "Market & Macro",
-          "importance": 1.596,
-          "age_hours": 2.4,
+          "importance": 1.605,
+          "age_hours": 1.5,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "market-wide"
@@ -647,24 +704,24 @@
       ],
       "top_sources": [
         "CoinDesk",
+        "CoinTelegraph (Telegram)",
         "Decrypt",
         "Google News (BTC)",
-        "Google News (ETH)",
-        "Google News (Macro)"
+        "Google News (ETH)"
       ]
     },
     {
       "category": "Institutional & Exchanges",
-      "count": 3,
+      "count": 4,
       "headlines": [
         {
-          "source": "CoinTelegraph (Telegram)",
-          "type": "telegram",
-          "headline": "🇺🇸 NEW : Senator Blumenthal gives Binance, Tether and Trump-linked crypto firms until January 4, 2027 to comply with his probes or face possible enforcement. News | Markets | YouTube",
+          "source": "CoinTelegraph",
+          "type": "rss",
+          "headline": "Binance, Tether and Trump crypto firms face Senate records deadline",
           "category": "Institutional & Exchanges",
-          "importance": 0.595,
+          "importance": 0.787,
           "age_hours": 24.0,
-          "source_quality": "social",
+          "source_quality": "unknown",
           "evidence_status": "unconfirmed-social",
           "asset_scope": "asset-or-sector"
         },
@@ -689,17 +746,61 @@
           "source_quality": "social",
           "evidence_status": "unconfirmed-social",
           "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Wu Blockchain (Telegram)",
+          "type": "telegram",
+          "headline": "Binance Says Alleged 335M-User Data Leak Likely a Scam @BinanceHelpDesk said it is investigating claims that ShinyHunters stole data on 335 million users and demanded $900,000, but has found no evidence that its systems, KYC data, account credentials or wallet private keys were compromised. The exchange said parts of the listing are inconsistent with how Binance stores user data and that the dataset may instead involve infostealer data taken from users’ own devices. — link",
+          "category": "Institutional & Exchanges",
+          "importance": 0.445,
+          "age_hours": 24.0,
+          "source_quality": "social",
+          "evidence_status": "unconfirmed-social",
+          "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
-        "CoinTelegraph (Telegram)",
+        "CoinTelegraph",
         "Watcher.Guru (Telegram)",
         "Wu Blockchain (Telegram)"
       ]
     },
     {
+      "category": "DeFi & Stablecoins",
+      "count": 2,
+      "headlines": [
+        {
+          "source": "The Block",
+          "type": "rss",
+          "headline": "Zama spin-off Raycash launches confidential stablecoin payments and private yield on Ethereum",
+          "category": "DeFi & Stablecoins",
+          "importance": 1.285,
+          "age_hours": 24.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (ZAMA)",
+          "type": "google_news",
+          "headline": "Raycash launches confidential stablecoin payments on Ethereum",
+          "published": "Mon, 09 Nov 2026 09:08:58 GMT",
+          "category": "DeFi & Stablecoins",
+          "importance": 0.964,
+          "age_hours": 0.6,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        }
+      ],
+      "top_sources": [
+        "Google News (ZAMA)",
+        "The Block"
+      ]
+    },
+    {
       "category": "Ethereum & L2",
-      "count": 5,
+      "count": 6,
       "headlines": [
         {
           "source": "CoinDesk",
@@ -713,62 +814,64 @@
           "asset_scope": "asset-or-sector"
         },
         {
+          "source": "Google News (ZAMA)",
+          "type": "google_news",
+          "headline": "Ethereum slides 6% to $2,093 to start the week",
+          "published": "Mon, 09 Nov 2026 09:34:10 GMT",
+          "category": "Ethereum & L2",
+          "importance": 0.969,
+          "age_hours": 0.1,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (ETH)",
+          "type": "google_news",
+          "headline": "Ethereum Glamsterdam Contract Compatibility: Two Fixes",
+          "published": "Mon, 09 Nov 2026 09:10:53 GMT",
+          "category": "Ethereum & L2",
+          "importance": 0.965,
+          "age_hours": 0.5,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (ETH)",
+          "type": "google_news",
+          "headline": "Ethereum(ETH) Stock Price Today | Quotes & News",
+          "published": "Mon, 09 Nov 2026 08:44:18 GMT",
+          "category": "Ethereum & L2",
+          "importance": 0.96,
+          "age_hours": 1.0,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
           "source": "Google News (ETH)",
           "type": "google_news",
           "headline": "ETH price range on Nov 9, 2026 at 4am EST Prediction Market",
           "published": "Mon, 09 Nov 2026 08:03:56 GMT",
           "category": "Ethereum & L2",
-          "importance": 0.961,
-          "age_hours": 0.9,
+          "importance": 0.954,
+          "age_hours": 1.6,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (ETH)",
-          "type": "google_news",
-          "headline": "Wall Street Keeps Selling Ethereum, but Whales Are Buying In",
-          "published": "Mon, 09 Nov 2026 05:16:00 GMT",
-          "category": "Ethereum & L2",
-          "importance": 0.933,
-          "age_hours": 3.7,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Wu Blockchain (Telegram)",
-          "type": "telegram",
-          "headline": "Binance Resumes HYPE and APT Withdrawals Ahead of Schedule; BTC, ETH, and Stablecoin Reserves See Noticeable Decline After Hack Binance announced on November 8 that it has resumed HYPE and APT withdrawals, earlier than previously promised. According to CryptoQuant data as of November 8, since before the October 29 hack incident, Binance’s BTC reserves have fallen from approximately 730k to 673.7k coins, a decrease of about 56k coins (7.7%); ETH reserves have dropped from roughly 3.48M to 3.08M, a decline of about 400k coins (11.5%); and Ethereum-chain stablecoin reserves have decreased from about $41B to $32B, a reduction of roughly $9B (22%). — link",
-          "category": "Ethereum & L2",
-          "importance": 0.445,
-          "age_hours": 24.0,
-          "source_quality": "social",
-          "evidence_status": "unconfirmed-social",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Whale Alert (Telegram)",
-          "type": "telegram",
-          "headline": "📉 📉 📉 Tracked Hyperliquid trader’s 56,667 ETH long is fully liquidated after cutting exposure from 93,184 ETH Read Analysis",
-          "category": "Ethereum & L2",
-          "importance": 0.445,
-          "age_hours": 24.0,
-          "source_quality": "social",
-          "evidence_status": "unconfirmed-social",
           "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
         "CoinDesk",
         "Google News (ETH)",
-        "Whale Alert (Telegram)",
-        "Wu Blockchain (Telegram)"
+        "Google News (ZAMA)",
+        "Whale Alert (Telegram)"
       ]
     },
     {
       "category": "Altcoins & Projects",
-      "count": 5,
+      "count": 6,
       "headlines": [
         {
           "source": "The Block",
@@ -784,11 +887,11 @@
         {
           "source": "Google News (SOL)",
           "type": "google_news",
-          "headline": "SOL price on Nov 9, 2026 at 4am EST Crypto Prediction Market",
-          "published": "Mon, 09 Nov 2026 08:14:27 GMT",
+          "headline": "SOL price on Nov 9, 2026 at 5am EST Crypto Prediction Market",
+          "published": "Mon, 09 Nov 2026 09:03:51 GMT",
           "category": "Altcoins & Projects",
-          "importance": 0.963,
-          "age_hours": 0.7,
+          "importance": 0.964,
+          "age_hours": 0.6,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -796,11 +899,23 @@
         {
           "source": "Google News (SOL)",
           "type": "google_news",
+          "headline": "Solana Price Rebound Eyes $87.19 Test amid Daily Weakness",
+          "published": "Mon, 09 Nov 2026 08:57:02 GMT",
+          "category": "Altcoins & Projects",
+          "importance": 0.962,
+          "age_hours": 0.8,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (Macro)",
+          "type": "google_news",
           "headline": "Ripple (XRP) ETFs Turn Into a Ghost Town, Solana (SOL) Funds Keep Bleeding",
           "published": "Mon, 09 Nov 2026 07:23:30 GMT",
           "category": "Altcoins & Projects",
-          "importance": 0.954,
-          "age_hours": 1.6,
+          "importance": 0.947,
+          "age_hours": 2.3,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -811,26 +926,16 @@
           "headline": "A Hacker Swapped $3.7 Million of Ethereum Into Zcash on Hyperliquid. Is Privacy Demand Holding ZEC Above $1,200?",
           "published": "Sun, 08 Nov 2026 21:09:00 GMT",
           "category": "Altcoins & Projects",
-          "importance": 0.852,
-          "age_hours": 11.8,
+          "importance": 0.844,
+          "age_hours": 12.6,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "CoinTelegraph",
-          "type": "rss",
-          "headline": "Zcash devs propose another block time cut days after NU7 upgrade",
-          "category": "Altcoins & Projects",
-          "importance": 0.787,
-          "age_hours": 24.0,
-          "source_quality": "unknown",
-          "evidence_status": "unconfirmed-social",
           "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
         "CoinTelegraph",
+        "Google News (Macro)",
         "Google News (SOL)",
         "Google News (ZEC)",
         "The Block"
@@ -865,29 +970,29 @@
       "Solana moves to scrap the transaction feature used in the $270 million Drift hack",
       "Zcash developers propose cutting block times to 20 seconds",
       "Chinese central bank pledge to probe Solana shows crypto crackdown is continuing",
-      "Binance's bitcoin mining pool finds just one block in a week as shutdown nears",
-      "Bitcoin slips to $74k as regulatory uncertainty, ETF outflows weigh"
+      "Bitcoin slips to $74k as regulatory uncertainty, ETF outflows weigh",
+      "Bitcoin ETFs shed $1.3B in biggest weekly outflow since late June"
     ],
-    "updated_at": "2026-11-09T08:58:02.137826+00:00",
+    "updated_at": "2026-11-09T09:42:40.040188+00:00",
     "reason": "NEWS_AI_API_KEY is not configured"
   },
   "quality": {
-    "trusted_headlines": 6,
-    "discovery_headlines": 13,
+    "trusted_headlines": 7,
+    "discovery_headlines": 17,
     "social_headlines": 10,
     "quality_tiers": {
-      "reputable": 6,
-      "discovery": 13,
-      "unknown": 3,
+      "reputable": 7,
+      "discovery": 17,
+      "unknown": 4,
       "social": 10
     },
     "interpretation_policy": "Only primary/reputable sources are treated as confirmation; discovery and social sources are leads.",
-    "excluded_count": 29,
+    "excluded_count": 27,
     "excluded_reasons": {
-      "exact-duplicate": 4,
+      "exact-duplicate": 5,
       "low-information-or-promotional": 5,
-      "near-duplicate": 2,
-      "not-crypto-relevant": 18
+      "near-duplicate": 1,
+      "not-crypto-relevant": 16
     }
   },
   "method": "crypto-relevance filtered, near-duplicate suppressed, quality-tiered and recency-ranked; optional grounded AI layer"
