@@ -283,6 +283,80 @@ class PromotionReport:
 
 
 @dataclass(frozen=True)
+class ForecastHorizonBand:
+    """One horizon's forward view."""
+    horizon_bars: int
+    direction: str  # up, down, flat, abstain
+    probability_low: float
+    probability_high: float
+    expected_move_pct_low: Optional[float]
+    expected_move_pct_high: Optional[float]
+    status: str  # active, abstain
+
+
+@dataclass(frozen=True)
+class ForecastRecord:
+    """Calibrated short-horizon forecast. Shadow-only; never executes."""
+    agent: str
+    run_id: str
+    symbol: str
+    timeframe: str
+    forecast_id: str
+    issued_at: str
+    stance: str  # FORECAST, ABSTAIN
+    primary_direction: str  # up, down, flat, abstain
+    horizons: List[ForecastHorizonBand]
+    confidence: int
+    probability_band: str  # abstain, low, medium, high
+    drivers: List[str]
+    invalidation: List[str]
+    abstain_reasons: List[str]
+    evidence_ids: List[str]
+    model_version: str
+    calibration_notes: List[str]
+    execution_allowed: bool = False
+
+
+@dataclass(frozen=True)
+class ForecastEvaluation:
+    agent: str
+    forecast_id: str
+    run_id: str
+    symbol: str
+    timeframe: str
+    horizon_bars: int
+    status: str  # settled, pending, abstained, insufficient_data
+    issued_at: str
+    direction: str
+    probability_low: float
+    probability_high: float
+    forward_return_pct: Optional[float]
+    direction_correct: Optional[bool]
+    inside_move_band: Optional[bool]
+    invalidated: Optional[bool]
+    notes: List[str]
+
+
+@dataclass(frozen=True)
+class ForecastScorecard:
+    agent: str
+    evaluated_at: str
+    forecasts_total: int
+    active_forecasts: int
+    abstain_count: int
+    abstain_rate_pct: Optional[float]
+    settled_rows: int
+    pending_rows: int
+    directional_settled: int
+    directional_hits: int
+    direction_accuracy_pct: Optional[float]
+    by_horizon: Dict[str, Dict[str, Any]]
+    by_probability_band: Dict[str, Dict[str, Any]]
+    calibration: List[Dict[str, Any]]
+    limitations: List[str]
+
+
+@dataclass(frozen=True)
 class ShadowRun:
     run_id: str
     started_at: str
@@ -295,6 +369,9 @@ class ShadowRun:
     challenge_reports: List[ChallengeReport] = field(default_factory=list)
     comparisons: List[ComparisonRecord] = field(default_factory=list)
     decisions: List[DecisionRecord] = field(default_factory=list)
+    forecasts: List[ForecastRecord] = field(default_factory=list)
+    forecast_evaluations: List[ForecastEvaluation] = field(default_factory=list)
+    forecast_scorecard: Optional[ForecastScorecard] = None
     evaluations: List[EvaluationRecord] = field(default_factory=list)
     scorecard: Optional[Scorecard] = None
     interpretations: List[InterpretationReport] = field(default_factory=list)
