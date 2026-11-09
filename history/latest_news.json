@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-09T04:40:58.254534+00:00",
+  "updated_at": "2026-11-09T05:29:04.827704+00:00",
   "sources": [
     {
       "name": "CoinDesk",
@@ -102,8 +102,19 @@
       "quality": "social"
     }
   ],
-  "headline_count": 36,
+  "headline_count": 33,
   "headlines": [
+    {
+      "source": "CoinDesk",
+      "type": "rss",
+      "headline": "Binance's bitcoin mining pool finds just one block in a week as shutdown nears",
+      "category": "Bitcoin & ETF",
+      "importance": 1.973,
+      "age_hours": 24.0,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "asset-or-sector"
+    },
     {
       "source": "CoinDesk",
       "type": "rss",
@@ -127,17 +138,6 @@
       "asset_scope": "market-wide"
     },
     {
-      "source": "CoinDesk",
-      "type": "rss",
-      "headline": "These Finland homes get free heat from bitcoin miners (as long as BTC stays above $70,000)",
-      "category": "Market & Macro",
-      "importance": 1.973,
-      "age_hours": 24.0,
-      "source_quality": "reputable",
-      "evidence_status": "confirmed-source",
-      "asset_scope": "market-wide"
-    },
-    {
       "source": "Decrypt",
       "type": "rss",
       "headline": "This Bitcoin Developer’s Idea Would Make Quantum Attacks a Losing Bet",
@@ -149,13 +149,49 @@
       "asset_scope": "market-wide"
     },
     {
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "Bitcoin Yet to Deliver Convincing Rebound -- Market Talk",
+      "published": "Mon, 09 Nov 2026 05:20:12 GMT",
+      "category": "Market & Macro",
+      "importance": 1.619,
+      "age_hours": 0.1,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (Macro)",
+      "type": "google_news",
+      "headline": "Bitcoin price at $74,800: 200-day average in focus",
+      "published": "Mon, 09 Nov 2026 05:13:35 GMT",
+      "category": "Market & Macro",
+      "importance": 1.617,
+      "age_hours": 0.3,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "BTC price on Nov 9, 2026 at 1am EST Prediction Market",
+      "published": "Mon, 09 Nov 2026 05:06:14 GMT",
+      "category": "Market & Macro",
+      "importance": 1.616,
+      "age_hours": 0.4,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
       "source": "Google News (SOL)",
       "type": "google_news",
       "headline": "On the Chain: Bitcoin falls below US$75,000 as ETF outflows and regulatory fears deepen",
       "published": "Mon, 09 Nov 2026 04:21:41 GMT",
       "category": "Bitcoin & ETF",
-      "importance": 1.617,
-      "age_hours": 0.3,
+      "importance": 1.609,
+      "age_hours": 1.1,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -166,20 +202,20 @@
       "headline": "Solana Shanghai events halted amid regulatory scrutiny",
       "published": "Mon, 09 Nov 2026 03:50:37 GMT",
       "category": "Regulation & Politics",
-      "importance": 1.612,
-      "age_hours": 0.8,
+      "importance": 1.604,
+      "age_hours": 1.6,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
     },
     {
-      "source": "Google News (Macro)",
+      "source": "Google News (BTC)",
       "type": "google_news",
-      "headline": "China's 5.7% Factory Inflation Could Complicate the Fed Path Before US CPI",
-      "published": "Mon, 09 Nov 2026 03:26:00 GMT",
+      "headline": "Bitcoin’s 7-Week Bottom Signal Just Broke. Here Is What Happened the Last 2 Cycles",
+      "published": "Mon, 09 Nov 2026 03:39:00 GMT",
       "category": "Market & Macro",
-      "importance": 1.608,
-      "age_hours": 1.2,
+      "importance": 1.602,
+      "age_hours": 1.8,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -190,68 +226,20 @@
       "headline": "Bitcoin, Ether Forecast: $6B Binance Hack Rattles BTC/USD and ETH/USD",
       "published": "Mon, 09 Nov 2026 03:31:28 GMT",
       "category": "Market & Macro",
-      "importance": 1.608,
-      "age_hours": 1.2,
+      "importance": 1.6,
+      "age_hours": 2.0,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
     },
     {
-      "source": "Google News (BTC)",
+      "source": "Google News (Macro)",
       "type": "google_news",
-      "headline": "Bitcoin's drop and pop triggers $1 billion in liquidations",
-      "published": "Mon, 09 Nov 2026 03:21:00 GMT",
+      "headline": "US Money Supply Hits $23.34 Trillion: Why Is Bitcoin Not Following?",
+      "published": "Mon, 09 Nov 2026 03:00:00 GMT",
       "category": "Market & Macro",
-      "importance": 1.607,
-      "age_hours": 1.3,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (ETH)",
-      "type": "google_news",
-      "headline": "Top 3 Price Predictions: Bitcoin, Ethereum, Ripple – Bears in control, with next support at BTC $70,000, ETH around $2,000 and XRP near $1",
-      "published": "Mon, 09 Nov 2026 03:24:49 GMT",
-      "category": "Market & Macro",
-      "importance": 1.607,
-      "age_hours": 1.3,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (ETH)",
-      "type": "google_news",
-      "headline": "Stablecoin Regulatory Frameworks, Travel Rule, Bitcoin ETFs, and Ethereum (ETH) Tokenization Analyzed in Crypto Regulation Report",
-      "published": "Mon, 09 Nov 2026 03:19:38 GMT",
-      "category": "Bitcoin & ETF",
-      "importance": 1.606,
-      "age_hours": 1.4,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (BTC)",
-      "type": "google_news",
-      "headline": "BTC price on Nov 8, 2026 at 11pm EST Prediction Market",
-      "published": "Mon, 09 Nov 2026 03:07:50 GMT",
-      "category": "Market & Macro",
-      "importance": 1.604,
-      "age_hours": 1.6,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (BTC)",
-      "type": "google_news",
-      "headline": "Bitcoin Trades Below Strategy’s $75,451 Average Purchase Price",
-      "published": "Mon, 09 Nov 2026 03:01:14 GMT",
-      "category": "Market & Macro",
-      "importance": 1.603,
-      "age_hours": 1.7,
+      "importance": 1.595,
+      "age_hours": 2.5,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -262,56 +250,8 @@
       "headline": "Gold Extends Decline as Strong US Jobs Data Strengthens Fed Rate-Hike Outlook",
       "published": "Mon, 09 Nov 2026 02:50:48 GMT",
       "category": "Market & Macro",
-      "importance": 1.602,
-      "age_hours": 1.8,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (Macro)",
-      "type": "google_news",
-      "headline": "Interest Rates Forecast: Fed Hike Bets Lift USD/JPY Toward 160",
-      "published": "Mon, 09 Nov 2026 02:18:00 GMT",
-      "category": "Market & Macro",
-      "importance": 1.596,
-      "age_hours": 2.4,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (SOL)",
-      "type": "google_news",
-      "headline": "Solana at $3,000 or Bitcoin at $1 Million by 2030: Which Is More Likely?",
-      "published": "Mon, 09 Nov 2026 01:17:00 GMT",
-      "category": "Market & Macro",
-      "importance": 1.586,
-      "age_hours": 3.4,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (BTC)",
-      "type": "google_news",
-      "headline": "BTC to ETH: Bitcoin Price in Ether",
-      "published": "Mon, 09 Nov 2026 01:00:00 GMT",
-      "category": "Market & Macro",
-      "importance": 1.583,
-      "age_hours": 3.7,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (Macro)",
-      "type": "google_news",
-      "headline": "Bitcoin Slides to 102 Million Won as U.S. Policy Uncertainty and Strong Jobs Data Weigh on Sentiment",
-      "published": "Mon, 09 Nov 2026 00:48:48 GMT",
-      "category": "Market & Macro",
-      "importance": 1.581,
-      "age_hours": 3.9,
+      "importance": 1.594,
+      "age_hours": 2.6,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -322,8 +262,8 @@
       "headline": "Zcash and Monero hold up as Bitcoin slides toward $75,000",
       "published": "Sun, 08 Nov 2026 22:50:15 GMT",
       "category": "Market & Macro",
-      "importance": 1.562,
-      "age_hours": 5.8,
+      "importance": 1.554,
+      "age_hours": 6.6,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -331,8 +271,8 @@
     {
       "source": "CoinDesk",
       "type": "rss",
-      "headline": "Stablecoin growth has stalled. The payments boom hasn't",
-      "category": "DeFi & Stablecoins",
+      "headline": "Two rival Ethereum proposals aim to stop Glamsterdam breaking old contracts",
+      "category": "Ethereum & L2",
       "importance": 1.323,
       "age_hours": 24.0,
       "source_quality": "reputable",
@@ -384,13 +324,13 @@
       "asset_scope": "market-wide"
     },
     {
-      "source": "Google News (SOL)",
+      "source": "Google News (ETH)",
       "type": "google_news",
-      "headline": "SOL price on Nov 9, 2026 at 12am EST Crypto Prediction Market",
-      "published": "Mon, 09 Nov 2026 04:06:04 GMT",
-      "category": "Altcoins & Projects",
-      "importance": 0.964,
-      "age_hours": 0.6,
+      "headline": "Vitalik Buterin Argues ETH Fee Burn Not Key to Ethereum's Value",
+      "published": "Mon, 09 Nov 2026 05:27:57 GMT",
+      "category": "Ethereum & L2",
+      "importance": 0.97,
+      "age_hours": 0.0,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -398,11 +338,35 @@
     {
       "source": "Google News (ETH)",
       "type": "google_news",
-      "headline": "ETH price range on Nov 8, 2026 at 10pm EST Prediction Market",
-      "published": "Mon, 09 Nov 2026 02:05:32 GMT",
+      "headline": "ETH price on Nov 9, 2026 at 1am EST Crypto Prediction Market",
+      "published": "Mon, 09 Nov 2026 05:04:17 GMT",
       "category": "Ethereum & L2",
-      "importance": 0.944,
-      "age_hours": 2.6,
+      "importance": 0.966,
+      "age_hours": 0.4,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (SOL)",
+      "type": "google_news",
+      "headline": "Ripple (XRP) ETFs Turn Into a Ghost Town, Solana (SOL) Funds Keep Bleeding",
+      "published": "Mon, 09 Nov 2026 05:06:00 GMT",
+      "category": "Altcoins & Projects",
+      "importance": 0.966,
+      "age_hours": 0.4,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (ETH)",
+      "type": "google_news",
+      "headline": "Wall Street Keeps Selling Ethereum, but Whales Are Buying In",
+      "published": "Mon, 09 Nov 2026 05:00:00 GMT",
+      "category": "Ethereum & L2",
+      "importance": 0.965,
+      "age_hours": 0.5,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -413,8 +377,8 @@
       "headline": "Zcash Rises 2.02% in One Hour to $1,231 on Binance Spot",
       "published": "Mon, 09 Nov 2026 00:59:00 GMT",
       "category": "Altcoins & Projects",
-      "importance": 0.933,
-      "age_hours": 3.7,
+      "importance": 0.925,
+      "age_hours": 4.5,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -425,8 +389,8 @@
       "headline": "A Hacker Swapped $3.7 Million of Ethereum Into Zcash on Hyperliquid. Is Privacy Demand Holding ZEC Above $1,200?",
       "published": "Sun, 08 Nov 2026 21:09:00 GMT",
       "category": "Altcoins & Projects",
-      "importance": 0.895,
-      "age_hours": 7.5,
+      "importance": 0.887,
+      "age_hours": 8.3,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -542,8 +506,8 @@
           "headline": "Solana Shanghai events halted amid regulatory scrutiny",
           "published": "Mon, 09 Nov 2026 03:50:37 GMT",
           "category": "Regulation & Politics",
-          "importance": 1.612,
-          "age_hours": 0.8,
+          "importance": 1.604,
+          "age_hours": 1.6,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "market-wide"
@@ -559,25 +523,24 @@
       "count": 3,
       "headlines": [
         {
+          "source": "CoinDesk",
+          "type": "rss",
+          "headline": "Binance's bitcoin mining pool finds just one block in a week as shutdown nears",
+          "category": "Bitcoin & ETF",
+          "importance": 1.973,
+          "age_hours": 24.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "asset-or-sector"
+        },
+        {
           "source": "Google News (SOL)",
           "type": "google_news",
           "headline": "On the Chain: Bitcoin falls below US$75,000 as ETF outflows and regulatory fears deepen",
           "published": "Mon, 09 Nov 2026 04:21:41 GMT",
           "category": "Bitcoin & ETF",
-          "importance": 1.617,
-          "age_hours": 0.3,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (ETH)",
-          "type": "google_news",
-          "headline": "Stablecoin Regulatory Frameworks, Travel Rule, Bitcoin ETFs, and Ethereum (ETH) Tokenization Analyzed in Crypto Regulation Report",
-          "published": "Mon, 09 Nov 2026 03:19:38 GMT",
-          "category": "Bitcoin & ETF",
-          "importance": 1.606,
-          "age_hours": 1.4,
+          "importance": 1.609,
+          "age_hours": 1.1,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -595,30 +558,19 @@
         }
       ],
       "top_sources": [
-        "Google News (ETH)",
+        "CoinDesk",
         "Google News (SOL)",
         "Wu Blockchain (Telegram)"
       ]
     },
     {
       "category": "Market & Macro",
-      "count": 17,
+      "count": 12,
       "headlines": [
         {
           "source": "CoinDesk",
           "type": "rss",
           "headline": "Bitcoin drops, then pops as Nvidia cheating scandal and failed Iran talks trigger volatility",
-          "category": "Market & Macro",
-          "importance": 1.973,
-          "age_hours": 24.0,
-          "source_quality": "reputable",
-          "evidence_status": "confirmed-source",
-          "asset_scope": "market-wide"
-        },
-        {
-          "source": "CoinDesk",
-          "type": "rss",
-          "headline": "These Finland homes get free heat from bitcoin miners (as long as BTC stays above $70,000)",
           "category": "Market & Macro",
           "importance": 1.973,
           "age_hours": 24.0,
@@ -638,13 +590,25 @@
           "asset_scope": "market-wide"
         },
         {
+          "source": "Google News (BTC)",
+          "type": "google_news",
+          "headline": "Bitcoin Yet to Deliver Convincing Rebound -- Market Talk",
+          "published": "Mon, 09 Nov 2026 05:20:12 GMT",
+          "category": "Market & Macro",
+          "importance": 1.619,
+          "age_hours": 0.1,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "market-wide"
+        },
+        {
           "source": "Google News (Macro)",
           "type": "google_news",
-          "headline": "China's 5.7% Factory Inflation Could Complicate the Fed Path Before US CPI",
-          "published": "Mon, 09 Nov 2026 03:26:00 GMT",
+          "headline": "Bitcoin price at $74,800: 200-day average in focus",
+          "published": "Mon, 09 Nov 2026 05:13:35 GMT",
           "category": "Market & Macro",
-          "importance": 1.608,
-          "age_hours": 1.2,
+          "importance": 1.617,
+          "age_hours": 0.3,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "market-wide"
@@ -652,11 +616,11 @@
         {
           "source": "Google News (BTC)",
           "type": "google_news",
-          "headline": "Bitcoin, Ether Forecast: $6B Binance Hack Rattles BTC/USD and ETH/USD",
-          "published": "Mon, 09 Nov 2026 03:31:28 GMT",
+          "headline": "BTC price on Nov 9, 2026 at 1am EST Prediction Market",
+          "published": "Mon, 09 Nov 2026 05:06:14 GMT",
           "category": "Market & Macro",
-          "importance": 1.608,
-          "age_hours": 1.2,
+          "importance": 1.616,
+          "age_hours": 0.4,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "market-wide"
@@ -666,8 +630,8 @@
         "CoinDesk",
         "Decrypt",
         "Google News (BTC)",
-        "Google News (ETH)",
-        "Google News (Macro)"
+        "Google News (Macro)",
+        "Google News (ZEC)"
       ]
     },
     {
@@ -727,37 +691,52 @@
       ]
     },
     {
-      "category": "DeFi & Stablecoins",
-      "count": 1,
+      "category": "Ethereum & L2",
+      "count": 7,
       "headlines": [
         {
           "source": "CoinDesk",
           "type": "rss",
-          "headline": "Stablecoin growth has stalled. The payments boom hasn't",
-          "category": "DeFi & Stablecoins",
+          "headline": "Two rival Ethereum proposals aim to stop Glamsterdam breaking old contracts",
+          "category": "Ethereum & L2",
           "importance": 1.323,
           "age_hours": 24.0,
           "source_quality": "reputable",
           "evidence_status": "confirmed-source",
           "asset_scope": "asset-or-sector"
-        }
-      ],
-      "top_sources": [
-        "CoinDesk"
-      ]
-    },
-    {
-      "category": "Ethereum & L2",
-      "count": 4,
-      "headlines": [
+        },
         {
           "source": "Google News (ETH)",
           "type": "google_news",
-          "headline": "ETH price range on Nov 8, 2026 at 10pm EST Prediction Market",
-          "published": "Mon, 09 Nov 2026 02:05:32 GMT",
+          "headline": "Vitalik Buterin Argues ETH Fee Burn Not Key to Ethereum's Value",
+          "published": "Mon, 09 Nov 2026 05:27:57 GMT",
           "category": "Ethereum & L2",
-          "importance": 0.944,
-          "age_hours": 2.6,
+          "importance": 0.97,
+          "age_hours": 0.0,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (ETH)",
+          "type": "google_news",
+          "headline": "ETH price on Nov 9, 2026 at 1am EST Crypto Prediction Market",
+          "published": "Mon, 09 Nov 2026 05:04:17 GMT",
+          "category": "Ethereum & L2",
+          "importance": 0.966,
+          "age_hours": 0.4,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (ETH)",
+          "type": "google_news",
+          "headline": "Wall Street Keeps Selling Ethereum, but Whales Are Buying In",
+          "published": "Mon, 09 Nov 2026 05:00:00 GMT",
+          "category": "Ethereum & L2",
+          "importance": 0.965,
+          "age_hours": 0.5,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -772,31 +751,10 @@
           "source_quality": "unknown",
           "evidence_status": "unconfirmed-social",
           "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Wu Blockchain (Telegram)",
-          "type": "telegram",
-          "headline": "Binance Resumes HYPE and APT Withdrawals Ahead of Schedule; BTC, ETH, and Stablecoin Reserves See Noticeable Decline After Hack Binance announced on November 8 that it has resumed HYPE and APT withdrawals, earlier than previously promised. According to CryptoQuant data as of November 8, since before the October 29 hack incident, Binance’s BTC reserves have fallen from approximately 730k to 673.7k coins, a decrease of about 56k coins (7.7%); ETH reserves have dropped from roughly 3.48M to 3.08M, a decline of about 400k coins (11.5%); and Ethereum-chain stablecoin reserves have decreased from about $41B to $32B, a reduction of roughly $9B (22%). — link",
-          "category": "Ethereum & L2",
-          "importance": 0.445,
-          "age_hours": 24.0,
-          "source_quality": "social",
-          "evidence_status": "unconfirmed-social",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Whale Alert (Telegram)",
-          "type": "telegram",
-          "headline": "📉 📉 📉 Tracked Hyperliquid trader’s 56,667 ETH long is fully liquidated after cutting exposure from 93,184 ETH Read Analysis",
-          "category": "Ethereum & L2",
-          "importance": 0.445,
-          "age_hours": 24.0,
-          "source_quality": "social",
-          "evidence_status": "unconfirmed-social",
-          "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
+        "CoinDesk",
         "CoinTelegraph",
         "Google News (ETH)",
         "Whale Alert (Telegram)",
@@ -821,11 +779,11 @@
         {
           "source": "Google News (SOL)",
           "type": "google_news",
-          "headline": "SOL price on Nov 9, 2026 at 12am EST Crypto Prediction Market",
-          "published": "Mon, 09 Nov 2026 04:06:04 GMT",
+          "headline": "Ripple (XRP) ETFs Turn Into a Ghost Town, Solana (SOL) Funds Keep Bleeding",
+          "published": "Mon, 09 Nov 2026 05:06:00 GMT",
           "category": "Altcoins & Projects",
-          "importance": 0.964,
-          "age_hours": 0.6,
+          "importance": 0.966,
+          "age_hours": 0.4,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -836,8 +794,8 @@
           "headline": "Zcash Rises 2.02% in One Hour to $1,231 on Binance Spot",
           "published": "Mon, 09 Nov 2026 00:59:00 GMT",
           "category": "Altcoins & Projects",
-          "importance": 0.933,
-          "age_hours": 3.7,
+          "importance": 0.925,
+          "age_hours": 4.5,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -848,8 +806,8 @@
           "headline": "A Hacker Swapped $3.7 Million of Ethereum Into Zcash on Hyperliquid. Is Privacy Demand Holding ZEC Above $1,200?",
           "published": "Sun, 08 Nov 2026 21:09:00 GMT",
           "category": "Altcoins & Projects",
-          "importance": 0.895,
-          "age_hours": 7.5,
+          "importance": 0.887,
+          "age_hours": 8.3,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -889,29 +847,30 @@
     "key_points": [
       "What the election results mean for crypto: State of Crypto",
       "Solana Shanghai events halted amid regulatory scrutiny",
+      "Binance's bitcoin mining pool finds just one block in a week as shutdown nears",
       "On the Chain: Bitcoin falls below US$75,000 as ETF outflows and regulatory fears deepen",
-      "Stablecoin Regulatory Frameworks, Travel Rule, Bitcoin ETFs, and Ethereum (ETH) Tokenization Analyzed in Crypto Regulation Report",
       "Bitcoin drops, then pops as Nvidia cheating scandal and failed Iran talks trigger volatility"
     ],
-    "updated_at": "2026-11-09T04:40:58.254527+00:00",
+    "updated_at": "2026-11-09T05:29:04.827700+00:00",
     "reason": "NEWS_AI_API_KEY is not configured"
   },
   "quality": {
     "trusted_headlines": 6,
-    "discovery_headlines": 19,
+    "discovery_headlines": 16,
     "social_headlines": 8,
     "quality_tiers": {
       "reputable": 6,
-      "discovery": 19,
+      "discovery": 16,
       "social": 8,
       "unknown": 3
     },
     "interpretation_policy": "Only primary/reputable sources are treated as confirmation; discovery and social sources are leads.",
-    "excluded_count": 25,
+    "excluded_count": 28,
     "excluded_reasons": {
-      "exact-duplicate": 5,
+      "exact-duplicate": 3,
       "low-information-or-promotional": 1,
-      "not-crypto-relevant": 19
+      "near-duplicate": 4,
+      "not-crypto-relevant": 20
     }
   },
   "method": "crypto-relevance filtered, near-duplicate suppressed, quality-tiered and recency-ranked; optional grounded AI layer"
