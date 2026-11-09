@@ -2,9 +2,12 @@
 import json
 import os
 import re
+from difflib import SequenceMatcher
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from collections import defaultdict
+
+from news_sources import source_quality
 
 CATEGORY_RULES = {
     "Market & Macro": [r"bitcoin", r"btc", r"crypto market", r"risk[- ]off", r"stocks", r"macro", r"dollar", r"yield", r"inflation", r"cpi", r"fed", r"fomc", r"rate"],
@@ -18,6 +21,22 @@ CATEGORY_RULES = {
 }
 CATEGORY_PRIORITY = ["Security & Hacks", "Regulation & Politics", "Bitcoin & ETF", "Market & Macro", "Institutional & Exchanges", "DeFi & Stablecoins", "Ethereum & L2", "Altcoins & Projects"]
 SOURCE_WEIGHT = {"coindesk": 1.4, "the block": 1.35, "reuters": 1.5, "bloomberg": 1.5, "cointelegraph": 1.15, "decrypt": 1.1, "google news": 1.0, "reddit": .55, "telegram": .65}
+QUALITY_WEIGHT = {"primary": 1.35, "reputable": 1.15, "discovery": .72, "social": .45, "unknown": .7}
+CRYPTO_RELEVANCE = re.compile(r"\b(bitcoin|btc|ethereum|eth|solana|sol|crypto|cryptocurrency|blockchain|defi|stablecoin|token|exchange|binance|coinbase|sec|cftc|fed|etf|zcash|zec|zama|fhe)\b", re.I)
+LOW_VALUE_HEADLINE = re.compile(r"\b(casino|gambling|betting|promo code|sponsored|best .* sites|price prediction|price forecast|where to buy|affiliate)\b", re.I)
+
+
+def _quality_summary(records):
+    counts = defaultdict(int)
+    for record in records:
+        counts[record.get("source_quality", "unknown")] += 1
+    return {
+        "trusted_headlines": counts.get("primary", 0) + counts.get("reputable", 0),
+        "discovery_headlines": counts.get("discovery", 0),
+        "social_headlines": counts.get("social", 0),
+        "quality_tiers": dict(counts),
+        "interpretation_policy": "Only primary/reputable sources are treated as confirmation; discovery and social sources are leads.",
+    }
 
 
 def _published_ts(item):
@@ -52,25 +71,52 @@ def categorize(text):
 def enrich_and_rank(headlines, limit=60):
     now = datetime.now(timezone.utc)
     seen = set()
+    accepted = []
+    excluded = []
     out = []
     for item in headlines or []:
         headline = (item.get("headline") or "").strip()
         key = _norm(headline)
-        if len(key) < 12 or key in seen:
+        if len(key) < 12:
+            continue
+        if key in seen:
+            excluded.append({"headline": headline, "reason": "exact-duplicate"})
+            continue
+        if not CRYPTO_RELEVANCE.search(headline):
+            excluded.append({"headline": headline, "reason": "not-crypto-relevant"})
+            continue
+        if LOW_VALUE_HEADLINE.search(headline):
+            excluded.append({"headline": headline, "reason": "low-information-or-promotional"})
+            continue
+        if any(SequenceMatcher(None, key, existing).ratio() >= 0.92 for existing in accepted):
+            excluded.append({"headline": headline, "reason": "near-duplicate"})
             continue
         seen.add(key)
+        accepted.append(key)
         published = _published_ts(item)
         age_hours = max(0.0, (now - published).total_seconds() / 3600) if published else 24.0
         source = (item.get("source") or "").lower()
         source_weight = next((v for k, v in SOURCE_WEIGHT.items() if k in source), 1.0)
+        quality = source_quality(item.get("source"), item.get("type"))
         category = item.get("category") or categorize(headline)
         urgency = max(0.15, 1.0 - min(age_hours, 48.0) / 72.0)
-        importance = round(source_weight * urgency + (0.9 if category in CATEGORY_PRIORITY[:4] else 0.25), 3)
+        importance = round(source_weight * QUALITY_WEIGHT.get(quality, .7) * urgency + (0.9 if category in CATEGORY_PRIORITY[:4] else 0.25), 3)
         record = dict(item)
-        record.update({"category": category, "importance": importance, "age_hours": round(age_hours, 1)})
+        record.update({
+            "category": category,
+            "importance": importance,
+            "age_hours": round(age_hours, 1),
+            "source_quality": quality,
+            "evidence_status": "confirmed-source" if quality in {"primary", "reputable"} else "discovery-lead" if quality == "discovery" else "unconfirmed-social",
+            "asset_scope": "market-wide" if category in {"Market & Macro", "Regulation & Politics", "Security & Hacks"} else "asset-or-sector",
+        })
         out.append(record)
     out.sort(key=lambda x: (-x["importance"], x.get("published", "")), reverse=False)
-    return out[:limit]
+    result = out[:limit]
+    enrich_and_rank.last_quality = _quality_summary(result)
+    enrich_and_rank.last_quality["excluded_count"] = len(excluded)
+    enrich_and_rank.last_quality["excluded_reasons"] = {reason: sum(1 for x in excluded if x["reason"] == reason) for reason in sorted({x["reason"] for x in excluded})}
+    return result
 
 
 def category_digest(headlines, max_items=5):
@@ -120,8 +166,8 @@ def ai_interpret(digests):
         fallback["status"] = "unavailable"
         fallback["reason"] = "NEWS_AI_API_KEY is not configured"
         return fallback
-    compact = [{"category": d["category"], "headlines": [x.get("headline") for x in d["headlines"][:4]]} for d in digests]
-    prompt = {"categories": compact, "instructions": "Summarize the latest crypto news for a dashboard. Do not invent facts. Return JSON with tone, summary, key_points, market_implications, watch_items. Keep summary under 320 characters, key_points and watch_items to at most 4 short strings."}
+    compact = [{"category": d["category"], "headlines": [{"headline": x.get("headline"), "source": x.get("source"), "quality": x.get("source_quality"), "published": x.get("published")} for x in d["headlines"][:4]]} for d in digests]
+    prompt = {"categories": compact, "instructions": "Summarize only the supplied headlines. Do not invent facts, causes, prices, dates, or consequences. Treat discovery/social items as unconfirmed leads. Return JSON with tone, summary, key_points, market_implications, watch_items, cited_headlines, abstain. Keep summary under 320 characters, key_points and watch_items to at most 4 short strings. cited_headlines must contain exact supplied headline strings. Set abstain true when evidence is weak or conflicting."}
     try:
         import requests
         resp = requests.post(f"{base}/chat/completions", headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}, json={"model": model, "messages": [{"role": "system", "content": "You are a cautious crypto-news analyst. Output valid JSON only."}, {"role": "user", "content": json.dumps(prompt, ensure_ascii=False)}], "temperature": 0.1, "max_tokens": 900}, timeout=45)
@@ -129,7 +175,11 @@ def ai_interpret(digests):
         content = resp.json()["choices"][0]["message"]["content"]
         content = re.sub(r"^```json\s*|\s*```$", "", content.strip())
         result = json.loads(content)
-        result.update({"status": "ai", "model": model, "updated_at": datetime.now(timezone.utc).isoformat()})
+        supplied = {x["headline"] for d in compact for x in d["headlines"]}
+        cited = [x for x in result.get("cited_headlines", []) if x in supplied]
+        result["cited_headlines"] = cited[:6]
+        result["abstain"] = bool(result.get("abstain", False)) or not cited
+        result.update({"status": "ai", "model": model, "updated_at": datetime.now(timezone.utc).isoformat(), "grounded": bool(cited)})
         return result
     except Exception as exc:
         fallback["reason"] = f"AI interpretation failed: {type(exc).__name__}"
@@ -139,4 +189,4 @@ def ai_interpret(digests):
 def build_intelligence(headlines, sources):
     ranked = enrich_and_rank(headlines)
     digests = category_digest(ranked)
-    return {"updated_at": datetime.now(timezone.utc).isoformat(), "source_count": len(sources or []), "headline_count": len(ranked), "categories": digests, "ai": ai_interpret(digests), "method": "deduplicated, source-weighted, recency-ranked; optional AI layer"}
+    return {"updated_at": datetime.now(timezone.utc).isoformat(), "source_count": len(sources or []), "headline_count": len(ranked), "categories": digests, "ai": ai_interpret(digests), "quality": getattr(enrich_and_rank, "last_quality", {}), "method": "crypto-relevance filtered, near-duplicate suppressed, quality-tiered and recency-ranked; optional grounded AI layer"}

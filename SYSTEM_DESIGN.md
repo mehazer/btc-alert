@@ -20,6 +20,8 @@ Crypto Watch is a deterministic market-observation and interpretation tool. It i
 
 The current measurement-layer increment records provenance and units on new legacy observations: retrieval time, timeframe, source venue, dataset, and units for price, volume, OI, and funding. The v2 evidence adapter also derives a compact `compact-v1` feature block without changing decision rules: EMA50 distance and slope, EMA200 regime, price momentum, realized and downside volatility, volatility percentile, relative volume, normalized OI/funding percentiles, price/OI quadrant, and BTC-relative strength. These features are exposed to shadow-agent inputs for audit and future ablation, but they are not yet allowed to change the production alert path, live weights, or promotion status.
 
+The main dashboard is decision-first: it presents the latest v2 conclusion, paper-only forecast direction, decision gate, risk, confidence, and invalidation context before detailed indicator cards. Confidence is labelled as a calibration statistic rather than a probability of profit. The news panel exposes trusted-source counts and abstention/grounding status so a lack of evidence is visible instead of being converted into a confident narrative.
+
 ## Data sources and definitions
 
 | Input | Source | Meaning | Limitation |
@@ -30,6 +32,8 @@ The current measurement-layer increment records provenance and units on new lega
 | L/S and liquidations | Exchange/API extras | Supplemental positioning/liquidation evidence | May be unavailable |
 | News | Configured RSS/web sources | Deduplicated, ranked crypto headlines | Headlines do not prove causality |
 | Google Trends | pytrends | Daily normalized search interest 0–100 | Can be unavailable/rate-limited |
+
+News quality policy: primary and reputable sources are treated as confirmation candidates; Google News is a discovery layer; Telegram and Reddit are unconfirmed social leads. Headline ranking filters obvious non-crypto, promotional, and low-information items, suppresses near duplicates, records the quality tier and evidence status, and asks the optional AI interpreter to cite supplied headlines or abstain. The AI layer is not permitted to invent facts, causes, prices, dates, or consequences from headlines.
 
 ## Prediction and evaluation contract
 

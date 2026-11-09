@@ -95,6 +95,7 @@ def main():
         "headlines": news_intelligence.enrich_and_rank(headlines),
         "categories": intelligence["categories"],
         "ai": intelligence["ai"],
+        "quality": intelligence.get("quality", {}),
         "method": intelligence["method"],
     }
     save_json("latest_news.json", snapshot)

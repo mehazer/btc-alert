@@ -78,17 +78,41 @@ REDDIT_SOURCES = [
     {"name": "r/ethereum", "subreddit": "ethereum"},
 ]
 
+# Source quality is used for ranking and disclosure, not as proof that a
+# headline is true. Google News is a discovery layer; it may surface low-value
+# SEO, sponsored, or duplicated material and must not outrank direct reporting
+# merely because it is recent.
+SOURCE_QUALITY = {
+    "primary": {"official", "sec", "cftc", "fed", "binance", "coinbase", "kraken"},
+    "reputable": {"coindesk", "the block", "reuters", "bloomberg", "financial times", "ft", "wsj", "decrypt", "bitcoin magazine"},
+    "discovery": {"google news"},
+    "social": {"telegram", "reddit", "twitter"},
+}
+
 HEADLINE_LIMIT_PER_SOURCE = 4
 GOOGLE_NEWS_LIMIT = 5
 
 
 def list_all_sources():
     """Dashboard icin: tum kaynaklarin adi + tipini duz liste olarak doner."""
-    sources = [{"name": s["name"], "type": "rss"} for s in RSS_SOURCES]
-    sources += [{"name": s["name"], "type": "google_news"} for s in GOOGLE_NEWS_QUERIES]
-    sources += [{"name": s["name"], "type": "telegram"} for s in TELEGRAM_SOURCES]
-    sources += [{"name": s["name"], "type": "reddit"} for s in REDDIT_SOURCES]
+    sources = [{"name": s["name"], "type": "rss", "quality": source_quality(s["name"], "rss")} for s in RSS_SOURCES]
+    sources += [{"name": s["name"], "type": "google_news", "quality": source_quality(s["name"], "google_news")} for s in GOOGLE_NEWS_QUERIES]
+    sources += [{"name": s["name"], "type": "telegram", "quality": source_quality(s["name"], "telegram")} for s in TELEGRAM_SOURCES]
+    sources += [{"name": s["name"], "type": "reddit", "quality": source_quality(s["name"], "reddit")} for s in REDDIT_SOURCES]
     return sources
+
+
+def source_quality(source_name, source_type=None):
+    """Return a transparent quality tier for ranking and dashboard disclosure."""
+    name = (source_name or "").lower()
+    for tier, names in SOURCE_QUALITY.items():
+        if any(token in name for token in names):
+            return tier
+    if source_type in {"telegram", "reddit"}:
+        return "social"
+    if source_type == "google_news":
+        return "discovery"
+    return "unknown"
 
 
 def _clean_google_title(title):

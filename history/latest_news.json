@@ -3,95 +3,150 @@
   "sources": [
     {
       "name": "CoinDesk",
-      "type": "rss"
+      "type": "rss",
+      "quality": "reputable"
     },
     {
       "name": "CoinTelegraph",
-      "type": "rss"
+      "type": "rss",
+      "quality": "unknown"
     },
     {
       "name": "Decrypt",
-      "type": "rss"
+      "type": "rss",
+      "quality": "reputable"
     },
     {
       "name": "The Block",
-      "type": "rss"
+      "type": "rss",
+      "quality": "reputable"
     },
     {
       "name": "Bitcoin Magazine",
-      "type": "rss"
+      "type": "rss",
+      "quality": "reputable"
     },
     {
       "name": "Google News (BTC)",
-      "type": "google_news"
+      "type": "google_news",
+      "quality": "discovery"
     },
     {
       "name": "Google News (ETH)",
-      "type": "google_news"
+      "type": "google_news",
+      "quality": "discovery"
     },
     {
       "name": "Google News (SOL)",
-      "type": "google_news"
+      "type": "google_news",
+      "quality": "discovery"
     },
     {
       "name": "Google News (ZEC)",
-      "type": "google_news"
+      "type": "google_news",
+      "quality": "discovery"
     },
     {
       "name": "Google News (ZAMA)",
-      "type": "google_news"
+      "type": "google_news",
+      "quality": "discovery"
     },
     {
       "name": "Google News (Macro)",
-      "type": "google_news"
+      "type": "google_news",
+      "quality": "discovery"
     },
     {
       "name": "CoinDesk (Telegram)",
-      "type": "telegram"
+      "type": "telegram",
+      "quality": "reputable"
     },
     {
       "name": "CoinTelegraph (Telegram)",
-      "type": "telegram"
+      "type": "telegram",
+      "quality": "social"
     },
     {
       "name": "Coin Bureau Insider (Telegram)",
-      "type": "telegram"
+      "type": "telegram",
+      "quality": "social"
     },
     {
       "name": "Watcher.Guru (Telegram)",
-      "type": "telegram"
+      "type": "telegram",
+      "quality": "social"
     },
     {
       "name": "Wu Blockchain (Telegram)",
-      "type": "telegram"
+      "type": "telegram",
+      "quality": "social"
     },
     {
       "name": "Whale Alert (Telegram)",
-      "type": "telegram"
+      "type": "telegram",
+      "quality": "social"
     },
     {
       "name": "r/CryptoCurrency",
-      "type": "reddit"
+      "type": "reddit",
+      "quality": "social"
     },
     {
       "name": "r/Bitcoin",
-      "type": "reddit"
+      "type": "reddit",
+      "quality": "social"
     },
     {
       "name": "r/ethereum",
-      "type": "reddit"
+      "type": "reddit",
+      "quality": "social"
     }
   ],
-  "headline_count": 55,
+  "headline_count": 29,
   "headlines": [
     {
-      "source": "Google News (BTC)",
-      "type": "google_news",
-      "headline": "November 8, 2026: BTC price on Nov 8, 2026 at 4pm EST Crypto Prediction Market",
-      "published": "Sun, 08 Nov 2026 20:08:12 GMT",
+      "source": "CoinDesk",
+      "type": "rss",
+      "headline": "What the election results mean for crypto: State of Crypto",
+      "category": "Regulation & Politics",
+      "importance": 1.973,
+      "age_hours": 24.0,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "CoinDesk",
+      "type": "rss",
+      "headline": "These Finland homes get free heat from bitcoin miners (as long as BTC stays above $70,000)",
       "category": "Market & Macro",
-      "importance": 1.898,
-      "age_hours": 0.2
+      "importance": 1.973,
+      "age_hours": 24.0,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "The Block",
+      "type": "rss",
+      "headline": "Binance CFO steps down nine days after record hack; co-CEO says transition was planned six months ago",
+      "category": "Security & Hacks",
+      "importance": 1.935,
+      "age_hours": 24.0,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Decrypt",
+      "type": "rss",
+      "headline": "This Bitcoin Developer’s Idea Would Make Quantum Attacks a Losing Bet",
+      "category": "Market & Macro",
+      "importance": 1.743,
+      "age_hours": 24.0,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
     },
     {
       "source": "Google News (Macro)",
@@ -99,8 +154,23 @@
       "headline": "Bitcoin ETF Outflows Hit 4-Month High as Ethereum Funds Stay in the Red",
       "published": "Sun, 08 Nov 2026 20:05:00 GMT",
       "category": "Bitcoin & ETF",
-      "importance": 1.897,
-      "age_hours": 0.2
+      "importance": 1.535,
+      "age_hours": 8.5,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "November 8, 2026: BTC price on Nov 8, 2026 at 4pm EST Crypto Prediction Market",
+      "published": "Sun, 08 Nov 2026 20:08:12 GMT",
+      "category": "Market & Macro",
+      "importance": 1.535,
+      "age_hours": 8.5,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
     },
     {
       "source": "Google News (Macro)",
@@ -108,17 +178,11 @@
       "headline": "Crypto ETF Investors Pull $1.6 Billion as Washington Power Shift Rattles Market",
       "published": "Sun, 08 Nov 2026 19:55:00 GMT",
       "category": "Bitcoin & ETF",
-      "importance": 1.895,
-      "age_hours": 0.4
-    },
-    {
-      "source": "Google News (BTC)",
-      "type": "google_news",
-      "headline": "Best Crypto Casinos 2026 – 5 Top Bitcoin Gambling Sites With Fastest Payouts",
-      "published": "Sun, 08 Nov 2026 19:42:07 GMT",
-      "category": "Market & Macro",
-      "importance": 1.892,
-      "age_hours": 0.6
+      "importance": 1.533,
+      "age_hours": 8.7,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
     },
     {
       "source": "Google News (BTC)",
@@ -126,8 +190,11 @@
       "headline": "Bitcoin, Ethereum, and Solana ETF Outflows Jump as Key Fear Gauge Drops After Midterms",
       "published": "Sun, 08 Nov 2026 19:30:07 GMT",
       "category": "Bitcoin & ETF",
-      "importance": 1.889,
-      "age_hours": 0.8
+      "importance": 1.529,
+      "age_hours": 9.1,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
     },
     {
       "source": "Google News (Macro)",
@@ -135,8 +202,11 @@
       "headline": "Hyperliquid Whales Flipped Short on Bitcoin for the First Time in Seven Months. What Happened the Last Time They Did?",
       "published": "Sun, 08 Nov 2026 19:17:00 GMT",
       "category": "Market & Macro",
-      "importance": 1.886,
-      "age_hours": 1.0
+      "importance": 1.527,
+      "age_hours": 9.3,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
     },
     {
       "source": "Google News (BTC)",
@@ -144,57 +214,11 @@
       "headline": "Bitcoin Trades $200 Above Strategy's Average Cost of $75,451. What Happens to MSTR if BTC Closes Below It?",
       "published": "Sun, 08 Nov 2026 18:31:00 GMT",
       "category": "Market & Macro",
-      "importance": 1.875,
-      "age_hours": 1.8
-    },
-    {
-      "source": "Google News (BTC)",
-      "type": "google_news",
-      "headline": "Bitcoin Price Forecast: BTC/USD 12.5% Plunge Nears Critical Support",
-      "published": "Sun, 08 Nov 2026 17:17:02 GMT",
-      "category": "Market & Macro",
-      "importance": 1.858,
-      "age_hours": 3.0
-    },
-    {
-      "source": "CoinDesk",
-      "type": "rss",
-      "headline": "What the election results mean for crypto: State of Crypto",
-      "category": "Regulation & Politics",
-      "importance": 1.833,
-      "age_hours": 24.0
-    },
-    {
-      "source": "CoinDesk",
-      "type": "rss",
-      "headline": "These Finland homes get free heat from bitcoin miners (as long as BTC stays above $70,000)",
-      "category": "Market & Macro",
-      "importance": 1.833,
-      "age_hours": 24.0
-    },
-    {
-      "source": "The Block",
-      "type": "rss",
-      "headline": "Web3Auth says it frontran hackers by moving $5.6 million out of exposed Keplr wallets",
-      "category": "Security & Hacks",
-      "importance": 1.8,
-      "age_hours": 24.0
-    },
-    {
-      "source": "The Block",
-      "type": "rss",
-      "headline": "Binance CFO steps down nine days after record hack; co-CEO says transition was planned six months ago",
-      "category": "Security & Hacks",
-      "importance": 1.8,
-      "age_hours": 24.0
-    },
-    {
-      "source": "CoinTelegraph (Telegram)",
-      "type": "telegram",
-      "headline": "🇺🇸 JUST IN: President Donald Trump blamed the election results for a $3 trillion one-day stock market loss, vowing that the US will come back “bigger and stronger than ever before.”",
-      "category": "Regulation & Politics",
-      "importance": 1.667,
-      "age_hours": 24.0
+      "importance": 1.519,
+      "age_hours": 10.1,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
     },
     {
       "source": "Google News (ZEC)",
@@ -202,81 +226,66 @@
       "headline": "Zcash drops 7.4%: liquidations and Grayscale ETF outflow",
       "published": "Sun, 08 Nov 2026 03:12:56 GMT",
       "category": "Bitcoin & ETF",
-      "importance": 1.663,
-      "age_hours": 17.1
+      "importance": 1.366,
+      "age_hours": 25.4,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
     },
     {
-      "source": "Google News (ZEC)",
-      "type": "google_news",
-      "headline": "Zcash Price Is Flashing a Warning Sign for Bitcoin and Ethereum",
-      "published": "Sun, 08 Nov 2026 01:07:01 GMT",
-      "category": "Market & Macro",
-      "importance": 1.634,
-      "age_hours": 19.2
-    },
-    {
-      "source": "Decrypt",
+      "source": "CoinDesk",
       "type": "rss",
-      "headline": "This Bitcoin Developer’s Idea Would Make Quantum Attacks a Losing Bet",
-      "category": "Market & Macro",
-      "importance": 1.633,
-      "age_hours": 24.0
+      "headline": "Binance users in some European countries told to pull crypto before fees kick in, with accounts closing by year end",
+      "category": "Institutional & Exchanges",
+      "importance": 1.323,
+      "age_hours": 24.0,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "asset-or-sector"
     },
     {
-      "source": "Decrypt",
+      "source": "CoinDesk",
       "type": "rss",
-      "headline": "AI Chip Stocks Bounce After Global Rout—But Is the Bubble Starting to Burst?",
-      "category": "Market & Macro",
-      "importance": 1.633,
-      "age_hours": 24.0
+      "headline": "Stablecoin growth has stalled. The payments boom hasn't",
+      "category": "DeFi & Stablecoins",
+      "importance": 1.323,
+      "age_hours": 24.0,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "asset-or-sector"
     },
     {
-      "source": "Coin Bureau Insider (Telegram)",
-      "type": "telegram",
-      "headline": "🚨 🚨 NOTE: The Coin Bureau Insider Telegram Channel can now be reached on @CoinBureau . There are NO OTHER official channels. Please be aware of scammers / impersonators.",
-      "category": "Security & Hacks",
-      "importance": 1.333,
-      "age_hours": 24.0
+      "source": "The Block",
+      "type": "rss",
+      "headline": "Vitalik Buterin says ETH should be valued as a store of value, not a fee-burning token",
+      "category": "Ethereum & L2",
+      "importance": 1.285,
+      "age_hours": 24.0,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "asset-or-sector"
     },
     {
-      "source": "Coin Bureau Insider (Telegram)",
-      "type": "telegram",
-      "headline": "Coin Bureau Telegram (Old) pinned « 🚨 🚨 NOTE: The Coin Bureau Insider Telegram Channel can now be reached on @CoinBureau.   There are NO OTHER official channels. Please be aware of scammers / impersonators. »",
-      "category": "Security & Hacks",
-      "importance": 1.333,
-      "age_hours": 24.0
-    },
-    {
-      "source": "Wu Blockchain (Telegram)",
-      "type": "telegram",
-      "headline": "Asia’s weekly TOP10 crypto news PBOC to Probe Solana’s Lujiazui Ad Campaign, South Korea Pushes Crypto Gains Tax to 2029, Bank of Russia Opens BTC, ETH and USDT to Retail Investors, Hong Kong to License Crypto Custody Services. For the complete article and weekly curated reports, subscribe to our Substack: — link",
-      "category": "Market & Macro",
-      "importance": 1.333,
-      "age_hours": 24.0
+      "source": "The Block",
+      "type": "rss",
+      "headline": "Ex-FBI agent pleads guilty to stealing $2.47 million in crypto from wallets tied to 35 investigations",
+      "category": "Other",
+      "importance": 1.285,
+      "age_hours": 24.0,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "asset-or-sector"
     },
     {
       "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
       "headline": "U.S. Sanctions Eight Canadian Crypto Firms Over Iran-Linked Transactions The U.S. Treasury sanctioned eight Canada-based money services businesses on November 6, including NIA Nations, Million Exchange, Amin Exchange and Farah Exchange, saying they facilitated cross-border transactions involving Iran through digital assets. Treasury said several of the firms transacted with sanctioned Iranian crypto exchanges or addresses linked to the IRGC, while some also helped launder drug proceeds for Canadian trafficker Ryan Wedding by converting cash into digital assets and sending the funds abroad. Blockchain investigator ZachXBT said he had publicly called for sanctions against Iran-linked OTC brokers in Canada five months earlier. — link",
       "category": "Security & Hacks",
-      "importance": 1.333,
-      "age_hours": 24.0
-    },
-    {
-      "source": "Wu Blockchain (Telegram)",
-      "type": "telegram",
-      "headline": "Vitalik: Slowing the Hyperscale Expansion of AI Compute May Do More Good Than Harm Vitalik Buterin said he disagrees with the strong negative reaction to the anti-data-center movement, arguing that continued gains in algorithmic efficiency could allow AI capabilities requiring much larger data centers in two years to be achieved within roughly four years using existing infrastructure. He said slowing compute expansion could give society more time to address cybersecurity, biosecurity and other risks, while scientific progress is constrained by factors beyond AI, meaning a one-year slowdown in AI would not necessarily translate into an equal delay in research. — link",
-      "category": "Regulation & Politics",
-      "importance": 1.333,
-      "age_hours": 24.0
-    },
-    {
-      "source": "Whale Alert (Telegram)",
-      "type": "telegram",
-      "headline": "📉 📉 📉 LNbits urges operators to take Lightning Network servers offline after security compromises and reported unauthorized withdrawals Read Analysis",
-      "category": "Regulation & Politics",
-      "importance": 1.333,
-      "age_hours": 24.0
+      "importance": 1.095,
+      "age_hours": 24.0,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "market-wide"
     },
     {
       "source": "Google News (ETH)",
@@ -284,8 +293,11 @@
       "headline": "ETH price on Nov 8, 2026 at 4pm EST Crypto Prediction Market",
       "published": "Sun, 08 Nov 2026 20:08:13 GMT",
       "category": "Ethereum & L2",
-      "importance": 1.248,
-      "age_hours": 0.2
+      "importance": 0.885,
+      "age_hours": 8.5,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
     },
     {
       "source": "Google News (ETH)",
@@ -293,17 +305,11 @@
       "headline": "Vitalik Buterin Challenges Ethereum's Ultrasound Money Idea",
       "published": "Sun, 08 Nov 2026 19:35:00 GMT",
       "category": "Ethereum & L2",
-      "importance": 1.24,
-      "age_hours": 0.7
-    },
-    {
-      "source": "Google News (ETH)",
-      "type": "google_news",
-      "headline": "Ethereum Price Prediction: 2,982 New ETH in a Day, Only 10 Burned",
-      "published": "Sun, 08 Nov 2026 19:15:38 GMT",
-      "category": "Ethereum & L2",
-      "importance": 1.236,
-      "age_hours": 1.0
+      "importance": 0.88,
+      "age_hours": 9.0,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
     },
     {
       "source": "Google News (SOL)",
@@ -311,8 +317,11 @@
       "headline": "Stablecoin market cap is frozen. The money inside it isn’t",
       "published": "Sun, 08 Nov 2026 19:16:42 GMT",
       "category": "DeFi & Stablecoins",
-      "importance": 1.236,
-      "age_hours": 1.0
+      "importance": 0.877,
+      "age_hours": 9.3,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
     },
     {
       "source": "Google News (ETH)",
@@ -320,8 +329,11 @@
       "headline": "Vitalik Buterin Says Ethereum's Fee Burn Was Never a Price Floor. What Is Holding ETH at $2,200?",
       "published": "Sun, 08 Nov 2026 18:53:00 GMT",
       "category": "Ethereum & L2",
-      "importance": 1.23,
-      "age_hours": 1.4
+      "importance": 0.873,
+      "age_hours": 9.7,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
     },
     {
       "source": "Google News (ZEC)",
@@ -329,8 +341,11 @@
       "headline": "Zcash Falls 3.57% in Four Hours to $1,242 on Binance Spot",
       "published": "Sun, 08 Nov 2026 17:26:33 GMT",
       "category": "Altcoins & Projects",
-      "importance": 1.21,
-      "age_hours": 2.9
+      "importance": 0.858,
+      "age_hours": 11.2,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
     },
     {
       "source": "Google News (SOL)",
@@ -338,8 +353,11 @@
       "headline": "$200 billion lost, but here’s why Solana’s tokenized RWA market could be silver lining",
       "published": "Sun, 08 Nov 2026 17:00:27 GMT",
       "category": "Altcoins & Projects",
-      "importance": 1.204,
-      "age_hours": 3.3
+      "importance": 0.854,
+      "age_hours": 11.6,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
     },
     {
       "source": "Google News (SOL)",
@@ -347,49 +365,44 @@
       "headline": "Solana (SOL) Price News Today: SOL Near $90 as Remittix Earn Reports $1.3M TVL in Its First Four Days",
       "published": "Sun, 08 Nov 2026 16:30:03 GMT",
       "category": "Altcoins & Projects",
-      "importance": 1.197,
-      "age_hours": 3.8
+      "importance": 0.849,
+      "age_hours": 12.1,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
     },
     {
-      "source": "CoinDesk",
+      "source": "CoinTelegraph",
       "type": "rss",
-      "headline": "Stablecoin growth has stalled. The payments boom hasn't",
-      "category": "DeFi & Stablecoins",
-      "importance": 1.183,
-      "age_hours": 24.0
-    },
-    {
-      "source": "CoinDesk",
-      "type": "rss",
-      "headline": "Binance users in some European countries told to pull crypto before fees kick in, with accounts closing by year end",
+      "headline": "Binance France emails announce closure of its users’ accounts on Dec. 31",
       "category": "Institutional & Exchanges",
-      "importance": 1.183,
-      "age_hours": 24.0
+      "importance": 0.787,
+      "age_hours": 24.0,
+      "source_quality": "unknown",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "asset-or-sector"
     },
     {
-      "source": "The Block",
+      "source": "CoinTelegraph",
       "type": "rss",
-      "headline": "Vitalik Buterin says ETH should be valued as a store of value, not a fee-burning token",
-      "category": "Ethereum & L2",
-      "importance": 1.15,
-      "age_hours": 24.0
+      "headline": "Binance’s  finance chief Kaiser Ng to leave company, report says",
+      "category": "Institutional & Exchanges",
+      "importance": 0.787,
+      "age_hours": 24.0,
+      "source_quality": "unknown",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "asset-or-sector"
     },
     {
-      "source": "The Block",
+      "source": "CoinTelegraph",
       "type": "rss",
-      "headline": "Ex-FBI agent pleads guilty to stealing $2.47 million in crypto from wallets tied to 35 investigations",
+      "headline": "Here’s what happened in crypto today",
       "category": "Other",
-      "importance": 1.15,
-      "age_hours": 24.0
-    },
-    {
-      "source": "Google News (ZAMA)",
-      "type": "google_news",
-      "headline": "public blockchains offer transparency, but they can also exp",
-      "published": "Sun, 08 Nov 2026 12:09:07 GMT",
-      "category": "Other",
-      "importance": 1.137,
-      "age_hours": 8.2
+      "importance": 0.787,
+      "age_hours": 24.0,
+      "source_quality": "unknown",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "asset-or-sector"
     },
     {
       "source": "Google News (ZEC)",
@@ -397,72 +410,11 @@
       "headline": "Remittix Earn, Zcash or Solana? $1.3M TVL in Four Days Makes a New Yield Story Hard to Ignore",
       "published": "Sun, 08 Nov 2026 06:52:36 GMT",
       "category": "Altcoins & Projects",
-      "importance": 1.064,
-      "age_hours": 13.4
-    },
-    {
-      "source": "CoinTelegraph",
-      "type": "rss",
-      "headline": "Here’s what happened in crypto today",
-      "category": "Other",
-      "importance": 1.017,
-      "age_hours": 24.0
-    },
-    {
-      "source": "CoinTelegraph",
-      "type": "rss",
-      "headline": "Binance France emails announce closure of its users’ accounts on Dec. 31",
-      "category": "Institutional & Exchanges",
-      "importance": 1.017,
-      "age_hours": 24.0
-    },
-    {
-      "source": "CoinTelegraph",
-      "type": "rss",
-      "headline": "Amsterdam protesters break into Microsoft data center construction site: Report",
-      "category": "Other",
-      "importance": 1.017,
-      "age_hours": 24.0
-    },
-    {
-      "source": "CoinTelegraph",
-      "type": "rss",
-      "headline": "Binance’s  finance chief Kaiser Ng to leave company, report says",
-      "category": "Institutional & Exchanges",
-      "importance": 1.017,
-      "age_hours": 24.0
-    },
-    {
-      "source": "CoinTelegraph (Telegram)",
-      "type": "telegram",
-      "headline": "⚡️ LATEST: Elon Musk says Tesla’s Cybertruck order backlog exceeds production capacity ahead of plans to repurpose the line for Cybercab expansion around June or July 2027, prompting the company to add an extra shift. News | Markets | YouTube",
-      "category": "Other",
-      "importance": 1.017,
-      "age_hours": 24.0
-    },
-    {
-      "source": "CoinTelegraph (Telegram)",
-      "type": "telegram",
-      "headline": "⚡️ INSIGHT: Vitalik Buterin says $ETH should focus on being a store of value rather than a fee-burning token, arguing that its value comes from decentralization and stability. News | Markets | YouTube",
-      "category": "Ethereum & L2",
-      "importance": 1.017,
-      "age_hours": 24.0
-    },
-    {
-      "source": "Decrypt",
-      "type": "rss",
-      "headline": "Apple Completes the Set: Every Magnificent Seven Stock Opts Out of OKX-ICE Venue",
-      "category": "Other",
-      "importance": 0.983,
-      "age_hours": 24.0
-    },
-    {
-      "source": "Decrypt",
-      "type": "rss",
-      "headline": "Sony Axing Game Discs Will Have Outsized Impact on Low-Income Gamers, Experts Say",
-      "category": "Other",
-      "importance": 0.983,
-      "age_hours": 24.0
+      "importance": 0.753,
+      "age_hours": 21.7,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
     },
     {
       "source": "Google News (ZEC)",
@@ -470,177 +422,75 @@
       "headline": "Crypto Zcash ZEC/USD Chart daily",
       "published": "Sun, 08 Nov 2026 00:00:00 GMT",
       "category": "Altcoins & Projects",
-      "importance": 0.968,
-      "age_hours": 20.3
+      "importance": 0.684,
+      "age_hours": 28.6,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
     },
     {
-      "source": "Google News (ZAMA)",
-      "type": "google_news",
-      "headline": "I've been thinking about what encrypted NFTs could mean for",
-      "published": "Sat, 07 Nov 2026 22:44:14 GMT",
-      "category": "Other",
-      "importance": 0.95,
-      "age_hours": 21.6
-    },
-    {
-      "source": "Coin Bureau Insider (Telegram)",
+      "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
-      "headline": "Channel created",
-      "category": "Other",
-      "importance": 0.683,
-      "age_hours": 24.0
-    },
-    {
-      "source": "Watcher.Guru (Telegram)",
-      "type": "telegram",
-      "headline": "JUST IN: 🇬🇧 UK rejects calls to slow down AI development. @WatcherGuru",
-      "category": "Other",
-      "importance": 0.683,
-      "age_hours": 24.0
-    },
-    {
-      "source": "Watcher.Guru (Telegram)",
-      "type": "telegram",
-      "headline": "JUST IN: 🇺🇸 Democrats to block President Donald Trump's $1.5 trillion military budget. @WatcherGuru",
-      "category": "Other",
-      "importance": 0.683,
-      "age_hours": 24.0
-    },
-    {
-      "source": "Watcher.Guru (Telegram)",
-      "type": "telegram",
-      "headline": "JUST IN: 🇺🇸 🇨🇳 Nvidia $NVDA board launches investigation into CEO Jensen Huang's relationship with Chinese spy after he admits having an affair. @WatcherGuru",
-      "category": "Other",
-      "importance": 0.683,
-      "age_hours": 24.0
-    },
-    {
-      "source": "Wu Blockchain (Telegram)",
-      "type": "telegram",
-      "headline": "Vitalik: ETH Should Focus on Store of Value, Not Fee Burning Vitalik Buterin said Ethereum should focus more on ETH as a store of value rather than as a “fee-burning token,” arguing that fee burn was never as strong a valuation floor as it appeared and that maximizing fees could conflict with decentralization and capture resistance. He said Ethereum’s strongest attributes are decentralization and “CROPS” — censorship and capture resistance, open source, privacy and security — and that these qualities are better aligned with ETH’s role as a store of value. Buterin added that Ethereum should not be concerned even if fee burn remains below 10% of breakeven over the long term, saying ETH’s value can come from elsewhere. — link",
+      "headline": "⚡️ INSIGHT: Vitalik Buterin says $ETH should focus on being a store of value rather than a fee-burning token, arguing that its value comes from decentralization and stability. News | Markets | YouTube",
       "category": "Ethereum & L2",
-      "importance": 0.683,
-      "age_hours": 24.0
-    },
-    {
-      "source": "Whale Alert (Telegram)",
-      "type": "telegram",
-      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 136,978,010 $USDT (136,915,518 USD) transferred from #Aave to unknown wallet Details",
-      "category": "DeFi & Stablecoins",
-      "importance": 0.683,
-      "age_hours": 24.0
-    },
-    {
-      "source": "Whale Alert (Telegram)",
-      "type": "telegram",
-      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 179,999,990 $USDT (179,793,890 USD) transferred from unknown wallet to #Poloniex Details",
-      "category": "DeFi & Stablecoins",
-      "importance": 0.683,
-      "age_hours": 24.0
-    },
-    {
-      "source": "Whale Alert (Telegram)",
-      "type": "telegram",
-      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 197,000,000 $USDT (196,860,551 USD) transferred from #Poloniex to #Aave Details",
-      "category": "DeFi & Stablecoins",
-      "importance": 0.683,
-      "age_hours": 24.0
+      "importance": 0.595,
+      "age_hours": 24.0,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "asset-or-sector"
     }
   ],
   "categories": [
     {
       "category": "Security & Hacks",
-      "count": 5,
+      "count": 2,
       "headlines": [
-        {
-          "source": "The Block",
-          "type": "rss",
-          "headline": "Web3Auth says it frontran hackers by moving $5.6 million out of exposed Keplr wallets",
-          "category": "Security & Hacks",
-          "importance": 1.8,
-          "age_hours": 24.0
-        },
         {
           "source": "The Block",
           "type": "rss",
           "headline": "Binance CFO steps down nine days after record hack; co-CEO says transition was planned six months ago",
           "category": "Security & Hacks",
-          "importance": 1.8,
-          "age_hours": 24.0
-        },
-        {
-          "source": "Coin Bureau Insider (Telegram)",
-          "type": "telegram",
-          "headline": "🚨 🚨 NOTE: The Coin Bureau Insider Telegram Channel can now be reached on @CoinBureau . There are NO OTHER official channels. Please be aware of scammers / impersonators.",
-          "category": "Security & Hacks",
-          "importance": 1.333,
-          "age_hours": 24.0
-        },
-        {
-          "source": "Coin Bureau Insider (Telegram)",
-          "type": "telegram",
-          "headline": "Coin Bureau Telegram (Old) pinned « 🚨 🚨 NOTE: The Coin Bureau Insider Telegram Channel can now be reached on @CoinBureau.   There are NO OTHER official channels. Please be aware of scammers / impersonators. »",
-          "category": "Security & Hacks",
-          "importance": 1.333,
-          "age_hours": 24.0
+          "importance": 1.935,
+          "age_hours": 24.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "market-wide"
         },
         {
           "source": "Wu Blockchain (Telegram)",
           "type": "telegram",
           "headline": "U.S. Sanctions Eight Canadian Crypto Firms Over Iran-Linked Transactions The U.S. Treasury sanctioned eight Canada-based money services businesses on November 6, including NIA Nations, Million Exchange, Amin Exchange and Farah Exchange, saying they facilitated cross-border transactions involving Iran through digital assets. Treasury said several of the firms transacted with sanctioned Iranian crypto exchanges or addresses linked to the IRGC, while some also helped launder drug proceeds for Canadian trafficker Ryan Wedding by converting cash into digital assets and sending the funds abroad. Blockchain investigator ZachXBT said he had publicly called for sanctions against Iran-linked OTC brokers in Canada five months earlier. — link",
           "category": "Security & Hacks",
-          "importance": 1.333,
-          "age_hours": 24.0
+          "importance": 1.095,
+          "age_hours": 24.0,
+          "source_quality": "social",
+          "evidence_status": "unconfirmed-social",
+          "asset_scope": "market-wide"
         }
       ],
       "top_sources": [
-        "Coin Bureau Insider (Telegram)",
         "The Block",
         "Wu Blockchain (Telegram)"
       ]
     },
     {
       "category": "Regulation & Politics",
-      "count": 4,
+      "count": 1,
       "headlines": [
         {
           "source": "CoinDesk",
           "type": "rss",
           "headline": "What the election results mean for crypto: State of Crypto",
           "category": "Regulation & Politics",
-          "importance": 1.833,
-          "age_hours": 24.0
-        },
-        {
-          "source": "CoinTelegraph (Telegram)",
-          "type": "telegram",
-          "headline": "🇺🇸 JUST IN: President Donald Trump blamed the election results for a $3 trillion one-day stock market loss, vowing that the US will come back “bigger and stronger than ever before.”",
-          "category": "Regulation & Politics",
-          "importance": 1.667,
-          "age_hours": 24.0
-        },
-        {
-          "source": "Wu Blockchain (Telegram)",
-          "type": "telegram",
-          "headline": "Vitalik: Slowing the Hyperscale Expansion of AI Compute May Do More Good Than Harm Vitalik Buterin said he disagrees with the strong negative reaction to the anti-data-center movement, arguing that continued gains in algorithmic efficiency could allow AI capabilities requiring much larger data centers in two years to be achieved within roughly four years using existing infrastructure. He said slowing compute expansion could give society more time to address cybersecurity, biosecurity and other risks, while scientific progress is constrained by factors beyond AI, meaning a one-year slowdown in AI would not necessarily translate into an equal delay in research. — link",
-          "category": "Regulation & Politics",
-          "importance": 1.333,
-          "age_hours": 24.0
-        },
-        {
-          "source": "Whale Alert (Telegram)",
-          "type": "telegram",
-          "headline": "📉 📉 📉 LNbits urges operators to take Lightning Network servers offline after security compromises and reported unauthorized withdrawals Read Analysis",
-          "category": "Regulation & Politics",
-          "importance": 1.333,
-          "age_hours": 24.0
+          "importance": 1.973,
+          "age_hours": 24.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "market-wide"
         }
       ],
       "top_sources": [
-        "CoinDesk",
-        "CoinTelegraph (Telegram)",
-        "Whale Alert (Telegram)",
-        "Wu Blockchain (Telegram)"
+        "CoinDesk"
       ]
     },
     {
@@ -653,8 +503,11 @@
           "headline": "Bitcoin ETF Outflows Hit 4-Month High as Ethereum Funds Stay in the Red",
           "published": "Sun, 08 Nov 2026 20:05:00 GMT",
           "category": "Bitcoin & ETF",
-          "importance": 1.897,
-          "age_hours": 0.2
+          "importance": 1.535,
+          "age_hours": 8.5,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
         },
         {
           "source": "Google News (Macro)",
@@ -662,8 +515,11 @@
           "headline": "Crypto ETF Investors Pull $1.6 Billion as Washington Power Shift Rattles Market",
           "published": "Sun, 08 Nov 2026 19:55:00 GMT",
           "category": "Bitcoin & ETF",
-          "importance": 1.895,
-          "age_hours": 0.4
+          "importance": 1.533,
+          "age_hours": 8.7,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
         },
         {
           "source": "Google News (BTC)",
@@ -671,8 +527,11 @@
           "headline": "Bitcoin, Ethereum, and Solana ETF Outflows Jump as Key Fear Gauge Drops After Midterms",
           "published": "Sun, 08 Nov 2026 19:30:07 GMT",
           "category": "Bitcoin & ETF",
-          "importance": 1.889,
-          "age_hours": 0.8
+          "importance": 1.529,
+          "age_hours": 9.1,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
         },
         {
           "source": "Google News (ZEC)",
@@ -680,8 +539,11 @@
           "headline": "Zcash drops 7.4%: liquidations and Grayscale ETF outflow",
           "published": "Sun, 08 Nov 2026 03:12:56 GMT",
           "category": "Bitcoin & ETF",
-          "importance": 1.663,
-          "age_hours": 17.1
+          "importance": 1.366,
+          "age_hours": 25.4,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
@@ -692,25 +554,41 @@
     },
     {
       "category": "Market & Macro",
-      "count": 10,
+      "count": 5,
       "headlines": [
+        {
+          "source": "CoinDesk",
+          "type": "rss",
+          "headline": "These Finland homes get free heat from bitcoin miners (as long as BTC stays above $70,000)",
+          "category": "Market & Macro",
+          "importance": 1.973,
+          "age_hours": 24.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "market-wide"
+        },
+        {
+          "source": "Decrypt",
+          "type": "rss",
+          "headline": "This Bitcoin Developer’s Idea Would Make Quantum Attacks a Losing Bet",
+          "category": "Market & Macro",
+          "importance": 1.743,
+          "age_hours": 24.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "market-wide"
+        },
         {
           "source": "Google News (BTC)",
           "type": "google_news",
           "headline": "November 8, 2026: BTC price on Nov 8, 2026 at 4pm EST Crypto Prediction Market",
           "published": "Sun, 08 Nov 2026 20:08:12 GMT",
           "category": "Market & Macro",
-          "importance": 1.898,
-          "age_hours": 0.2
-        },
-        {
-          "source": "Google News (BTC)",
-          "type": "google_news",
-          "headline": "Best Crypto Casinos 2026 – 5 Top Bitcoin Gambling Sites With Fastest Payouts",
-          "published": "Sun, 08 Nov 2026 19:42:07 GMT",
-          "category": "Market & Macro",
-          "importance": 1.892,
-          "age_hours": 0.6
+          "importance": 1.535,
+          "age_hours": 8.5,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "market-wide"
         },
         {
           "source": "Google News (Macro)",
@@ -718,8 +596,11 @@
           "headline": "Hyperliquid Whales Flipped Short on Bitcoin for the First Time in Seven Months. What Happened the Last Time They Did?",
           "published": "Sun, 08 Nov 2026 19:17:00 GMT",
           "category": "Market & Macro",
-          "importance": 1.886,
-          "age_hours": 1.0
+          "importance": 1.527,
+          "age_hours": 9.3,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "market-wide"
         },
         {
           "source": "Google News (BTC)",
@@ -727,25 +608,18 @@
           "headline": "Bitcoin Trades $200 Above Strategy's Average Cost of $75,451. What Happens to MSTR if BTC Closes Below It?",
           "published": "Sun, 08 Nov 2026 18:31:00 GMT",
           "category": "Market & Macro",
-          "importance": 1.875,
-          "age_hours": 1.8
-        },
-        {
-          "source": "Google News (BTC)",
-          "type": "google_news",
-          "headline": "Bitcoin Price Forecast: BTC/USD 12.5% Plunge Nears Critical Support",
-          "published": "Sun, 08 Nov 2026 17:17:02 GMT",
-          "category": "Market & Macro",
-          "importance": 1.858,
-          "age_hours": 3.0
+          "importance": 1.519,
+          "age_hours": 10.1,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "market-wide"
         }
       ],
       "top_sources": [
         "CoinDesk",
         "Decrypt",
         "Google News (BTC)",
-        "Google News (Macro)",
-        "Google News (ZEC)"
+        "Google News (Macro)"
       ]
     },
     {
@@ -757,24 +631,33 @@
           "type": "rss",
           "headline": "Binance users in some European countries told to pull crypto before fees kick in, with accounts closing by year end",
           "category": "Institutional & Exchanges",
-          "importance": 1.183,
-          "age_hours": 24.0
+          "importance": 1.323,
+          "age_hours": 24.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "asset-or-sector"
         },
         {
           "source": "CoinTelegraph",
           "type": "rss",
           "headline": "Binance France emails announce closure of its users’ accounts on Dec. 31",
           "category": "Institutional & Exchanges",
-          "importance": 1.017,
-          "age_hours": 24.0
+          "importance": 0.787,
+          "age_hours": 24.0,
+          "source_quality": "unknown",
+          "evidence_status": "unconfirmed-social",
+          "asset_scope": "asset-or-sector"
         },
         {
           "source": "CoinTelegraph",
           "type": "rss",
           "headline": "Binance’s  finance chief Kaiser Ng to leave company, report says",
           "category": "Institutional & Exchanges",
-          "importance": 1.017,
-          "age_hours": 24.0
+          "importance": 0.787,
+          "age_hours": 24.0,
+          "source_quality": "unknown",
+          "evidence_status": "unconfirmed-social",
+          "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
@@ -784,68 +667,63 @@
     },
     {
       "category": "DeFi & Stablecoins",
-      "count": 5,
+      "count": 2,
       "headlines": [
+        {
+          "source": "CoinDesk",
+          "type": "rss",
+          "headline": "Stablecoin growth has stalled. The payments boom hasn't",
+          "category": "DeFi & Stablecoins",
+          "importance": 1.323,
+          "age_hours": 24.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "asset-or-sector"
+        },
         {
           "source": "Google News (SOL)",
           "type": "google_news",
           "headline": "Stablecoin market cap is frozen. The money inside it isn’t",
           "published": "Sun, 08 Nov 2026 19:16:42 GMT",
           "category": "DeFi & Stablecoins",
-          "importance": 1.236,
-          "age_hours": 1.0
-        },
-        {
-          "source": "CoinDesk",
-          "type": "rss",
-          "headline": "Stablecoin growth has stalled. The payments boom hasn't",
-          "category": "DeFi & Stablecoins",
-          "importance": 1.183,
-          "age_hours": 24.0
-        },
-        {
-          "source": "Whale Alert (Telegram)",
-          "type": "telegram",
-          "headline": "🚨 🚨 🚨 🚨 🚨 🚨 136,978,010 $USDT (136,915,518 USD) transferred from #Aave to unknown wallet Details",
-          "category": "DeFi & Stablecoins",
-          "importance": 0.683,
-          "age_hours": 24.0
-        },
-        {
-          "source": "Whale Alert (Telegram)",
-          "type": "telegram",
-          "headline": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 179,999,990 $USDT (179,793,890 USD) transferred from unknown wallet to #Poloniex Details",
-          "category": "DeFi & Stablecoins",
-          "importance": 0.683,
-          "age_hours": 24.0
-        },
-        {
-          "source": "Whale Alert (Telegram)",
-          "type": "telegram",
-          "headline": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 197,000,000 $USDT (196,860,551 USD) transferred from #Poloniex to #Aave Details",
-          "category": "DeFi & Stablecoins",
-          "importance": 0.683,
-          "age_hours": 24.0
+          "importance": 0.877,
+          "age_hours": 9.3,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
         "CoinDesk",
-        "Google News (SOL)",
-        "Whale Alert (Telegram)"
+        "Google News (SOL)"
       ]
     },
     {
       "category": "Ethereum & L2",
-      "count": 7,
+      "count": 5,
       "headlines": [
+        {
+          "source": "The Block",
+          "type": "rss",
+          "headline": "Vitalik Buterin says ETH should be valued as a store of value, not a fee-burning token",
+          "category": "Ethereum & L2",
+          "importance": 1.285,
+          "age_hours": 24.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "asset-or-sector"
+        },
         {
           "source": "Google News (ETH)",
           "type": "google_news",
           "headline": "ETH price on Nov 8, 2026 at 4pm EST Crypto Prediction Market",
           "published": "Sun, 08 Nov 2026 20:08:13 GMT",
           "category": "Ethereum & L2",
-          "importance": 1.248,
-          "age_hours": 0.2
+          "importance": 0.885,
+          "age_hours": 8.5,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
         },
         {
           "source": "Google News (ETH)",
@@ -853,17 +731,11 @@
           "headline": "Vitalik Buterin Challenges Ethereum's Ultrasound Money Idea",
           "published": "Sun, 08 Nov 2026 19:35:00 GMT",
           "category": "Ethereum & L2",
-          "importance": 1.24,
-          "age_hours": 0.7
-        },
-        {
-          "source": "Google News (ETH)",
-          "type": "google_news",
-          "headline": "Ethereum Price Prediction: 2,982 New ETH in a Day, Only 10 Burned",
-          "published": "Sun, 08 Nov 2026 19:15:38 GMT",
-          "category": "Ethereum & L2",
-          "importance": 1.236,
-          "age_hours": 1.0
+          "importance": 0.88,
+          "age_hours": 9.0,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
         },
         {
           "source": "Google News (ETH)",
@@ -871,23 +743,28 @@
           "headline": "Vitalik Buterin Says Ethereum's Fee Burn Was Never a Price Floor. What Is Holding ETH at $2,200?",
           "published": "Sun, 08 Nov 2026 18:53:00 GMT",
           "category": "Ethereum & L2",
-          "importance": 1.23,
-          "age_hours": 1.4
+          "importance": 0.873,
+          "age_hours": 9.7,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
         },
         {
-          "source": "The Block",
-          "type": "rss",
-          "headline": "Vitalik Buterin says ETH should be valued as a store of value, not a fee-burning token",
+          "source": "CoinTelegraph (Telegram)",
+          "type": "telegram",
+          "headline": "⚡️ INSIGHT: Vitalik Buterin says $ETH should focus on being a store of value rather than a fee-burning token, arguing that its value comes from decentralization and stability. News | Markets | YouTube",
           "category": "Ethereum & L2",
-          "importance": 1.15,
-          "age_hours": 24.0
+          "importance": 0.595,
+          "age_hours": 24.0,
+          "source_quality": "social",
+          "evidence_status": "unconfirmed-social",
+          "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
         "CoinTelegraph (Telegram)",
         "Google News (ETH)",
-        "The Block",
-        "Wu Blockchain (Telegram)"
+        "The Block"
       ]
     },
     {
@@ -900,8 +777,11 @@
           "headline": "Zcash Falls 3.57% in Four Hours to $1,242 on Binance Spot",
           "published": "Sun, 08 Nov 2026 17:26:33 GMT",
           "category": "Altcoins & Projects",
-          "importance": 1.21,
-          "age_hours": 2.9
+          "importance": 0.858,
+          "age_hours": 11.2,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
         },
         {
           "source": "Google News (SOL)",
@@ -909,8 +789,11 @@
           "headline": "$200 billion lost, but here’s why Solana’s tokenized RWA market could be silver lining",
           "published": "Sun, 08 Nov 2026 17:00:27 GMT",
           "category": "Altcoins & Projects",
-          "importance": 1.204,
-          "age_hours": 3.3
+          "importance": 0.854,
+          "age_hours": 11.6,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
         },
         {
           "source": "Google News (SOL)",
@@ -918,8 +801,11 @@
           "headline": "Solana (SOL) Price News Today: SOL Near $90 as Remittix Earn Reports $1.3M TVL in Its First Four Days",
           "published": "Sun, 08 Nov 2026 16:30:03 GMT",
           "category": "Altcoins & Projects",
-          "importance": 1.197,
-          "age_hours": 3.8
+          "importance": 0.849,
+          "age_hours": 12.1,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
         },
         {
           "source": "Google News (ZEC)",
@@ -927,8 +813,11 @@
           "headline": "Remittix Earn, Zcash or Solana? $1.3M TVL in Four Days Makes a New Yield Story Hard to Ignore",
           "published": "Sun, 08 Nov 2026 06:52:36 GMT",
           "category": "Altcoins & Projects",
-          "importance": 1.064,
-          "age_hours": 13.4
+          "importance": 0.753,
+          "age_hours": 21.7,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
         },
         {
           "source": "Google News (ZEC)",
@@ -936,8 +825,11 @@
           "headline": "Crypto Zcash ZEC/USD Chart daily",
           "published": "Sun, 08 Nov 2026 00:00:00 GMT",
           "category": "Altcoins & Projects",
-          "importance": 0.968,
-          "age_hours": 20.3
+          "importance": 0.684,
+          "age_hours": 28.6,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
@@ -947,72 +839,66 @@
     },
     {
       "category": "Other",
-      "count": 12,
+      "count": 2,
       "headlines": [
         {
           "source": "The Block",
           "type": "rss",
           "headline": "Ex-FBI agent pleads guilty to stealing $2.47 million in crypto from wallets tied to 35 investigations",
           "category": "Other",
-          "importance": 1.15,
-          "age_hours": 24.0
-        },
-        {
-          "source": "Google News (ZAMA)",
-          "type": "google_news",
-          "headline": "public blockchains offer transparency, but they can also exp",
-          "published": "Sun, 08 Nov 2026 12:09:07 GMT",
-          "category": "Other",
-          "importance": 1.137,
-          "age_hours": 8.2
+          "importance": 1.285,
+          "age_hours": 24.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "asset-or-sector"
         },
         {
           "source": "CoinTelegraph",
           "type": "rss",
           "headline": "Here’s what happened in crypto today",
           "category": "Other",
-          "importance": 1.017,
-          "age_hours": 24.0
-        },
-        {
-          "source": "CoinTelegraph",
-          "type": "rss",
-          "headline": "Amsterdam protesters break into Microsoft data center construction site: Report",
-          "category": "Other",
-          "importance": 1.017,
-          "age_hours": 24.0
-        },
-        {
-          "source": "CoinTelegraph (Telegram)",
-          "type": "telegram",
-          "headline": "⚡️ LATEST: Elon Musk says Tesla’s Cybertruck order backlog exceeds production capacity ahead of plans to repurpose the line for Cybercab expansion around June or July 2027, prompting the company to add an extra shift. News | Markets | YouTube",
-          "category": "Other",
-          "importance": 1.017,
-          "age_hours": 24.0
+          "importance": 0.787,
+          "age_hours": 24.0,
+          "source_quality": "unknown",
+          "evidence_status": "unconfirmed-social",
+          "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
-        "Coin Bureau Insider (Telegram)",
         "CoinTelegraph",
-        "CoinTelegraph (Telegram)",
-        "Decrypt",
-        "Google News (ZAMA)"
+        "The Block"
       ]
     }
   ],
   "ai": {
-    "status": "unavailable",
+    "status": "stored-legacy",
     "tone": "Caution",
     "summary": "Security-related headlines are prominent; verify affected protocols and whether contagion is material.",
     "key_points": [
-      "Web3Auth says it frontran hackers by moving $5.6 million out of exposed Keplr wallets",
       "Binance CFO steps down nine days after record hack; co-CEO says transition was planned six months ago",
+      "U.S. Sanctions Eight Canadian Crypto Firms Over Iran-Linked Transactions The U.S. Treasury sanctioned eight Canada-based money services businesses on November 6, including NIA Nations, Million Exchange, Amin Exchange and Farah Exchange, saying they facilitated cross-border transactions involving Iran through digital assets. Treasury said several of the firms transacted with sanctioned Iranian crypto exchanges or addresses linked to the IRGC, while some also helped launder drug proceeds for Canadian trafficker Ryan Wedding by converting cash into digital assets and sending the funds abroad. Blockchain investigator ZachXBT said he had publicly called for sanctions against Iran-linked OTC brokers in Canada five months earlier. — link",
       "What the election results mean for crypto: State of Crypto",
-      "🇺🇸 JUST IN: President Donald Trump blamed the election results for a $3 trillion one-day stock market loss, vowing that the US will come back “bigger and stronger than ever before.”",
-      "Bitcoin ETF Outflows Hit 4-Month High as Ethereum Funds Stay in the Red"
+      "Bitcoin ETF Outflows Hit 4-Month High as Ethereum Funds Stay in the Red",
+      "Crypto ETF Investors Pull $1.6 Billion as Washington Power Shift Rattles Market"
     ],
-    "updated_at": "2026-11-08T20:18:12.415561+00:00",
-    "reason": "NEWS_AI_API_KEY is not configured"
+    "updated_at": "2026-11-09T04:36:00.862384+00:00",
+    "reason": "Existing interpretation predates the grounded citation policy; it is displayed for context only.",
+    "grounded": false,
+    "abstain": true
   },
-  "method": "deduplicated, source-weighted, recency-ranked; optional AI layer"
+  "quality": {
+    "trusted_headlines": 8,
+    "discovery_headlines": 16,
+    "social_headlines": 2,
+    "quality_tiers": {
+      "reputable": 8,
+      "discovery": 16,
+      "social": 2,
+      "unknown": 3
+    },
+    "interpretation_policy": "Only primary/reputable sources are treated as confirmation; discovery and social sources are leads.",
+    "excluded_count": 0,
+    "excluded_reasons": {}
+  },
+  "method": "crypto-relevance filtered, near-duplicate suppressed, quality-tiered and recency-ranked; existing AI interpretation retained as ungrounded legacy context"
 }
