@@ -15,6 +15,19 @@ Legacy production remains the live alert path. v2 is shadow-only (manual or sche
 
 Metrics may reach `ready_for_human_review`. Production wiring requires a separate human-approved PR.
 
-## Phase 10 next (optional)
+## Phase 10 — Forecast engine (shadow-only)
 
-Full multi-venue feature store (not only snapshots), dashboard for venue disagreement alerts, and A/B shadow of LLM vs deterministic interpreter accuracy.
+Implemented:
+
+- `forecast.py`: deterministic multi-horizon forecasts (1/3/6/12 bars) with probability bands, expected move envelopes, invalidation, and first-class **ABSTAIN**.
+- `forecast_eval.py`: append-only forecast ledger, horizon settlement, calibration table by probability band.
+- Wired into `shadow_runner` (does **not** touch Telegram or legacy alerts).
+- Confidence hard-capped; self-learning still disabled until walk-forward calibration is stable.
+
+Artifacts:
+
+- `history/intelligence_v2/forecast_ledger.json`
+- `history/intelligence_v2/forecast_evaluation_ledger.json`
+- `history/intelligence_v2/forecast_scorecard.json`
+
+Promotion policy unchanged: human PR required; `execution_allowed` remains false.
