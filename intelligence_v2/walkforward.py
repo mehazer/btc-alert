@@ -20,9 +20,10 @@ from dataclasses import replace
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, Iterable, List, Optional
 
-from . import challenge, comparator, decision, evidence, risk, technical
+from . import challenge, comparator, decision, evidence, forecast as forecast_engine, forecast_eval, risk, technical
 from .contracts import ShadowRun, to_dict
 from .evaluation import evaluate_decision
+from .forecast import HORIZONS as FORECAST_HORIZONS
 from .ledger import HORIZONS, build_agent_scorecards, build_persistent_scorecard
 
 DEFAULT_SYMBOLS = ("BTCUSDT", "ETHUSDT", "SOLUSDT")
@@ -158,7 +159,6 @@ def _batch_key(histories: Dict[str, List[dict]], symbols: Iterable[str], timefra
 def run(history_dir: str, symbols: Iterable[str] = DEFAULT_SYMBOLS, timeframe: str = DEFAULT_TIMEFRAME, output_dir: str | None = None) -> dict:
     symbols = tuple(symbols)
     if tuple(symbols) != DEFAULT_SYMBOLS:
-        # The first implementation is intentionally explicit and auditable.
         symbols = tuple(symbols)
     histories = _load_histories(history_dir, symbols)
     lengths = {symbol: len(rows) for symbol, rows in histories.items()}
@@ -170,6 +170,8 @@ def run(history_dir: str, symbols: Iterable[str] = DEFAULT_SYMBOLS, timeframe: s
     legacy_mechanism = legacy_mechanism if isinstance(legacy_mechanism, list) else []
     decisions: List[dict] = []
     evaluations: List[dict] = []
+    forecasts: List[dict] = []
+    forecast_evaluations: List[dict] = []
     timestamps: List[str] = []
     skipped = {"warmup": 0, "insufficient_common_history": 0}
     leakage_violations: List[str] = []
@@ -191,8 +193,6 @@ def run(history_dir: str, symbols: Iterable[str] = DEFAULT_SYMBOLS, timeframe: s
                 run_id = f"{batch_id}:{index:04d}:{symbol}"
                 symbol_observed_at = histories[symbol][index]["date"]
                 pack = evidence.build_evidence_pack(prefix_dir, symbol, timeframe, run_id)
-                # Evidence creation time is metadata; use the historical bar to
-                # make every downstream decision timestamp point-in-time.
                 pack = replace(pack, created_at=symbol_observed_at)
                 technical_output = technical.evaluate(pack, prefix_dir, btc_history)
                 technical_output = replace(technical_output, evaluated_at=symbol_observed_at)
@@ -210,6 +210,21 @@ def run(history_dir: str, symbols: Iterable[str] = DEFAULT_SYMBOLS, timeframe: s
                     leakage_violations.append(f"decision_after_observation:{run_id}")
                 row = _decision_row(pack, technical_output, risk_output, challenge_output, comparison_record, synthesized)
                 decisions.append(row)
+
+                # Point-in-time forecast (same observation prefix only)
+                fc = forecast_engine.issue(pack, technical_output, risk_output, synthesized)
+                fc = replace(fc, issued_at=symbol_observed_at, model_version="forecast-walkforward-v1")
+                forecasts.append(to_dict(fc))
+                for fh in FORECAST_HORIZONS:
+                    fev = forecast_eval.evaluate_forecast(fc, full_dir, fh)
+                    fe = to_dict(fev)
+                    fe.update({
+                        "evaluation_mode": "walkforward_backtest",
+                        "walkforward_batch_id": batch_id,
+                        "lookahead_safe": True,
+                    })
+                    forecast_evaluations.append(fe)
+
                 for horizon in HORIZONS:
                     record = evaluate_decision(synthesized, risk_output, full_dir, horizon)
                     evaluation = to_dict(record)
@@ -272,16 +287,40 @@ def run(history_dir: str, symbols: Iterable[str] = DEFAULT_SYMBOLS, timeframe: s
             "This replays deterministic v2 agents; it does not recreate unavailable historical news or venue snapshots.",
         ],
     }
+
+    forecast_scorecard = forecast_eval.build_forecast_scorecard(forecasts, forecast_evaluations)
+    forecast_scorecard_dict = to_dict(forecast_scorecard)
+    report["forecast"] = {
+        "forecasts_total": forecast_scorecard.forecasts_total,
+        "active_forecasts": forecast_scorecard.active_forecasts,
+        "abstain_count": forecast_scorecard.abstain_count,
+        "abstain_rate_pct": forecast_scorecard.abstain_rate_pct,
+        "directional_settled": forecast_scorecard.directional_settled,
+        "directional_hits": forecast_scorecard.directional_hits,
+        "direction_accuracy_pct": forecast_scorecard.direction_accuracy_pct,
+        "by_horizon": forecast_scorecard.by_horizon,
+        "by_probability_band": forecast_scorecard.by_probability_band,
+        "calibration": forecast_scorecard.calibration,
+    }
+    report["limitations"] = list(report.get("limitations") or []) + [
+        "Forecast walk-forward uses the same point-in-time prefixes as decisions.",
+        "Forecast self-learning remains disabled until calibration is stable.",
+    ]
+
     _write_json(os.path.join(output_dir, "decision_ledger_walkforward.json"), decisions)
     _write_json(os.path.join(output_dir, "evaluation_ledger_walkforward.json"), evaluations)
     _write_json(os.path.join(output_dir, "scorecard_walkforward.json"), scorecard)
     _write_json(os.path.join(output_dir, "agent_scorecards_walkforward.json"), agent_cards)
+    _write_json(os.path.join(output_dir, "forecast_ledger_walkforward.json"), forecasts)
+    _write_json(os.path.join(output_dir, "forecast_evaluation_walkforward.json"), forecast_evaluations)
+    _write_json(os.path.join(output_dir, "forecast_scorecard_walkforward.json"), forecast_scorecard_dict)
     _write_json(os.path.join(output_dir, "walkforward_report.json"), report)
     latest = os.path.join(ledger_dir, "latest")
     for name, value in {
         "walkforward_report.json": report,
         "scorecard_walkforward.json": scorecard,
         "agent_scorecards_walkforward.json": agent_cards,
+        "forecast_scorecard_walkforward.json": forecast_scorecard_dict,
     }.items():
         _write_json(os.path.join(latest, name), value)
     return report
