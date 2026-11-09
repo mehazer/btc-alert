@@ -14,10 +14,12 @@ from datetime import datetime, timezone
 from . import coin_agent, interpreter, portfolio_agent, promotion, venues
 from .challenge import evaluate as evaluate_challenge
 from .comparator import compare
-from .contracts import ShadowRun, to_dict
+from .contracts import ForecastScorecard, ShadowRun, to_dict
 from .decision import synthesize
 from .evidence import build_all
 from .evaluation import build_scorecard
+from . import forecast as forecast_engine
+from . import forecast_eval
 from .ledger import process_shadow_run
 from .risk import evaluate as evaluate_risk
 from .technical import evaluate
@@ -55,6 +57,7 @@ def run(history_dir: str, symbols: list[str], timeframe: str, persist_ledger: bo
     decisions = []
     interpretations = []
     coin_theses = []
+    forecasts = []
     for pack, technical in zip(packs, outputs):
         risk = evaluate_risk(pack, technical)
         risks.append(risk)
@@ -70,6 +73,7 @@ def run(history_dir: str, symbols: list[str], timeframe: str, persist_ledger: bo
         comparisons.append(comparison)
         decision = synthesize(pack, technical, risk, challenge, comparison)
         decisions.append(decision)
+        forecasts.append(forecast_engine.issue(pack, technical, risk, decision))
         interpretations.append(
             interpreter.interpret(pack, technical, risk, challenge, comparison, decision)
         )
@@ -84,6 +88,11 @@ def run(history_dir: str, symbols: list[str], timeframe: str, persist_ledger: bo
     )
     scorecard = build_scorecard(decisions, risks, history_dir)
     evaluations = scorecard.records
+    forecast_summary = forecast_eval.process_forecasts(history_dir, forecasts) if persist_ledger else {}
+    forecast_scorecard = None
+    if forecast_summary.get("settle", {}).get("scorecard"):
+        sc = forecast_summary["settle"]["scorecard"]
+        forecast_scorecard = ForecastScorecard(**{k: sc[k] for k in ForecastScorecard.__dataclass_fields__ if k in sc})
     completed = datetime.now(timezone.utc)
     shadow = ShadowRun(
         run_id=run_id,
@@ -97,6 +106,9 @@ def run(history_dir: str, symbols: list[str], timeframe: str, persist_ledger: bo
         challenge_reports=challenges,
         comparisons=comparisons,
         decisions=decisions,
+        forecasts=forecasts,
+        forecast_evaluations=[],
+        forecast_scorecard=forecast_scorecard,
         evaluations=evaluations,
         scorecard=scorecard,
         interpretations=interpretations,
@@ -111,13 +123,15 @@ def run(history_dir: str, symbols: list[str], timeframe: str, persist_ledger: bo
             "v2_ledger_written": bool(persist_ledger),
             "promotion_required": True,
             "auto_promote": False,
-            "phase": 9,
+            "phase": 10,
             "venue_snapshot_saved": bool(venue_snapshot) and venue_snapshot.get("status") != "error",
+            "forecast_engine": True,
         },
     )
     ledger_summary = {}
     if persist_ledger:
         ledger_summary = process_shadow_run(history_dir, shadow)
+        ledger_summary["forecast"] = forecast_summary
     promo = promotion.evaluate(run_id, history_dir=history_dir)
     shadow = ShadowRun(
         run_id=shadow.run_id,
@@ -131,6 +145,9 @@ def run(history_dir: str, symbols: list[str], timeframe: str, persist_ledger: bo
         challenge_reports=shadow.challenge_reports,
         comparisons=shadow.comparisons,
         decisions=shadow.decisions,
+        forecasts=shadow.forecasts,
+        forecast_evaluations=shadow.forecast_evaluations,
+        forecast_scorecard=shadow.forecast_scorecard,
         evaluations=shadow.evaluations,
         scorecard=shadow.scorecard,
         interpretations=shadow.interpretations,
@@ -170,6 +187,8 @@ def main() -> int:
         "run_id": result.run_id,
         "mode": result.mode,
         "symbols": len(result.agent_outputs),
+        "forecasts": len(result.forecasts),
+        "forecast_scorecard": to_dict(result.forecast_scorecard) if result.forecast_scorecard else None,
         "safety": result.safety,
         "promotion": to_dict(result.promotion) if result.promotion else None,
         "portfolio_warnings": (result.portfolio.warnings if result.portfolio else []),
