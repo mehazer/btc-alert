@@ -1,6 +1,6 @@
 {
   "agent": "ledger-evaluator",
-  "evaluated_at": "2026-11-07T22:47:43.502264+00:00",
+  "evaluated_at": "2026-11-09T07:01:43.457039+00:00",
   "horizons": [
     1,
     3,
@@ -8,63 +8,58 @@
     12,
     24
   ],
-  "decisions_total": 228,
-  "records_total": 1140,
-  "settled_records": 1002,
+  "decisions_total": 243,
+  "records_total": 1215,
+  "settled_records": 1077,
   "pending_records": 138,
-  "directional_records": 194,
-  "directional_hits": 148,
-  "direction_accuracy_pct": 76.29,
+  "directional_records": 263,
+  "directional_hits": 160,
+  "direction_accuracy_pct": 60.84,
   "guarded_records": 0,
   "supported_risk_warnings": 0,
   "risk_warning_support_pct": null,
   "by_decision": {
-    "OBSERVE": {
-      "records": 780,
-      "settled": 672,
-      "pending": 108
-    },
     "PAPER_PLAN": {
-      "records": 280,
-      "settled": 276,
-      "pending": 4
+      "records": 825,
+      "settled": 825,
+      "pending": 0
     },
     "ALERT": {
-      "records": 80,
-      "settled": 54,
-      "pending": 26
+      "records": 390,
+      "settled": 252,
+      "pending": 138
     }
   },
   "by_horizon": {
     "1": {
-      "settled": 225,
-      "directional": 43,
-      "hits": 31,
-      "accuracy_pct": 72.09
+      "settled": 240,
+      "directional": 56,
+      "hits": 32,
+      "accuracy_pct": 57.14
     },
     "3": {
-      "settled": 219,
-      "directional": 43,
-      "hits": 28,
-      "accuracy_pct": 65.12
+      "settled": 234,
+      "directional": 55,
+      "hits": 31,
+      "accuracy_pct": 56.36
     },
     "6": {
-      "settled": 210,
-      "directional": 41,
-      "hits": 31,
-      "accuracy_pct": 75.61
+      "settled": 225,
+      "directional": 55,
+      "hits": 33,
+      "accuracy_pct": 60.0
     },
     "12": {
-      "settled": 192,
-      "directional": 39,
+      "settled": 207,
+      "directional": 53,
       "hits": 33,
-      "accuracy_pct": 84.62
+      "accuracy_pct": 62.26
     },
     "24": {
-      "settled": 156,
-      "directional": 28,
-      "hits": 25,
-      "accuracy_pct": 89.29
+      "settled": 171,
+      "directional": 44,
+      "hits": 31,
+      "accuracy_pct": 70.45
     }
   },
   "limitations": [
@@ -76,5 +71,5 @@
   "schema_version": 2,
   "phase": 7,
   "evaluation_mode": "walkforward_backtest",
-  "walkforward_batch_id": "walkforward-fe02ed49d0e7"
+  "walkforward_batch_id": "walkforward-48d7c17c4011"
 }

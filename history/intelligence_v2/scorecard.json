@@ -1,6 +1,6 @@
 {
   "agent": "ledger-evaluator",
-  "evaluated_at": "2026-11-09T04:40:28.741991+00:00",
+  "evaluated_at": "2026-11-09T07:01:42.249199+00:00",
   "horizons": [
     1,
     3,
@@ -8,10 +8,10 @@
     12,
     24
   ],
-  "decisions_total": 55,
-  "records_total": 100,
-  "settled_records": 100,
-  "pending_records": 175,
+  "decisions_total": 60,
+  "records_total": 116,
+  "settled_records": 116,
+  "pending_records": 184,
   "directional_records": 26,
   "directional_hits": 21,
   "direction_accuracy_pct": 80.77,
@@ -20,13 +20,13 @@
   "risk_warning_support_pct": null,
   "by_decision": {
     "OBSERVE": {
-      "records": 69,
-      "settled": 69,
+      "records": 84,
+      "settled": 84,
       "pending": 0
     },
     "PAPER_PLAN": {
-      "records": 25,
-      "settled": 25,
+      "records": 26,
+      "settled": 26,
       "pending": 0
     },
     "ALERT": {
@@ -37,19 +37,19 @@
   },
   "by_horizon": {
     "1": {
-      "settled": 45,
+      "settled": 51,
       "directional": 10,
       "hits": 5,
       "accuracy_pct": 50.0
     },
     "3": {
-      "settled": 35,
+      "settled": 40,
       "directional": 8,
       "hits": 8,
       "accuracy_pct": 100.0
     },
     "6": {
-      "settled": 20,
+      "settled": 25,
       "directional": 8,
       "hits": 8,
       "accuracy_pct": 100.0
