@@ -50,6 +50,50 @@ def _source_refs(row: dict, symbol: str) -> List[SourceRef]:
     ]
 
 
+def _normalize_row(row: dict) -> dict:
+    """Map alert_bot 4h fields onto the rich history schema."""
+    out = dict(row)
+    if out.get("open_interest") is None and out.get("oi") is not None:
+        out["open_interest"] = out["oi"]
+    if out.get("funding_rate") is None and out.get("funding") is not None:
+        out["funding_rate"] = out["funding"]
+    if out.get("date") is None and out.get("ts") is not None:
+        try:
+            ts = int(float(out["ts"]))
+            if ts > 10_000_000_000:
+                out["date"] = datetime.fromtimestamp(ts / 1000, tz=timezone.utc).isoformat()
+            else:
+                out["date"] = datetime.fromtimestamp(ts, tz=timezone.utc).isoformat()
+        except Exception:
+            pass
+    return out
+
+
+def _load_symbol_rows(history_dir: str, symbol: str) -> List[dict]:
+    """Prefer rich SYMBOL.json; merge tip OI from SYMBOL_4h.json when needed."""
+    rich = _read(os.path.join(history_dir, f"{symbol}.json"), [])
+    rich = [_normalize_row(r) for r in rich] if isinstance(rich, list) else []
+    alt = _read(os.path.join(history_dir, f"{symbol}_4h.json"), [])
+    alt = [_normalize_row(r) for r in alt] if isinstance(alt, list) else []
+
+    if not rich and alt:
+        return alt
+    if not alt:
+        return rich
+
+    if rich and alt:
+        rt, at = rich[-1], alt[-1]
+        if rt.get("open_interest") is None and at.get("open_interest") is not None:
+            rt["open_interest"] = at.get("open_interest")
+            rt["oi"] = at.get("open_interest")
+            rt["funding_rate"] = at.get("funding_rate") if at.get("funding_rate") is not None else at.get("funding")
+            if len(rich) >= 2 and rich[-2].get("open_interest") is None:
+                if len(alt) >= 2 and alt[-2].get("open_interest") is not None:
+                    rich[-2]["open_interest"] = alt[-2]["open_interest"]
+                    rich[-2]["oi"] = alt[-2]["open_interest"]
+    return rich
+
+
 def _quality(rows: List[dict], row: dict, timeframe: str) -> List[QualityGate]:
     checks = []
     checks.append(QualityGate("history_depth", "pass" if len(rows) >= 20 else "warn", f"{len(rows)} observations available"))
@@ -58,6 +102,14 @@ def _quality(rows: List[dict], row: dict, timeframe: str) -> List[QualityGate]:
     checks.append(QualityGate("spot_fields", "fail" if missing else "pass", f"missing={missing or 'none'}"))
     derivatives_missing = [key for key in ["open_interest", "funding_rate"] if row.get(key) is None]
     checks.append(QualityGate("derivatives_fields", "warn" if derivatives_missing else "pass", f"missing={derivatives_missing or 'none'}"))
+    oi_recent = [r.get("open_interest") for r in rows[-12:] if isinstance(r, dict)]
+    oi_filled = sum(1 for v in oi_recent if v is not None)
+    oi_ok = oi_filled >= 3 and row.get("open_interest") is not None
+    checks.append(QualityGate(
+        "oi_history_ok",
+        "pass" if oi_ok else "warn",
+        f"oi_filled_last_12={oi_filled}; current_oi={'yes' if row.get('open_interest') is not None else 'no'}",
+    ))
     checks.append(QualityGate(
         "source_provenance",
         "pass" if row.get("retrieved_at") or row.get("date") else "warn",
@@ -70,6 +122,23 @@ def _quality(rows: List[dict], row: dict, timeframe: str) -> List[QualityGate]:
     ))
     checks.append(QualityGate("timeframe_declared", "pass" if timeframe else "fail", timeframe or "missing timeframe"))
     return checks
+
+
+def _row_oi_change(row: dict, rows: List[dict]) -> Optional[float]:
+    if row.get("oi_change_pct") is not None:
+        try:
+            return float(row["oi_change_pct"])
+        except (TypeError, ValueError):
+            pass
+    current = _number(row.get("open_interest") if row.get("open_interest") is not None else row.get("oi"))
+    prior = None
+    for prev in reversed(rows[:-1]):
+        prior = _number(prev.get("open_interest") if prev.get("open_interest") is not None else prev.get("oi"))
+        if prior not in (None, 0):
+            break
+    if current is None or prior in (None, 0):
+        return None
+    return (current - prior) / prior * 100
 
 
 def _number(value: Any) -> Optional[float]:
@@ -131,7 +200,7 @@ def _compact_features(rows: List[dict], btc_rows: Optional[List[dict]] = None) -
     prior_volumes = volumes[-21:-1]
     current_volume = volumes[-1] if volumes else None
     current_oi = oi_values[-1] if oi_values else None
-    prior_oi = oi_values[-4] if len(oi_values) >= 4 else None
+    prior_oi = next((v for v in reversed(oi_values[:-1]) if v not in (None, 0)), None)
     current_funding = funding_values[-1] if funding_values else None
     funding_history = _clean(funding_values[-31:-1])
     oi_history = _clean(oi_values[-31:-1])
@@ -192,12 +261,10 @@ def _compact_features(rows: List[dict], btc_rows: Optional[List[dict]] = None) -
 
 
 def build_evidence_pack(history_dir: str, symbol: str, timeframe: str, run_id: str) -> EvidencePack:
-    rows = _read(os.path.join(history_dir, f"{symbol}.json"), [])
-    rows = rows if isinstance(rows, list) else []
+    rows = _load_symbol_rows(history_dir, symbol)
     row = rows[-1] if rows else {}
     previous = rows[-2] if len(rows) > 1 else {}
-    btc_rows = _read(os.path.join(history_dir, "BTCUSDT.json"), [])
-    btc_rows = btc_rows if isinstance(btc_rows, list) else []
+    btc_rows = _load_symbol_rows(history_dir, "BTCUSDT") if symbol != "BTCUSDT" else rows
     observed = str(row.get("date") or datetime.now(timezone.utc).isoformat())
     observation = Observation(
         observation_id=_id("obs", symbol, observed, timeframe),
@@ -210,7 +277,7 @@ def build_evidence_pack(history_dir: str, symbol: str, timeframe: str, run_id: s
         funding_rate=row.get("funding_rate"),
         rsi=row.get("rsi"),
         price_change_pct=row.get("price_change_pct"),
-        oi_change_pct=row.get("oi_change_pct"),
+        oi_change_pct=_row_oi_change(row, rows),
         source_refs=_source_refs(row, symbol),
     )
     price = row.get("price")
@@ -230,6 +297,7 @@ def build_evidence_pack(history_dir: str, symbol: str, timeframe: str, run_id: s
         "Legacy JSON is the source for this shadow run; raw exchange payloads are not yet persisted here.",
         "OI is venue-specific and does not reveal long/short direction by itself.",
         "Liquidations and derivatives volume may be unavailable.",
+        "OI series fills forward as pipeline runs persist open_interest on each bar.",
     ]
     evidence_id = _id("evidence", run_id, symbol, observed, timeframe)
     return EvidencePack(
