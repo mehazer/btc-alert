@@ -62,7 +62,6 @@ def evaluate_decision(
 ) -> EvaluationRecord:
     rows = _load_history(history_dir, decision.symbol)
     decision_row, future = _future_rows(rows, decision.evaluated_at)
-    # Medium+ counts as a risk warning so the risk agent can accumulate samples
     guarded = risk.veto or risk.overall_level in {"high", "medium", "unknown"} or decision.gate == "blocked"
     notes: List[str] = []
     if decision.signal_direction == "up":
@@ -120,20 +119,21 @@ def build_scorecard(
     history_dir: str,
     horizons: Tuple[int, ...] = (1, 3, 6),
 ) -> Scorecard:
+    decision_list = list(decisions)
     records: List[EvaluationRecord] = []
     risks_by_symbol = {risk.symbol: risk for risk in risks}
-    for decision in decisions:
+    for decision in decision_list:
+        risk = risks_by_symbol.get(decision.symbol)
+        if risk is None:
+            continue
         for horizon in horizons:
-            records.append(
-                evaluate_decision(decision, risks_by_symbol[decision.symbol], history_dir, horizon)
-            )
+            records.append(evaluate_decision(decision, risk, history_dir, horizon))
     settled = [record for record in records if record.status == "settled"]
     directional = [record for record in settled if record.direction_correct is not None]
     hits = [record for record in directional if record.direction_correct]
     guarded = [record for record in settled if record.guarded and record.risk_warning_supported is not None]
     supported = [record for record in guarded if record.risk_warning_supported]
     by_decision: Dict[str, Dict[str, int]] = {}
-    by_horizon: Dict[str, Dict[str, object]] = {}
     for record in records:
         by_decision.setdefault(record.decision, {"records": 0, "settled": 0, "pending": 0})
         by_decision[record.decision]["records"] += 1
@@ -141,22 +141,13 @@ def build_scorecard(
             by_decision[record.decision]["settled"] += 1
         elif record.status == "pending":
             by_decision[record.decision]["pending"] += 1
-        h = str(record.horizon_bars)
-        by_horizon.setdefault(h, {"settled": 0, "directional": 0, "hits": 0, "accuracy_pct": None})
-        if record.status == "settled":
-            by_horizon[h]["settled"] += 1
-            if record.direction_correct is not None:
-                by_horizon[h]["directional"] += 1
-                if record.direction_correct:
-                    by_horizon[h]["hits"] += 1
-    for h, stats in by_horizon.items():
-        if stats["directional"]:
-            stats["accuracy_pct"] = round(stats["hits"] / stats["directional"] * 100, 2)
+    run_id = decision_list[0].run_id if decision_list else "no-decisions"
     return Scorecard(
         agent="evaluator",
+        run_id=run_id,
         evaluated_at=datetime.now(timezone.utc).isoformat(),
         horizons=list(horizons),
-        decisions_total=len(list(decisions)) if not isinstance(decisions, list) else len(decisions),
+        decisions_total=len(decision_list),
         records_total=len(records),
         settled_records=len(settled),
         pending_records=sum(1 for r in records if r.status == "pending"),
@@ -167,7 +158,6 @@ def build_scorecard(
         supported_risk_warnings=len(supported),
         risk_warning_support_pct=round(len(supported) / len(guarded) * 100, 2) if guarded else None,
         by_decision=by_decision,
-        by_horizon=by_horizon,
         records=records,
         limitations=[
             "Point-in-time evaluation only; pending horizons are excluded from accuracy.",
