@@ -25,7 +25,7 @@ from .contracts import (
 
 HORIZONS = (1, 3, 6, 12)
 MODEL_VERSION = "forecast-engine-v0.2-oi-gated"
-MAX_CONFIDENCE = 72  # hard cap — calibration not proven above this
+MAX_CONFIDENCE = 72
 
 BANDS = {
     "abstain": (0.45, 0.55),
@@ -171,11 +171,8 @@ def issue(
 
     if pack.quality_status == "fail":
         abstain_reasons.append("evidence quality failed")
-    # OI history is required for directional forecasts — do not guess without it
     oi_gate = next((g for g in pack.quality_gates if g.name == "oi_history_ok"), None)
     row = pack.observations[0] if pack.observations else None
-    if oi_gate is residual_placeholder:
-        pass
     if oi_gate is not None and oi_gate.status != "pass":
         abstain_reasons.append(f"oi history weak ({oi_gate.detail})")
     if row is not None and row.oi_change_pct is None and row.open_interest is None:
