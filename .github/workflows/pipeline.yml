@@ -1,0 +1,137 @@
+name: Crypto Pipeline (News → Technical → Intelligence v2)
+
+on:
+  schedule:
+    # Every 4 hours at :00 UTC
+    - cron: "0 */4 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: crypto-pipeline
+  cancel-in-progress: false
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: 1) News agent
+        env:
+          NEWS_AI_API_KEY: ${{ secrets.NEWS_AI_API_KEY }}
+          NEWS_AI_BASE_URL: ${{ secrets.NEWS_AI_BASE_URL }}
+          NEWS_AI_MODEL: ${{ secrets.NEWS_AI_MODEL }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          set +e
+          python news_bot.py
+          echo "NEWS_EXIT=$?" >> "$GITHUB_ENV"
+          set -e
+
+      - name: 2) Technical / Telegram alerts
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          SYMBOLS: "BTCUSDT,ETHUSDT,SOLUSDT,ZECUSDT,ZAMAUSDT"
+          INTERVAL: "4h"
+          RSI_PERIOD: "14"
+          RSI_THRESHOLD: "70"
+          ALWAYS_NOTIFY: "true"
+          NOTIFY_ALL_SYMBOLS: "true"
+        run: |
+          set +e
+          python alert_bot.py
+          echo "TECH_EXIT=$?" >> "$GITHUB_ENV"
+          set -e
+
+      - name: 3) Intelligence v2 shadow + forecast walk-forward
+        env:
+          PYTHONPATH: .
+        run: |
+          set +e
+          python -m intelligence_v2.shadow_runner \
+            --timeframe 4h \
+            --symbols BTCUSDT,ETHUSDT,SOLUSDT,ZECUSDT,ZAMAUSDT \
+            --output shadow_artifacts/latest.json
+          echo "SHADOW_EXIT=$?" >> "$GITHUB_ENV"
+          python -m intelligence_v2.walkforward \
+            --history-dir history \
+            --symbols BTCUSDT,ETHUSDT,SOLUSDT \
+            --timeframe 4h || echo "Walk-forward finished with warnings"
+          set -e
+
+      - name: Write dashboard build meta
+        run: |
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          os.makedirs("docs", exist_ok=True)
+          meta = {
+              "updated_at": datetime.now(timezone.utc).isoformat(),
+              "pipeline_run_id": os.environ.get("GITHUB_RUN_ID"),
+              "pipeline_run_url": f"https://github.com/{os.environ.get('GITHUB_REPOSITORY')}/actions/runs/{os.environ.get('GITHUB_RUN_ID')}",
+              "steps": {
+                  "news_exit": int(os.environ.get("NEWS_EXIT", "1")),
+                  "technical_exit": int(os.environ.get("TECH_EXIT", "1")),
+                  "shadow_exit": int(os.environ.get("SHADOW_EXIT", "1")),
+              },
+              "sequence": ["news", "technical", "intelligence_v2"],
+              "cadence": "every 4 hours",
+          }
+          with open("docs/build_meta.json", "w", encoding="utf-8") as f:
+              json.dump(meta, f, indent=2)
+          # Mirror a small pointer under history for dashboards that only read history/
+          os.makedirs("history", exist_ok=True)
+          with open("history/pipeline_meta.json", "w", encoding="utf-8") as f:
+              json.dump(meta, f, indent=2)
+          print(json.dumps(meta, indent=2))
+          PY
+
+      - name: Commit history + dashboard meta to main
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add history/ docs/build_meta.json || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "pipeline update: news→technical→v2 [skip ci]"
+            for attempt in 1 2 3 4 5; do
+              git fetch origin main
+              if git rebase origin/main && git push origin HEAD:main; then
+                echo "Push ok"
+                exit 0
+              fi
+              git rebase --abort || true
+              echo "Push retry $attempt/5"
+              sleep $((attempt * 8))
+            done
+            echo "Push failed after retries"
+            exit 1
+          fi
+
+      - name: Pipeline summary
+        if: always()
+        run: |
+          echo "News exit: ${NEWS_EXIT:-n/a}"
+          echo "Technical exit: ${TECH_EXIT:-n/a}"
+          echo "Shadow exit: ${SHADOW_EXIT:-n/a}"
+          echo "Dashboards read live JSON from raw.githubusercontent.com/mehazer/btc-alert/main/history/"
+          echo "Main: https://mehazer.github.io/btc-alert/"
+          echo "v2:   https://mehazer.github.io/btc-alert/v2.html"
