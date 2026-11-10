@@ -1,9 +1,9 @@
 {
-  "walkforward_batch_id": "walkforward-d75da2e9a841",
+  "walkforward_batch_id": "walkforward-980ed6bdefeb",
   "evaluation_mode": "walkforward_backtest",
   "lookahead_safe": true,
-  "started_at": "2026-11-10T14:49:11.595291+00:00",
-  "completed_at": "2026-11-10T14:49:11.595293+00:00",
+  "started_at": "2026-11-10T16:07:19.914150+00:00",
+  "completed_at": "2026-11-10T16:07:19.914153+00:00",
   "symbols": [
     "BTCUSDT",
     "ETHUSDT",
@@ -31,7 +31,7 @@
     "source_order_normalized": true,
     "future_rows_used_for_decisions": false
   },
-  "determinism_hash": "01c7b64bf20ad194d681626e3c504497feb3a44ae4f2ee32e634c5d00f40e306",
+  "determinism_hash": "76655ae85ef353d980764446b7b53fb7c694a884ede57e58f10c5aff7114f93a",
   "scorecard": {
     "settled_records": 1107,
     "pending_records": 138,
@@ -94,9 +94,9 @@
   ],
   "forecast": {
     "forecasts_total": 249,
-    "active_forecasts": 1,
-    "abstain_count": 248,
-    "abstain_rate_pct": 99.6,
+    "active_forecasts": 0,
+    "abstain_count": 249,
+    "abstain_rate_pct": 100.0,
     "directional_settled": 0,
     "directional_hits": 0,
     "direction_accuracy_pct": null,
@@ -105,25 +105,25 @@
         "directional": 0,
         "hits": 0,
         "accuracy_pct": null,
-        "pending": 1
+        "pending": 0
       },
       "3": {
         "directional": 0,
         "hits": 0,
         "accuracy_pct": null,
-        "pending": 1
+        "pending": 0
       },
       "6": {
         "directional": 0,
         "hits": 0,
         "accuracy_pct": null,
-        "pending": 1
+        "pending": 0
       },
       "12": {
         "directional": 0,
         "hits": 0,
         "accuracy_pct": null,
-        "pending": 1
+        "pending": 0
       }
     },
     "by_probability_band": {},
