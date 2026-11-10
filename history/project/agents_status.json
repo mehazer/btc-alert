@@ -1,0 +1,101 @@
+{
+  "updated_at": "2026-11-10T08:40:00+00:00",
+  "coordinator": {
+    "name": "pipeline",
+    "purpose": "Orchestrate news → technical → intelligence_v2 every 4h",
+    "status": "Active",
+    "schedule": "0 */4 * * *",
+    "last_known": "see GitHub Actions Crypto Pipeline"
+  },
+  "agents": [
+    {
+      "id": "technical",
+      "name": "Technical / mechanism",
+      "purpose": "Price-OI-volume mechanism state and risk flags",
+      "status": "Active",
+      "data_sources": ["Binance klines", "OKX OI/funding"],
+      "delivers": ["AgentOutput state", "Telegram mechanism cards"],
+      "improvement": {"pct": 70, "weaknesses": ["Weak when OI history thin"], "next": "Stable OI series"}
+    },
+    {
+      "id": "risk",
+      "name": "Risk",
+      "purpose": "Downside/squeeze/data risk bands and veto",
+      "status": "Active",
+      "data_sources": ["EvidencePack", "technical flags"],
+      "delivers": ["RiskAssessment", "guarded decisions"],
+      "improvement": {"pct": 55, "weaknesses": ["Previously under-warned; samples were 0"], "next": "Accumulate medium/high samples after v0.2"}
+    },
+    {
+      "id": "challenge",
+      "name": "Challenge",
+      "purpose": "Contradiction and confidence capping",
+      "status": "Active",
+      "data_sources": ["Evidence + agent outputs"],
+      "delivers": ["ChallengeReport"],
+      "improvement": {"pct": 50, "weaknesses": ["Mostly warn; fail_useful metric sparse"], "next": "Sharper fail criteria when evidence conflicts"}
+    },
+    {
+      "id": "decision",
+      "name": "Decision synthesizer",
+      "purpose": "OBSERVE / PAPER_PLAN / ALERT with gates",
+      "status": "Active",
+      "data_sources": ["technical", "risk", "challenge"],
+      "delivers": ["DecisionRecord"],
+      "improvement": {"pct": 60, "weaknesses": ["Conservative OBSERVE bias"], "next": "Only after forecast calibration"}
+    },
+    {
+      "id": "forecast",
+      "name": "Forecast engine",
+      "purpose": "Short-horizon direction bands or ABSTAIN",
+      "status": "Active",
+      "data_sources": ["EvidencePack", "technical", "risk"],
+      "delivers": ["ForecastRecord", "scorecard"],
+      "improvement": {"pct": 35, "weaknesses": ["Accuracy near chance; high abstain"], "next": "Confluence rules + OI gate"}
+    },
+    {
+      "id": "news",
+      "name": "News intelligence",
+      "purpose": "Rank headlines, AI tone summary, Telegram news",
+      "status": "Active",
+      "data_sources": ["RSS/news sources", "optional AI summary"],
+      "delivers": ["latest_news.json", "Telegram news"],
+      "improvement": {"pct": 40, "weaknesses": ["Impact ranking and 24h/7d sections incomplete"], "next": "Impact tier + direction on cards"}
+    },
+    {
+      "id": "whale",
+      "name": "Whale / on-chain",
+      "purpose": "Large transfers and exchange flow context",
+      "status": "Idle",
+      "data_sources": ["mempool.space (free)", "public explorers"],
+      "delivers": ["shadow reports only until integrated"],
+      "improvement": {"pct": 10, "weaknesses": ["Not integrated into pipeline yet"], "next": "Scaffold + free API validation"}
+    },
+    {
+      "id": "promotion",
+      "name": "Promotion gate",
+      "purpose": "Block auto production promotion",
+      "status": "Active",
+      "data_sources": ["scorecards", "agent metrics"],
+      "delivers": ["PromotionReport"],
+      "improvement": {"pct": 90, "weaknesses": [], "next": "Human review only when metrics ready"}
+    }
+  ],
+  "conflicts": [
+    {
+      "type": "data",
+      "detail": "Rich SYMBOL.json vs 4h sidecar field names (oi vs open_interest) — mitigated by evidence normalizer",
+      "severity": "medium"
+    },
+    {
+      "type": "logic",
+      "detail": "Forecast may ABSTAIN while technical still emits a mechanism read — intentional",
+      "severity": "low"
+    }
+  ],
+  "human_required": [
+    "Approve any paid on-chain API",
+    "Approve production promotion via PR",
+    "Approve enabling whale alerts in Telegram"
+  ]
+}

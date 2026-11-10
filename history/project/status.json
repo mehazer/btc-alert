@@ -1,0 +1,46 @@
+{
+  "updated_at": "2026-11-10T08:40:00+00:00",
+  "project_name": "BTC Alert / Crypto Intelligence Platform",
+  "completion_pct": 58,
+  "phase": "shadow-intelligence-v2 + forecast calibration",
+  "objectives": [
+    "Reliable multi-coin 4h mechanism reads (price, OI, volume, funding)",
+    "Shadow multi-agent intelligence with promotion gates",
+    "Calibrated short-horizon forecasts before any self-learning",
+    "Unified dashboards and Telegram delivery",
+    "Progressive integration of specialized agents (news, whale/on-chain)"
+  ],
+  "target_architecture": "Pipeline: news → technical → intelligence_v2 → ledger/dashboards/Telegram. Agents are deterministic shadow agents; human approval required for production promotion.",
+  "milestones": [
+    {"id": "m1", "name": "Alert bot + Telegram figures", "status": "completed"},
+    {"id": "m2", "name": "Intelligence v2 shadow stack", "status": "completed"},
+    {"id": "m3", "name": "OI history persistence", "status": "completed"},
+    {"id": "m4", "name": "Forecast engine + walk-forward scaffolding", "status": "completed"},
+    {"id": "m5", "name": "Risk agent sample accumulation", "status": "in_progress"},
+    {"id": "m6", "name": "Forecast accuracy improvement", "status": "open"},
+    {"id": "m7", "name": "Whale / on-chain agent", "status": "open"},
+    {"id": "m8", "name": "Unified project + agent dashboards", "status": "in_progress"},
+    {"id": "m9", "name": "News Telegram impact ranking", "status": "in_progress"},
+    {"id": "m10", "name": "Production promotion (human-gated)", "status": "blocked"}
+  ],
+  "blockers": [
+    {
+      "id": "b1",
+      "title": "OI series still thin on tip",
+      "detail": "Each 4h run adds OI points; need several cycles for oi_history_ok to pass consistently.",
+      "solution": "Keep 4h cadence; do not increase frequency solely to invent history."
+    },
+    {
+      "id": "b2",
+      "title": "Forecast direction accuracy near chance",
+      "detail": "Logic must require confluence; abstain when weak.",
+      "solution": "Tighten forecast rules after OI series stabilizes; evaluate 3/6-bar walk-forward."
+    },
+    {
+      "id": "b3",
+      "title": "Promotion human-approval always required",
+      "detail": "By design — not a bug.",
+      "solution": "Human merges PR only when ready for production behavior change."
+    }
+  ]
+}
