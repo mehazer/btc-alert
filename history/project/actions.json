@@ -1,137 +1,19 @@
 {
-  "updated_at": "2026-11-10T08:40:00+00:00",
+  "updated_at": "2026-11-10T08:55:00+00:00",
   "actions": [
-    {
-      "id": "A001",
-      "title": "Persist OI into SYMBOL.json each technical run",
-      "source": "human",
-      "priority": "Critical",
-      "status": "Completed",
-      "owner": "AI Agent",
-      "expected_outcome": "v2 evidence gets real OI series and oi_change",
-      "dependencies": [],
-      "notes": "alert_bot update_rich_history + evidence oi_history_ok"
-    },
-    {
-      "id": "A002",
-      "title": "Risk agent sensitivity + medium counts as samples",
-      "source": "human",
-      "priority": "High",
-      "status": "Completed",
-      "owner": "AI Agent",
-      "expected_outcome": "risk_samples > 0; false_calm only on low",
-      "dependencies": [],
-      "notes": "risk.py v0.2, evaluation/ledger guarded includes medium"
-    },
-    {
-      "id": "A003",
-      "title": "Forecast engine calibrated bands + abstain on weak OI",
-      "source": "human",
-      "priority": "High",
-      "status": "Completed",
-      "owner": "AI Agent",
-      "expected_outcome": "Explicit horizons, probability bands, ABSTAIN",
-      "dependencies": ["A001"],
-      "notes": "Further accuracy work remains open"
-    },
-    {
-      "id": "A004",
-      "title": "Improve forecast accuracy (confluence rules)",
-      "source": "ai",
-      "priority": "Critical",
-      "status": "Open",
-      "owner": "AI Agent",
-      "expected_outcome": "3/6-bar direction accuracy meaningfully above 50% with controlled abstain",
-      "dependencies": ["A001"],
-      "notes": "Wait for OI fill; then tighten rules"
-    },
-    {
-      "id": "A005",
-      "title": "Project management dashboard",
-      "source": "human",
-      "priority": "High",
-      "status": "In Progress",
-      "owner": "AI Agent",
-      "expected_outcome": "Completion gauge, milestones, action tracker",
-      "dependencies": [],
-      "notes": "docs/project.html + history/project/*"
-    },
-    {
-      "id": "A006",
-      "title": "Agent monitoring dashboard",
-      "source": "human",
-      "priority": "High",
-      "status": "In Progress",
-      "owner": "AI Agent",
-      "expected_outcome": "Per-agent status, decisions, improvement tracking",
-      "dependencies": [],
-      "notes": "docs/agents.html"
-    },
-    {
-      "id": "A007",
-      "title": "Telegram news: impact ranking, AI interpretation, 24h/7d",
-      "source": "human",
-      "priority": "High",
-      "status": "Open",
-      "owner": "AI Agent",
-      "expected_outcome": "Impact-ranked news cards with direction and tier",
-      "dependencies": [],
-      "notes": "news_bot + news_intelligence"
-    },
-    {
-      "id": "A008",
-      "title": "Clarify Drop Risk as sudden downside risk",
-      "source": "human",
-      "priority": "Medium",
-      "status": "Open",
-      "owner": "AI Agent",
-      "expected_outcome": "LOW/MEDIUM/HIGH with evidence; not a prediction",
-      "dependencies": [],
-      "notes": "Telegram cards + main dashboard wording"
-    },
-    {
-      "id": "A009",
-      "title": "Whale / on-chain intelligence agent (free data)",
-      "source": "human",
-      "priority": "High",
-      "status": "Open",
-      "owner": "AI Agent",
-      "expected_outcome": "Shadow agent for large flows; free APIs only unless approved",
-      "dependencies": [],
-      "notes": "Scaffold + mempool.space; paid APIs documented not enabled"
-    },
-    {
-      "id": "A010",
-      "title": "Main dashboard: remove duplicate BTC price; Market Status",
-      "source": "human",
-      "priority": "Medium",
-      "status": "Open",
-      "owner": "AI Agent",
-      "expected_outcome": "Cleaner overview without redundant price",
-      "dependencies": [],
-      "notes": "docs/index.html loadOverview"
-    },
-    {
-      "id": "A011",
-      "title": "Human approval for production promotion",
-      "source": "system",
-      "priority": "Critical",
-      "status": "Blocked",
-      "owner": "Human",
-      "expected_outcome": "Explicit PR approval before live behavior change",
-      "dependencies": ["A004", "A002"],
-      "notes": "By design; auto_promote remains false"
-    },
-    {
-      "id": "A012",
-      "title": "Let scheduled 4h pipeline fill OI history",
-      "source": "ai",
-      "priority": "High",
-      "status": "Waiting",
-      "owner": "Automated",
-      "expected_outcome": "oi_history_ok pass on major symbols",
-      "dependencies": ["A001"],
-      "notes": "Do not increase frequency solely for this"
-    }
+    {"id": "A001", "title": "Persist OI into SYMBOL.json each technical run", "source": "human", "priority": "Critical", "status": "Completed", "owner": "AI Agent", "expected_outcome": "v2 evidence gets real OI series and oi_change", "dependencies": [], "notes": "done"},
+    {"id": "A002", "title": "Risk agent sensitivity + medium counts as samples", "source": "human", "priority": "High", "status": "Completed", "owner": "AI Agent", "expected_outcome": "risk_samples > 0", "dependencies": [], "notes": "done"},
+    {"id": "A003", "title": "Forecast engine calibrated bands + abstain on weak OI", "source": "human", "priority": "High", "status": "Completed", "owner": "AI Agent", "expected_outcome": "Explicit horizons and ABSTAIN", "dependencies": ["A001"], "notes": "accuracy still open"},
+    {"id": "A004", "title": "Improve forecast accuracy (confluence rules)", "source": "ai", "priority": "Critical", "status": "Open", "owner": "AI Agent", "expected_outcome": "3/6-bar accuracy above chance with controlled abstain", "dependencies": ["A001"], "notes": "next major logic work"},
+    {"id": "A005", "title": "Project management dashboard", "source": "human", "priority": "High", "status": "Completed", "owner": "AI Agent", "expected_outcome": "Completion gauge, milestones, action tracker", "dependencies": [], "notes": "docs/project.html"},
+    {"id": "A006", "title": "Agent monitoring dashboard", "source": "human", "priority": "High", "status": "Completed", "owner": "AI Agent", "expected_outcome": "Per-agent status and improvement", "dependencies": [], "notes": "docs/agents.html"},
+    {"id": "A007", "title": "Telegram news: impact ranking, AI interpretation, 24h/7d", "source": "human", "priority": "High", "status": "Completed", "owner": "AI Agent", "expected_outcome": "Impact-ranked news cards", "dependencies": [], "notes": "news_bot ranking; weekly list still needs data feed"},
+    {"id": "A008", "title": "Clarify Drop Risk as sudden downside risk", "source": "human", "priority": "Medium", "status": "Open", "owner": "AI Agent", "expected_outcome": "LOW/MEDIUM/HIGH with evidence wording", "dependencies": [], "notes": "partial via Telegram risk labels"},
+    {"id": "A009", "title": "Whale / on-chain intelligence agent (free data)", "source": "human", "priority": "High", "status": "In Progress", "owner": "AI Agent", "expected_outcome": "Shadow agent free APIs; no paid without approval", "dependencies": [], "notes": "agents/whale_agent.py scaffold; not in pipeline yet"},
+    {"id": "A010", "title": "Main dashboard Market Status (no duplicate BTC price)", "source": "human", "priority": "Medium", "status": "Completed", "owner": "AI Agent", "expected_outcome": "Market Status replaces duplicate price card", "dependencies": [], "notes": "Simplified index restored with Market Status"},
+    {"id": "A011", "title": "Human approval for production promotion", "source": "system", "priority": "Critical", "status": "Blocked", "owner": "Human", "expected_outcome": "Explicit PR before live behavior", "dependencies": ["A004"], "notes": "by design"},
+    {"id": "A012", "title": "Let scheduled 4h pipeline fill OI history", "source": "ai", "priority": "High", "status": "Waiting", "owner": "Automated", "expected_outcome": "oi_history_ok on majors", "dependencies": ["A001"], "notes": "do not raise frequency"},
+    {"id": "A013", "title": "Restore full rich index.html UI (charts/explainers)", "source": "ai", "priority": "Medium", "status": "Open", "owner": "AI Agent", "expected_outcome": "Full prior UI plus Market Status", "dependencies": [], "notes": "Simplified functional index deployed after placeholder incident"},
+    {"id": "A014", "title": "Wire whale agent into pipeline (shadow only)", "source": "human", "priority": "Medium", "status": "Open", "owner": "AI Agent", "expected_outcome": "On-chain report in history/onchain each run", "dependencies": ["A009"], "notes": "Telegram off until human approves"}
   ]
 }
