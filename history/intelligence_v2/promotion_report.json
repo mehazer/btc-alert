@@ -1,34 +1,34 @@
 {
   "agent": "promotion-gate",
-  "run_id": "shadow-20261110T065335Z-51c7e1fd",
-  "status": "not_ready",
-  "ready_for_review": false,
+  "run_id": "shadow-20261110T095345Z-bab33159",
+  "status": "ready_for_human_review",
+  "ready_for_review": true,
   "auto_promote": false,
   "checks": [
     {
       "name": "min_settled_records",
       "passed": true,
-      "detail": "settled=175, need>=30"
+      "detail": "settled=180, need>=30"
     },
     {
       "name": "direction_accuracy",
       "passed": true,
-      "detail": "accuracy=83.33, need>=55.0"
+      "detail": "accuracy=83.78, need>=55.0"
     },
     {
       "name": "technical_samples",
       "passed": true,
-      "detail": "technical_samples=36, need>=15"
+      "detail": "technical_samples=37, need>=15"
     },
     {
       "name": "risk_samples",
-      "passed": false,
-      "detail": "risk_samples=0, need>=10"
+      "passed": true,
+      "detail": "risk_samples=32, need>=10"
     },
     {
       "name": "false_calm_ceiling",
       "passed": true,
-      "detail": "false_calm_pct=30.0, max=35.0"
+      "detail": "false_calm_pct=27.07, max=35.0"
     },
     {
       "name": "human_approval_required",
@@ -42,19 +42,18 @@
     }
   ],
   "blockers": [
-    "risk_samples: risk_samples=0, need>=10",
-    "human_approval_required: Promotion requires explicit human PR approval."
+    "Metrics gate passed — still requires human PR review before any production change."
   ],
   "metrics": {
-    "settled_records": 175,
-    "direction_accuracy_pct": 83.33,
-    "technical_samples": 36,
-    "risk_samples": 0,
-    "false_calm_pct": 30.0,
+    "settled_records": 180,
+    "direction_accuracy_pct": 83.78,
+    "technical_samples": 37,
+    "risk_samples": 32,
+    "false_calm_pct": 27.07,
     "challenge_fail_useful_pct": null,
-    "total_runs": 20,
-    "total_decisions": 100
+    "total_runs": 21,
+    "total_decisions": 105
   },
-  "evaluated_at": "2026-11-10T06:53:39.615393+00:00",
+  "evaluated_at": "2026-11-10T09:53:48.605502+00:00",
   "model_version": "promotion-criteria-v0.1"
 }

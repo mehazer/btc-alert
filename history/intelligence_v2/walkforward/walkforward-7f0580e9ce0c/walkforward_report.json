@@ -1,0 +1,132 @@
+{
+  "walkforward_batch_id": "walkforward-7f0580e9ce0c",
+  "evaluation_mode": "walkforward_backtest",
+  "lookahead_safe": true,
+  "started_at": "2026-11-10T09:53:49.632517+00:00",
+  "completed_at": "2026-11-10T09:53:49.632519+00:00",
+  "symbols": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT"
+  ],
+  "timeframe": "4h",
+  "history_lengths": {
+    "BTCUSDT": 102,
+    "ETHUSDT": 102,
+    "SOLUSDT": 102
+  },
+  "common_bars": 102,
+  "warmup_bars": 20,
+  "eligible_timestamps": 82,
+  "decision_count": 246,
+  "evaluation_count": 1230,
+  "coverage": {
+    "settled": 1092,
+    "pending": 138,
+    "insufficient_data": 0
+  },
+  "leakage_checks": {
+    "violations": [],
+    "violation_count": 0,
+    "source_order_normalized": true,
+    "future_rows_used_for_decisions": false
+  },
+  "determinism_hash": "b9088a28d4007000b17eca520c665a135574fcef89fd8bd2d37d7ea6b87c0b12",
+  "scorecard": {
+    "settled_records": 1092,
+    "pending_records": 138,
+    "directional_records": 264,
+    "directional_hits": 160,
+    "direction_accuracy_pct": 60.61,
+    "by_horizon": {
+      "1": {
+        "settled": 243,
+        "directional": 56,
+        "hits": 32,
+        "accuracy_pct": 57.14
+      },
+      "3": {
+        "settled": 237,
+        "directional": 56,
+        "hits": 31,
+        "accuracy_pct": 55.36
+      },
+      "6": {
+        "settled": 228,
+        "directional": 55,
+        "hits": 33,
+        "accuracy_pct": 60.0
+      },
+      "12": {
+        "settled": 210,
+        "directional": 53,
+        "hits": 33,
+        "accuracy_pct": 62.26
+      },
+      "24": {
+        "settled": 174,
+        "directional": 44,
+        "hits": 31,
+        "accuracy_pct": 70.45
+      }
+    },
+    "by_decision": {
+      "PAPER_PLAN": {
+        "records": 825,
+        "settled": 825,
+        "pending": 0
+      },
+      "ALERT": {
+        "records": 405,
+        "settled": 267,
+        "pending": 138
+      }
+    }
+  },
+  "limitations": [
+    "ZECUSDT and ZAMAUSDT are intentionally excluded because their history is too short.",
+    "Legacy date-only rows are assigned monotonic synthetic timestamps preserving source order.",
+    "Legacy mechanism comparison is only used when a mechanism record exists at or before the replay timestamp.",
+    "Historical replay is diagnostic and excluded from live promotion calibration.",
+    "This replays deterministic v2 agents; it does not recreate unavailable historical news or venue snapshots.",
+    "Forecast walk-forward uses the same point-in-time prefixes as decisions.",
+    "Forecast self-learning remains disabled until calibration is stable."
+  ],
+  "forecast": {
+    "forecasts_total": 246,
+    "active_forecasts": 0,
+    "abstain_count": 246,
+    "abstain_rate_pct": 100.0,
+    "directional_settled": 0,
+    "directional_hits": 0,
+    "direction_accuracy_pct": null,
+    "by_horizon": {
+      "1": {
+        "directional": 0,
+        "hits": 0,
+        "accuracy_pct": null,
+        "pending": 0
+      },
+      "3": {
+        "directional": 0,
+        "hits": 0,
+        "accuracy_pct": null,
+        "pending": 0
+      },
+      "6": {
+        "directional": 0,
+        "hits": 0,
+        "accuracy_pct": null,
+        "pending": 0
+      },
+      "12": {
+        "directional": 0,
+        "hits": 0,
+        "accuracy_pct": null,
+        "pending": 0
+      }
+    },
+    "by_probability_band": {},
+    "calibration": []
+  }
+}
