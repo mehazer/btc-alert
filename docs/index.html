@@ -3,10 +3,91 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Crypto Intelligence Dashboard</title>
+<title>Crypto Watch — Market Intelligence</title>
+<style>
+:root{--bg:#080c12;--panel:#111923;--panel2:#0d141d;--line:#243244;--text:#e7edf5;--muted:#91a1b5;--blue:#60a5fa;--cyan:#22d3ee;--green:#39d98a;--amber:#f5b942;--red:#f87171;--purple:#c084fc}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 Inter,system-ui,sans-serif}.wrap{max-width:1280px;margin:auto;padding:22px 16px 48px}header{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:18px}h1{margin:0;font-size:1.3rem}h1 span{color:var(--cyan)}.nav a{color:var(--cyan);font-size:.78rem;margin-right:12px;text-decoration:none}.section{margin:22px 0 10px;font-weight:700}.grid{display:grid;gap:12px}.grid3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}.metric{background:var(--panel2);border:1px solid #1e2b3b;border-radius:9px;padding:10px}.label{font-size:.67rem;color:var(--muted);text-transform:uppercase}.value{font-size:1.15rem;font-weight:750;margin-top:2px}.sub,.muted,.empty{color:var(--muted);font-size:.78rem}.pill{display:inline-flex;padding:2px 8px;border-radius:999px;border:1px solid var(--line);font-size:.7rem}.quality{border-left:3px solid var(--amber);padding:9px 11px;background:#211b0e;color:#f7d58a;font-size:.78rem;margin:10px 0}.quality.good{border-color:var(--green);background:#0d2118;color:#a7efc7}.quality.bad{border-color:var(--red);background:#271316;color:#ffb5b5}
+</style>
 </head>
 <body>
-<p>Placeholder restore failed — use prior version. If you see this, index restore is incomplete.</p>
-<p><a href="project.html">Project</a> · <a href="agents.html">Agents</a> · <a href="v2.html">Scorecard</a> · <a href="logs.html">Logs</a></p>
+<div class="wrap">
+<header>
+<div>
+<h1>⚡ Crypto <span>Watch</span></h1>
+<div class="nav" style="margin-top:8px">
+<a href="project.html">Project</a>
+<a href="agents.html">Agents</a>
+<a href="v2.html">Scorecard</a>
+<a href="logs.html">Logs</a>
+<a href="history.html">History</a>
+</div>
+</div>
+<div class="muted" id="updated">Loading…</div>
+</header>
+<div id="quality"></div>
+<div class="section">Current conclusion</div>
+<div class="card" id="conclusion"><div class="empty">Loading…</div></div>
+<div class="section">Market overview</div>
+<div class="grid grid3" id="overview"><div class="card empty">Loading…</div></div>
+<div class="section">Symbols</div>
+<div id="symbols"><div class="card empty">Loading…</div></div>
+<footer class="muted" style="margin-top:24px;border-top:1px solid var(--line);padding-top:12px">UTC · Binance spot · OKX OI/funding · Shadow system</footer>
+</div>
+<script>
+const REPO='mehazer/btc-alert',BRANCH='main';
+const SYMBOLS=['BTCUSDT','ETHUSDT','SOLUSDT','ZECUSDT','ZAMAUSDT'];
+const $=id=>document.getElementById(id);
+const esc=v=>String(v??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const raw=p=>`https://raw.githubusercontent.com/${REPO}/${BRANCH}/${p}?t=${Date.now()}`;
+async function json(p){const r=await fetch(raw(p));if(!r.ok)throw Error(p+' '+r.status);return r.json()}
+function n(v,d=2){return v==null?'—':Number(v).toLocaleString('en-US',{maximumFractionDigits:d})}
+function funding(v){return v==null?'—':`${v>=0?'+':''}${(v*100).toFixed(4)}%`}
+function dt(v){if(!v)return'—';const d=new Date(String(v).includes('T')?v:String(v).replace(' ','T')+'Z');return isNaN(d)?esc(v):d.toLocaleString('en-GB',{timeZone:'UTC',month:'short',day:'2-digit',hour:'2-digit',minute:'2-digit'})+' UTC'}
+function card(title,value,sub){return `<div class="metric"><div class="label">${title}</div><div class="value">${value}</div><div class="sub">${sub||''}</div></div>`}
+function marketStatus(last,m){
+ const rsi=last.rsi, fg=m.fear_greed_value, fr=m.funding_rate;
+ let status='Neutral', why='Mixed signals — see RSI, F&G, funding.';
+ if(rsi!=null&&rsi>=60&&(fg==null||fg>=55)){status='Bullish';why='RSI elevated with supportive sentiment — price detail in symbol cards.';}
+ else if(rsi!=null&&rsi<=40&&(fg==null||fg<=45)){status='Bearish';why='RSI soft with cautious sentiment.';}
+ else if(rsi!=null&&(rsi>=70||rsi<=30)){status='High Volatility';why=rsi>=70?'RSI overbought — pullback risk.':'RSI oversold — stress or snapback possible.';}
+ else if(fr!=null&&Math.abs(fr)>=0.0003){status='High Volatility';why='Crowded funding — elevated squeeze risk.';}
+ else if(rsi!=null&&rsi>=45&&rsi<=55){status='Consolidating';why='Mid-range conditions; see RSI and F&G.';}
+ return {status,why};
+}
+(async()=>{
+try{
+ const [m,b,decisions]=await Promise.all([
+  json('history/market.json').catch(()=>({})),
+  json('history/BTCUSDT.json').catch(()=>[]),
+  json('history/intelligence_v2/decision_ledger.json').catch(()=>[])
+ ]);
+ const last=(Array.isArray(b)?b:[]).at(-1)||{};
+ const ms=marketStatus(last,m||{});
+ $('updated').textContent='Last update: '+dt(m.updated_at||last.date);
+ $('overview').innerHTML=
+  card('Market Status', ms.status, ms.why)+
+  card('BTC RSI', last.rsi==null?'—':n(last.rsi,1), '14-period · Binance')+
+  card('Fear & Greed', m.fear_greed_value==null?'—':n(m.fear_greed_value,0), m.fear_greed_label||'')+
+  card('BTC funding', funding(m.funding_rate), 'OKX perpetual');
+ $('quality').innerHTML='<div class="quality good">Overview uses Market Status (no duplicate BTC price). Detailed prices remain in symbol cards.</div>';
+ const rows=(decisions||[]).slice(-5).reverse();
+ if(rows.length){
+  const L=rows[0];
+  $('conclusion').innerHTML=card('Decision', L.decision||'OBSERVE', L.thesis||'')+card('Direction', L.signal_direction||'flat', 'Confidence '+n(L.confidence,0)+'%');
+ } else $('conclusion').innerHTML='<div class="empty">No v2 decisions yet.</div>';
+ const cards=[];
+ for(const sym of SYMBOLS){
+  try{
+   const h=await json('history/'+sym+'.json');
+   const x=(h||[]).at(-1)||{};
+   cards.push(`<div class="card" style="margin-bottom:10px"><strong>${sym.replace('USDT','')}</strong> · ${n(x.price)} · RSI ${x.rsi==null?'—':n(x.rsi,1)} · OI ${x.open_interest==null?'—':n(x.open_interest,0)}</div>`);
+  }catch(e){cards.push(`<div class="card"><strong>${sym}</strong> · unavailable</div>`);}
+ }
+ $('symbols').innerHTML=cards.join('')||'<div class="empty">No symbols</div>';
+}catch(e){
+ $('quality').innerHTML='<div class="quality bad">'+esc(e.message)+'</div>';
+}
+})();
+</script>
 </body>
 </html>
