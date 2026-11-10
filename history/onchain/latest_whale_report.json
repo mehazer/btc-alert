@@ -1,20 +1,20 @@
 {
   "agent": "whale-onchain",
   "model_version": "whale-shadow-v0.1-free",
-  "generated_at": "2026-11-10T09:53:44.943210+00:00",
+  "generated_at": "2026-11-10T14:49:07.040110+00:00",
   "execution_allowed": false,
   "telegram_enabled": false,
   "overview": {
     "source": "mempool.space",
     "fees": {
-      "fastestFee": 4,
+      "fastestFee": 3,
       "halfHourFee": 3,
-      "hourFee": 1,
-      "economyFee": 1,
+      "hourFee": 3,
+      "economyFee": 2,
       "minimumFee": 1
     },
-    "mempool_tx_count": 80113,
-    "mempool_vsize": 39791302,
+    "mempool_tx_count": 65805,
+    "mempool_vsize": 33679845,
     "hashrate_sample": {
       "hashrates": [
         {
@@ -156,7 +156,7 @@
           "adjustment": 1.0553920269012451
         }
       ],
-      "currentHashrate": 960586025763090100000,
+      "currentHashrate": 961163859046579300000,
       "currentDifficulty": 148364561003867.4
     }
   },
@@ -172,7 +172,7 @@
     "direction_bias": "Neutral",
     "impact_tier": "LOW",
     "notes": [
-      "Large gap between fastest and hour fee \u2014 priority fee pressure.",
+      "No extreme fee/mempool stress from free endpoints.",
       "Free APIs do not provide reliable labeled exchange whale flow without paid attribution data."
     ],
     "limitations": [

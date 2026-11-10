@@ -1,6 +1,6 @@
 {
   "agent": "promotion-gate",
-  "run_id": "shadow-20261110T095345Z-bab33159",
+  "run_id": "shadow-20261110T144907Z-a3735994",
   "status": "ready_for_human_review",
   "ready_for_review": true,
   "auto_promote": false,
@@ -8,17 +8,17 @@
     {
       "name": "min_settled_records",
       "passed": true,
-      "detail": "settled=180, need>=30"
+      "detail": "settled=191, need>=30"
     },
     {
       "name": "direction_accuracy",
       "passed": true,
-      "detail": "accuracy=83.78, need>=55.0"
+      "detail": "accuracy=81.58, need>=55.0"
     },
     {
       "name": "technical_samples",
       "passed": true,
-      "detail": "technical_samples=37, need>=15"
+      "detail": "technical_samples=38, need>=15"
     },
     {
       "name": "risk_samples",
@@ -28,7 +28,7 @@
     {
       "name": "false_calm_ceiling",
       "passed": true,
-      "detail": "false_calm_pct=27.07, max=35.0"
+      "detail": "false_calm_pct=28.47, max=35.0"
     },
     {
       "name": "human_approval_required",
@@ -45,15 +45,15 @@
     "Metrics gate passed — still requires human PR review before any production change."
   ],
   "metrics": {
-    "settled_records": 180,
-    "direction_accuracy_pct": 83.78,
-    "technical_samples": 37,
+    "settled_records": 191,
+    "direction_accuracy_pct": 81.58,
+    "technical_samples": 38,
     "risk_samples": 32,
-    "false_calm_pct": 27.07,
+    "false_calm_pct": 28.47,
     "challenge_fail_useful_pct": null,
-    "total_runs": 21,
-    "total_decisions": 105
+    "total_runs": 22,
+    "total_decisions": 110
   },
-  "evaluated_at": "2026-11-10T09:53:48.605502+00:00",
+  "evaluated_at": "2026-11-10T14:49:10.501100+00:00",
   "model_version": "promotion-criteria-v0.1"
 }
