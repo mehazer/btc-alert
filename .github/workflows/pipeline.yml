@@ -2,7 +2,6 @@ name: Crypto Pipeline (News → Technical → Whale → Intelligence v2)
 
 on:
   schedule:
-    # Every 4 hours at :00 UTC
     - cron: "0 */4 * * *"
   workflow_dispatch: {}
 
@@ -65,7 +64,7 @@ jobs:
           HISTORY_DIR: history
         run: |
           set +e
-          python -m agents.whale_agent
+          python agents/whale_agent.py
           echo "WHALE_EXIT=$?" >> "$GITHUB_ENV"
           set -e
 
@@ -145,4 +144,3 @@ jobs:
           echo "Shadow exit: ${SHADOW_EXIT:-n/a}"
           echo "Main: https://mehazer.github.io/btc-alert/"
           echo "Project: https://mehazer.github.io/btc-alert/project.html"
-          echo "v2: https://mehazer.github.io/btc-alert/v2.html"
