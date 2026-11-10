@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-10T06:06:26.289460+00:00",
+  "updated_at": "2026-11-10T06:53:23.764396+00:00",
   "sources": [
     {
       "name": "CoinDesk",
@@ -102,7 +102,7 @@
       "quality": "social"
     }
   ],
-  "headline_count": 39,
+  "headline_count": 40,
   "headlines": [
     {
       "source": "CoinDesk",
@@ -129,8 +129,8 @@
     {
       "source": "The Block",
       "type": "rss",
-      "headline": "MARA posts $634 million Q3 net profit on bitcoin gains, sells 13,597 BTC to pay off loans",
-      "category": "Market & Macro",
+      "headline": "Coinbase, Kalshi and Payward backs CFTC in lawsuit over single-stock perp futures",
+      "category": "Regulation & Politics",
       "importance": 1.935,
       "age_hours": 24.0,
       "source_quality": "reputable",
@@ -140,8 +140,8 @@
     {
       "source": "The Block",
       "type": "rss",
-      "headline": "Elizabeth Warren vows scrutiny of prediction markets, Trump family crypto ventures as Senate Banking chair",
-      "category": "Regulation & Politics",
+      "headline": "MARA posts $634 million Q3 net profit on bitcoin gains, sells 13,597 BTC to pay off loans",
+      "category": "Market & Macro",
       "importance": 1.935,
       "age_hours": 24.0,
       "source_quality": "reputable",
@@ -160,22 +160,10 @@
       "asset_scope": "market-wide"
     },
     {
-      "source": "Google News (BTC)",
+      "source": "Google News (ETH)",
       "type": "google_news",
-      "headline": "BTC price range on Nov 10, 2026 at 2am EST Crypto Prediction Market",
-      "published": "Tue, 10 Nov 2026 06:03:19 GMT",
-      "category": "Market & Macro",
-      "importance": 1.619,
-      "age_hours": 0.1,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (Macro)",
-      "type": "google_news",
-      "headline": "Why is Bitcoin price stuck below $75,000?",
-      "published": "Tue, 10 Nov 2026 05:54:00 GMT",
+      "headline": "Crypto Bull Run Watch: BTC Under $75K as ETH and ARB Face Pressure and Remittix Earn Opens to the Public",
+      "published": "Tue, 10 Nov 2026 06:40:52 GMT",
       "category": "Market & Macro",
       "importance": 1.618,
       "age_hours": 0.2,
@@ -186,11 +174,59 @@
     {
       "source": "Google News (BTC)",
       "type": "google_news",
+      "headline": "BTC price range on Nov 10, 2026 at 2am EST Crypto Prediction Market",
+      "published": "Tue, 10 Nov 2026 06:03:19 GMT",
+      "category": "Market & Macro",
+      "importance": 1.612,
+      "age_hours": 0.8,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "Bitcoin pinned below $75k as regulatory uncertainty, ETF outflows persist",
+      "published": "Tue, 10 Nov 2026 06:05:57 GMT",
+      "category": "Bitcoin & ETF",
+      "importance": 1.612,
+      "age_hours": 0.8,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (Macro)",
+      "type": "google_news",
+      "headline": "Why is Bitcoin price stuck below $75,000?",
+      "published": "Tue, 10 Nov 2026 05:54:00 GMT",
+      "category": "Market & Macro",
+      "importance": 1.61,
+      "age_hours": 1.0,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "Fed Hike Odds Hit 84% After Bitcoin ETFs Lose $1.28 Billion",
+      "published": "Tue, 10 Nov 2026 05:49:21 GMT",
+      "category": "Market & Macro",
+      "importance": 1.609,
+      "age_hours": 1.1,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (Macro)",
+      "type": "google_news",
       "headline": "Bitcoin price $74,600: US CPI without an annual rate",
       "published": "Tue, 10 Nov 2026 05:21:40 GMT",
       "category": "Market & Macro",
-      "importance": 1.613,
-      "age_hours": 0.7,
+      "importance": 1.605,
+      "age_hours": 1.5,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -201,8 +237,8 @@
       "headline": "BlackRock moves $213M in Bitcoin and $118M in Ethereum as ETF redemptions bite",
       "published": "Tue, 10 Nov 2026 05:11:00 GMT",
       "category": "Bitcoin & ETF",
-      "importance": 1.611,
-      "age_hours": 0.9,
+      "importance": 1.603,
+      "age_hours": 1.7,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -213,20 +249,8 @@
       "headline": "Bitcoin, Ethereum, XRP Whipsaw On Nvidia Scandal, Iran Tensions: Crypto Sell-Off Sparks $1B Liquidation Wave",
       "published": "Tue, 10 Nov 2026 04:12:29 GMT",
       "category": "Market & Macro",
-      "importance": 1.601,
-      "age_hours": 1.9,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (SOL)",
-      "type": "google_news",
-      "headline": "of Supply Active in 1 Year: BTC/ETH/SOL",
-      "published": "Tue, 10 Nov 2026 03:35:00 GMT",
-      "category": "Market & Macro",
-      "importance": 1.595,
-      "age_hours": 2.5,
+      "importance": 1.593,
+      "age_hours": 2.7,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -237,44 +261,8 @@
       "headline": "Miami-Dade property owners can now pay their property taxes with Bitcoin, tax collector says",
       "published": "Tue, 10 Nov 2026 03:30:23 GMT",
       "category": "Market & Macro",
-      "importance": 1.594,
-      "age_hours": 2.6,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (Macro)",
-      "type": "google_news",
-      "headline": "Fed Hike Odds Hit 84% After Bitcoin ETFs Lose $1.28 Billion",
-      "published": "Tue, 10 Nov 2026 03:33:13 GMT",
-      "category": "Market & Macro",
-      "importance": 1.594,
-      "age_hours": 2.6,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (BTC)",
-      "type": "google_news",
-      "headline": "Strategy (MSTR) Is Building A Global Bitcoin Bank",
-      "published": "Tue, 10 Nov 2026 02:42:36 GMT",
-      "category": "Market & Macro",
       "importance": 1.586,
       "age_hours": 3.4,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (SOL)",
-      "type": "google_news",
-      "headline": "Bitcoin, Dogecoin Steady, While Ethereum, XRP Dip: Analyst Calls BTC Accumulation by Major Cohorts During",
-      "published": "Tue, 10 Nov 2026 02:21:32 GMT",
-      "category": "Market & Macro",
-      "importance": 1.583,
-      "age_hours": 3.7,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -285,8 +273,8 @@
       "headline": "Zcash falls almost 8 percent: why developers want 20-second blocks",
       "published": "Mon, 09 Nov 2026 21:20:05 GMT",
       "category": "Regulation & Politics",
-      "importance": 1.532,
-      "age_hours": 8.8,
+      "importance": 1.524,
+      "age_hours": 9.6,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -297,8 +285,8 @@
       "headline": "Raycash Launches on Ethereum Mainnet with Confidential Payments and Private Yield for Everyday Users",
       "published": "Mon, 09 Nov 2026 17:05:26 GMT",
       "category": "Market & Macro",
-      "importance": 1.49,
-      "age_hours": 13.0,
+      "importance": 1.482,
+      "age_hours": 13.8,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -392,11 +380,11 @@
       "asset_scope": "market-wide"
     },
     {
-      "source": "Google News (ETH)",
+      "source": "Google News (SOL)",
       "type": "google_news",
-      "headline": "ETH price range on Nov 10, 2026 at 2am EST Prediction Market",
-      "published": "Tue, 10 Nov 2026 06:03:23 GMT",
-      "category": "Ethereum & L2",
+      "headline": "Solana Foundation Tightens SFDP Rules, Ends Validator Support After 12 Months or 300,000 SOL",
+      "published": "Tue, 10 Nov 2026 06:46:54 GMT",
+      "category": "Altcoins & Projects",
       "importance": 0.969,
       "age_hours": 0.1,
       "source_quality": "discovery",
@@ -404,13 +392,13 @@
       "asset_scope": "asset-or-sector"
     },
     {
-      "source": "Google News (ZEC)",
+      "source": "Google News (ETH)",
       "type": "google_news",
-      "headline": "Zcash Proposes NU8 Upgrade: 4x Block Size, 200 TPS Privacy Transactions, Quantum Resistance",
-      "published": "Tue, 10 Nov 2026 05:43:40 GMT",
-      "category": "Altcoins & Projects",
-      "importance": 0.966,
-      "age_hours": 0.4,
+      "headline": "ETH price on Nov 10, 2026 at 1am EST Crypto Prediction Market",
+      "published": "Tue, 10 Nov 2026 05:04:34 GMT",
+      "category": "Ethereum & L2",
+      "importance": 0.952,
+      "age_hours": 1.8,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -421,20 +409,44 @@
       "headline": "Ethereum Price Chart & History",
       "published": "Tue, 10 Nov 2026 03:35:00 GMT",
       "category": "Ethereum & L2",
-      "importance": 0.945,
-      "age_hours": 2.5,
+      "importance": 0.937,
+      "age_hours": 3.3,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
     },
     {
-      "source": "Google News (ETH)",
+      "source": "Google News (SOL)",
       "type": "google_news",
-      "headline": "Wall Street Keeps Selling Ethereum, but Whales Are Buying In",
-      "published": "Tue, 10 Nov 2026 03:33:13 GMT",
-      "category": "Ethereum & L2",
-      "importance": 0.944,
-      "age_hours": 2.6,
+      "headline": "Solana Treasury Companies Premium/Discount to NAV",
+      "published": "Tue, 10 Nov 2026 03:35:00 GMT",
+      "category": "Altcoins & Projects",
+      "importance": 0.937,
+      "age_hours": 3.3,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (ZEC)",
+      "type": "google_news",
+      "headline": "ZCash Shielded Supply",
+      "published": "Tue, 10 Nov 2026 03:35:00 GMT",
+      "category": "Altcoins & Projects",
+      "importance": 0.937,
+      "age_hours": 3.3,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (SOL)",
+      "type": "google_news",
+      "headline": "Pump.fun Reclaims 90% Market Share in Solana Launchpad War",
+      "published": "Tue, 10 Nov 2026 02:59:52 GMT",
+      "category": "Altcoins & Projects",
+      "importance": 0.931,
+      "age_hours": 3.9,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -445,20 +457,8 @@
       "headline": "Zcash Ironwood Upgrade Locked In for July 28 After Orchard Pool Bug",
       "published": "Tue, 10 Nov 2026 02:41:05 GMT",
       "category": "Altcoins & Projects",
-      "importance": 0.936,
-      "age_hours": 3.4,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (SOL)",
-      "type": "google_news",
-      "headline": "Walmart-Backed OnePay Adds Solana, Arbitrum and More to Crypto Platform",
-      "published": "Tue, 10 Nov 2026 02:08:40 GMT",
-      "category": "Ethereum & L2",
-      "importance": 0.93,
-      "age_hours": 4.0,
+      "importance": 0.928,
+      "age_hours": 4.2,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -469,8 +469,20 @@
       "headline": "Zcash Is Flat Over 30 Days While Bitcoin, Ethereum and Solana Fell 10% to 21%. Which of the Four Is the Best Buy Now?",
       "published": "Mon, 09 Nov 2026 20:53:00 GMT",
       "category": "Altcoins & Projects",
-      "importance": 0.878,
-      "age_hours": 9.2,
+      "importance": 0.87,
+      "age_hours": 10.0,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (ZEC)",
+      "type": "google_news",
+      "headline": "Zcash Just Turned 10. Here's What Could Be Coming for ZEC Investors Over the Next 10 Years.",
+      "published": "Mon, 09 Nov 2026 14:46:00 GMT",
+      "category": "Altcoins & Projects",
+      "importance": 0.809,
+      "age_hours": 16.1,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -492,8 +504,8 @@
       "headline": "Raycash Launches on Ethereum Mainnet, Enabling Private USDC Transfers and Earnings",
       "published": "Mon, 09 Nov 2026 11:33:03 GMT",
       "category": "DeFi & Stablecoins",
-      "importance": 0.784,
-      "age_hours": 18.6,
+      "importance": 0.777,
+      "age_hours": 19.3,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -504,8 +516,8 @@
       "headline": "Raycash Launches Confidential Stablecoin Payments and Private Yield on Ethereum",
       "published": "Mon, 09 Nov 2026 09:35:48 GMT",
       "category": "DeFi & Stablecoins",
-      "importance": 0.765,
-      "age_hours": 20.5,
+      "importance": 0.757,
+      "age_hours": 21.3,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -516,8 +528,8 @@
       "headline": "Zama spin-off Raycash launches confidential stablecoin payments and private yield on Ethereum",
       "published": "Mon, 09 Nov 2026 09:05:00 GMT",
       "category": "DeFi & Stablecoins",
-      "importance": 0.76,
-      "age_hours": 21.0,
+      "importance": 0.752,
+      "age_hours": 21.8,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -584,7 +596,7 @@
         {
           "source": "The Block",
           "type": "rss",
-          "headline": "Elizabeth Warren vows scrutiny of prediction markets, Trump family crypto ventures as Senate Banking chair",
+          "headline": "Coinbase, Kalshi and Payward backs CFTC in lawsuit over single-stock perp futures",
           "category": "Regulation & Politics",
           "importance": 1.935,
           "age_hours": 24.0,
@@ -598,8 +610,8 @@
           "headline": "Zcash falls almost 8 percent: why developers want 20-second blocks",
           "published": "Mon, 09 Nov 2026 21:20:05 GMT",
           "category": "Regulation & Politics",
-          "importance": 1.532,
-          "age_hours": 8.8,
+          "importance": 1.524,
+          "age_hours": 9.6,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "market-wide"
@@ -636,16 +648,28 @@
     },
     {
       "category": "Bitcoin & ETF",
-      "count": 2,
+      "count": 3,
       "headlines": [
+        {
+          "source": "Google News (BTC)",
+          "type": "google_news",
+          "headline": "Bitcoin pinned below $75k as regulatory uncertainty, ETF outflows persist",
+          "published": "Tue, 10 Nov 2026 06:05:57 GMT",
+          "category": "Bitcoin & ETF",
+          "importance": 1.612,
+          "age_hours": 0.8,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
         {
           "source": "Google News (ETH)",
           "type": "google_news",
           "headline": "BlackRock moves $213M in Bitcoin and $118M in Ethereum as ETF redemptions bite",
           "published": "Tue, 10 Nov 2026 05:11:00 GMT",
           "category": "Bitcoin & ETF",
-          "importance": 1.611,
-          "age_hours": 0.9,
+          "importance": 1.603,
+          "age_hours": 1.7,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -663,13 +687,14 @@
         }
       ],
       "top_sources": [
+        "Google News (BTC)",
         "Google News (ETH)",
         "Wu Blockchain (Telegram)"
       ]
     },
     {
       "category": "Market & Macro",
-      "count": 17,
+      "count": 15,
       "headlines": [
         {
           "source": "CoinDesk",
@@ -705,25 +730,25 @@
           "asset_scope": "market-wide"
         },
         {
-          "source": "Google News (BTC)",
+          "source": "Google News (ETH)",
           "type": "google_news",
-          "headline": "BTC price range on Nov 10, 2026 at 2am EST Crypto Prediction Market",
-          "published": "Tue, 10 Nov 2026 06:03:19 GMT",
+          "headline": "Crypto Bull Run Watch: BTC Under $75K as ETH and ARB Face Pressure and Remittix Earn Opens to the Public",
+          "published": "Tue, 10 Nov 2026 06:40:52 GMT",
           "category": "Market & Macro",
-          "importance": 1.619,
-          "age_hours": 0.1,
+          "importance": 1.618,
+          "age_hours": 0.2,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "market-wide"
         },
         {
-          "source": "Google News (Macro)",
+          "source": "Google News (BTC)",
           "type": "google_news",
-          "headline": "Why is Bitcoin price stuck below $75,000?",
-          "published": "Tue, 10 Nov 2026 05:54:00 GMT",
+          "headline": "BTC price range on Nov 10, 2026 at 2am EST Crypto Prediction Market",
+          "published": "Tue, 10 Nov 2026 06:03:19 GMT",
           "category": "Market & Macro",
-          "importance": 1.618,
-          "age_hours": 0.2,
+          "importance": 1.612,
+          "age_hours": 0.8,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "market-wide"
@@ -778,8 +803,8 @@
           "headline": "Raycash Launches on Ethereum Mainnet, Enabling Private USDC Transfers and Earnings",
           "published": "Mon, 09 Nov 2026 11:33:03 GMT",
           "category": "DeFi & Stablecoins",
-          "importance": 0.784,
-          "age_hours": 18.6,
+          "importance": 0.777,
+          "age_hours": 19.3,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -790,8 +815,8 @@
           "headline": "Raycash Launches Confidential Stablecoin Payments and Private Yield on Ethereum",
           "published": "Mon, 09 Nov 2026 09:35:48 GMT",
           "category": "DeFi & Stablecoins",
-          "importance": 0.765,
-          "age_hours": 20.5,
+          "importance": 0.757,
+          "age_hours": 21.3,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -802,8 +827,8 @@
           "headline": "Zama spin-off Raycash launches confidential stablecoin payments and private yield on Ethereum",
           "published": "Mon, 09 Nov 2026 09:05:00 GMT",
           "category": "DeFi & Stablecoins",
-          "importance": 0.76,
-          "age_hours": 21.0,
+          "importance": 0.752,
+          "age_hours": 21.8,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -815,16 +840,16 @@
     },
     {
       "category": "Ethereum & L2",
-      "count": 5,
+      "count": 3,
       "headlines": [
         {
           "source": "Google News (ETH)",
           "type": "google_news",
-          "headline": "ETH price range on Nov 10, 2026 at 2am EST Prediction Market",
-          "published": "Tue, 10 Nov 2026 06:03:23 GMT",
+          "headline": "ETH price on Nov 10, 2026 at 1am EST Crypto Prediction Market",
+          "published": "Tue, 10 Nov 2026 05:04:34 GMT",
           "category": "Ethereum & L2",
-          "importance": 0.969,
-          "age_hours": 0.1,
+          "importance": 0.952,
+          "age_hours": 1.8,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -835,32 +860,8 @@
           "headline": "Ethereum Price Chart & History",
           "published": "Tue, 10 Nov 2026 03:35:00 GMT",
           "category": "Ethereum & L2",
-          "importance": 0.945,
-          "age_hours": 2.5,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (ETH)",
-          "type": "google_news",
-          "headline": "Wall Street Keeps Selling Ethereum, but Whales Are Buying In",
-          "published": "Tue, 10 Nov 2026 03:33:13 GMT",
-          "category": "Ethereum & L2",
-          "importance": 0.944,
-          "age_hours": 2.6,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (SOL)",
-          "type": "google_news",
-          "headline": "Walmart-Backed OnePay Adds Solana, Arbitrum and More to Crypto Platform",
-          "published": "Tue, 10 Nov 2026 02:08:40 GMT",
-          "category": "Ethereum & L2",
-          "importance": 0.93,
-          "age_hours": 4.0,
+          "importance": 0.937,
+          "age_hours": 3.3,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -879,22 +880,57 @@
       ],
       "top_sources": [
         "Google News (ETH)",
-        "Google News (SOL)",
         "Wu Blockchain (Telegram)"
       ]
     },
     {
       "category": "Altcoins & Projects",
-      "count": 3,
+      "count": 7,
       "headlines": [
+        {
+          "source": "Google News (SOL)",
+          "type": "google_news",
+          "headline": "Solana Foundation Tightens SFDP Rules, Ends Validator Support After 12 Months or 300,000 SOL",
+          "published": "Tue, 10 Nov 2026 06:46:54 GMT",
+          "category": "Altcoins & Projects",
+          "importance": 0.969,
+          "age_hours": 0.1,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (SOL)",
+          "type": "google_news",
+          "headline": "Solana Treasury Companies Premium/Discount to NAV",
+          "published": "Tue, 10 Nov 2026 03:35:00 GMT",
+          "category": "Altcoins & Projects",
+          "importance": 0.937,
+          "age_hours": 3.3,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
         {
           "source": "Google News (ZEC)",
           "type": "google_news",
-          "headline": "Zcash Proposes NU8 Upgrade: 4x Block Size, 200 TPS Privacy Transactions, Quantum Resistance",
-          "published": "Tue, 10 Nov 2026 05:43:40 GMT",
+          "headline": "ZCash Shielded Supply",
+          "published": "Tue, 10 Nov 2026 03:35:00 GMT",
           "category": "Altcoins & Projects",
-          "importance": 0.966,
-          "age_hours": 0.4,
+          "importance": 0.937,
+          "age_hours": 3.3,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (SOL)",
+          "type": "google_news",
+          "headline": "Pump.fun Reclaims 90% Market Share in Solana Launchpad War",
+          "published": "Tue, 10 Nov 2026 02:59:52 GMT",
+          "category": "Altcoins & Projects",
+          "importance": 0.931,
+          "age_hours": 3.9,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -905,26 +941,15 @@
           "headline": "Zcash Ironwood Upgrade Locked In for July 28 After Orchard Pool Bug",
           "published": "Tue, 10 Nov 2026 02:41:05 GMT",
           "category": "Altcoins & Projects",
-          "importance": 0.936,
-          "age_hours": 3.4,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (ZEC)",
-          "type": "google_news",
-          "headline": "Zcash Is Flat Over 30 Days While Bitcoin, Ethereum and Solana Fell 10% to 21%. Which of the Four Is the Best Buy Now?",
-          "published": "Mon, 09 Nov 2026 20:53:00 GMT",
-          "category": "Altcoins & Projects",
-          "importance": 0.878,
-          "age_hours": 9.2,
+          "importance": 0.928,
+          "age_hours": 4.2,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
+        "Google News (SOL)",
         "Google News (ZEC)"
       ]
     },
@@ -967,29 +992,28 @@
     "summary": "Security-related headlines are prominent; verify affected protocols and whether contagion is material.",
     "key_points": [
       "Binance Hack Launderers Mint Elon Musk and Animal Meme Coins to Move Stolen Crypto",
-      "Elizabeth Warren vows scrutiny of prediction markets, Trump family crypto ventures as Senate Banking chair",
+      "Coinbase, Kalshi and Payward backs CFTC in lawsuit over single-stock perp futures",
       "Zcash falls almost 8 percent: why developers want 20-second blocks",
-      "BlackRock moves $213M in Bitcoin and $118M in Ethereum as ETF redemptions bite",
-      "MARA, a Leading Listed Bitcoin Miner, Sells $1.1 Billion in BTC as Revenue Falls 35% MARA, one of the world's largest publicly traded Bitcoin mining companies, disclosed in its Q3 2026 earnings that it sold 13,597 BTC after quarter-end at an average price of $81,039, raising approximately $1.1 billion. The proceeds were used to fully repay $750 million in Bitcoin-backed loans, releasing 17,477 BTC previously pledged as collateral. Q3 revenue fell 35% year-over-year to $164.2 million, while net income reached $632 million, largely driven by $885 million in digital asset fair-value gains. As of September 30, MARA held 34,012 BTC, down 36% year-over-year, and mined 2,247 BTC during the quarter, up 5%. — link"
+      "Bitcoin pinned below $75k as regulatory uncertainty, ETF outflows persist",
+      "BlackRock moves $213M in Bitcoin and $118M in Ethereum as ETF redemptions bite"
     ],
-    "updated_at": "2026-11-10T06:06:26.289452+00:00",
+    "updated_at": "2026-11-10T06:53:23.764389+00:00",
     "reason": "NEWS_AI_API_KEY is not configured"
   },
   "quality": {
     "trusted_headlines": 6,
-    "discovery_headlines": 22,
+    "discovery_headlines": 23,
     "social_headlines": 8,
     "quality_tiers": {
       "reputable": 6,
-      "discovery": 22,
+      "discovery": 23,
       "unknown": 3,
       "social": 8
     },
     "interpretation_policy": "Only primary/reputable sources are treated as confirmation; discovery and social sources are leads.",
-    "excluded_count": 26,
+    "excluded_count": 25,
     "excluded_reasons": {
       "exact-duplicate": 6,
-      "low-information-or-promotional": 1,
       "not-crypto-relevant": 19
     }
   },

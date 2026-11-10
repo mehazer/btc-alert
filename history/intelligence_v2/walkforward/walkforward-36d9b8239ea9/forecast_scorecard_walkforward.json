@@ -1,0 +1,61 @@
+{
+  "agent": "forecast-scorecard",
+  "evaluated_at": "2026-11-10T06:53:40.773867+00:00",
+  "forecasts_total": 246,
+  "active_forecasts": 39,
+  "abstain_count": 207,
+  "abstain_rate_pct": 84.15,
+  "settled_rows": 135,
+  "pending_rows": 21,
+  "directional_settled": 135,
+  "directional_hits": 64,
+  "direction_accuracy_pct": 47.41,
+  "by_horizon": {
+    "1": {
+      "directional": 36,
+      "hits": 20,
+      "accuracy_pct": 55.56,
+      "pending": 3
+    },
+    "3": {
+      "directional": 35,
+      "hits": 19,
+      "accuracy_pct": 54.29,
+      "pending": 4
+    },
+    "6": {
+      "directional": 33,
+      "hits": 15,
+      "accuracy_pct": 45.45,
+      "pending": 6
+    },
+    "12": {
+      "directional": 31,
+      "hits": 10,
+      "accuracy_pct": 32.26,
+      "pending": 8
+    }
+  },
+  "by_probability_band": {
+    "low": {
+      "directional": 135,
+      "hits": 64,
+      "accuracy_pct": 47.41
+    }
+  },
+  "calibration": [
+    {
+      "probability_band": "low",
+      "implied_mid": 0.55,
+      "empirical_hit_rate": 0.47409999999999997,
+      "n": 135,
+      "note": "Needs larger n before adjusting bands."
+    }
+  ],
+  "limitations": [
+    "Shadow-only: forecasts never execute or alter production alerts.",
+    "Direction accuracy excludes ABSTAIN rows (abstain is tracked separately).",
+    "Probability bands are conservative priors pending walk-forward calibration.",
+    "Do not enable self-learning until calibration is stable out of sample."
+  ]
+}
