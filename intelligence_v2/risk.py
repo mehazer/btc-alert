@@ -1,7 +1,7 @@
 """Deterministic Risk Agent for v2 shadow mode.
 
-This agent is deliberately conservative: it can raise a veto for an alert or
-paper plan, but it cannot place trades and it does not change legacy output.
+Conservative but no longer silent: raises medium/high when crowding,
+momentum, or data quality warrants it. Still cannot place trades.
 """
 from __future__ import annotations
 
@@ -11,9 +11,9 @@ from .contracts import AgentOutput, EvidencePack, RiskAssessment, Scenario
 
 
 def _band(score: int) -> str:
-    if score >= 70:
+    if score >= 60:
         return "high"
-    if score >= 40:
+    if score >= 35:
         return "medium"
     return "low"
 
@@ -22,7 +22,7 @@ def evaluate(pack: EvidencePack, technical: AgentOutput) -> RiskAssessment:
     row = pack.observations[0]
     flags: List[str] = []
     reasons: List[str] = []
-    downside = 25
+    downside = 20
     squeeze = 15
     data = 10
 
@@ -31,59 +31,95 @@ def evaluate(pack: EvidencePack, technical: AgentOutput) -> RiskAssessment:
         flags.append("failed-quality-gate")
         reasons.append("A required evidence field failed a quality gate.")
     elif pack.quality_status == "warn":
-        data += 25
+        data += 20
         flags.append("incomplete-evidence")
         reasons.append("Evidence is usable but incomplete.")
 
-    if row.price_change_pct is not None and row.price_change_pct > 2:
-        downside += 10
+    if row.price_change_pct is not None and row.price_change_pct > 1.2:
+        downside += 12
         reasons.append("A fast upward move increases reversal and gap risk.")
-    if row.price_change_pct is not None and row.price_change_pct < -2:
+    if row.price_change_pct is not None and row.price_change_pct > 2.5:
+        downside += 10
+        flags.append("sharp-up-move")
+    if row.price_change_pct is not None and row.price_change_pct < -1.2:
         downside += 15
         reasons.append("Recent downside momentum increases continuation risk.")
-    if row.oi_change_pct is not None and row.oi_change_pct > 3:
-        squeeze += 20
+    if row.price_change_pct is not None and row.price_change_pct < -2.5:
+        downside += 10
+        flags.append("sharp-down-move")
+
+    if row.oi_change_pct is not None and row.oi_change_pct > 2.0:
+        squeeze += 18
         flags.append("rising-open-interest")
         reasons.append("Rising OI can amplify both liquidation directions.")
-    if row.oi_change_pct is not None and row.oi_change_pct < -3:
+    if row.oi_change_pct is not None and row.oi_change_pct > 5.0:
+        squeeze += 12
+        flags.append("oi-spike")
+    if row.oi_change_pct is not None and row.oi_change_pct < -2.0:
         flags.append("deleveraging")
         reasons.append("Falling OI suggests position reduction; direction is not identified by OI alone.")
-    if row.funding_rate is not None and row.funding_rate > 0.0003:
-        downside += 15
-        squeeze += 15
+        downside += 8
+
+    if row.funding_rate is not None and row.funding_rate > 0.0002:
+        downside += 12
+        squeeze += 12
         flags.append("crowded-positive-funding")
-        reasons.append("Strongly positive funding indicates crowded long exposure.")
-    if row.funding_rate is not None and row.funding_rate < -0.0003:
-        squeeze += 20
+        reasons.append("Positive funding indicates crowded long exposure.")
+    if row.funding_rate is not None and row.funding_rate > 0.0004:
+        downside += 10
+        flags.append("extreme-positive-funding")
+    if row.funding_rate is not None and row.funding_rate < -0.0002:
+        squeeze += 18
         flags.append("crowded-negative-funding")
-        reasons.append("Strongly negative funding indicates crowded short exposure and squeeze risk.")
-    if "short-covering-rally" in technical.risk_flags:
-        downside += 15
-        flags.append("short-covering-rally")
-        reasons.append("The move may be driven by short covering rather than durable new demand.")
-    if "data-quality-fail" in technical.risk_flags:
+        reasons.append("Negative funding indicates crowded short exposure and squeeze risk.")
+    if row.funding_rate is not None and row.funding_rate < -0.0004:
+        squeeze += 10
+        flags.append("extreme-negative-funding")
+
+    if row.rsi is not None and row.rsi >= 70:
+        downside += 12
+        flags.append("rsi-overbought")
+        reasons.append("Elevated RSI increases pullback risk after extended upside.")
+    if row.rsi is not None and row.rsi <= 30:
+        downside += 10
+        flags.append("rsi-oversold")
+        reasons.append("Depressed RSI can mean forced selling or snapback risk.")
+
+    tech_flags = set(technical.risk_flags or [])
+    if "short-covering-rally" in tech_flags or technical.state in {"short-covering", "weakening-participation"}:
+        downside += 12
+        flags.append("fragile-rally-or-weak-participation")
+        reasons.append("Technical state suggests the move may lack durable new demand.")
+    if "data-quality-fail" in tech_flags:
         data += 20
         flags.append("technical-data-quality-fail")
     if technical.confidence < 40:
         data += 10
         flags.append("low-technical-confidence")
 
+    oi_gate = next((g for g in pack.quality_gates if g.name == "oi_history_ok"), None)
+    if oi_gate is not None and oi_gate.status != "pass":
+        data += 15
+        flags.append("weak-oi-history")
+        reasons.append("OI history is thin; risk estimates are less reliable.")
+
     downside = min(100, downside)
     squeeze = min(100, squeeze)
     data = min(100, data)
     overall_score = max(downside, squeeze, data)
     overall = _band(overall_score) if pack.quality_status != "fail" else "unknown"
-    veto = pack.quality_status == "fail" or data >= 70 or downside >= 80
+    veto = pack.quality_status == "fail" or data >= 70 or downside >= 75 or squeeze >= 80
+
     stress = [
         Scenario(
             name="sudden-reversal",
-            probability_band="high" if downside >= 60 else "medium",
+            probability_band="high" if downside >= 55 else "medium",
             conditions=["price loses the recent swing level", "volume expands on the decline"],
             invalidation=["price holds the swing level and pullbacks contract"],
         ),
         Scenario(
             name="liquidation-squeeze",
-            probability_band="high" if squeeze >= 60 else "medium",
+            probability_band="high" if squeeze >= 55 else "medium",
             conditions=["OI expands while price stalls", "funding becomes extreme"],
             invalidation=["OI declines gradually with stable funding"],
         ),
@@ -104,6 +140,6 @@ def evaluate(pack: EvidencePack, technical: AgentOutput) -> RiskAssessment:
         confidence=confidence,
         evidence_ids=[pack.evidence_id] + [s.source_id for s in row.source_refs],
         evaluated_at=pack.created_at,
-        model_version="risk-shadow-v0.1-deterministic",
+        model_version="risk-shadow-v0.2-sensitive",
         reasons=reasons,
     )
