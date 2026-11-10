@@ -1,15 +1,17 @@
 {
-  "updated_at": "2026-11-10T06:53:40.914473+00:00",
-  "pipeline_run_id": "42771482261",
-  "pipeline_run_url": "https://github.com/mehazer/btc-alert/actions/runs/42771482261",
+  "updated_at": "2026-11-10T09:32:33.080732+00:00",
+  "pipeline_run_id": "42791492760",
+  "pipeline_run_url": "https://github.com/mehazer/btc-alert/actions/runs/42791492760",
   "steps": {
-    "news_exit": 0,
+    "news_exit": 1,
     "technical_exit": 0,
-    "shadow_exit": 0
+    "whale_exit": 0,
+    "shadow_exit": 1
   },
   "sequence": [
     "news",
     "technical",
+    "whale_shadow",
     "intelligence_v2"
   ],
   "cadence": "every 4 hours"

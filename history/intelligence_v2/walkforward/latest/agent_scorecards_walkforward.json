@@ -1,5 +1,5 @@
 {
-  "evaluated_at": "2026-11-10T06:53:40.745022+00:00",
+  "evaluated_at": "2026-11-10T09:32:32.892478+00:00",
   "phase": 7,
   "schema_version": 2,
   "horizons": [
@@ -32,16 +32,16 @@
     },
     "risk": {
       "agent": "risk",
-      "samples": 0,
-      "hits": 0,
+      "samples": 747,
+      "hits": 491,
       "primary_metric": "warning_support_pct",
-      "primary_metric_pct": null,
+      "primary_metric_pct": 65.73,
       "low_risk_samples": 0,
       "false_calm_count": 0,
       "false_calm_pct": null,
       "notes": [
-        "Warning support: guarded/high/veto with >=1% adverse excursion.",
-        "False calm: low/medium risk with later >=2% adverse excursion."
+        "Warning support: guarded/medium/high/veto with >=1% adverse excursion.",
+        "False calm: low risk with later >=2% adverse excursion."
       ]
     },
     "challenge": {
@@ -65,5 +65,5 @@
     "Metrics are descriptive calibration aids."
   ],
   "evaluation_mode": "walkforward_backtest",
-  "walkforward_batch_id": "walkforward-36d9b8239ea9"
+  "walkforward_batch_id": "walkforward-613cbb376cbd"
 }

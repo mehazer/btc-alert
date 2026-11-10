@@ -1,57 +1,43 @@
 {
   "agent": "forecast-scorecard",
-  "evaluated_at": "2026-11-10T06:53:40.773867+00:00",
+  "evaluated_at": "2026-11-10T09:32:32.924139+00:00",
   "forecasts_total": 246,
-  "active_forecasts": 39,
-  "abstain_count": 207,
-  "abstain_rate_pct": 84.15,
-  "settled_rows": 135,
-  "pending_rows": 21,
-  "directional_settled": 135,
-  "directional_hits": 64,
-  "direction_accuracy_pct": 47.41,
+  "active_forecasts": 1,
+  "abstain_count": 245,
+  "abstain_rate_pct": 99.59,
+  "settled_rows": 0,
+  "pending_rows": 4,
+  "directional_settled": 0,
+  "directional_hits": 0,
+  "direction_accuracy_pct": null,
   "by_horizon": {
     "1": {
-      "directional": 36,
-      "hits": 20,
-      "accuracy_pct": 55.56,
-      "pending": 3
+      "directional": 0,
+      "hits": 0,
+      "accuracy_pct": null,
+      "pending": 1
     },
     "3": {
-      "directional": 35,
-      "hits": 19,
-      "accuracy_pct": 54.29,
-      "pending": 4
+      "directional": 0,
+      "hits": 0,
+      "accuracy_pct": null,
+      "pending": 1
     },
     "6": {
-      "directional": 33,
-      "hits": 15,
-      "accuracy_pct": 45.45,
-      "pending": 6
+      "directional": 0,
+      "hits": 0,
+      "accuracy_pct": null,
+      "pending": 1
     },
     "12": {
-      "directional": 31,
-      "hits": 10,
-      "accuracy_pct": 32.26,
-      "pending": 8
+      "directional": 0,
+      "hits": 0,
+      "accuracy_pct": null,
+      "pending": 1
     }
   },
-  "by_probability_band": {
-    "low": {
-      "directional": 135,
-      "hits": 64,
-      "accuracy_pct": 47.41
-    }
-  },
-  "calibration": [
-    {
-      "probability_band": "low",
-      "implied_mid": 0.55,
-      "empirical_hit_rate": 0.47409999999999997,
-      "n": 135,
-      "note": "Needs larger n before adjusting bands."
-    }
-  ],
+  "by_probability_band": {},
+  "calibration": [],
   "limitations": [
     "Shadow-only: forecasts never execute or alter production alerts.",
     "Direction accuracy excludes ABSTAIN rows (abstain is tracked separately).",
