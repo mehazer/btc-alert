@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Intelligence v2 — Diagnostics & logs</title>
+<style>
+:root{--bg:#080c12;--panel:#111923;--line:#243244;--text:#e7edf5;--muted:#91a1b5;--cyan:#22d3ee;--green:#39d98a;--amber:#f5b942;--red:#f87171;--blue:#60a5fa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 Inter,ui-sans-serif,system-ui,sans-serif}.wrap{max-width:1280px;margin:auto;padding:22px 16px 54px}header{border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:18px}h1{font-size:1.25rem;margin:0}h1 span{color:var(--cyan)}.nav{margin-top:8px;display:flex;gap:12px;flex-wrap:wrap}.nav a{color:var(--cyan);font-size:.78rem;text-decoration:none}.section{margin:22px 0 10px;font-size:.95rem;font-weight:700}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}.note,.empty,.meta{color:var(--muted);font-size:.78rem}table{width:100%;border-collapse:collapse;font-size:.76rem}th{text-align:left;color:var(--muted);border-bottom:1px solid var(--line);padding:7px 5px}td{padding:7px 5px;border-top:1px solid #1a2635;vertical-align:top}.scroll{overflow-x:auto}.pill{display:inline-flex;padding:3px 8px;border:1px solid var(--line);border-radius:999px;font-size:.72rem;color:var(--muted)}.ok{color:var(--green)}.warn{color:var(--amber)}.bad{color:var(--red)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Intelligence <span>v2</span> — Diagnostics & logs</h1>
+  <div class="nav">
+    <a href="v2.html">← Scorecard</a>
+    <a href="index.html">Main dashboard</a>
+    <a href="history.html">Legacy history</a>
+  </div>
+  <div class="meta" id="updated" style="margin-top:8px">Loading…</div>
+</header>
+
+<div class="section">Pending evaluation windows</div>
+<div class="card"><div class="scroll" id="pending"><div class="empty">Loading…</div></div></div>
+
+<div class="section">Walk-forward backtest</div>
+<div class="card" id="walkforward"><div class="empty">Loading…</div></div>
+
+<div class="section">Historical replay</div>
+<div class="card" id="replay"><div class="empty">Loading…</div></div>
+
+<div class="section">Robustness scenarios</div>
+<div class="card" id="robustness"><div class="empty">Loading…</div></div>
+
+<div class="section">Venue snapshot</div>
+<div class="card"><div class="scroll" id="venues"><div class="empty">Loading…</div></div></div>
+
+<footer class="meta">Diagnostic detail only. Does not change live alerts or promotion auto-execution.</footer>
+</div>
+<script>
+const REPO='mehazer/btc-alert',BRANCH='main';
+const raw=p=>`https://raw.githubusercontent.com/${REPO}/${BRANCH}/${p}?t=${Date.now()}`;
+const $=id=>document.getElementById(id);
+const esc=v=>String(v??'—').replace(/[&<>"']/g,c=>({'&':'&','<':'<','>':'>','"':'"',"'":'&#39;'}[c]));
+async function json(p){const r=await fetch(raw(p));if(!r.ok)throw Error(`${p} (${r.status})`);return r.json()}
+function n(v,d=2){return v==null?'—':Number(v).toLocaleString('en-US',{maximumFractionDigits:d})}
+function pct(v){return v==null?'—':`${Number(v).toFixed(2)}%`}
+function dt(v){if(!v)return'—';const d=new Date(String(v).includes('T')?v:`${String(v).replace(' ','T')}Z`);return isNaN(d)?esc(v):d.toLocaleString('en-GB',{timeZone:'UTC',month:'short',day:'2-digit',hour:'2-digit',minute:'2-digit'})+' UTC'}
+function pill(label,cls=''){return `<span class="pill ${cls}">${esc(label)}</span>`}
+(async()=>{
+try{
+ const [decisions,walkforward,replay,robustness,snapshot,meta]=await Promise.all([
+  json('history/intelligence_v2/decision_ledger.json'),
+  json('history/intelligence_v2/walkforward/latest/walkforward_report.json').catch(()=>null),
+  json('history/intelligence_v2/replay/latest/replay_report.json').catch(()=>null),
+  json('history/intelligence_v2/robustness/latest/robustness_report.json').catch(()=>null),
+  json('history/intelligence_v2/venue_snapshot.json').catch(()=>null),
+  json('history/intelligence_v2/ledger_meta.json').catch(()=>null),
+ ]);
+ $('updated').textContent = `Ledger: ${dt(meta?.updated_at)} · runs ${n(meta?.total_runs,0)}`;
+ const rows=[];
+ for(const d of decisions||[]){
+  for(const [h,x] of Object.entries(d.horizons||{})){
+   if((x||{}).status!=='settled') rows.push({symbol:d.symbol,decision:d.decision,confidence:d.confidence,horizon:h,status:x?.status||'pending',at:d.evaluated_at});
+  }
+ }
+ rows.sort((a,b)=>Number(a.horizon)-Number(b.horizon));
+ $('pending').innerHTML = rows.length
+  ? `<table><tr><th>Symbol</th><th>Decision</th><th>Conf</th><th>Horizon</th><th>Status</th><th>Time</th></tr>${rows.map(x=>`<tr><td>${esc(x.symbol)}</td><td>${esc(x.decision)}</td><td>${n(x.confidence,0)}%</td><td>${x.horizon}</td><td>${esc(x.status)}</td><td>${dt(x.at)}</td></tr>`).join('')}</table>`
+  : '<div class="note">No pending windows.</div>';
+
+ if(walkforward){
+  const s=walkforward.scorecard||{};
+  const h=Object.entries(s.by_horizon||{}).sort((a,b)=>Number(a[0])-Number(b[0])).map(([k,v])=>`<tr><td>${k}</td><td>${n(v.settled,0)}</td><td>${n(v.directional,0)}</td><td>${v.accuracy_pct==null?'—':pct(v.accuracy_pct)}</td></tr>`).join('');
+  $('walkforward').innerHTML=`<div class="note">${esc((walkforward.symbols||[]).join(', '))} · batch ${esc(walkforward.walkforward_batch_id)}</div><div class="scroll" style="margin-top:10px"><table><tr><th>Horizon</th><th>Settled</th><th>Directional</th><th>Accuracy</th></tr>${h}</table></div><div class="note" style="margin-top:8px">Accuracy ${s.direction_accuracy_pct==null?'—':pct(s.direction_accuracy_pct)}</div>`;
+ } else $('walkforward').innerHTML='<div class="empty">No walk-forward report.</div>';
+
+ if(replay){
+  const s=replay.replay_scorecard||{};
+  $('replay').innerHTML=`<div class="note">batch ${esc(replay.replay_batch_id)} · ${dt(replay.completed_at)}</div><div class="note" style="margin-top:8px">Replay accuracy: ${s.direction_accuracy_pct==null?'—':pct(s.direction_accuracy_pct)}</div>`;
+ } else $('replay').innerHTML='<div class="empty">No replay report.</div>';
+
+ if(robustness){
+  const rows2=Object.entries(robustness.scenario_summaries||{}).map(([name,s])=>`<tr><td>${esc(name)}</td><td>${s.direction_accuracy_pct==null?'—':pct(s.direction_accuracy_pct)}</td><td>${n(s.risk_veto_count,0)}</td></tr>`).join('');
+  $('robustness').innerHTML=`<div class="scroll"><table><tr><th>Scenario</th><th>Accuracy</th><th>Risk vetoes</th></tr>${rows2}</table></div>`;
+ } else $('robustness').innerHTML='<div class="empty">No robustness report.</div>';
+
+ const symbols=snapshot?.symbols||{};
+ const vrows=Object.entries(symbols).map(([symbol,x])=>{
+  const ok=(x.venues||[]).filter(v=>v.status==='ok');
+  return `<tr><td>${esc(symbol)}</td><td>${ok.length}</td><td class="meta">${esc((x.venues||[]).map(v=>v.venue+':'+v.status).join(', '))}</td></tr>`;
+ }).join('');
+ $('venues').innerHTML=vrows?`<table><tr><th>Symbol</th><th>OK sources</th><th>Venues</th></tr>${vrows}</table>`:'<div class="empty">No venue snapshot.</div>';
+}catch(e){$('updated').textContent='Failed: '+e.message}
+})();
+</script>
+</body>
+</html>
