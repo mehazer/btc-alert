@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agent Monitoring — BTC Alert</title>
+<style>
+:root{--bg:#080c12;--panel:#111923;--line:#243244;--text:#e7edf5;--muted:#91a1b5;--cyan:#22d3ee;--green:#39d98a;--amber:#f5b942;--red:#f87171;--blue:#60a5fa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 Inter,system-ui,sans-serif}.wrap{max-width:1200px;margin:auto;padding:22px 16px 48px}header{border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:18px}h1{margin:0;font-size:1.3rem}h1 span{color:var(--cyan)}.nav{margin-top:8px;display:flex;gap:12px;flex-wrap:wrap}.nav a{color:var(--cyan);font-size:.78rem;text-decoration:none}.section{margin:22px 0 10px;font-weight:700}.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}.muted,.note{color:var(--muted);font-size:.78rem}.pill{display:inline-flex;padding:2px 8px;border-radius:999px;border:1px solid var(--line);font-size:.7rem}.ok{color:var(--green)}.warn{color:var(--amber)}.bad{color:var(--red)}.info{color:var(--blue)}.bar{height:8px;background:#1b2a39;border-radius:8px;overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;background:var(--cyan)}.reason{padding:3px 0;font-size:.78rem;color:var(--muted)}.reason:before{content:'• ';color:var(--cyan)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Agent <span>Monitoring</span></h1>
+  <div class="nav">
+    <a href="index.html">Main</a>
+    <a href="project.html">Project</a>
+    <a href="v2.html">Scorecard</a>
+    <a href="logs.html">Logs</a>
+  </div>
+  <div class="muted" id="updated" style="margin-top:8px">Loading…</div>
+</header>
+
+<div class="section">Coordinator</div>
+<div class="card" id="coord"></div>
+
+<div class="section">Agents</div>
+<div class="grid" id="agents"></div>
+
+<div class="section">Conflicts & data issues</div>
+<div class="card" id="conflicts"></div>
+
+<div class="section">Human intervention required</div>
+<div class="card" id="human"></div>
+
+<footer class="note" style="margin-top:20px">Statuses are operational descriptors for the shadow stack. Live run metrics also appear on the v2 scorecard.</footer>
+</div>
+<script>
+const REPO='mehazer/btc-alert',BRANCH='main';
+const raw=p=>`https://raw.githubusercontent.com/${REPO}/${BRANCH}/${p}?t=${Date.now()}`;
+const $=id=>document.getElementById(id);
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function json(p){const r=await fetch(raw(p));if(!r.ok)throw Error(p);return r.json()}
+function pill(t,c=''){return `<span class="pill ${c}">${esc(t)}</span>`}
+function stTone(s){s=String(s).toLowerCase();if(s==='active')return'ok';if(s==='failed'||s==='blocked')return'bad';if(s==='idle'||s==='waiting')return'warn';return'info'}
+(async()=>{
+try{
+ const [ag,cards]=await Promise.all([
+  json('history/project/agents_status.json'),
+  json('history/intelligence_v2/agent_scorecards.json').catch(()=>null)
+ ]);
+ $('updated').textContent='Updated '+esc(ag.updated_at);
+ const c=ag.coordinator||{};
+ $('coord').innerHTML=`<strong>${esc(c.name)}</strong> ${pill(c.status,stTone(c.status))}<div class="note">${esc(c.purpose)}</div><div class="note">Schedule: ${esc(c.schedule)} · ${esc(c.last_known)}</div>`;
+ const live=cards?.agents||{};
+ $('agents').innerHTML=(ag.agents||[]).map(a=>{
+  const liveA=live[a.id]||{};
+  const imp=a.improvement||{};
+  return `<div class="card">
+    <div><strong>${esc(a.name)}</strong> ${pill(a.status,stTone(a.status))}</div>
+    <div class="note">${esc(a.purpose)}</div>
+    <div class="note" style="margin-top:6px">Sources: ${esc((a.data_sources||[]).join(', '))}</div>
+    <div class="note">Delivers: ${esc((a.delivers||[]).join(', '))}</div>
+    ${liveA.samples!=null?`<div class="note">Live samples: ${liveA.samples} · metric: ${liveA.primary_metric_pct==null?'—':liveA.primary_metric_pct+'%'}</div>`:''}
+    <div class="note" style="margin-top:8px">Self-improvement ${imp.pct||0}%</div>
+    <div class="bar"><i style="width:${imp.pct||0}%"></i></div>
+    <div class="note">Next: ${esc(imp.next||'—')}</div>
+    ${(imp.weaknesses||[]).map(w=>`<div class="reason">${esc(w)}</div>`).join('')}
+  </div>`;
+ }).join('');
+ $('conflicts').innerHTML=(ag.conflicts||[]).map(x=>`<div class="reason">[${esc(x.severity)}] ${esc(x.detail)}</div>`).join('')||'<div class="note">None flagged</div>';
+ $('human').innerHTML=(ag.human_required||[]).map(x=>`<div class="reason">${esc(x)}</div>`).join('')||'<div class="note">None</div>';
+}catch(e){$('updated').textContent='Failed: '+e.message}
+})();
+</script>
+</body>
+</html>

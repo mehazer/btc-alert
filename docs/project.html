@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Project Management — BTC Alert</title>
+<style>
+:root{--bg:#080c12;--panel:#111923;--panel2:#0d141d;--line:#243244;--text:#e7edf5;--muted:#91a1b5;--cyan:#22d3ee;--green:#39d98a;--amber:#f5b942;--red:#f87171;--blue:#60a5fa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 Inter,system-ui,sans-serif}.wrap{max-width:1200px;margin:auto;padding:22px 16px 48px}header{border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:18px}h1{margin:0;font-size:1.3rem}h1 span{color:var(--cyan)}.nav{margin-top:8px;display:flex;gap:12px;flex-wrap:wrap}.nav a{color:var(--cyan);font-size:.78rem;text-decoration:none}.section{margin:22px 0 10px;font-weight:700;font-size:.95rem}.grid{display:grid;gap:12px}.grid3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}.grid2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}.metric .label{font-size:.68rem;color:var(--muted);text-transform:uppercase}.metric .value{font-size:1.35rem;font-weight:750;margin-top:2px}.muted,.note{color:var(--muted);font-size:.78rem}.gauge{height:12px;background:#1b2a39;border-radius:8px;overflow:hidden;margin-top:8px}.gauge i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--green))}.pill{display:inline-flex;padding:2px 8px;border-radius:999px;border:1px solid var(--line);font-size:.7rem;margin-right:4px}.ok{color:var(--green);border-color:#205f42}.warn{color:var(--amber);border-color:#69501e}.bad{color:var(--red);border-color:#713333}.info{color:var(--blue)}.scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:.75rem}th{text-align:left;color:var(--muted);border-bottom:1px solid var(--line);padding:7px 5px}td{padding:7px 5px;border-top:1px solid #1a2635;vertical-align:top}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Project <span>Management</span></h1>
+  <div class="nav">
+    <a href="index.html">Main</a>
+    <a href="v2.html">Scorecard</a>
+    <a href="agents.html">Agents</a>
+    <a href="logs.html">Logs</a>
+  </div>
+  <div class="muted" id="updated" style="margin-top:8px">Loading…</div>
+</header>
+
+<div class="section">Overview</div>
+<div class="grid grid3" id="overview"></div>
+
+<div class="section">Milestones</div>
+<div class="card"><div class="scroll" id="milestones"></div></div>
+
+<div class="section">Blockers & solutions</div>
+<div class="card" id="blockers"></div>
+
+<div class="section">Action tracker</div>
+<div class="card">
+  <div class="note" style="margin-bottom:10px">Human = needs you · AI = agent can execute · Automated = scheduled pipeline</div>
+  <div class="scroll" id="actions"></div>
+</div>
+
+<footer class="note" style="margin-top:20px">Updated from <span class="muted">history/project/</span>. Shadow platform — no auto production promotion.</footer>
+</div>
+<script>
+const REPO='mehazer/btc-alert',BRANCH='main';
+const raw=p=>`https://raw.githubusercontent.com/${REPO}/${BRANCH}/${p}?t=${Date.now()}`;
+const $=id=>document.getElementById(id);
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function json(p){const r=await fetch(raw(p));if(!r.ok)throw Error(p+' '+r.status);return r.json()}
+function pill(t,c=''){return `<span class="pill ${c}">${esc(t)}</span>`}
+function toneStatus(s){s=String(s).toLowerCase();if(s==='completed')return'ok';if(s==='blocked'||s==='failed')return'bad';if(s==='in progress'||s==='waiting'||s==='open')return'warn';return'info'}
+(async()=>{
+try{
+ const [st,act]=await Promise.all([json('history/project/status.json'),json('history/project/actions.json')]);
+ $('updated').textContent='Updated '+esc(st.updated_at)+' · phase '+esc(st.phase);
+ const pct=st.completion_pct||0;
+ $('overview').innerHTML=`
+  <div class="card metric"><div class="label">Completion</div><div class="value">${pct}%</div><div class="gauge"><i style="width:${pct}%"></i></div></div>
+  <div class="card metric"><div class="label">Objectives</div><div class="value" style="font-size:.95rem;font-weight:600">${(st.objectives||[]).length}</div><div class="note">${esc((st.objectives||[]).slice(0,2).join(' · '))}</div></div>
+  <div class="card metric"><div class="label">Open actions</div><div class="value">${(act.actions||[]).filter(a=>!['Completed','completed'].includes(a.status)).length}</div><div class="note">of ${(act.actions||[]).length} total</div></div>`;
+ $('milestones').innerHTML=`<table><tr><th>Milestone</th><th>Status</th></tr>${(st.milestones||[]).map(m=>`<tr><td>${esc(m.name)}</td><td>${pill(m.status,toneStatus(m.status))}</td></tr>`).join('')}</table>`;
+ $('blockers').innerHTML=(st.blockers||[]).map(b=>`<div style="margin-bottom:12px"><strong>${esc(b.title)}</strong><div class="note">${esc(b.detail)}</div><div class="note" style="color:var(--cyan)">→ ${esc(b.solution)}</div></div>`).join('')||'<div class="note">None</div>';
+ const rows=(act.actions||[]).slice().sort((a,b)=>['Critical','High','Medium','Low'].indexOf(a.priority)-['Critical','High','Medium','Low'].indexOf(b.priority));
+ $('actions').innerHTML=`<table><tr><th>ID</th><th>Action</th><th>Priority</th><th>Status</th><th>Owner</th><th>Expected outcome</th></tr>${rows.map(a=>`<tr><td>${esc(a.id)}</td><td>${esc(a.title)}</td><td>${pill(a.priority,a.priority==='Critical'?'bad':a.priority==='High'?'warn':'info')}</td><td>${pill(a.status,toneStatus(a.status))}</td><td>${esc(a.owner)}</td><td class="note">${esc(a.expected_outcome)}</td></tr>`).join('')}</table>`;
+}catch(e){$('updated').textContent='Failed: '+e.message}
+})();
+</script>
+</body>
+</html>
