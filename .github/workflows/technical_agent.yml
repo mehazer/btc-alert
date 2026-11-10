@@ -1,15 +1,9 @@
 name: Multi-Coin Daily RSI Alert
 
 on:
-  schedule:
-    # Every 4 hours for 4h timeframe analysis.
-    - cron: "0 */4 * * *"
-  workflow_dispatch: {}   # Actions sekmesinden manuel de tetikleyebilirsin
+  # Scheduled runs are handled by pipeline.yml (news → technical → v2).
+  workflow_dispatch: {}
 
-# History dosyalarini (history/*.json) repo'ya geri commit edebilmek icin
-# yazma izni gerekiyor. Bu izin SADECE bu repo icin, SADECE GitHub'in
-# kendi otomatik ureteceoi GITHUB_TOKEN icindir - hicbir kisisel
-# token/sifre kullanilmaz.
 permissions:
   contents: write
 
@@ -42,11 +36,10 @@ jobs:
           RSI_THRESHOLD: "70"
           ALWAYS_NOTIFY: "true"
           NOTIFY_ALL_SYMBOLS: "true"
-
         run: python alert_bot.py
 
       - name: Tarihceyi (history/) repo'ya kaydet
-        if: always()   # bot hata ile bitse bile o ana kadar toplanan history kaydedilsin
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
