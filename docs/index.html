@@ -56,20 +56,21 @@ function marketStatus(last,m){
 }
 (async()=>{
 try{
- const [m,b,decisions]=await Promise.all([
+ const [m,b,pipe,decisions]=await Promise.all([
   json('history/market.json').catch(()=>({})),
   json('history/BTCUSDT.json').catch(()=>[]),
+  json('history/pipeline_meta.json').catch(()=>({})),
   json('history/intelligence_v2/decision_ledger.json').catch(()=>[])
  ]);
  const last=(Array.isArray(b)?b:[]).at(-1)||{};
  const ms=marketStatus(last,m||{});
- $('updated').textContent='Last update: '+dt(m.updated_at||last.date);
+ $('updated').textContent='Last update: '+dt(last.date||m.updated_at)+' · pipeline '+(pipe.updated_at?dt(pipe.updated_at):'n/a');
  $('overview').innerHTML=
   card('Market Status', ms.status, ms.why)+
   card('BTC RSI', last.rsi==null?'—':n(last.rsi,1), '14-period · Binance')+
   card('Fear & Greed', m.fear_greed_value==null?'—':n(m.fear_greed_value,0), m.fear_greed_label||'')+
   card('BTC funding', funding(m.funding_rate), 'OKX perpetual');
- $('quality').innerHTML='<div class="quality good">Overview uses Market Status (no duplicate BTC price). Detailed prices remain in symbol cards.</div>';
+ $('quality').innerHTML='<div class="quality good">Overview uses Market Status (no duplicate BTC price). BTC history and pipeline timestamps drive Last update.</div>';
  const rows=(decisions||[]).slice(-5).reverse();
  if(rows.length){
   const L=rows[0];
@@ -80,7 +81,7 @@ try{
   try{
    const h=await json('history/'+sym+'.json');
    const x=(h||[]).at(-1)||{};
-   cards.push(`<div class="card" style="margin-bottom:10px"><strong>${sym.replace('USDT','')}</strong> · ${n(x.price)} · RSI ${x.rsi==null?'—':n(x.rsi,1)} · OI ${x.open_interest==null?'—':n(x.open_interest,0)}</div>`);
+   cards.push(`<div class="card" style="margin-bottom:10px"><strong>${sym.replace('USDT','')}</strong> · ${n(x.price)} · RSI ${x.rsi==null?'—':n(x.rsi,1)} · OI ${x.open_interest==null?'—':n(x.open_interest,0)} · ${dt(x.date)}</div>`);
   }catch(e){cards.push(`<div class="card"><strong>${sym}</strong> · unavailable</div>`);}
  }
  $('symbols').innerHTML=cards.join('')||'<div class="empty">No symbols</div>';
