@@ -1,8 +1,7 @@
 name: Intelligence v2 Shadow
 
 on:
-  schedule:
-    - cron: "30 */4 * * *"
+  # Scheduled runs are handled by pipeline.yml (news → technical → v2).
   workflow_dispatch:
     inputs:
       timeframe:
@@ -49,7 +48,6 @@ jobs:
         env:
           PYTHONPATH: .
         run: |
-          # Point-in-time forecast evaluation (BTC/ETH/SOL only — longer history)
           python -m intelligence_v2.walkforward \
             --history-dir history \
             --symbols BTCUSDT,ETHUSDT,SOLUSDT \
@@ -74,5 +72,13 @@ jobs:
             echo "No v2 ledger changes to commit."
           else
             git commit -m "v2 ledger update [skip ci]"
-            git push
+            for attempt in 1 2 3; do
+              git fetch origin main
+              if git rebase origin/main && git push origin HEAD:main; then
+                exit 0
+              fi
+              git rebase --abort || true
+              sleep $((attempt * 5))
+            done
+            exit 1
           fi
