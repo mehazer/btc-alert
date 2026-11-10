@@ -124,7 +124,12 @@ def fetch_fg():
 
 
 def support_resistance(history, lookback=30):
-    prices = [h["price"] for h in history[-lookback:] if h.get("price") is not None]
+    """Prior support/resistance: min/max of recent closes excluding the current bar."""
+    if len(history) < 6:
+        return None, None
+    # Exclude current bar so S/R is prior structure, not equal to live price
+    window = history[-(lookback + 1):-1] if len(history) > lookback else history[:-1]
+    prices = [h["price"] for h in window if h.get("price") is not None]
     if len(prices) < 5:
         return None, None
     return min(prices), max(prices)
