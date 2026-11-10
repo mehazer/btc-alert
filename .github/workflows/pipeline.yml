@@ -1,4 +1,4 @@
-name: Crypto Pipeline (News → Technical → Intelligence v2)
+name: Crypto Pipeline (News → Technical → Whale → Intelligence v2)
 
 on:
   schedule:
@@ -59,7 +59,17 @@ jobs:
           echo "TECH_EXIT=$?" >> "$GITHUB_ENV"
           set -e
 
-      - name: 3) Intelligence v2 shadow + forecast walk-forward
+      - name: 3) Whale / on-chain (shadow, free APIs, no Telegram)
+        env:
+          PYTHONPATH: .
+          HISTORY_DIR: history
+        run: |
+          set +e
+          python -m agents.whale_agent
+          echo "WHALE_EXIT=$?" >> "$GITHUB_ENV"
+          set -e
+
+      - name: 4) Intelligence v2 shadow + forecast walk-forward
         env:
           PYTHONPATH: .
         run: |
@@ -88,14 +98,14 @@ jobs:
               "steps": {
                   "news_exit": int(os.environ.get("NEWS_EXIT", "1")),
                   "technical_exit": int(os.environ.get("TECH_EXIT", "1")),
+                  "whale_exit": int(os.environ.get("WHALE_EXIT", "1")),
                   "shadow_exit": int(os.environ.get("SHADOW_EXIT", "1")),
               },
-              "sequence": ["news", "technical", "intelligence_v2"],
+              "sequence": ["news", "technical", "whale_shadow", "intelligence_v2"],
               "cadence": "every 4 hours",
           }
           with open("docs/build_meta.json", "w", encoding="utf-8") as f:
               json.dump(meta, f, indent=2)
-          # Mirror a small pointer under history for dashboards that only read history/
           os.makedirs("history", exist_ok=True)
           with open("history/pipeline_meta.json", "w", encoding="utf-8") as f:
               json.dump(meta, f, indent=2)
@@ -111,7 +121,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "pipeline update: news→technical→v2 [skip ci]"
+            git commit -m "pipeline update: news→technical→whale→v2 [skip ci]"
             for attempt in 1 2 3 4 5; do
               git fetch origin main
               if git rebase origin/main && git push origin HEAD:main; then
@@ -131,7 +141,8 @@ jobs:
         run: |
           echo "News exit: ${NEWS_EXIT:-n/a}"
           echo "Technical exit: ${TECH_EXIT:-n/a}"
+          echo "Whale exit: ${WHALE_EXIT:-n/a}"
           echo "Shadow exit: ${SHADOW_EXIT:-n/a}"
-          echo "Dashboards read live JSON from raw.githubusercontent.com/mehazer/btc-alert/main/history/"
           echo "Main: https://mehazer.github.io/btc-alert/"
-          echo "v2:   https://mehazer.github.io/btc-alert/v2.html"
+          echo "Project: https://mehazer.github.io/btc-alert/project.html"
+          echo "v2: https://mehazer.github.io/btc-alert/v2.html"

@@ -4,9 +4,9 @@ Design rules:
 - Explicit horizons (1, 3, 6, 12 bars)
 - Probability *bands*, not point probabilities
 - First-class ABSTAIN when evidence is weak or blocked
+- Directional FORECAST requires OI confluence (not technical alone)
 - Explicit invalidation conditions
 - Never enables execution
-- Confidence intentionally capped; no fake precision
 """
 from __future__ import annotations
 
@@ -24,7 +24,7 @@ from .contracts import (
 )
 
 HORIZONS = (1, 3, 6, 12)
-MODEL_VERSION = "forecast-engine-v0.2-oi-gated"
+MODEL_VERSION = "forecast-engine-v0.3-oi-confluence"
 MAX_CONFIDENCE = 72
 
 BANDS = {
@@ -53,12 +53,14 @@ def _dir_from_state(state: str) -> str:
     return "flat"
 
 
-def _confluence(pack: EvidencePack, technical: AgentOutput, risk: RiskAssessment) -> Tuple[str, int, List[str], List[str]]:
+def _confluence(pack: EvidencePack, technical: AgentOutput, risk: RiskAssessment) -> Tuple[str, int, List[str], List[str], bool]:
+    """Return direction, score, drivers, conflicts, oi_aligned."""
     row = pack.observations[0] if pack.observations else None
     drivers: List[str] = []
     conflicts: List[str] = []
     score_up = 0
     score_down = 0
+    oi_aligned = False
 
     tech_dir = _dir_from_state(technical.state)
     if tech_dir == "up":
@@ -78,15 +80,19 @@ def _confluence(pack: EvidencePack, technical: AgentOutput, risk: RiskAssessment
 
     if row and row.oi_change_pct is not None:
         if row.price_change_pct is not None and row.price_change_pct > 0 and row.oi_change_pct >= 1.5:
-            score_up += 1
+            score_up += 2
+            oi_aligned = True
             drivers.append(f"OI expanding with price ({row.oi_change_pct:+.1f}%)")
         elif row.price_change_pct is not None and row.price_change_pct < 0 and row.oi_change_pct >= 1.5:
-            score_down += 1
+            score_down += 2
+            oi_aligned = True
             drivers.append(f"OI expanding into decline ({row.oi_change_pct:+.1f}%)")
         elif row.price_change_pct is not None and row.price_change_pct > 0 and row.oi_change_pct <= -1.5:
             conflicts.append("Price up while OI contracts (covering / weak fuel)")
         elif row.price_change_pct is not None and row.price_change_pct < 0 and row.oi_change_pct <= -1.5:
+            # Deleveraging — weak directional edge
             drivers.append("Price down with OI contraction (deleveraging)")
+            conflicts.append("Deleveraging is not a clean directional continuation signal")
 
     if row and row.rsi is not None:
         if row.rsi >= 65:
@@ -101,23 +107,26 @@ def _confluence(pack: EvidencePack, technical: AgentOutput, risk: RiskAssessment
     if risk.overall_level in {"high", "unknown"} or risk.veto:
         conflicts.append(f"Risk level={risk.overall_level}, veto={risk.veto}")
 
-    if score_up >= score_down + 2:
-        return "up", score_up, drivers, conflicts
-    if score_down >= score_up + 2:
-        return "down", score_down, drivers, conflicts
+    # Directional call requires margin AND OI alignment
+    if score_up >= score_down + 2 and oi_aligned and score_up >= 3:
+        return "up", score_up, drivers, conflicts, oi_aligned
+    if score_down >= score_up + 2 and oi_aligned and score_down >= 3:
+        return "down", score_down, drivers, conflicts, oi_aligned
+    if not oi_aligned and (score_up > 0 or score_down > 0):
+        conflicts.append("No confirming OI alignment — prefer ABSTAIN")
     if score_up == 0 and score_down == 0:
-        return "flat", 0, drivers, conflicts
-    return "flat", max(score_up, score_down), drivers, conflicts
+        return "flat", 0, drivers, conflicts, oi_aligned
+    return "flat", max(score_up, score_down), drivers, conflicts, oi_aligned
 
 
-def _band_for_score(score: int, conflicts: List[str], quality: str) -> str:
-    if quality == "fail" or score < 2:
+def _band_for_score(score: int, conflicts: List[str], quality: str, oi_aligned: bool) -> str:
+    if quality == "fail" or score < 3 or not oi_aligned:
         return "abstain"
-    if conflicts and score < 4:
+    if conflicts and score < 5:
         return "low"
-    if score >= 4 and not conflicts and quality == "pass":
+    if score >= 5 and not conflicts and quality == "pass":
         return "high"
-    if score >= 3:
+    if score >= 4:
         return "medium"
     return "low"
 
@@ -166,7 +175,7 @@ def issue(
         "Probability bands are conservative ranges, not point estimates.",
         f"Confidence capped at {MAX_CONFIDENCE} until walk-forward calibration is proven.",
         "ABSTAIN is a valid successful outcome when edge is not present.",
-        "Directional forecasts require usable OI history (oi_history_ok).",
+        "Directional forecasts require OI confluence (price+OI agreement).",
     ]
 
     if pack.quality_status == "fail":
@@ -184,14 +193,19 @@ def issue(
     if decision.decision == "OBSERVE" and decision.blocking_reasons:
         abstain_reasons.append("decision is OBSERVE with blockers")
 
-    direction, score, drivers, conflicts = _confluence(pack, technical, risk)
+    direction, score, drivers, conflicts, oi_aligned = _confluence(pack, technical, risk)
     for c in conflicts:
         drivers.append(f"Conflict: {c}")
 
-    band = _band_for_score(score, conflicts, pack.quality_status)
+    if direction in {"up", "down"} and not oi_aligned:
+        abstain_reasons.append("directional forecast requires OI confluence")
+        direction = "flat"
+
+    band = _band_for_score(score, conflicts, pack.quality_status, oi_aligned)
     if direction == "flat":
         band = "abstain"
-        abstain_reasons.append("no clear directional confluence")
+        if "no clear directional confluence" not in abstain_reasons:
+            abstain_reasons.append("no clear directional confluence")
 
     if band == "abstain" or direction in {"flat", "abstain"} or abstain_reasons:
         stance = "ABSTAIN"
@@ -238,7 +252,7 @@ def issue(
                     status="active",
                 )
             )
-        confidence = min(MAX_CONFIDENCE, 40 + score * 6 + (5 if pack.quality_status == "pass" else 0))
+        confidence = min(MAX_CONFIDENCE, 40 + score * 5 + (5 if pack.quality_status == "pass" else 0))
         confidence = max(20, confidence - 8 * len(conflicts))
 
     return ForecastRecord(
