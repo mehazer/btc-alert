@@ -1,6 +1,7 @@
 """
 Self-contained multi-coin alert bot.
 Real data (Binance + OKX + F&G) + rich Telegram cards with figures.
+Persists open_interest into history/SYMBOL.json for intelligence_v2.
 """
 import os
 import json
@@ -82,13 +83,7 @@ def fetch_binance(symbol, limit=80):
         close = float(row[4])
         vol = float(row[5])
         closes.append(close)
-        history.append({
-            "price": close,
-            "volume": vol,
-            "oi": None,
-            "funding": None,
-            "ts": row[0],
-        })
+        history.append({"price": close, "volume": vol, "oi": None, "funding": None, "ts": row[0]})
     return history, closes
 
 
@@ -127,7 +122,6 @@ def support_resistance(history, lookback=30):
     """Prior support/resistance: min/max of recent closes excluding the current bar."""
     if len(history) < 6:
         return None, None
-    # Exclude current bar so S/R is prior structure, not equal to live price
     window = history[-(lookback + 1):-1] if len(history) > lookback else history[:-1]
     prices = [h["price"] for h in window if h.get("price") is not None]
     if len(prices) < 5:
@@ -180,7 +174,6 @@ def build_card(symbol, history, closes, oi, funding, fg_val, fg_label, btc_chg=N
 
     rsi_val = rsi(closes, RSI_PERIOD)
     sup, res = support_resistance(history)
-
     primary, secondary, risk = classify(price_chg, oi_chg, vol_ratio, funding)
 
     bullish = primary in ("Fresh long buildup", "Spot-led buying", "Short covering")
@@ -224,39 +217,25 @@ def build_card(symbol, history, closes, oi, funding, fg_val, fg_label, btc_chg=N
 
     trend = "Bullish-leaning" if rsi_val and rsi_val >= 60 else ("Bearish-leaning" if rsi_val and rsi_val <= 40 else "Range / neutral")
 
-    lines = [
-        f"{symbol} · {INTERVAL} · {now} UTC",
-        f"Read: {primary}",
-    ]
+    lines = [f"{symbol} · {INTERVAL} · {now} UTC", f"Read: {primary}"]
     if secondary:
         lines.append(f"Also: {secondary}")
     lines += [
-        f"Stance: {stance}",
-        f"Drop-risk: {risk}",
-        "",
-        "Figures:",
+        f"Stance: {stance}", f"Drop-risk: {risk}", "", "Figures:",
         f"• Price: {fnum(price)}  |  RSI: {fnum(rsi_val, 1)}",
         f"• S/R: {fnum(sup)} / {fnum(res)}",
         f"• {fchg('Price', price_chg)}",
         f"• OI: {fnum(oi, 0)}" + (f"  ({oi_chg:+.2f}%)" if oi_chg is not None else "  (chg n/a — need 2 runs)"),
-        f"• {vol_str}",
-        f"• {fund_str}",
-        f"• Trend: {trend}",
+        f"• {vol_str}", f"• {fund_str}", f"• Trend: {trend}",
     ]
-
     if symbol != PRIMARY and btc_chg is not None and price_chg is not None:
         rel = price_chg - btc_chg
         rel_l = "Outperforming" if rel > 1 else ("Underperforming" if rel < -1 else "Similar")
         lines.append(f"• vs BTC: {rel_l} (BTC {btc_chg:+.2f}%)")
-
     ctx = [f"Regime: {regime}", f"Pressure: {pressure}"]
     if symbol == PRIMARY and fg_val is not None:
         ctx.append(f"F&G: {fg_val} ({fg_label or 'n/a'})")
-    lines.append("")
-    lines.append("Market: " + " | ".join(ctx))
-
-    lines.append("")
-    lines.append("Why:")
+    lines += ["", "Market: " + " | ".join(ctx), "", "Why:"]
     if primary == "Fresh long buildup":
         lines.append("• Price up with OI expansion → leveraged participation / new longs.")
     elif primary == "Short covering":
@@ -266,45 +245,31 @@ def build_card(symbol, history, closes, oi, funding, fg_val, fg_label, btc_chg=N
     elif primary == "Fresh short buildup":
         lines.append("• Price down with OI expansion → fresh short positioning.")
     else:
-        if oi_chg is None:
-            lines.append(f"• Classified mainly from price + volume ({primary}); OI change not yet available.")
-        else:
-            lines.append(f"• Classified from price/OI/volume relationship as {primary}.")
-
+        lines.append(f"• Classified from price/OI/volume as {primary}." if oi_chg is not None else f"• Classified mainly from price + volume ({primary}); OI change not yet available.")
     if risk in ("High", "Moderate"):
-        lines.append("")
-        lines.append(f"Risk driver: {'Sharp OI + positive funding' if (oi_chg or 0) > 3 else 'Participation / funding imbalance'}")
-
-    lines.append("")
-    if risk == "High":
-        lines.append("Watch: Crowded positioning — watch for flush or rejection.")
-    elif primary == "Range / no clear mechanism":
-        lines.append("Watch: Wait for clearer price + OI agreement before acting.")
-    else:
-        lines.append("Watch: Price holds key level; OI does not spike vertically.")
-
-    lines.append("")
-    lines.append("Note: Mechanism read, not a trade signal.")
+        lines += ["", f"Risk driver: {'Sharp OI + positive funding' if (oi_chg or 0) > 3 else 'Participation / funding imbalance'}"]
+    lines += ["", "Watch: Crowded positioning — watch for flush or rejection." if risk == "High" else ("Watch: Wait for clearer price + OI agreement before acting." if primary == "Range / no clear mechanism" else "Watch: Price holds key level; OI does not spike vertically."), "", "Note: Mechanism read, not a trade signal."]
     return "\n".join(lines)
 
 
 def load_prev_oi(symbol):
-    """Last known OI from previous bot run (sidecar)."""
     p = HISTORY_DIR / f"{symbol}_{INTERVAL}_last_oi.json"
     if p.exists():
         try:
             return json.loads(p.read_text()).get("oi")
         except Exception:
             pass
-    p2 = HISTORY_DIR / f"{symbol}_{INTERVAL}.json"
-    if p2.exists():
-        try:
-            data = json.loads(p2.read_text())
-            for h in reversed(data[-40:]):
-                if h.get("oi") is not None:
-                    return h["oi"]
-        except Exception:
-            pass
+    for name in (f"{symbol}_{INTERVAL}.json", f"{symbol}.json"):
+        p2 = HISTORY_DIR / name
+        if p2.exists():
+            try:
+                data = json.loads(p2.read_text())
+                for h in reversed(data[-40:]):
+                    v = h.get("oi") if h.get("oi") is not None else h.get("open_interest")
+                    if v is not None:
+                        return v
+            except Exception:
+                pass
     return None
 
 
@@ -320,23 +285,110 @@ def save_hist(symbol, history):
     p.write_text(json.dumps(history[-200:]))
 
 
+def update_rich_history(symbol, price, volume, oi, funding, rsi_val, prev_oi, price_chg):
+    """Append/update SYMBOL.json used by intelligence_v2 (open_interest field)."""
+    p = HISTORY_DIR / f"{symbol}.json"
+    rows = []
+    if p.exists():
+        try:
+            rows = json.loads(p.read_text())
+            if not isinstance(rows, list):
+                rows = []
+        except Exception:
+            rows = []
+
+    now = datetime.now(timezone.utc).isoformat()
+    oi_chg = pct(oi, prev_oi) if oi is not None and prev_oi not in (None, 0) else None
+    now_ms = int(datetime.now(timezone.utc).timestamp() * 1000)
+    update_in_place = False
+    if rows:
+        last = rows[-1]
+        last_ts = last.get("ts") or last.get("timestamp")
+        if last_ts is None and last.get("date"):
+            try:
+                last_dt = datetime.fromisoformat(str(last["date"]).replace("Z", "+00:00"))
+                last_ts = int(last_dt.timestamp() * 1000)
+            except Exception:
+                last_ts = None
+        if last_ts is not None:
+            try:
+                if abs(int(float(last_ts)) - now_ms) < 3 * 3600 * 1000:
+                    update_in_place = True
+            except Exception:
+                pass
+
+    row = {
+        "date": now,
+        "retrieved_at": now,
+        "timeframe": INTERVAL,
+        "price_venue": "Binance",
+        "price_dataset": "spot-klines",
+        "price_unit": "USDT per base asset",
+        "volume_venue": "Binance",
+        "volume_dataset": "spot-klines",
+        "volume_unit": "base asset",
+        "oi_venue": "OKX",
+        "oi_dataset": "perpetual-open-interest",
+        "oi_unit": "coin OI",
+        "funding_venue": "OKX",
+        "funding_dataset": "perpetual-funding-rate",
+        "funding_unit": "rate per interval",
+        "rsi": rsi_val,
+        "price": price,
+        "volume": volume,
+        "open_interest": oi,
+        "oi": oi,
+        "funding_rate": funding,
+        "funding": funding,
+        "oi_change_pct": round(oi_chg, 6) if oi_chg is not None else None,
+        "price_change_pct": round(price_chg, 6) if price_chg is not None else None,
+        "ts": now_ms,
+    }
+
+    if update_in_place:
+        rows[-1] = row
+        if len(rows) >= 2 and rows[-2].get("open_interest") is None and prev_oi is not None:
+            rows[-2]["open_interest"] = prev_oi
+            rows[-2]["oi"] = prev_oi
+    else:
+        if rows and prev_oi is not None and rows[-1].get("open_interest") is None:
+            rows[-1]["open_interest"] = prev_oi
+            rows[-1]["oi"] = prev_oi
+        rows.append(row)
+
+    p.write_text(json.dumps(rows[-500:]))
+    return {"path": str(p), "bars": len(rows), "oi": oi, "oi_change_pct": oi_chg, "updated_in_place": update_in_place}
+
+
 def process(symbol, fg_val, fg_label, btc_chg=None):
     print(f"--- {symbol} ---")
     history, closes = fetch_binance(symbol)
     oi, funding = fetch_okx(symbol)
     prev_oi = load_prev_oi(symbol)
+
     if history:
         history[-1]["oi"] = oi
         history[-1]["funding"] = funding
+        history[-1]["open_interest"] = oi
+        history[-1]["funding_rate"] = funding
         if prev_oi is not None and len(history) >= 2:
             history[-2]["oi"] = prev_oi
+            history[-2]["open_interest"] = prev_oi
 
-    print(f"  OI now={oi} prev={prev_oi}")
+    price = history[-1]["price"] if history else None
+    volume = history[-1]["volume"] if history else None
+    prev_price = history[-2]["price"] if history and len(history) >= 2 else None
+    price_chg = pct(price, prev_price)
+    rsi_val = rsi(closes, RSI_PERIOD)
+
+    print(f"  OI now={oi} prev={prev_oi} chg={pct(oi, prev_oi) if oi is not None and prev_oi not in (None, 0) else None}")
     text = build_card(symbol, history, closes, oi, funding, fg_val, fg_label, btc_chg=btc_chg, prev_oi=prev_oi)
     ok = send_telegram(text)
     print(f"Telegram {symbol}:", "sent" if ok else "failed")
     save_hist(symbol, history)
     save_last_oi(symbol, oi)
+    rich = update_rich_history(symbol, price, volume, oi, funding, rsi_val, prev_oi, price_chg)
+    print(f"  Rich history: bars={rich['bars']} oi={rich['oi']} oi_chg={rich['oi_change_pct']} in_place={rich['updated_in_place']}")
 
 
 def main():
