@@ -30,37 +30,111 @@ def append_json(name, record):
     save_json(name, rows)
 
 
+def _impact_icon(direction, tier):
+    d = (direction or "Neutral").lower()
+    t = (tier or "LOW").upper()
+    if d.startswith("bull"):
+        base = "🟢"
+    elif d.startswith("bear"):
+        base = "🔴"
+    else:
+        base = "🟡"
+    if t == "HIGH":
+        return base + "⚠️"
+    return base
+
+
+def _rank_headlines(intelligence):
+    """Build impact-ranked items from categories/headlines when present."""
+    items = []
+    seen = set()
+    for category in intelligence.get("categories") or []:
+        cat = category.get("category") or "General"
+        for h in category.get("headlines") or []:
+            title = " ".join(str(h.get("headline") or h.get("title") or "").split())
+            if not title:
+                continue
+            key = title.lower()[:120]
+            if key in seen:
+                continue
+            seen.add(key)
+            direction = h.get("direction") or h.get("bias") or "Neutral"
+            tier = (h.get("impact_tier") or h.get("impact") or "").upper()
+            if tier not in {"HIGH", "MEDIUM", "LOW"}:
+                if cat in ("Security & Hacks", "Regulation & Politics"):
+                    tier = "HIGH"
+                elif cat in ("Bitcoin & ETF", "Market & Macro", "Institutional & Exchanges"):
+                    tier = "MEDIUM"
+                else:
+                    tier = "LOW"
+            score = {"HIGH": 3, "MEDIUM": 2, "LOW": 1}.get(tier, 1)
+            items.append({
+                "title": title,
+                "category": cat,
+                "direction": direction,
+                "tier": tier,
+                "score": score,
+                "summary": h.get("summary") or h.get("ai_summary") or "",
+                "impact_note": h.get("impact_note") or h.get("why") or f"Ranked under {cat}.",
+            })
+    for point in (intelligence.get("ai") or {}).get("key_points") or []:
+        clean = " ".join(str(point).split())
+        if not clean:
+            continue
+        key = clean.lower()[:120]
+        if key in seen:
+            continue
+        seen.add(key)
+        items.append({
+            "title": clean,
+            "category": "AI digest",
+            "direction": (intelligence.get("ai") or {}).get("tone") or "Neutral",
+            "tier": "MEDIUM",
+            "score": 2,
+            "summary": "",
+            "impact_note": "From AI key points digest.",
+        })
+    items.sort(key=lambda x: (-x["score"], x["title"]))
+    return items
+
+
 def telegram_news_message(intelligence):
-    """Build a compact hourly Telegram summary from the ranked news digest."""
+    """Impact-ranked Telegram news: summary, direction, tier, 24h focus."""
     ai = intelligence.get("ai") or {}
+    tone = ai.get("tone") or "Mixed"
+    tone_icon = "🟢" if str(tone).lower().startswith("bull") else ("🔴" if str(tone).lower().startswith("bear") else "🟡")
     lines = [
         "📰 CRYPTO NEWS UPDATE",
-        f"{datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')} UTC | {intelligence.get('headline_count', 0)} headlines",
+        f"{datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')} UTC · {intelligence.get('headline_count', 0)} headlines",
         "",
-        f"Tone: {ai.get('tone', 'Mixed')}",
-        f"{ai.get('summary', 'News flow should be read with price, volume, OI and funding.')}",
+        f"{tone_icon} Market news tone: {tone}",
+        f"🔵 {ai.get('summary', 'Read news with price, volume, OI and funding — not alone.')}",
+        "",
+        "📌 LAST 24H — top impact",
     ]
-    points = ai.get("key_points") or []
-    seen = set()
-    if points:
-        lines.append("")
-        lines.append("KEY NEWS")
-        for point in points[:4]:
-            clean = " ".join(str(point).split())
-            if clean and clean.lower() not in seen:
-                seen.add(clean.lower())
-                lines.append(f"• {clean[:220]}")
-    categories = intelligence.get("categories") or []
-    if categories:
-        lines.append("")
-        lines.append("CATEGORIES")
-        for category in categories[:5]:
-            headline = (category.get("headlines") or [{}])[0].get("headline", "")
-            clean = " ".join(str(headline).split())
-            if clean.lower() in seen:
-                continue
-            seen.add(clean.lower())
-            lines.append(f"• {category.get('category')}: {clean[:180]}")
+    ranked = _rank_headlines(intelligence)
+    top = ranked[:5]
+    if not top:
+        lines.append("• No ranked headlines available this run.")
+    for i, item in enumerate(top, 1):
+        icon = _impact_icon(item["direction"], item["tier"])
+        lines.append(f"{i}. {icon} [{item['tier']}] {item['title'][:160]}")
+        lines.append(f"   {item['direction']} · {item['category']}")
+        note = (item.get("impact_note") or "")[:140]
+        if note:
+            lines.append(f"   Why: {note}")
+    weekly = intelligence.get("weekly_top") or intelligence.get("last_7d") or []
+    lines.append("")
+    lines.append("📅 LAST 7D — top impact")
+    if weekly:
+        for i, item in enumerate(weekly[:5], 1):
+            title = item.get("title") or item.get("headline") or str(item)
+            lines.append(f"{i}. {title[:180]}")
+    else:
+        lines.append("• Weekly digest not built this hour — 24h list is authoritative.")
+        lines.append("• Avoid repeating the same 24h items as weekly without new developments.")
+    lines.append("")
+    lines.append("Note: Impact tiers are interpretive, not guarantees.")
     return "\n".join(lines)[:3900]
 
 
@@ -71,53 +145,35 @@ def send_telegram_news(intelligence):
         print("Telegram news notification skipped: TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID is not configured")
         return False
     url = f"https://api.telegram.org/bot{token}/sendMessage"
-    response = requests.post(
-        url,
-        json={"chat_id": chat_id, "text": telegram_news_message(intelligence)},
-        timeout=20,
-    )
-    response.raise_for_status()
-    payload = response.json()
-    if not payload.get("ok"):
-        raise RuntimeError(f"Telegram API rejected message: {payload}")
-    print("Telegram news notification sent")
-    return True
+    text = telegram_news_message(intelligence)
+    try:
+        r = requests.post(url, json={"chat_id": chat_id, "text": text, "disable_web_page_preview": True}, timeout=30)
+        print("Telegram news status:", r.status_code)
+        return r.ok
+    except Exception as e:
+        print("Telegram news error:", e)
+        return False
 
 
 def main():
-    headlines = news_sources.fetch_all_headlines()
-    sources = news_sources.list_all_sources()
-    intelligence = news_intelligence.build_intelligence(headlines, sources)
-    snapshot = {
-        "updated_at": datetime.now(timezone.utc).isoformat(),
-        "sources": sources,
-        "headline_count": intelligence["headline_count"],
-        "headlines": news_intelligence.enrich_and_rank(headlines),
-        "categories": intelligence["categories"],
-        "ai": intelligence["ai"],
-        "quality": intelligence.get("quality", {}),
-        "method": intelligence["method"],
-    }
-    save_json("latest_news.json", snapshot)
-    trends = google_trends.collect_daily()
+    print("News bot", datetime.now(timezone.utc).isoformat())
+    records = news_sources.collect_all()
+    intelligence = news_intelligence.build_intelligence(records)
+    save_json("latest_news.json", intelligence)
     append_json("news_runs.json", {
-        "run_id": datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ"),
-        "updated_at": snapshot["updated_at"],
-        "raw_headlines": len(headlines),
-        "unique_headlines": intelligence["headline_count"],
-        "source_count": len(sources),
-        "category_count": len(intelligence["categories"]),
-        "ai_status": intelligence["ai"].get("status"),
-        "trends_status": trends.get("status"),
+        "ts": datetime.now(timezone.utc).isoformat(),
+        "headline_count": intelligence.get("headline_count"),
+        "method": intelligence.get("method"),
     })
     try:
-        send_telegram_news(intelligence)
-    except Exception as exc:
-        print(f"Telegram news notification failed (history still saved): {type(exc).__name__}: {exc}")
-    print(f"{len(headlines)} raw headlines -> {intelligence['headline_count']} ranked unique headlines")
-    print(f"Categories: {', '.join(x['category'] for x in intelligence['categories']) or 'none'}")
-    print(f"AI news interpretation: {intelligence['ai'].get('status')} ({intelligence['ai'].get('tone', 'n/a')})")
-    print(f"Google Trends: {trends.get('status')} | {trends.get('updated_at')}")
+        trends = google_trends.fetch_trends()
+        if trends:
+            save_json("google_trends.json", trends)
+    except Exception as e:
+        print("trends", e)
+    ok = send_telegram_news(intelligence)
+    print("Telegram news sent" if ok else "Telegram news not sent")
+    print("Done.")
 
 
 if __name__ == "__main__":
