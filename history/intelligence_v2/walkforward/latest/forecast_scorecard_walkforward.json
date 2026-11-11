@@ -1,21 +1,21 @@
 {
   "agent": "forecast-scorecard",
-  "evaluated_at": "2026-11-11T11:41:53.088757+00:00",
-  "forecasts_total": 255,
+  "evaluated_at": "2026-11-11T19:16:04.991443+00:00",
+  "forecasts_total": 258,
   "active_forecasts": 1,
-  "abstain_count": 254,
+  "abstain_count": 257,
   "abstain_rate_pct": 99.61,
-  "settled_rows": 0,
-  "pending_rows": 4,
-  "directional_settled": 0,
+  "settled_rows": 1,
+  "pending_rows": 3,
+  "directional_settled": 1,
   "directional_hits": 0,
-  "direction_accuracy_pct": null,
+  "direction_accuracy_pct": 0.0,
   "by_horizon": {
     "1": {
-      "directional": 0,
+      "directional": 1,
       "hits": 0,
-      "accuracy_pct": null,
-      "pending": 1
+      "accuracy_pct": 0.0,
+      "pending": 0
     },
     "3": {
       "directional": 0,
@@ -36,8 +36,22 @@
       "pending": 1
     }
   },
-  "by_probability_band": {},
-  "calibration": [],
+  "by_probability_band": {
+    "low": {
+      "directional": 1,
+      "hits": 0,
+      "accuracy_pct": 0.0
+    }
+  },
+  "calibration": [
+    {
+      "probability_band": "low",
+      "implied_mid": 0.55,
+      "empirical_hit_rate": 0.0,
+      "n": 1,
+      "note": "Needs larger n before adjusting bands."
+    }
+  ],
   "limitations": [
     "Shadow-only: forecasts never execute or alter production alerts.",
     "Direction accuracy excludes ABSTAIN rows (abstain is tracked separately).",
