@@ -1,0 +1,69 @@
+{
+  "evaluated_at": "2026-11-11T11:41:53.061531+00:00",
+  "phase": 7,
+  "schema_version": 2,
+  "horizons": [
+    1,
+    3,
+    6,
+    12,
+    24
+  ],
+  "decisions_total": 255,
+  "settled_evaluation_rows": 1137,
+  "agents": {
+    "technical": {
+      "agent": "technical",
+      "samples": 273,
+      "hits": 162,
+      "primary_metric": "direction_accuracy_pct",
+      "primary_metric_pct": 59.34,
+      "by_state": {
+        "unknown": {
+          "n": 273,
+          "hits": 162,
+          "accuracy_pct": 59.34
+        }
+      },
+      "notes": [
+        "Counts only settled horizons with an up/down signal.",
+        "Grouped by technical.state recorded at decision time."
+      ]
+    },
+    "risk": {
+      "agent": "risk",
+      "samples": 753,
+      "hits": 495,
+      "primary_metric": "warning_support_pct",
+      "primary_metric_pct": 65.74,
+      "low_risk_samples": 0,
+      "false_calm_count": 0,
+      "false_calm_pct": null,
+      "notes": [
+        "Warning support: guarded/medium/high/veto with >=1% adverse excursion.",
+        "False calm: low risk with later >=2% adverse excursion."
+      ]
+    },
+    "challenge": {
+      "agent": "challenge",
+      "samples": 0,
+      "fail_samples": 0,
+      "warn_samples": 0,
+      "pass_samples": 0,
+      "hits": 0,
+      "primary_metric": "fail_useful_pct",
+      "primary_metric_pct": null,
+      "pass_error_pct": null,
+      "notes": [
+        "fail_useful: challenge=fail and bad outcome.",
+        "pass_error: challenge=pass but direction wrong."
+      ]
+    }
+  },
+  "limitations": [
+    "Agent scorecards require settled horizons; early runs stay empty.",
+    "Metrics are descriptive calibration aids."
+  ],
+  "evaluation_mode": "walkforward_backtest",
+  "walkforward_batch_id": "walkforward-1365c6d76349"
+}
