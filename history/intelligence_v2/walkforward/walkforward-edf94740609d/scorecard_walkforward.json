@@ -1,0 +1,75 @@
+{
+  "agent": "ledger-evaluator",
+  "evaluated_at": "2026-11-12T22:03:55.544801+00:00",
+  "horizons": [
+    1,
+    3,
+    6,
+    12,
+    24
+  ],
+  "decisions_total": 267,
+  "records_total": 1335,
+  "settled_records": 1197,
+  "pending_records": 138,
+  "directional_records": 286,
+  "directional_hits": 167,
+  "direction_accuracy_pct": 58.39,
+  "guarded_records": 759,
+  "supported_risk_warnings": 499,
+  "risk_warning_support_pct": 65.74,
+  "by_decision": {
+    "PAPER_PLAN": {
+      "records": 825,
+      "settled": 825,
+      "pending": 0
+    },
+    "ALERT": {
+      "records": 510,
+      "settled": 372,
+      "pending": 138
+    }
+  },
+  "by_horizon": {
+    "1": {
+      "settled": 264,
+      "directional": 62,
+      "hits": 35,
+      "accuracy_pct": 56.45
+    },
+    "3": {
+      "settled": 258,
+      "directional": 62,
+      "hits": 34,
+      "accuracy_pct": 54.84
+    },
+    "6": {
+      "settled": 249,
+      "directional": 56,
+      "hits": 33,
+      "accuracy_pct": 58.93
+    },
+    "12": {
+      "settled": 231,
+      "directional": 55,
+      "hits": 33,
+      "accuracy_pct": 60.0
+    },
+    "24": {
+      "settled": 195,
+      "directional": 51,
+      "hits": 32,
+      "accuracy_pct": 62.75
+    }
+  },
+  "limitations": [
+    "Persistent scorecard aggregates all settled v2 evaluations; pending horizons are excluded.",
+    "Does not modify production alerts, Telegram, or legacy history writers.",
+    "Direction accuracy is descriptive, not causal proof.",
+    "Phase 7 horizons include 12 and 24 bars for longer replay."
+  ],
+  "schema_version": 2,
+  "phase": 7,
+  "evaluation_mode": "walkforward_backtest",
+  "walkforward_batch_id": "walkforward-edf94740609d"
+}

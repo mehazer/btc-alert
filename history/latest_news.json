@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-12T12:12:10.423314+00:00",
+  "updated_at": "2026-11-12T22:03:37.771697+00:00",
   "sources": [
     {
       "name": "CoinDesk",
@@ -102,61 +102,50 @@
       "quality": "social"
     }
   ],
-  "headline_count": 38,
+  "headline_count": 36,
   "headlines": [
     {
-      "source": "CoinDesk",
+      "source": "The Block",
       "type": "rss",
-      "headline": "UK bank Griffin raises $20 million to expand into stablecoin payments",
-      "category": "Regulation & Politics",
-      "importance": 1.973,
+      "headline": "Bitcoin falls to 12-week low as Jensen Huang’s exit from Nvidia rattles markets",
+      "category": "Market & Macro",
+      "importance": 1.935,
       "age_hours": 24.0,
       "source_quality": "reputable",
       "evidence_status": "confirmed-source",
       "asset_scope": "market-wide"
-    },
-    {
-      "source": "CoinDesk",
-      "type": "rss",
-      "headline": "Bitcoin dips with Nvidia as ETF outflows reach day five",
-      "category": "Bitcoin & ETF",
-      "importance": 1.973,
-      "age_hours": 24.0,
-      "source_quality": "reputable",
-      "evidence_status": "confirmed-source",
-      "asset_scope": "asset-or-sector"
     },
     {
       "source": "Decrypt",
       "type": "rss",
-      "headline": "Bitcoin ETFs Bleed $1.4B in Five Days as Investors Cut Risk",
-      "category": "Bitcoin & ETF",
+      "headline": "Why the Path to Quantum Resistance Runs Uphill for Bitcoin Wallet Makers",
+      "category": "Market & Macro",
       "importance": 1.743,
       "age_hours": 24.0,
       "source_quality": "reputable",
       "evidence_status": "confirmed-source",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (BTC)",
-      "type": "google_news",
-      "headline": "BTC price on Nov 12, 2026 at 8am EST Prediction Market",
-      "published": "Thu, 12 Nov 2026 12:04:13 GMT",
-      "category": "Market & Macro",
-      "importance": 1.619,
-      "age_hours": 0.1,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
     },
     {
       "source": "Google News (BTC)",
       "type": "google_news",
-      "headline": "Bitcoin Price Slides Toward $73K as Nvidia Plunges 9% and MSCI Drops Saylor’s Strategy",
-      "published": "Thu, 12 Nov 2026 10:40:44 GMT",
-      "category": "Market & Macro",
-      "importance": 1.605,
-      "age_hours": 1.5,
+      "headline": "Power Landlords Are Highlighting Bitcoin Mining Roots During AI Rout",
+      "published": "Thu, 12 Nov 2026 22:00:01 GMT",
+      "category": "Bitcoin & ETF",
+      "importance": 1.619,
+      "age_hours": 0.1,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (ETH)",
+      "type": "google_news",
+      "headline": "Are Alt-L1s over? Security, costs drive smaller chains to Ethereum",
+      "published": "Thu, 12 Nov 2026 21:44:33 GMT",
+      "category": "Regulation & Politics",
+      "importance": 1.617,
+      "age_hours": 0.3,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -164,11 +153,11 @@
     {
       "source": "Google News (Macro)",
       "type": "google_news",
-      "headline": "Bitcoin consolidates near recent lows as hawkish Fed repricing weighs on the crypto market",
-      "published": "Thu, 12 Nov 2026 09:41:23 GMT",
+      "headline": "Bitcoin Loses Key 200-Day Average: Is $67,000 Next?",
+      "published": "Thu, 12 Nov 2026 20:53:50 GMT",
       "category": "Market & Macro",
-      "importance": 1.595,
-      "age_hours": 2.5,
+      "importance": 1.608,
+      "age_hours": 1.2,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -176,11 +165,59 @@
     {
       "source": "Google News (BTC)",
       "type": "google_news",
-      "headline": "Strategy, the World’s Biggest Corporate Bitcoin Holder, to Be Dropped From MSCI Indexes",
-      "published": "Thu, 12 Nov 2026 09:44:00 GMT",
+      "headline": "Why Is Bitcoin's Decline Accelerating? Mark Yusko Weighs In",
+      "published": "Thu, 12 Nov 2026 20:22:20 GMT",
       "category": "Market & Macro",
-      "importance": 1.595,
-      "age_hours": 2.5,
+      "importance": 1.603,
+      "age_hours": 1.7,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History",
+      "published": "Thu, 12 Nov 2026 20:08:19 GMT",
+      "category": "Market & Macro",
+      "importance": 1.601,
+      "age_hours": 1.9,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (Macro)",
+      "type": "google_news",
+      "headline": "Bitcoin Falls Below $77K as Fed's Warsh Delivers Hawkish Jackson Hole Speech",
+      "published": "Thu, 12 Nov 2026 20:00:06 GMT",
+      "category": "Market & Macro",
+      "importance": 1.599,
+      "age_hours": 2.1,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "Why Is Crypto Crashing? $560 Billion Wiped Out as Bitcoin Price Falls Below $72K",
+      "published": "Thu, 12 Nov 2026 19:37:15 GMT",
+      "category": "Market & Macro",
+      "importance": 1.596,
+      "age_hours": 2.4,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (Macro)",
+      "type": "google_news",
+      "headline": "Adam Back Says Bitcoin Could Reach $1 Million by Late 2028. What Would Have to Happen First?",
+      "published": "Thu, 12 Nov 2026 19:17:00 GMT",
+      "category": "Market & Macro",
+      "importance": 1.592,
+      "age_hours": 2.8,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -189,46 +226,34 @@
       "source": "Google News (BTC)",
       "type": "google_news",
       "headline": "BTC to EUR: Bitcoin Price in Euro",
-      "published": "Thu, 12 Nov 2026 09:15:04 GMT",
+      "published": "Thu, 12 Nov 2026 19:12:14 GMT",
       "category": "Market & Macro",
-      "importance": 1.59,
-      "age_hours": 3.0,
+      "importance": 1.591,
+      "age_hours": 2.9,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (BTC)",
-      "type": "google_news",
-      "headline": "Bitcoin Retreats as Nvidia Turmoil Weighs on Risk Appetite",
-      "published": "Thu, 12 Nov 2026 08:55:16 GMT",
-      "category": "Market & Macro",
-      "importance": 1.587,
-      "age_hours": 3.3,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (Macro)",
-      "type": "google_news",
-      "headline": "BlackRock leads $300 million Bitcoin ETF outflows as BTC struggles near $73K",
-      "published": "Thu, 12 Nov 2026 08:36:14 GMT",
-      "category": "Bitcoin & ETF",
-      "importance": 1.584,
-      "age_hours": 3.6,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
     },
     {
       "source": "Google News (SOL)",
       "type": "google_news",
-      "headline": "Crypto Market Sell-Off Deepens: Why Are Bitcoin, Ethereum and Solana Falling?",
-      "published": "Thu, 12 Nov 2026 08:23:17 GMT",
-      "category": "Market & Macro",
-      "importance": 1.582,
-      "age_hours": 3.8,
+      "headline": "DTCC to bring tokenized securities to Solana in 2027",
+      "published": "Thu, 12 Nov 2026 18:31:29 GMT",
+      "category": "Regulation & Politics",
+      "importance": 1.585,
+      "age_hours": 3.5,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (ZAMA)",
+      "type": "google_news",
+      "headline": "GNTC graduate earns cryptocurrency transaction security patent",
+      "published": "Thu, 12 Nov 2026 14:39:52 GMT",
+      "category": "Regulation & Politics",
+      "importance": 1.546,
+      "age_hours": 7.4,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -236,19 +261,52 @@
     {
       "source": "CoinTelegraph",
       "type": "rss",
-      "headline": "BlackRock Bitcoin ETF outflows hit $2B over nine sessions",
-      "category": "Bitcoin & ETF",
+      "headline": "Strategy stock sheds 5% amid MSCI index removal, Bitcoin sell-off",
+      "category": "Market & Macro",
       "importance": 1.437,
       "age_hours": 24.0,
       "source_quality": "unknown",
       "evidence_status": "unconfirmed-social",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "CoinTelegraph",
+      "type": "rss",
+      "headline": "Bitcoin slides toward $71K as Nvidia stock tumbles after Huang steps down",
+      "category": "Market & Macro",
+      "importance": 1.437,
+      "age_hours": 24.0,
+      "source_quality": "unknown",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "CoinDesk",
+      "type": "rss",
+      "headline": "Illinois crypto tax is impossible to enforce as written, crypto industry tells court",
+      "category": "Other",
+      "importance": 1.323,
+      "age_hours": 24.0,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
       "asset_scope": "asset-or-sector"
     },
     {
       "source": "CoinDesk",
       "type": "rss",
-      "headline": "Ethereum researchers drop faster blocks to race toward quantum defenses in 2027",
-      "category": "Ethereum & L2",
+      "headline": "DTCC adds Solana to Wall Street tokenization plans, targeting 2027 rollout",
+      "category": "Altcoins & Projects",
+      "importance": 1.323,
+      "age_hours": 24.0,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "CoinDesk",
+      "type": "rss",
+      "headline": "Crypto for Advisors: The blockchain built to run financial markets",
+      "category": "Other",
       "importance": 1.323,
       "age_hours": 24.0,
       "source_quality": "reputable",
@@ -258,7 +316,7 @@
     {
       "source": "The Block",
       "type": "rss",
-      "headline": "Tron, Tether and Chainalysis form new alliance to tackle AI-powered crypto crime",
+      "headline": "NYDFS sets fresh advertising standards for crypto firms",
       "category": "Other",
       "importance": 1.285,
       "age_hours": 24.0,
@@ -267,43 +325,10 @@
       "asset_scope": "asset-or-sector"
     },
     {
-      "source": "The Block",
-      "type": "rss",
-      "headline": "Sygnum launches ETH Alpha Fund targeting 8% to 10% annual returns in ETH",
-      "category": "Ethereum & L2",
-      "importance": 1.285,
-      "age_hours": 24.0,
-      "source_quality": "reputable",
-      "evidence_status": "confirmed-source",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "The Block",
-      "type": "rss",
-      "headline": "Ethlabs proposes advancing Ethereum’s post-quantum to 2027, citing AI acceleration",
-      "category": "Ethereum & L2",
-      "importance": 1.285,
-      "age_hours": 24.0,
-      "source_quality": "reputable",
-      "evidence_status": "confirmed-source",
-      "asset_scope": "asset-or-sector"
-    },
-    {
       "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
-      "headline": "🇺🇸 NOW: The market sees a 100% chance of a Fed rate hike in December. CME FedWatch puts the odds at 90.8% for a 25 bps hike and 9.2% for a 50 bps hike. News | Markets | YouTube",
-      "category": "Market & Macro",
-      "importance": 1.245,
-      "age_hours": 24.0,
-      "source_quality": "social",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "CoinTelegraph (Telegram)",
-      "type": "telegram",
-      "headline": "🇹🇼 LATEST: Chipmaker giant TSMC confirmed an employee data leak linked to a cloud provider. A seller reportedly asked 3 BTC for 46,000 alleged employee records. TSMC found no evidence of an internal breach. News | Markets | YouTube",
-      "category": "Market & Macro",
+      "headline": "🚨 BIG: The US DOJ seized over $1.2 billion in crypto stolen from Binance and disrupted North Korea’s $400 million FaceStealer scheme. News | Markets | YouTube",
+      "category": "Security & Hacks",
       "importance": 1.245,
       "age_hours": 24.0,
       "source_quality": "social",
@@ -313,29 +338,7 @@
     {
       "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "Bitcoin ETFs Shed $300 Million, Ether Funds Lose $145 Million According to SoSoValue, U.S. spot Bitcoin ETFs recorded $300 million in net outflows on November 11, while Morgan Stanley's MSBT led individual fund inflows with $8.96 million. Spot Ethereum ETFs saw $145 million in net outflows, with BlackRock's ETHA accounting for $130 million. — link",
-      "category": "Bitcoin & ETF",
-      "importance": 1.095,
-      "age_hours": 24.0,
-      "source_quality": "social",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Wu Blockchain (Telegram)",
-      "type": "telegram",
-      "headline": "Tether's $4.8 Billion Stock Portfolio Spans Bitcoin Mining, Gold and Media According to Protos' analysis of U.S. regulatory filings, Tether, issuer of the world's largest stablecoin USDT, holds approximately $4.8 billion in equity exposure across 13 U.S.-listed companies spanning media, gold mining, Bitcoin mining and crypto treasury businesses. Its three largest holdings are Twenty One Capital ($1.37 billion), Rumble ($1.33 billion) and Adecoagro ($966 million), accounting for roughly 76% of the total. Several investments have performed poorly, with Twenty One Capital down about 53% since listing, while Aurelion and Antalpha have fallen roughly 91% and 90%, respectively. — link",
-      "category": "Bitcoin & ETF",
-      "importance": 1.095,
-      "age_hours": 24.0,
-      "source_quality": "social",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Wu Blockchain (Telegram)",
-      "type": "telegram",
-      "headline": "TSMC Confirms Hacker Obtained Employee Data and Demanded 3 BTC, Says Internal Systems Uncompromised According to Jiemian News, Taiwan Semiconductor Manufacturing Company (TSMC) responded on November 12 to reports of a hacker attempting to sell an alleged 6.9GB database containing 46,000 TSMC employee records on an underground forum for 3 BTC; TSMC confirmed that personal data belonging to certain current and former employees was exposed without authorization, noting that preliminary investigations link the leaked records to a third-party cloud service provider's system rather than an intrusion into TSMC's own internal IT infrastructure. The chipmaker emphasized that production operations and customer data remain completely unaffected, adding that it is notifying impacted staff and working closely with the cloud vendor, law enforcement, and external cybersecurity firms to investigate the breach. — link",
+      "headline": "Tether Gold (XAU₮) Completes Big Four Audit With Unqualified Opinion From KPMG Tether announced that KPMG U.S. has completed an independent audit of the 2025 financial statements of TG Commodities, S.A. de C.V., the issuer of Tether Gold (XAU₮), issuing an unqualified audit opinion. During the audit, KPMG physically counted and inspected every individual gold bar held in Swiss vaults rather than relying solely on custodian confirmations, verifying 520,089.350 fine troy ounces of allocated physical gold valued at $2.246 billion against 520,089.300 XAU₮ in circulation as of December 31, 2025. XAU₮ becomes Tether’s second stablecoin to receive an unqualified Big Four audit opinion, following KPMG’s audit of USD₮ issuer Tether International announced in August 2026. — link",
       "category": "Regulation & Politics",
       "importance": 1.095,
       "age_hours": 24.0,
@@ -346,7 +349,18 @@
     {
       "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "Crypto Market Maker Wintermute Nets $227 Million on Hyperliquid, Holds $72 Million in Shorts According to Onchain Lens, crypto market maker Wintermute has recorded approximately $227 million in cumulative PnL on Hyperliquid, including $18.9 million in profits over the past 30 days. Its current positions total $92.45 million, including $72.45 million in shorts, with $3.13 million in unrealized gains. Major short positions include ETH ($13.84 million), SOL ($11.24 million) and HYPE ($6.51 million). — link",
+      "headline": "SafePal Users Targeted by Physical Mail Phishing Following Data Breach According to Italian crypto media outlet Criptovaluta it, hardware wallet maker SafePal’s data breach has led to physical mail phishing attacks targeting Italian users. Fraudulent letters impersonating SafePal claim that recipients’ hardware wallets have a firmware security vulnerability and contain QR codes that direct users via Arweave to a fake SafePal website. Both the letters and the phishing website contain accurate customer names, addresses and order details. Between March 2025 and April 2026, an issue with an order-tracking plugin exposed the personal data of nearly 40,000 SafePal customers, including names, email addresses and mailing addresses. SafePal previously confirmed that attackers had been using the leaked data for phishing attempts. — link",
+      "category": "Security & Hacks",
+      "importance": 1.095,
+      "age_hours": 24.0,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "🚨 🚨 🚨 966 $BTC (69,164,344 USD) transferred from Galaxy Digital to unknown new wallet Details",
       "category": "Market & Macro",
       "importance": 1.095,
       "age_hours": 24.0,
@@ -355,24 +369,97 @@
       "asset_scope": "market-wide"
     },
     {
-      "source": "Decrypt",
-      "type": "rss",
-      "headline": "India's Financial Crimes Agency Searches CoinDCX, Delta Exchange Over Offshore Trades",
-      "category": "Institutional & Exchanges",
-      "importance": 1.093,
-      "age_hours": 24.0,
-      "source_quality": "reputable",
-      "evidence_status": "confirmed-source",
+      "source": "Google News (ZAMA)",
+      "type": "google_news",
+      "headline": "Pareto launches on Venice with a 1M-token context window",
+      "published": "Thu, 12 Nov 2026 21:21:31 GMT",
+      "category": "Other",
+      "importance": 0.963,
+      "age_hours": 0.7,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (ZEC)",
+      "type": "google_news",
+      "headline": "Why Is Zcash (ZEC) Price Falling? The Answer Isn’t the Broader Market",
+      "published": "Thu, 12 Nov 2026 20:45:32 GMT",
+      "category": "Altcoins & Projects",
+      "importance": 0.957,
+      "age_hours": 1.3,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
     },
     {
       "source": "Google News (ETH)",
       "type": "google_news",
-      "headline": "ETH price range on Nov 12, 2026 at 8am EST Crypto Prediction Market",
-      "published": "Thu, 12 Nov 2026 12:08:07 GMT",
+      "headline": "ETH price range on Nov 12, 2026 at 4pm EST Crypto Prediction Market",
+      "published": "Thu, 12 Nov 2026 20:06:44 GMT",
       "category": "Ethereum & L2",
-      "importance": 0.969,
-      "age_hours": 0.1,
+      "importance": 0.951,
+      "age_hours": 1.9,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (SOL)",
+      "type": "google_news",
+      "headline": "Helius encrypts Solana transfers without removing operator trust",
+      "published": "Thu, 12 Nov 2026 20:10:03 GMT",
+      "category": "Altcoins & Projects",
+      "importance": 0.951,
+      "age_hours": 1.9,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (SOL)",
+      "type": "google_news",
+      "headline": "SOL price on Nov 12, 2026 at 4pm EST Crypto Prediction Market",
+      "published": "Thu, 12 Nov 2026 20:10:44 GMT",
+      "category": "Altcoins & Projects",
+      "importance": 0.951,
+      "age_hours": 1.9,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (ETH)",
+      "type": "google_news",
+      "headline": "Is Ethereum a Buy Below $2,000? We Asked 3 AI Models",
+      "published": "Thu, 12 Nov 2026 19:51:00 GMT",
+      "category": "Ethereum & L2",
+      "importance": 0.948,
+      "age_hours": 2.2,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (ZEC)",
+      "type": "google_news",
+      "headline": "The Grayscale Zcash ETF Lost $14.6 Million in One Day. Is That Why ZEC Can't Hold $1,000?",
+      "published": "Thu, 12 Nov 2026 18:02:00 GMT",
+      "category": "Altcoins & Projects",
+      "importance": 0.93,
+      "age_hours": 4.0,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (ZEC)",
+      "type": "google_news",
+      "headline": "Is Midnight (NIGHT) Catching Up With Zcash (ZEC)? Network Data Offers a Clue",
+      "published": "Thu, 12 Nov 2026 17:56:00 GMT",
+      "category": "Altcoins & Projects",
+      "importance": 0.929,
+      "age_hours": 4.1,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -383,44 +470,8 @@
       "headline": "Zcash Falls Below $965 as Weekly Loss Reaches 26%",
       "published": "Thu, 12 Nov 2026 11:41:45 GMT",
       "category": "Altcoins & Projects",
-      "importance": 0.965,
-      "age_hours": 0.5,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (ETH)",
-      "type": "google_news",
-      "headline": "Sygnum launches Ethereum fund targeting 8–10% annual ETH returns",
-      "published": "Thu, 12 Nov 2026 11:29:37 GMT",
-      "category": "Ethereum & L2",
-      "importance": 0.963,
-      "age_hours": 0.7,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (ETH)",
-      "type": "google_news",
-      "headline": "Ethlabs Withdraws Hegotá Quick Slots Proposal, Urges Ethereum Quantum Readiness by 2027: 6 outlets compared",
-      "published": "Thu, 12 Nov 2026 11:22:38 GMT",
-      "category": "Ethereum & L2",
-      "importance": 0.962,
-      "age_hours": 0.8,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (SOL)",
-      "type": "google_news",
-      "headline": "SOL price on Nov 12, 2026 at 7am EST Crypto Prediction Market",
-      "published": "Thu, 12 Nov 2026 11:03:50 GMT",
-      "category": "Altcoins & Projects",
-      "importance": 0.959,
-      "age_hours": 1.1,
+      "importance": 0.866,
+      "age_hours": 10.4,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -431,56 +482,8 @@
       "headline": "November 12, 2026: ZEC 15 min · 6:00–6:15 AM EST Prediction Market",
       "published": "Thu, 12 Nov 2026 11:03:50 GMT",
       "category": "Altcoins & Projects",
-      "importance": 0.959,
-      "age_hours": 1.1,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (ETH)",
-      "type": "google_news",
-      "headline": "Ethereum’s Co-Founder Has a 2-Year ETH Prediction",
-      "published": "Thu, 12 Nov 2026 10:25:55 GMT",
-      "category": "Ethereum & L2",
-      "importance": 0.952,
-      "age_hours": 1.8,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (ZEC)",
-      "type": "google_news",
-      "headline": "Zcash Upgrade Could Freeze ZEC in Legacy Sprout Pool",
-      "published": "Thu, 12 Nov 2026 09:25:24 GMT",
-      "category": "Altcoins & Projects",
-      "importance": 0.942,
-      "age_hours": 2.8,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (ZEC)",
-      "type": "google_news",
-      "headline": "Zcash holders to vote on pulling 50,000 ZEC, worth $50 million, from grants treasury",
-      "published": "Thu, 12 Nov 2026 05:51:37 GMT",
-      "category": "Altcoins & Projects",
-      "importance": 0.907,
-      "age_hours": 6.3,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (ZEC)",
-      "type": "google_news",
-      "headline": "Zcash ZEC (ZEC-USD) Live Price, News, Chart and Price History",
-      "published": "Thu, 12 Nov 2026 00:42:30 GMT",
-      "category": "Altcoins & Projects",
-      "importance": 0.855,
-      "age_hours": 11.5,
+      "importance": 0.86,
+      "age_hours": 11.0,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -488,7 +491,7 @@
     {
       "source": "CoinTelegraph",
       "type": "rss",
-      "headline": "Stablecoin supply falls $14.2B in biggest 30-day drop since June 2022",
+      "headline": "US Justice Department, business groups and DeFi firms challenge Illinois crypto tax",
       "category": "DeFi & Stablecoins",
       "importance": 0.787,
       "age_hours": 24.0,
@@ -497,43 +500,20 @@
       "asset_scope": "asset-or-sector"
     },
     {
-      "source": "Google News (ZAMA)",
-      "type": "google_news",
-      "headline": "What Are Solana Privacy Rings? Inside Helius’ Privacy Protocol for Solana",
-      "published": "Wed, 11 Nov 2026 17:09:18 GMT",
+      "source": "CoinTelegraph",
+      "type": "rss",
+      "headline": "DTCC Plans Solana Expansion as Wallet Rules Limit Access",
       "category": "Altcoins & Projects",
-      "importance": 0.78,
-      "age_hours": 19.0,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "CoinTelegraph (Telegram)",
-      "type": "telegram",
-      "headline": "🚨 JUST IN: Trump-linked stablecoin USD1 has been scrubbed from UAE-linked prediction market ADI PredictStreet’s website, per Bloomberg. Onchain data showed the platform actually used USDC for its transactions. News | Markets | YouTube",
-      "category": "DeFi & Stablecoins",
-      "importance": 0.595,
+      "importance": 0.787,
       "age_hours": 24.0,
-      "source_quality": "social",
+      "source_quality": "unknown",
       "evidence_status": "unconfirmed-social",
       "asset_scope": "asset-or-sector"
     },
     {
       "source": "Whale Alert (Telegram)",
       "type": "telegram",
-      "headline": "📉 📉 📉 North Korean operatives are allegedly infiltrating crypto firms through fake identities and remote access to steal funds Read Analysis",
-      "category": "Other",
-      "importance": 0.445,
-      "age_hours": 24.0,
-      "source_quality": "social",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Whale Alert (Telegram)",
-      "type": "telegram",
-      "headline": "🚨 🚨 🚨 702 $BTC (51,149,953 USD) transferred from Coinbase Institutional to unknown wallet Details",
+      "headline": "🚨 🚨 🚨 709 $BTC (50,962,793 USD) transferred from Coinbase Institutional to unknown wallet Details",
       "category": "Institutional & Exchanges",
       "importance": 0.445,
       "age_hours": 24.0,
@@ -544,198 +524,196 @@
   ],
   "categories": [
     {
-      "category": "Regulation & Politics",
+      "category": "Security & Hacks",
       "count": 2,
       "headlines": [
         {
-          "source": "CoinDesk",
-          "type": "rss",
-          "headline": "UK bank Griffin raises $20 million to expand into stablecoin payments",
-          "category": "Regulation & Politics",
-          "importance": 1.973,
+          "source": "CoinTelegraph (Telegram)",
+          "type": "telegram",
+          "headline": "🚨 BIG: The US DOJ seized over $1.2 billion in crypto stolen from Binance and disrupted North Korea’s $400 million FaceStealer scheme. News | Markets | YouTube",
+          "category": "Security & Hacks",
+          "importance": 1.245,
           "age_hours": 24.0,
-          "source_quality": "reputable",
-          "evidence_status": "confirmed-source",
+          "source_quality": "social",
+          "evidence_status": "unconfirmed-social",
           "asset_scope": "market-wide"
         },
         {
           "source": "Wu Blockchain (Telegram)",
           "type": "telegram",
-          "headline": "TSMC Confirms Hacker Obtained Employee Data and Demanded 3 BTC, Says Internal Systems Uncompromised According to Jiemian News, Taiwan Semiconductor Manufacturing Company (TSMC) responded on November 12 to reports of a hacker attempting to sell an alleged 6.9GB database containing 46,000 TSMC employee records on an underground forum for 3 BTC; TSMC confirmed that personal data belonging to certain current and former employees was exposed without authorization, noting that preliminary investigations link the leaked records to a third-party cloud service provider's system rather than an intrusion into TSMC's own internal IT infrastructure. The chipmaker emphasized that production operations and customer data remain completely unaffected, adding that it is notifying impacted staff and working closely with the cloud vendor, law enforcement, and external cybersecurity firms to investigate the breach. — link",
-          "category": "Regulation & Politics",
+          "headline": "SafePal Users Targeted by Physical Mail Phishing Following Data Breach According to Italian crypto media outlet Criptovaluta it, hardware wallet maker SafePal’s data breach has led to physical mail phishing attacks targeting Italian users. Fraudulent letters impersonating SafePal claim that recipients’ hardware wallets have a firmware security vulnerability and contain QR codes that direct users via Arweave to a fake SafePal website. Both the letters and the phishing website contain accurate customer names, addresses and order details. Between March 2025 and April 2026, an issue with an order-tracking plugin exposed the personal data of nearly 40,000 SafePal customers, including names, email addresses and mailing addresses. SafePal previously confirmed that attackers had been using the leaked data for phishing attempts. — link",
+          "category": "Security & Hacks",
           "importance": 1.095,
           "age_hours": 24.0,
           "source_quality": "social",
           "evidence_status": "unconfirmed-social",
-          "asset_scope": "market-wide"
-        }
-      ],
-      "top_sources": [
-        "CoinDesk",
-        "Wu Blockchain (Telegram)"
-      ]
-    },
-    {
-      "category": "Bitcoin & ETF",
-      "count": 6,
-      "headlines": [
-        {
-          "source": "CoinDesk",
-          "type": "rss",
-          "headline": "Bitcoin dips with Nvidia as ETF outflows reach day five",
-          "category": "Bitcoin & ETF",
-          "importance": 1.973,
-          "age_hours": 24.0,
-          "source_quality": "reputable",
-          "evidence_status": "confirmed-source",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Decrypt",
-          "type": "rss",
-          "headline": "Bitcoin ETFs Bleed $1.4B in Five Days as Investors Cut Risk",
-          "category": "Bitcoin & ETF",
-          "importance": 1.743,
-          "age_hours": 24.0,
-          "source_quality": "reputable",
-          "evidence_status": "confirmed-source",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (Macro)",
-          "type": "google_news",
-          "headline": "BlackRock leads $300 million Bitcoin ETF outflows as BTC struggles near $73K",
-          "published": "Thu, 12 Nov 2026 08:36:14 GMT",
-          "category": "Bitcoin & ETF",
-          "importance": 1.584,
-          "age_hours": 3.6,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "CoinTelegraph",
-          "type": "rss",
-          "headline": "BlackRock Bitcoin ETF outflows hit $2B over nine sessions",
-          "category": "Bitcoin & ETF",
-          "importance": 1.437,
-          "age_hours": 24.0,
-          "source_quality": "unknown",
-          "evidence_status": "unconfirmed-social",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Wu Blockchain (Telegram)",
-          "type": "telegram",
-          "headline": "Bitcoin ETFs Shed $300 Million, Ether Funds Lose $145 Million According to SoSoValue, U.S. spot Bitcoin ETFs recorded $300 million in net outflows on November 11, while Morgan Stanley's MSBT led individual fund inflows with $8.96 million. Spot Ethereum ETFs saw $145 million in net outflows, with BlackRock's ETHA accounting for $130 million. — link",
-          "category": "Bitcoin & ETF",
-          "importance": 1.095,
-          "age_hours": 24.0,
-          "source_quality": "social",
-          "evidence_status": "unconfirmed-social",
-          "asset_scope": "asset-or-sector"
-        }
-      ],
-      "top_sources": [
-        "CoinDesk",
-        "CoinTelegraph",
-        "Decrypt",
-        "Google News (Macro)",
-        "Wu Blockchain (Telegram)"
-      ]
-    },
-    {
-      "category": "Market & Macro",
-      "count": 10,
-      "headlines": [
-        {
-          "source": "Google News (BTC)",
-          "type": "google_news",
-          "headline": "BTC price on Nov 12, 2026 at 8am EST Prediction Market",
-          "published": "Thu, 12 Nov 2026 12:04:13 GMT",
-          "category": "Market & Macro",
-          "importance": 1.619,
-          "age_hours": 0.1,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "market-wide"
-        },
-        {
-          "source": "Google News (BTC)",
-          "type": "google_news",
-          "headline": "Bitcoin Price Slides Toward $73K as Nvidia Plunges 9% and MSCI Drops Saylor’s Strategy",
-          "published": "Thu, 12 Nov 2026 10:40:44 GMT",
-          "category": "Market & Macro",
-          "importance": 1.605,
-          "age_hours": 1.5,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "market-wide"
-        },
-        {
-          "source": "Google News (Macro)",
-          "type": "google_news",
-          "headline": "Bitcoin consolidates near recent lows as hawkish Fed repricing weighs on the crypto market",
-          "published": "Thu, 12 Nov 2026 09:41:23 GMT",
-          "category": "Market & Macro",
-          "importance": 1.595,
-          "age_hours": 2.5,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "market-wide"
-        },
-        {
-          "source": "Google News (BTC)",
-          "type": "google_news",
-          "headline": "Strategy, the World’s Biggest Corporate Bitcoin Holder, to Be Dropped From MSCI Indexes",
-          "published": "Thu, 12 Nov 2026 09:44:00 GMT",
-          "category": "Market & Macro",
-          "importance": 1.595,
-          "age_hours": 2.5,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "market-wide"
-        },
-        {
-          "source": "Google News (BTC)",
-          "type": "google_news",
-          "headline": "BTC to EUR: Bitcoin Price in Euro",
-          "published": "Thu, 12 Nov 2026 09:15:04 GMT",
-          "category": "Market & Macro",
-          "importance": 1.59,
-          "age_hours": 3.0,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
           "asset_scope": "market-wide"
         }
       ],
       "top_sources": [
         "CoinTelegraph (Telegram)",
-        "Google News (BTC)",
-        "Google News (Macro)",
-        "Google News (SOL)",
         "Wu Blockchain (Telegram)"
       ]
     },
     {
-      "category": "Institutional & Exchanges",
-      "count": 2,
+      "category": "Regulation & Politics",
+      "count": 4,
       "headlines": [
         {
-          "source": "Decrypt",
+          "source": "Google News (ETH)",
+          "type": "google_news",
+          "headline": "Are Alt-L1s over? Security, costs drive smaller chains to Ethereum",
+          "published": "Thu, 12 Nov 2026 21:44:33 GMT",
+          "category": "Regulation & Politics",
+          "importance": 1.617,
+          "age_hours": 0.3,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "market-wide"
+        },
+        {
+          "source": "Google News (SOL)",
+          "type": "google_news",
+          "headline": "DTCC to bring tokenized securities to Solana in 2027",
+          "published": "Thu, 12 Nov 2026 18:31:29 GMT",
+          "category": "Regulation & Politics",
+          "importance": 1.585,
+          "age_hours": 3.5,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "market-wide"
+        },
+        {
+          "source": "Google News (ZAMA)",
+          "type": "google_news",
+          "headline": "GNTC graduate earns cryptocurrency transaction security patent",
+          "published": "Thu, 12 Nov 2026 14:39:52 GMT",
+          "category": "Regulation & Politics",
+          "importance": 1.546,
+          "age_hours": 7.4,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "market-wide"
+        },
+        {
+          "source": "Wu Blockchain (Telegram)",
+          "type": "telegram",
+          "headline": "Tether Gold (XAU₮) Completes Big Four Audit With Unqualified Opinion From KPMG Tether announced that KPMG U.S. has completed an independent audit of the 2025 financial statements of TG Commodities, S.A. de C.V., the issuer of Tether Gold (XAU₮), issuing an unqualified audit opinion. During the audit, KPMG physically counted and inspected every individual gold bar held in Swiss vaults rather than relying solely on custodian confirmations, verifying 520,089.350 fine troy ounces of allocated physical gold valued at $2.246 billion against 520,089.300 XAU₮ in circulation as of December 31, 2025. XAU₮ becomes Tether’s second stablecoin to receive an unqualified Big Four audit opinion, following KPMG’s audit of USD₮ issuer Tether International announced in August 2026. — link",
+          "category": "Regulation & Politics",
+          "importance": 1.095,
+          "age_hours": 24.0,
+          "source_quality": "social",
+          "evidence_status": "unconfirmed-social",
+          "asset_scope": "market-wide"
+        }
+      ],
+      "top_sources": [
+        "Google News (ETH)",
+        "Google News (SOL)",
+        "Google News (ZAMA)",
+        "Wu Blockchain (Telegram)"
+      ]
+    },
+    {
+      "category": "Bitcoin & ETF",
+      "count": 1,
+      "headlines": [
+        {
+          "source": "Google News (BTC)",
+          "type": "google_news",
+          "headline": "Power Landlords Are Highlighting Bitcoin Mining Roots During AI Rout",
+          "published": "Thu, 12 Nov 2026 22:00:01 GMT",
+          "category": "Bitcoin & ETF",
+          "importance": 1.619,
+          "age_hours": 0.1,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        }
+      ],
+      "top_sources": [
+        "Google News (BTC)"
+      ]
+    },
+    {
+      "category": "Market & Macro",
+      "count": 12,
+      "headlines": [
+        {
+          "source": "The Block",
           "type": "rss",
-          "headline": "India's Financial Crimes Agency Searches CoinDCX, Delta Exchange Over Offshore Trades",
-          "category": "Institutional & Exchanges",
-          "importance": 1.093,
+          "headline": "Bitcoin falls to 12-week low as Jensen Huang’s exit from Nvidia rattles markets",
+          "category": "Market & Macro",
+          "importance": 1.935,
           "age_hours": 24.0,
           "source_quality": "reputable",
           "evidence_status": "confirmed-source",
-          "asset_scope": "asset-or-sector"
+          "asset_scope": "market-wide"
         },
+        {
+          "source": "Decrypt",
+          "type": "rss",
+          "headline": "Why the Path to Quantum Resistance Runs Uphill for Bitcoin Wallet Makers",
+          "category": "Market & Macro",
+          "importance": 1.743,
+          "age_hours": 24.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "market-wide"
+        },
+        {
+          "source": "Google News (Macro)",
+          "type": "google_news",
+          "headline": "Bitcoin Loses Key 200-Day Average: Is $67,000 Next?",
+          "published": "Thu, 12 Nov 2026 20:53:50 GMT",
+          "category": "Market & Macro",
+          "importance": 1.608,
+          "age_hours": 1.2,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "market-wide"
+        },
+        {
+          "source": "Google News (BTC)",
+          "type": "google_news",
+          "headline": "Why Is Bitcoin's Decline Accelerating? Mark Yusko Weighs In",
+          "published": "Thu, 12 Nov 2026 20:22:20 GMT",
+          "category": "Market & Macro",
+          "importance": 1.603,
+          "age_hours": 1.7,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "market-wide"
+        },
+        {
+          "source": "Google News (BTC)",
+          "type": "google_news",
+          "headline": "Bitcoin BTC (BTC-USD) Live Price, News, Chart and Price History",
+          "published": "Thu, 12 Nov 2026 20:08:19 GMT",
+          "category": "Market & Macro",
+          "importance": 1.601,
+          "age_hours": 1.9,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "market-wide"
+        }
+      ],
+      "top_sources": [
+        "CoinTelegraph",
+        "Decrypt",
+        "Google News (BTC)",
+        "Google News (Macro)",
+        "The Block"
+      ]
+    },
+    {
+      "category": "Institutional & Exchanges",
+      "count": 1,
+      "headlines": [
         {
           "source": "Whale Alert (Telegram)",
           "type": "telegram",
-          "headline": "🚨 🚨 🚨 702 $BTC (51,149,953 USD) transferred from Coinbase Institutional to unknown wallet Details",
+          "headline": "🚨 🚨 🚨 709 $BTC (50,962,793 USD) transferred from Coinbase Institutional to unknown wallet Details",
           "category": "Institutional & Exchanges",
           "importance": 0.445,
           "age_hours": 24.0,
@@ -745,51 +723,153 @@
         }
       ],
       "top_sources": [
-        "Decrypt",
         "Whale Alert (Telegram)"
       ]
     },
     {
       "category": "DeFi & Stablecoins",
-      "count": 2,
+      "count": 1,
       "headlines": [
         {
           "source": "CoinTelegraph",
           "type": "rss",
-          "headline": "Stablecoin supply falls $14.2B in biggest 30-day drop since June 2022",
+          "headline": "US Justice Department, business groups and DeFi firms challenge Illinois crypto tax",
           "category": "DeFi & Stablecoins",
           "importance": 0.787,
           "age_hours": 24.0,
           "source_quality": "unknown",
           "evidence_status": "unconfirmed-social",
           "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "CoinTelegraph (Telegram)",
-          "type": "telegram",
-          "headline": "🚨 JUST IN: Trump-linked stablecoin USD1 has been scrubbed from UAE-linked prediction market ADI PredictStreet’s website, per Bloomberg. Onchain data showed the platform actually used USDC for its transactions. News | Markets | YouTube",
-          "category": "DeFi & Stablecoins",
-          "importance": 0.595,
-          "age_hours": 24.0,
-          "source_quality": "social",
-          "evidence_status": "unconfirmed-social",
-          "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
-        "CoinTelegraph",
-        "CoinTelegraph (Telegram)"
+        "CoinTelegraph"
       ]
     },
     {
       "category": "Ethereum & L2",
-      "count": 7,
+      "count": 2,
+      "headlines": [
+        {
+          "source": "Google News (ETH)",
+          "type": "google_news",
+          "headline": "ETH price range on Nov 12, 2026 at 4pm EST Crypto Prediction Market",
+          "published": "Thu, 12 Nov 2026 20:06:44 GMT",
+          "category": "Ethereum & L2",
+          "importance": 0.951,
+          "age_hours": 1.9,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (ETH)",
+          "type": "google_news",
+          "headline": "Is Ethereum a Buy Below $2,000? We Asked 3 AI Models",
+          "published": "Thu, 12 Nov 2026 19:51:00 GMT",
+          "category": "Ethereum & L2",
+          "importance": 0.948,
+          "age_hours": 2.2,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        }
+      ],
+      "top_sources": [
+        "Google News (ETH)"
+      ]
+    },
+    {
+      "category": "Altcoins & Projects",
+      "count": 9,
       "headlines": [
         {
           "source": "CoinDesk",
           "type": "rss",
-          "headline": "Ethereum researchers drop faster blocks to race toward quantum defenses in 2027",
-          "category": "Ethereum & L2",
+          "headline": "DTCC adds Solana to Wall Street tokenization plans, targeting 2027 rollout",
+          "category": "Altcoins & Projects",
+          "importance": 1.323,
+          "age_hours": 24.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (ZEC)",
+          "type": "google_news",
+          "headline": "Why Is Zcash (ZEC) Price Falling? The Answer Isn’t the Broader Market",
+          "published": "Thu, 12 Nov 2026 20:45:32 GMT",
+          "category": "Altcoins & Projects",
+          "importance": 0.957,
+          "age_hours": 1.3,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (SOL)",
+          "type": "google_news",
+          "headline": "Helius encrypts Solana transfers without removing operator trust",
+          "published": "Thu, 12 Nov 2026 20:10:03 GMT",
+          "category": "Altcoins & Projects",
+          "importance": 0.951,
+          "age_hours": 1.9,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (SOL)",
+          "type": "google_news",
+          "headline": "SOL price on Nov 12, 2026 at 4pm EST Crypto Prediction Market",
+          "published": "Thu, 12 Nov 2026 20:10:44 GMT",
+          "category": "Altcoins & Projects",
+          "importance": 0.951,
+          "age_hours": 1.9,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (ZEC)",
+          "type": "google_news",
+          "headline": "The Grayscale Zcash ETF Lost $14.6 Million in One Day. Is That Why ZEC Can't Hold $1,000?",
+          "published": "Thu, 12 Nov 2026 18:02:00 GMT",
+          "category": "Altcoins & Projects",
+          "importance": 0.93,
+          "age_hours": 4.0,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        }
+      ],
+      "top_sources": [
+        "CoinDesk",
+        "CoinTelegraph",
+        "Google News (SOL)",
+        "Google News (ZEC)"
+      ]
+    },
+    {
+      "category": "Other",
+      "count": 4,
+      "headlines": [
+        {
+          "source": "CoinDesk",
+          "type": "rss",
+          "headline": "Illinois crypto tax is impossible to enforce as written, crypto industry tells court",
+          "category": "Other",
+          "importance": 1.323,
+          "age_hours": 24.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "CoinDesk",
+          "type": "rss",
+          "headline": "Crypto for Advisors: The blockchain built to run financial markets",
+          "category": "Other",
           "importance": 1.323,
           "age_hours": 24.0,
           "source_quality": "reputable",
@@ -799,8 +879,8 @@
         {
           "source": "The Block",
           "type": "rss",
-          "headline": "Sygnum launches ETH Alpha Fund targeting 8% to 10% annual returns in ETH",
-          "category": "Ethereum & L2",
+          "headline": "NYDFS sets fresh advertising standards for crypto firms",
+          "category": "Other",
           "importance": 1.285,
           "age_hours": 24.0,
           "source_quality": "reputable",
@@ -808,34 +888,11 @@
           "asset_scope": "asset-or-sector"
         },
         {
-          "source": "The Block",
-          "type": "rss",
-          "headline": "Ethlabs proposes advancing Ethereum’s post-quantum to 2027, citing AI acceleration",
-          "category": "Ethereum & L2",
-          "importance": 1.285,
-          "age_hours": 24.0,
-          "source_quality": "reputable",
-          "evidence_status": "confirmed-source",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (ETH)",
+          "source": "Google News (ZAMA)",
           "type": "google_news",
-          "headline": "ETH price range on Nov 12, 2026 at 8am EST Crypto Prediction Market",
-          "published": "Thu, 12 Nov 2026 12:08:07 GMT",
-          "category": "Ethereum & L2",
-          "importance": 0.969,
-          "age_hours": 0.1,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (ETH)",
-          "type": "google_news",
-          "headline": "Sygnum launches Ethereum fund targeting 8–10% annual ETH returns",
-          "published": "Thu, 12 Nov 2026 11:29:37 GMT",
-          "category": "Ethereum & L2",
+          "headline": "Pareto launches on Venice with a 1M-token context window",
+          "published": "Thu, 12 Nov 2026 21:21:31 GMT",
+          "category": "Other",
           "importance": 0.963,
           "age_hours": 0.7,
           "source_quality": "discovery",
@@ -845,145 +902,42 @@
       ],
       "top_sources": [
         "CoinDesk",
-        "Google News (ETH)",
-        "The Block"
-      ]
-    },
-    {
-      "category": "Altcoins & Projects",
-      "count": 7,
-      "headlines": [
-        {
-          "source": "Google News (ZEC)",
-          "type": "google_news",
-          "headline": "Zcash Falls Below $965 as Weekly Loss Reaches 26%",
-          "published": "Thu, 12 Nov 2026 11:41:45 GMT",
-          "category": "Altcoins & Projects",
-          "importance": 0.965,
-          "age_hours": 0.5,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (SOL)",
-          "type": "google_news",
-          "headline": "SOL price on Nov 12, 2026 at 7am EST Crypto Prediction Market",
-          "published": "Thu, 12 Nov 2026 11:03:50 GMT",
-          "category": "Altcoins & Projects",
-          "importance": 0.959,
-          "age_hours": 1.1,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (ZEC)",
-          "type": "google_news",
-          "headline": "November 12, 2026: ZEC 15 min · 6:00–6:15 AM EST Prediction Market",
-          "published": "Thu, 12 Nov 2026 11:03:50 GMT",
-          "category": "Altcoins & Projects",
-          "importance": 0.959,
-          "age_hours": 1.1,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (ZEC)",
-          "type": "google_news",
-          "headline": "Zcash Upgrade Could Freeze ZEC in Legacy Sprout Pool",
-          "published": "Thu, 12 Nov 2026 09:25:24 GMT",
-          "category": "Altcoins & Projects",
-          "importance": 0.942,
-          "age_hours": 2.8,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (ZEC)",
-          "type": "google_news",
-          "headline": "Zcash holders to vote on pulling 50,000 ZEC, worth $50 million, from grants treasury",
-          "published": "Thu, 12 Nov 2026 05:51:37 GMT",
-          "category": "Altcoins & Projects",
-          "importance": 0.907,
-          "age_hours": 6.3,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        }
-      ],
-      "top_sources": [
-        "Google News (SOL)",
         "Google News (ZAMA)",
-        "Google News (ZEC)"
-      ]
-    },
-    {
-      "category": "Other",
-      "count": 2,
-      "headlines": [
-        {
-          "source": "The Block",
-          "type": "rss",
-          "headline": "Tron, Tether and Chainalysis form new alliance to tackle AI-powered crypto crime",
-          "category": "Other",
-          "importance": 1.285,
-          "age_hours": 24.0,
-          "source_quality": "reputable",
-          "evidence_status": "confirmed-source",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Whale Alert (Telegram)",
-          "type": "telegram",
-          "headline": "📉 📉 📉 North Korean operatives are allegedly infiltrating crypto firms through fake identities and remote access to steal funds Read Analysis",
-          "category": "Other",
-          "importance": 0.445,
-          "age_hours": 24.0,
-          "source_quality": "social",
-          "evidence_status": "unconfirmed-social",
-          "asset_scope": "asset-or-sector"
-        }
-      ],
-      "top_sources": [
-        "The Block",
-        "Whale Alert (Telegram)"
+        "The Block"
       ]
     }
   ],
   "ai": {
     "status": "unavailable",
-    "tone": "BTC-focused",
-    "summary": "The news flow is centered on Bitcoin and market direction; distinguish fresh catalysts from price recap headlines.",
+    "tone": "Caution",
+    "summary": "Security-related headlines are prominent; verify affected protocols and whether contagion is material.",
     "key_points": [
-      "UK bank Griffin raises $20 million to expand into stablecoin payments",
-      "TSMC Confirms Hacker Obtained Employee Data and Demanded 3 BTC, Says Internal Systems Uncompromised According to Jiemian News, Taiwan Semiconductor Manufacturing Company (TSMC) responded on November 12 to reports of a hacker attempting to sell an alleged 6.9GB database containing 46,000 TSMC employee records on an underground forum for 3 BTC; TSMC confirmed that personal data belonging to certain current and former employees was exposed without authorization, noting that preliminary investigations link the leaked records to a third-party cloud service provider's system rather than an intrusion into TSMC's own internal IT infrastructure. The chipmaker emphasized that production operations and customer data remain completely unaffected, adding that it is notifying impacted staff and working closely with the cloud vendor, law enforcement, and external cybersecurity firms to investigate the breach. — link",
-      "Bitcoin dips with Nvidia as ETF outflows reach day five",
-      "Bitcoin ETFs Bleed $1.4B in Five Days as Investors Cut Risk",
-      "BTC price on Nov 12, 2026 at 8am EST Prediction Market"
+      "🚨 BIG: The US DOJ seized over $1.2 billion in crypto stolen from Binance and disrupted North Korea’s $400 million FaceStealer scheme. News | Markets | YouTube",
+      "SafePal Users Targeted by Physical Mail Phishing Following Data Breach According to Italian crypto media outlet Criptovaluta it, hardware wallet maker SafePal’s data breach has led to physical mail phishing attacks targeting Italian users. Fraudulent letters impersonating SafePal claim that recipients’ hardware wallets have a firmware security vulnerability and contain QR codes that direct users via Arweave to a fake SafePal website. Both the letters and the phishing website contain accurate customer names, addresses and order details. Between March 2025 and April 2026, an issue with an order-tracking plugin exposed the personal data of nearly 40,000 SafePal customers, including names, email addresses and mailing addresses. SafePal previously confirmed that attackers had been using the leaked data for phishing attempts. — link",
+      "Are Alt-L1s over? Security, costs drive smaller chains to Ethereum",
+      "DTCC to bring tokenized securities to Solana in 2027",
+      "Power Landlords Are Highlighting Bitcoin Mining Roots During AI Rout"
     ],
-    "updated_at": "2026-11-12T12:12:10.423307+00:00",
+    "updated_at": "2026-11-12T22:03:37.771692+00:00",
     "reason": "NEWS_AI_API_KEY is not configured"
   },
   "quality": {
-    "trusted_headlines": 8,
-    "discovery_headlines": 19,
-    "social_headlines": 9,
+    "trusted_headlines": 6,
+    "discovery_headlines": 21,
+    "social_headlines": 5,
     "quality_tiers": {
-      "reputable": 8,
-      "discovery": 19,
-      "unknown": 2,
-      "social": 9
+      "reputable": 6,
+      "discovery": 21,
+      "unknown": 4,
+      "social": 5
     },
     "interpretation_policy": "Only primary/reputable sources are treated as confirmation; discovery and social sources are leads.",
-    "excluded_count": 26,
+    "excluded_count": 29,
     "excluded_reasons": {
-      "exact-duplicate": 4,
-      "low-information-or-promotional": 2,
-      "near-duplicate": 2,
-      "not-crypto-relevant": 18
+      "exact-duplicate": 1,
+      "low-information-or-promotional": 4,
+      "near-duplicate": 1,
+      "not-crypto-relevant": 23
     }
   },
   "method": "crypto-relevance filtered, near-duplicate suppressed, quality-tiered and recency-ranked; optional grounded AI layer"
