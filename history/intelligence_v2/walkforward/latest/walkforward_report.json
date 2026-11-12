@@ -1,9 +1,9 @@
 {
-  "walkforward_batch_id": "walkforward-89671b0674c6",
+  "walkforward_batch_id": "walkforward-6c5f642bc040",
   "evaluation_mode": "walkforward_backtest",
   "lookahead_safe": true,
-  "started_at": "2026-11-11T19:16:04.960899+00:00",
-  "completed_at": "2026-11-11T19:16:04.960902+00:00",
+  "started_at": "2026-11-12T01:48:41.451127+00:00",
+  "completed_at": "2026-11-12T01:48:41.451130+00:00",
   "symbols": [
     "BTCUSDT",
     "ETHUSDT",
@@ -11,17 +11,17 @@
   ],
   "timeframe": "4h",
   "history_lengths": {
-    "BTCUSDT": 106,
-    "ETHUSDT": 106,
-    "SOLUSDT": 106
+    "BTCUSDT": 107,
+    "ETHUSDT": 107,
+    "SOLUSDT": 107
   },
-  "common_bars": 106,
+  "common_bars": 107,
   "warmup_bars": 20,
-  "eligible_timestamps": 86,
-  "decision_count": 258,
-  "evaluation_count": 1290,
+  "eligible_timestamps": 87,
+  "decision_count": 261,
+  "evaluation_count": 1305,
   "coverage": {
-    "settled": 1152,
+    "settled": 1167,
     "pending": 138,
     "insufficient_data": 0
   },
@@ -31,43 +31,43 @@
     "source_order_normalized": true,
     "future_rows_used_for_decisions": false
   },
-  "determinism_hash": "60804e4a4720343c1922dcded99750f5ac8766832dc356633f3e60e20d9ec3ee",
+  "determinism_hash": "8c3942a59eddcdfcf1265dfa8d4842ecd65bbfb52dfcf188c055229c95ab6c0f",
   "scorecard": {
-    "settled_records": 1152,
+    "settled_records": 1167,
     "pending_records": 138,
-    "directional_records": 275,
-    "directional_hits": 163,
-    "direction_accuracy_pct": 59.27,
+    "directional_records": 283,
+    "directional_hits": 167,
+    "direction_accuracy_pct": 59.01,
     "by_horizon": {
       "1": {
-        "settled": 255,
-        "directional": 60,
+        "settled": 258,
+        "directional": 62,
         "hits": 35,
-        "accuracy_pct": 58.33
+        "accuracy_pct": 56.45
       },
       "3": {
-        "settled": 249,
-        "directional": 56,
-        "hits": 31,
-        "accuracy_pct": 55.36
+        "settled": 252,
+        "directional": 59,
+        "hits": 34,
+        "accuracy_pct": 57.63
       },
       "6": {
-        "settled": 240,
+        "settled": 243,
         "directional": 56,
         "hits": 33,
         "accuracy_pct": 58.93
       },
       "12": {
-        "settled": 222,
+        "settled": 225,
         "directional": 55,
         "hits": 33,
         "accuracy_pct": 60.0
       },
       "24": {
-        "settled": 186,
-        "directional": 48,
-        "hits": 31,
-        "accuracy_pct": 64.58
+        "settled": 189,
+        "directional": 51,
+        "hits": 32,
+        "accuracy_pct": 62.75
       }
     },
     "by_decision": {
@@ -77,8 +77,8 @@
         "pending": 0
       },
       "ALERT": {
-        "records": 465,
-        "settled": 327,
+        "records": 480,
+        "settled": 342,
         "pending": 138
       }
     }
@@ -93,10 +93,10 @@
     "Forecast self-learning remains disabled until calibration is stable."
   ],
   "forecast": {
-    "forecasts_total": 258,
+    "forecasts_total": 261,
     "active_forecasts": 1,
-    "abstain_count": 257,
-    "abstain_rate_pct": 99.61,
+    "abstain_count": 260,
+    "abstain_rate_pct": 99.62,
     "directional_settled": 1,
     "directional_hits": 0,
     "direction_accuracy_pct": 0.0,

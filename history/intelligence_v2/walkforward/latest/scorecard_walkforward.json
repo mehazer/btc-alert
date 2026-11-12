@@ -1,6 +1,6 @@
 {
   "agent": "ledger-evaluator",
-  "evaluated_at": "2026-11-11T19:16:04.959968+00:00",
+  "evaluated_at": "2026-11-12T01:48:41.450209+00:00",
   "horizons": [
     1,
     3,
@@ -8,16 +8,16 @@
     12,
     24
   ],
-  "decisions_total": 258,
-  "records_total": 1290,
-  "settled_records": 1152,
+  "decisions_total": 261,
+  "records_total": 1305,
+  "settled_records": 1167,
   "pending_records": 138,
-  "directional_records": 275,
-  "directional_hits": 163,
-  "direction_accuracy_pct": 59.27,
-  "guarded_records": 753,
-  "supported_risk_warnings": 495,
-  "risk_warning_support_pct": 65.74,
+  "directional_records": 283,
+  "directional_hits": 167,
+  "direction_accuracy_pct": 59.01,
+  "guarded_records": 758,
+  "supported_risk_warnings": 498,
+  "risk_warning_support_pct": 65.7,
   "by_decision": {
     "PAPER_PLAN": {
       "records": 825,
@@ -25,41 +25,41 @@
       "pending": 0
     },
     "ALERT": {
-      "records": 465,
-      "settled": 327,
+      "records": 480,
+      "settled": 342,
       "pending": 138
     }
   },
   "by_horizon": {
     "1": {
-      "settled": 255,
-      "directional": 60,
+      "settled": 258,
+      "directional": 62,
       "hits": 35,
-      "accuracy_pct": 58.33
+      "accuracy_pct": 56.45
     },
     "3": {
-      "settled": 249,
-      "directional": 56,
-      "hits": 31,
-      "accuracy_pct": 55.36
+      "settled": 252,
+      "directional": 59,
+      "hits": 34,
+      "accuracy_pct": 57.63
     },
     "6": {
-      "settled": 240,
+      "settled": 243,
       "directional": 56,
       "hits": 33,
       "accuracy_pct": 58.93
     },
     "12": {
-      "settled": 222,
+      "settled": 225,
       "directional": 55,
       "hits": 33,
       "accuracy_pct": 60.0
     },
     "24": {
-      "settled": 186,
-      "directional": 48,
-      "hits": 31,
-      "accuracy_pct": 64.58
+      "settled": 189,
+      "directional": 51,
+      "hits": 32,
+      "accuracy_pct": 62.75
     }
   },
   "limitations": [
@@ -71,5 +71,5 @@
   "schema_version": 2,
   "phase": 7,
   "evaluation_mode": "walkforward_backtest",
-  "walkforward_batch_id": "walkforward-89671b0674c6"
+  "walkforward_batch_id": "walkforward-6c5f642bc040"
 }

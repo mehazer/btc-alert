@@ -1,5 +1,5 @@
 {
-  "evaluated_at": "2026-11-11T19:16:03.774384+00:00",
+  "evaluated_at": "2026-11-12T01:48:40.214237+00:00",
   "phase": 7,
   "schema_version": 2,
   "horizons": [
@@ -9,15 +9,15 @@
     12,
     24
   ],
-  "decisions_total": 130,
-  "settled_evaluation_rows": 311,
+  "decisions_total": 135,
+  "settled_evaluation_rows": 375,
   "agents": {
     "technical": {
       "agent": "technical",
-      "samples": 65,
-      "hits": 44,
+      "samples": 80,
+      "hits": 47,
       "primary_metric": "direction_accuracy_pct",
-      "primary_metric_pct": 67.69,
+      "primary_metric_pct": 58.75,
       "by_state": {
         "unknown": {
           "n": 8,
@@ -25,19 +25,19 @@
           "accuracy_pct": 87.5
         },
         "weakening-participation": {
-          "n": 28,
-          "hits": 24,
-          "accuracy_pct": 85.71
+          "n": 29,
+          "hits": 25,
+          "accuracy_pct": 86.21
         },
         "fresh-long-buildup": {
-          "n": 4,
+          "n": 5,
           "hits": 1,
-          "accuracy_pct": 25.0
+          "accuracy_pct": 20.0
         },
         "short-covering": {
-          "n": 25,
-          "hits": 12,
-          "accuracy_pct": 48.0
+          "n": 38,
+          "hits": 14,
+          "accuracy_pct": 36.84
         }
       },
       "notes": [
@@ -47,13 +47,13 @@
     },
     "risk": {
       "agent": "risk",
-      "samples": 59,
-      "hits": 33,
+      "samples": 75,
+      "hits": 46,
       "primary_metric": "warning_support_pct",
-      "primary_metric_pct": 55.93,
-      "low_risk_samples": 234,
-      "false_calm_count": 113,
-      "false_calm_pct": 48.29,
+      "primary_metric_pct": 61.33,
+      "low_risk_samples": 282,
+      "false_calm_count": 157,
+      "false_calm_pct": 55.67,
       "notes": [
         "Warning support: guarded/medium/high/veto with >=1% adverse excursion.",
         "False calm: low risk with later >=2% adverse excursion."
@@ -61,9 +61,9 @@
     },
     "challenge": {
       "agent": "challenge",
-      "samples": 291,
+      "samples": 355,
       "fail_samples": 0,
-      "warn_samples": 291,
+      "warn_samples": 355,
       "pass_samples": 0,
       "hits": 0,
       "primary_metric": "fail_useful_pct",
