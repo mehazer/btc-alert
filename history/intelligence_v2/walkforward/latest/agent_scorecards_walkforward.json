@@ -1,5 +1,5 @@
 {
-  "evaluated_at": "2026-11-13T05:10:42.707842+00:00",
+  "evaluated_at": "2026-11-13T15:55:45.806270+00:00",
   "phase": 7,
   "schema_version": 2,
   "horizons": [
@@ -9,20 +9,20 @@
     12,
     24
   ],
-  "decisions_total": 270,
-  "settled_evaluation_rows": 1212,
+  "decisions_total": 273,
+  "settled_evaluation_rows": 1227,
   "agents": {
     "technical": {
       "agent": "technical",
-      "samples": 290,
+      "samples": 292,
       "hits": 168,
       "primary_metric": "direction_accuracy_pct",
-      "primary_metric_pct": 57.93,
+      "primary_metric_pct": 57.53,
       "by_state": {
         "unknown": {
-          "n": 290,
+          "n": 292,
           "hits": 168,
-          "accuracy_pct": 57.93
+          "accuracy_pct": 57.53
         }
       },
       "notes": [
@@ -32,10 +32,10 @@
     },
     "risk": {
       "agent": "risk",
-      "samples": 761,
+      "samples": 763,
       "hits": 501,
       "primary_metric": "warning_support_pct",
-      "primary_metric_pct": 65.83,
+      "primary_metric_pct": 65.66,
       "low_risk_samples": 0,
       "false_calm_count": 0,
       "false_calm_pct": null,
@@ -65,5 +65,5 @@
     "Metrics are descriptive calibration aids."
   ],
   "evaluation_mode": "walkforward_backtest",
-  "walkforward_batch_id": "walkforward-f93d967924ad"
+  "walkforward_batch_id": "walkforward-eb1e95d9151e"
 }
