@@ -1,0 +1,158 @@
+{
+  "walkforward_batch_id": "walkforward-1ae448af8a53",
+  "evaluation_mode": "walkforward_backtest",
+  "lookahead_safe": true,
+  "started_at": "2026-11-13T21:48:36.791401+00:00",
+  "completed_at": "2026-11-13T21:48:36.791403+00:00",
+  "symbols": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT"
+  ],
+  "timeframe": "4h",
+  "history_lengths": {
+    "BTCUSDT": 112,
+    "ETHUSDT": 112,
+    "SOLUSDT": 112
+  },
+  "common_bars": 112,
+  "warmup_bars": 20,
+  "eligible_timestamps": 92,
+  "decision_count": 276,
+  "evaluation_count": 1380,
+  "coverage": {
+    "settled": 1242,
+    "pending": 138,
+    "insufficient_data": 0
+  },
+  "leakage_checks": {
+    "violations": [],
+    "violation_count": 0,
+    "source_order_normalized": true,
+    "future_rows_used_for_decisions": false
+  },
+  "determinism_hash": "f556669a81fff03997b62aaf10f2f7106e1a38b9f25399aeae0c22d21590b603",
+  "scorecard": {
+    "settled_records": 1242,
+    "pending_records": 138,
+    "directional_records": 296,
+    "directional_hits": 168,
+    "direction_accuracy_pct": 56.76,
+    "by_horizon": {
+      "1": {
+        "settled": 273,
+        "directional": 64,
+        "hits": 35,
+        "accuracy_pct": 54.69
+      },
+      "3": {
+        "settled": 267,
+        "directional": 62,
+        "hits": 34,
+        "accuracy_pct": 54.84
+      },
+      "6": {
+        "settled": 258,
+        "directional": 62,
+        "hits": 34,
+        "accuracy_pct": 54.84
+      },
+      "12": {
+        "settled": 240,
+        "directional": 56,
+        "hits": 33,
+        "accuracy_pct": 58.93
+      },
+      "24": {
+        "settled": 204,
+        "directional": 52,
+        "hits": 32,
+        "accuracy_pct": 61.54
+      }
+    },
+    "by_decision": {
+      "PAPER_PLAN": {
+        "records": 825,
+        "settled": 825,
+        "pending": 0
+      },
+      "ALERT": {
+        "records": 555,
+        "settled": 417,
+        "pending": 138
+      }
+    }
+  },
+  "limitations": [
+    "ZECUSDT and ZAMAUSDT are intentionally excluded because their history is too short.",
+    "Legacy date-only rows are assigned monotonic synthetic timestamps preserving source order.",
+    "Legacy mechanism comparison is only used when a mechanism record exists at or before the replay timestamp.",
+    "Historical replay is diagnostic and excluded from live promotion calibration.",
+    "This replays deterministic v2 agents; it does not recreate unavailable historical news or venue snapshots.",
+    "Forecast walk-forward uses the same point-in-time prefixes as decisions.",
+    "Forecast self-learning remains disabled until calibration is stable."
+  ],
+  "forecast": {
+    "forecasts_total": 276,
+    "active_forecasts": 4,
+    "abstain_count": 272,
+    "abstain_rate_pct": 98.55,
+    "directional_settled": 7,
+    "directional_hits": 4,
+    "direction_accuracy_pct": 57.14,
+    "by_horizon": {
+      "1": {
+        "directional": 4,
+        "hits": 1,
+        "accuracy_pct": 25.0,
+        "pending": 0
+      },
+      "3": {
+        "directional": 2,
+        "hits": 2,
+        "accuracy_pct": 100.0,
+        "pending": 2
+      },
+      "6": {
+        "directional": 1,
+        "hits": 1,
+        "accuracy_pct": 100.0,
+        "pending": 3
+      },
+      "12": {
+        "directional": 0,
+        "hits": 0,
+        "accuracy_pct": null,
+        "pending": 4
+      }
+    },
+    "by_probability_band": {
+      "low": {
+        "directional": 6,
+        "hits": 4,
+        "accuracy_pct": 66.67
+      },
+      "medium": {
+        "directional": 1,
+        "hits": 0,
+        "accuracy_pct": 0.0
+      }
+    },
+    "calibration": [
+      {
+        "probability_band": "low",
+        "implied_mid": 0.55,
+        "empirical_hit_rate": 0.6667000000000001,
+        "n": 6,
+        "note": "Needs larger n before adjusting bands."
+      },
+      {
+        "probability_band": "medium",
+        "implied_mid": 0.62,
+        "empirical_hit_rate": 0.0,
+        "n": 1,
+        "note": "Needs larger n before adjusting bands."
+      }
+    ]
+  }
+}

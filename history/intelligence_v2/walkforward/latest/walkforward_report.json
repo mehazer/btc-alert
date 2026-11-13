@@ -1,9 +1,9 @@
 {
-  "walkforward_batch_id": "walkforward-eb1e95d9151e",
+  "walkforward_batch_id": "walkforward-1ae448af8a53",
   "evaluation_mode": "walkforward_backtest",
   "lookahead_safe": true,
-  "started_at": "2026-11-13T15:55:45.806502+00:00",
-  "completed_at": "2026-11-13T15:55:45.806505+00:00",
+  "started_at": "2026-11-13T21:48:36.791401+00:00",
+  "completed_at": "2026-11-13T21:48:36.791403+00:00",
   "symbols": [
     "BTCUSDT",
     "ETHUSDT",
@@ -11,17 +11,17 @@
   ],
   "timeframe": "4h",
   "history_lengths": {
-    "BTCUSDT": 111,
-    "ETHUSDT": 111,
-    "SOLUSDT": 111
+    "BTCUSDT": 112,
+    "ETHUSDT": 112,
+    "SOLUSDT": 112
   },
-  "common_bars": 111,
+  "common_bars": 112,
   "warmup_bars": 20,
-  "eligible_timestamps": 91,
-  "decision_count": 273,
-  "evaluation_count": 1365,
+  "eligible_timestamps": 92,
+  "decision_count": 276,
+  "evaluation_count": 1380,
   "coverage": {
-    "settled": 1227,
+    "settled": 1242,
     "pending": 138,
     "insufficient_data": 0
   },
@@ -31,40 +31,40 @@
     "source_order_normalized": true,
     "future_rows_used_for_decisions": false
   },
-  "determinism_hash": "bf64d74f254aa68347f98c41bb6030b744b0409fae5a63c7eb19d31e92121698",
+  "determinism_hash": "f556669a81fff03997b62aaf10f2f7106e1a38b9f25399aeae0c22d21590b603",
   "scorecard": {
-    "settled_records": 1227,
+    "settled_records": 1242,
     "pending_records": 138,
-    "directional_records": 292,
+    "directional_records": 296,
     "directional_hits": 168,
-    "direction_accuracy_pct": 57.53,
+    "direction_accuracy_pct": 56.76,
     "by_horizon": {
       "1": {
-        "settled": 270,
-        "directional": 62,
+        "settled": 273,
+        "directional": 64,
         "hits": 35,
-        "accuracy_pct": 56.45
+        "accuracy_pct": 54.69
       },
       "3": {
-        "settled": 264,
+        "settled": 267,
         "directional": 62,
         "hits": 34,
         "accuracy_pct": 54.84
       },
       "6": {
-        "settled": 255,
-        "directional": 60,
+        "settled": 258,
+        "directional": 62,
         "hits": 34,
-        "accuracy_pct": 56.67
+        "accuracy_pct": 54.84
       },
       "12": {
-        "settled": 237,
+        "settled": 240,
         "directional": 56,
         "hits": 33,
         "accuracy_pct": 58.93
       },
       "24": {
-        "settled": 201,
+        "settled": 204,
         "directional": 52,
         "hits": 32,
         "accuracy_pct": 61.54
@@ -77,8 +77,8 @@
         "pending": 0
       },
       "ALERT": {
-        "records": 540,
-        "settled": 402,
+        "records": 555,
+        "settled": 417,
         "pending": 138
       }
     }
@@ -93,13 +93,13 @@
     "Forecast self-learning remains disabled until calibration is stable."
   ],
   "forecast": {
-    "forecasts_total": 273,
+    "forecasts_total": 276,
     "active_forecasts": 4,
-    "abstain_count": 269,
-    "abstain_rate_pct": 98.53,
-    "directional_settled": 6,
-    "directional_hits": 3,
-    "direction_accuracy_pct": 50.0,
+    "abstain_count": 272,
+    "abstain_rate_pct": 98.55,
+    "directional_settled": 7,
+    "directional_hits": 4,
+    "direction_accuracy_pct": 57.14,
     "by_horizon": {
       "1": {
         "directional": 4,
@@ -108,10 +108,10 @@
         "pending": 0
       },
       "3": {
-        "directional": 1,
-        "hits": 1,
+        "directional": 2,
+        "hits": 2,
         "accuracy_pct": 100.0,
-        "pending": 3
+        "pending": 2
       },
       "6": {
         "directional": 1,
@@ -128,9 +128,9 @@
     },
     "by_probability_band": {
       "low": {
-        "directional": 5,
-        "hits": 3,
-        "accuracy_pct": 60.0
+        "directional": 6,
+        "hits": 4,
+        "accuracy_pct": 66.67
       },
       "medium": {
         "directional": 1,
@@ -142,8 +142,8 @@
       {
         "probability_band": "low",
         "implied_mid": 0.55,
-        "empirical_hit_rate": 0.6,
-        "n": 5,
+        "empirical_hit_rate": 0.6667000000000001,
+        "n": 6,
         "note": "Needs larger n before adjusting bands."
       },
       {
