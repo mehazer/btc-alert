@@ -1,6 +1,6 @@
 {
   "agent": "promotion-gate",
-  "run_id": "shadow-20261114T045958Z-7e767724",
+  "run_id": "shadow-20261114T144614Z-8393f1c2",
   "status": "not_ready",
   "ready_for_review": false,
   "auto_promote": false,
@@ -8,27 +8,27 @@
     {
       "name": "min_settled_records",
       "passed": true,
-      "detail": "settled=545, need>=30"
+      "detail": "settled=570, need>=30"
     },
     {
       "name": "direction_accuracy",
       "passed": false,
-      "detail": "accuracy=43.36, need>=55.0"
+      "detail": "accuracy=41.18, need>=55.0"
     },
     {
       "name": "technical_samples",
       "passed": true,
-      "detail": "technical_samples=113, need>=15"
+      "detail": "technical_samples=119, need>=15"
     },
     {
       "name": "risk_samples",
       "passed": true,
-      "detail": "risk_samples=121, need>=10"
+      "detail": "risk_samples=128, need>=10"
     },
     {
       "name": "false_calm_ceiling",
       "passed": false,
-      "detail": "false_calm_pct=65.52, max=35.0"
+      "detail": "false_calm_pct=66.27, max=35.0"
     },
     {
       "name": "human_approval_required",
@@ -42,20 +42,20 @@
     }
   ],
   "blockers": [
-    "direction_accuracy: accuracy=43.36, need>=55.0",
-    "false_calm_ceiling: false_calm_pct=65.52, max=35.0",
+    "direction_accuracy: accuracy=41.18, need>=55.0",
+    "false_calm_ceiling: false_calm_pct=66.27, max=35.0",
     "human_approval_required: Promotion requires explicit human PR approval."
   ],
   "metrics": {
-    "settled_records": 545,
-    "direction_accuracy_pct": 43.36,
-    "technical_samples": 113,
-    "risk_samples": 121,
-    "false_calm_pct": 65.52,
+    "settled_records": 570,
+    "direction_accuracy_pct": 41.18,
+    "technical_samples": 119,
+    "risk_samples": 128,
+    "false_calm_pct": 66.27,
     "challenge_fail_useful_pct": null,
-    "total_runs": 33,
-    "total_decisions": 165
+    "total_runs": 34,
+    "total_decisions": 170
   },
-  "evaluated_at": "2026-11-14T05:00:03.004256+00:00",
+  "evaluated_at": "2026-11-14T14:46:17.976283+00:00",
   "model_version": "promotion-criteria-v0.1"
 }
