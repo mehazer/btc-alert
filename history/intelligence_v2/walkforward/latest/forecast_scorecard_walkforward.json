@@ -1,15 +1,15 @@
 {
   "agent": "forecast-scorecard",
-  "evaluated_at": "2026-11-13T21:48:36.821768+00:00",
-  "forecasts_total": 276,
+  "evaluated_at": "2026-11-14T05:00:04.441239+00:00",
+  "forecasts_total": 279,
   "active_forecasts": 4,
-  "abstain_count": 272,
-  "abstain_rate_pct": 98.55,
-  "settled_rows": 7,
-  "pending_rows": 9,
-  "directional_settled": 7,
-  "directional_hits": 4,
-  "direction_accuracy_pct": 57.14,
+  "abstain_count": 275,
+  "abstain_rate_pct": 98.57,
+  "settled_rows": 9,
+  "pending_rows": 7,
+  "directional_settled": 9,
+  "directional_hits": 6,
+  "direction_accuracy_pct": 66.67,
   "by_horizon": {
     "1": {
       "directional": 4,
@@ -18,10 +18,10 @@
       "pending": 0
     },
     "3": {
-      "directional": 2,
-      "hits": 2,
+      "directional": 4,
+      "hits": 4,
       "accuracy_pct": 100.0,
-      "pending": 2
+      "pending": 0
     },
     "6": {
       "directional": 1,
@@ -38,29 +38,29 @@
   },
   "by_probability_band": {
     "low": {
-      "directional": 6,
-      "hits": 4,
-      "accuracy_pct": 66.67
+      "directional": 7,
+      "hits": 5,
+      "accuracy_pct": 71.43
     },
     "medium": {
-      "directional": 1,
-      "hits": 0,
-      "accuracy_pct": 0.0
+      "directional": 2,
+      "hits": 1,
+      "accuracy_pct": 50.0
     }
   },
   "calibration": [
     {
       "probability_band": "low",
       "implied_mid": 0.55,
-      "empirical_hit_rate": 0.6667000000000001,
-      "n": 6,
+      "empirical_hit_rate": 0.7143,
+      "n": 7,
       "note": "Needs larger n before adjusting bands."
     },
     {
       "probability_band": "medium",
       "implied_mid": 0.62,
-      "empirical_hit_rate": 0.0,
-      "n": 1,
+      "empirical_hit_rate": 0.5,
+      "n": 2,
       "note": "Needs larger n before adjusting bands."
     }
   ],
