@@ -1,21 +1,21 @@
 {
   "agent": "forecast-scorecard",
-  "evaluated_at": "2026-11-14T14:46:19.751514+00:00",
-  "forecasts_total": 282,
+  "evaluated_at": "2026-11-14T20:26:16.800983+00:00",
+  "forecasts_total": 285,
   "active_forecasts": 5,
-  "abstain_count": 277,
-  "abstain_rate_pct": 98.23,
-  "settled_rows": 9,
-  "pending_rows": 11,
-  "directional_settled": 9,
-  "directional_hits": 6,
-  "direction_accuracy_pct": 66.67,
+  "abstain_count": 280,
+  "abstain_rate_pct": 98.25,
+  "settled_rows": 11,
+  "pending_rows": 9,
+  "directional_settled": 11,
+  "directional_hits": 8,
+  "direction_accuracy_pct": 72.73,
   "by_horizon": {
     "1": {
-      "directional": 4,
-      "hits": 1,
-      "accuracy_pct": 25.0,
-      "pending": 1
+      "directional": 5,
+      "hits": 2,
+      "accuracy_pct": 40.0,
+      "pending": 0
     },
     "3": {
       "directional": 4,
@@ -24,10 +24,10 @@
       "pending": 1
     },
     "6": {
-      "directional": 1,
-      "hits": 1,
+      "directional": 2,
+      "hits": 2,
       "accuracy_pct": 100.0,
-      "pending": 4
+      "pending": 3
     },
     "12": {
       "directional": 0,
@@ -38,29 +38,29 @@
   },
   "by_probability_band": {
     "low": {
-      "directional": 7,
-      "hits": 5,
-      "accuracy_pct": 71.43
+      "directional": 8,
+      "hits": 6,
+      "accuracy_pct": 75.0
     },
     "medium": {
-      "directional": 2,
-      "hits": 1,
-      "accuracy_pct": 50.0
+      "directional": 3,
+      "hits": 2,
+      "accuracy_pct": 66.67
     }
   },
   "calibration": [
     {
       "probability_band": "low",
       "implied_mid": 0.55,
-      "empirical_hit_rate": 0.7143,
-      "n": 7,
+      "empirical_hit_rate": 0.75,
+      "n": 8,
       "note": "Needs larger n before adjusting bands."
     },
     {
       "probability_band": "medium",
       "implied_mid": 0.62,
-      "empirical_hit_rate": 0.5,
-      "n": 2,
+      "empirical_hit_rate": 0.6667000000000001,
+      "n": 3,
       "note": "Needs larger n before adjusting bands."
     }
   ],
