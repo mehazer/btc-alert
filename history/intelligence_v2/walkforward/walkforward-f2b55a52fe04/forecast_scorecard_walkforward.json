@@ -1,0 +1,73 @@
+{
+  "agent": "forecast-scorecard",
+  "evaluated_at": "2026-11-15T04:53:43.088966+00:00",
+  "forecasts_total": 288,
+  "active_forecasts": 6,
+  "abstain_count": 282,
+  "abstain_rate_pct": 97.92,
+  "settled_rows": 13,
+  "pending_rows": 11,
+  "directional_settled": 13,
+  "directional_hits": 10,
+  "direction_accuracy_pct": 76.92,
+  "by_horizon": {
+    "1": {
+      "directional": 5,
+      "hits": 2,
+      "accuracy_pct": 40.0,
+      "pending": 1
+    },
+    "3": {
+      "directional": 4,
+      "hits": 4,
+      "accuracy_pct": 100.0,
+      "pending": 2
+    },
+    "6": {
+      "directional": 4,
+      "hits": 4,
+      "accuracy_pct": 100.0,
+      "pending": 2
+    },
+    "12": {
+      "directional": 0,
+      "hits": 0,
+      "accuracy_pct": null,
+      "pending": 6
+    }
+  },
+  "by_probability_band": {
+    "low": {
+      "directional": 9,
+      "hits": 7,
+      "accuracy_pct": 77.78
+    },
+    "medium": {
+      "directional": 4,
+      "hits": 3,
+      "accuracy_pct": 75.0
+    }
+  },
+  "calibration": [
+    {
+      "probability_band": "low",
+      "implied_mid": 0.55,
+      "empirical_hit_rate": 0.7778,
+      "n": 9,
+      "note": "Needs larger n before adjusting bands."
+    },
+    {
+      "probability_band": "medium",
+      "implied_mid": 0.62,
+      "empirical_hit_rate": 0.75,
+      "n": 4,
+      "note": "Needs larger n before adjusting bands."
+    }
+  ],
+  "limitations": [
+    "Shadow-only: forecasts never execute or alter production alerts.",
+    "Direction accuracy excludes ABSTAIN rows (abstain is tracked separately).",
+    "Probability bands are conservative priors pending walk-forward calibration.",
+    "Do not enable self-learning until calibration is stable out of sample."
+  ]
+}

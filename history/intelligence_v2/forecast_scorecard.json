@@ -1,46 +1,46 @@
 {
   "agent": "forecast-scorecard",
-  "evaluated_at": "2026-11-14T20:26:15.406798+00:00",
-  "forecasts_total": 120,
-  "active_forecasts": 22,
-  "abstain_count": 98,
-  "abstain_rate_pct": 81.67,
-  "settled_rows": 72,
-  "pending_rows": 16,
-  "directional_settled": 72,
-  "directional_hits": 40,
-  "direction_accuracy_pct": 55.56,
+  "evaluated_at": "2026-11-15T04:53:41.328760+00:00",
+  "forecasts_total": 125,
+  "active_forecasts": 23,
+  "abstain_count": 102,
+  "abstain_rate_pct": 81.6,
+  "settled_rows": 75,
+  "pending_rows": 17,
+  "directional_settled": 75,
+  "directional_hits": 42,
+  "direction_accuracy_pct": 56.0,
   "by_horizon": {
     "1": {
       "directional": 22,
       "hits": 18,
       "accuracy_pct": 81.82,
-      "pending": 0
+      "pending": 1
     },
     "3": {
       "directional": 20,
       "hits": 10,
       "accuracy_pct": 50.0,
-      "pending": 2
+      "pending": 3
     },
     "6": {
-      "directional": 17,
-      "hits": 8,
-      "accuracy_pct": 47.06,
-      "pending": 5
+      "directional": 20,
+      "hits": 10,
+      "accuracy_pct": 50.0,
+      "pending": 3
     },
     "12": {
       "directional": 13,
       "hits": 4,
       "accuracy_pct": 30.77,
-      "pending": 9
+      "pending": 10
     }
   },
   "by_probability_band": {
     "low": {
-      "directional": 56,
-      "hits": 27,
-      "accuracy_pct": 48.21
+      "directional": 57,
+      "hits": 28,
+      "accuracy_pct": 49.12
     },
     "high": {
       "directional": 4,
@@ -48,9 +48,9 @@
       "accuracy_pct": 100.0
     },
     "medium": {
-      "directional": 12,
-      "hits": 9,
-      "accuracy_pct": 75.0
+      "directional": 14,
+      "hits": 10,
+      "accuracy_pct": 71.43
     }
   },
   "calibration": [
@@ -64,15 +64,15 @@
     {
       "probability_band": "low",
       "implied_mid": 0.55,
-      "empirical_hit_rate": 0.48210000000000003,
-      "n": 56,
+      "empirical_hit_rate": 0.49119999999999997,
+      "n": 57,
       "note": "Needs larger n before adjusting bands."
     },
     {
       "probability_band": "medium",
       "implied_mid": 0.62,
-      "empirical_hit_rate": 0.75,
-      "n": 12,
+      "empirical_hit_rate": 0.7143,
+      "n": 14,
       "note": "Needs larger n before adjusting bands."
     }
   ],
