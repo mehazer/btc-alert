@@ -20,7 +20,18 @@ CATEGORY_RULES = {
     "Institutional & Exchanges": [r"binance", r"coinbase", r"kraken", r"exchange", r"institution", r"bank", r"custody", r"tokeniz", r"trading"],
 }
 CATEGORY_PRIORITY = ["Security & Hacks", "Regulation & Politics", "Bitcoin & ETF", "Market & Macro", "Institutional & Exchanges", "DeFi & Stablecoins", "Ethereum & L2", "Altcoins & Projects"]
-SOURCE_WEIGHT = {"coindesk": 1.4, "the block": 1.35, "reuters": 1.5, "bloomberg": 1.5, "cointelegraph": 1.15, "decrypt": 1.1, "google news": 1.0, "reddit": .55, "telegram": .65}
+SOURCE_WEIGHT = {
+    "coindesk": 1.4,
+    "the block": 1.35,
+    "reuters": 1.5,
+    "bloomberg": 1.5,
+    "cointelegraph": 1.15,
+    "decrypt": 1.1,
+    "google news": 1.0,
+    "reddit": 0.55,
+    "telegram": 0.65,
+    "stocktwits": 0.5,
+}
 QUALITY_WEIGHT = {"primary": 1.35, "reputable": 1.15, "discovery": .72, "social": .45, "unknown": .7}
 CRYPTO_RELEVANCE = re.compile(r"\b(bitcoin|btc|ethereum|eth|solana|sol|crypto|cryptocurrency|blockchain|defi|stablecoin|token|exchange|binance|coinbase|sec|cftc|fed|etf|zcash|zec|zama|fhe)\b", re.I)
 LOW_VALUE_HEADLINE = re.compile(r"\b(casino|gambling|betting|promo code|sponsored|best .* sites|price prediction|price forecast|where to buy|affiliate)\b", re.I)
