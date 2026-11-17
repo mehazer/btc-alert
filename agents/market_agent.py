@@ -5,7 +5,7 @@ Deterministik, kural-tabanli Market Agent (v2 - Directional).
 
 AMAC:
 Zaten toplanmis sinyalleri (RSI, Fear & Greed, Funding Rate,
-OI degisimi, Fiyat degisimi, News Sentiment) tek bir
+OI degisimi, Fiyat degisimi, News Sentiment, optional social) tek bir
 yonlu (directional) piyasa degerlendirmesine cevirir.
 
 Cikti:
@@ -35,6 +35,7 @@ def evaluate(
     oi_change_pct=None,
     price_change_pct=None,
     news_sentiment=None,
+    social_sentiment=None,
 ):
     """
     Directional market evaluation.
@@ -46,6 +47,7 @@ def evaluate(
         oi_change_pct: float (percentage change)
         price_change_pct: float (percentage change)
         news_sentiment: float -100 to +100
+        social_sentiment: float -100 to +100 (e.g. StockTwits live score)
 
     Returns dict with state, bias_score, intensity, confidence, reasons...
     """
@@ -53,7 +55,7 @@ def evaluate(
     bearish_points = 0.0
     reasons = []
     available = 0
-    total_possible = 6
+    total_possible = 7
 
     inputs = {
         "rsi": rsi,
@@ -62,6 +64,7 @@ def evaluate(
         "oi_change_pct": oi_change_pct,
         "price_change_pct": price_change_pct,
         "news_sentiment": news_sentiment,
+        "social_sentiment": social_sentiment,
     }
 
     # ------------------------------------------------------------------
@@ -176,6 +179,24 @@ def evaluate(
             reasons.append(f"Haber sentimenti hafif negatif ({news_sentiment:+.0f})")
 
     # ------------------------------------------------------------------
+    # 7. Live social sentiment (StockTwits etc.) — lower weight than news
+    # ------------------------------------------------------------------
+    if social_sentiment is not None:
+        available += 1
+        if social_sentiment >= 40:
+            bullish_points += 10
+            reasons.append(f"Sosyal sentiment iyimser ({social_sentiment:+.0f})")
+        elif social_sentiment >= 15:
+            bullish_points += 5
+            reasons.append(f"Sosyal sentiment hafif pozitif ({social_sentiment:+.0f})")
+        elif social_sentiment <= -40:
+            bearish_points += 10
+            reasons.append(f"Sosyal sentiment kotumser ({social_sentiment:+.0f})")
+        elif social_sentiment <= -15:
+            bearish_points += 5
+            reasons.append(f"Sosyal sentiment hafif negatif ({social_sentiment:+.0f})")
+
+    # ------------------------------------------------------------------
     # Final scores
     # ------------------------------------------------------------------
     net = bullish_points - bearish_points
@@ -223,5 +244,6 @@ if __name__ == "__main__":
         oi_change_pct=-4.2,
         price_change_pct=1.8,
         news_sentiment=-22,
+        social_sentiment=-18,
     )
     print(json.dumps(result, indent=2, ensure_ascii=False))
