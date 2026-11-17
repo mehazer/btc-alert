@@ -11209,5 +11209,397 @@
       "Directional forecasts require OI confluence (price+OI agreement)."
     ],
     "execution_allowed": false
+  },
+  {
+    "agent": "forecast-engine",
+    "run_id": "shadow-20261117T024742Z-a80463cc",
+    "symbol": "BTCUSDT",
+    "timeframe": "4h",
+    "forecast_id": "fc-33d5078ba991",
+    "issued_at": "2026-11-17T02:47:46.350643+00:00",
+    "stance": "ABSTAIN",
+    "primary_direction": "abstain",
+    "horizons": [
+      {
+        "horizon_bars": 1,
+        "direction": "abstain",
+        "probability_low": 0.45,
+        "probability_high": 0.55,
+        "expected_move_pct_low": null,
+        "expected_move_pct_high": null,
+        "status": "abstain"
+      },
+      {
+        "horizon_bars": 3,
+        "direction": "abstain",
+        "probability_low": 0.45,
+        "probability_high": 0.55,
+        "expected_move_pct_low": null,
+        "expected_move_pct_high": null,
+        "status": "abstain"
+      },
+      {
+        "horizon_bars": 6,
+        "direction": "abstain",
+        "probability_low": 0.45,
+        "probability_high": 0.55,
+        "expected_move_pct_low": null,
+        "expected_move_pct_high": null,
+        "status": "abstain"
+      },
+      {
+        "horizon_bars": 12,
+        "direction": "abstain",
+        "probability_low": 0.45,
+        "probability_high": 0.55,
+        "expected_move_pct_low": null,
+        "expected_move_pct_high": null,
+        "status": "abstain"
+      }
+    ],
+    "confidence": 16,
+    "probability_band": "abstain",
+    "drivers": [
+      "Technical state=long-liquidation",
+      "Price change -0.55%",
+      "Price down with OI contraction (deleveraging)",
+      "RSI depressed (33)",
+      "Conflict: Deleveraging is not a clean directional continuation signal",
+      "Conflict: Depressed RSI reduces downside continuation confidence",
+      "Conflict: No confirming OI alignment — prefer ABSTAIN"
+    ],
+    "invalidation": [
+      "New data invalidates the evidence pack",
+      "Price breaks the recent swing level",
+      "Evidence quality drops to fail on a subsequent pack",
+      "A clear directional break with confirming OI appears"
+    ],
+    "abstain_reasons": [
+      "no clear directional confluence"
+    ],
+    "evidence_ids": [
+      "evidence-d94e4aef9469",
+      "evidence-d94e4aef9469",
+      "src-839b4f06592d",
+      "src-35a1dfad9408"
+    ],
+    "model_version": "forecast-engine-v0.3-oi-confluence",
+    "calibration_notes": [
+      "Probability bands are conservative ranges, not point estimates.",
+      "Confidence capped at 72 until walk-forward calibration is proven.",
+      "ABSTAIN is a valid successful outcome when edge is not present.",
+      "Directional forecasts require OI confluence (price+OI agreement)."
+    ],
+    "execution_allowed": false
+  },
+  {
+    "agent": "forecast-engine",
+    "run_id": "shadow-20261117T024742Z-a80463cc",
+    "symbol": "ETHUSDT",
+    "timeframe": "4h",
+    "forecast_id": "fc-3c88f0c13d2c",
+    "issued_at": "2026-11-17T02:47:46.352576+00:00",
+    "stance": "ABSTAIN",
+    "primary_direction": "abstain",
+    "horizons": [
+      {
+        "horizon_bars": 1,
+        "direction": "abstain",
+        "probability_low": 0.45,
+        "probability_high": 0.55,
+        "expected_move_pct_low": null,
+        "expected_move_pct_high": null,
+        "status": "abstain"
+      },
+      {
+        "horizon_bars": 3,
+        "direction": "abstain",
+        "probability_low": 0.45,
+        "probability_high": 0.55,
+        "expected_move_pct_low": null,
+        "expected_move_pct_high": null,
+        "status": "abstain"
+      },
+      {
+        "horizon_bars": 6,
+        "direction": "abstain",
+        "probability_low": 0.45,
+        "probability_high": 0.55,
+        "expected_move_pct_low": null,
+        "expected_move_pct_high": null,
+        "status": "abstain"
+      },
+      {
+        "horizon_bars": 12,
+        "direction": "abstain",
+        "probability_low": 0.45,
+        "probability_high": 0.55,
+        "expected_move_pct_low": null,
+        "expected_move_pct_high": null,
+        "status": "abstain"
+      }
+    ],
+    "confidence": 16,
+    "probability_band": "abstain",
+    "drivers": [
+      "Technical state=fresh-short-buildup",
+      "Conflict: No confirming OI alignment — prefer ABSTAIN"
+    ],
+    "invalidation": [
+      "New data invalidates the evidence pack",
+      "Price breaks the recent swing level",
+      "Evidence quality drops to fail on a subsequent pack",
+      "A clear directional break with confirming OI appears"
+    ],
+    "abstain_reasons": [
+      "no clear directional confluence"
+    ],
+    "evidence_ids": [
+      "evidence-5292f000e97e",
+      "evidence-5292f000e97e",
+      "src-a4754ecbff75",
+      "src-721027427e47"
+    ],
+    "model_version": "forecast-engine-v0.3-oi-confluence",
+    "calibration_notes": [
+      "Probability bands are conservative ranges, not point estimates.",
+      "Confidence capped at 72 until walk-forward calibration is proven.",
+      "ABSTAIN is a valid successful outcome when edge is not present.",
+      "Directional forecasts require OI confluence (price+OI agreement)."
+    ],
+    "execution_allowed": false
+  },
+  {
+    "agent": "forecast-engine",
+    "run_id": "shadow-20261117T024742Z-a80463cc",
+    "symbol": "SOLUSDT",
+    "timeframe": "4h",
+    "forecast_id": "fc-85f6e0b66cff",
+    "issued_at": "2026-11-17T02:47:46.353468+00:00",
+    "stance": "ABSTAIN",
+    "primary_direction": "abstain",
+    "horizons": [
+      {
+        "horizon_bars": 1,
+        "direction": "abstain",
+        "probability_low": 0.45,
+        "probability_high": 0.55,
+        "expected_move_pct_low": null,
+        "expected_move_pct_high": null,
+        "status": "abstain"
+      },
+      {
+        "horizon_bars": 3,
+        "direction": "abstain",
+        "probability_low": 0.45,
+        "probability_high": 0.55,
+        "expected_move_pct_low": null,
+        "expected_move_pct_high": null,
+        "status": "abstain"
+      },
+      {
+        "horizon_bars": 6,
+        "direction": "abstain",
+        "probability_low": 0.45,
+        "probability_high": 0.55,
+        "expected_move_pct_low": null,
+        "expected_move_pct_high": null,
+        "status": "abstain"
+      },
+      {
+        "horizon_bars": 12,
+        "direction": "abstain",
+        "probability_low": 0.45,
+        "probability_high": 0.55,
+        "expected_move_pct_low": null,
+        "expected_move_pct_high": null,
+        "status": "abstain"
+      }
+    ],
+    "confidence": 16,
+    "probability_band": "abstain",
+    "drivers": [
+      "Technical state=short-covering",
+      "Conflict: No confirming OI alignment — prefer ABSTAIN"
+    ],
+    "invalidation": [
+      "New data invalidates the evidence pack",
+      "Price breaks the recent swing level",
+      "Evidence quality drops to fail on a subsequent pack",
+      "A clear directional break with confirming OI appears"
+    ],
+    "abstain_reasons": [
+      "no clear directional confluence"
+    ],
+    "evidence_ids": [
+      "evidence-2e0cce9178fc",
+      "evidence-2e0cce9178fc",
+      "src-48bbb7b24f73",
+      "src-74085a513d08"
+    ],
+    "model_version": "forecast-engine-v0.3-oi-confluence",
+    "calibration_notes": [
+      "Probability bands are conservative ranges, not point estimates.",
+      "Confidence capped at 72 until walk-forward calibration is proven.",
+      "ABSTAIN is a valid successful outcome when edge is not present.",
+      "Directional forecasts require OI confluence (price+OI agreement)."
+    ],
+    "execution_allowed": false
+  },
+  {
+    "agent": "forecast-engine",
+    "run_id": "shadow-20261117T024742Z-a80463cc",
+    "symbol": "ZECUSDT",
+    "timeframe": "4h",
+    "forecast_id": "fc-2f84aead649d",
+    "issued_at": "2026-11-17T02:47:46.354347+00:00",
+    "stance": "ABSTAIN",
+    "primary_direction": "abstain",
+    "horizons": [
+      {
+        "horizon_bars": 1,
+        "direction": "abstain",
+        "probability_low": 0.45,
+        "probability_high": 0.55,
+        "expected_move_pct_low": null,
+        "expected_move_pct_high": null,
+        "status": "abstain"
+      },
+      {
+        "horizon_bars": 3,
+        "direction": "abstain",
+        "probability_low": 0.45,
+        "probability_high": 0.55,
+        "expected_move_pct_low": null,
+        "expected_move_pct_high": null,
+        "status": "abstain"
+      },
+      {
+        "horizon_bars": 6,
+        "direction": "abstain",
+        "probability_low": 0.45,
+        "probability_high": 0.55,
+        "expected_move_pct_low": null,
+        "expected_move_pct_high": null,
+        "status": "abstain"
+      },
+      {
+        "horizon_bars": 12,
+        "direction": "abstain",
+        "probability_low": 0.45,
+        "probability_high": 0.55,
+        "expected_move_pct_low": null,
+        "expected_move_pct_high": null,
+        "status": "abstain"
+      }
+    ],
+    "confidence": 16,
+    "probability_band": "abstain",
+    "drivers": [
+      "Technical state=fresh-long-buildup",
+      "Price change +0.48%",
+      "Conflict: No confirming OI alignment — prefer ABSTAIN"
+    ],
+    "invalidation": [
+      "New data invalidates the evidence pack",
+      "Price breaks the recent swing level",
+      "Evidence quality drops to fail on a subsequent pack",
+      "A clear directional break with confirming OI appears"
+    ],
+    "abstain_reasons": [
+      "no clear directional confluence"
+    ],
+    "evidence_ids": [
+      "evidence-5e3b75b9be1e",
+      "evidence-5e3b75b9be1e",
+      "src-72c5dc6e277a",
+      "src-7e04900d5713"
+    ],
+    "model_version": "forecast-engine-v0.3-oi-confluence",
+    "calibration_notes": [
+      "Probability bands are conservative ranges, not point estimates.",
+      "Confidence capped at 72 until walk-forward calibration is proven.",
+      "ABSTAIN is a valid successful outcome when edge is not present.",
+      "Directional forecasts require OI confluence (price+OI agreement)."
+    ],
+    "execution_allowed": false
+  },
+  {
+    "agent": "forecast-engine",
+    "run_id": "shadow-20261117T024742Z-a80463cc",
+    "symbol": "ZAMAUSDT",
+    "timeframe": "4h",
+    "forecast_id": "fc-4558e52f43db",
+    "issued_at": "2026-11-17T02:47:46.355208+00:00",
+    "stance": "ABSTAIN",
+    "primary_direction": "abstain",
+    "horizons": [
+      {
+        "horizon_bars": 1,
+        "direction": "abstain",
+        "probability_low": 0.45,
+        "probability_high": 0.55,
+        "expected_move_pct_low": null,
+        "expected_move_pct_high": null,
+        "status": "abstain"
+      },
+      {
+        "horizon_bars": 3,
+        "direction": "abstain",
+        "probability_low": 0.45,
+        "probability_high": 0.55,
+        "expected_move_pct_low": null,
+        "expected_move_pct_high": null,
+        "status": "abstain"
+      },
+      {
+        "horizon_bars": 6,
+        "direction": "abstain",
+        "probability_low": 0.45,
+        "probability_high": 0.55,
+        "expected_move_pct_low": null,
+        "expected_move_pct_high": null,
+        "status": "abstain"
+      },
+      {
+        "horizon_bars": 12,
+        "direction": "abstain",
+        "probability_low": 0.45,
+        "probability_high": 0.55,
+        "expected_move_pct_low": null,
+        "expected_move_pct_high": null,
+        "status": "abstain"
+      }
+    ],
+    "confidence": 16,
+    "probability_band": "abstain",
+    "drivers": [
+      "Technical state=short-covering",
+      "Conflict: Price up while OI contracts (covering / weak fuel)",
+      "Conflict: No confirming OI alignment — prefer ABSTAIN"
+    ],
+    "invalidation": [
+      "New data invalidates the evidence pack",
+      "Price breaks the recent swing level",
+      "Evidence quality drops to fail on a subsequent pack",
+      "A clear directional break with confirming OI appears"
+    ],
+    "abstain_reasons": [
+      "no clear directional confluence"
+    ],
+    "evidence_ids": [
+      "evidence-a06d66bd598d",
+      "evidence-a06d66bd598d",
+      "src-092e885ba60b",
+      "src-ee82563e6dc0"
+    ],
+    "model_version": "forecast-engine-v0.3-oi-confluence",
+    "calibration_notes": [
+      "Probability bands are conservative ranges, not point estimates.",
+      "Confidence capped at 72 until walk-forward calibration is proven.",
+      "ABSTAIN is a valid successful outcome when edge is not present.",
+      "Directional forecasts require OI confluence (price+OI agreement)."
+    ],
+    "execution_allowed": false
   }
 ]

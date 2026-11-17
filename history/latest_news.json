@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-16T17:57:38.393497+00:00",
+  "updated_at": "2026-11-17T02:47:29.402318+00:00",
   "sources": [
     {
       "name": "CoinDesk",
@@ -102,8 +102,30 @@
       "quality": "social"
     }
   ],
-  "headline_count": 41,
+  "headline_count": 42,
   "headlines": [
+    {
+      "source": "CoinDesk",
+      "type": "rss",
+      "headline": "Bitcoin risks falling below $60,000 as Nvidia earnings threaten to deepen crypto sell-off",
+      "category": "Market & Macro",
+      "importance": 1.973,
+      "age_hours": 24.0,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "CoinDesk",
+      "type": "rss",
+      "headline": "U.S. Senate Democrats tell CFTC to back off its demand prediction markets defy bans",
+      "category": "Regulation & Politics",
+      "importance": 1.973,
+      "age_hours": 24.0,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
+    },
     {
       "source": "CoinDesk",
       "type": "rss",
@@ -116,21 +138,10 @@
       "asset_scope": "market-wide"
     },
     {
-      "source": "CoinDesk",
-      "type": "rss",
-      "headline": "Brazil's central bank faces backlash over stablecoin money laundering remarks",
-      "category": "Regulation & Politics",
-      "importance": 1.973,
-      "age_hours": 24.0,
-      "source_quality": "reputable",
-      "evidence_status": "confirmed-source",
-      "asset_scope": "market-wide"
-    },
-    {
       "source": "The Block",
       "type": "rss",
-      "headline": "Supreme Court rejects Custodia Bank’s bid for Fed master account",
-      "category": "Market & Macro",
+      "headline": "CFTC backs blockchain-based derivatives infrastructure as Backpack, tZERO win approvals",
+      "category": "Regulation & Politics",
       "importance": 1.935,
       "age_hours": 24.0,
       "source_quality": "reputable",
@@ -140,8 +151,19 @@
     {
       "source": "The Block",
       "type": "rss",
-      "headline": "Boris Johnson backs tokenization months after likening bitcoin to a ‘Ponzi scheme’",
-      "category": "Market & Macro",
+      "headline": "Democratic senators warn SEC’s tokenized stock exemption has illicit finance gaps",
+      "category": "Regulation & Politics",
+      "importance": 1.935,
+      "age_hours": 24.0,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "The Block",
+      "type": "rss",
+      "headline": "Peraire-Bueno brothers acquitted of wire fraud in $25 million Ethereum MEV case",
+      "category": "Security & Hacks",
       "importance": 1.935,
       "age_hours": 24.0,
       "source_quality": "reputable",
@@ -151,7 +173,7 @@
     {
       "source": "Decrypt",
       "type": "rss",
-      "headline": "Saylor’s Strategy Keeps Buying Bitcoin, Adding 'A Little Orange' Through the Dip",
+      "headline": "Bitcoin Wallet Maker Trezor Says Customer Data Was Exposed Again",
       "category": "Market & Macro",
       "importance": 1.743,
       "age_hours": 24.0,
@@ -160,13 +182,35 @@
       "asset_scope": "market-wide"
     },
     {
-      "source": "Google News (SOL)",
+      "source": "Decrypt",
+      "type": "rss",
+      "headline": "Bitcoin's $2 Billion Liquidation Weekend Leaves Traders Watching $60,000",
+      "category": "Market & Macro",
+      "importance": 1.743,
+      "age_hours": 24.0,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Decrypt",
+      "type": "rss",
+      "headline": "Hackers Redirected Bitcoin Miner Rewards via AI Attack, Luxor CEO Says",
+      "category": "Security & Hacks",
+      "importance": 1.743,
+      "age_hours": 24.0,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (BTC)",
       "type": "google_news",
-      "headline": "Solana Policy Institute's Kristin Smith on the 'Blue Tsunami' from midterms | CoinDesk Videos",
-      "published": "Mon, 16 Nov 2026 17:44:29 GMT",
-      "category": "Regulation & Politics",
-      "importance": 1.618,
-      "age_hours": 0.2,
+      "headline": "As Bitcoin Plummets, Trump Media Warns It May Have To Sell Some To Repay Noteholders. Here’s Why Nov. 30 Is The Key Date For Its $1 Billion In Notes",
+      "published": "Tue, 17 Nov 2026 02:30:15 GMT",
+      "category": "Market & Macro",
+      "importance": 1.617,
+      "age_hours": 0.3,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -174,11 +218,35 @@
     {
       "source": "Google News (BTC)",
       "type": "google_news",
-      "headline": "BTC price on Nov 16, 2026 at 1pm EST Prediction Market",
-      "published": "Mon, 16 Nov 2026 17:06:40 GMT",
+      "headline": "BTC price on Nov 16, 2026 at 10pm EST Prediction Market",
+      "published": "Tue, 17 Nov 2026 02:16:59 GMT",
       "category": "Market & Macro",
-      "importance": 1.612,
-      "age_hours": 0.8,
+      "importance": 1.615,
+      "age_hours": 0.5,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "Bitcoin Holds Near $64,800 After 20.5% Four-Week Drop",
+      "published": "Tue, 17 Nov 2026 01:52:00 GMT",
+      "category": "Market & Macro",
+      "importance": 1.611,
+      "age_hours": 0.9,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "Bitcoin, XRP, Dogecoin Slide, Ethereum Steady as ‘Extreme Fear’ Persists: Analyst Says ‘Selling Hasn’t St",
+      "published": "Tue, 17 Nov 2026 01:56:14 GMT",
+      "category": "Market & Macro",
+      "importance": 1.611,
+      "age_hours": 0.9,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -186,139 +254,114 @@
     {
       "source": "Google News (Macro)",
       "type": "google_news",
-      "headline": "Crypto Market Loses About $330 Billion in a Week as Bitcoin Slides and Inflation Fears Mount",
-      "published": "Mon, 16 Nov 2026 16:58:29 GMT",
+      "headline": "Crypto Enters a Hawkish, Liquidity-Thin Week Amid Fed Hike Bets",
+      "published": "Tue, 17 Nov 2026 01:40:46 GMT",
       "category": "Market & Macro",
-      "importance": 1.61,
-      "age_hours": 1.0,
+      "importance": 1.609,
+      "age_hours": 1.1,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
     },
     {
-      "source": "Google News (ETH)",
+      "source": "Google News (BTC)",
       "type": "google_news",
-      "headline": "Bitcoin, Ethereum, XRP Face Pivotal Week After $1.49B ETF Exodus",
-      "published": "Mon, 16 Nov 2026 16:59:06 GMT",
+      "headline": "Crypto Traders Cash Out Stablecoins as Bitcoin Hits 4-Month Low",
+      "published": "Tue, 17 Nov 2026 01:19:06 GMT",
+      "category": "Market & Macro",
+      "importance": 1.605,
+      "age_hours": 1.5,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (SOL)",
+      "type": "google_news",
+      "headline": "ZetaChain Holders Vote 99.4% To Wind Down L1, Migrate ZETA to Solana",
+      "published": "Mon, 16 Nov 2026 23:56:19 GMT",
+      "category": "Market & Macro",
+      "importance": 1.591,
+      "age_hours": 2.9,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (Macro)",
+      "type": "google_news",
+      "headline": "This Isn’t a Crypto Crash. Fed Hike Bets Are Hitting Everything",
+      "published": "Mon, 16 Nov 2026 23:15:00 GMT",
+      "category": "Market & Macro",
+      "importance": 1.585,
+      "age_hours": 3.5,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (Macro)",
+      "type": "google_news",
+      "headline": "Crypto Spot ETF Volume by Coin",
+      "published": "Mon, 16 Nov 2026 23:09:45 GMT",
       "category": "Bitcoin & ETF",
-      "importance": 1.61,
-      "age_hours": 1.0,
+      "importance": 1.584,
+      "age_hours": 3.6,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
     },
     {
-      "source": "Google News (BTC)",
+      "source": "Google News (ZEC)",
       "type": "google_news",
-      "headline": "Did Bitcoin Prices Bottom at $62,000? Strategy Has Bought the Decline.",
-      "published": "Mon, 16 Nov 2026 16:07:00 GMT",
-      "category": "Market & Macro",
-      "importance": 1.602,
-      "age_hours": 1.8,
+      "headline": "Cypherpunk's First Six Weeks of Zcash Mining Produce $9.9 Million, Treasury Tops 2% of Supply",
+      "published": "Mon, 16 Nov 2026 22:25:00 GMT",
+      "category": "Bitcoin & ETF",
+      "importance": 1.576,
+      "age_hours": 4.4,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (SOL)",
-      "type": "google_news",
-      "headline": "Raoul Pal: Bitcoin Can Hit $1M by 2036, ETH and SOL Are the Altcoin Plays",
-      "published": "Mon, 16 Nov 2026 16:00:15 GMT",
-      "category": "Market & Macro",
-      "importance": 1.6,
-      "age_hours": 2.0,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
+      "asset_scope": "asset-or-sector"
     },
     {
       "source": "Google News (ZEC)",
       "type": "google_news",
-      "headline": "CYPH: Zcash mining delivered operating profit as treasury and fleet expansion accelerated",
-      "published": "Mon, 16 Nov 2026 15:40:26 GMT",
-      "category": "Market & Macro",
-      "importance": 1.597,
-      "age_hours": 2.3,
+      "headline": "Cypherpunk Technologies buys the ZEC dip as its mining arm turns a profit",
+      "published": "Mon, 16 Nov 2026 18:46:52 GMT",
+      "category": "Bitcoin & ETF",
+      "importance": 1.54,
+      "age_hours": 8.0,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (SOL)",
-      "type": "google_news",
-      "headline": "Solana Policy Institute’s Kristin Smith sees opening in new Congress for crypto bills",
-      "published": "Mon, 16 Nov 2026 15:25:04 GMT",
-      "category": "Regulation & Politics",
-      "importance": 1.595,
-      "age_hours": 2.5,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (Macro)",
-      "type": "google_news",
-      "headline": "Bitcoin price drops 14%: Can BTC recover after $62K low?",
-      "published": "Mon, 16 Nov 2026 15:27:46 GMT",
-      "category": "Market & Macro",
-      "importance": 1.595,
-      "age_hours": 2.5,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (Macro)",
-      "type": "google_news",
-      "headline": "Bitcoin: The Fed, Nvidia and Russia shape the crypto week",
-      "published": "Mon, 16 Nov 2026 15:10:00 GMT",
-      "category": "Market & Macro",
-      "importance": 1.592,
-      "age_hours": 2.8,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (BTC)",
-      "type": "google_news",
-      "headline": "Bitcoin Selloff Deepens as Midterm Sweep Stalls Crypto Bill",
-      "published": "Mon, 16 Nov 2026 14:27:33 GMT",
-      "category": "Market & Macro",
-      "importance": 1.585,
-      "age_hours": 3.5,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (BTC)",
-      "type": "google_news",
-      "headline": "Bitcoin slides to $62,000 following liquidation cascade, then rebounds slightly",
-      "published": "Mon, 16 Nov 2026 14:29:09 GMT",
-      "category": "Market & Macro",
-      "importance": 1.585,
-      "age_hours": 3.5,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
+      "asset_scope": "asset-or-sector"
     },
     {
       "source": "Google News (ZEC)",
       "type": "google_news",
-      "headline": "Zcash needs a dovish Fed or a US-Iran breakthrough to reverse the bearish trend",
-      "published": "Mon, 16 Nov 2026 11:06:12 GMT",
-      "category": "Market & Macro",
-      "importance": 1.551,
-      "age_hours": 6.9,
+      "headline": "Winklevoss-backed Cypherpunk buys Zcash dip as mining debut delivers $2.6 million operating profit",
+      "published": "Mon, 16 Nov 2026 18:43:00 GMT",
+      "category": "Bitcoin & ETF",
+      "importance": 1.539,
+      "age_hours": 8.1,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "CoinTelegraph",
+      "type": "rss",
+      "headline": "Hackers inject credit card, crypto-stealing malware into 178 major websites",
+      "category": "Security & Hacks",
+      "importance": 1.437,
+      "age_hours": 24.0,
+      "source_quality": "unknown",
+      "evidence_status": "unconfirmed-social",
       "asset_scope": "market-wide"
     },
     {
       "source": "CoinTelegraph",
       "type": "rss",
-      "headline": "Bitcoin price fails to hold $65K as US stocks drop further on AI nerves",
+      "headline": "Custodia Bank loses Supreme Court bid for direct Fed payment access",
       "category": "Market & Macro",
       "importance": 1.437,
       "age_hours": 24.0,
@@ -327,43 +370,21 @@
       "asset_scope": "market-wide"
     },
     {
-      "source": "CoinDesk",
+      "source": "CoinTelegraph",
       "type": "rss",
-      "headline": "German parliament proposes crypto seizures without criminal charges",
-      "category": "Other",
-      "importance": 1.323,
+      "headline": "German lawmakers back crypto freezes outside criminal cases",
+      "category": "Regulation & Politics",
+      "importance": 1.437,
       "age_hours": 24.0,
-      "source_quality": "reputable",
-      "evidence_status": "confirmed-source",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "CoinDesk",
-      "type": "rss",
-      "headline": "Solana drops ‘beta’ label after more than six years",
-      "category": "Altcoins & Projects",
-      "importance": 1.323,
-      "age_hours": 24.0,
-      "source_quality": "reputable",
-      "evidence_status": "confirmed-source",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "The Block",
-      "type": "rss",
-      "headline": "Privacy on Solana is ‘non-negotiable’ for institutional adoption, Mert Mumtaz says",
-      "category": "Altcoins & Projects",
-      "importance": 1.285,
-      "age_hours": 24.0,
-      "source_quality": "reputable",
-      "evidence_status": "confirmed-source",
-      "asset_scope": "asset-or-sector"
+      "source_quality": "unknown",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "market-wide"
     },
     {
       "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
-      "headline": "🇺🇸 JUST IN: Fed Chair Kevin Warsh warned that AI and superintelligence could reshape the economy, potentially boosting productivity or triggering widespread unemployment and economic disruption. News | Markets | YouTube",
-      "category": "Market & Macro",
+      "headline": "🔥 NOW : Backpack secures CFTC approval to launch a US derivatives exchange with leveraged perpetuals, crypto collateral and one global order book. News | Markets | YouTube",
+      "category": "Regulation & Politics",
       "importance": 1.245,
       "age_hours": 24.0,
       "source_quality": "social",
@@ -371,10 +392,21 @@
       "asset_scope": "market-wide"
     },
     {
-      "source": "Wu Blockchain (Telegram)",
+      "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
-      "headline": "Strategy Buys 485 BTC for $33.4 Million, Repurchases $228.1 Million in STRC Strategy purchased 485 BTC for $33.4 million at an average price of $68,887 between November 9 and 15, bringing its total holdings to 850,849 BTC, acquired for approximately $64.2 billion at an average cost of $75,452 per BTC. During the same period, it raised $244.7 million through MSTR share sales, using $33.4 million to buy BTC and $206.3 million to fund STRC repurchases. It separately repurchased 2.28 million STRC shares for $228.1 million. — link",
-      "category": "Market & Macro",
+      "headline": "🇺🇸 JUST IN : A former Robinhood engineer pleads guilty to wire fraud after he used confidential info on future token additions to trade Hyperliquid perps for a $125,523 profit, per the DOJ. News | Markets | YouTube",
+      "category": "Security & Hacks",
+      "importance": 1.245,
+      "age_hours": 24.0,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Watcher.Guru (Telegram)",
+      "type": "telegram",
+      "headline": "JUST IN: 🇺🇸 CFTC approves crypto exchange Backpack to launch the first blockchain-based derivatives exchange in the US, with perps on a unified global order book. @WatcherGuru",
+      "category": "Regulation & Politics",
       "importance": 1.095,
       "age_hours": 24.0,
       "source_quality": "social",
@@ -384,7 +416,18 @@
     {
       "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "Bitmine's ETH Holdings Reach 6.08 Million, with 5.23 Million ETH Staked Bitmine (BMNR) acquired 7,653 ETH over the past week, bringing its total holdings to 6,077,745 ETH, representing 4.97% of total supply. The company has staked 5.23 million ETH, worth approximately $9.5 billion, generating estimated annualized staking revenue of $245 million at a 2.57% yield. Total crypto, cash and other investments reached $11.8 billion as of November 15. — link",
+      "headline": "Backpack Secures CFTC Approval for U.S. Derivatives Exchange and Clearing, Plans Perpetual Futures Trading for U.S. Users Backpack announced that it has received approval from the U.S. Commodity Futures Trading Commission (CFTC) for its U.S. derivatives exchange and clearing operations, including a Designated Contract Market (DCM) designation and a Derivatives Clearing Organization (DCO) registration. The company plans to offer U.S. users 24/7 leveraged trading in crypto perpetual futures, with support for fiat and crypto collateral, cross-margining across positions, and access to Backpack's global liquidity through a unified order book. — link",
+      "category": "Regulation & Politics",
+      "importance": 1.095,
+      "age_hours": 24.0,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Wu Blockchain (Telegram)",
+      "type": "telegram",
+      "headline": "Wintermute Warns Crypto Bear Market Isn't Over, Recent Selloff No Sign of a Bottom Crypto market maker Wintermute warned in its November 16 market report that the bear market is far from over, with Bitcoin falling 12.7% last week to around $65,400, below its 200-week moving average near $68,000. U.S. spot Bitcoin ETFs have recorded $1.9 billion in net outflows so far in 2026, compared with $21 billion in inflows in 2025, while stablecoin supply has shrunk by $14 billion to $16 billion over the past 30 days. Wintermute said recent liquidations do not signal a market bottom, as rebounds appear driven by short covering rather than fresh capital. The firm warned Bitcoin could fall into the $50,000s and would reconsider its defensive stance only if BTC reclaimed $68,000 alongside renewed ETF inflows. — link",
       "category": "Market & Macro",
       "importance": 1.095,
       "age_hours": 24.0,
@@ -395,8 +438,8 @@
     {
       "source": "Whale Alert (Telegram)",
       "type": "telegram",
-      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 2,219 $BTC (143,777,534 USD) transferred from unknown wallet to #Kraken Details",
-      "category": "Market & Macro",
+      "headline": "📉 📉 📉 Hackers inject crypto-stealing and credit-card malware into 178 major websites via malicious scripts Read Analysis",
+      "category": "Security & Hacks",
       "importance": 1.095,
       "age_hours": 24.0,
       "source_quality": "social",
@@ -404,24 +447,13 @@
       "asset_scope": "market-wide"
     },
     {
-      "source": "Decrypt",
-      "type": "rss",
-      "headline": "Solana Drops 'Mainnet Beta' After Six Years: Here's What 1.0 Is All About",
-      "category": "Altcoins & Projects",
-      "importance": 1.093,
-      "age_hours": 24.0,
-      "source_quality": "reputable",
-      "evidence_status": "confirmed-source",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (ETH)",
+      "source": "Google News (SOL)",
       "type": "google_news",
-      "headline": "Ethereum price falls 14% as four-year support comes into focus",
-      "published": "Mon, 16 Nov 2026 17:46:56 GMT",
-      "category": "Ethereum & L2",
-      "importance": 0.968,
-      "age_hours": 0.2,
+      "headline": "SOL price on Nov 16, 2026 at 10pm EST Crypto Prediction Market",
+      "published": "Tue, 17 Nov 2026 02:16:59 GMT",
+      "category": "Altcoins & Projects",
+      "importance": 0.965,
+      "age_hours": 0.5,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -429,8 +461,8 @@
     {
       "source": "Google News (ETH)",
       "type": "google_news",
-      "headline": "ETH price on Nov 16, 2026 at 1pm EST Crypto Prediction Market",
-      "published": "Mon, 16 Nov 2026 17:06:40 GMT",
+      "headline": "Why is smart money adding bullish Ethereum exposure as ETH ETFs bleed?",
+      "published": "Tue, 17 Nov 2026 02:00:16 GMT",
       "category": "Ethereum & L2",
       "importance": 0.962,
       "age_hours": 0.8,
@@ -441,11 +473,11 @@
     {
       "source": "Google News (ETH)",
       "type": "google_news",
-      "headline": "CoinDesk Live at Solana Breakpoint 2026 | Video Playlist",
-      "published": "Mon, 16 Nov 2026 16:33:02 GMT",
-      "category": "Altcoins & Projects",
-      "importance": 0.956,
-      "age_hours": 1.4,
+      "headline": "Best Crypto Presale: Wait for Ethereum to Recover $2,000 or Enter AlphaPepe at $0.03720 Before Public Trading Begins?",
+      "published": "Tue, 17 Nov 2026 01:51:54 GMT",
+      "category": "Ethereum & L2",
+      "importance": 0.961,
+      "age_hours": 0.9,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -453,11 +485,47 @@
     {
       "source": "Google News (ETH)",
       "type": "google_news",
-      "headline": "Bitmine Adds 7,653 ETH as Tom Lee Defends Ethereum Fundamentals",
-      "published": "Mon, 16 Nov 2026 15:27:00 GMT",
+      "headline": "ETH price range on Nov 16, 2026 at 9pm EST Crypto Prediction Market",
+      "published": "Tue, 17 Nov 2026 01:18:06 GMT",
       "category": "Ethereum & L2",
-      "importance": 0.945,
-      "age_hours": 2.5,
+      "importance": 0.955,
+      "age_hours": 1.5,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (ETH)",
+      "type": "google_news",
+      "headline": "Invesco's Stablecoin Reserve Fund Goes Live on Ethereum",
+      "published": "Tue, 17 Nov 2026 00:34:53 GMT",
+      "category": "DeFi & Stablecoins",
+      "importance": 0.948,
+      "age_hours": 2.2,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (Macro)",
+      "type": "google_news",
+      "headline": "Bitwise CIO Warns Crypto Could Face a 2018-Style Bear Market",
+      "published": "Mon, 16 Nov 2026 23:29:31 GMT",
+      "category": "Other",
+      "importance": 0.937,
+      "age_hours": 3.3,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (SOL)",
+      "type": "google_news",
+      "headline": "Which Crypto Under $10 Has the Easiest Path to 10x by 2030?",
+      "published": "Mon, 16 Nov 2026 22:51:00 GMT",
+      "category": "Other",
+      "importance": 0.931,
+      "age_hours": 3.9,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -465,11 +533,23 @@
     {
       "source": "Google News (ZEC)",
       "type": "google_news",
-      "headline": "MACRO MONDAY CRYPTO | $ZEC Zcash is trading near $890, down",
-      "published": "Mon, 16 Nov 2026 15:29:02 GMT",
+      "headline": "Cypherpunk Swings to $2.6 Million Operating Profit on Zcash Mining Launch, Resumes ZEC Purchases",
+      "published": "Mon, 16 Nov 2026 19:18:00 GMT",
       "category": "Altcoins & Projects",
-      "importance": 0.945,
-      "age_hours": 2.5,
+      "importance": 0.895,
+      "age_hours": 7.5,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (ZEC)",
+      "type": "google_news",
+      "headline": "November 16, 2026: ZEC 15 min · 11:30–11:45 AM EST Prediction Market",
+      "published": "Mon, 16 Nov 2026 16:34:15 GMT",
+      "category": "Altcoins & Projects",
+      "importance": 0.868,
+      "age_hours": 10.2,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -480,20 +560,8 @@
       "headline": "Raycash Launches Private Stablecoin Payments App on Ethereum",
       "published": "Mon, 16 Nov 2026 13:28:39 GMT",
       "category": "DeFi & Stablecoins",
-      "importance": 0.925,
-      "age_hours": 4.5,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (ZEC)",
-      "type": "google_news",
-      "headline": "Zcash (ZEC) Price Warning? Long Liquidation Cluster Sits at $860",
-      "published": "Mon, 16 Nov 2026 12:32:32 GMT",
-      "category": "Altcoins & Projects",
-      "importance": 0.916,
-      "age_hours": 5.4,
+      "importance": 0.837,
+      "age_hours": 13.3,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -502,46 +570,12 @@
       "source": "Google News (ZAMA)",
       "type": "google_news",
       "headline": "WBTC Expands Into Confidential DeFi, STRK Rewards and Institutional Lending",
-      "published": "Mon, 16 Nov 2026 10:54:49 GMT",
+      "published": "Mon, 16 Nov 2026 08:33:30 GMT",
       "category": "DeFi & Stablecoins",
-      "importance": 0.9,
-      "age_hours": 7.0,
+      "importance": 0.788,
+      "age_hours": 18.2,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (ZAMA)",
-      "type": "google_news",
-      "headline": "WBTC expands use cases to privacy DeFi, native staking rewards, and institutional lending.",
-      "published": "Mon, 16 Nov 2026 04:55:50 GMT",
-      "category": "DeFi & Stablecoins",
-      "importance": 0.84,
-      "age_hours": 13.0,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "CoinTelegraph",
-      "type": "rss",
-      "headline": "Zelle picks Solana for ZelleUSD stablecoin and international payments",
-      "category": "DeFi & Stablecoins",
-      "importance": 0.787,
-      "age_hours": 24.0,
-      "source_quality": "unknown",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "CoinTelegraph (Telegram)",
-      "type": "telegram",
-      "headline": "🇩🇪 LATEST: German parliament proposes allowing crypto seizures without criminal charges for assets worth over €100,000. News | Markets | YouTube",
-      "category": "Other",
-      "importance": 0.595,
-      "age_hours": 24.0,
-      "source_quality": "social",
-      "evidence_status": "unconfirmed-social",
       "asset_scope": "asset-or-sector"
     },
     {
@@ -554,34 +588,12 @@
       "source_quality": "social",
       "evidence_status": "unconfirmed-social",
       "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Whale Alert (Telegram)",
-      "type": "telegram",
-      "headline": "🚨 🚨 🚨 1,086 $BTC (70,256,572 USD) transferred from Coinbase Institutional to unknown wallet Details",
-      "category": "Institutional & Exchanges",
-      "importance": 0.445,
-      "age_hours": 24.0,
-      "source_quality": "social",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Whale Alert (Telegram)",
-      "type": "telegram",
-      "headline": "🚨 🚨 🚨 814 $BTC (53,023,430 USD) transferred from Coinbase Institutional to unknown wallet Details",
-      "category": "Institutional & Exchanges",
-      "importance": 0.445,
-      "age_hours": 24.0,
-      "source_quality": "social",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "asset-or-sector"
     }
   ],
   "categories": [
     {
       "category": "Security & Hacks",
-      "count": 1,
+      "count": 6,
       "headlines": [
         {
           "source": "CoinDesk",
@@ -593,98 +605,12 @@
           "source_quality": "reputable",
           "evidence_status": "confirmed-source",
           "asset_scope": "market-wide"
-        }
-      ],
-      "top_sources": [
-        "CoinDesk"
-      ]
-    },
-    {
-      "category": "Regulation & Politics",
-      "count": 3,
-      "headlines": [
-        {
-          "source": "CoinDesk",
-          "type": "rss",
-          "headline": "Brazil's central bank faces backlash over stablecoin money laundering remarks",
-          "category": "Regulation & Politics",
-          "importance": 1.973,
-          "age_hours": 24.0,
-          "source_quality": "reputable",
-          "evidence_status": "confirmed-source",
-          "asset_scope": "market-wide"
-        },
-        {
-          "source": "Google News (SOL)",
-          "type": "google_news",
-          "headline": "Solana Policy Institute's Kristin Smith on the 'Blue Tsunami' from midterms | CoinDesk Videos",
-          "published": "Mon, 16 Nov 2026 17:44:29 GMT",
-          "category": "Regulation & Politics",
-          "importance": 1.618,
-          "age_hours": 0.2,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "market-wide"
-        },
-        {
-          "source": "Google News (SOL)",
-          "type": "google_news",
-          "headline": "Solana Policy Institute’s Kristin Smith sees opening in new Congress for crypto bills",
-          "published": "Mon, 16 Nov 2026 15:25:04 GMT",
-          "category": "Regulation & Politics",
-          "importance": 1.595,
-          "age_hours": 2.5,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "market-wide"
-        }
-      ],
-      "top_sources": [
-        "CoinDesk",
-        "Google News (SOL)"
-      ]
-    },
-    {
-      "category": "Bitcoin & ETF",
-      "count": 1,
-      "headlines": [
-        {
-          "source": "Google News (ETH)",
-          "type": "google_news",
-          "headline": "Bitcoin, Ethereum, XRP Face Pivotal Week After $1.49B ETF Exodus",
-          "published": "Mon, 16 Nov 2026 16:59:06 GMT",
-          "category": "Bitcoin & ETF",
-          "importance": 1.61,
-          "age_hours": 1.0,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        }
-      ],
-      "top_sources": [
-        "Google News (ETH)"
-      ]
-    },
-    {
-      "category": "Market & Macro",
-      "count": 18,
-      "headlines": [
-        {
-          "source": "The Block",
-          "type": "rss",
-          "headline": "Supreme Court rejects Custodia Bank’s bid for Fed master account",
-          "category": "Market & Macro",
-          "importance": 1.935,
-          "age_hours": 24.0,
-          "source_quality": "reputable",
-          "evidence_status": "confirmed-source",
-          "asset_scope": "market-wide"
         },
         {
           "source": "The Block",
           "type": "rss",
-          "headline": "Boris Johnson backs tokenization months after likening bitcoin to a ‘Ponzi scheme’",
-          "category": "Market & Macro",
+          "headline": "Peraire-Bueno brothers acquitted of wire fraud in $25 million Ethereum MEV case",
+          "category": "Security & Hacks",
           "importance": 1.935,
           "age_hours": 24.0,
           "source_quality": "reputable",
@@ -694,7 +620,201 @@
         {
           "source": "Decrypt",
           "type": "rss",
-          "headline": "Saylor’s Strategy Keeps Buying Bitcoin, Adding 'A Little Orange' Through the Dip",
+          "headline": "Hackers Redirected Bitcoin Miner Rewards via AI Attack, Luxor CEO Says",
+          "category": "Security & Hacks",
+          "importance": 1.743,
+          "age_hours": 24.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "market-wide"
+        },
+        {
+          "source": "CoinTelegraph",
+          "type": "rss",
+          "headline": "Hackers inject credit card, crypto-stealing malware into 178 major websites",
+          "category": "Security & Hacks",
+          "importance": 1.437,
+          "age_hours": 24.0,
+          "source_quality": "unknown",
+          "evidence_status": "unconfirmed-social",
+          "asset_scope": "market-wide"
+        },
+        {
+          "source": "CoinTelegraph (Telegram)",
+          "type": "telegram",
+          "headline": "🇺🇸 JUST IN : A former Robinhood engineer pleads guilty to wire fraud after he used confidential info on future token additions to trade Hyperliquid perps for a $125,523 profit, per the DOJ. News | Markets | YouTube",
+          "category": "Security & Hacks",
+          "importance": 1.245,
+          "age_hours": 24.0,
+          "source_quality": "social",
+          "evidence_status": "unconfirmed-social",
+          "asset_scope": "market-wide"
+        }
+      ],
+      "top_sources": [
+        "CoinDesk",
+        "CoinTelegraph",
+        "CoinTelegraph (Telegram)",
+        "Decrypt",
+        "The Block"
+      ]
+    },
+    {
+      "category": "Regulation & Politics",
+      "count": 7,
+      "headlines": [
+        {
+          "source": "CoinDesk",
+          "type": "rss",
+          "headline": "U.S. Senate Democrats tell CFTC to back off its demand prediction markets defy bans",
+          "category": "Regulation & Politics",
+          "importance": 1.973,
+          "age_hours": 24.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "market-wide"
+        },
+        {
+          "source": "The Block",
+          "type": "rss",
+          "headline": "CFTC backs blockchain-based derivatives infrastructure as Backpack, tZERO win approvals",
+          "category": "Regulation & Politics",
+          "importance": 1.935,
+          "age_hours": 24.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "market-wide"
+        },
+        {
+          "source": "The Block",
+          "type": "rss",
+          "headline": "Democratic senators warn SEC’s tokenized stock exemption has illicit finance gaps",
+          "category": "Regulation & Politics",
+          "importance": 1.935,
+          "age_hours": 24.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "market-wide"
+        },
+        {
+          "source": "CoinTelegraph",
+          "type": "rss",
+          "headline": "German lawmakers back crypto freezes outside criminal cases",
+          "category": "Regulation & Politics",
+          "importance": 1.437,
+          "age_hours": 24.0,
+          "source_quality": "unknown",
+          "evidence_status": "unconfirmed-social",
+          "asset_scope": "market-wide"
+        },
+        {
+          "source": "CoinTelegraph (Telegram)",
+          "type": "telegram",
+          "headline": "🔥 NOW : Backpack secures CFTC approval to launch a US derivatives exchange with leveraged perpetuals, crypto collateral and one global order book. News | Markets | YouTube",
+          "category": "Regulation & Politics",
+          "importance": 1.245,
+          "age_hours": 24.0,
+          "source_quality": "social",
+          "evidence_status": "unconfirmed-social",
+          "asset_scope": "market-wide"
+        }
+      ],
+      "top_sources": [
+        "CoinDesk",
+        "CoinTelegraph",
+        "CoinTelegraph (Telegram)",
+        "The Block",
+        "Watcher.Guru (Telegram)"
+      ]
+    },
+    {
+      "category": "Bitcoin & ETF",
+      "count": 4,
+      "headlines": [
+        {
+          "source": "Google News (Macro)",
+          "type": "google_news",
+          "headline": "Crypto Spot ETF Volume by Coin",
+          "published": "Mon, 16 Nov 2026 23:09:45 GMT",
+          "category": "Bitcoin & ETF",
+          "importance": 1.584,
+          "age_hours": 3.6,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (ZEC)",
+          "type": "google_news",
+          "headline": "Cypherpunk's First Six Weeks of Zcash Mining Produce $9.9 Million, Treasury Tops 2% of Supply",
+          "published": "Mon, 16 Nov 2026 22:25:00 GMT",
+          "category": "Bitcoin & ETF",
+          "importance": 1.576,
+          "age_hours": 4.4,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (ZEC)",
+          "type": "google_news",
+          "headline": "Cypherpunk Technologies buys the ZEC dip as its mining arm turns a profit",
+          "published": "Mon, 16 Nov 2026 18:46:52 GMT",
+          "category": "Bitcoin & ETF",
+          "importance": 1.54,
+          "age_hours": 8.0,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (ZEC)",
+          "type": "google_news",
+          "headline": "Winklevoss-backed Cypherpunk buys Zcash dip as mining debut delivers $2.6 million operating profit",
+          "published": "Mon, 16 Nov 2026 18:43:00 GMT",
+          "category": "Bitcoin & ETF",
+          "importance": 1.539,
+          "age_hours": 8.1,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        }
+      ],
+      "top_sources": [
+        "Google News (Macro)",
+        "Google News (ZEC)"
+      ]
+    },
+    {
+      "category": "Market & Macro",
+      "count": 13,
+      "headlines": [
+        {
+          "source": "CoinDesk",
+          "type": "rss",
+          "headline": "Bitcoin risks falling below $60,000 as Nvidia earnings threaten to deepen crypto sell-off",
+          "category": "Market & Macro",
+          "importance": 1.973,
+          "age_hours": 24.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "market-wide"
+        },
+        {
+          "source": "Decrypt",
+          "type": "rss",
+          "headline": "Bitcoin Wallet Maker Trezor Says Customer Data Was Exposed Again",
+          "category": "Market & Macro",
+          "importance": 1.743,
+          "age_hours": 24.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "market-wide"
+        },
+        {
+          "source": "Decrypt",
+          "type": "rss",
+          "headline": "Bitcoin's $2 Billion Liquidation Weekend Leaves Traders Watching $60,000",
           "category": "Market & Macro",
           "importance": 1.743,
           "age_hours": 24.0,
@@ -705,31 +825,31 @@
         {
           "source": "Google News (BTC)",
           "type": "google_news",
-          "headline": "BTC price on Nov 16, 2026 at 1pm EST Prediction Market",
-          "published": "Mon, 16 Nov 2026 17:06:40 GMT",
+          "headline": "As Bitcoin Plummets, Trump Media Warns It May Have To Sell Some To Repay Noteholders. Here’s Why Nov. 30 Is The Key Date For Its $1 Billion In Notes",
+          "published": "Tue, 17 Nov 2026 02:30:15 GMT",
           "category": "Market & Macro",
-          "importance": 1.612,
-          "age_hours": 0.8,
+          "importance": 1.617,
+          "age_hours": 0.3,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "market-wide"
         },
         {
-          "source": "Google News (Macro)",
+          "source": "Google News (BTC)",
           "type": "google_news",
-          "headline": "Crypto Market Loses About $330 Billion in a Week as Bitcoin Slides and Inflation Fears Mount",
-          "published": "Mon, 16 Nov 2026 16:58:29 GMT",
+          "headline": "BTC price on Nov 16, 2026 at 10pm EST Prediction Market",
+          "published": "Tue, 17 Nov 2026 02:16:59 GMT",
           "category": "Market & Macro",
-          "importance": 1.61,
-          "age_hours": 1.0,
+          "importance": 1.615,
+          "age_hours": 0.5,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "market-wide"
         }
       ],
       "top_sources": [
+        "CoinDesk",
         "CoinTelegraph",
-        "CoinTelegraph (Telegram)",
         "Decrypt",
         "Google News (BTC)",
         "Google News (Macro)"
@@ -737,7 +857,7 @@
     },
     {
       "category": "Institutional & Exchanges",
-      "count": 3,
+      "count": 1,
       "headlines": [
         {
           "source": "Wu Blockchain (Telegram)",
@@ -749,47 +869,36 @@
           "source_quality": "social",
           "evidence_status": "unconfirmed-social",
           "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Whale Alert (Telegram)",
-          "type": "telegram",
-          "headline": "🚨 🚨 🚨 1,086 $BTC (70,256,572 USD) transferred from Coinbase Institutional to unknown wallet Details",
-          "category": "Institutional & Exchanges",
-          "importance": 0.445,
-          "age_hours": 24.0,
-          "source_quality": "social",
-          "evidence_status": "unconfirmed-social",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Whale Alert (Telegram)",
-          "type": "telegram",
-          "headline": "🚨 🚨 🚨 814 $BTC (53,023,430 USD) transferred from Coinbase Institutional to unknown wallet Details",
-          "category": "Institutional & Exchanges",
-          "importance": 0.445,
-          "age_hours": 24.0,
-          "source_quality": "social",
-          "evidence_status": "unconfirmed-social",
-          "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
-        "Whale Alert (Telegram)",
         "Wu Blockchain (Telegram)"
       ]
     },
     {
       "category": "DeFi & Stablecoins",
-      "count": 4,
+      "count": 3,
       "headlines": [
+        {
+          "source": "Google News (ETH)",
+          "type": "google_news",
+          "headline": "Invesco's Stablecoin Reserve Fund Goes Live on Ethereum",
+          "published": "Tue, 17 Nov 2026 00:34:53 GMT",
+          "category": "DeFi & Stablecoins",
+          "importance": 0.948,
+          "age_hours": 2.2,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
         {
           "source": "Google News (ZAMA)",
           "type": "google_news",
           "headline": "Raycash Launches Private Stablecoin Payments App on Ethereum",
           "published": "Mon, 16 Nov 2026 13:28:39 GMT",
           "category": "DeFi & Stablecoins",
-          "importance": 0.925,
-          "age_hours": 4.5,
+          "importance": 0.837,
+          "age_hours": 13.3,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -798,40 +907,17 @@
           "source": "Google News (ZAMA)",
           "type": "google_news",
           "headline": "WBTC Expands Into Confidential DeFi, STRK Rewards and Institutional Lending",
-          "published": "Mon, 16 Nov 2026 10:54:49 GMT",
+          "published": "Mon, 16 Nov 2026 08:33:30 GMT",
           "category": "DeFi & Stablecoins",
-          "importance": 0.9,
-          "age_hours": 7.0,
+          "importance": 0.788,
+          "age_hours": 18.2,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (ZAMA)",
-          "type": "google_news",
-          "headline": "WBTC expands use cases to privacy DeFi, native staking rewards, and institutional lending.",
-          "published": "Mon, 16 Nov 2026 04:55:50 GMT",
-          "category": "DeFi & Stablecoins",
-          "importance": 0.84,
-          "age_hours": 13.0,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "CoinTelegraph",
-          "type": "rss",
-          "headline": "Zelle picks Solana for ZelleUSD stablecoin and international payments",
-          "category": "DeFi & Stablecoins",
-          "importance": 0.787,
-          "age_hours": 24.0,
-          "source_quality": "unknown",
-          "evidence_status": "unconfirmed-social",
           "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
-        "CoinTelegraph",
+        "Google News (ETH)",
         "Google News (ZAMA)"
       ]
     },
@@ -842,20 +928,8 @@
         {
           "source": "Google News (ETH)",
           "type": "google_news",
-          "headline": "Ethereum price falls 14% as four-year support comes into focus",
-          "published": "Mon, 16 Nov 2026 17:46:56 GMT",
-          "category": "Ethereum & L2",
-          "importance": 0.968,
-          "age_hours": 0.2,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (ETH)",
-          "type": "google_news",
-          "headline": "ETH price on Nov 16, 2026 at 1pm EST Crypto Prediction Market",
-          "published": "Mon, 16 Nov 2026 17:06:40 GMT",
+          "headline": "Why is smart money adding bullish Ethereum exposure as ETH ETFs bleed?",
+          "published": "Tue, 17 Nov 2026 02:00:16 GMT",
           "category": "Ethereum & L2",
           "importance": 0.962,
           "age_hours": 0.8,
@@ -866,11 +940,23 @@
         {
           "source": "Google News (ETH)",
           "type": "google_news",
-          "headline": "Bitmine Adds 7,653 ETH as Tom Lee Defends Ethereum Fundamentals",
-          "published": "Mon, 16 Nov 2026 15:27:00 GMT",
+          "headline": "Best Crypto Presale: Wait for Ethereum to Recover $2,000 or Enter AlphaPepe at $0.03720 Before Public Trading Begins?",
+          "published": "Tue, 17 Nov 2026 01:51:54 GMT",
           "category": "Ethereum & L2",
-          "importance": 0.945,
-          "age_hours": 2.5,
+          "importance": 0.961,
+          "age_hours": 0.9,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (ETH)",
+          "type": "google_news",
+          "headline": "ETH price range on Nov 16, 2026 at 9pm EST Crypto Prediction Market",
+          "published": "Tue, 17 Nov 2026 01:18:06 GMT",
+          "category": "Ethereum & L2",
+          "importance": 0.955,
+          "age_hours": 1.5,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -882,49 +968,16 @@
     },
     {
       "category": "Altcoins & Projects",
-      "count": 6,
+      "count": 3,
       "headlines": [
         {
-          "source": "CoinDesk",
-          "type": "rss",
-          "headline": "Solana drops ‘beta’ label after more than six years",
-          "category": "Altcoins & Projects",
-          "importance": 1.323,
-          "age_hours": 24.0,
-          "source_quality": "reputable",
-          "evidence_status": "confirmed-source",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "The Block",
-          "type": "rss",
-          "headline": "Privacy on Solana is ‘non-negotiable’ for institutional adoption, Mert Mumtaz says",
-          "category": "Altcoins & Projects",
-          "importance": 1.285,
-          "age_hours": 24.0,
-          "source_quality": "reputable",
-          "evidence_status": "confirmed-source",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Decrypt",
-          "type": "rss",
-          "headline": "Solana Drops 'Mainnet Beta' After Six Years: Here's What 1.0 Is All About",
-          "category": "Altcoins & Projects",
-          "importance": 1.093,
-          "age_hours": 24.0,
-          "source_quality": "reputable",
-          "evidence_status": "confirmed-source",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (ETH)",
+          "source": "Google News (SOL)",
           "type": "google_news",
-          "headline": "CoinDesk Live at Solana Breakpoint 2026 | Video Playlist",
-          "published": "Mon, 16 Nov 2026 16:33:02 GMT",
+          "headline": "SOL price on Nov 16, 2026 at 10pm EST Crypto Prediction Market",
+          "published": "Tue, 17 Nov 2026 02:16:59 GMT",
           "category": "Altcoins & Projects",
-          "importance": 0.956,
-          "age_hours": 1.4,
+          "importance": 0.965,
+          "age_hours": 0.5,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -932,22 +985,31 @@
         {
           "source": "Google News (ZEC)",
           "type": "google_news",
-          "headline": "MACRO MONDAY CRYPTO | $ZEC Zcash is trading near $890, down",
-          "published": "Mon, 16 Nov 2026 15:29:02 GMT",
+          "headline": "Cypherpunk Swings to $2.6 Million Operating Profit on Zcash Mining Launch, Resumes ZEC Purchases",
+          "published": "Mon, 16 Nov 2026 19:18:00 GMT",
           "category": "Altcoins & Projects",
-          "importance": 0.945,
-          "age_hours": 2.5,
+          "importance": 0.895,
+          "age_hours": 7.5,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (ZEC)",
+          "type": "google_news",
+          "headline": "November 16, 2026: ZEC 15 min · 11:30–11:45 AM EST Prediction Market",
+          "published": "Mon, 16 Nov 2026 16:34:15 GMT",
+          "category": "Altcoins & Projects",
+          "importance": 0.868,
+          "age_hours": 10.2,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
-        "CoinDesk",
-        "Decrypt",
-        "Google News (ETH)",
-        "Google News (ZEC)",
-        "The Block"
+        "Google News (SOL)",
+        "Google News (ZEC)"
       ]
     },
     {
@@ -955,31 +1017,33 @@
       "count": 2,
       "headlines": [
         {
-          "source": "CoinDesk",
-          "type": "rss",
-          "headline": "German parliament proposes crypto seizures without criminal charges",
+          "source": "Google News (Macro)",
+          "type": "google_news",
+          "headline": "Bitwise CIO Warns Crypto Could Face a 2018-Style Bear Market",
+          "published": "Mon, 16 Nov 2026 23:29:31 GMT",
           "category": "Other",
-          "importance": 1.323,
-          "age_hours": 24.0,
-          "source_quality": "reputable",
-          "evidence_status": "confirmed-source",
+          "importance": 0.937,
+          "age_hours": 3.3,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
         },
         {
-          "source": "CoinTelegraph (Telegram)",
-          "type": "telegram",
-          "headline": "🇩🇪 LATEST: German parliament proposes allowing crypto seizures without criminal charges for assets worth over €100,000. News | Markets | YouTube",
+          "source": "Google News (SOL)",
+          "type": "google_news",
+          "headline": "Which Crypto Under $10 Has the Easiest Path to 10x by 2030?",
+          "published": "Mon, 16 Nov 2026 22:51:00 GMT",
           "category": "Other",
-          "importance": 0.595,
-          "age_hours": 24.0,
-          "source_quality": "social",
-          "evidence_status": "unconfirmed-social",
+          "importance": 0.931,
+          "age_hours": 3.9,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
-        "CoinDesk",
-        "CoinTelegraph (Telegram)"
+        "Google News (Macro)",
+        "Google News (SOL)"
       ]
     }
   ],
@@ -989,31 +1053,30 @@
     "summary": "Security-related headlines are prominent; verify affected protocols and whether contagion is material.",
     "key_points": [
       "Lighter suspends all withdrawals after $10.4 million crypto exploit",
-      "Brazil's central bank faces backlash over stablecoin money laundering remarks",
-      "Solana Policy Institute's Kristin Smith on the 'Blue Tsunami' from midterms | CoinDesk Videos",
-      "Bitcoin, Ethereum, XRP Face Pivotal Week After $1.49B ETF Exodus",
-      "Supreme Court rejects Custodia Bank’s bid for Fed master account"
+      "Peraire-Bueno brothers acquitted of wire fraud in $25 million Ethereum MEV case",
+      "U.S. Senate Democrats tell CFTC to back off its demand prediction markets defy bans",
+      "CFTC backs blockchain-based derivatives infrastructure as Backpack, tZERO win approvals",
+      "Crypto Spot ETF Volume by Coin"
     ],
-    "updated_at": "2026-11-16T17:57:38.393490+00:00",
+    "updated_at": "2026-11-17T02:47:29.402311+00:00",
     "reason": "NEWS_AI_API_KEY is not configured"
   },
   "quality": {
     "trusted_headlines": 9,
-    "discovery_headlines": 22,
-    "social_headlines": 8,
+    "discovery_headlines": 23,
+    "social_headlines": 7,
     "quality_tiers": {
       "reputable": 9,
-      "discovery": 22,
-      "unknown": 2,
-      "social": 8
+      "discovery": 23,
+      "unknown": 3,
+      "social": 7
     },
     "interpretation_policy": "Only primary/reputable sources are treated as confirmation; discovery and social sources are leads.",
-    "excluded_count": 23,
+    "excluded_count": 21,
     "excluded_reasons": {
       "exact-duplicate": 5,
       "low-information-or-promotional": 1,
-      "near-duplicate": 1,
-      "not-crypto-relevant": 16
+      "not-crypto-relevant": 15
     }
   },
   "method": "crypto-relevance filtered, near-duplicate suppressed, quality-tiered and recency-ranked; optional grounded AI layer"
