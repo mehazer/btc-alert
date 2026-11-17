@@ -1,7 +1,7 @@
 """
 news_sources.py
 ------------------------------
-Haber kaynaklarini (RSS + Google News + Telegram + Reddit) tek bir
+Haber kaynaklarini (RSS + Google News + Telegram + Reddit + StockTwits) tek bir
 yerden yonetir. news_bot.py bu moduldeki fonksiyonlari kullanir.
 Kaynak listesi (list_all_sources) dashboard'un "nereden haber
 cekiliyor" listesini beslemek icin de kullanilir.
@@ -12,6 +12,7 @@ Bilinen kisitlar:
   engelleyebilir (429/403). Hata durumunda o kaynak sessizce atlanir.
 - Google News RSS ucretsizdir, API key istemez. Sonuclar Google'in
   haber indeksinden gelir; web arama sonuclarinin birebir kopyasi degildir.
+- StockTwits public stream is live-only (no historical archive).
 """
 
 import re
@@ -78,6 +79,8 @@ REDDIT_SOURCES = [
     {"name": "r/ethereum", "subreddit": "ethereum"},
 ]
 
+STOCKTWITS_SYMBOLS = ["BTC", "ETH", "SOL"]
+
 # Source quality is used for ranking and disclosure, not as proof that a
 # headline is true. Google News is a discovery layer; it may surface low-value
 # SEO, sponsored, or duplicated material and must not outrank direct reporting
@@ -86,7 +89,7 @@ SOURCE_QUALITY = {
     "primary": {"official", "sec", "cftc", "fed", "binance", "coinbase", "kraken"},
     "reputable": {"coindesk", "the block", "reuters", "bloomberg", "financial times", "ft", "wsj", "decrypt", "bitcoin magazine"},
     "discovery": {"google news"},
-    "social": {"telegram", "reddit", "twitter"},
+    "social": {"telegram", "reddit", "twitter", "stocktwits"},
 }
 
 HEADLINE_LIMIT_PER_SOURCE = 4
@@ -99,6 +102,14 @@ def list_all_sources():
     sources += [{"name": s["name"], "type": "google_news", "quality": source_quality(s["name"], "google_news")} for s in GOOGLE_NEWS_QUERIES]
     sources += [{"name": s["name"], "type": "telegram", "quality": source_quality(s["name"], "telegram")} for s in TELEGRAM_SOURCES]
     sources += [{"name": s["name"], "type": "reddit", "quality": source_quality(s["name"], "reddit")} for s in REDDIT_SOURCES]
+    sources += [
+        {
+            "name": f"StockTwits ({sym})",
+            "type": "stocktwits",
+            "quality": source_quality("stocktwits", "stocktwits"),
+        }
+        for sym in STOCKTWITS_SYMBOLS
+    ]
     return sources
 
 
@@ -108,7 +119,7 @@ def source_quality(source_name, source_type=None):
     for tier, names in SOURCE_QUALITY.items():
         if any(token in name for token in names):
             return tier
-    if source_type in {"telegram", "reddit"}:
+    if source_type in {"telegram", "reddit", "stocktwits"}:
         return "social"
     if source_type == "google_news":
         return "discovery"
@@ -182,12 +193,16 @@ def fetch_rss_headlines(limit=HEADLINE_LIMIT_PER_SOURCE):
             root = ET.fromstring(resp.content)
             for item in root.findall(".//item")[:limit]:
                 title_el = item.find("title")
+                pub_el = item.find("pubDate")
                 if title_el is not None and title_el.text:
-                    headlines.append({
+                    entry = {
                         "source": source["name"],
                         "type": "rss",
                         "headline": title_el.text.strip(),
-                    })
+                    }
+                    if pub_el is not None and pub_el.text:
+                        entry["published"] = pub_el.text.strip()
+                    headlines.append(entry)
         except Exception as e:
             print(f"{source['name']} RSS cekilemedi (calismaya devam ediliyor): {e}")
     return headlines
@@ -232,14 +247,45 @@ def fetch_reddit_headlines(limit=HEADLINE_LIMIT_PER_SOURCE):
             posts = data.get("data", {}).get("children", [])
             for post in posts[:limit]:
                 title = post.get("data", {}).get("title")
+                created = post.get("data", {}).get("created_utc")
                 if title:
-                    headlines.append({
+                    entry = {
                         "source": source["name"],
                         "type": "reddit",
                         "headline": title.strip(),
-                    })
+                    }
+                    if created is not None:
+                        entry["published"] = created
+                    headlines.append(entry)
         except Exception as e:
             print(f"Reddit kanali cekilemedi ({source['subreddit']}): {e}")
+    return headlines
+
+
+def fetch_stocktwits_headlines(limit=HEADLINE_LIMIT_PER_SOURCE):
+    """Live-only StockTwits messages exposed as social headlines."""
+    try:
+        import stocktwits_sentiment
+    except Exception as e:
+        print(f"StockTwits module unavailable: {e}")
+        return []
+    headlines = []
+    for sym in STOCKTWITS_SYMBOLS:
+        try:
+            result = stocktwits_sentiment.fetch_symbol_stream(sym, limit=limit)
+            for message in result.get("messages") or []:
+                headlines.append({
+                    "source": f"StockTwits ({sym})",
+                    "type": "stocktwits",
+                    "headline": message.get("headline") or "",
+                    "published": message.get("published"),
+                    "sentiment_label": message.get("sentiment_label"),
+                    "symbol": sym,
+                })
+            if result.get("coverage_gap"):
+                print(result["coverage_gap"])
+        except Exception as e:
+            print(f"StockTwits cekilemedi ({sym}): {e}")
     return headlines
 
 
@@ -249,4 +295,5 @@ def fetch_all_headlines():
         + fetch_google_news_headlines()
         + fetch_telegram_headlines()
         + fetch_reddit_headlines()
+        + fetch_stocktwits_headlines()
     )
