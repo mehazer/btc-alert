@@ -1,6 +1,6 @@
 {
   "agent": "ledger-evaluator",
-  "evaluated_at": "2026-11-17T21:23:33.678356+00:00",
+  "evaluated_at": "2026-11-17T23:21:39.595954+00:00",
   "horizons": [
     1,
     3,
@@ -8,10 +8,10 @@
     12,
     24
   ],
-  "decisions_total": 220,
-  "records_total": 821,
-  "settled_records": 821,
-  "pending_records": 279,
+  "decisions_total": 225,
+  "records_total": 826,
+  "settled_records": 826,
+  "pending_records": 299,
   "directional_records": 180,
   "directional_hits": 76,
   "direction_accuracy_pct": 42.22,
@@ -30,14 +30,14 @@
       "pending": 0
     },
     "ALERT": {
-      "records": 570,
-      "settled": 570,
+      "records": 575,
+      "settled": 575,
       "pending": 0
     }
   },
   "by_horizon": {
     "1": {
-      "settled": 215,
+      "settled": 220,
       "directional": 52,
       "hits": 25,
       "accuracy_pct": 48.08

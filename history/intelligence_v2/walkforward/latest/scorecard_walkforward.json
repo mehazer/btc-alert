@@ -1,6 +1,6 @@
 {
   "agent": "ledger-evaluator",
-  "evaluated_at": "2026-11-17T21:23:34.816179+00:00",
+  "evaluated_at": "2026-11-17T23:21:41.358005+00:00",
   "horizons": [
     1,
     3,
@@ -13,11 +13,11 @@
   "settled_records": 1422,
   "pending_records": 138,
   "directional_records": 327,
-  "directional_hits": 173,
-  "direction_accuracy_pct": 52.91,
+  "directional_hits": 175,
+  "direction_accuracy_pct": 53.52,
   "guarded_records": 817,
-  "supported_risk_warnings": 541,
-  "risk_warning_support_pct": 66.22,
+  "supported_risk_warnings": 539,
+  "risk_warning_support_pct": 65.97,
   "by_decision": {
     "PAPER_PLAN": {
       "records": 825,
@@ -34,8 +34,8 @@
     "1": {
       "settled": 309,
       "directional": 72,
-      "hits": 37,
-      "accuracy_pct": 51.39
+      "hits": 39,
+      "accuracy_pct": 54.17
     },
     "3": {
       "settled": 303,
@@ -71,5 +71,5 @@
   "schema_version": 2,
   "phase": 7,
   "evaluation_mode": "walkforward_backtest",
-  "walkforward_batch_id": "walkforward-2ce41716ae1f"
+  "walkforward_batch_id": "walkforward-c2b318bc4c8f"
 }

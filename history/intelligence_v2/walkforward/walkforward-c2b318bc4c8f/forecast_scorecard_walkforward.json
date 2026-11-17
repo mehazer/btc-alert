@@ -1,0 +1,85 @@
+{
+  "agent": "forecast-scorecard",
+  "evaluated_at": "2026-11-17T23:21:41.398895+00:00",
+  "forecasts_total": 312,
+  "active_forecasts": 8,
+  "abstain_count": 304,
+  "abstain_rate_pct": 97.44,
+  "settled_rows": 26,
+  "pending_rows": 6,
+  "directional_settled": 26,
+  "directional_hits": 17,
+  "direction_accuracy_pct": 65.38,
+  "by_horizon": {
+    "1": {
+      "directional": 8,
+      "hits": 2,
+      "accuracy_pct": 25.0,
+      "pending": 0
+    },
+    "3": {
+      "directional": 8,
+      "hits": 6,
+      "accuracy_pct": 75.0,
+      "pending": 0
+    },
+    "6": {
+      "directional": 6,
+      "hits": 5,
+      "accuracy_pct": 83.33,
+      "pending": 2
+    },
+    "12": {
+      "directional": 4,
+      "hits": 4,
+      "accuracy_pct": 100.0,
+      "pending": 4
+    }
+  },
+  "by_probability_band": {
+    "low": {
+      "directional": 17,
+      "hits": 11,
+      "accuracy_pct": 64.71
+    },
+    "medium": {
+      "directional": 7,
+      "hits": 6,
+      "accuracy_pct": 85.71
+    },
+    "high": {
+      "directional": 2,
+      "hits": 0,
+      "accuracy_pct": 0.0
+    }
+  },
+  "calibration": [
+    {
+      "probability_band": "high",
+      "implied_mid": 0.7,
+      "empirical_hit_rate": 0.0,
+      "n": 2,
+      "note": "Needs larger n before adjusting bands."
+    },
+    {
+      "probability_band": "low",
+      "implied_mid": 0.55,
+      "empirical_hit_rate": 0.6470999999999999,
+      "n": 17,
+      "note": "Needs larger n before adjusting bands."
+    },
+    {
+      "probability_band": "medium",
+      "implied_mid": 0.62,
+      "empirical_hit_rate": 0.8571,
+      "n": 7,
+      "note": "Needs larger n before adjusting bands."
+    }
+  ],
+  "limitations": [
+    "Shadow-only: forecasts never execute or alter production alerts.",
+    "Direction accuracy excludes ABSTAIN rows (abstain is tracked separately).",
+    "Probability bands are conservative priors pending walk-forward calibration.",
+    "Do not enable self-learning until calibration is stable out of sample."
+  ]
+}
