@@ -2,10 +2,11 @@
 agents/news_sentiment.py
 ------------------------
 Rule-based news sentiment with:
-  - Source weighting (including Google News)
+  - Source weighting (including Google News + StockTwits)
   - Macro vs coin-specific scores
   - Catalyst tags (ZEC NU7, upgrades, listings, hacks, etc.)
   - Shorter-window urgency when timestamps available
+  - Optional live StockTwits aggregate as social overlay
 
 Score range: -100 (very bearish) … +100 (very bullish)
 """
@@ -25,6 +26,7 @@ SOURCE_WEIGHTS = {
     "binance": 1.2,
     "official": 1.3,
     "google news": 1.25,
+    "stocktwits": 0.8,
     "twitter": 0.85,
     "reddit": 0.75,
     "telegram": 0.7,
@@ -145,8 +147,8 @@ def _extract_catalysts(text):
     return tags
 
 
-def score_headlines(headlines, max_age_hours=None):
-    if not headlines:
+def score_headlines(headlines, max_age_hours=None, social_score=None):
+    if not headlines and social_score is None:
         return {
             "score": 0.0,
             "label": "No data",
@@ -159,6 +161,8 @@ def score_headlines(headlines, max_age_hours=None):
             "sample_bearish": [],
             "catalysts": [],
             "top_catalysts": [],
+            "social_score": None,
+            "coverage": "empty",
         }
 
     now = datetime.now(timezone.utc)
@@ -175,7 +179,7 @@ def score_headlines(headlines, max_age_hours=None):
     macro_bear = 0.0
     used = 0
 
-    for item in headlines:
+    for item in headlines or []:
         text = (item.get("headline") or "").strip()
         if not text or len(text) < 10:
             continue
@@ -187,7 +191,6 @@ def score_headlines(headlines, max_age_hours=None):
                     if isinstance(ts, (int, float)):
                         dt = datetime.fromtimestamp(ts, tz=timezone.utc)
                     else:
-                        # RFC 2822 from Google News pubDate, or ISO
                         from email.utils import parsedate_to_datetime
                         try:
                             dt = parsedate_to_datetime(str(ts))
@@ -204,18 +207,26 @@ def score_headlines(headlines, max_age_hours=None):
         text_l = text.lower()
         sw = _source_weight(item.get("source"))
 
+        # Prefer explicit StockTwits bullish/bearish labels when present.
+        explicit = (item.get("sentiment_label") or "").lower()
         item_bull = 0.0
         item_bear = 0.0
+        if explicit == "bullish":
+            item_bull += 2.0
+            bullish_hits += 1
+        elif explicit == "bearish":
+            item_bear += 2.0
+            bearish_hits += 1
+        else:
+            for pattern, weight in BULLISH_KEYWORDS.items():
+                if re.search(pattern, text_l, re.IGNORECASE):
+                    item_bull += weight
+                    bullish_hits += 1
 
-        for pattern, weight in BULLISH_KEYWORDS.items():
-            if re.search(pattern, text_l, re.IGNORECASE):
-                item_bull += weight
-                bullish_hits += 1
-
-        for pattern, weight in BEARISH_KEYWORDS.items():
-            if re.search(pattern, text_l, re.IGNORECASE):
-                item_bear += weight
-                bearish_hits += 1
+            for pattern, weight in BEARISH_KEYWORDS.items():
+                if re.search(pattern, text_l, re.IGNORECASE):
+                    item_bear += weight
+                    bearish_hits += 1
 
         cats = _extract_catalysts(text)
         for c in cats:
@@ -244,6 +255,14 @@ def score_headlines(headlines, max_age_hours=None):
     n = max(used, 1)
     normalized = ((bullish_score - bearish_score) / n) * 16
     score = max(-100.0, min(100.0, normalized))
+
+    # Live social overlay: small weight so headlines remain primary.
+    if social_score is not None:
+        try:
+            social_score = float(social_score)
+            score = max(-100.0, min(100.0, 0.85 * score + 0.15 * social_score))
+        except (TypeError, ValueError):
+            social_score = None
 
     if score >= 35:
         label = "Bullish"
@@ -281,6 +300,8 @@ def score_headlines(headlines, max_age_hours=None):
         "sample_bearish": sample_bearish,
         "catalysts": list(catalyst_counter.keys()),
         "top_catalysts": top_catalysts,
+        "social_score": social_score,
+        "coverage": "ok" if used or social_score is not None else "empty",
     }
 
 
@@ -296,6 +317,10 @@ def load_and_score(history_dir="history"):
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
         headlines = data.get("headlines", [])
-        return score_headlines(headlines, max_age_hours=12)
+        social_score = None
+        social = data.get("stocktwits") or {}
+        if isinstance(social, dict):
+            social_score = social.get("aggregate_score")
+        return score_headlines(headlines, max_age_hours=12, social_score=social_score)
     except Exception:
         return score_headlines([])
