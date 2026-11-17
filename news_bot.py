@@ -120,6 +120,16 @@ def telegram_news_message(intelligence):
         note = (item.get("impact_note") or "")[:140]
         if note:
             lines.append(f"   Why: {note}")
+    stocktwits = intelligence.get("stocktwits") or {}
+    if stocktwits.get("aggregate_score") is not None:
+        lines.append("")
+        lines.append(f"StockTwits live score: {stocktwits['aggregate_score']:+.1f} (social, not confirmation)")
+    fred = intelligence.get("fred") or {}
+    if fred.get("status") in {"ok", "partial"} and fred.get("series"):
+        lines.append("")
+        lines.append("Macro (FRED):")
+        for series_id, row in list(fred["series"].items())[:4]:
+            lines.append(f"• {series_id}: {row.get('value')} ({row.get('date')})")
     lines.append("")
     lines.append("📅 LAST 7D — top impact")
     weekly = intelligence.get("weekly_top") or intelligence.get("last_7d") or []
@@ -159,6 +169,26 @@ def main():
     headlines = news_sources.fetch_all_headlines()
     sources = news_sources.list_all_sources()
     intelligence = news_intelligence.build_intelligence(headlines, sources)
+
+    stocktwits = {"status": "unavailable"}
+    try:
+        import stocktwits_sentiment
+        stocktwits = stocktwits_sentiment.fetch_multi(["BTC", "ETH", "SOL"], limit=20)
+    except Exception as exc:
+        print(f"StockTwits failed: {type(exc).__name__}: {exc}")
+        stocktwits = {"status": "unavailable", "error": f"{type(exc).__name__}: {exc}"}
+
+    fred = {"status": "unavailable"}
+    try:
+        import fred_macro
+        fred = fred_macro.collect()
+    except Exception as exc:
+        print(f"FRED failed: {type(exc).__name__}: {exc}")
+        fred = {"status": "unavailable", "error": f"{type(exc).__name__}: {exc}"}
+
+    intelligence["stocktwits"] = stocktwits
+    intelligence["fred"] = fred
+
     snapshot = {
         "updated_at": datetime.now(timezone.utc).isoformat(),
         "sources": sources,
@@ -167,9 +197,13 @@ def main():
         "categories": intelligence["categories"],
         "ai": intelligence["ai"],
         "quality": intelligence.get("quality", {}),
-        "method": intelligence["method"],
+        "stocktwits": stocktwits,
+        "fred": fred,
+        "method": intelligence["method"] + "; StockTwits live social + optional FRED macro",
     }
     save_json("latest_news.json", snapshot)
+    save_json("latest_stocktwits.json", stocktwits)
+    save_json("latest_fred.json", fred)
     try:
         trends = google_trends.collect_daily()
     except Exception as exc:
@@ -184,6 +218,9 @@ def main():
         "category_count": len(intelligence["categories"]),
         "ai_status": intelligence["ai"].get("status"),
         "trends_status": trends.get("status"),
+        "stocktwits_status": stocktwits.get("status"),
+        "stocktwits_score": stocktwits.get("aggregate_score"),
+        "fred_status": fred.get("status"),
     })
     try:
         send_telegram_news(intelligence)
@@ -191,6 +228,8 @@ def main():
         print(f"Telegram news notification failed (history still saved): {type(exc).__name__}: {exc}")
     print(f"{len(headlines)} raw headlines -> {intelligence['headline_count']} ranked unique headlines")
     print(f"AI news interpretation: {intelligence['ai'].get('status')} ({intelligence['ai'].get('tone', 'n/a')})")
+    print(f"StockTwits: {stocktwits.get('status')} score={stocktwits.get('aggregate_score')}")
+    print(f"FRED: {fred.get('status')}")
     print("Done.")
 
 
