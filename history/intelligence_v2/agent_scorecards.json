@@ -1,5 +1,5 @@
 {
-  "evaluated_at": "2026-11-17T08:04:50.929335+00:00",
+  "evaluated_at": "2026-11-17T12:47:46.320020+00:00",
   "phase": 7,
   "schema_version": 2,
   "horizons": [
@@ -9,15 +9,15 @@
     12,
     24
   ],
-  "decisions_total": 210,
-  "settled_evaluation_rows": 770,
+  "decisions_total": 215,
+  "settled_evaluation_rows": 795,
   "agents": {
     "technical": {
       "agent": "technical",
-      "samples": 158,
-      "hits": 64,
+      "samples": 169,
+      "hits": 71,
       "primary_metric": "direction_accuracy_pct",
-      "primary_metric_pct": 40.51,
+      "primary_metric_pct": 42.01,
       "by_state": {
         "unknown": {
           "n": 10,
@@ -25,19 +25,19 @@
           "accuracy_pct": 90.0
         },
         "weakening-participation": {
-          "n": 38,
-          "hits": 34,
-          "accuracy_pct": 89.47
+          "n": 39,
+          "hits": 35,
+          "accuracy_pct": 89.74
         },
         "fresh-long-buildup": {
-          "n": 17,
-          "hits": 4,
-          "accuracy_pct": 23.53
+          "n": 22,
+          "hits": 7,
+          "accuracy_pct": 31.82
         },
         "short-covering": {
-          "n": 93,
-          "hits": 17,
-          "accuracy_pct": 18.28
+          "n": 98,
+          "hits": 20,
+          "accuracy_pct": 20.41
         }
       },
       "notes": [
@@ -47,13 +47,13 @@
     },
     "risk": {
       "agent": "risk",
-      "samples": 204,
-      "hits": 152,
+      "samples": 213,
+      "hits": 158,
       "primary_metric": "warning_support_pct",
-      "primary_metric_pct": 74.51,
-      "low_risk_samples": 545,
-      "false_calm_count": 355,
-      "false_calm_pct": 65.14,
+      "primary_metric_pct": 74.18,
+      "low_risk_samples": 561,
+      "false_calm_count": 360,
+      "false_calm_pct": 64.17,
       "notes": [
         "Warning support: guarded/medium/high/veto with >=1% adverse excursion.",
         "False calm: low risk with later >=2% adverse excursion."
@@ -61,9 +61,9 @@
     },
     "challenge": {
       "agent": "challenge",
-      "samples": 745,
+      "samples": 770,
       "fail_samples": 0,
-      "warn_samples": 745,
+      "warn_samples": 770,
       "pass_samples": 0,
       "hits": 0,
       "primary_metric": "fail_useful_pct",

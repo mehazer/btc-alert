@@ -1,15 +1,15 @@
 {
   "agent": "forecast-scorecard",
-  "evaluated_at": "2026-11-17T08:04:50.566329+00:00",
-  "forecasts_total": 155,
+  "evaluated_at": "2026-11-17T12:47:46.038110+00:00",
+  "forecasts_total": 160,
   "active_forecasts": 28,
-  "abstain_count": 127,
-  "abstain_rate_pct": 81.94,
-  "settled_rows": 97,
-  "pending_rows": 15,
-  "directional_settled": 97,
-  "directional_hits": 55,
-  "direction_accuracy_pct": 56.7,
+  "abstain_count": 132,
+  "abstain_rate_pct": 82.5,
+  "settled_rows": 100,
+  "pending_rows": 12,
+  "directional_settled": 100,
+  "directional_hits": 57,
+  "direction_accuracy_pct": 57.0,
   "by_horizon": {
     "1": {
       "directional": 28,
@@ -18,16 +18,16 @@
       "pending": 0
     },
     "3": {
-      "directional": 26,
-      "hits": 13,
-      "accuracy_pct": 50.0,
-      "pending": 2
+      "directional": 28,
+      "hits": 15,
+      "accuracy_pct": 53.57,
+      "pending": 0
     },
     "6": {
-      "directional": 23,
+      "directional": 24,
       "hits": 12,
-      "accuracy_pct": 52.17,
-      "pending": 5
+      "accuracy_pct": 50.0,
+      "pending": 4
     },
     "12": {
       "directional": 20,
@@ -38,14 +38,14 @@
   },
   "by_probability_band": {
     "low": {
-      "directional": 66,
-      "hits": 33,
-      "accuracy_pct": 50.0
+      "directional": 67,
+      "hits": 34,
+      "accuracy_pct": 50.75
     },
     "high": {
-      "directional": 9,
-      "hits": 6,
-      "accuracy_pct": 66.67
+      "directional": 11,
+      "hits": 7,
+      "accuracy_pct": 63.64
     },
     "medium": {
       "directional": 22,
@@ -57,15 +57,15 @@
     {
       "probability_band": "high",
       "implied_mid": 0.7,
-      "empirical_hit_rate": 0.6667000000000001,
-      "n": 9,
+      "empirical_hit_rate": 0.6364,
+      "n": 11,
       "note": "Needs larger n before adjusting bands."
     },
     {
       "probability_band": "low",
       "implied_mid": 0.55,
-      "empirical_hit_rate": 0.5,
-      "n": 66,
+      "empirical_hit_rate": 0.5075,
+      "n": 67,
       "note": "Needs larger n before adjusting bands."
     },
     {
