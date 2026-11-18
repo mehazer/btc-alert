@@ -1,5 +1,5 @@
 {
-  "evaluated_at": "2026-11-18T07:53:34.808015+00:00",
+  "evaluated_at": "2026-11-18T08:23:46.316108+00:00",
   "phase": 7,
   "schema_version": 2,
   "horizons": [
@@ -15,14 +15,14 @@
     "technical": {
       "agent": "technical",
       "samples": 330,
-      "hits": 177,
+      "hits": 176,
       "primary_metric": "direction_accuracy_pct",
-      "primary_metric_pct": 53.64,
+      "primary_metric_pct": 53.33,
       "by_state": {
         "unknown": {
           "n": 330,
-          "hits": 177,
-          "accuracy_pct": 53.64
+          "hits": 176,
+          "accuracy_pct": 53.33
         }
       },
       "notes": [
@@ -65,5 +65,5 @@
     "Metrics are descriptive calibration aids."
   ],
   "evaluation_mode": "walkforward_backtest",
-  "walkforward_batch_id": "walkforward-3793e40c5c46"
+  "walkforward_batch_id": "walkforward-22c452ab010b"
 }

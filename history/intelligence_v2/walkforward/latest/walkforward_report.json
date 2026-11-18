@@ -1,9 +1,9 @@
 {
-  "walkforward_batch_id": "walkforward-3793e40c5c46",
+  "walkforward_batch_id": "walkforward-22c452ab010b",
   "evaluation_mode": "walkforward_backtest",
   "lookahead_safe": true,
-  "started_at": "2026-11-18T07:53:34.808204+00:00",
-  "completed_at": "2026-11-18T07:53:34.808207+00:00",
+  "started_at": "2026-11-18T08:23:46.316399+00:00",
+  "completed_at": "2026-11-18T08:23:46.316402+00:00",
   "symbols": [
     "BTCUSDT",
     "ETHUSDT",
@@ -31,19 +31,19 @@
     "source_order_normalized": true,
     "future_rows_used_for_decisions": false
   },
-  "determinism_hash": "81c8445005fbf7739bc9b9135a17d274e7fcac805ec19b34dde0487324d2baf5",
+  "determinism_hash": "cc2ba6c14560ca6bcccee0259ec195798915c7bdc6f2cf79f9176bbf996460c7",
   "scorecard": {
     "settled_records": 1437,
     "pending_records": 138,
     "directional_records": 330,
-    "directional_hits": 177,
-    "direction_accuracy_pct": 53.64,
+    "directional_hits": 176,
+    "direction_accuracy_pct": 53.33,
     "by_horizon": {
       "1": {
         "settled": 312,
         "directional": 73,
-        "hits": 40,
-        "accuracy_pct": 54.79
+        "hits": 39,
+        "accuracy_pct": 53.42
       },
       "3": {
         "settled": 306,
