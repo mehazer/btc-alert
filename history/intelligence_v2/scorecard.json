@@ -1,6 +1,6 @@
 {
   "agent": "ledger-evaluator",
-  "evaluated_at": "2026-11-18T09:24:45.443521+00:00",
+  "evaluated_at": "2026-11-18T16:57:31.449900+00:00",
   "horizons": [
     1,
     3,
@@ -8,16 +8,16 @@
     12,
     24
   ],
-  "decisions_total": 245,
-  "records_total": 910,
-  "settled_records": 910,
-  "pending_records": 315,
-  "directional_records": 198,
-  "directional_hits": 84,
-  "direction_accuracy_pct": 42.42,
-  "guarded_records": 203,
-  "supported_risk_warnings": 154,
-  "risk_warning_support_pct": 75.86,
+  "decisions_total": 250,
+  "records_total": 945,
+  "settled_records": 945,
+  "pending_records": 305,
+  "directional_records": 206,
+  "directional_hits": 86,
+  "direction_accuracy_pct": 41.75,
+  "guarded_records": 213,
+  "supported_risk_warnings": 164,
+  "risk_warning_support_pct": 77.0,
   "by_decision": {
     "OBSERVE": {
       "records": 200,
@@ -30,41 +30,41 @@
       "pending": 0
     },
     "ALERT": {
-      "records": 655,
-      "settled": 655,
+      "records": 690,
+      "settled": 690,
       "pending": 0
     }
   },
   "by_horizon": {
     "1": {
-      "settled": 240,
-      "directional": 57,
+      "settled": 245,
+      "directional": 58,
       "hits": 30,
-      "accuracy_pct": 52.63
+      "accuracy_pct": 51.72
     },
     "3": {
-      "settled": 210,
-      "directional": 48,
-      "hits": 19,
-      "accuracy_pct": 39.58
+      "settled": 220,
+      "directional": 52,
+      "hits": 20,
+      "accuracy_pct": 38.46
     },
     "6": {
-      "settled": 195,
-      "directional": 40,
-      "hits": 14,
-      "accuracy_pct": 35.0
+      "settled": 200,
+      "directional": 41,
+      "hits": 15,
+      "accuracy_pct": 36.59
     },
     "12": {
-      "settled": 165,
+      "settled": 170,
       "directional": 34,
       "hits": 12,
       "accuracy_pct": 35.29
     },
     "24": {
-      "settled": 100,
-      "directional": 19,
+      "settled": 110,
+      "directional": 21,
       "hits": 9,
-      "accuracy_pct": 47.37
+      "accuracy_pct": 42.86
     }
   },
   "limitations": [

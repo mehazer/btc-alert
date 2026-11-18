@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-18T09:24:39.632144+00:00",
+  "updated_at": "2026-11-18T16:57:24.996866+00:00",
   "signal_weights": {
     "rsi": 1.0,
     "fear_greed": 1.0,
@@ -24,9 +24,9 @@
       "advice": "upweight"
     },
     "fresh-long-buildup": {
-      "multiplier": 0.94,
-      "samples": 30,
-      "accuracy_pct": 40.0,
+      "multiplier": 0.952,
+      "samples": 31,
+      "accuracy_pct": 41.94,
       "advice": "neutral"
     },
     "short-covering": {
@@ -40,7 +40,7 @@
     "samples": 0,
     "direction_accuracy": null,
     "trusted": false,
-    "pending": 2
+    "pending": 3
   },
   "last_cycle": {
     "newly_settled": 0,

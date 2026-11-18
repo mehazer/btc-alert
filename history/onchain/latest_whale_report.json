@@ -1,20 +1,20 @@
 {
   "agent": "whale-onchain",
   "model_version": "whale-shadow-v0.1-free",
-  "generated_at": "2026-11-18T09:24:41.891768+00:00",
+  "generated_at": "2026-11-18T16:57:27.279993+00:00",
   "execution_allowed": false,
   "telegram_enabled": false,
   "overview": {
     "source": "mempool.space",
     "fees": {
-      "fastestFee": 2,
-      "halfHourFee": 1,
-      "hourFee": 1,
-      "economyFee": 1,
+      "fastestFee": 4,
+      "halfHourFee": 4,
+      "hourFee": 3,
+      "economyFee": 2,
       "minimumFee": 1
     },
-    "mempool_tx_count": 62583,
-    "mempool_vsize": 30710246,
+    "mempool_tx_count": 79500,
+    "mempool_vsize": 34030462,
     "hashrate_sample": {
       "hashrates": [
         {
@@ -156,7 +156,7 @@
           "adjustment": 0.9087330102920532
         }
       ],
-      "currentHashrate": 985712893557765700000,
+      "currentHashrate": 984486890510578400000,
       "currentDifficulty": 134823837323272.7
     }
   },
