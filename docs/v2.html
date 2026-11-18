@@ -1,1 +1,118 @@
-PLACEHOLDER
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Scorecard — v2 Shadow</title>
+<style>
+:root{--bg:#080c12;--panel:#111923;--line:#243244;--text:#e7edf5;--muted:#91a1b5;--cyan:#22d3ee;--green:#39d98a;--amber:#f5b942;--red:#f87171;--blue:#60a5fa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 Inter,system-ui,sans-serif}
+.wrap{max-width:1100px;margin:auto;padding:20px 14px 48px}header{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:18px}
+h1{font-size:1.25rem;margin:0}h1 span{color:var(--cyan)}h2{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 10px}
+.section{margin:22px 0 10px;font-weight:700}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
+.grid{display:grid;gap:12px}.grid3{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}.grid2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.metric{background:#0d141d;border:1px solid #1e2b3b;border-radius:9px;padding:10px}.label{font-size:.65rem;color:var(--muted);text-transform:uppercase}.value{font-size:1.1rem;font-weight:700;margin-top:2px}.sub,.meta,.empty,.note{color:var(--muted);font-size:.78rem}
+.pill{display:inline-block;padding:2px 8px;border:1px solid var(--line);border-radius:999px;font-size:.72rem}
+.ok{color:var(--green)}.warn{color:var(--amber)}.bad{color:var(--red)}.bar{height:8px;background:#1b2a39;border-radius:8px;overflow:hidden;margin-top:6px}.bar>i{display:block;height:100%;background:var(--blue)}
+table{width:100%;border-collapse:collapse;font-size:.76rem}th{text-align:left;color:var(--muted);border-bottom:1px solid var(--line);padding:6px}td{padding:6px;border-top:1px solid #1a2635}
+.quality{border-left:3px solid var(--amber);padding:8px 10px;background:#211b0e;color:#f7d58a;font-size:.78rem;margin-top:8px}.quality.good{border-color:var(--green);background:#0d2118;color:#a7efc7}.quality.bad{border-color:var(--red);background:#271316;color:#ffb5b5}
+a{color:var(--cyan);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div>
+    <h1>Scorecard <span>v2</span></h1>
+    <div class="meta"><a href="index.html">← Market</a> · shadow-only · no auto promotion</div>
+  </div>
+  <div class="meta" id="updated">Loading…</div>
+</header>
+<div id="quality"></div>
+<div class="section">Summary</div>
+<div class="grid grid3" id="summary"><div class="card empty">Loading…</div></div>
+<div class="section">By horizon</div>
+<div class="card" id="horizons"><div class="empty">Loading…</div></div>
+<div class="section">By decision type</div>
+<div class="card" id="decisions"><div class="empty">Loading…</div></div>
+<div class="section">Agent scorecards</div>
+<div class="grid grid3" id="agents"><div class="card empty">Loading…</div></div>
+<div class="section">Promotion gate</div>
+<div class="card" id="promotion"><div class="empty">Loading…</div></div>
+<div class="section">Pending evaluation windows</div>
+<div class="card" id="pending"><div class="empty">Loading…</div></div>
+<div class="section">Walk-forward / venues</div>
+<div class="grid grid2">
+  <div class="card" id="walkforward"><div class="empty">Loading…</div></div>
+  <div class="card" id="venues"><div class="empty">Loading…</div></div>
+</div>
+<footer class="meta" style="margin-top:20px;border-top:1px solid var(--line);padding-top:12px">Loads only compact JSON (scorecard, agents, meta, dashboard_snapshot). Does not fetch the multi-MB decision ledger.</footer>
+</div>
+<script>
+const REPO='mehazer/btc-alert',BRANCH='main';
+const raw=p=>`https://raw.githubusercontent.com/${REPO}/${BRANCH}/${p}?t=${Date.now()}`;
+const $=id=>document.getElementById(id);
+const esc=v=>String(v??'—').replace(/[&<>"']/g,c=>({'&':'&','<':'<','>':'>','"':'"',"'":'&#39;'}[c]));
+async function json(p){const r=await fetch(raw(p));if(!r.ok)throw Error(`${p} (${r.status})`);return r.json()}
+function n(v,d=2){return v==null?'—':Number(v).toLocaleString('en-US',{maximumFractionDigits:d})}
+function dt(v){if(!v)return'—';const d=new Date(String(v).includes('T')?v:`${String(v).replace(' ','T')}Z`);return isNaN(d)?esc(v):d.toLocaleString('en-GB',{timeZone:'UTC',month:'short',day:'2-digit',hour:'2-digit',minute:'2-digit'})+' UTC'}
+function pill(label,cls=''){return `<span class="pill ${cls}">${esc(label)}</span>`}
+function metric(label,value,sub=''){return `<div class="metric"><div class="label">${esc(label)}</div><div class="value">${esc(value)}</div><div class="sub">${esc(sub)}</div></div>`}
+function bar(v){if(v==null)return'';return `<div class="bar"><i style="width:${Math.max(0,Math.min(100,Number(v)))}%"></i></div>`}
+
+(async()=>{
+  try{
+    const [score,meta,cards,promo,dash,walkforward,snapshot]=await Promise.all([
+      json('history/intelligence_v2/scorecard.json'),
+      json('history/intelligence_v2/ledger_meta.json'),
+      json('history/intelligence_v2/agent_scorecards.json'),
+      json('history/intelligence_v2/promotion_report.json').catch(()=>null),
+      json('history/intelligence_v2/dashboard_snapshot.json').catch(()=>({pending:[],pending_count:0})),
+      json('history/intelligence_v2/walkforward/latest/walkforward_report.json').catch(()=>null),
+      json('history/intelligence_v2/venue_snapshot.json').catch(()=>null),
+    ]);
+    $('updated').textContent=`Updated ${dt(score.evaluated_at)} · runs ${n(meta.total_runs,0)}`;
+    $('summary').innerHTML=
+      metric('Direction accuracy', score.direction_accuracy_pct==null?'—':score.direction_accuracy_pct+'%', `${n(score.directional_hits,0)}/${n(score.directional_records,0)} hits`)+
+      metric('Settled', n(score.settled_records,0), `pending ${n(score.pending_records,0)}`)+
+      metric('Decisions', n(score.decisions_total||meta.total_decisions,0), `risk support ${score.risk_warning_support_pct??'—'}%`)+
+      metric('Runs', n(meta.total_runs,0), meta.last_run_id||'');
+    const byH=score.by_horizon||{};
+    $('horizons').innerHTML=Object.keys(byH).length
+      ? `<table><tr><th>Horizon</th><th>Settled</th><th>Directional</th><th>Hits</th><th>Accuracy</th></tr>${Object.entries(byH).map(([h,x])=>`<tr><td>${esc(h)} bars</td><td>${n(x.settled,0)}</td><td>${n(x.directional,0)}</td><td>${n(x.hits,0)}</td><td>${x.accuracy_pct==null?'—':x.accuracy_pct+'%'}${bar(x.accuracy_pct)}</td></tr>`).join('')}</table>`
+      : '<div class="empty">No horizon breakdown</div>';
+    const byD=score.by_decision||{};
+    $('decisions').innerHTML=Object.keys(byD).length
+      ? `<table><tr><th>Decision</th><th>Records</th><th>Settled</th><th>Pending</th></tr>${Object.entries(byD).map(([k,x])=>`<tr><td>${esc(k)}</td><td>${n(x.records,0)}</td><td>${n(x.settled,0)}</td><td>${n(x.pending,0)}</td></tr>`).join('')}</table>`
+      : '<div class="empty">No decision breakdown</div>';
+    const agents=(cards&&cards.agents)||{};
+    $('agents').innerHTML=Object.keys(agents).length
+      ? Object.entries(agents).map(([name,a])=>{
+          const states=a.by_state?Object.entries(a.by_state).slice(0,4).map(([s,r])=>`<div class="sub">${esc(s)}: ${r.accuracy_pct}% (n=${r.n})</div>`).join(''):'';
+          return `<div class="card"><h2>${esc(name)}</h2><div class="value">${a.primary_metric_pct==null?'—':a.primary_metric_pct+'%'}</div><div class="sub">${esc(a.primary_metric||'')} · samples ${n(a.samples,0)}</div>${states}${a.false_calm_pct!=null?`<div class="sub">false calm ${a.false_calm_pct}%</div>`:''}</div>`;
+        }).join('')
+      : '<div class="card empty">No agent cards</div>';
+    if(promo){
+      const checks=(promo.checks||[]).map(c=>`<div class="sub">${c.passed?'✓':'✗'} ${esc(c.name)} — ${esc(c.detail)}</div>`).join('');
+      $('promotion').innerHTML=`<div class="value ${promo.status==='not_ready'?'bad':'ok'}">${esc(promo.status)}</div><div class="sub">ready_for_review=${esc(promo.ready_for_review)} · auto_promote=${esc(promo.auto_promote)}</div>${checks}`;
+    }else $('promotion').innerHTML='<div class="empty">No promotion report</div>';
+    const rows=dash.pending||[];
+    const total=dash.pending_count!=null?dash.pending_count:rows.length;
+    $('pending').innerHTML=rows.length
+      ? `<div class="note" style="margin-bottom:8px">Showing ${rows.length} recent pending of ${n(total,0)} total. Full ledger is not loaded.</div><table><tr><th>Symbol</th><th>Decision</th><th>Conf</th><th>Horizon</th><th>Status</th><th>Time</th></tr>${rows.map(x=>`<tr><td>${esc(x.symbol)}</td><td>${esc(x.decision)}</td><td>${n(x.confidence,0)}%</td><td>${esc(x.horizon)}</td><td>${pill(x.status||'pending','warn')}</td><td>${dt(x.evaluated_at)}</td></tr>`).join('')}</table>`
+      : `<div class="quality good">No pending rows in snapshot${total?` (meta still reports ${n(total,0)})`:''}.</div>`;
+    $('walkforward').innerHTML=walkforward
+      ? `<h2>Walk-forward</h2><div class="value">${esc(walkforward.status||walkforward.mode||'report')}</div><div class="sub">${esc(JSON.stringify(walkforward.summary||walkforward.metrics||{}).slice(0,240))}</div>`
+      : '<div class="empty">No walk-forward report</div>';
+    $('venues').innerHTML=snapshot
+      ? `<h2>Venues</h2><div class="sub">${esc(snapshot.status||'ok')} · ${dt(snapshot.updated_at||snapshot.as_of)}</div>`
+      : '<div class="empty">No venue snapshot</div>';
+    const pendingCount=score.pending_records||total||0;
+    $('quality').innerHTML=`<div class="quality ${pendingCount?'':'good'}">${pendingCount?`${n(pendingCount,0)} evaluation windows pending future candles.`:'All evaluation windows settled.'} Accuracy uses settled directional records only. This page never loads decision_ledger.json.</div>`;
+  }catch(e){
+    $('quality').innerHTML=`<div class="quality bad">Dashboard data unavailable: ${esc(e.message)}</div>`;
+  }
+})();
+</script>
+</body>
+</html>
