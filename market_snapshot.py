@@ -5,7 +5,7 @@ Combines:
 - Fear & Greed (alternative.me)
 - News sentiment (agents.news_sentiment)
 - StockTwits aggregate (history/latest_stocktwits.json or live fetch)
-- Deterministic market_agent evaluation
+- Calibrated market_agent evaluation + learning cycle
 
 Missing inputs stay null — never filled with zeros.
 """
@@ -107,6 +107,16 @@ def build() -> dict:
     news = news_sentiment.load_and_score(str(HISTORY_DIR))
     social_score, social_status = _social_score()
 
+    try:
+        import agent_calibration
+
+        calib = agent_calibration.load_calibration()
+        signal_weights = calib.get("signal_weights") or {}
+    except Exception as exc:
+        print(f"Calibration load skipped: {type(exc).__name__}: {exc}")
+        calib = {}
+        signal_weights = {}
+
     evaluation = market_agent.evaluate(
         rsi=btc.get("rsi"),
         fear_greed_value=fg_val,
@@ -115,6 +125,7 @@ def build() -> dict:
         price_change_pct=btc.get("price_change_pct"),
         news_sentiment=news.get("score"),
         social_sentiment=social_score,
+        signal_weights=signal_weights,
     )
 
     payload = {
@@ -141,9 +152,10 @@ def build() -> dict:
             "reasons": evaluation.get("reasons") or [],
             "bullish_points": evaluation.get("bullish_points"),
             "bearish_points": evaluation.get("bearish_points"),
+            "signal_weights_applied": evaluation.get("signal_weights_applied"),
             "evaluated_at": evaluation.get("evaluated_at"),
         },
-        "method": "BTC history + F&G + news_sentiment + StockTwits → market_agent",
+        "method": "BTC history + F&G + news_sentiment + StockTwits → calibrated market_agent",
         "limitations": [],
     }
     if btc.get("rsi") is None:
@@ -152,6 +164,24 @@ def build() -> dict:
         payload["limitations"].append("StockTwits social score unavailable")
     if news.get("coverage") == "empty":
         payload["limitations"].append("News sentiment had no usable headlines")
+
+    # Close the learning loop: settle prior calls, update weights, log this call.
+    try:
+        import agent_calibration
+
+        cycle = agent_calibration.run_cycle(evaluation=evaluation, market_payload=payload)
+        payload["calibration"] = {
+            "metrics": cycle.get("metrics"),
+            "signal_weights": cycle.get("signal_weights"),
+            "state_multipliers": cycle.get("state_multipliers"),
+            "last_cycle": cycle.get("last_cycle"),
+            "notes": cycle.get("notes") or [],
+            "updated_at": cycle.get("updated_at"),
+        }
+    except Exception as exc:
+        print(f"Calibration cycle failed: {type(exc).__name__}: {exc}")
+        payload["calibration"] = {"status": "error", "detail": f"{type(exc).__name__}: {exc}"}
+
     return payload
 
 
@@ -161,10 +191,16 @@ def main():
     with open(MARKET_PATH, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2, ensure_ascii=False)
     ma = payload.get("market_agent") or {}
+    cal = payload.get("calibration") or {}
     print(
         f"market.json written state={ma.get('state')} bias={ma.get('bias_score')} "
         f"news={payload.get('news_sentiment')} social={payload.get('social_sentiment')} "
         f"confidence={ma.get('confidence')}"
+    )
+    metrics = cal.get("metrics") or {}
+    print(
+        f"calibration samples={metrics.get('samples')} acc={metrics.get('direction_accuracy')} "
+        f"settled_this_run={(cal.get('last_cycle') or {}).get('newly_settled')}"
     )
     if payload.get("limitations"):
         print("limitations:", "; ".join(payload["limitations"]))
