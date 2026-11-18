@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-18T08:23:38.356860+00:00",
+  "updated_at": "2026-11-18T09:24:39.632144+00:00",
   "signal_weights": {
     "rsi": 1.0,
     "fear_greed": 1.0,
@@ -24,10 +24,10 @@
       "advice": "upweight"
     },
     "fresh-long-buildup": {
-      "multiplier": 0.928,
-      "samples": 29,
-      "accuracy_pct": 37.93,
-      "advice": "downweight"
+      "multiplier": 0.94,
+      "samples": 30,
+      "accuracy_pct": 40.0,
+      "advice": "neutral"
     },
     "short-covering": {
       "multiplier": 0.837,
@@ -40,7 +40,7 @@
     "samples": 0,
     "direction_accuracy": null,
     "trusted": false,
-    "pending": 1
+    "pending": 2
   },
   "last_cycle": {
     "newly_settled": 0,
@@ -49,7 +49,7 @@
   "history": [],
   "notes": [
     "Need >=12 settled market-agent samples before treating weights as trusted (have 0).",
-    "Technical states underperforming: fresh-long-buildup, short-covering."
+    "Technical states underperforming: short-covering."
   ],
   "method": "market_agent horizon settle + technical by_state multipliers"
 }

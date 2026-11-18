@@ -1,6 +1,6 @@
 {
   "agent": "promotion-gate",
-  "run_id": "shadow-20261118T082340Z-959cb5ae",
+  "run_id": "shadow-20261118T092442Z-75eb448d",
   "status": "not_ready",
   "ready_for_review": false,
   "auto_promote": false,
@@ -8,17 +8,17 @@
     {
       "name": "min_settled_records",
       "passed": true,
-      "detail": "settled=905, need>=30"
+      "detail": "settled=910, need>=30"
     },
     {
       "name": "direction_accuracy",
       "passed": false,
-      "detail": "accuracy=42.13, need>=55.0"
+      "detail": "accuracy=42.42, need>=55.0"
     },
     {
       "name": "technical_samples",
       "passed": true,
-      "detail": "technical_samples=197, need>=15"
+      "detail": "technical_samples=198, need>=15"
     },
     {
       "name": "risk_samples",
@@ -28,7 +28,7 @@
     {
       "name": "false_calm_ceiling",
       "passed": false,
-      "detail": "false_calm_pct=63.85, max=35.0"
+      "detail": "false_calm_pct=63.36, max=35.0"
     },
     {
       "name": "human_approval_required",
@@ -42,20 +42,20 @@
     }
   ],
   "blockers": [
-    "direction_accuracy: accuracy=42.13, need>=55.0",
-    "false_calm_ceiling: false_calm_pct=63.85, max=35.0",
+    "direction_accuracy: accuracy=42.42, need>=55.0",
+    "false_calm_ceiling: false_calm_pct=63.36, max=35.0",
     "human_approval_required: Promotion requires explicit human PR approval."
   ],
   "metrics": {
-    "settled_records": 905,
-    "direction_accuracy_pct": 42.13,
-    "technical_samples": 197,
+    "settled_records": 910,
+    "direction_accuracy_pct": 42.42,
+    "technical_samples": 198,
     "risk_samples": 234,
-    "false_calm_pct": 63.85,
+    "false_calm_pct": 63.36,
     "challenge_fail_useful_pct": null,
-    "total_runs": 48,
-    "total_decisions": 240
+    "total_runs": 49,
+    "total_decisions": 245
   },
-  "evaluated_at": "2026-11-18T08:23:44.567182+00:00",
+  "evaluated_at": "2026-11-18T09:24:45.447568+00:00",
   "model_version": "promotion-criteria-v0.1"
 }

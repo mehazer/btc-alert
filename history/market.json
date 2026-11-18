@@ -1,29 +1,29 @@
 {
-  "updated_at": "2026-11-18T08:23:38.356330+00:00",
+  "updated_at": "2026-11-18T09:24:39.631306+00:00",
   "fear_greed_value": 11,
   "fear_greed_label": "Extreme Fear",
-  "funding_rate": 2.05898844898e-05,
-  "rsi": 41.54286339548453,
-  "oi_change_pct": -0.056183,
-  "price_change_pct": -0.22195,
-  "price": 64740.0,
-  "btc_observed_at": "2026-11-18T08:23:30.933242+00:00",
-  "news_sentiment": 5.0,
+  "funding_rate": 1.1361130492e-05,
+  "rsi": 41.131067023802935,
+  "oi_change_pct": 0.64686,
+  "price_change_pct": -0.329819,
+  "price": 64670.01,
+  "btc_observed_at": "2026-11-18T09:24:32.645724+00:00",
+  "news_sentiment": 1.7,
   "news_label": "Neutral",
-  "news_macro_score": -5.0,
-  "social_sentiment": 58.0,
+  "news_macro_score": -5.5,
+  "social_sentiment": 38.0,
   "social_status": "ok",
   "social_source": "StockTwits",
   "market_agent": {
     "state": "NEUTRAL",
-    "bias_score": -16,
+    "bias_score": -22,
     "intensity": 20,
     "confidence": 93,
     "reasons": [
       "Fear&Greed asiri korku (11)",
-      "Sosyal sentiment iyimser (+58)"
+      "Sosyal sentiment hafif pozitif (+38)"
     ],
-    "bullish_points": 8.5,
+    "bullish_points": 4.2,
     "bearish_points": 20.0,
     "signal_weights_applied": {
       "rsi": 1.0,
@@ -34,7 +34,7 @@
       "news": 1.0,
       "social": 0.85
     },
-    "evaluated_at": "2026-11-18T08:23:38.356322+00:00"
+    "evaluated_at": "2026-11-18T09:24:39.631289+00:00"
   },
   "method": "BTC history + F&G + news_sentiment + StockTwits → calibrated market_agent",
   "limitations": [],
@@ -43,7 +43,7 @@
       "samples": 0,
       "direction_accuracy": null,
       "trusted": false,
-      "pending": 1
+      "pending": 2
     },
     "signal_weights": {
       "rsi": 1.0,
@@ -68,10 +68,10 @@
         "advice": "upweight"
       },
       "fresh-long-buildup": {
-        "multiplier": 0.928,
-        "samples": 29,
-        "accuracy_pct": 37.93,
-        "advice": "downweight"
+        "multiplier": 0.94,
+        "samples": 30,
+        "accuracy_pct": 40.0,
+        "advice": "neutral"
       },
       "short-covering": {
         "multiplier": 0.837,
@@ -86,8 +86,8 @@
     },
     "notes": [
       "Need >=12 settled market-agent samples before treating weights as trusted (have 0).",
-      "Technical states underperforming: fresh-long-buildup, short-covering."
+      "Technical states underperforming: short-covering."
     ],
-    "updated_at": "2026-11-18T08:23:38.356860+00:00"
+    "updated_at": "2026-11-18T09:24:39.632144+00:00"
   }
 }
