@@ -2,13 +2,14 @@
 agents/news_sentiment.py
 ------------------------
 Rule-based news sentiment with:
-  - Source weighting (including Google News + StockTwits)
+  - Source weighting (including Google News + StockTwits + Yahoo)
   - Macro vs coin-specific scores
   - Catalyst tags (ZEC NU7, upgrades, listings, hacks, etc.)
   - Shorter-window urgency when timestamps available
   - Optional live StockTwits aggregate as social overlay
 
 Score range: -100 (very bearish) … +100 (very bullish)
+Empty coverage returns score=None (fail-closed), never a fake neutral 0.
 """
 
 import re
@@ -25,6 +26,7 @@ SOURCE_WEIGHTS = {
     "ft": 1.3,
     "binance": 1.2,
     "official": 1.3,
+    "yahoo finance": 1.2,
     "google news": 1.25,
     "stocktwits": 0.8,
     "twitter": 0.85,
@@ -148,22 +150,23 @@ def _extract_catalysts(text):
 
 
 def score_headlines(headlines, max_age_hours=None, social_score=None):
+    empty = {
+        "score": None,
+        "label": "No data",
+        "macro_score": None,
+        "coin_scores": {},
+        "bullish_hits": 0,
+        "bearish_hits": 0,
+        "total_headlines": 0,
+        "sample_bullish": [],
+        "sample_bearish": [],
+        "catalysts": [],
+        "top_catalysts": [],
+        "social_score": social_score,
+        "coverage": "empty",
+    }
     if not headlines and social_score is None:
-        return {
-            "score": 0.0,
-            "label": "No data",
-            "macro_score": 0.0,
-            "coin_scores": {},
-            "bullish_hits": 0,
-            "bearish_hits": 0,
-            "total_headlines": 0,
-            "sample_bullish": [],
-            "sample_bearish": [],
-            "catalysts": [],
-            "top_catalysts": [],
-            "social_score": None,
-            "coverage": "empty",
-        }
+        return empty
 
     now = datetime.now(timezone.utc)
     bullish_score = 0.0
@@ -252,15 +255,24 @@ def score_headlines(headlines, max_age_hours=None, social_score=None):
         elif item_bear > item_bull and len(sample_bearish) < 4:
             sample_bearish.append(text[:130])
 
+    if used == 0 and social_score is None:
+        return empty
+
     n = max(used, 1)
-    normalized = ((bullish_score - bearish_score) / n) * 16
-    score = max(-100.0, min(100.0, normalized))
+    if used > 0:
+        normalized = ((bullish_score - bearish_score) / n) * 16
+        score = max(-100.0, min(100.0, normalized))
+    else:
+        score = 0.0
 
     # Live social overlay: small weight so headlines remain primary.
     if social_score is not None:
         try:
             social_score = float(social_score)
-            score = max(-100.0, min(100.0, 0.85 * score + 0.15 * social_score))
+            if used > 0:
+                score = max(-100.0, min(100.0, 0.85 * score + 0.15 * social_score))
+            else:
+                score = max(-100.0, min(100.0, social_score))
         except (TypeError, ValueError):
             social_score = None
 
@@ -275,8 +287,11 @@ def score_headlines(headlines, max_age_hours=None, social_score=None):
     else:
         label = "Neutral"
 
-    macro_raw = (macro_bull - macro_bear) / max(n * 0.4, 1)
-    macro_score = max(-100.0, min(100.0, macro_raw * 20))
+    if used > 0:
+        macro_raw = (macro_bull - macro_bear) / max(n * 0.4, 1)
+        macro_score = max(-100.0, min(100.0, macro_raw * 20))
+    else:
+        macro_score = None
 
     coin_scores = {}
     for coin in set(list(coin_bull.keys()) + list(coin_bear.keys())):
@@ -291,7 +306,7 @@ def score_headlines(headlines, max_age_hours=None, social_score=None):
     return {
         "score": round(score, 1),
         "label": label,
-        "macro_score": round(macro_score, 1),
+        "macro_score": round(macro_score, 1) if macro_score is not None else None,
         "coin_scores": coin_scores,
         "bullish_hits": bullish_hits,
         "bearish_hits": bearish_hits,
