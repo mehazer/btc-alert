@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-18T05:57:45.603444+00:00",
+  "updated_at": "2026-11-18T07:53:16.851389+00:00",
   "sources": [
     {
       "name": "CoinDesk",
@@ -115,18 +115,45 @@
       "name": "StockTwits (SOL)",
       "type": "stocktwits",
       "quality": "social"
+    },
+    {
+      "name": "Yahoo Finance (BTC)",
+      "type": "yahoo",
+      "quality": "reputable"
+    },
+    {
+      "name": "Yahoo Finance (ETH)",
+      "type": "yahoo",
+      "quality": "reputable"
+    },
+    {
+      "name": "Yahoo Finance (SOL)",
+      "type": "yahoo",
+      "quality": "reputable"
     }
   ],
-  "headline_count": 47,
+  "headline_count": 52,
   "headlines": [
+    {
+      "source": "CoinDesk",
+      "type": "rss",
+      "headline": "Live updates: Bitcoin stuck near $65,000 as popular 'basis trade' returns dry up",
+      "published": "Wed, 18 Nov 2026 07:27:48 +0000",
+      "category": "Market & Macro",
+      "importance": 2.501,
+      "age_hours": 0.4,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
+    },
     {
       "source": "CoinDesk",
       "type": "rss",
       "headline": "U.S. judge says Ethereum has ‘no terms of use,’ clears MIT brothers of $25 million fraud",
       "published": "Wed, 18 Nov 2026 05:30:10 +0000",
       "category": "Security & Hacks",
-      "importance": 2.5,
-      "age_hours": 0.5,
+      "importance": 2.457,
+      "age_hours": 2.4,
       "source_quality": "reputable",
       "evidence_status": "confirmed-source",
       "asset_scope": "market-wide"
@@ -137,8 +164,8 @@
       "headline": "Bitcoin's 12% slide through key support looks scary, but history says give it 3 months.",
       "published": "Wed, 18 Nov 2026 04:34:21 +0000",
       "category": "Market & Macro",
-      "importance": 2.479,
-      "age_hours": 1.4,
+      "importance": 2.436,
+      "age_hours": 3.3,
       "source_quality": "reputable",
       "evidence_status": "confirmed-source",
       "asset_scope": "market-wide"
@@ -149,8 +176,8 @@
       "headline": "Ark Invest buys crypto stocks as it sells $85 million in Nvidia, Coinbase brings onchain loans to New York, and more",
       "published": "Wed, 18 Nov 2026 05:01:00 +0000",
       "category": "Market & Macro",
-      "importance": 2.432,
-      "age_hours": 0.9,
+      "importance": 2.391,
+      "age_hours": 2.9,
       "source_quality": "reputable",
       "evidence_status": "confirmed-source",
       "asset_scope": "market-wide"
@@ -161,20 +188,8 @@
       "headline": "World Bank Group taps Circle and Citi to test stablecoin-based fund disbursements",
       "published": "Wed, 18 Nov 2026 04:21:02 +0000",
       "category": "Regulation & Politics",
-      "importance": 2.418,
-      "age_hours": 1.6,
-      "source_quality": "reputable",
-      "evidence_status": "confirmed-source",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "CoinDesk",
-      "type": "rss",
-      "headline": "CFTC nominee questions public benefit of prediction markets as legal fight grows",
-      "published": "Wed, 18 Nov 2026 00:46:25 +0000",
-      "category": "Regulation & Politics",
-      "importance": 2.394,
-      "age_hours": 5.2,
+      "importance": 2.376,
+      "age_hours": 3.5,
       "source_quality": "reputable",
       "evidence_status": "confirmed-source",
       "asset_scope": "market-wide"
@@ -185,8 +200,92 @@
       "headline": "Coinbase AI defense blocks $4.7 million from being sent to deepfake Elon Musk scam",
       "published": "Wed, 18 Nov 2026 02:47:51 +0000",
       "category": "Security & Hacks",
-      "importance": 2.384,
-      "age_hours": 3.2,
+      "importance": 2.343,
+      "age_hours": 5.1,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Yahoo Finance (BTC)",
+      "type": "yahoo",
+      "symbol": "BTC",
+      "headline": "Strategy Spends Far More On STRC Buybacks Than Bitcoin, Peter Schiff Asks Whether Saylor Will Sell BTC To Fund Them",
+      "published": "Wed, 18 Nov 2026 07:24:57 +0000",
+      "link": "https://stocktwits.com/news-articles/markets/equity/strategy-spends-far-more-on-strc-buybacks-than-bitcoin-peter-schiff-asks-saylor-sell-btc/cNbXMUuR9hU?.tsrc=rss",
+      "category": "Market & Macro",
+      "importance": 2.214,
+      "age_hours": 0.5,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Yahoo Finance (BTC)",
+      "type": "yahoo",
+      "symbol": "BTC",
+      "headline": "Mark Yusko Warns AI Valuations Are Coming 'Out Of Thin Air’ As Bitcoin Gets Caught In 'A Bad Liquidation Cycle'",
+      "published": "Wed, 18 Nov 2026 05:50:31 +0000",
+      "link": "https://stocktwits.com/news-articles/markets/cryptocurrency/mark-yusko-warns-ai-valuations-thin-air-bitcoin-gets-caught-in-a-bad-liquidation-cycle/cNbXAWrR9hu?.tsrc=rss",
+      "category": "Market & Macro",
+      "importance": 2.185,
+      "age_hours": 2.0,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Yahoo Finance (ETH)",
+      "type": "yahoo",
+      "symbol": "ETH",
+      "headline": "Crypto Market Today, Nov. 17: A Warning Sign Not Seen Since 2022 Is Flashing Across Cryptocurrency Markets",
+      "published": "Tue, 17 Nov 2026 23:05:02 +0000",
+      "link": "https://www.fool.com/coverage/stock-market-today/2026/11/17/crypto-market-today-nov-17-a-warning-sign-not-seen-since-2022-is-flashing-across-cryptocurrency-markets/?.tsrc=rss",
+      "category": "Market & Macro",
+      "importance": 2.061,
+      "age_hours": 8.8,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Yahoo Finance (ETH)",
+      "type": "yahoo",
+      "symbol": "ETH",
+      "headline": "Brothers who baited ethereum MEV bots for $25 million acquitted of wire fraud",
+      "published": "Tue, 17 Nov 2026 21:00:00 +0000",
+      "link": "https://finance.yahoo.com/video/brothers-baited-ethereum-mev-bots-210000650.html?.tsrc=rss",
+      "category": "Security & Hacks",
+      "importance": 2.023,
+      "age_hours": 10.9,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Yahoo Finance (SOL)",
+      "type": "yahoo",
+      "symbol": "SOL",
+      "headline": "Veteran investor calls Solana a pioneer as tokenized stocks hit $2 billion",
+      "published": "Tue, 17 Nov 2026 21:00:00 +0000",
+      "link": "https://www.thestreet.com/crypto/markets/veteran-investor-calls-solana-a-pioneer-as-tokenized-stocks-hit-2-billion?.tsrc=rss",
+      "category": "Market & Macro",
+      "importance": 2.023,
+      "age_hours": 10.9,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Yahoo Finance (ETH)",
+      "type": "yahoo",
+      "symbol": "ETH",
+      "headline": "Hackers target 178 major websites with crypto-stealing code",
+      "published": "Tue, 17 Nov 2026 20:00:00 +0000",
+      "link": "https://finance.yahoo.com/video/hackers-target-178-major-websites-with-crypto-stealing-code-203311636.html?.tsrc=rss",
+      "category": "Security & Hacks",
+      "importance": 2.004,
+      "age_hours": 11.9,
       "source_quality": "reputable",
       "evidence_status": "confirmed-source",
       "asset_scope": "market-wide"
@@ -197,29 +296,29 @@
       "headline": "What’s happening to crypto startup valuations?",
       "published": "Wed, 18 Nov 2026 02:40:00 +0000",
       "category": "Other",
-      "importance": 1.731,
-      "age_hours": 3.3,
+      "importance": 1.69,
+      "age_hours": 5.2,
       "source_quality": "reputable",
       "evidence_status": "confirmed-source",
       "asset_scope": "asset-or-sector"
     },
     {
-      "source": "CoinTelegraph",
-      "type": "rss",
-      "headline": "CFTC halts some Kalshi Trump mention markets over manipulation concerns",
-      "published": "Tue, 17 Nov 2026 22:20:04 +0000",
-      "category": "Regulation & Politics",
-      "importance": 1.62,
-      "age_hours": 7.6,
-      "source_quality": "unknown",
-      "evidence_status": "unconfirmed-social",
+      "source": "Google News (Macro)",
+      "type": "google_news",
+      "headline": "Who’s buying Bitcoin? Q3 filings reveal billions in bank, sovereign exposure",
+      "published": "Wed, 18 Nov 2026 07:27:00 GMT",
+      "category": "Market & Macro",
+      "importance": 1.616,
+      "age_hours": 0.4,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
     },
     {
       "source": "Google News (BTC)",
       "type": "google_news",
-      "headline": "BTC price on Nov 18, 2026 at 1am EST",
-      "published": "Wed, 18 Nov 2026 05:13:30 GMT",
+      "headline": "BTC price range on Nov 18, 2026 at 3am EST Crypto Prediction Market",
+      "published": "Wed, 18 Nov 2026 07:09:50 GMT",
       "category": "Market & Macro",
       "importance": 1.613,
       "age_hours": 0.7,
@@ -230,11 +329,35 @@
     {
       "source": "Google News (Macro)",
       "type": "google_news",
-      "headline": "Bitcoin struggles below $65,000 amid ETF outflo...",
-      "published": "Wed, 18 Nov 2026 05:04:49 GMT",
+      "headline": "Bitcoin muted below $65k as rate, tech jitters persist; Fed minutes awaited",
+      "published": "Wed, 18 Nov 2026 06:49:21 GMT",
+      "category": "Market & Macro",
+      "importance": 1.609,
+      "age_hours": 1.1,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "Anthony Scaramucci Asks Mike Novogratz If Bitcoin Can Reclaim $90,000 By Year-End: Here’s What Galaxy Dig",
+      "published": "Wed, 18 Nov 2026 06:37:52 GMT",
+      "category": "Market & Macro",
+      "importance": 1.607,
+      "age_hours": 1.3,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (SOL)",
+      "type": "google_news",
+      "headline": "Can Solana extend gains above $75 as ETFs inflows resurface?",
+      "published": "Wed, 18 Nov 2026 06:21:12 GMT",
       "category": "Bitcoin & ETF",
-      "importance": 1.611,
-      "age_hours": 0.9,
+      "importance": 1.605,
+      "age_hours": 1.5,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -242,23 +365,83 @@
     {
       "source": "Google News (Macro)",
       "type": "google_news",
-      "headline": "Bitcoin price stuck below $65,000 as ETF outflows and bearish signals persist",
-      "published": "Wed, 18 Nov 2026 04:43:00 GMT",
-      "category": "Bitcoin & ETF",
-      "importance": 1.608,
-      "age_hours": 1.2,
+      "headline": "Crypto Today: Capital outflows persist as Bitcoin falls, Ethereum and XRP trim losses",
+      "published": "Wed, 18 Nov 2026 06:19:00 GMT",
+      "category": "Market & Macro",
+      "importance": 1.604,
+      "age_hours": 1.6,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
+      "asset_scope": "market-wide"
     },
     {
       "source": "Google News (BTC)",
       "type": "google_news",
-      "headline": "Bitcoin’s rare 12% crash through its 200-week average has a bullish track record",
-      "published": "Wed, 18 Nov 2026 04:34:00 GMT",
+      "headline": "Peter Schiff Has a New Candidate for the Next Financial Crisis. It’s Not Bitcoin",
+      "published": "Wed, 18 Nov 2026 06:10:21 GMT",
       "category": "Market & Macro",
-      "importance": 1.606,
-      "age_hours": 1.4,
+      "importance": 1.603,
+      "age_hours": 1.7,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "BTC to PLN: Bitcoin Price in Polish Zloty",
+      "published": "Wed, 18 Nov 2026 06:10:21 GMT",
+      "category": "Market & Macro",
+      "importance": 1.603,
+      "age_hours": 1.7,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (Macro)",
+      "type": "google_news",
+      "headline": "FOMC Minutes Today: Fed Rate Hike Clues Put Crypto on Alert",
+      "published": "Wed, 18 Nov 2026 06:05:19 GMT",
+      "category": "Market & Macro",
+      "importance": 1.602,
+      "age_hours": 1.8,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (ETH)",
+      "type": "google_news",
+      "headline": "US judge acquits MIT brothers in $25 million Ethereum fraud case, citing lack of deception",
+      "published": "Wed, 18 Nov 2026 06:02:00 GMT",
+      "category": "Security & Hacks",
+      "importance": 1.601,
+      "age_hours": 1.9,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "CoinTelegraph",
+      "type": "rss",
+      "headline": "CFTC halts some Kalshi Trump mention markets over manipulation concerns",
+      "published": "Tue, 17 Nov 2026 22:20:04 +0000",
+      "category": "Regulation & Politics",
+      "importance": 1.598,
+      "age_hours": 9.6,
+      "source_quality": "unknown",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "Bitcoin's Bigger Problem Isn't AI",
+      "published": "Wed, 18 Nov 2026 05:13:15 GMT",
+      "category": "Market & Macro",
+      "importance": 1.593,
+      "age_hours": 2.7,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -269,80 +452,8 @@
       "headline": "Waller Wants Fed at the Center of America’s Tokenized Financial Future",
       "published": "Wed, 18 Nov 2026 04:10:36 GMT",
       "category": "Market & Macro",
-      "importance": 1.602,
-      "age_hours": 1.8,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (BTC)",
-      "type": "google_news",
-      "headline": "Bitcoin's Bigger Problem Isn't AI",
-      "published": "Wed, 18 Nov 2026 04:11:54 GMT",
-      "category": "Market & Macro",
-      "importance": 1.602,
-      "age_hours": 1.8,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (SOL)",
-      "type": "google_news",
-      "headline": "CoinGecko secures Solana Foundation backing and eyes crypto trading",
-      "published": "Wed, 18 Nov 2026 03:10:00 GMT",
-      "category": "Regulation & Politics",
-      "importance": 1.592,
-      "age_hours": 2.8,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (Macro)",
-      "type": "google_news",
-      "headline": "Crypto Market Remains Under Pressure Though Bitcoin, Ethereum Rebound",
-      "published": "Wed, 18 Nov 2026 03:02:10 GMT",
-      "category": "Market & Macro",
-      "importance": 1.591,
-      "age_hours": 2.9,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (BTC)",
-      "type": "google_news",
-      "headline": "Strategy, the World’s Biggest Corporate Bitcoin Holder, to Be Dropped From MSCI Indexes",
-      "published": "Wed, 18 Nov 2026 02:34:18 GMT",
-      "category": "Market & Macro",
-      "importance": 1.586,
-      "age_hours": 3.4,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (Macro)",
-      "type": "google_news",
-      "headline": "Bitcoin struggles below $65,000 as crypto liquidity drains away",
-      "published": "Wed, 18 Nov 2026 02:23:47 GMT",
-      "category": "Market & Macro",
-      "importance": 1.584,
-      "age_hours": 3.6,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (ETH)",
-      "type": "google_news",
-      "headline": "Bitcoin, Ethereum Dip, While XRP, Dogecoin Gain as US Launches 'Self-Defense' Strikes Against Iran: Analy",
-      "published": "Wed, 18 Nov 2026 02:11:10 GMT",
-      "category": "Market & Macro",
-      "importance": 1.582,
-      "age_hours": 3.8,
+      "importance": 1.583,
+      "age_hours": 3.7,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -353,11 +464,25 @@
       "headline": "Zcash tumbles as hawkish Fed repricing weighs on the crypto market; focus remains on the Fed and US-Iran negotiations",
       "published": "Wed, 18 Nov 2026 00:23:07 GMT",
       "category": "Market & Macro",
-      "importance": 1.564,
-      "age_hours": 5.6,
+      "importance": 1.545,
+      "age_hours": 7.5,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
+    },
+    {
+      "source": "Yahoo Finance (ETH)",
+      "type": "yahoo",
+      "symbol": "ETH",
+      "headline": "Nvidia’s earnings call names two former crypto miners",
+      "published": "Wed, 18 Nov 2026 04:16:31 +0000",
+      "link": "https://www.thestreet.com/crypto/investing/nvidias-earnings-call-names-two-former-crypto-miners?.tsrc=rss",
+      "category": "Other",
+      "importance": 1.506,
+      "age_hours": 3.6,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "asset-or-sector"
     },
     {
       "source": "Google News (ZAMA)",
@@ -365,18 +490,42 @@
       "headline": "Hong Kong property firm International Business Settlement sells 300 Bitcoin to finance planned acquisition",
       "published": "Tue, 17 Nov 2026 11:54:14 GMT",
       "category": "Market & Macro",
-      "importance": 1.439,
-      "age_hours": 18.1,
+      "importance": 1.42,
+      "age_hours": 20.0,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
     },
     {
+      "source": "Wu Blockchain (Telegram)",
+      "type": "telegram",
+      "headline": "Coinbase: AI Scam Prevention Agent Blocks Deepfake Elon Musk Tesla Giveaway Scam, Protecting ~$4.7M in Customer Funds According to Coinbase blog, scammers spun up a fake YouTube livestream during Tesla’s \"flying car\" demo featuring an AI deepfake of Elon Musk promoting a fraudulent crypto-doubling giveaway that drew over 500,000 viewers and prompted hundreds of Coinbase customers to attempt sending millions of dollars within roughly two hours. Coinbase reported that its autonomous AI Scam Prevention Agent—operating with no humans in the loop—detected the high-risk sends in real time and intervened with targeted, context-aware conversations that exposed giveaway mechanics, ultimately stopping ~91% of the funds, or $4.7 million, from leaving customers' accounts. — link",
+      "published": "2026-11-18T07:53:14.346834+00:00",
+      "category": "Security & Hacks",
+      "importance": 1.192,
+      "age_hours": 0.0,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "🚓 🚓 🚓 12,000 $ETH (21,752,590 USD) of stolen funds transferred from Binance Hack 2026 to unknown wallet Details",
+      "published": "2026-11-18T07:53:14.972828+00:00",
+      "category": "Security & Hacks",
+      "importance": 1.192,
+      "age_hours": 0.0,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "market-wide"
+    },
+    {
       "source": "StockTwits (BTC)",
       "type": "stocktwits",
-      "headline": "$BTC.X banks are the biggest scams on the face of the earth",
-      "published": "2026-11-18T05:55:24Z",
-      "sentiment_label": "bullish",
+      "headline": "$BTC.X $MSTR \n\nDecay is nearing.",
+      "published": "2026-11-18T07:52:53Z",
+      "sentiment_label": "none",
       "symbol": "BTC",
       "category": "Market & Macro",
       "importance": 1.125,
@@ -388,13 +537,41 @@
     {
       "source": "StockTwits (BTC)",
       "type": "stocktwits",
-      "headline": "$BTC.X $MSTR  POOP COIN PRESIDENT 😂😂🫵🏼🤡",
-      "published": "2026-11-18T05:56:25Z",
-      "sentiment_label": "bearish",
+      "headline": "$BTC.X you democrats think you won the game the game is only beginning",
+      "published": "2026-11-18T07:24:40Z",
+      "sentiment_label": "bullish",
       "symbol": "BTC",
       "category": "Market & Macro",
-      "importance": 1.125,
-      "age_hours": 0.0,
+      "importance": 1.124,
+      "age_hours": 0.5,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "StockTwits (BTC)",
+      "type": "stocktwits",
+      "headline": "$BTC.X DECOUPLE DAMMIT!",
+      "published": "2026-11-18T07:24:49Z",
+      "sentiment_label": "bullish",
+      "symbol": "BTC",
+      "category": "Market & Macro",
+      "importance": 1.124,
+      "age_hours": 0.5,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "StockTwits (BTC)",
+      "type": "stocktwits",
+      "headline": "Strategy Spends Far More On STRC Buybacks Than Bitcoin, Peter Schiff Asks Whether Saylor Will Sell BTC To Fund Them\n\n$MSTR $BTC.X $STRC $MSTY $MST\n\nhttps://stocktwits.com/news/equity/markets/strategy-spends-far-more-on-strc-buybacks-than-bitcoin-peter-schiff-asks-saylor-sell-btc/",
+      "published": "2026-11-18T07:24:57Z",
+      "sentiment_label": "none",
+      "symbol": "BTC",
+      "category": "Market & Macro",
+      "importance": 1.124,
+      "age_hours": 0.5,
       "source_quality": "social",
       "evidence_status": "unconfirmed-social",
       "asset_scope": "market-wide"
@@ -402,66 +579,10 @@
     {
       "source": "StockTwits (ETH)",
       "type": "stocktwits",
-      "headline": "$BTC.X $ETH.X you like it red ?",
-      "published": "2026-11-18T05:11:46Z",
+      "headline": "$XCN.X $BTC.X $DOGE.X $ETH.X $SOL.X https://x.com/Onyx/status/2120544461302161902",
+      "published": "2026-11-18T06:16:08Z",
       "sentiment_label": "bullish",
       "symbol": "ETH",
-      "category": "Market & Macro",
-      "importance": 1.123,
-      "age_hours": 0.8,
-      "source_quality": "social",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "StockTwits (ETH)",
-      "type": "stocktwits",
-      "headline": "$BTC.X looking amazing! \n\n$SPY $MSTR $BTC $ETH.X",
-      "published": "2026-11-18T05:15:16Z",
-      "sentiment_label": "bearish",
-      "symbol": "ETH",
-      "category": "Market & Macro",
-      "importance": 1.123,
-      "age_hours": 0.7,
-      "source_quality": "social",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "StockTwits (SOL)",
-      "type": "stocktwits",
-      "headline": "$BTC.X $ETH.X $SOL.X ugh. A 1k rally from 63-64 is what’s not to like.",
-      "published": "2026-11-18T04:57:59Z",
-      "sentiment_label": "bullish",
-      "symbol": "SOL",
-      "category": "Market & Macro",
-      "importance": 1.122,
-      "age_hours": 1.0,
-      "source_quality": "social",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "StockTwits (SOL)",
-      "type": "stocktwits",
-      "headline": "$SOL.X  $BTC.X $ETH.X \n\nWhat’s not to like about a 1000 point rally🤷‍♂️\n\n$125 soon🎢🎢🚀🚀🎢🎢",
-      "published": "2026-11-18T04:44:20Z",
-      "sentiment_label": "bullish",
-      "symbol": "SOL",
-      "category": "Market & Macro",
-      "importance": 1.121,
-      "age_hours": 1.2,
-      "source_quality": "social",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "StockTwits (SOL)",
-      "type": "stocktwits",
-      "headline": "$BTC.X $DJI.X $DJT $NVDA $SOL.X \n\nWe’re just getting going!!! $1100 soon!",
-      "published": "2026-11-18T04:23:49Z",
-      "sentiment_label": "bullish",
-      "symbol": "SOL",
       "category": "Market & Macro",
       "importance": 1.12,
       "age_hours": 1.6,
@@ -470,70 +591,25 @@
       "asset_scope": "market-wide"
     },
     {
-      "source": "Wu Blockchain (Telegram)",
-      "type": "telegram",
-      "headline": "Coinbase: AI Scam Prevention Agent Blocks Deepfake Elon Musk Tesla Giveaway Scam, Protecting ~$4.7M in Customer Funds According to Coinbase blog, scammers spun up a fake YouTube livestream during Tesla’s \"flying car\" demo featuring an AI deepfake of Elon Musk promoting a fraudulent crypto-doubling giveaway that drew over 500,000 viewers and prompted hundreds of Coinbase customers to attempt sending millions of dollars within roughly two hours. Coinbase reported that its autonomous AI Scam Prevention Agent—operating with no humans in the loop—detected the high-risk sends in real time and intervened with targeted, context-aware conversations that exposed giveaway mechanics, ultimately stopping ~91% of the funds, or $4.7 million, from leaving customers' accounts. — link",
-      "category": "Security & Hacks",
-      "importance": 1.095,
-      "age_hours": 24.0,
-      "source_quality": "social",
+      "source": "CoinTelegraph",
+      "type": "rss",
+      "headline": "Here’s what happened in crypto today",
+      "published": "Wed, 18 Nov 2026 06:00:00 +0000",
+      "category": "Other",
+      "importance": 1.034,
+      "age_hours": 1.9,
+      "source_quality": "unknown",
       "evidence_status": "unconfirmed-social",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Whale Alert (Telegram)",
-      "type": "telegram",
-      "headline": "🚨 🚨 🚨 🚨 🚨 1,800 $BTC (116,543,007 USD) transferred from #Kraken to unknown wallet Details",
-      "category": "Market & Macro",
-      "importance": 1.095,
-      "age_hours": 24.0,
-      "source_quality": "social",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Whale Alert (Telegram)",
-      "type": "telegram",
-      "headline": "🚨 🚨 🚨 890 $BTC (57,478,587 USD) transferred from #Kraken to unknown wallet Details",
-      "category": "Market & Macro",
-      "importance": 1.095,
-      "age_hours": 24.0,
-      "source_quality": "social",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (BTC)",
-      "type": "google_news",
-      "headline": "Israeli banks race to bring Bitcoin trading to customers",
-      "published": "Wed, 18 Nov 2026 05:37:23 GMT",
-      "category": "Institutional & Exchanges",
-      "importance": 0.967,
-      "age_hours": 0.3,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
     },
     {
       "source": "Google News (ZEC)",
       "type": "google_news",
-      "headline": "Hayes names ETH $2,800, ZEC $1,800 as his ‘Four Horsemen’",
-      "published": "Wed, 18 Nov 2026 04:27:09 GMT",
-      "category": "Ethereum & L2",
-      "importance": 0.955,
-      "age_hours": 1.5,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (ETH)",
-      "type": "google_news",
-      "headline": "ETH price on Nov 18, 2026 at 12am EST Prediction Market",
-      "published": "Wed, 18 Nov 2026 04:15:18 GMT",
-      "category": "Ethereum & L2",
-      "importance": 0.953,
-      "age_hours": 1.7,
+      "headline": "Where is Zcash price heading?",
+      "published": "Wed, 18 Nov 2026 07:16:39 GMT",
+      "category": "Altcoins & Projects",
+      "importance": 0.964,
+      "age_hours": 0.6,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -541,11 +617,23 @@
     {
       "source": "Google News (SOL)",
       "type": "google_news",
-      "headline": "SOL price on Nov 18, 2026 at 12am EST Crypto Prediction Market",
-      "published": "Wed, 18 Nov 2026 04:15:18 GMT",
+      "headline": "SOL price on Nov 18, 2026 at 3am EST Crypto Prediction Market",
+      "published": "Wed, 18 Nov 2026 07:09:50 GMT",
       "category": "Altcoins & Projects",
-      "importance": 0.953,
-      "age_hours": 1.7,
+      "importance": 0.963,
+      "age_hours": 0.7,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (SOL)",
+      "type": "google_news",
+      "headline": "Solana Becomes Majority Shareholder in CoinGecko",
+      "published": "Wed, 18 Nov 2026 07:05:00 GMT",
+      "category": "Altcoins & Projects",
+      "importance": 0.962,
+      "age_hours": 0.8,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -553,11 +641,35 @@
     {
       "source": "Google News (ETH)",
       "type": "google_news",
-      "headline": "Ethereum Foundation sued for firing cancer patient who objected to mandated suicide pledge",
-      "published": "Wed, 18 Nov 2026 03:28:03 GMT",
+      "headline": "Crypto Price Analysis, ETH, XRP, SOL, INJ and PUMP, Nov. 18: XRP Clears $0.979 as Solana Gains 5% and PUMP Hits a 90-Day Low",
+      "published": "Wed, 18 Nov 2026 06:57:58 GMT",
+      "category": "Altcoins & Projects",
+      "importance": 0.961,
+      "age_hours": 0.9,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (ZEC)",
+      "type": "google_news",
+      "headline": "Cypherpunk Reports 8,967 ZEC Mined as Zcash Treasury Nears 342,000 Tokens",
+      "published": "Wed, 18 Nov 2026 05:00:00 GMT",
+      "category": "Altcoins & Projects",
+      "importance": 0.941,
+      "age_hours": 2.9,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (ETH)",
+      "type": "google_news",
+      "headline": "PayPal’s PYUSD Supply Falls 14% as Ethereum Leads Drop",
+      "published": "Wed, 18 Nov 2026 04:22:15 GMT",
       "category": "Ethereum & L2",
-      "importance": 0.945,
-      "age_hours": 2.5,
+      "importance": 0.935,
+      "age_hours": 3.5,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -565,35 +677,11 @@
     {
       "source": "Google News (ZEC)",
       "type": "google_news",
-      "headline": "Zcash gains 5.05% over 20-hour window to 965.39 USD",
-      "published": "Wed, 18 Nov 2026 03:18:52 GMT",
+      "headline": "Zcash (ZEC) Surges 4-Hour: Hayes Endorsement, Oversold",
+      "published": "Tue, 17 Nov 2026 23:31:00 GMT",
       "category": "Altcoins & Projects",
-      "importance": 0.944,
-      "age_hours": 2.6,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (ZEC)",
-      "type": "google_news",
-      "headline": "Zcash (ZEC) Price Warning? Long Liquidation Cluster Sits at $860",
-      "published": "Wed, 18 Nov 2026 00:00:52 GMT",
-      "category": "Altcoins & Projects",
-      "importance": 0.911,
-      "age_hours": 5.9,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (ZEC)",
-      "type": "google_news",
-      "headline": "Zcash Rebounds 10% on $7.1M Short Squeeze, but Weekly Channel Floor Still Holds the Key",
-      "published": "Tue, 17 Nov 2026 21:55:00 GMT",
-      "category": "Altcoins & Projects",
-      "importance": 0.89,
-      "age_hours": 8.0,
+      "importance": 0.886,
+      "age_hours": 8.4,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -604,21 +692,43 @@
       "headline": "Privacy Coins: Why the Crypto Privacy Narrative Matters Again",
       "published": "Tue, 17 Nov 2026 08:00:54 GMT",
       "category": "Other",
-      "importance": 0.751,
-      "age_hours": 21.9,
+      "importance": 0.731,
+      "age_hours": 23.9,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
     },
     {
-      "source": "StockTwits (BTC)",
-      "type": "stocktwits",
-      "headline": "$BTC.X without these refugees banks 🏦 don’t exists it’s a digital world these Ponzi scam institutions are no longer required",
-      "published": "2026-11-18T05:57:13Z",
-      "sentiment_label": "bullish",
-      "symbol": "BTC",
+      "source": "Wu Blockchain (Telegram)",
+      "type": "telegram",
+      "headline": "Singapore’s Largest Bank DBS Partners With Circle to Enable Direct USDC Minting and Redemption for Institutional Clients Singapore’s DBS Bank and stablecoin issuer Circle have announced a partnership enabling eligible institutional clients to mint and redeem USDC directly through DBS, with 24/7, near-instant settlement between USD and USDC—eliminating complete reliance on secondary market liquidity. The service is designed to support institutional treasury operations, payment settlements, and liquidity management. Building on their prior participation in the Monetary Authority of Singapore’s (MAS) Project BLOOM, the two firms will also collaborate to advance interoperability across different forms of tokenized money and financial networks. — link",
+      "published": "2026-11-18T07:53:14.346857+00:00",
+      "category": "DeFi & Stablecoins",
+      "importance": 0.542,
+      "age_hours": 0.0,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Wu Blockchain (Telegram)",
+      "type": "telegram",
+      "headline": "Ledger Users Report Losses From Dubai-Bought Wallets After Teardown Reveals Suspected Hardware Implant According to The Defiant, two users reported crypto thefts from Ledger hardware wallets allegedly bought at official reseller Virgin Megastore in Dubai: account Rewinsky reported losing ~1,300 SOL on Nov. 15, and internal photos of their Ledger Flex were confirmed by Mark Karpelès’ public OSINT registry to contain an added circuit board and antenna matching implants previously found in Southeast Asia. The second account, New Babylon Order, claimed 507,000 USDT was stolen on Nov. 14 from a Ledger Stax bought in October, though it remains unconfirmed without internal photos. Such physical implants capture recovery phrases displayed during setup over cellular networks without altering the secure element—allowing tampered units to pass Ledger’s Genuine Check—while the reported purchase channels remain unverified and Ledger has not confirmed related drains outside Southeast Asia. — link",
+      "published": "2026-11-18T07:53:14.346866+00:00",
+      "category": "DeFi & Stablecoins",
+      "importance": 0.542,
+      "age_hours": 0.0,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Wu Blockchain (Telegram)",
+      "type": "telegram",
+      "headline": "Highlight Clip: CZ: Entrepreneurs Still Building in Crypto Are More Worth Investing in Amid the AI Boom CZ: Entrepreneurs Still Building in Crypto Are More Worth Investing in Amid the AI Boom Binance founder Changpeng Zhao (CZ) said during the closing fireside chat at Cantor Convergence on November 12 that AI companies are creating tremendous value and deserve high valuations, but the industry also has a bubble. He believes 99% of today's AI startups will eventually fail, similar to the ICO and IEO boom in crypto. As attention shifts toward AI, entrepreneurs still building in crypto are more solid, making it easier to identify investment opportunities. CZ added that AI will not replace money or the internet but will use both and require more capital. He is now more bullish on crypto than ever. — link",
+      "published": "2026-11-18T07:53:14.346872+00:00",
       "category": "Institutional & Exchanges",
-      "importance": 0.475,
+      "importance": 0.542,
       "age_hours": 0.0,
       "source_quality": "social",
       "evidence_status": "unconfirmed-social",
@@ -627,13 +737,41 @@
     {
       "source": "StockTwits (ETH)",
       "type": "stocktwits",
-      "headline": "$ETH.X shorts will be liquidated soon",
-      "published": "2026-11-18T05:28:11Z",
+      "headline": "$ETH.X gonna be above 1920 eod",
+      "published": "2026-11-18T07:50:15Z",
       "sentiment_label": "bullish",
       "symbol": "ETH",
       "category": "Ethereum & L2",
-      "importance": 0.473,
-      "age_hours": 0.5,
+      "importance": 0.475,
+      "age_hours": 0.1,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "StockTwits (ETH)",
+      "type": "stocktwits",
+      "headline": "$ETH.X $XRP.X $SOL.X $ZEC.X $LINK.X \n\nWorst POTUS !!!",
+      "published": "2026-11-18T06:12:20Z",
+      "sentiment_label": "bearish",
+      "symbol": "ETH",
+      "category": "Altcoins & Projects",
+      "importance": 0.47,
+      "age_hours": 1.7,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "StockTwits (SOL)",
+      "type": "stocktwits",
+      "headline": "$SOL.X • 🎯 LIQUIDITY HARVEST &amp; REVERSAL THESIS\n🏛️ INSTITUTIONAL ORDER FLOW DISPATCH\n\nBuy-side liquidity above PDH (72.72) [SWEPT] was swept into overhead resistance. Extended in DISCOUNT (15.1% above 50% EQ), algorithmic flow is probing an equilibrium rebalance toward PDL (69",
+      "published": "2026-11-18T06:25:05Z",
+      "sentiment_label": "bullish",
+      "symbol": "SOL",
+      "category": "DeFi & Stablecoins",
+      "importance": 0.47,
+      "age_hours": 1.5,
       "source_quality": "social",
       "evidence_status": "unconfirmed-social",
       "asset_scope": "asset-or-sector"
@@ -646,52 +784,8 @@
       "sentiment_label": "bullish",
       "symbol": "SOL",
       "category": "DeFi & Stablecoins",
-      "importance": 0.472,
-      "age_hours": 1.0,
-      "source_quality": "social",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Wu Blockchain (Telegram)",
-      "type": "telegram",
-      "headline": "Binance Wallet Launches Anthropic IPO xStocks Event With a 500M USDC Total Subscription Cap Binance Wallet has announced the launch of its Anthropic IPO xStocks event, with subscriptions open from 06:00 to 14:00 (UTC) on November 18. Eligible users can subscribe for tokenized Anthropic shares using USDC, with a minimum subscription of 100 USDC and a total event cap of 500 million USDC. The indicative price is set at 70 to 78 USDC per token, corresponding to an implied valuation of $1.26 trillion to $1.41 trillion. Individual subscription caps are tiered by Binance Wallet Alpha Points—set at 20,000, 100,000, 200,000, and 500,000 USDC for users holding over 0, 40, 100, and 200 points, respectively. Unallocated users will receive a full refund, while allocated users will be charged based on their final allocation and receive the tokens along with any remaining USDC. Token distribution will take place at least two hours after the Nasdaq market opens, with the exact timing to be determined. — link",
-      "category": "Institutional & Exchanges",
-      "importance": 0.445,
-      "age_hours": 24.0,
-      "source_quality": "social",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Wu Blockchain (Telegram)",
-      "type": "telegram",
-      "headline": "Highlight Clip: Dragonfly Partner Reflects on Missing Out on Solana’s 4-Cent Seed Round Dragonfly Partner Reflects on Missing Out on Solana’s 4-Cent Seed Round In the November 12, 2026 When Shift Happens episode, Dragonfly managing partner Haseeb said he passed on Solana's seed round at four cents as a VC in 2017 and 2018. He wrote a memo for every deal he passed on; his unusually detailed Solana memo worked through it like homework, yet the result was no investment. He calls this the most common junior-investor mistake: too focused on process, when the answer is wrong. — link",
-      "category": "Altcoins & Projects",
-      "importance": 0.445,
-      "age_hours": 24.0,
-      "source_quality": "social",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Wu Blockchain (Telegram)",
-      "type": "telegram",
-      "headline": "Singapore’s Largest Bank DBS Partners With Circle to Enable Direct USDC Minting and Redemption for Institutional Clients Singapore’s DBS Bank and stablecoin issuer Circle have announced a partnership enabling eligible institutional clients to mint and redeem USDC directly through DBS, with 24/7, near-instant settlement between USD and USDC—eliminating complete reliance on secondary market liquidity. The service is designed to support institutional treasury operations, payment settlements, and liquidity management. Building on their prior participation in the Monetary Authority of Singapore’s (MAS) Project BLOOM, the two firms will also collaborate to advance interoperability across different forms of tokenized money and financial networks. — link",
-      "category": "DeFi & Stablecoins",
-      "importance": 0.445,
-      "age_hours": 24.0,
-      "source_quality": "social",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Whale Alert (Telegram)",
-      "type": "telegram",
-      "headline": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 200,000,000 $USDC (200,041,799 USD) transferred from #Binance to unknown wallet Details",
-      "category": "DeFi & Stablecoins",
-      "importance": 0.445,
-      "age_hours": 24.0,
+      "importance": 0.466,
+      "age_hours": 2.9,
       "source_quality": "social",
       "evidence_status": "unconfirmed-social",
       "asset_scope": "asset-or-sector"
@@ -700,7 +794,7 @@
   "categories": [
     {
       "category": "Security & Hacks",
-      "count": 3,
+      "count": 7,
       "headlines": [
         {
           "source": "CoinDesk",
@@ -708,8 +802,8 @@
           "headline": "U.S. judge says Ethereum has ‘no terms of use,’ clears MIT brothers of $25 million fraud",
           "published": "Wed, 18 Nov 2026 05:30:10 +0000",
           "category": "Security & Hacks",
-          "importance": 2.5,
-          "age_hours": 0.5,
+          "importance": 2.457,
+          "age_hours": 2.4,
           "source_quality": "reputable",
           "evidence_status": "confirmed-source",
           "asset_scope": "market-wide"
@@ -720,33 +814,64 @@
           "headline": "Coinbase AI defense blocks $4.7 million from being sent to deepfake Elon Musk scam",
           "published": "Wed, 18 Nov 2026 02:47:51 +0000",
           "category": "Security & Hacks",
-          "importance": 2.384,
-          "age_hours": 3.2,
+          "importance": 2.343,
+          "age_hours": 5.1,
           "source_quality": "reputable",
           "evidence_status": "confirmed-source",
           "asset_scope": "market-wide"
         },
         {
-          "source": "Wu Blockchain (Telegram)",
-          "type": "telegram",
-          "headline": "Coinbase: AI Scam Prevention Agent Blocks Deepfake Elon Musk Tesla Giveaway Scam, Protecting ~$4.7M in Customer Funds According to Coinbase blog, scammers spun up a fake YouTube livestream during Tesla’s \"flying car\" demo featuring an AI deepfake of Elon Musk promoting a fraudulent crypto-doubling giveaway that drew over 500,000 viewers and prompted hundreds of Coinbase customers to attempt sending millions of dollars within roughly two hours. Coinbase reported that its autonomous AI Scam Prevention Agent—operating with no humans in the loop—detected the high-risk sends in real time and intervened with targeted, context-aware conversations that exposed giveaway mechanics, ultimately stopping ~91% of the funds, or $4.7 million, from leaving customers' accounts. — link",
+          "source": "Yahoo Finance (ETH)",
+          "type": "yahoo",
+          "symbol": "ETH",
+          "headline": "Brothers who baited ethereum MEV bots for $25 million acquitted of wire fraud",
+          "published": "Tue, 17 Nov 2026 21:00:00 +0000",
+          "link": "https://finance.yahoo.com/video/brothers-baited-ethereum-mev-bots-210000650.html?.tsrc=rss",
           "category": "Security & Hacks",
-          "importance": 1.095,
-          "age_hours": 24.0,
-          "source_quality": "social",
-          "evidence_status": "unconfirmed-social",
+          "importance": 2.023,
+          "age_hours": 10.9,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "market-wide"
+        },
+        {
+          "source": "Yahoo Finance (ETH)",
+          "type": "yahoo",
+          "symbol": "ETH",
+          "headline": "Hackers target 178 major websites with crypto-stealing code",
+          "published": "Tue, 17 Nov 2026 20:00:00 +0000",
+          "link": "https://finance.yahoo.com/video/hackers-target-178-major-websites-with-crypto-stealing-code-203311636.html?.tsrc=rss",
+          "category": "Security & Hacks",
+          "importance": 2.004,
+          "age_hours": 11.9,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "market-wide"
+        },
+        {
+          "source": "Google News (ETH)",
+          "type": "google_news",
+          "headline": "US judge acquits MIT brothers in $25 million Ethereum fraud case, citing lack of deception",
+          "published": "Wed, 18 Nov 2026 06:02:00 GMT",
+          "category": "Security & Hacks",
+          "importance": 1.601,
+          "age_hours": 1.9,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
           "asset_scope": "market-wide"
         }
       ],
       "top_sources": [
         "CoinDesk",
+        "Google News (ETH)",
         "The Block",
+        "Whale Alert (Telegram)",
         "Wu Blockchain (Telegram)"
       ]
     },
     {
       "category": "Regulation & Politics",
-      "count": 4,
+      "count": 2,
       "headlines": [
         {
           "source": "The Block",
@@ -754,20 +879,8 @@
           "headline": "World Bank Group taps Circle and Citi to test stablecoin-based fund disbursements",
           "published": "Wed, 18 Nov 2026 04:21:02 +0000",
           "category": "Regulation & Politics",
-          "importance": 2.418,
-          "age_hours": 1.6,
-          "source_quality": "reputable",
-          "evidence_status": "confirmed-source",
-          "asset_scope": "market-wide"
-        },
-        {
-          "source": "CoinDesk",
-          "type": "rss",
-          "headline": "CFTC nominee questions public benefit of prediction markets as legal fight grows",
-          "published": "Wed, 18 Nov 2026 00:46:25 +0000",
-          "category": "Regulation & Politics",
-          "importance": 2.394,
-          "age_hours": 5.2,
+          "importance": 2.376,
+          "age_hours": 3.5,
           "source_quality": "reputable",
           "evidence_status": "confirmed-source",
           "asset_scope": "market-wide"
@@ -778,77 +891,63 @@
           "headline": "CFTC halts some Kalshi Trump mention markets over manipulation concerns",
           "published": "Tue, 17 Nov 2026 22:20:04 +0000",
           "category": "Regulation & Politics",
-          "importance": 1.62,
-          "age_hours": 7.6,
+          "importance": 1.598,
+          "age_hours": 9.6,
           "source_quality": "unknown",
           "evidence_status": "unconfirmed-social",
-          "asset_scope": "market-wide"
-        },
-        {
-          "source": "Google News (SOL)",
-          "type": "google_news",
-          "headline": "CoinGecko secures Solana Foundation backing and eyes crypto trading",
-          "published": "Wed, 18 Nov 2026 03:10:00 GMT",
-          "category": "Regulation & Politics",
-          "importance": 1.592,
-          "age_hours": 2.8,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
           "asset_scope": "market-wide"
         }
       ],
       "top_sources": [
-        "CoinDesk",
         "CoinTelegraph",
-        "Google News (SOL)",
         "The Block"
       ]
     },
     {
       "category": "Bitcoin & ETF",
-      "count": 2,
+      "count": 1,
       "headlines": [
         {
-          "source": "Google News (Macro)",
+          "source": "Google News (SOL)",
           "type": "google_news",
-          "headline": "Bitcoin struggles below $65,000 amid ETF outflo...",
-          "published": "Wed, 18 Nov 2026 05:04:49 GMT",
+          "headline": "Can Solana extend gains above $75 as ETFs inflows resurface?",
+          "published": "Wed, 18 Nov 2026 06:21:12 GMT",
           "category": "Bitcoin & ETF",
-          "importance": 1.611,
-          "age_hours": 0.9,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (Macro)",
-          "type": "google_news",
-          "headline": "Bitcoin price stuck below $65,000 as ETF outflows and bearish signals persist",
-          "published": "Wed, 18 Nov 2026 04:43:00 GMT",
-          "category": "Bitcoin & ETF",
-          "importance": 1.608,
-          "age_hours": 1.2,
+          "importance": 1.605,
+          "age_hours": 1.5,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
-        "Google News (Macro)"
+        "Google News (SOL)"
       ]
     },
     {
       "category": "Market & Macro",
-      "count": 21,
+      "count": 24,
       "headlines": [
+        {
+          "source": "CoinDesk",
+          "type": "rss",
+          "headline": "Live updates: Bitcoin stuck near $65,000 as popular 'basis trade' returns dry up",
+          "published": "Wed, 18 Nov 2026 07:27:48 +0000",
+          "category": "Market & Macro",
+          "importance": 2.501,
+          "age_hours": 0.4,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "market-wide"
+        },
         {
           "source": "CoinDesk",
           "type": "rss",
           "headline": "Bitcoin's 12% slide through key support looks scary, but history says give it 3 months.",
           "published": "Wed, 18 Nov 2026 04:34:21 +0000",
           "category": "Market & Macro",
-          "importance": 2.479,
-          "age_hours": 1.4,
+          "importance": 2.436,
+          "age_hours": 3.3,
           "source_quality": "reputable",
           "evidence_status": "confirmed-source",
           "asset_scope": "market-wide"
@@ -859,82 +958,81 @@
           "headline": "Ark Invest buys crypto stocks as it sells $85 million in Nvidia, Coinbase brings onchain loans to New York, and more",
           "published": "Wed, 18 Nov 2026 05:01:00 +0000",
           "category": "Market & Macro",
-          "importance": 2.432,
-          "age_hours": 0.9,
+          "importance": 2.391,
+          "age_hours": 2.9,
           "source_quality": "reputable",
           "evidence_status": "confirmed-source",
           "asset_scope": "market-wide"
         },
         {
-          "source": "Google News (BTC)",
-          "type": "google_news",
-          "headline": "BTC price on Nov 18, 2026 at 1am EST",
-          "published": "Wed, 18 Nov 2026 05:13:30 GMT",
+          "source": "Yahoo Finance (BTC)",
+          "type": "yahoo",
+          "symbol": "BTC",
+          "headline": "Strategy Spends Far More On STRC Buybacks Than Bitcoin, Peter Schiff Asks Whether Saylor Will Sell BTC To Fund Them",
+          "published": "Wed, 18 Nov 2026 07:24:57 +0000",
+          "link": "https://stocktwits.com/news-articles/markets/equity/strategy-spends-far-more-on-strc-buybacks-than-bitcoin-peter-schiff-asks-saylor-sell-btc/cNbXMUuR9hU?.tsrc=rss",
           "category": "Market & Macro",
-          "importance": 1.613,
-          "age_hours": 0.7,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
+          "importance": 2.214,
+          "age_hours": 0.5,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
           "asset_scope": "market-wide"
         },
         {
-          "source": "Google News (BTC)",
-          "type": "google_news",
-          "headline": "Bitcoin’s rare 12% crash through its 200-week average has a bullish track record",
-          "published": "Wed, 18 Nov 2026 04:34:00 GMT",
+          "source": "Yahoo Finance (BTC)",
+          "type": "yahoo",
+          "symbol": "BTC",
+          "headline": "Mark Yusko Warns AI Valuations Are Coming 'Out Of Thin Air’ As Bitcoin Gets Caught In 'A Bad Liquidation Cycle'",
+          "published": "Wed, 18 Nov 2026 05:50:31 +0000",
+          "link": "https://stocktwits.com/news-articles/markets/cryptocurrency/mark-yusko-warns-ai-valuations-thin-air-bitcoin-gets-caught-in-a-bad-liquidation-cycle/cNbXAWrR9hu?.tsrc=rss",
           "category": "Market & Macro",
-          "importance": 1.606,
-          "age_hours": 1.4,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "market-wide"
-        },
-        {
-          "source": "Google News (Macro)",
-          "type": "google_news",
-          "headline": "Waller Wants Fed at the Center of America’s Tokenized Financial Future",
-          "published": "Wed, 18 Nov 2026 04:10:36 GMT",
-          "category": "Market & Macro",
-          "importance": 1.602,
-          "age_hours": 1.8,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
+          "importance": 2.185,
+          "age_hours": 2.0,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
           "asset_scope": "market-wide"
         }
       ],
       "top_sources": [
         "CoinDesk",
         "Google News (BTC)",
-        "Google News (ETH)",
         "Google News (Macro)",
-        "Google News (ZAMA)"
+        "Google News (ZAMA)",
+        "Google News (ZEC)"
       ]
     },
     {
       "category": "Institutional & Exchanges",
-      "count": 3,
+      "count": 1,
       "headlines": [
         {
-          "source": "Google News (BTC)",
-          "type": "google_news",
-          "headline": "Israeli banks race to bring Bitcoin trading to customers",
-          "published": "Wed, 18 Nov 2026 05:37:23 GMT",
+          "source": "Wu Blockchain (Telegram)",
+          "type": "telegram",
+          "headline": "Highlight Clip: CZ: Entrepreneurs Still Building in Crypto Are More Worth Investing in Amid the AI Boom CZ: Entrepreneurs Still Building in Crypto Are More Worth Investing in Amid the AI Boom Binance founder Changpeng Zhao (CZ) said during the closing fireside chat at Cantor Convergence on November 12 that AI companies are creating tremendous value and deserve high valuations, but the industry also has a bubble. He believes 99% of today's AI startups will eventually fail, similar to the ICO and IEO boom in crypto. As attention shifts toward AI, entrepreneurs still building in crypto are more solid, making it easier to identify investment opportunities. CZ added that AI will not replace money or the internet but will use both and require more capital. He is now more bullish on crypto than ever. — link",
+          "published": "2026-11-18T07:53:14.346872+00:00",
           "category": "Institutional & Exchanges",
-          "importance": 0.967,
-          "age_hours": 0.3,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
+          "importance": 0.542,
+          "age_hours": 0.0,
+          "source_quality": "social",
+          "evidence_status": "unconfirmed-social",
           "asset_scope": "asset-or-sector"
-        },
+        }
+      ],
+      "top_sources": [
+        "Wu Blockchain (Telegram)"
+      ]
+    },
+    {
+      "category": "DeFi & Stablecoins",
+      "count": 4,
+      "headlines": [
         {
-          "source": "StockTwits (BTC)",
-          "type": "stocktwits",
-          "headline": "$BTC.X without these refugees banks 🏦 don’t exists it’s a digital world these Ponzi scam institutions are no longer required",
-          "published": "2026-11-18T05:57:13Z",
-          "sentiment_label": "bullish",
-          "symbol": "BTC",
-          "category": "Institutional & Exchanges",
-          "importance": 0.475,
+          "source": "Wu Blockchain (Telegram)",
+          "type": "telegram",
+          "headline": "Singapore’s Largest Bank DBS Partners With Circle to Enable Direct USDC Minting and Redemption for Institutional Clients Singapore’s DBS Bank and stablecoin issuer Circle have announced a partnership enabling eligible institutional clients to mint and redeem USDC directly through DBS, with 24/7, near-instant settlement between USD and USDC—eliminating complete reliance on secondary market liquidity. The service is designed to support institutional treasury operations, payment settlements, and liquidity management. Building on their prior participation in the Monetary Authority of Singapore’s (MAS) Project BLOOM, the two firms will also collaborate to advance interoperability across different forms of tokenized money and financial networks. — link",
+          "published": "2026-11-18T07:53:14.346857+00:00",
+          "category": "DeFi & Stablecoins",
+          "importance": 0.542,
           "age_hours": 0.0,
           "source_quality": "social",
           "evidence_status": "unconfirmed-social",
@@ -943,25 +1041,29 @@
         {
           "source": "Wu Blockchain (Telegram)",
           "type": "telegram",
-          "headline": "Binance Wallet Launches Anthropic IPO xStocks Event With a 500M USDC Total Subscription Cap Binance Wallet has announced the launch of its Anthropic IPO xStocks event, with subscriptions open from 06:00 to 14:00 (UTC) on November 18. Eligible users can subscribe for tokenized Anthropic shares using USDC, with a minimum subscription of 100 USDC and a total event cap of 500 million USDC. The indicative price is set at 70 to 78 USDC per token, corresponding to an implied valuation of $1.26 trillion to $1.41 trillion. Individual subscription caps are tiered by Binance Wallet Alpha Points—set at 20,000, 100,000, 200,000, and 500,000 USDC for users holding over 0, 40, 100, and 200 points, respectively. Unallocated users will receive a full refund, while allocated users will be charged based on their final allocation and receive the tokens along with any remaining USDC. Token distribution will take place at least two hours after the Nasdaq market opens, with the exact timing to be determined. — link",
-          "category": "Institutional & Exchanges",
-          "importance": 0.445,
-          "age_hours": 24.0,
+          "headline": "Ledger Users Report Losses From Dubai-Bought Wallets After Teardown Reveals Suspected Hardware Implant According to The Defiant, two users reported crypto thefts from Ledger hardware wallets allegedly bought at official reseller Virgin Megastore in Dubai: account Rewinsky reported losing ~1,300 SOL on Nov. 15, and internal photos of their Ledger Flex were confirmed by Mark Karpelès’ public OSINT registry to contain an added circuit board and antenna matching implants previously found in Southeast Asia. The second account, New Babylon Order, claimed 507,000 USDT was stolen on Nov. 14 from a Ledger Stax bought in October, though it remains unconfirmed without internal photos. Such physical implants capture recovery phrases displayed during setup over cellular networks without altering the secure element—allowing tampered units to pass Ledger’s Genuine Check—while the reported purchase channels remain unverified and Ledger has not confirmed related drains outside Southeast Asia. — link",
+          "published": "2026-11-18T07:53:14.346866+00:00",
+          "category": "DeFi & Stablecoins",
+          "importance": 0.542,
+          "age_hours": 0.0,
           "source_quality": "social",
           "evidence_status": "unconfirmed-social",
           "asset_scope": "asset-or-sector"
-        }
-      ],
-      "top_sources": [
-        "Google News (BTC)",
-        "StockTwits (BTC)",
-        "Wu Blockchain (Telegram)"
-      ]
-    },
-    {
-      "category": "DeFi & Stablecoins",
-      "count": 3,
-      "headlines": [
+        },
+        {
+          "source": "StockTwits (SOL)",
+          "type": "stocktwits",
+          "headline": "$SOL.X • 🎯 LIQUIDITY HARVEST &amp; REVERSAL THESIS\n🏛️ INSTITUTIONAL ORDER FLOW DISPATCH\n\nBuy-side liquidity above PDH (72.72) [SWEPT] was swept into overhead resistance. Extended in DISCOUNT (15.1% above 50% EQ), algorithmic flow is probing an equilibrium rebalance toward PDL (69",
+          "published": "2026-11-18T06:25:05Z",
+          "sentiment_label": "bullish",
+          "symbol": "SOL",
+          "category": "DeFi & Stablecoins",
+          "importance": 0.47,
+          "age_hours": 1.5,
+          "source_quality": "social",
+          "evidence_status": "unconfirmed-social",
+          "asset_scope": "asset-or-sector"
+        },
         {
           "source": "StockTwits (SOL)",
           "type": "stocktwits",
@@ -970,30 +1072,8 @@
           "sentiment_label": "bullish",
           "symbol": "SOL",
           "category": "DeFi & Stablecoins",
-          "importance": 0.472,
-          "age_hours": 1.0,
-          "source_quality": "social",
-          "evidence_status": "unconfirmed-social",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Wu Blockchain (Telegram)",
-          "type": "telegram",
-          "headline": "Singapore’s Largest Bank DBS Partners With Circle to Enable Direct USDC Minting and Redemption for Institutional Clients Singapore’s DBS Bank and stablecoin issuer Circle have announced a partnership enabling eligible institutional clients to mint and redeem USDC directly through DBS, with 24/7, near-instant settlement between USD and USDC—eliminating complete reliance on secondary market liquidity. The service is designed to support institutional treasury operations, payment settlements, and liquidity management. Building on their prior participation in the Monetary Authority of Singapore’s (MAS) Project BLOOM, the two firms will also collaborate to advance interoperability across different forms of tokenized money and financial networks. — link",
-          "category": "DeFi & Stablecoins",
-          "importance": 0.445,
-          "age_hours": 24.0,
-          "source_quality": "social",
-          "evidence_status": "unconfirmed-social",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Whale Alert (Telegram)",
-          "type": "telegram",
-          "headline": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 200,000,000 $USDC (200,041,799 USD) transferred from #Binance to unknown wallet Details",
-          "category": "DeFi & Stablecoins",
-          "importance": 0.445,
-          "age_hours": 24.0,
+          "importance": 0.466,
+          "age_hours": 2.9,
           "source_quality": "social",
           "evidence_status": "unconfirmed-social",
           "asset_scope": "asset-or-sector"
@@ -1001,46 +1081,21 @@
       ],
       "top_sources": [
         "StockTwits (SOL)",
-        "Whale Alert (Telegram)",
         "Wu Blockchain (Telegram)"
       ]
     },
     {
       "category": "Ethereum & L2",
-      "count": 4,
+      "count": 2,
       "headlines": [
         {
-          "source": "Google News (ZEC)",
-          "type": "google_news",
-          "headline": "Hayes names ETH $2,800, ZEC $1,800 as his ‘Four Horsemen’",
-          "published": "Wed, 18 Nov 2026 04:27:09 GMT",
-          "category": "Ethereum & L2",
-          "importance": 0.955,
-          "age_hours": 1.5,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
           "source": "Google News (ETH)",
           "type": "google_news",
-          "headline": "ETH price on Nov 18, 2026 at 12am EST Prediction Market",
-          "published": "Wed, 18 Nov 2026 04:15:18 GMT",
+          "headline": "PayPal’s PYUSD Supply Falls 14% as Ethereum Leads Drop",
+          "published": "Wed, 18 Nov 2026 04:22:15 GMT",
           "category": "Ethereum & L2",
-          "importance": 0.953,
-          "age_hours": 1.7,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (ETH)",
-          "type": "google_news",
-          "headline": "Ethereum Foundation sued for firing cancer patient who objected to mandated suicide pledge",
-          "published": "Wed, 18 Nov 2026 03:28:03 GMT",
-          "category": "Ethereum & L2",
-          "importance": 0.945,
-          "age_hours": 2.5,
+          "importance": 0.935,
+          "age_hours": 3.5,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -1048,13 +1103,13 @@
         {
           "source": "StockTwits (ETH)",
           "type": "stocktwits",
-          "headline": "$ETH.X shorts will be liquidated soon",
-          "published": "2026-11-18T05:28:11Z",
+          "headline": "$ETH.X gonna be above 1920 eod",
+          "published": "2026-11-18T07:50:15Z",
           "sentiment_label": "bullish",
           "symbol": "ETH",
           "category": "Ethereum & L2",
-          "importance": 0.473,
-          "age_hours": 0.5,
+          "importance": 0.475,
+          "age_hours": 0.1,
           "source_quality": "social",
           "evidence_status": "unconfirmed-social",
           "asset_scope": "asset-or-sector"
@@ -1062,22 +1117,57 @@
       ],
       "top_sources": [
         "Google News (ETH)",
-        "Google News (ZEC)",
         "StockTwits (ETH)"
       ]
     },
     {
       "category": "Altcoins & Projects",
-      "count": 5,
+      "count": 7,
       "headlines": [
+        {
+          "source": "Google News (ZEC)",
+          "type": "google_news",
+          "headline": "Where is Zcash price heading?",
+          "published": "Wed, 18 Nov 2026 07:16:39 GMT",
+          "category": "Altcoins & Projects",
+          "importance": 0.964,
+          "age_hours": 0.6,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
         {
           "source": "Google News (SOL)",
           "type": "google_news",
-          "headline": "SOL price on Nov 18, 2026 at 12am EST Crypto Prediction Market",
-          "published": "Wed, 18 Nov 2026 04:15:18 GMT",
+          "headline": "SOL price on Nov 18, 2026 at 3am EST Crypto Prediction Market",
+          "published": "Wed, 18 Nov 2026 07:09:50 GMT",
           "category": "Altcoins & Projects",
-          "importance": 0.953,
-          "age_hours": 1.7,
+          "importance": 0.963,
+          "age_hours": 0.7,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (SOL)",
+          "type": "google_news",
+          "headline": "Solana Becomes Majority Shareholder in CoinGecko",
+          "published": "Wed, 18 Nov 2026 07:05:00 GMT",
+          "category": "Altcoins & Projects",
+          "importance": 0.962,
+          "age_hours": 0.8,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (ETH)",
+          "type": "google_news",
+          "headline": "Crypto Price Analysis, ETH, XRP, SOL, INJ and PUMP, Nov. 18: XRP Clears $0.979 as Solana Gains 5% and PUMP Hits a 90-Day Low",
+          "published": "Wed, 18 Nov 2026 06:57:58 GMT",
+          "category": "Altcoins & Projects",
+          "importance": 0.961,
+          "age_hours": 0.9,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -1085,60 +1175,26 @@
         {
           "source": "Google News (ZEC)",
           "type": "google_news",
-          "headline": "Zcash gains 5.05% over 20-hour window to 965.39 USD",
-          "published": "Wed, 18 Nov 2026 03:18:52 GMT",
+          "headline": "Cypherpunk Reports 8,967 ZEC Mined as Zcash Treasury Nears 342,000 Tokens",
+          "published": "Wed, 18 Nov 2026 05:00:00 GMT",
           "category": "Altcoins & Projects",
-          "importance": 0.944,
-          "age_hours": 2.6,
+          "importance": 0.941,
+          "age_hours": 2.9,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (ZEC)",
-          "type": "google_news",
-          "headline": "Zcash (ZEC) Price Warning? Long Liquidation Cluster Sits at $860",
-          "published": "Wed, 18 Nov 2026 00:00:52 GMT",
-          "category": "Altcoins & Projects",
-          "importance": 0.911,
-          "age_hours": 5.9,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (ZEC)",
-          "type": "google_news",
-          "headline": "Zcash Rebounds 10% on $7.1M Short Squeeze, but Weekly Channel Floor Still Holds the Key",
-          "published": "Tue, 17 Nov 2026 21:55:00 GMT",
-          "category": "Altcoins & Projects",
-          "importance": 0.89,
-          "age_hours": 8.0,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Wu Blockchain (Telegram)",
-          "type": "telegram",
-          "headline": "Highlight Clip: Dragonfly Partner Reflects on Missing Out on Solana’s 4-Cent Seed Round Dragonfly Partner Reflects on Missing Out on Solana’s 4-Cent Seed Round In the November 12, 2026 When Shift Happens episode, Dragonfly managing partner Haseeb said he passed on Solana's seed round at four cents as a VC in 2017 and 2018. He wrote a memo for every deal he passed on; his unusually detailed Solana memo worked through it like homework, yet the result was no investment. He calls this the most common junior-investor mistake: too focused on process, when the answer is wrong. — link",
-          "category": "Altcoins & Projects",
-          "importance": 0.445,
-          "age_hours": 24.0,
-          "source_quality": "social",
-          "evidence_status": "unconfirmed-social",
           "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
+        "Google News (ETH)",
         "Google News (SOL)",
         "Google News (ZEC)",
-        "Wu Blockchain (Telegram)"
+        "StockTwits (ETH)"
       ]
     },
     {
       "category": "Other",
-      "count": 2,
+      "count": 4,
       "headlines": [
         {
           "source": "The Block",
@@ -1146,10 +1202,36 @@
           "headline": "What’s happening to crypto startup valuations?",
           "published": "Wed, 18 Nov 2026 02:40:00 +0000",
           "category": "Other",
-          "importance": 1.731,
-          "age_hours": 3.3,
+          "importance": 1.69,
+          "age_hours": 5.2,
           "source_quality": "reputable",
           "evidence_status": "confirmed-source",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Yahoo Finance (ETH)",
+          "type": "yahoo",
+          "symbol": "ETH",
+          "headline": "Nvidia’s earnings call names two former crypto miners",
+          "published": "Wed, 18 Nov 2026 04:16:31 +0000",
+          "link": "https://www.thestreet.com/crypto/investing/nvidias-earnings-call-names-two-former-crypto-miners?.tsrc=rss",
+          "category": "Other",
+          "importance": 1.506,
+          "age_hours": 3.6,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "CoinTelegraph",
+          "type": "rss",
+          "headline": "Here’s what happened in crypto today",
+          "published": "Wed, 18 Nov 2026 06:00:00 +0000",
+          "category": "Other",
+          "importance": 1.034,
+          "age_hours": 1.9,
+          "source_quality": "unknown",
+          "evidence_status": "unconfirmed-social",
           "asset_scope": "asset-or-sector"
         },
         {
@@ -1158,16 +1240,18 @@
           "headline": "Privacy Coins: Why the Crypto Privacy Narrative Matters Again",
           "published": "Tue, 17 Nov 2026 08:00:54 GMT",
           "category": "Other",
-          "importance": 0.751,
-          "age_hours": 21.9,
+          "importance": 0.731,
+          "age_hours": 23.9,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
+        "CoinTelegraph",
         "Google News (ZAMA)",
-        "The Block"
+        "The Block",
+        "Yahoo Finance (ETH)"
       ]
     }
   ],
@@ -1179,33 +1263,34 @@
       "U.S. judge says Ethereum has ‘no terms of use,’ clears MIT brothers of $25 million fraud",
       "Coinbase AI defense blocks $4.7 million from being sent to deepfake Elon Musk scam",
       "World Bank Group taps Circle and Citi to test stablecoin-based fund disbursements",
-      "CFTC nominee questions public benefit of prediction markets as legal fight grows",
-      "Bitcoin struggles below $65,000 amid ETF outflo..."
+      "CFTC halts some Kalshi Trump mention markets over manipulation concerns",
+      "Can Solana extend gains above $75 as ETFs inflows resurface?"
     ],
-    "updated_at": "2026-11-18T05:57:45.187871+00:00",
+    "updated_at": "2026-11-18T07:53:16.338783+00:00",
     "reason": "NEWS_AI_API_KEY is not configured"
   },
   "quality": {
-    "trusted_headlines": 7,
+    "trusted_headlines": 14,
     "discovery_headlines": 22,
-    "social_headlines": 17,
+    "social_headlines": 14,
     "quality_tiers": {
-      "reputable": 7,
-      "unknown": 1,
+      "reputable": 14,
       "discovery": 22,
-      "social": 17
+      "unknown": 2,
+      "social": 14
     },
     "interpretation_policy": "Only primary/reputable sources are treated as confirmation; discovery and social sources are leads.",
-    "excluded_count": 28,
+    "excluded_count": 36,
     "excluded_reasons": {
-      "exact-duplicate": 3,
+      "exact-duplicate": 9,
       "low-information-or-promotional": 2,
-      "not-crypto-relevant": 23
+      "near-duplicate": 3,
+      "not-crypto-relevant": 22
     }
   },
   "stocktwits": {
     "status": "ok",
-    "aggregate_score": 59.8,
+    "aggregate_score": 66.7,
     "symbols": {
       "BTC": {
         "status": "ok",
@@ -1221,213 +1306,213 @@
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "BTC",
-            "headline": "$BTC.X without these refugees banks 🏦 don’t exists it’s a digital world these Ponzi scam institutions are no longer required",
-            "published": "2026-11-18T05:57:13Z",
-            "user": "Web30",
-            "sentiment_label": "bullish",
-            "message_id": 669439010
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$BTC.X $MSTR  POOP COIN PRESIDENT 😂😂🫵🏼🤡",
-            "published": "2026-11-18T05:56:25Z",
-            "user": "MstzKING",
-            "sentiment_label": "bearish",
-            "message_id": 669438996
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$BTC.X banks are the biggest scams on the face of the earth",
-            "published": "2026-11-18T05:55:24Z",
-            "user": "Web30",
-            "sentiment_label": "bullish",
-            "message_id": 669438983
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$BTC.X 💩 🚽 🏦",
-            "published": "2026-11-18T05:54:57Z",
-            "user": "Web30",
-            "sentiment_label": "bullish",
-            "message_id": 669438973
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$BTC.X bank 🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣😕🤣🤣🤣🤣🤣🤣",
-            "published": "2026-11-18T05:54:44Z",
-            "user": "Web30",
-            "sentiment_label": "bullish",
-            "message_id": 669438965
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$BTC.X who wants wealth in a bank lol 😆 they lend all your money out! They don’t really have it… Wake up!",
-            "published": "2026-11-18T05:54:24Z",
-            "user": "sammed",
-            "sentiment_label": "bullish",
-            "message_id": 669438956
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$NVDA $BTC.X \n\nCalls will otm.  Won’t have enough time to make it there.",
-            "published": "2026-11-18T05:54:21Z",
+            "headline": "$BTC.X $MSTR \n\nDecay is nearing.",
+            "published": "2026-11-18T07:52:53Z",
             "user": "TMStrader",
             "sentiment_label": "none",
-            "message_id": 669438955
+            "message_id": 669441000
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "BTC",
-            "headline": "$SPY $NVDA $ORCL $MU $BTC.X does this mean Trump and family will be moving to Argentina?",
-            "published": "2026-11-18T05:54:01Z",
-            "user": "LizardOverlords",
-            "sentiment_label": "none",
-            "message_id": 669438949
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$BTC.X what a waste of skin and bones",
-            "published": "2026-11-18T05:53:47Z",
-            "user": "Web30",
-            "sentiment_label": "bullish",
-            "message_id": 669438946
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$BTC.X you fraudsters 🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣",
-            "published": "2026-11-18T05:53:23Z",
-            "user": "Web30",
-            "sentiment_label": "bullish",
-            "message_id": 669438942
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$BTC.X $MU $NVDA $ORCL $SPY Alaska 🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣",
-            "published": "2026-11-18T05:52:54Z",
-            "user": "Web30",
-            "sentiment_label": "bullish",
-            "message_id": 669438934
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "Mark Yusko Warns AI Valuations Are Coming &#39;Out Of Thin Air’ As Bitcoin Gets Caught In &#39;A Bad Liquidation Cycle&#39;\n\n$BTC.X $BTC $IBIT $GBTC $BTCW\n\nhttps://stocktwits.com/news/cryptocurrency/markets/mark-yusko-warns-ai-valuations-thin-air-bitcoin-gets-caught-in-a-bad-liqu",
-            "published": "2026-11-18T05:50:31Z",
+            "headline": "Strategy Spends Far More On STRC Buybacks Than Bitcoin, Peter Schiff Asks Whether Saylor Will Sell BTC To Fund Them\n\n$MSTR $BTC.X $STRC $MSTY $MST\n\nhttps://stocktwits.com/news/equity/markets/strategy-spends-far-more-on-strc-buybacks-than-bitcoin-peter-schiff-asks-saylor-sell-btc/",
+            "published": "2026-11-18T07:24:57Z",
             "user": "StocktwitsNews",
             "sentiment_label": "none",
-            "message_id": 669438891
+            "message_id": 669440571
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "BTC",
-            "headline": "Democrats just locked in a 56-44 Senate majority after flipping 9 seats in the midterms. Alaska sealed it. \n$SPY $NVDA $ORCL $MU $BTC.X",
-            "published": "2026-11-18T05:47:18Z",
-            "user": "FrankieSmilez",
-            "sentiment_label": "none",
-            "message_id": 669438847
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$SPY $BTC.X $GLD $GC_F Oh snap!  LFG!",
-            "published": "2026-11-18T05:44:10Z",
-            "user": "PaidGuruWorstNightmare",
-            "sentiment_label": "bearish",
-            "message_id": 669438794
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$BTC.X  you have to DCA the way down...by Jan/Feb up alot more",
-            "published": "2026-11-18T05:22:51Z",
-            "user": "kamenrider888",
+            "headline": "$BTC.X DECOUPLE DAMMIT!",
+            "published": "2026-11-18T07:24:49Z",
+            "user": "Layerz",
             "sentiment_label": "bullish",
-            "message_id": 669438368
+            "message_id": 669440570
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "BTC",
-            "headline": "$GLD $SLV \n\nSell Gold and Silver …\n\nSell all useless stocks …\n\nBuy Bitcoin…\n\n$BTC.X $SPY $QQQ",
-            "published": "2026-11-18T05:19:32Z",
-            "user": "NatoshiSakomato",
-            "sentiment_label": "none",
-            "message_id": 669438292
+            "headline": "$BTC.X you democrats think you won the game the game is only beginning",
+            "published": "2026-11-18T07:24:40Z",
+            "user": "Web30",
+            "sentiment_label": "bullish",
+            "message_id": 669440565
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "BTC",
-            "headline": "watching  for next mover \n$OMH $BTC.X $AVGO $ASTS $AKAN",
-            "published": "2026-11-18T05:15:31Z",
-            "user": "Alwaysmind",
-            "sentiment_label": "none",
-            "message_id": 669438204
+            "headline": "$BTC.X for you 🐻 karma will be $91,000 💎😁",
+            "published": "2026-11-18T07:23:55Z",
+            "user": "Web30",
+            "sentiment_label": "bullish",
+            "message_id": 669440554
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "BTC",
-            "headline": "$SPY $QQQ $GLD $BTC.X",
-            "published": "2026-11-18T05:15:24Z",
+            "headline": "$SPY $BTC.X $GLD $GC_F The Cliff Note&#39;s. \n \nDetails I&#39;ll put in my memoir if I live long enough to write it.",
+            "published": "2026-11-18T07:21:56Z",
             "user": "PaidGuruWorstNightmare",
             "sentiment_label": "none",
-            "message_id": 669438197
+            "message_id": 669440516
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "BTC",
-            "headline": "$BTC.X looking amazing! \n\n$SPY $MSTR $BTC $ETH.X",
-            "published": "2026-11-18T05:15:16Z",
-            "user": "J0hnCandleWick",
+            "headline": "$BTC.X relax we will figure it after $71,800",
+            "published": "2026-11-18T07:21:47Z",
+            "user": "Web30",
+            "sentiment_label": "bullish",
+            "message_id": 669440512
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$BTC.X genuine question- what’s the plan to fork this off in a way that protects bitcoin from ai cyberattacks",
+            "published": "2026-11-18T07:21:15Z",
+            "user": "TulipmaniaJHH",
+            "sentiment_label": "none",
+            "message_id": 669440498
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$BTC.X 💀",
+            "published": "2026-11-18T07:09:36Z",
+            "user": "Web30",
+            "sentiment_label": "bullish",
+            "message_id": 669440308
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$BTC.X 🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣",
+            "published": "2026-11-18T07:09:21Z",
+            "user": "Web30",
+            "sentiment_label": "bullish",
+            "message_id": 669440304
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$BTC.X useless dumb. Bitch",
+            "published": "2026-11-18T07:02:34Z",
+            "user": "Liquidationstation",
+            "sentiment_label": "none",
+            "message_id": 669440186
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$SPY $BTC.X $GLD $GC_F  \n \nYea I&#39;m an arrogant asshole. \n \nYou don&#39;t know the 1% of it but I&#39;ll tell the tragic tale in due course. \n \nWhen I do the kids better be in the other room.",
+            "published": "2026-11-18T06:49:02Z",
+            "user": "PaidGuruWorstNightmare",
+            "sentiment_label": "none",
+            "message_id": 669439977
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$BTC.X some more good news for civilization Bitcoin ETFs Lose $2.35 Billion in Two Weeks as BlackRock Leads Outflows. Hopefully  the goverment can tax it before its gone for good.",
+            "published": "2026-11-18T06:45:45Z",
+            "user": "mergerinfo",
             "sentiment_label": "bearish",
-            "message_id": 669438196
+            "message_id": 669439925
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "BTC",
-            "headline": "$SPY $QQQ $GLD $BTC.X",
-            "published": "2026-11-18T05:12:57Z",
-            "user": "PaidGuruWorstNightmare",
+            "headline": "$BTC.X chop for next 10 years and then itll take out its all time high by 2% and come back down to 65k",
+            "published": "2026-11-18T06:43:05Z",
+            "user": "CoffeeinmyCup",
             "sentiment_label": "none",
-            "message_id": 669438154
+            "message_id": 669439877
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$MSTR do you like being poorer just so that Michael Saylor can brag about $STRC being near 100? $BTC.X",
+            "published": "2026-11-18T06:43:01Z",
+            "user": "xbt",
+            "sentiment_label": "none",
+            "message_id": 669439875
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$BTC.X we upset about the past 50 years",
+            "published": "2026-11-18T06:32:15Z",
+            "user": "Web30",
+            "sentiment_label": "bullish",
+            "message_id": 669439676
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$BTC.X you upset about the past 5 years ?",
+            "published": "2026-11-18T06:31:57Z",
+            "user": "Web30",
+            "sentiment_label": "bullish",
+            "message_id": 669439668
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$BTC.X pretty much the entire timeline this year . Everyone bullish at 80k and bearish at 60k",
+            "published": "2026-11-18T06:30:12Z",
+            "user": "xbt",
+            "sentiment_label": "none",
+            "message_id": 669439635
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$BTC.X sorry we forgot 9/11",
+            "published": "2026-11-18T06:29:05Z",
+            "user": "Web30",
+            "sentiment_label": "bullish",
+            "message_id": 669439601
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$BTC.X democrats created Covid-19 and Jeffery Epstein we still waiting on the files",
+            "published": "2026-11-18T06:28:42Z",
+            "user": "Web30",
+            "sentiment_label": "bullish",
+            "message_id": 669439591
           }
         ],
         "summary": {
           "message_count": 20,
-          "bullish": 9,
-          "bearish": 3,
-          "neutral": 8,
-          "bullish_ratio": 0.75,
-          "score": 50.0
+          "bullish": 10,
+          "bearish": 1,
+          "neutral": 9,
+          "bullish_ratio": 0.909,
+          "score": 81.8
         },
         "coverage_gap": null,
-        "updated_at": "2026-11-18T05:57:45.187894+00:00"
+        "updated_at": "2026-11-18T07:53:16.338807+00:00"
       },
       "ETH": {
         "status": "ok",
@@ -1439,6 +1524,46 @@
           "hours": 24
         },
         "messages": [
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "ETH",
+            "headline": "$ETH.X gonna be above 1920 eod",
+            "published": "2026-11-18T07:50:15Z",
+            "user": "Rampant00",
+            "sentiment_label": "bullish",
+            "message_id": 669440940
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "ETH",
+            "headline": "$ETH.X",
+            "published": "2026-11-18T06:46:40Z",
+            "user": "thomasgt3rs",
+            "sentiment_label": "bullish",
+            "message_id": 669439941
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "ETH",
+            "headline": "$XCN.X $BTC.X $DOGE.X $ETH.X $SOL.X https://x.com/Onyx/status/2120544461302161902",
+            "published": "2026-11-18T06:16:08Z",
+            "user": "Ihatemylifesavings",
+            "sentiment_label": "bullish",
+            "message_id": 669439360
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "ETH",
+            "headline": "$ETH.X $XRP.X $SOL.X $ZEC.X $LINK.X \n\nWorst POTUS !!!",
+            "published": "2026-11-18T06:12:20Z",
+            "user": "NatoshiSakomato",
+            "sentiment_label": "bearish",
+            "message_id": 669439285
+          },
           {
             "source": "StockTwits",
             "type": "stocktwits",
@@ -1598,58 +1723,18 @@
             "user": "Revenge4my401k",
             "sentiment_label": "bullish",
             "message_id": 669431853
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "ETH",
-            "headline": "More money to be made on the upside than the down… 💎🤲\n\n$BTC.X $DOGE.X $ETH.X $HOOD $MSTR",
-            "published": "2026-11-18T02:33:52Z",
-            "user": "JDRebel",
-            "sentiment_label": "bullish",
-            "message_id": 669431690
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "ETH",
-            "headline": "$ETH.X $BTC.X One of the most simple yet powerful tools we have, and most people delete it. Drop to a one-minute chart and there&#39;s no comprehension of what came before. It&#39;s a dangerous game to play without recognizing what support is. \n \nWhich line did you delete last we",
-            "published": "2026-11-18T02:33:21Z",
-            "user": "TCWhisperer",
-            "sentiment_label": "bullish",
-            "message_id": 669431656
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "ETH",
-            "headline": "I’m not fucking selling!!! \n\n$BTC.X $DOGE.X $ETH.X $HOOD $MSTR",
-            "published": "2026-11-18T02:31:15Z",
-            "user": "JDRebel",
-            "sentiment_label": "bullish",
-            "message_id": 669431530
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "ETH",
-            "headline": "$ETH.X bye bye bears",
-            "published": "2026-11-18T02:15:40Z",
-            "user": "thomasgt3rs",
-            "sentiment_label": "bullish",
-            "message_id": 669430371
           }
         ],
         "summary": {
           "message_count": 20,
-          "bullish": 12,
-          "bearish": 5,
+          "bullish": 11,
+          "bearish": 6,
           "neutral": 3,
-          "bullish_ratio": 0.706,
-          "score": 41.2
+          "bullish_ratio": 0.647,
+          "score": 29.4
         },
         "coverage_gap": null,
-        "updated_at": "2026-11-18T05:57:45.304853+00:00"
+        "updated_at": "2026-11-18T07:53:16.512820+00:00"
       },
       "SOL": {
         "status": "ok",
@@ -1661,6 +1746,36 @@
           "hours": 24
         },
         "messages": [
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "SOL",
+            "headline": "$SOL.X • 🎯 LIQUIDITY HARVEST &amp; REVERSAL THESIS\n🏛️ INSTITUTIONAL ORDER FLOW DISPATCH\n\nBuy-side liquidity above PDH (72.72) [SWEPT] was swept into overhead resistance. Extended in DISCOUNT (15.1% above 50% EQ), algorithmic flow is probing an equilibrium rebalance toward PDL (69",
+            "published": "2026-11-18T06:25:05Z",
+            "user": "RajatPatel",
+            "sentiment_label": "bullish",
+            "message_id": 669439520
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "SOL",
+            "headline": "$XCN.X $BTC.X $DOGE.X $ETH.X $SOL.X https://x.com/Onyx/status/2120544461302161902",
+            "published": "2026-11-18T06:16:08Z",
+            "user": "Ihatemylifesavings",
+            "sentiment_label": "bullish",
+            "message_id": 669439360
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "SOL",
+            "headline": "$ETH.X $XRP.X $SOL.X $ZEC.X $LINK.X \n\nWorst POTUS !!!",
+            "published": "2026-11-18T06:12:20Z",
+            "user": "NatoshiSakomato",
+            "sentiment_label": "bearish",
+            "message_id": 669439285
+          },
           {
             "source": "StockTwits",
             "type": "stocktwits",
@@ -1830,57 +1945,27 @@
             "user": "SOL_Meek",
             "sentiment_label": "bullish",
             "message_id": 669425863
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "SOL",
-            "headline": "$SOL.X shorting this fake pos",
-            "published": "2026-11-18T00:44:14Z",
-            "user": "survival_of_the_fittest",
-            "sentiment_label": "bearish",
-            "message_id": 669424034
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "SOL",
-            "headline": "$W.X $BTC.X $ETH.X $SOL.X $XRP.X Heller cant you hear me cuzzo lets get this bread",
-            "published": "2026-11-18T00:32:12Z",
-            "user": "Ryano88",
-            "sentiment_label": "bullish",
-            "message_id": 669423159
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "SOL",
-            "headline": "$SOL.X",
-            "published": "2026-11-18T00:13:55Z",
-            "user": "Green_dillo",
-            "sentiment_label": "none",
-            "message_id": 669421883
           }
         ],
         "summary": {
           "message_count": 20,
-          "bullish": 16,
+          "bullish": 17,
           "bearish": 1,
-          "neutral": 3,
-          "bullish_ratio": 0.941,
-          "score": 88.2
+          "neutral": 2,
+          "bullish_ratio": 0.944,
+          "score": 88.9
         },
         "coverage_gap": null,
-        "updated_at": "2026-11-18T05:57:45.421742+00:00"
+        "updated_at": "2026-11-18T07:53:16.665942+00:00"
       }
     },
-    "updated_at": "2026-11-18T05:57:45.602484+00:00",
+    "updated_at": "2026-11-18T07:53:16.850460+00:00",
     "note": "Live-only social sentiment; not point-in-time historical archive."
   },
   "fred": {
     "status": "unavailable",
     "source": "FRED",
-    "updated_at": "2026-11-18T05:57:45.603436+00:00",
+    "updated_at": "2026-11-18T07:53:16.851379+00:00",
     "series": {},
     "limitations": [
       "FRED_API_KEY is not configured; macro series were not fetched."
