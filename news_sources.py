@@ -1,8 +1,8 @@
 """
 news_sources.py
 ------------------------------
-Haber kaynaklarini (RSS + Google News + Telegram + Reddit + StockTwits) tek bir
-yerden yonetir. news_bot.py bu moduldeki fonksiyonlari kullanir.
+Haber kaynaklarini (RSS + Google News + Telegram + Reddit + StockTwits + Yahoo)
+tek bir yerden yonetir. news_bot.py bu moduldeki fonksiyonlari kullanir.
 Kaynak listesi (list_all_sources) dashboard'un "nereden haber
 cekiliyor" listesini beslemek icin de kullanilir.
 
@@ -13,13 +13,17 @@ Bilinen kisitlar:
 - Google News RSS ucretsizdir, API key istemez. Sonuclar Google'in
   haber indeksinden gelir; web arama sonuclarinin birebir kopyasi degildir.
 - StockTwits public stream is live-only (no historical archive).
+- Yahoo Finance RSS is free and live-only; filtered to the last 24h.
 """
 
 import re
 import requests
 import xml.etree.ElementTree as ET
+from datetime import datetime, timezone
 from html import unescape
 from urllib.parse import quote_plus
+
+from date_window import filter_items_to_window, recent_window_hours
 
 RSS_SOURCES = [
     {"name": "CoinDesk", "url": "https://www.coindesk.com/arc/outboundfeeds/rss/"},
@@ -80,6 +84,7 @@ REDDIT_SOURCES = [
 ]
 
 STOCKTWITS_SYMBOLS = ["BTC", "ETH", "SOL"]
+YAHOO_SYMBOLS = ["BTC", "ETH", "SOL"]
 
 # Source quality is used for ranking and disclosure, not as proof that a
 # headline is true. Google News is a discovery layer; it may surface low-value
@@ -87,7 +92,18 @@ STOCKTWITS_SYMBOLS = ["BTC", "ETH", "SOL"]
 # merely because it is recent.
 SOURCE_QUALITY = {
     "primary": {"official", "sec", "cftc", "fed", "binance", "coinbase", "kraken"},
-    "reputable": {"coindesk", "the block", "reuters", "bloomberg", "financial times", "ft", "wsj", "decrypt", "bitcoin magazine"},
+    "reputable": {
+        "coindesk",
+        "the block",
+        "reuters",
+        "bloomberg",
+        "financial times",
+        "ft",
+        "wsj",
+        "decrypt",
+        "bitcoin magazine",
+        "yahoo finance",
+    },
     "discovery": {"google news"},
     "social": {"telegram", "reddit", "twitter", "stocktwits"},
 }
@@ -110,6 +126,14 @@ def list_all_sources():
         }
         for sym in STOCKTWITS_SYMBOLS
     ]
+    sources += [
+        {
+            "name": f"Yahoo Finance ({sym})",
+            "type": "yahoo",
+            "quality": source_quality("yahoo finance", "yahoo"),
+        }
+        for sym in YAHOO_SYMBOLS
+    ]
     return sources
 
 
@@ -123,6 +147,8 @@ def source_quality(source_name, source_type=None):
         return "social"
     if source_type == "google_news":
         return "discovery"
+    if source_type == "yahoo":
+        return "reputable"
     return "unknown"
 
 
@@ -225,6 +251,9 @@ def fetch_telegram_headlines(limit=HEADLINE_LIMIT_PER_SOURCE):
                         "source": source["name"],
                         "type": "telegram",
                         "headline": text,
+                        # Telegram public pages often lack reliable per-message
+                        # timestamps in HTML; treat as live-only current scan.
+                        "published": datetime.now(timezone.utc).isoformat(),
                     })
         except Exception as e:
             print(f"Telegram kanali cekilemedi ({source['username']}): {e}")
@@ -289,11 +318,45 @@ def fetch_stocktwits_headlines(limit=HEADLINE_LIMIT_PER_SOURCE):
     return headlines
 
 
-def fetch_all_headlines():
-    return (
+def fetch_yahoo_headlines(limit=HEADLINE_LIMIT_PER_SOURCE):
+    """Free Yahoo Finance RSS for BTC/ETH/SOL — window-filtered."""
+    try:
+        import yahoo_news
+    except Exception as e:
+        print(f"Yahoo news module unavailable: {e}")
+        return []
+    headlines = []
+    try:
+        result = yahoo_news.fetch_multi(YAHOO_SYMBOLS, limit=limit)
+        for item in result.get("headlines") or []:
+            headlines.append(item)
+        for sym, row in (result.get("symbols") or {}).items():
+            if row.get("coverage_gap"):
+                print(row["coverage_gap"])
+    except Exception as e:
+        print(f"Yahoo Finance headlines cekilemedi: {e}")
+    return headlines
+
+
+def fetch_all_headlines(max_age_hours=24):
+    """Collect all free sources and keep only items inside the live window.
+
+    Undated items are kept only when the window reaches the present
+    (date_window.in_window rule). Older dated RSS noise is dropped so
+    sentiment/market agents are not skewed by stale headlines.
+    """
+    raw = (
         fetch_rss_headlines()
         + fetch_google_news_headlines()
         + fetch_telegram_headlines()
         + fetch_reddit_headlines()
         + fetch_stocktwits_headlines()
+        + fetch_yahoo_headlines()
     )
+    start_dt, end_dt, start_date, end_date = recent_window_hours(max_age_hours)
+    kept, observed = filter_items_to_window(raw, start_dt=start_dt, end_dt=end_dt)
+    print(
+        f"News window {start_date}..{end_date}: {len(raw)} raw -> {len(kept)} in-window "
+        f"({len(observed)} dated)"
+    )
+    return kept
