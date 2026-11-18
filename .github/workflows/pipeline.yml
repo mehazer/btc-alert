@@ -94,6 +94,15 @@ jobs:
             --timeframe 4h || echo "Walk-forward finished with warnings"
           set -e
 
+      - name: 4b) Compact dashboard snapshot (scorecard must not load multi-MB ledger)
+        env:
+          HISTORY_DIR: history
+        run: |
+          set +e
+          python build_dashboard_snapshot.py
+          echo "DASH_EXIT=$?" >> "$GITHUB_ENV"
+          set -e
+
       - name: Write dashboard build meta
         run: |
           python - <<'PY'
@@ -110,8 +119,9 @@ jobs:
                   "market_exit": int(os.environ.get("MARKET_EXIT", "1")),
                   "whale_exit": int(os.environ.get("WHALE_EXIT", "1")),
                   "shadow_exit": int(os.environ.get("SHADOW_EXIT", "1")),
+                  "dashboard_snapshot_exit": int(os.environ.get("DASH_EXIT", "1")),
               },
-              "sequence": ["news", "technical", "market_snapshot", "whale_shadow", "intelligence_v2"],
+              "sequence": ["news", "technical", "market_snapshot", "whale_shadow", "intelligence_v2", "dashboard_snapshot"],
               "cadence": "every 4 hours",
           }
           with open("docs/build_meta.json", "w", encoding="utf-8") as f:
@@ -154,5 +164,6 @@ jobs:
           echo "Market exit: ${MARKET_EXIT:-n/a}"
           echo "Whale exit: ${WHALE_EXIT:-n/a}"
           echo "Shadow exit: ${SHADOW_EXIT:-n/a}"
+          echo "Dashboard snapshot exit: ${DASH_EXIT:-n/a}"
           echo "Main: https://mehazer.github.io/btc-alert/"
-          echo "Project: https://mehazer.github.io/btc-alert/project.html"
+          echo "Scorecard: https://mehazer.github.io/btc-alert/v2.html"
