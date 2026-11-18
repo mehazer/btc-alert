@@ -1,6 +1,6 @@
 {
   "agent": "ledger-evaluator",
-  "evaluated_at": "2026-11-17T23:21:41.358005+00:00",
+  "evaluated_at": "2026-11-18T05:58:05.415668+00:00",
   "horizons": [
     1,
     3,
@@ -8,16 +8,16 @@
     12,
     24
   ],
-  "decisions_total": 312,
-  "records_total": 1560,
-  "settled_records": 1422,
+  "decisions_total": 315,
+  "records_total": 1575,
+  "settled_records": 1437,
   "pending_records": 138,
-  "directional_records": 327,
-  "directional_hits": 175,
-  "direction_accuracy_pct": 53.52,
-  "guarded_records": 817,
-  "supported_risk_warnings": 539,
-  "risk_warning_support_pct": 65.97,
+  "directional_records": 330,
+  "directional_hits": 177,
+  "direction_accuracy_pct": 53.64,
+  "guarded_records": 819,
+  "supported_risk_warnings": 540,
+  "risk_warning_support_pct": 65.93,
   "by_decision": {
     "PAPER_PLAN": {
       "records": 825,
@@ -25,38 +25,38 @@
       "pending": 0
     },
     "ALERT": {
-      "records": 735,
-      "settled": 597,
+      "records": 750,
+      "settled": 612,
       "pending": 138
     }
   },
   "by_horizon": {
     "1": {
-      "settled": 309,
-      "directional": 72,
-      "hits": 39,
-      "accuracy_pct": 54.17
+      "settled": 312,
+      "directional": 73,
+      "hits": 40,
+      "accuracy_pct": 54.79
     },
     "3": {
-      "settled": 303,
-      "directional": 68,
-      "hits": 35,
-      "accuracy_pct": 51.47
+      "settled": 306,
+      "directional": 70,
+      "hits": 36,
+      "accuracy_pct": 51.43
     },
     "6": {
-      "settled": 294,
+      "settled": 297,
       "directional": 67,
       "hits": 35,
       "accuracy_pct": 52.24
     },
     "12": {
-      "settled": 276,
+      "settled": 279,
       "directional": 64,
       "hits": 34,
       "accuracy_pct": 53.12
     },
     "24": {
-      "settled": 240,
+      "settled": 243,
       "directional": 56,
       "hits": 32,
       "accuracy_pct": 57.14
@@ -71,5 +71,5 @@
   "schema_version": 2,
   "phase": 7,
   "evaluation_mode": "walkforward_backtest",
-  "walkforward_batch_id": "walkforward-c2b318bc4c8f"
+  "walkforward_batch_id": "walkforward-01c522ac6b89"
 }

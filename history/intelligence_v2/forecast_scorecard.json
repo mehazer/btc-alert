@@ -1,51 +1,51 @@
 {
   "agent": "forecast-scorecard",
-  "evaluated_at": "2026-11-17T23:21:39.210368+00:00",
-  "forecasts_total": 170,
-  "active_forecasts": 28,
-  "abstain_count": 142,
-  "abstain_rate_pct": 83.53,
-  "settled_rows": 100,
-  "pending_rows": 12,
-  "directional_settled": 100,
-  "directional_hits": 57,
-  "direction_accuracy_pct": 57.0,
+  "evaluated_at": "2026-11-18T05:58:03.278735+00:00",
+  "forecasts_total": 175,
+  "active_forecasts": 31,
+  "abstain_count": 144,
+  "abstain_rate_pct": 82.29,
+  "settled_rows": 102,
+  "pending_rows": 22,
+  "directional_settled": 102,
+  "directional_hits": 59,
+  "direction_accuracy_pct": 57.84,
   "by_horizon": {
     "1": {
       "directional": 28,
       "hits": 20,
       "accuracy_pct": 71.43,
-      "pending": 0
+      "pending": 3
     },
     "3": {
       "directional": 28,
       "hits": 15,
       "accuracy_pct": 53.57,
-      "pending": 0
+      "pending": 3
     },
     "6": {
-      "directional": 24,
-      "hits": 12,
-      "accuracy_pct": 50.0,
-      "pending": 4
+      "directional": 26,
+      "hits": 14,
+      "accuracy_pct": 53.85,
+      "pending": 5
     },
     "12": {
       "directional": 20,
       "hits": 10,
       "accuracy_pct": 50.0,
-      "pending": 8
+      "pending": 11
     }
   },
   "by_probability_band": {
     "low": {
-      "directional": 67,
-      "hits": 34,
-      "accuracy_pct": 50.75
+      "directional": 68,
+      "hits": 35,
+      "accuracy_pct": 51.47
     },
     "high": {
-      "directional": 11,
-      "hits": 7,
-      "accuracy_pct": 63.64
+      "directional": 12,
+      "hits": 8,
+      "accuracy_pct": 66.67
     },
     "medium": {
       "directional": 22,
@@ -57,15 +57,15 @@
     {
       "probability_band": "high",
       "implied_mid": 0.7,
-      "empirical_hit_rate": 0.6364,
-      "n": 11,
+      "empirical_hit_rate": 0.6667000000000001,
+      "n": 12,
       "note": "Needs larger n before adjusting bands."
     },
     {
       "probability_band": "low",
       "implied_mid": 0.55,
-      "empirical_hit_rate": 0.5075,
-      "n": 67,
+      "empirical_hit_rate": 0.5146999999999999,
+      "n": 68,
       "note": "Needs larger n before adjusting bands."
     },
     {

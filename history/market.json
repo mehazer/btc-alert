@@ -1,17 +1,17 @@
 {
-  "updated_at": "2026-11-17T23:21:33.129926+00:00",
-  "fear_greed_value": 12,
+  "updated_at": "2026-11-18T05:57:56.540736+00:00",
+  "fear_greed_value": 11,
   "fear_greed_label": "Extreme Fear",
-  "funding_rate": -1.22083031271e-05,
-  "rsi": 41.83709878748384,
-  "oi_change_pct": -0.000853,
-  "price_change_pct": 1.904782,
-  "price": 64968.12,
-  "btc_observed_at": "2026-11-17T23:21:24.959479+00:00",
-  "news_sentiment": 14.2,
-  "news_label": "Slightly Bullish",
-  "news_macro_score": 1.2,
-  "social_sentiment": 83.3,
+  "funding_rate": 4.74100143331e-05,
+  "rsi": 40.66730391579455,
+  "oi_change_pct": -1.160893,
+  "price_change_pct": 0.322753,
+  "price": 64666.0,
+  "btc_observed_at": "2026-11-18T05:57:49.128094+00:00",
+  "news_sentiment": 7.5,
+  "news_label": "Neutral",
+  "news_macro_score": -1.3,
+  "social_sentiment": 59.8,
   "social_status": "ok",
   "social_source": "StockTwits",
   "market_agent": {
@@ -20,12 +20,12 @@
     "intensity": 20,
     "confidence": 93,
     "reasons": [
-      "Fear&Greed asiri korku (12)",
-      "Sosyal sentiment iyimser (+83)"
+      "Fear&Greed asiri korku (11)",
+      "Sosyal sentiment iyimser (+60)"
     ],
     "bullish_points": 10.0,
     "bearish_points": 20.0,
-    "evaluated_at": "2026-11-17T23:21:33.129917+00:00"
+    "evaluated_at": "2026-11-18T05:57:56.540727+00:00"
   },
   "method": "BTC history + F&G + news_sentiment + StockTwits → market_agent",
   "limitations": []
