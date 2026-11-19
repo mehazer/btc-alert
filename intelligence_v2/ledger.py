@@ -12,8 +12,9 @@ import os
 from datetime import datetime, timezone
 from typing import Any, Dict, List
 
+from . import metrics
 from .contracts import DecisionRecord, RiskAssessment, ShadowRun, to_dict
-from .evaluation import evaluate_decision
+from .evaluation import closes_until, evaluate_decision, load_history_rows
 
 LEDGER_DIRNAME = "intelligence_v2"
 RUNS_FILE = "run_ledger.json"
@@ -261,7 +262,7 @@ def settle_pending(history_dir: str) -> dict:
 
     _save_json(history_dir, DECISIONS_FILE, decisions)
     _save_json(history_dir, EVALUATIONS_FILE, evaluations)
-    scorecard = build_persistent_scorecard(evaluations, decisions)
+    scorecard = build_persistent_scorecard(evaluations, decisions, history_dir)
     _save_json(history_dir, SCORECARD_FILE, scorecard)
     agent_cards = build_agent_scorecards(evaluations, decisions)
     _save_json(history_dir, AGENT_SCORECARDS_FILE, agent_cards)
@@ -287,6 +288,10 @@ def settle_pending(history_dir: str) -> dict:
         "scorecard_summary": {
             "directional_records": scorecard.get("directional_records"),
             "direction_accuracy_pct": scorecard.get("direction_accuracy_pct"),
+            "balanced_accuracy_pct": scorecard.get("balanced_accuracy_pct"),
+            "base_rate_up_pct": scorecard.get("base_rate_up_pct"),
+            "best_baseline": (scorecard.get("baselines") or {}).get("best_baseline"),
+            "model_skill_vs_best_baseline_pct": (scorecard.get("baselines") or {}).get("model_skill_vs_best_baseline_pct"),
             "settled_records": scorecard.get("settled_records"),
             "pending_records": scorecard.get("pending_records"),
         },
@@ -297,15 +302,202 @@ def settle_pending(history_dir: str) -> dict:
     }
 
 
-def build_persistent_scorecard(evaluations: List[dict], decisions: List[dict]) -> dict:
+def _band_k(neutral_band_k: Any) -> float:
+    if neutral_band_k is not None:
+        try:
+            return float(neutral_band_k)
+        except (TypeError, ValueError):
+            pass
+    try:
+        return float(os.environ.get("V2_NEUTRAL_BAND_K", metrics.DEFAULT_NEUTRAL_BAND_K))
+    except (TypeError, ValueError):
+        return metrics.DEFAULT_NEUTRAL_BAND_K
+
+
+def _measurement_block(
+    evaluations: List[dict],
+    decisions: List[dict],
+    history_dir: Optional[str],
+    neutral_band_k: Any,
+) -> dict:
+    settled = [e for e in evaluations if e.get("status") == "settled"]
+    timestamps = sorted(str(e.get("decision_timestamp")) for e in evaluations if e.get("decision_timestamp"))
+    symbols = sorted({e.get("symbol") for e in evaluations if e.get("symbol")})
+    directional = [e for e in settled if e.get("direction_correct") is not None]
+    neutral = [e for e in settled if e.get("outcome_label") == metrics.NEUTRAL_LABEL]
+    unscored = [e for e in settled if e.get("outcome_label") is None and e.get("direction_correct") is None]
+    bands = [e.get("neutral_band_pct") for e in settled if e.get("neutral_band_pct") is not None]
+    regime: Dict[str, Any] = {}
+    if history_dir:
+        for symbol in symbols:
+            rows = load_history_rows(history_dir, symbol)
+            window: List[float] = []
+            for row in rows:
+                observed = str(row.get("date") or row.get("timestamp") or "")
+                price = row.get("price")
+                if price is None:
+                    continue
+                if timestamps and observed and timestamps[0] <= observed <= timestamps[-1]:
+                    window.append(float(price))
+            regime[symbol] = metrics.regime_summary(window)
+    return {
+        "labeling": {
+            "scheme": "volatility_scaled_neutral_band",
+            "band_k": _band_k(neutral_band_k),
+            "bands_observed": {"count": len(bands),
+                               "median_pct": round(sorted(bands)[len(bands) // 2], 4) if bands else None},
+            "basis": "stdev of trailing 20 close-to-close returns, scaled by sqrt(horizon_bars)",
+            "atr_note": "History rows carry no high/low, so ATR cannot be computed; close-to-close sigma is used instead.",
+        },
+        "sample_window": {
+            "first_decision_at": timestamps[0] if timestamps else None,
+            "last_decision_at": timestamps[-1] if timestamps else None,
+        },
+        "symbols": symbols,
+        "asset_count": len(symbols),
+        "horizons": sorted({int(e.get("horizon_bars") or 0) for e in evaluations if e.get("horizon_bars")}),
+        "records": len(evaluations),
+        "settled": len(settled),
+        "directional": len(directional),
+        "neutral_outcomes": len(neutral),
+        "unscored_outcomes": len(unscored),
+        "directional_coverage_pct": round(len(directional) / len(settled) * 100.0, 2) if settled else None,
+        "regime": regime,
+        "effective_sample_note": (
+            "Rows are not independent trials: horizons overlap in time, several decisions share a run, "
+            "and all rows fall inside one regime. Treat n as an upper bound on independent evidence."
+        ),
+        "decisions": len(decisions),
+    }
+
+
+def _baselines_block(evaluations: List[dict], history_dir: Optional[str], neutral_band_k: Any) -> dict:
+    rows = [
+        e for e in evaluations
+        if e.get("status") == "settled"
+        and e.get("forward_return_pct") is not None
+        and e.get("signal_direction") in metrics.DIRECTIONAL_LABELS
+    ]
+    if not rows:
+        return {"n": 0, "model": {}, "baselines": [], "model_skill_vs_best_baseline_pct": None}
+    cache: Dict[str, List[dict]] = {}
+    truth: List[Optional[str]] = []
+    model: List[Optional[str]] = []
+    persistence: List[Optional[str]] = []
+    ema_slope: List[Optional[str]] = []
+    k = _band_k(neutral_band_k)
+    for row in rows:
+        symbol = str(row.get("symbol") or "")
+        closes: List[float] = []
+        if history_dir and symbol:
+            if symbol not in cache:
+                cache[symbol] = load_history_rows(history_dir, symbol)
+            closes = closes_until(cache[symbol], str(row.get("decision_timestamp") or ""))
+        band = row.get("neutral_band_pct")
+        if band is None and closes:
+            band = metrics.neutral_band_pct(
+                metrics.volatility_pct(closes), int(row.get("horizon_bars") or 0), k
+            )
+        truth.append(metrics.label_return(float(row["forward_return_pct"]), band))
+        model.append(row.get("signal_direction"))
+        naive = metrics.naive_directions(closes) if closes else {}
+        persistence.append(naive.get("persistence"))
+        ema_slope.append(naive.get("ema_slope"))
+
+    model_stats = metrics.accuracy_stats(truth, model)
+    model_stats["name"] = "model"
+    baselines = []
+    for name, predictions in (
+        ("always_up", ["up"] * len(truth)),
+        ("always_down", ["down"] * len(truth)),
+        ("persistence", persistence),
+        ("ema_slope", ema_slope),
+    ):
+        stats = metrics.accuracy_stats(truth, predictions)
+        stats["name"] = name
+        stats["skill_vs_model_pct"] = metrics.skill_score(stats.get("accuracy_pct"), model_stats.get("accuracy_pct"))
+        baselines.append(stats)
+    scored = [b for b in baselines if b.get("accuracy_pct") is not None]
+    best = max(scored, key=lambda b: b["accuracy_pct"]) if scored else None
+    return {
+        "n": model_stats.get("n"),
+        "model": model_stats,
+        "baselines": baselines,
+        "best_baseline": best.get("name") if best else None,
+        "model_skill_vs_best_baseline_pct": (
+            metrics.skill_score(model_stats.get("accuracy_pct"), best.get("accuracy_pct")) if best else None
+        ),
+        "note": "Baselines are scored on exactly the rows the model called, against the same banded labels.",
+    }
+
+
+def _confidence_reliability(evaluations: List[dict]) -> dict:
+    pairs = [
+        (int(e.get("confidence")) / 100.0, bool(e.get("banded_correct")))
+        for e in evaluations
+        if e.get("status") == "settled"
+        and e.get("banded_correct") is not None
+        and e.get("confidence") is not None
+    ]
+    table = metrics.reliability_table(pairs)
+    table["source"] = "decision_confidence"
+    table["note"] = "Confidence is an integer percentage; it is only meaningful if observed rates track it."
+    return table
+
+
+def _with_banded_labels(evaluations: List[dict], history_dir: Optional[str], neutral_band_k: Any) -> List[dict]:
+    """Fill outcome_label and banded correctness for rows settled before this change.
+
+    Stored history is not rewritten: ``direction_correct`` keeps its original
+    sign-based meaning so the old number stays comparable, while the banded
+    value is carried alongside as ``banded_correct``.
+    """
+    cache: Dict[str, List[dict]] = {}
+    k = _band_k(neutral_band_k)
+    enriched: List[dict] = []
+    for row in evaluations:
+        item = dict(row)
+        if item.get("status") != "settled":
+            enriched.append(item)
+            continue
+        symbol = str(item.get("symbol") or "")
+        closes: List[float] = []
+        if history_dir and symbol:
+            if symbol not in cache:
+                cache[symbol] = load_history_rows(history_dir, symbol)
+            closes = closes_until(cache[symbol], str(item.get("decision_timestamp") or ""))
+        band = item.get("neutral_band_pct")
+        if band is None and closes:
+            band = metrics.neutral_band_pct(
+                metrics.volatility_pct(closes), int(item.get("horizon_bars") or 0), k
+            )
+        label = item.get("outcome_label")
+        if label is None:
+            label = metrics.label_return(item.get("forward_return_pct"), band)
+        item["neutral_band_pct"] = band
+        item["outcome_label"] = label
+        item["banded_correct"] = metrics.direction_correct(item.get("signal_direction"), label)
+        enriched.append(item)
+    return enriched
+
+
+def build_persistent_scorecard(
+    evaluations: List[dict],
+    decisions: List[dict],
+    history_dir: Optional[str] = None,
+    neutral_band_k: Any = None,
+) -> dict:
+    evaluations = _with_banded_labels(evaluations, history_dir, neutral_band_k)
     settled = [e for e in evaluations if e.get("status") == "settled"]
     pending_slots = 0
     for row in decisions:
         for slot in (row.get("horizons") or {}).values():
             if (slot or {}).get("status") == "pending":
                 pending_slots += 1
-    directional = [e for e in settled if e.get("direction_correct") is not None]
-    hits = [e for e in directional if e.get("direction_correct")]
+    directional = [e for e in settled if e.get("banded_correct") is not None]
+    hits = [e for e in directional if e.get("banded_correct")]
+    legacy_directional = [e for e in settled if e.get("direction_correct") is not None]
+    legacy_hits = [e for e in legacy_directional if e.get("direction_correct")]
     guarded = [e for e in settled if e.get("guarded") and e.get("risk_warning_supported") is not None]
     supported = [e for e in guarded if e.get("risk_warning_supported")]
     by_decision: Dict[str, Dict[str, int]] = {}
@@ -322,13 +514,20 @@ def build_persistent_scorecard(evaluations: List[dict], decisions: List[dict]) -
         by_horizon.setdefault(h, {"settled": 0, "directional": 0, "hits": 0, "accuracy_pct": None})
         if e.get("status") == "settled":
             by_horizon[h]["settled"] += 1
-            if e.get("direction_correct") is not None:
+            if e.get("banded_correct") is not None:
                 by_horizon[h]["directional"] += 1
-                if e.get("direction_correct"):
+                if e.get("banded_correct"):
                     by_horizon[h]["hits"] += 1
     for h, stats in by_horizon.items():
         if stats["directional"]:
             stats["accuracy_pct"] = round(stats["hits"] / stats["directional"] * 100, 2)
+    measurement = _measurement_block(evaluations, decisions, history_dir, neutral_band_k)
+    baselines = _baselines_block(evaluations, history_dir, neutral_band_k) if history_dir else {}
+    reliability = _confidence_reliability(evaluations)
+    directional_stats = metrics.accuracy_stats(
+        [e.get("outcome_label") for e in settled],
+        [e.get("signal_direction") for e in settled],
+    )
     return {
         "agent": "ledger-evaluator",
         "evaluated_at": _utc_now(),
@@ -340,18 +539,30 @@ def build_persistent_scorecard(evaluations: List[dict], decisions: List[dict]) -
         "directional_records": len(directional),
         "directional_hits": len(hits),
         "direction_accuracy_pct": round(len(hits) / len(directional) * 100, 2) if directional else None,
+        "legacy_direction_accuracy_pct": (
+            round(len(legacy_hits) / len(legacy_directional) * 100, 2) if legacy_directional else None
+        ),
+        "legacy_directional_records": len(legacy_directional),
+        "balanced_accuracy_pct": directional_stats.get("balanced_accuracy_pct"),
+        "base_rate_up_pct": directional_stats.get("base_rate_up_pct"),
+        "neutral_rate_pct": directional_stats.get("neutral_rate_pct"),
         "guarded_records": len(guarded),
         "supported_risk_warnings": len(supported),
         "risk_warning_support_pct": round(len(supported) / len(guarded) * 100, 2) if guarded else None,
         "by_decision": by_decision,
         "by_horizon": by_horizon,
+        "measurement": measurement,
+        "baselines": baselines,
+        "reliability": reliability,
         "limitations": [
             "Persistent scorecard aggregates all settled v2 evaluations; pending horizons are excluded.",
             "Does not modify production alerts, Telegram, or legacy history writers.",
             "Direction accuracy is descriptive, not causal proof.",
+            "Accuracy without a baseline cannot separate skill from drift; read baselines before direction_accuracy_pct.",
+            "Banded labels exclude moves inside the noise floor, so accuracy is a conditional rate, not full coverage.",
             "Phase 7 horizons include 12 and 24 bars for longer replay.",
         ],
-        "schema_version": 2,
+        "schema_version": 3,
         "phase": 7,
     }
 

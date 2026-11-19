@@ -194,6 +194,8 @@ class EvaluationRecord:
     risk_warning_supported: Optional[bool]
     confidence: int
     notes: List[str]
+    neutral_band_pct: Optional[float] = None
+    outcome_label: Optional[str] = None  # up, down, neutral
 
 
 @dataclass(frozen=True)
@@ -215,6 +217,9 @@ class Scorecard:
     by_decision: Dict[str, Dict[str, int]]
     limitations: List[str]
     records: List[EvaluationRecord] = field(default_factory=list)
+    measurement: Dict[str, Any] = field(default_factory=dict)
+    baselines: Dict[str, Any] = field(default_factory=dict)
+    reliability: Dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -335,6 +340,8 @@ class ForecastEvaluation:
     inside_move_band: Optional[bool]
     invalidated: Optional[bool]
     notes: List[str]
+    neutral_band_pct: Optional[float] = None
+    outcome_label: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -354,6 +361,8 @@ class ForecastScorecard:
     by_probability_band: Dict[str, Dict[str, Any]]
     calibration: List[Dict[str, Any]]
     limitations: List[str]
+    reliability: Dict[str, Any] = field(default_factory=dict)
+    baselines: Dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)

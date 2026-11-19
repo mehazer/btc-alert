@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 from typing import Dict, Iterable, List, Optional, Tuple
 
 from .contracts import DecisionRecord, EvaluationRecord, RiskAssessment, Scorecard
+from . import metrics
 
 
 def _parse_time(value: Optional[str]) -> Optional[datetime]:
@@ -48,10 +49,37 @@ def _future_rows(rows: List[dict], decision_timestamp: str) -> Tuple[Optional[di
     return decision_row, rows[index + 1:]
 
 
-def _direction_from_return(value: Optional[float]) -> Optional[bool]:
-    if value is None or value == 0:
-        return None
-    return value > 0
+def load_history_rows(history_dir: str, symbol: str) -> List[dict]:
+    """Public read-only access to one symbol's committed history."""
+    return _load_history(history_dir, symbol)
+
+
+def closes_until(rows: List[dict], decision_timestamp: str) -> List[float]:
+    """Public point-in-time close series, shared with the baseline builder."""
+    return _prices_until(rows, decision_timestamp)
+
+
+def _prices_until(rows: List[dict], decision_timestamp: str) -> List[float]:
+    """Closes observed at or before the decision timestamp (point-in-time)."""
+    decision_dt = _parse_time(decision_timestamp)
+    if decision_dt is None:
+        return []
+    prices: List[float] = []
+    for row in rows:
+        observed = _parse_time(str(row.get("date") or row.get("timestamp") or ""))
+        price = row.get("price")
+        if observed and observed <= decision_dt and price is not None:
+            prices.append(float(price))
+    return prices
+
+
+def _resolve_band_k(neutral_band_k: Optional[float]) -> float:
+    if neutral_band_k is not None:
+        return float(neutral_band_k)
+    try:
+        return float(os.environ.get("V2_NEUTRAL_BAND_K", metrics.DEFAULT_NEUTRAL_BAND_K))
+    except (TypeError, ValueError):
+        return metrics.DEFAULT_NEUTRAL_BAND_K
 
 
 def evaluate_decision(
@@ -59,17 +87,18 @@ def evaluate_decision(
     risk: RiskAssessment,
     history_dir: str,
     horizon_bars: int,
+    neutral_band_k: Optional[float] = None,
 ) -> EvaluationRecord:
     rows = _load_history(history_dir, decision.symbol)
     decision_row, future = _future_rows(rows, decision.evaluated_at)
     guarded = risk.veto or risk.overall_level in {"high", "medium", "unknown"} or decision.gate == "blocked"
     notes: List[str] = []
-    if decision.signal_direction == "up":
-        expected_up = True
-    elif decision.signal_direction == "down":
-        expected_up = False
-    else:
-        expected_up = None
+    band_pct = metrics.neutral_band_pct(
+        metrics.volatility_pct(_prices_until(rows, decision.evaluated_at)),
+        horizon_bars,
+        _resolve_band_k(neutral_band_k),
+    )
+    expected_direction = decision.signal_direction if decision.signal_direction in ("up", "down") else None
     if decision_row is None or decision_row.get("price") is None:
         return EvaluationRecord(
             agent="evaluator", run_id=decision.run_id, symbol=decision.symbol, timeframe=decision.timeframe,
@@ -79,6 +108,7 @@ def evaluate_decision(
             max_adverse_excursion_pct=None,
             direction_correct=None, guarded=guarded, risk_warning_supported=None, confidence=decision.confidence,
             notes=["No matching decision-time price was found."],
+            neutral_band_pct=band_pct, outcome_label=None,
         )
     usable = [row for row in future if row.get("price") is not None][:horizon_bars]
     if len(usable) < horizon_bars:
@@ -90,14 +120,19 @@ def evaluate_decision(
             outcome_timestamp=str(usable[-1].get("date")) if usable else None,
             forward_return_pct=None, max_favorable_excursion_pct=None, max_adverse_excursion_pct=None,
             direction_correct=None, guarded=guarded, risk_warning_supported=None, confidence=decision.confidence,
-            notes=notes,
+            notes=notes, neutral_band_pct=band_pct, outcome_label=None,
         )
     entry = float(decision_row["price"])
     returns = [((float(row["price"]) - entry) / entry) * 100 for row in usable]
     forward_return = returns[-1]
     mfe = max(returns)
     mae = min(returns)
-    direction_correct = None if expected_up is None else ((_direction_from_return(forward_return) == expected_up) if forward_return != 0 else False)
+    outcome_label = metrics.label_return(forward_return, band_pct)
+    direction_correct = metrics.direction_correct(expected_direction, outcome_label)
+    if outcome_label == metrics.NEUTRAL_LABEL:
+        notes.append(
+            f"Move of {round(forward_return, 4)}% stayed inside the {band_pct}% neutral band; not scored as directional."
+        )
     risk_supported = None
     if guarded:
         risk_supported = mae <= -1.0
@@ -110,6 +145,7 @@ def evaluate_decision(
         max_favorable_excursion_pct=round(mfe, 6), max_adverse_excursion_pct=round(mae, 6),
         direction_correct=direction_correct, guarded=guarded, risk_warning_supported=risk_supported,
         confidence=decision.confidence, notes=notes,
+        neutral_band_pct=band_pct, outcome_label=outcome_label,
     )
 
 
