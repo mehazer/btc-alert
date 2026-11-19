@@ -1,6 +1,6 @@
 {
   "agent": "ledger-evaluator",
-  "evaluated_at": "2026-11-19T01:44:19.456528+00:00",
+  "evaluated_at": "2026-11-19T08:50:12.396434+00:00",
   "horizons": [
     1,
     3,
@@ -8,16 +8,16 @@
     12,
     24
   ],
-  "decisions_total": 260,
-  "records_total": 990,
-  "settled_records": 990,
+  "decisions_total": 265,
+  "records_total": 1015,
+  "settled_records": 1015,
   "pending_records": 310,
-  "directional_records": 214,
-  "directional_hits": 88,
-  "direction_accuracy_pct": 41.12,
-  "guarded_records": 225,
-  "supported_risk_warnings": 167,
-  "risk_warning_support_pct": 74.22,
+  "directional_records": 227,
+  "directional_hits": 96,
+  "direction_accuracy_pct": 42.29,
+  "guarded_records": 233,
+  "supported_risk_warnings": 172,
+  "risk_warning_support_pct": 73.82,
   "by_decision": {
     "OBSERVE": {
       "records": 200,
@@ -30,41 +30,41 @@
       "pending": 0
     },
     "ALERT": {
-      "records": 735,
-      "settled": 735,
+      "records": 760,
+      "settled": 760,
       "pending": 0
     }
   },
   "by_horizon": {
     "1": {
-      "settled": 255,
-      "directional": 58,
-      "hits": 30,
-      "accuracy_pct": 51.72
+      "settled": 260,
+      "directional": 61,
+      "hits": 32,
+      "accuracy_pct": 52.46
     },
     "3": {
-      "settled": 240,
-      "directional": 57,
+      "settled": 245,
+      "directional": 58,
       "hits": 20,
-      "accuracy_pct": 35.09
+      "accuracy_pct": 34.48
     },
     "6": {
-      "settled": 205,
-      "directional": 44,
-      "hits": 17,
-      "accuracy_pct": 38.64
+      "settled": 210,
+      "directional": 48,
+      "hits": 20,
+      "accuracy_pct": 41.67
     },
     "12": {
-      "settled": 175,
-      "directional": 34,
-      "hits": 12,
-      "accuracy_pct": 35.29
+      "settled": 180,
+      "directional": 36,
+      "hits": 14,
+      "accuracy_pct": 38.89
     },
     "24": {
-      "settled": 115,
-      "directional": 21,
-      "hits": 9,
-      "accuracy_pct": 42.86
+      "settled": 120,
+      "directional": 24,
+      "hits": 10,
+      "accuracy_pct": 41.67
     }
   },
   "limitations": [
