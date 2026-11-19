@@ -47,32 +47,6 @@ def enabled() -> bool:
     return os.environ.get("TRENDING_ENABLED", "1").strip().lower() not in {"0", "false", "no", "off"}
 
 
-def _price_text(value: Optional[float]) -> str:
-    if value is None:
-        return "n/a"
-    try:
-        price = float(value)
-    except (TypeError, ValueError):
-        return "n/a"
-    if price >= 1000:
-        return f"${price:,.0f}"
-    if price >= 1:
-        return f"${price:,.2f}"
-    if price >= 0.01:
-        return f"${price:.4f}"
-    return f"${price:.8f}".rstrip("0").rstrip(".")
-
-
-def _change_text(value: Optional[float]) -> str:
-    if value is None:
-        return "n/a"
-    try:
-        change = float(value)
-    except (TypeError, ValueError):
-        return "n/a"
-    return f"{change:+.1f}%"
-
-
 def parse_payload(payload: Dict[str, Any], limit: int = DEFAULT_LIMIT) -> List[Dict[str, Any]]:
     """Normalise the CoinGecko payload into a small, stable list.
 
@@ -139,41 +113,41 @@ def fetch_trending(limit: Optional[int] = None, force: bool = False) -> Dict[str
     return result
 
 
-def format_lines(data: Optional[Dict[str, Any]], limit: Optional[int] = None) -> List[str]:
-    """Render the block for a Telegram card. Empty list means 'omit'."""
-    if not data:
-        return []
-    if data.get("status") == "disabled":
-        return []
-    limit = _env_int("TRENDING_LIMIT", DEFAULT_LIMIT) if limit is None else int(limit)
+def _change_text(value: Optional[float]) -> str:
+    if value is None:
+        return "n/a"
+    try:
+        change = float(value)
+    except (TypeError, ValueError):
+        return "n/a"
+    return f"{change:+.1f}%"
+
+
+def format_line(data: Optional[Dict[str, Any]], limit: Optional[int] = None) -> str:
+    """One compact line for a Telegram card. Empty string means 'omit'.
+
+    Symbol and 24h change only: names and prices pushed the block onto several
+    visual lines, which is exactly the repetition this replaced.
+    """
+    if not data or data.get("status") == "disabled":
+        return ""
     if data.get("status") != "ok":
-        reason = data.get("reason") or "no data"
-        return [f"Trending ({data.get('source') or SOURCE_LABEL}): unavailable — {reason}"]
-    lines = [f"Trending ({data.get('source') or SOURCE_LABEL}, 24h):"]
-    for item in (data.get("items") or [])[:max(limit, 1)]:
-        rank_note = ""
-        cap_rank = item.get("market_cap_rank")
-        if isinstance(cap_rank, int) and cap_rank > 0:
-            rank_note = f" · cap #{cap_rank}"
-        lines.append(
-            f"{item.get('rank')}. {item.get('symbol')} {item.get('name')}"
-            f" · {_price_text(item.get('price_usd'))}"
-            f" · {_change_text(item.get('change_24h_pct'))}{rank_note}"
-        )
-    return lines
-
-
-def format_section(data: Optional[Dict[str, Any]], limit: Optional[int] = None) -> str:
-    """The block as a string ready to append to a message body."""
-    lines = format_lines(data, limit)
-    return "\n".join(lines)
+        return f"Trending ({data.get('source') or SOURCE_LABEL}): unavailable — {data.get('reason') or 'no data'}"
+    limit = _env_int("TRENDING_LIMIT", DEFAULT_LIMIT) if limit is None else int(limit)
+    parts = [
+        f"{item.get('symbol')} {_change_text(item.get('change_24h_pct'))}"
+        for item in (data.get("items") or [])[:max(limit, 1)]
+    ]
+    if not parts:
+        return ""
+    return f"Trending ({data.get('source') or SOURCE_LABEL}, 24h): " + " · ".join(parts)
 
 
 def main() -> int:
     data = fetch_trending(force=True)
     print(f"status: {data.get('status')}  source: {data.get('source')}  reason: {data.get('reason')}")
     print()
-    print(format_section(data) or "(no block)")
+    print(format_line(data) or "(no line)")
     return 0
 
 

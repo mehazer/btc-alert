@@ -76,7 +76,22 @@ def pct(a, b):
     return (a - b) / b * 100
 
 
+_KLINE_CACHE = {}
+
+
 def fetch_binance(symbol, limit=80):
+    """Candles for one symbol, cached for the lifetime of the process.
+
+    main() needs BTC closes for the relative-strength line and then processes
+    BTCUSDT again; without the cache the same request went out twice per run.
+    Rows are copied out so the caller's in-place OI/funding annotation cannot
+    leak into another caller.
+    """
+    key = (symbol, limit)
+    cached = _KLINE_CACHE.get(key)
+    if cached is not None:
+        history, closes = cached
+        return [dict(row) for row in history], list(closes)
     r = requests.get(BINANCE_KLINES, params={"symbol": symbol, "interval": INTERVAL, "limit": limit}, timeout=20)
     r.raise_for_status()
     rows = r.json()
@@ -86,6 +101,7 @@ def fetch_binance(symbol, limit=80):
         vol = float(row[5])
         closes.append(close)
         history.append({"price": close, "volume": vol, "oi": None, "funding": None, "ts": row[0]})
+    _KLINE_CACHE[key] = ([dict(row) for row in history], list(closes))
     return history, closes
 
 
@@ -385,9 +401,9 @@ def process(symbol, fg_val, fg_label, btc_chg=None, trending_data=None):
 
     print(f"  OI now={oi} prev={prev_oi} chg={pct(oi, prev_oi) if oi is not None and prev_oi not in (None, 0) else None}")
     text = build_card(symbol, history, closes, oi, funding, fg_val, fg_label, btc_chg=btc_chg, prev_oi=prev_oi)
-    trending_block = trending.format_section(trending_data)
-    if trending_block:
-        text = f"{text}\n\n{trending_block}"
+    trending_line = trending.format_line(trending_data)
+    if trending_line:
+        text = f"{text}\n\n{trending_line}"
     ok = send_telegram(text)
     print(f"Telegram {symbol}:", "sent" if ok else "failed")
     save_hist(symbol, history)

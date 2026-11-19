@@ -152,12 +152,12 @@ def send_telegram_news(intelligence):
         print("Telegram news notification skipped: TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID is not configured")
         return False
     message = telegram_news_message(intelligence)
-    block = trending.format_section(trending.fetch_trending())
-    if block:
-        room = 4000 - len(block) - 2
+    line = trending.format_line(trending.fetch_trending())
+    if line:
+        room = 4000 - len(line) - 2
         if room > 0:
             message = message[:room].rstrip()
-        message = f"{message}\n\n{block}"
+        message = f"{message}\n\n{line}"
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     response = requests.post(
         url,
@@ -176,7 +176,8 @@ def main():
     print("News bot", datetime.now(timezone.utc).isoformat())
     headlines = news_sources.fetch_all_headlines()
     sources = news_sources.list_all_sources()
-    intelligence = news_intelligence.build_intelligence(headlines, sources)
+    ranked = news_intelligence.enrich_and_rank(headlines)
+    intelligence = news_intelligence.build_intelligence(headlines, sources, ranked=ranked)
 
     stocktwits = {"status": "unavailable"}
     try:
@@ -201,7 +202,7 @@ def main():
         "updated_at": datetime.now(timezone.utc).isoformat(),
         "sources": sources,
         "headline_count": intelligence["headline_count"],
-        "headlines": news_intelligence.enrich_and_rank(headlines),
+        "headlines": ranked,
         "categories": intelligence["categories"],
         "ai": intelligence["ai"],
         "quality": intelligence.get("quality", {}),

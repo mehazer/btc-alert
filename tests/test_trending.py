@@ -53,39 +53,48 @@ class ParseTests(unittest.TestCase):
 
 
 class FormatTests(unittest.TestCase):
-    def test_ok_block_lists_coins(self):
+    def test_ok_is_one_line(self):
         data = {"status": "ok", "source": "CoinGecko", "items": trending.parse_payload(_payload(), limit=2)}
-        lines = trending.format_lines(data)
-        self.assertEqual(lines[0], "Trending (CoinGecko, 24h):")
-        self.assertIn("1. C0 Coin 0", lines[1])
-        self.assertIn("$2.50", lines[1])
-        self.assertIn("+33.1%", lines[1])
-        self.assertIn("cap #100", lines[1])
-        self.assertEqual(len(lines), 3)
+        line = trending.format_line(data)
+        self.assertTrue(line.startswith("Trending (CoinGecko, 24h): "))
+        self.assertIn("C0 +33.1%", line)
+        self.assertIn("C1 -4.3%", line)
+        self.assertIn(" · ", line)
+        self.assertNotIn("\n", line)
 
-    def test_small_prices_keep_significant_digits(self):
+    def test_symbol_and_change_only(self):
+        data = {"status": "ok", "source": "CoinGecko", "items": trending.parse_payload(_payload(), limit=2)}
+        line = trending.format_line(data)
+        self.assertNotIn("Coin 0", line)
+        self.assertNotIn("$", line)
+
+    def test_limit_is_respected(self):
+        data = {"status": "ok", "source": "CoinGecko", "items": trending.parse_payload(_payload(), limit=5)}
+        line = trending.format_line(data, limit=2)
+        self.assertEqual(line.count(" · "), 1)
+
+    def test_line_stays_short(self):
+        data = {"status": "ok", "source": "CoinGecko", "items": trending.parse_payload(_payload(20), limit=5)}
+        self.assertLess(len(trending.format_line(data)), 200)
+
+    def test_missing_change_is_n_a(self):
         data = {"status": "ok", "source": "CoinGecko",
-                "items": [{"rank": 1, "name": "Small", "symbol": "SM", "price_usd": 0.0000457,
-                           "change_24h_pct": -4.26, "market_cap_rank": None}]}
-        line = trending.format_lines(data)[1]
-        self.assertIn("$0.0000457", line)
-        self.assertIn("-4.3%", line)
-        self.assertNotIn("cap #", line)
+                "items": [{"rank": 1, "name": "X", "symbol": "XX", "price_usd": None,
+                           "change_24h_pct": None, "market_cap_rank": None}]}
+        self.assertIn("XX n/a", trending.format_line(data))
 
     def test_unavailable_is_visible_not_silent(self):
-        lines = trending.format_lines({"status": "unavailable", "source": "CoinGecko", "items": [],
-                                       "reason": "rate limited (HTTP 429)"})
-        self.assertEqual(len(lines), 1)
-        self.assertIn("unavailable", lines[0])
-        self.assertIn("429", lines[0])
+        line = trending.format_line({"status": "unavailable", "source": "CoinGecko", "items": [],
+                                     "reason": "rate limited (HTTP 429)"})
+        self.assertIn("unavailable", line)
+        self.assertIn("429", line)
 
-    def test_disabled_omits_block_entirely(self):
+    def test_disabled_omits_line_entirely(self):
         data = {"status": "disabled", "source": "CoinGecko", "items": [], "reason": "TRENDING_ENABLED=0"}
-        self.assertEqual(trending.format_lines(data), [])
-        self.assertEqual(trending.format_section(data), "")
+        self.assertEqual(trending.format_line(data), "")
 
-    def test_none_data_omits_block(self):
-        self.assertEqual(trending.format_section(None), "")
+    def test_none_data_omits_line(self):
+        self.assertEqual(trending.format_line(None), "")
 
 
 class FetchTests(unittest.TestCase):
