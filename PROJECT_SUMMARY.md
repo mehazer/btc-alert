@@ -1,209 +1,134 @@
-# PROJECT_SUMMARY.md
+# Project Summary
 
-## Not (onemli, seffaflik icin)
+**Status: historical snapshot.** Written when the repository was a single RSI
+script. It is kept because the weakness analysis below still applies. Facts that
+have changed since are marked *(updated)* and the current entry point is
+`README.md`.
 
-Bu dokuman, projenin GitHub repo'suna dogrudan erisimim olmadigi icin,
-bu sohbette birlikte adim adim insa ettigimiz ve senin dogruladigin
-son calisan koda dayanarak yazildi. Eger repo'da bu dokumanda
-anlatilandan farkli bir sey varsa (ornegin son bir degisiklik commit
-edilmemisse), bana guncel `alert_bot.py` ve `docs/index.html`
-icerigini gonder, bu dokumani ona gore duzeltirim.
+## 1. What this system is
 
-Reddit veri toplama ozelligi bu analize DAHIL EDILMEDI, cunku (a) sen
-"mevcut durum" listende onu belirtmedin, (b) bu gorevin talimatlari
-acikca "yeni veri kaynagi ekleme" diyor. Eger Reddit ozelligini de
-uygulamis/uygulayacaksan, bu dokuman guncellenmeli.
+`btc-alert` collects public crypto market data — Binance spot candles, OKX
+perpetual open interest and funding, the Alternative.me Fear & Greed index, RSS
+headlines — sends a Telegram summary, and publishes a static dashboard on GitHub
+Pages. It runs entirely on free infrastructure with no server.
 
----
+Architectural stance: serverless; credentials live only in GitHub Secrets; no
+component requires a persistent host.
 
-## 1. Proje Ozeti
+## 2. Module inventory
 
-**btc-alert**, Binance/Bybit/alternative.me/RSS gibi herkese acik
-(API key gerektirmeyen) kaynaklardan kripto piyasa verisi toplayan,
-bunu Telegram'a bildirim olarak gonderen ve statik bir web
-dashboard'unda (GitHub Pages) gosteren, tamamen ucretsiz altyapi
-uzerinde (GitHub Actions) calisan bir sistemdir.
+### 2.1 `alert_bot.py` — production orchestrator
 
-Mimari felsefe: sunucusuz (serverless), key/secret sadece GitHub
-Secrets icinde tutulur, hicbir bilesen kalici bir sunucu gerektirmez.
-
-## 2. Modul ve Dosya Envanteri
-
-### 2.1 `alert_bot.py` (ana orkestratör / tek script)
-
-Tum is mantigi bu tek dosyada. Fonksiyon bazinda:
-
-| Fonksiyon | Gorev | Veri Kaynagi | Basarisizlikta davranis |
+| Function area | Job | Source | Behaviour on failure |
 |---|---|---|---|
-| `fetch_klines()` | Haftalik kapanis fiyati + hacim | Binance Spot (`data-api.binance.vision`) | Exception firlatir, cagiran yer bunu Telegram'a hata mesaji olarak gonderir, sembol islenmez |
-| `fetch_open_interest()` | Anlik Open Interest | Bybit Futures public API | Exception firlatir, `open_interest = None` olarak devam edilir (kritik degil) |
-| `fetch_fear_greed_index()` | Piyasa geneli F&G skoru (0-100) | alternative.me | Exception firlatir, `None` olarak devam edilir |
-| `fetch_news_headlines()` | Guncel haber basliklari | CoinDesk + CoinTelegraph RSS | Kaynak bazinda try/except, biri basarisiz olursa digeri calismaya devam eder |
-| `compute_rsi()` | Wilder RSI hesaplama (harici kutuphane yok) | `fetch_klines()` ciktisi | Yetersiz veri varsa `ValueError` |
-| `load_history()` / `save_history()` | Sembol bazli tarihce okuma/yazma | `history/{SYMBOL}.json` | Bozuk JSON ise sifirdan baslar |
-| `save_market_snapshot()` | Piyasa geneli (sembole ozel olmayan) son durumu kaydeder | `history/market.json` | - |
-| `send_telegram_message()` | Telegram bildirimi | Telegram Bot API | Basarisizlik `print` ile loglanir, script cokmez |
-| `process_symbol()` | Bir sembol icin tum akisi yurutur (veri cek, RSI hesapla, tarihceye yaz, esik kontrolu, mesaj gonder) | Yukaridaki fonksiyonlar | Kritik hata (kline/RSI) → `False` doner, `main()` bunu `sys.exit(1)`'e cevirir (Actions'ta kirmizi X) |
-| `main()` | Calisma sirasini yonetir: once piyasa geneli veri (F&G+haber), sonra her sembol | - | - |
+| `fetch_binance` | Candles and volume | Binance spot (`data-api.binance.vision`) | Raises; the caller reports the error and skips the symbol |
+| `fetch_okx` | Open interest and funding | OKX perpetual swap *(updated: earlier Bybit)* | Returns `None`; symbol still processed |
+| `fetch_fear_greed` | Market-wide sentiment | alternative.me | Returns `None`; symbol still processed |
+| `compute_rsi` | Wilder RSI, no external TA library | Candle closes | Needs `period + 1` closes |
+| history helpers | Read/write per-symbol series | `history/<SYMBOL>.json`, `history/<SYMBOL>_4h.json` | Corrupt JSON starts fresh |
+| `send_telegram` | Delivery | Telegram Bot API | Logged, never crashes the run |
+| `process_symbol` | Full per-symbol flow | the above | Returns false on critical error |
 
-**Onemli davranissal detay:** `ALWAYS_NOTIFY` ortam degiskeni
-(varsayilan `false`), esik asilmasa bile test amacli her calismada
-mesaj gonderilmesini saglar. Production'da `false` kalmali.
+Behavioural detail that matters: `ALWAYS_NOTIFY` (default false) sends a message
+even when no threshold is crossed. It exists for pipeline testing and should stay
+false in production.
 
-### 2.2 `.github/workflows/rsi_alert.yml`
+### 2.2 Workflows
 
-GitHub Actions workflow. Gunde bir kez (cron) veya manuel
-(`workflow_dispatch`) tetiklenir. Adimlar: repo checkout → Python
-kurulumu → bagimlilik kurulumu (`pip install -r requirements.txt`) →
-`python alert_bot.py` calistirma → (ayri bir adim) `history/`
-klasorunu commit+push ile repo'ya geri yazma.
+*(updated: scheduling changed)*
 
-**Bilinen risk:** Ayni anda birden fazla calistirma (manuel + otomatik
-cakismasi) `history/` push'unda "rejected, fetch first" hatasina
-sebep oldu (yasandi, cozuldu ama kalici onlem — `concurrency` bloku —
-workflow dosyasina eklenmis olabilir/olmayabilir, kontrol edilmeli).
+| Workflow | Trigger | Purpose |
+|---|---|---|
+| `pipeline.yml` | every 4h, manual | Single scheduled owner: news → technical → market → whale → v2 → dashboard |
+| `technical_agent.yml` | manual | RSI/Telegram debug run |
+| `check-news.yml` | manual | News debug run |
+| `shadow-intelligence.yml` | manual | v2 shadow run for one timeframe/symbol set |
 
-### 2.3 `requirements.txt`
+All writers that touch `history/` share the `crypto-history-writers` concurrency
+group. Without it, two overlapping runs produced rejected pushes — this happened
+once and was fixed.
 
-Tek bagimlilik: `requests`. Kasitli olarak minimal tutuldu (harici
-TA/RSI kutuphanesi kullanilmiyor) — GitHub Actions'ta derleme/kurulum
-sorunu cikarma riskini azaltmak icin.
+### 2.3 Dependencies
 
-### 2.4 `docs/index.html` (dashboard, GitHub Pages)
+*(updated)* `requests`, `beautifulsoup4`, `pytrends`. Deliberately small: no TA
+library, to keep Action installs fast and unbreakable.
 
-Tamamen istemci tarafi (client-side) statik sayfa. Backend yok.
-Tarayicida calisan JavaScript, `raw.githubusercontent.com` uzerinden
-dogrudan `history/*.json` dosyalarini `fetch()` ile okuyup ekrana
-basar. Su an gosterilenler: Fear & Greed rozeti, haber basliklari,
-sembol basina son RSI/fiyat + son 5 kaydin tablosu.
+### 2.4 Dashboards
 
-**Onemli mimari nokta:** Dashboard, hicbir secret'a (Telegram token
-vb.) erismiyor — sadece zaten public olan JSON verisini okuyor.
-Guvenlik acisindan bu temiz bir ayrim.
+Static, client-side, no backend and no credentials. JavaScript fetches committed
+JSON from `raw.githubusercontent.com` at page load and renders it. Data freshness
+therefore depends on the run cadence and CDN cache behaviour: this is a periodic
+snapshot, not a live feed.
 
-### 2.5 `history/` klasoru (veri deposu)
+### 2.5 Data store
 
-Veritabani yerine kullanilan, git ile versiyonlanan JSON dosyalari:
-- `history/BTCUSDT.json`, `ETHUSDT.json`, `SOLUSDT.json`: sembol
-  basina zaman serisi (tarih, rsi, fiyat, hacim, oi, f&g) — son 200
-  kayitla sinirli (`MAX_HISTORY_ENTRIES`)
-- `history/market.json`: piyasa geneli son durum (tek kayit,
-  uzerine yazilir, tarihce tutmaz)
+`history/` is the database. Per-symbol series are capped (200 rows for the legacy
+series, 500 for the rich series); `market.json` keeps one record; the v2 ledgers
+are append-only.
 
-### 2.6 GitHub Secrets (kod icinde YOK, sadece ortam degiskeni olarak okunuyor)
+### 2.6 Secrets
 
-`TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`. Iyi pratik: kodun hicbir
-yerinde bu degerler sabit (hardcoded) yazilmiyor.
+`TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, and optionally `NEWS_AI_API_KEY`,
+`NEWS_AI_BASE_URL`, `NEWS_AI_MODEL`. No value is hardcoded anywhere in the
+repository.
 
-## 3. Veri Akisi (Data Flow)
+## 3. Data flow
 
 ```
-[GitHub Actions cron/manuel tetikleme]
-              |
-              v
-   alert_bot.py calisir (Python 3.11, GitHub-hosted runner)
-              |
-   +----------+----------------------------+
-   |          |              |             |
-   v          v              v             v
-Binance    Bybit OI     alternative.me   RSS (CoinDesk/
-Spot API   (sik 403)    Fear&Greed      CoinTelegraph)
-   |          |              |             |
-   +----------+----+---------+-------------+
-                    v
-        process_symbol() her sembol icin:
-        RSI hesapla -> esik kontrolu -> Telegram'a gonder (kosullu)
-                    |
-                    v
-        history/{SYMBOL}.json + history/market.json'a yazilir
-                    |
-                    v
-        Workflow: "git commit + push" ile bu JSON'lar repo'ya geri yazilir
-                    |
-                    v
-   [Kullanici tarayicisi] docs/index.html'i acar
-                    |
-                    v
-   Sayfadaki JS, raw.githubusercontent.com'dan JSON'lari CEKER
-   (fetch calisma zamaninda, sayfa acildiginda olur — build-time degil)
-                    |
-                    v
-        Tarayicida tablo/kart olarak render edilir
+GitHub Actions
+     │
+     ├─ Binance spot ─┐
+     ├─ OKX perpetual ─┼─► alert_bot.py ─► history/<SYMBOL>*.json ─► commit
+     ├─ alternative.me ┤        └─► Telegram
+     └─ RSS feeds ─────┘
+                                   │
+                    docs/index.html ◄─ raw.githubusercontent.com
 ```
 
-**Kritik nokta:** Dashboard'un veri tazeligi, GitHub Actions'in ne
-siklikta calistigina ve raw.githubusercontent.com'un CDN cache
-davranisina bagli — "gercek zamanli" degil, "gunluk/periyodik
-anlik goruntu" (snapshot) mantigidir.
+## 4. Weaknesses and scaling risks
 
-## 4. Zayif Noktalar ve Olcekleme Riskleri
+Ordered by how likely they are to bite.
 
-Bunlari onem sirasina gore, dogrudan/olcekleme riski ayrimiyla
-listeliyorum:
+### 4.1 Chained dependency on free public APIs (high)
 
-### 4.1 Dis veri kaynaklarina asiri bagimlilik (YUKSEK risk)
-Binance Futures (451), sonra Bybit (403) — ikisi de GitHub Actions'in
-paylasimli bulut IP'lerini engelledi. Ayni kader RSS/haber
-kaynaklarinin (ozellikle Cloudflare korumali olanlarin) da basina
-gelebilir. **Bu proje, hicbir SLA'si olmayan, ucretsiz, herkese acik
-API'lere zincirleme bagimli** — bu, "trading intelligence platform"
-olma iddiasi buyudukce en buyuk kirilganlik noktasi olacak.
+Binance Futures (451) and then Bybit (403) both blocked shared GitHub Actions
+IPs at different points. Any RSS source behind Cloudflare can do the same. The
+system has no SLA at any link in the chain, and that is the largest fragility as
+ambitions grow.
 
-### 4.2 Veritabani yerine git-tracked JSON dosyalari (ORTA-YUKSEK risk, buyudukce artar)
-- Sorgulama yok (belirli bir tarih araligi, filtreleme, agregasyon
-  icin SQL/indeks yok)
-- Repo boyutu zamanla surekli buyur (git, her JSON degisikligini
-  tarihiyle tutar) — yillar surdukce repo klonlama/CI suresi yavaslar
-- Es zamanli yazma guvenligi yok — iki workflow calismasi ayni anda
-  push etmeye calisirsa cakisma olur (bu zaten bir kez yasandi)
-- Sema (schema) versiyonlanmiyor: bir alan adi degisirse/silinirse,
-  dashboard JS'i sessizce bozulabilir (hata firlatmadan yanlis/eksik
-  gosterebilir)
+### 4.2 Git-tracked JSON instead of a database (medium-high, grows over time)
 
-### 4.3 Sessiz basarisizlik riski (ORTA risk)
-Workflow basarisiz olursa (`exit(1)`), bunun tek gorunur yeri GitHub
-Actions sekmesindeki kirmizi X'tir. Kullaniciya (sana) proaktif bir
-"bot calismadi" bildirimi gitmiyor — bunu fark etmek icin Actions
-sekmesine bakman gerekiyor. Bir sistem "trading intelligence"
-iddiasindaysa, kendi basarisizligini bildirmesi kritik hale gelir.
+- No query layer: no indexing, filtering or aggregation.
+- Repository size grows with every commit, which slows clones and CI.
+- No safe concurrent writes; the concurrency group mitigates but does not solve.
+- Schema is not versioned, so a renamed field can silently break dashboard
+  rendering.
 
-### 4.4 Retry/backoff mekanizmasi yok (DUSUK-ORTA risk)
-Her API cagrisi tek seferlik denenir. Genelde gecici (transient) agi
-hatalarinda bile ikinci sans verilmiyor — bu, gercekte hicbir sorun
-olmadigi halde "veri alinamadi" sonucuna yol acabiliyor.
+### 4.3 Silent failure (medium)
 
-### 4.5 Tek monolitik script (OLCEKLEME riski, bugun sorun degil)
-Tum mantik `alert_bot.py` icinde. Bugun icin sorun yaratmiyor (kod
-hala fonksiyon bazinda modular), ama coklu-ajan (multi-agent) mimarisi
-buyudukce, veri toplama / analiz / bildirim / sunum katmanlarinin
-fiziksel olarak (ayri dosya/modul) ayrilmasi gerekecek — bu talebin
-7. adimi (klasor yapisi) tam olarak bunu hedefliyor.
+A failed run is visible only as a red X in the Actions tab. Nothing notifies the
+operator that the bot did not run. A system that claims continuous observation
+should report its own absence.
 
-### 4.6 Dashboard'un GitHub raw content rate limit'ine bagimliligi (DUSUK risk, simdilik)
-`raw.githubusercontent.com`, kimliksiz (unauthenticated) istekler
-icin IP basina saatlik istek siniri uygular. Su an dusuk trafikle
-(sadece sen) sorun degil; sayfa baskalarina acilirsa veya sik sik
-yenilenirse ileride sorun cikarabilir.
+### 4.4 No retry or backoff (low-medium)
 
-### 4.7 Testin/CI dogrulamasinin olmamasi (DUSUK-ORTA risk)
-Kod degisiklikleri dogrudan `main`'e commit ediliyor, hicbir otomatik
-test/dogrulama (syntax kontrolu disinda) calismiyor. Bu sohbette
-birkac kez syntax hatasi/eksik fonksiyon gibi hatalar production'a
-(yani calisan workflow'a) kadar gitti ve orada fark edildi.
+Each API call is attempted once. A transient error is indistinguishable from a
+real outage in the logs.
 
-## 5. Bu Analizden Cikan Oncelik Sirasi (ileride ele alinmasi icin, simdi DEGIL)
+### 4.5 Monolithic entry point (scaling risk, not a production bug)
 
-Sadece bilgi amacli, aksiyon gerektirmiyor:
-1. Workflow'a `concurrency` blogu (cakisan run'lari onlemek icin) —
-   eklenmis mi kontrol edilmeli
-2. Basarisizlik durumunda Telegram'a "bot calismadi" bildirimi
-3. API cagrilarina basit retry (2-3 deneme, kisa bekleme)
-4. Orta vadede: JSON dosyalari yerine hafif bir veritabani (SQLite
-   dahi git-tracked JSON'dan daha sorgulanabilir olur) — ama bu
-   gorevin talimati acikca "PostgreSQL'i simdi ekleme" dedigi icin
-   bu asamada YAPILMIYOR.
+Collection, computation, delivery and presentation still share `alert_bot.py`.
+It is function-modular and works, but the layers now want physical separation;
+`intelligence_v2/` is the first module that does this properly.
 
----
+### 4.6 Dashboard depends on raw-content rate limits (low today)
 
-*Bu dokuman, mevcut sistemi degistirmeden sadece analiz eder. Kod
-degisikligi bu adimdan SONRA, ayri adimlarda yapilacak.*
+Unauthenticated `raw.githubusercontent.com` requests are rate-limited per IP.
+Fine for one reader, fragile if the page is shared or refreshed aggressively.
+
+### 4.7 Test coverage (was low; partially addressed)
+
+Production code still has no test suite. `intelligence_v2` now has unit tests for
+the measurement primitives (`python -m unittest discover -s tests`), and the
+contract-style checks live in that package. Treat any change to `alert_bot.py` as
+unverified until the pipeline runs.

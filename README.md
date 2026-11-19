@@ -1,84 +1,117 @@
-# BTC Weekly RSI Alert Bot
+# BTC Alert
 
-Binance'ten BTC/USDT haftalık RSI'yi çeker, eşik (varsayılan 80) aşılırsa
-Telegram'a bildirim atar. GitHub Actions ile tamamen ücretsiz, sunucusuz
-7/24 çalışır.
+A free, serverless crypto market observation pipeline. GitHub Actions collects
+price, derivatives, news and macro data every four hours, sends a Telegram
+summary, and writes the evidence trail back into the repository so every
+conclusion can be audited later.
 
-## 1. Telegram bot oluştur (5 dakika)
+This repository does not trade. It observes, records, and evaluates its own
+forecasts.
 
-1. Telegram'da **@BotFather**'ı bul, `/newbot` yaz.
-2. Bot için bir isim ve kullanıcı adı ver (kullanıcı adı `bot` ile bitmeli).
-3. BotFather sana bir **token** verecek — bunu not al
-   (örnek: `123456789:ABCdefGhIJKlmNoPQRstuVwxyZ`).
-4. Şimdi kendi botunla bir sohbet başlat (Telegram'da botunu bul, `/start` yaz).
-5. Chat ID'ni öğrenmek için tarayıcıda şu adresi aç (TOKEN'ı kendi tokenınla değiştir):
-   `https://api.telegram.org/bot<TOKEN>/getUpdates`
-   Dönen JSON içinde `"chat":{"id": ...}` kısmındaki sayı senin **chat_id**'in.
+## Two layers, one boundary
 
-## 2. GitHub'da repo oluştur
+| Layer | What runs | Sends Telegram | Changes its own weights |
+|---|---|---|---|
+| Production | `alert_bot.py`, `news_bot.py`, `market_snapshot.py` | Yes | No |
+| Shadow (v2) | `intelligence_v2/*` | **No** | Only inside bounded calibration, never on history |
 
-1. GitHub'da yeni bir **public** repo aç (public olması Actions'ı tamamen
-   ücretsiz ve sınırsız yapıyor; private de olur ama aylık 2000 dakika
-   sınırı var — bu bot günde birkaç saniye çalıştığı için sınıra
-   yaklaşman neredeyse imkansız).
-2. Bu klasördeki dosyaları (`alert_bot.py`, `requirements.txt`,
-   `.github/workflows/rsi_alert.yml`, bu `README.md`) repo'ya yükle.
+The shadow layer is the measurement experiment: it writes decisions, forecasts
+and evaluation ledgers, and only its own scorecards consume them. A promotion
+gate can mark it `ready_for_human_review`; wiring it into production requires a
+separate human-approved pull request.
 
-## 3. Secrets'ı ekle
+## What a run does
 
-Repo → **Settings → Secrets and variables → Actions → New repository secret**:
+`.github/workflows/pipeline.yml` runs at `0 */4 * * *` and on manual dispatch:
 
-- `TELEGRAM_BOT_TOKEN` → BotFather'dan aldığın token
-- `TELEGRAM_CHAT_ID` → yukarıda bulduğun chat id
+1. **News** — `news_bot.py` ranks headlines by source weight and novelty,
+   deduplicates, categorises, and optionally adds an AI summary.
+2. **Technical / alerts** — `alert_bot.py` pulls Binance spot candles, OKX
+   perpetual open interest and funding, and the Alternative.me Fear & Greed
+   index, computes Wilder RSI, and sends the Telegram card.
+3. **Market snapshot** — `market_snapshot.py` combines news, social and technical
+   state into `history/market.json`.
+4. **Whale / on-chain (shadow)** — `agents/whale_agent.py` reads free public
+   APIs; no Telegram output.
+5. **Intelligence v2 (shadow)** — evidence → agents → decision → ledger →
+   forecast → settlement.
+6. **Dashboard snapshot** — a compact JSON so the scorecard page never loads the
+   multi-megabyte decision ledger.
 
-## 4. Test et
+Scheduled runs exist only in `pipeline.yml`. `check-news.yml`,
+`technical_agent.yml` and `shadow-intelligence.yml` are manual-only debugging
+entry points; their old schedules were removed so the pipeline owns the cadence.
 
-Repo → **Actions** sekmesi → "BTC Weekly RSI Alert" workflow'u seç →
-**Run workflow** ile manuel tetikle. Loglarda RSI değerini göreceksin.
-RSI eşiği aşmıyorsa Telegram'a mesaj gelmez (bu normal) — logda
-"Esik asilmadi" yazar.
+## Symbols and timeframe
 
-RSI'yi zorla test etmek istersen `RSI_THRESHOLD` değerini workflow
-dosyasında geçici olarak `1` yapıp tekrar çalıştırabilirsin, mesaj
-geleceğini göreceksin.
+`SYMBOLS` and `INTERVAL` are environment variables. Defaults are
+`BTCUSDT,ETHUSDT,SOLUSDT` at `4h`. The pipeline workflow sets five symbols:
+`BTCUSDT,ETHUSDT,SOLUSDT,ZECUSDT,ZAMAUSDT`. `RSI_THRESHOLD` is set to `70` there.
 
-## Sonra ne yapılabilir (opsiyonel genişletmeler)
+## Data store
 
-- ETH ve SOL için ayrı job'lar eklemek (aynı script'i `SYMBOL` değiştirerek
-  tekrar kullan)
-- Günlük RSI + haftalık RSI'yi birlikte takip etmek
-- Fiyat eşiği bazlı ayrı bir uyarı eklemek
-- Bildirimleri bir veritabanına (ör. basit bir GitHub Gist ya da
-  Google Sheet) loglamak, böylece GHC backtest'ine veri kaynağı olur
+| Path | Contents | Retention |
+|---|---|---|
+| `history/<SYMBOL>.json` | Legacy observation series | last 200 rows |
+| `history/<SYMBOL>_4h.json` | Rich series with OI and funding | last 500 rows |
+| `history/market.json` | Latest market-wide snapshot | single record |
+| `history/intelligence_v2/` | Run, decision, evaluation, forecast ledgers and scorecards | append-only |
 
-Bunların hiçbiri şu an gerekli değil — önce bunun 3-4 gün sorunsuz
-çalıştığını gör, sonra üstüne ekle.
+History is committed back to the repository by the workflow. There is no
+database: git is the store, so a clone carries the full audit trail and the full
+size of it.
 
-## Crypto News Intelligence
+## Measurement
 
-`News Agent` workflow'u dört saatte bir çalışır. Crypto haberlerini kaynak ağırlığı ve
-yenilik değerine göre sıralar, tekrarları temizler ve şu başlıklar altında toplar:
+`docs/MEASUREMENT.md` defines how every number is produced. Two rules matter when
+reading the scorecards:
 
-- Market & Macro
-- Bitcoin & ETF
-- Regulation & Politics
-- Security & Hacks
-- DeFi & Stablecoins
-- Ethereum & L2
-- Altcoins & Projects
-- Institutional & Exchanges
+- Accuracy is reported against naive baselines (`always_up`, `always_down`,
+  `persistence`, `ema_slope`). A hit rate without a baseline cannot separate
+  skill from market drift.
+- Outcomes are labelled with a volatility-scaled neutral band, so a move inside
+  the noise floor is reported as `neutral` rather than scored as a wrong call.
 
-Google Trends için `Bitcoin`, `BTC` ve `crypto` aramalarının günlük 0–100
-normalize edilmiş değerleri tutulur. Google Trends erişimi başarısız olursa veri
-uydurulmaz; dashboard'da `unavailable` olarak gösterilir.
+`python -m intelligence_v2.measure --history-dir history` recomputes all of it
+from the committed ledgers without touching them.
 
-AI haber özeti opsiyoneldir ve GitHub Actions secrets üzerinden etkinleştirilir:
+## Setup
 
-- `NEWS_AI_API_KEY` — OpenAI-compatible API anahtarı
-- `NEWS_AI_BASE_URL` — isteğe bağlı; varsayılan `https://api.openai.com/v1`
-- `NEWS_AI_MODEL` — isteğe bağlı; varsayılan `gpt-4o-mini`
+1. Create a Telegram bot with **@BotFather**, start a chat with it, and read your
+   `chat_id` from `https://api.telegram.org/bot<TOKEN>/getUpdates`.
+2. Add repository secrets `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`
+   (Settings → Secrets and variables → Actions).
+3. Optional AI summary: `NEWS_AI_API_KEY`, and optionally `NEWS_AI_BASE_URL`,
+   `NEWS_AI_MODEL`.
+4. Trigger the pipeline once from the Actions tab and confirm the RSI line in the
+   logs.
 
-Anahtar yoksa haber kategorileri ve deterministik özet çalışmaya devam eder; AI
-alanı dashboard'da neden üretilemediğini açıkça gösterir. AI çıktısı yalnızca
-toplanan başlıklarla sınırlıdır ve kaynaklarda bulunmayan iddialar üretmemesi
-istenir.
+No keys belong in the repository. Every credential is read from the environment.
+
+## Documentation map
+
+Documents have distinct jobs. Where a document disagrees with the code, the code
+wins and the document is a bug.
+
+| Document | Role | Status |
+|---|---|---|
+| `README.md` | Entry point: what runs, when, and where the data lives | Current |
+| `SYSTEM_DESIGN.md` | Execution flow, data-source definitions, prediction and evaluation contract | Current |
+| `docs/MEASUREMENT.md` | How accuracy, baselines and calibration are computed | Current |
+| `docs/DEVELOPMENT_PRINCIPLES.md` | Working rules for changes to this repository | Current |
+| `ARCHITECTURE.md` | Module map, agent contract, isolation rules | Current |
+| `PROJECT_SUMMARY.md` | Module inventory and known weaknesses at time of writing | Historical snapshot |
+| `ROADMAP.md` | Open items and completed work | Living, updated when work lands |
+| `INTELLIGENCE_V2_MIGRATION.md` | Migration and rollback plan for the shadow layer | Historical record |
+| `IDEAL_CRYPTO_AGENT_ARCHITECTURE.md` | Target design, explicitly not current state | Aspirational |
+| `docs/INDICATOR_RESEARCH_RECOMMENDATION.md` | Research memo on which indicators to keep | Reference |
+
+## Known limits
+
+- Free public endpoints rate-limit shared runner IPs; a source failure is logged
+  and skipped, not retried indefinitely.
+- Git as a data store grows without bound unless retention is enforced; see the
+  table above for the per-file caps that exist today.
+- Scheduled GitHub Actions are not real-time; a run can start late under load.
+- v2 accuracy is measured on one regime at a time. Read
+  `measurement.regime` before reading any accuracy figure.

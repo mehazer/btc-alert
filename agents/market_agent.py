@@ -4,9 +4,9 @@ agents/market_agent.py
 Deterministik, kural-tabanli Market Agent (v2 - Directional).
 
 AMAC:
-Zaten toplanmis sinyalleri (RSI, Fear & Greed, Funding Rate,
-OI degisimi, Fiyat degisimi, News Sentiment, optional social) tek bir
-yonlu (directional) piyasa degerlendirmesine cevirir.
+Turns already-collected signals (RSI, Fear & Greed, funding rate,
+OI change, price change, news sentiment, optional social) into a single
+directional market assessment.
 
 Optional signal_weights (from agent_calibration) scale each family.
 Missing weights default to 1.0. Missing inputs stay null.
@@ -61,32 +61,32 @@ def evaluate(
         w = _w(weights, "rsi")
         if rsi >= 75:
             bullish_points += 25 * w
-            reasons.append(f"RSI yuksek ({rsi:.1f}) -> asiri alim baskisi")
+            reasons.append(f"RSI high ({rsi:.1f}) -> overbought pressure")
         elif rsi >= 60:
             bullish_points += 12 * w
-            reasons.append(f"RSI guclu ({rsi:.1f}) -> boğa egilimi")
+            reasons.append(f"RSI strong ({rsi:.1f}) -> bullish bias")
         elif rsi <= 25:
             bearish_points += 25 * w
-            reasons.append(f"RSI cok dusuk ({rsi:.1f}) -> asiri satim / korku")
+            reasons.append(f"RSI very low ({rsi:.1f}) -> oversold / fear")
         elif rsi <= 40:
             bearish_points += 12 * w
-            reasons.append(f"RSI zayif ({rsi:.1f}) -> ayi egilimi")
+            reasons.append(f"RSI weak ({rsi:.1f}) -> bearish bias")
 
     if fear_greed_value is not None:
         available += 1
         w = _w(weights, "fear_greed")
         if fear_greed_value >= 80:
             bullish_points += 20 * w
-            reasons.append(f"Fear&Greed asiri acgozlu ({fear_greed_value})")
+            reasons.append(f"Fear & Greed extreme greed ({fear_greed_value})")
         elif fear_greed_value >= 60:
             bullish_points += 10 * w
-            reasons.append(f"Fear&Greed iyimser ({fear_greed_value})")
+            reasons.append(f"Fear & Greed optimistic ({fear_greed_value})")
         elif fear_greed_value <= 20:
             bearish_points += 20 * w
-            reasons.append(f"Fear&Greed asiri korku ({fear_greed_value})")
+            reasons.append(f"Fear & Greed extreme fear ({fear_greed_value})")
         elif fear_greed_value <= 40:
             bearish_points += 10 * w
-            reasons.append(f"Fear&Greed korku bolgesi ({fear_greed_value})")
+            reasons.append(f"Fear & Greed fear zone ({fear_greed_value})")
 
     if funding_rate is not None:
         available += 1
@@ -94,48 +94,48 @@ def evaluate(
         funding_pct = funding_rate * 100
         if funding_rate >= 0.0003:
             bullish_points += 22 * w
-            reasons.append(f"Funding Rate yuksek (+{funding_pct:.4f}%) -> long'lar kalabalik")
+            reasons.append(f"Funding rate high (+{funding_pct:.4f}%) -> longs crowded")
         elif funding_rate >= 0.0001:
             bullish_points += 10 * w
-            reasons.append(f"Funding Rate pozitif (+{funding_pct:.4f}%)")
+            reasons.append(f"Funding rate positive (+{funding_pct:.4f}%)")
         elif funding_rate <= -0.0003:
             bearish_points += 22 * w
-            reasons.append(f"Funding Rate cok negatif ({funding_pct:.4f}%) -> short'lar kalabalik")
+            reasons.append(f"Funding rate very negative ({funding_pct:.4f}%) -> shorts crowded")
         elif funding_rate <= -0.0001:
             bearish_points += 10 * w
-            reasons.append(f"Funding Rate negatif ({funding_pct:.4f}%)")
+            reasons.append(f"Funding rate negative ({funding_pct:.4f}%)")
 
     if oi_change_pct is not None and price_change_pct is not None:
         available += 1
         w = _w(weights, "oi_price")
         if price_change_pct > 1.5 and oi_change_pct > 3:
             bullish_points += 18 * w
-            reasons.append("Fiyat + OI birlikte yukseldi -> guclu boğa trendi")
+            reasons.append("Price and OI rose together -> strong bullish trend")
         elif price_change_pct > 1.5 and oi_change_pct < -2:
             bearish_points += 8 * w
-            reasons.append("Fiyat yukseldi ama OI dustu -> zayif ralli / short covering")
+            reasons.append("Price rose but OI fell -> weak rally / short covering")
         elif price_change_pct < -1.5 and oi_change_pct > 3:
             bearish_points += 18 * w
-            reasons.append("Fiyat dustu + OI artti -> guclu ayi baskisi")
+            reasons.append("Price fell while OI rose -> strong bearish pressure")
         elif price_change_pct < -1.5 and oi_change_pct < -2:
             bullish_points += 8 * w
-            reasons.append("Fiyat dustu + OI dustu -> long temizligi (potansiyel dibe yaklasma)")
+            reasons.append("Price fell with OI -> long liquidation (possible approach to a bottom)")
     elif oi_change_pct is not None:
         available += 0.5
         if oi_change_pct > 8:
-            reasons.append(f"OI belirgin artti (+{oi_change_pct:.1f}%)")
+            reasons.append(f"OI increased notably (+{oi_change_pct:.1f}%)")
         elif oi_change_pct < -8:
-            reasons.append(f"OI belirgin azaldi ({oi_change_pct:.1f}%)")
+            reasons.append(f"OI decreased notably ({oi_change_pct:.1f}%)")
 
     if price_change_pct is not None:
         available += 0.5
         w = _w(weights, "price")
         if price_change_pct > 4:
             bullish_points += 8 * w
-            reasons.append(f"Guclu fiyat yukselişi (+{price_change_pct:.1f}%)")
+            reasons.append(f"Strong price advance (+{price_change_pct:.1f}%)")
         elif price_change_pct < -4:
             bearish_points += 8 * w
-            reasons.append(f"Guclu fiyat dususu ({price_change_pct:.1f}%)")
+            reasons.append(f"Strong price decline ({price_change_pct:.1f}%)")
 
     if news_sentiment is not None:
         available += 1
@@ -187,7 +187,7 @@ def evaluate(
     confidence = int(round((available / total_possible) * 100))
 
     if not reasons:
-        reasons.append("Belirgin bir sinyal yok, piyasa dengeli gorunuyor.")
+        reasons.append("No dominant signal; market looks balanced.")
 
     return {
         "state": state,

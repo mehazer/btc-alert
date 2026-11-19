@@ -1,5 +1,7 @@
 # Ideal Crypto Intelligence System
 
+**Status: aspirational.** This is a target design, not a description of the current repository. For what exists today see `ARCHITECTURE.md`; for what runs on a schedule see `README.md`.
+
 ## Main conclusion
 
 You are on the right path, but the current system is still a **single scheduled collector with several analysis functions**, not yet a true multi-agent platform. That is not a failure. It is the correct foundation to build on.
@@ -14,9 +16,9 @@ Your target should therefore be a **workflow-controlled, multi-specialist intell
 
 ## Target visual architecture
 
-![Ideal crypto multi-agent architecture](/home/ubuntu/work/btc-alert/docs/ideal-crypto-agent-architecture.png)
+![Ideal crypto multi-agent architecture](docs/ideal-crypto-agent-architecture.png)
 
-The editable diagram is available as [Mermaid source](/home/ubuntu/work/btc-alert/docs/ideal-crypto-agent-architecture.mmd).
+The editable diagram is available as [Mermaid source](docs/ideal-crypto-agent-architecture.mmd).
 
 ## What the system should contain
 
