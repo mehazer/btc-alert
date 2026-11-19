@@ -11,6 +11,8 @@ from pathlib import Path
 
 import requests
 
+import trending
+
 SYMBOLS = [s.strip().upper() for s in os.environ.get("SYMBOLS", "BTCUSDT,ETHUSDT,SOLUSDT").split(",") if s.strip()]
 PRIMARY = "BTCUSDT"
 INTERVAL = os.environ.get("INTERVAL", "4h")
@@ -360,7 +362,7 @@ def update_rich_history(symbol, price, volume, oi, funding, rsi_val, prev_oi, pr
     return {"path": str(p), "bars": len(rows), "oi": oi, "oi_change_pct": oi_chg, "updated_in_place": update_in_place}
 
 
-def process(symbol, fg_val, fg_label, btc_chg=None):
+def process(symbol, fg_val, fg_label, btc_chg=None, trending_data=None):
     print(f"--- {symbol} ---")
     history, closes = fetch_binance(symbol)
     oi, funding = fetch_okx(symbol)
@@ -383,6 +385,9 @@ def process(symbol, fg_val, fg_label, btc_chg=None):
 
     print(f"  OI now={oi} prev={prev_oi} chg={pct(oi, prev_oi) if oi is not None and prev_oi not in (None, 0) else None}")
     text = build_card(symbol, history, closes, oi, funding, fg_val, fg_label, btc_chg=btc_chg, prev_oi=prev_oi)
+    trending_block = trending.format_section(trending_data)
+    if trending_block:
+        text = f"{text}\n\n{trending_block}"
     ok = send_telegram(text)
     print(f"Telegram {symbol}:", "sent" if ok else "failed")
     save_hist(symbol, history)
@@ -404,9 +409,12 @@ def main():
     except Exception as e:
         print("BTC relative:", e)
 
+    trending_data = trending.fetch_trending()
+    print(f"Trending: {trending_data.get('status')} ({len(trending_data.get('items') or [])} items)")
+
     for sym in SYMBOLS:
         try:
-            process(sym, fg_val, fg_label, btc_chg=btc_chg)
+            process(sym, fg_val, fg_label, btc_chg=btc_chg, trending_data=trending_data)
             time.sleep(0.35)
         except Exception as e:
             print("Error", sym, e)

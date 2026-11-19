@@ -8,6 +8,7 @@ import requests
 import google_trends
 import news_intelligence
 import news_sources
+import trending
 
 HISTORY_DIR = "history"
 
@@ -150,10 +151,17 @@ def send_telegram_news(intelligence):
     if not token or not chat_id:
         print("Telegram news notification skipped: TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID is not configured")
         return False
+    message = telegram_news_message(intelligence)
+    block = trending.format_section(trending.fetch_trending())
+    if block:
+        room = 4000 - len(block) - 2
+        if room > 0:
+            message = message[:room].rstrip()
+        message = f"{message}\n\n{block}"
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     response = requests.post(
         url,
-        json={"chat_id": chat_id, "text": telegram_news_message(intelligence), "disable_web_page_preview": True},
+        json={"chat_id": chat_id, "text": message, "disable_web_page_preview": True},
         timeout=20,
     )
     response.raise_for_status()
