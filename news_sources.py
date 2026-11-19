@@ -4,14 +4,14 @@ news_sources.py
 Haber kaynaklarini (RSS + Google News + Telegram + Reddit + StockTwits + Yahoo)
 tek bir yerden yonetir. news_bot.py bu moduldeki fonksiyonlari kullanir.
 Kaynak listesi (list_all_sources) dashboard'un "nereden haber
-cekiliyor" listesini beslemek icin de kullanilir.
+fetched" list is also built from here.
 
 Bilinen kisitlar:
 - Reddit'in JSON API'si (r/<subreddit>/hot.json) kimlik dogrulama
   gerektirmez, ama GitHub Actions paylasimli IP'lerini zaman zaman
-  engelleyebilir (429/403). Hata durumunda o kaynak sessizce atlanir.
+  may block it (429/403). On error the source is skipped silently.
 - Google News RSS ucretsizdir, API key istemez. Sonuclar Google'in
-  haber indeksinden gelir; web arama sonuclarinin birebir kopyasi degildir.
+  item comes from the news index; it is not a verbatim copy of web search results.
 - StockTwits public stream is live-only (no historical archive).
 - Yahoo Finance RSS is free and live-only; filtered to the last 24h.
 """
@@ -113,7 +113,7 @@ GOOGLE_NEWS_LIMIT = 5
 
 
 def list_all_sources():
-    """Dashboard icin: tum kaynaklarin adi + tipini duz liste olarak doner."""
+    """For the dashboard: returns every source name and type as a flat list."""
     sources = [{"name": s["name"], "type": "rss", "quality": source_quality(s["name"], "rss")} for s in RSS_SOURCES]
     sources += [{"name": s["name"], "type": "google_news", "quality": source_quality(s["name"], "google_news")} for s in GOOGLE_NEWS_QUERIES]
     sources += [{"name": s["name"], "type": "telegram", "quality": source_quality(s["name"], "telegram")} for s in TELEGRAM_SOURCES]
@@ -202,7 +202,7 @@ def fetch_google_news_headlines(limit=GOOGLE_NEWS_LIMIT):
                     entry["published"] = pub_el.text.strip()
                 headlines.append(entry)
         except Exception as e:
-            print(f"{source['name']} Google News cekilemedi (devam): {e}")
+            print(f"{source['name']} Google News fetch failed (continuing): {e}")
     return headlines
 
 
@@ -230,7 +230,7 @@ def fetch_rss_headlines(limit=HEADLINE_LIMIT_PER_SOURCE):
                         entry["published"] = pub_el.text.strip()
                     headlines.append(entry)
         except Exception as e:
-            print(f"{source['name']} RSS cekilemedi (calismaya devam ediliyor): {e}")
+            print(f"{source['name']} RSS fetch failed (continuing): {e}")
     return headlines
 
 
@@ -256,7 +256,7 @@ def fetch_telegram_headlines(limit=HEADLINE_LIMIT_PER_SOURCE):
                         "published": datetime.now(timezone.utc).isoformat(),
                     })
         except Exception as e:
-            print(f"Telegram kanali cekilemedi ({source['username']}): {e}")
+            print(f"Telegram channel fetch failed ({source['username']}): {e}")
     return headlines
 
 
@@ -287,7 +287,7 @@ def fetch_reddit_headlines(limit=HEADLINE_LIMIT_PER_SOURCE):
                         entry["published"] = created
                     headlines.append(entry)
         except Exception as e:
-            print(f"Reddit kanali cekilemedi ({source['subreddit']}): {e}")
+            print(f"Reddit channel fetch failed ({source['subreddit']}): {e}")
     return headlines
 
 
@@ -314,7 +314,7 @@ def fetch_stocktwits_headlines(limit=HEADLINE_LIMIT_PER_SOURCE):
             if result.get("coverage_gap"):
                 print(result["coverage_gap"])
         except Exception as e:
-            print(f"StockTwits cekilemedi ({sym}): {e}")
+            print(f"StockTwits fetch failed ({sym}): {e}")
     return headlines
 
 
@@ -334,7 +334,7 @@ def fetch_yahoo_headlines(limit=HEADLINE_LIMIT_PER_SOURCE):
             if row.get("coverage_gap"):
                 print(row["coverage_gap"])
     except Exception as e:
-        print(f"Yahoo Finance headlines cekilemedi: {e}")
+        print(f"Yahoo Finance headlines fetch failed: {e}")
     return headlines
 
 

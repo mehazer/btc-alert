@@ -1,107 +1,127 @@
-# ARCHITECTURE.md
+# Architecture
 
-Bu dokuman, projenin bugunku ("Market Agent" eklendikten sonraki)
-klasor yapisini ve coklu-ajan (multi-agent) mimarisine dogru
-planlanan genislemeyi anlatir.
+What exists in the repository today, how the pieces are allowed to talk to each
+other, and where the boundary between production and shadow runs.
 
-## Onerilen Klasor Yapisi (bugunden itibaren gecerli)
+Historical note: this document originally described a planned migration from a
+single script to an agent layout, when the agent modules were placeholders. Those modules now exist and are wired into the pipeline. The design
+rules below survived that migration; the file inventory did not.
+
+## Layout
 
 ```
 btc-alert/
-├── alert_bot.py                    # Orkestratör: veri toplama +
-│                                    #   RSI/tarihce/Telegram/Market
-│                                    #   Agent cagirma
+├── alert_bot.py              Production entry point: data collection, RSI,
+│                             history, Telegram cards
+├── news_bot.py               News run: fetch, rank, categorise, optional AI
+│                             summary, Telegram news card
+├── news_sources.py           RSS and Telegram-preview source registry
+├── news_intelligence.py      Ranking, deduplication, category rules
+├── market_snapshot.py        Market-wide snapshot (news + social + technical)
+├── build_dashboard_snapshot.py  Compact snapshot for the scorecard page
+├── agent_calibration.py      Bounded weight calibration from settled outcomes
+├── self_improvement.py       Forecast settlement and weight updates
+├── date_window.py            Shared 24h/7d window helpers
+├── fred_macro.py             Macro series
+├── google_trends.py          Search-interest series
+├── yahoo_news.py             Headline source
+├── stocktwits_sentiment.py   Social sentiment source
 ├── agents/
-│   ├── __init__.py
-│   ├── market_agent.py             # UYGULANDI - deterministik
-│   │                                #   piyasa durumu degerlendirmesi
-│   ├── social_agent.py             # PLACEHOLDER - henuz yok
-│   ├── news_agent.py               # PLACEHOLDER - henuz yok
-│   ├── whale_agent.py              # PLACEHOLDER - henuz yok
-│   └── decision_agent.py           # PLACEHOLDER - henuz yok
-├── docs/
-│   └── index.html                  # Dashboard (GitHub Pages)
-├── history/                        # Veri deposu (JSON, git-tracked)
-│   ├── BTCUSDT.json
-│   ├── ETHUSDT.json
-│   ├── SOLUSDT.json
-│   ├── market.json                 # Genel piyasa ozeti (F&G+haber)
-│   └── market_agent_history.json   # YENI - Market Agent kayitlari
-├── .github/workflows/
-│   └── rsi_alert.yml
-├── requirements.txt
-├── README.md
-├── PROJECT_SUMMARY.md              # YENI - mevcut durum analizi
-└── ARCHITECTURE.md                 # YENI - bu dosya
+│   ├── market_agent.py       Deterministic market-state read (RSI, OI, price,
+│   │                         funding, news sentiment)
+│   ├── technical_extras.py   Additional technical context
+│   ├── mechanism_interpreter.py  Price/OI/volume relationship classifier
+│   ├── positioning_regime.py     Funding/OI positioning regime
+│   ├── news_sentiment.py     Headline sentiment
+│   └── whale_agent.py        On-chain/whale shadow analysis
+├── intelligence_v2/          Shadow intelligence stack (see below)
+├── history/                  Git-tracked JSON store
+├── docs/                     Static dashboard + reference documents
+└── .github/workflows/        Pipeline and manual entry points
 ```
 
-## Neden Ajanlar `agents/` Altinda, Ayri Dosyalarda?
+## intelligence_v2
 
-Tek bir buyuk script yerine her ajani ayri dosyada tutmanin sebebi
-bugun degil, YARIN icin: dort ayri ajan (Market/Social/News/Whale) +
-bunlari birlestiren bir Decision Agent eklendiginde, hepsi tek
-dosyada olsaydi hem test etmek hem de "hangi ajan neden su karari
-verdi" diye ayiklamak zorlasirdi.
+The shadow stack, in data-flow order:
 
-**Bagimsizlik kurali (kritik):** Her ajan dosyasi SADECE kendi
-mantigini icerir, digerlerini import ETMEZ. Ajanlar arasi iletisim
-SADECE ayni sozlesmeye (dict: `state`, `risk_score`, `confidence`,
-`reasons`) uyan girdi/cikti uzerinden olur. Bu sayede:
-- `whale_agent.py` gelistirilirken `market_agent.py`'ye dokunma
-  ihtimali sifira iner
-- Herhangi bir ajan tek basina test edilebilir (`python
-  agents/market_agent.py` gibi — zaten `market_agent.py` boyle
-  calisiyor)
-- `decision_agent.py`, diger ajanlarin IC mantigindan tamamen
-  habersiz kalir, sadece disariya verdikleri sonucu okur
+| Module | Responsibility |
+|---|---|
+| `evidence.py` | Normalise observations into an evidence pack with provenance |
+| `technical.py` | EMA, Wilder RSI, ATR derived from completed candles |
+| `interpreter.py`, `llm_enrich.py` | Optional narrative enrichment, evidence-ID validated |
+| `coin_agent.py`, `portfolio_agent.py`, `comparator.py` | Per-symbol reads, portfolio aggregation, comparison |
+| `challenge.py`, `risk.py` | Counter-evidence and risk assessment |
+| `decision.py` | Single decision record with gate and invalidation |
+| `ledger.py` | Append-only run, decision and evaluation ledgers, scorecards |
+| `forecast.py`, `forecast_eval.py` | Multi-horizon forecasts, settlement, calibration |
+| `metrics.py` | Neutral-band labels, naive baselines, balanced accuracy, reliability |
+| `walkforward.py`, `replay.py`, `robustness.py` | Point-in-time backtest, replay, scenario stress |
+| `promotion.py` | Gate that decides whether the shadow stack may be reviewed |
+| `shadow_runner.py` | Orchestrator; never sends Telegram, never enables execution |
+| `measure.py` | Read-only measurement report over committed ledgers |
 
-## Ortak Sozlesme (Contract)
+## Agent contract
 
-Her ajanin `evaluate()` fonksiyonu (Decision Agent haric — o
-`decide()` fonksiyonuyla digerlerinin CIKTISINI alir) su sekilde bir
-sozluk dondurmelidir:
+Agents return plain dictionaries. The keys are not identical across modules,
+because each answers a different question; the shared ones are:
 
 ```python
 {
-    "state": str,           # ajana ozel durum etiketleri
-    "risk_score": int,      # 0-100
-    "confidence": int,      # 0-100
-    "reasons": list[str],   # okunabilir gerekceler
-    "inputs": dict,         # kullanilan ham girdiler (loglama icin)
-    "evaluated_at": str,    # ISO8601 UTC zaman damgasi
+    "state": str,            # agent-specific state label
+    "confidence": int,       # 0-100
+    "reasons": list[str],    # human-readable justifications, English
+    "inputs": dict,          # raw inputs used, for audit
+    "evaluated_at": str,     # ISO8601 UTC
 }
 ```
 
-Bu sozlesmeye uyuldugu surece, ileride `decision_agent.py` tum
-ajanlarin ciktilarini ayni sekilde isleyebilir.
+`market_agent.evaluate()` adds `bias_score`, `bullish_points`, `bearish_points`,
+`intensity` and `signal_weights_applied`. `whale_agent.evaluate(overview, stats)`
+takes prepared inputs and returns its own distribution fields. `technical_extras`,
+`positioning_regime`, `mechanism_interpreter` and `news_sentiment` expose
+task-specific functions rather than a single `evaluate()`; check the module
+docstring before calling.
 
-## Gelecek Ajanlar (SADECE plan + placeholder, henuz uygulanmadi)
+Earlier revisions of this document described one uniform `risk_score` field.
+That was the design intent, not the implementation; the text above matches the
+code.
 
-| Ajan | Amac | Bilinen zorluk |
-|---|---|---|
-| `social_agent.py` | Sosyal medya (Reddit/X) gundeminden ilgi/coskunluk skoru | Veri kaynagi secimi (Reddit public JSON kullanilabilir, X ucretli) |
-| `news_agent.py` | Haber basliklarindan duyarlilik (sentiment) skoru | Basit anahtar-kelime yaklasimi ile baslanmali, AI kullanilmamali (bu asamada) |
-| `whale_agent.py` | Buyuk cuzdan/borsa giris-cikis hareketleri | Ucretsiz, guvenilir bir veri kaynagi bulmak digerlerinden daha zor |
-| `decision_agent.py` | Tum ajanlarin ciktisini TEK bir nihai karara birlestirmek | Ajanlar arasi agirliklandirma stratejisi ayrica tasarlanmali |
+Agents do not import one another. They exchange data through these dictionaries,
+so any agent can be tested alone and a failure in one cannot take down the
+others.
 
-**Onemli:** Bu dort ajan SU ANDA SADECE dosya iskeleti + docstring
-olarak mevcut (`NotImplementedError` firlatirlar). Hicbiri
-`alert_bot.py` tarafindan cagrilmiyor. Bunlarin gercek
-implementasyonu, bu dokumanda tanimlanan mimariyi bozmadan, ayri
-gorevler olarak ele alinmalidir.
+## Isolation rules
 
-## Genisleme Sirasinda Degismemesi Gereken Ilkeler
+1. **Agents stay independent.** No agent imports another agent.
+2. **Production flow must not break.** A new agent is added as an isolated call
+   inside `main()`, wrapped so that its failure does not stop RSI, history writes
+   or Telegram delivery.
+3. **Shadow never sends.** `intelligence_v2` has no Telegram path and
+   `execution_allowed` is false everywhere.
+4. **History writers share a concurrency group.** `crypto-history-writers`
+   serialises runs that push to `history/`; overlapping pushes previously caused
+   rejected updates.
+5. **No database yet.** New state uses the same JSON-file pattern. A database is a
+   separate decision, not an incidental one.
 
-1. Her ajan bagimsiz kalmali (yukaridaki kural)
-2. Yeni bir ajan eklerken `alert_bot.py`'nin mevcut is akisi
-   (RSI/Telegram/dashboard) BOZULMAMALI — yeni ajan `main()`
-   icinde ayri, izole bir cagri olarak eklenmeli (bkz.
-   `run_market_agent()` fonksiyonunun `alert_bot.py` icindeki
-   ornek kullanimi)
-3. Basarisiz bir ajan, digerlerini veya ana RSI/Telegram akisini
-   COKERTMEMELI (try/except ile izole edilmeli — `market_agent.py`
-   entegrasyonunda bu zaten uygulandi: `primary_symbol_data is None`
-   kontrolu Market Agent'i guvenli sekilde atlar)
-4. Yeni veri deposu ihtiyaci dogarsa (ornegin `social_agent.py` icin
-   ayri bir tarihce), ayni JSON-dosyasi deseni izlenmeli — PostgreSQL
-   gibi bir veritabani, bu proje kapsaminda HENUZ eklenmeyecek
+## Data flow
+
+```
+GitHub Actions (pipeline.yml, every 4h)
+        │
+        ├─ news_bot.py ──────────────► history/news_*.json ──┐
+        ├─ alert_bot.py ─────────────► history/<SYMBOL>*.json┤
+        │        └─ Telegram                                  │
+        ├─ market_snapshot.py ───────► history/market.json    │
+        ├─ agents/whale_agent.py ────► history/…              │
+        └─ shadow_runner.py ─────────► history/intelligence_v2/
+                                                 │
+                                                 ▼
+                                          docs/index.html,
+                                          docs/history.html
+                                          (client-side fetch)
+```
+
+The dashboard is static. It reads committed JSON through
+`raw.githubusercontent.com` at page load; it holds no credentials and has no
+backend.

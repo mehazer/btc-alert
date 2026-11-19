@@ -16,18 +16,18 @@ jobs:
   check-news:
     runs-on: ubuntu-latest
     steps:
-      - name: Repo'yu indir
+      - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Python kur
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Bagimliliklari kur
+      - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Botu calistir
+      - name: Run bot
         env:
           NEWS_AI_API_KEY: ${{ secrets.NEWS_AI_API_KEY }}
           NEWS_AI_BASE_URL: ${{ secrets.NEWS_AI_BASE_URL }}
@@ -36,7 +36,7 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python news_bot.py
 
-      - name: Tarihceyi (history/) repo'ya kaydet
+      - name: Commit history back to the repository
         if: always()
         run: |
           git config user.name "github-actions[bot]"
@@ -45,7 +45,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "History'de degisiklik yok, commit atlanildi."
           else
-            git commit -m "News history guncelle [skip ci]"
+            git commit -m "news: update history [skip ci]"
             for attempt in 1 2 3; do
               git fetch origin main
               if git rebase origin/main && git push origin HEAD:main; then

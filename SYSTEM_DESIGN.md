@@ -1,20 +1,22 @@
 # Crypto Watch system design
 
+**Status: current.** Describes the production path and the prediction/evaluation contract. Scheduling changes belong in `README.md`; if the two disagree, the workflows win.
+
 ## Purpose
 
 Crypto Watch is a deterministic market-observation and interpretation tool. It is not an execution or trading system. Every conclusion must be reproducible from the stored input snapshot, source timestamps, timeframe, code version, and calibration weights.
 
 ## Execution flow
 
-1. `technical_agent.yml` runs every 4 hours or by manual dispatch.
+1. `pipeline.yml` is the only scheduled owner and runs every 4 hours or by manual dispatch. `technical_agent.yml`, `check-news.yml` and `shadow-intelligence.yml` are manual entry points.
 2. `alert_bot.py` retrieves Binance spot candles/volume, OKX perpetual open interest and funding, the Alternative.me Fear & Greed index, liquidation/L-S extras when available, and the latest local news sentiment.
-3. Each symbol observation is appended to `history/<SYMBOL>.json`. No current implementation trims old records.
+3. Each symbol observation is appended to `history/<SYMBOL>.json` and `history/<SYMBOL>_4h.json`. Retention is capped in code at the last 200 and 500 rows respectively.
 4. `market_agent.py` evaluates BTC-level directional state from RSI, sentiment, funding, price/OI changes, and news sentiment.
 5. `mechanism_interpreter.py` classifies price/OI/volume relationships: fresh long buildup, short covering, spot-led buying, weakening participation, or mixed/inconclusive. OI alone is never treated as long/short direction.
 6. `positioning_regime.py` calculates funding percentile, recent OI change, positioning pressure, regime, and separate squeeze risk. Crowded shorts are not automatically treated as downside risk.
 7. `self_improvement.py` settles older forecasts after three later observations, records outcomes, calculates direction/risk accuracy, and changes evidence weights by at most 0.02 within 0.50–1.50 bounds.
 8. The workflow commits all `history/` records. Technical and news workflows share the `crypto-history-writers` concurrency group so their Git pushes do not overwrite each other.
-9. `check-news.yml` runs every 4 hours, writes categorized news and daily Trends results, and sends one compact Telegram news update.
+9. The news stage runs inside `pipeline.yml` every 4 hours, writes categorized news and daily Trends results, and sends one compact Telegram news update.
 10. GitHub Pages deploys automatically from repository updates; it is not a market-analysis heartbeat and therefore has no independent empty scheduled run.
 11. GitHub Pages serves `docs/index.html` for current state and `docs/history.html` for full audit/history.
 
