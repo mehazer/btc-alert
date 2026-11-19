@@ -6,6 +6,7 @@ import os
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Tuple
 
+from . import metrics
 from .contracts import ForecastEvaluation, ForecastHorizonBand, ForecastRecord, ForecastScorecard, to_dict
 from .forecast import HORIZONS
 
@@ -57,6 +58,26 @@ def _load_price_history(history_dir: str, symbol: str) -> List[dict]:
         if isinstance(rows, list) and rows:
             return rows
     return []
+
+
+def _band_k() -> float:
+    try:
+        return float(os.environ.get("V2_NEUTRAL_BAND_K", metrics.DEFAULT_NEUTRAL_BAND_K))
+    except (TypeError, ValueError):
+        return metrics.DEFAULT_NEUTRAL_BAND_K
+
+
+def _closes_until(rows: List[dict], issued_at: str) -> List[float]:
+    issued = _parse_time(issued_at)
+    if issued is None:
+        return []
+    closes: List[float] = []
+    for row in rows:
+        ts = _parse_time(row.get("date") or row.get("timestamp"))
+        price = row.get("price")
+        if ts is not None and price is not None and ts <= issued:
+            closes.append(float(price))
+    return closes
 
 
 def _future_prices(rows: List[dict], issued_at: str) -> Tuple[Optional[float], List[float]]:
@@ -163,12 +184,18 @@ def evaluate_forecast(fc: ForecastRecord, history_dir: str, horizon_bars: int) -
 
     end_price = future[horizon_bars - 1]
     fwd = (end_price - anchor) / anchor * 100.0
-    if direction == "up":
-        correct = fwd > 0
-    elif direction == "down":
-        correct = fwd < 0
+    band_pct = metrics.neutral_band_pct(metrics.volatility_pct(_closes_until(rows, fc.issued_at)), horizon_bars, _band_k())
+    label = metrics.label_return(fwd, band_pct)
+    if direction in metrics.DIRECTIONAL_LABELS:
+        if label == metrics.NEUTRAL_LABEL:
+            correct = None
+            notes.append(f"Move of {round(fwd, 4)}% stayed inside the {band_pct}% neutral band; not scored as directional.")
+        else:
+            correct = label == direction
+    elif direction == "flat":
+        correct = label == metrics.NEUTRAL_LABEL
     else:
-        correct = abs(fwd) < 0.3
+        correct = None
 
     inside = None
     if band and band.expected_move_pct_low is not None and band.expected_move_pct_high is not None:
@@ -192,6 +219,8 @@ def evaluate_forecast(fc: ForecastRecord, history_dir: str, horizon_bars: int) -
         inside_move_band=inside,
         invalidated=False,
         notes=notes,
+        neutral_band_pct=band_pct,
+        outcome_label=label,
     )
 
 
@@ -311,8 +340,49 @@ def build_forecast_scorecard(forecasts: List[dict], evaluations: List[dict]) -> 
         n = slot["directional"]
         slot["accuracy_pct"] = round(slot["hits"] / n * 100, 2) if n else None
 
+    band_probability = {"low": 0.55, "medium": 0.62, "high": 0.70, "abstain": 0.50}
+    probability_pairs = []
+    for e in directional:
+        low, high = e.get("probability_low"), e.get("probability_high")
+        if low is None or high is None:
+            continue
+        probability_pairs.append(((float(low) + float(high)) / 2.0, bool(e.get("direction_correct"))))
+    reliability = metrics.reliability_table(probability_pairs)
+    reliability["source"] = "forecast_probability_midpoint"
+    reliability["note"] = (
+        "Stated probability is the midpoint of probability_low/high for each horizon. "
+        "Rates that track the stated probability are the only evidence that confidence means anything."
+    )
+    reliability["neutral_rate_pct"] = (
+        round(sum(1 for e in settled if e.get("outcome_label") == metrics.NEUTRAL_LABEL) / len(settled) * 100.0, 2)
+        if settled else None
+    )
+    labels = [e.get("outcome_label") for e in directional]
+    baseline_rows = []
+    for name, predictions in (
+        ("always_up", ["up"] * len(labels)),
+        ("always_down", ["down"] * len(labels)),
+    ):
+        stats = metrics.accuracy_stats(labels, predictions)
+        stats["name"] = name
+        baseline_rows.append(stats)
+    model_stats = metrics.accuracy_stats(labels, [e.get("direction") for e in directional])
+    model_stats["name"] = "model"
+    scored = [b for b in baseline_rows if b.get("accuracy_pct") is not None]
+    best = max(scored, key=lambda b: b["accuracy_pct"]) if scored else None
+    baselines = {
+        "n": model_stats.get("n"),
+        "model": model_stats,
+        "baselines": baseline_rows,
+        "best_baseline": best.get("name") if best else None,
+        "model_skill_vs_best_baseline_pct": (
+            metrics.skill_score(model_stats.get("accuracy_pct"), best.get("accuracy_pct")) if best else None
+        ),
+        "note": "Forecast baselines use the same banded labels; persistence and EMA baselines live on the decision scorecard.",
+    }
+
     calibration = []
-    mid = {"low": 0.55, "medium": 0.62, "high": 0.70, "abstain": 0.50}
+    mid = band_probability
     for band, slot in sorted(by_band.items()):
         calibration.append({
             "probability_band": band,
@@ -337,11 +407,15 @@ def build_forecast_scorecard(forecasts: List[dict], evaluations: List[dict]) -> 
         by_horizon=by_horizon,
         by_probability_band=by_band,
         calibration=calibration,
+        reliability=reliability,
+        baselines=baselines,
         limitations=[
             "Shadow-only: forecasts never execute or alter production alerts.",
             "Direction accuracy excludes ABSTAIN rows (abstain is tracked separately).",
             "Probability bands are conservative priors pending walk-forward calibration.",
             "Do not enable self-learning until calibration is stable out of sample.",
+            "Directional accuracy excludes moves inside the volatility band; neutral_rate_pct shows how many were excluded.",
+            "A hit rate without its base rate cannot separate skill from drift; read baselines before direction_accuracy_pct.",
         ],
     )
 
