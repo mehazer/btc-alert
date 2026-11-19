@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "updated_at": "2026-11-19T12:31:06.994505+00:00",
+  "updated_at": "2026-11-19T22:55:38.192795+00:00",
   "signal_weights": {
-    "rsi": 0.94,
-    "fear_greed": 0.94,
-    "funding": 0.94,
-    "oi_price": 0.94,
-    "price": 0.94,
-    "news": 0.94,
-    "social": 0.79
+    "rsi": 0.97,
+    "fear_greed": 0.97,
+    "funding": 0.97,
+    "oi_price": 0.97,
+    "price": 0.97,
+    "news": 0.97,
+    "social": 0.82
   },
   "state_multipliers": {
     "unknown": {
@@ -24,84 +24,84 @@
       "advice": "upweight"
     },
     "fresh-long-buildup": {
-      "multiplier": 0.932,
-      "samples": 44,
-      "accuracy_pct": 38.64,
+      "multiplier": 0.916,
+      "samples": 50,
+      "accuracy_pct": 36.0,
       "advice": "downweight"
     },
     "short-covering": {
-      "multiplier": 0.855,
-      "samples": 132,
-      "accuracy_pct": 25.76,
+      "multiplier": 0.862,
+      "samples": 137,
+      "accuracy_pct": 27.01,
       "advice": "downweight"
     }
   },
   "metrics": {
-    "samples": 3,
-    "direction_accuracy": 0.0,
-    "hits": 0,
+    "samples": 4,
+    "direction_accuracy": 25.0,
+    "hits": 1,
     "trusted": false,
     "pending": 2,
     "horizon_bars": 3
   },
   "last_cycle": {
-    "newly_settled": 2,
+    "newly_settled": 1,
     "weight_updates": [
       {
         "signal": "rsi",
-        "old": 0.97,
-        "new": 0.94,
-        "samples": 2,
-        "hits": 0,
-        "hit_rate": 0.0
+        "old": 0.94,
+        "new": 0.97,
+        "samples": 1,
+        "hits": 1,
+        "hit_rate": 100.0
       },
       {
         "signal": "fear_greed",
-        "old": 0.97,
-        "new": 0.94,
-        "samples": 2,
-        "hits": 0,
-        "hit_rate": 0.0
+        "old": 0.94,
+        "new": 0.97,
+        "samples": 1,
+        "hits": 1,
+        "hit_rate": 100.0
       },
       {
         "signal": "funding",
-        "old": 0.97,
-        "new": 0.94,
-        "samples": 2,
-        "hits": 0,
-        "hit_rate": 0.0
+        "old": 0.94,
+        "new": 0.97,
+        "samples": 1,
+        "hits": 1,
+        "hit_rate": 100.0
       },
       {
         "signal": "oi_price",
-        "old": 0.97,
-        "new": 0.94,
-        "samples": 2,
-        "hits": 0,
-        "hit_rate": 0.0
+        "old": 0.94,
+        "new": 0.97,
+        "samples": 1,
+        "hits": 1,
+        "hit_rate": 100.0
       },
       {
         "signal": "price",
-        "old": 0.97,
-        "new": 0.94,
-        "samples": 2,
-        "hits": 0,
-        "hit_rate": 0.0
+        "old": 0.94,
+        "new": 0.97,
+        "samples": 1,
+        "hits": 1,
+        "hit_rate": 100.0
       },
       {
         "signal": "news",
-        "old": 0.97,
-        "new": 0.94,
-        "samples": 2,
-        "hits": 0,
-        "hit_rate": 0.0
+        "old": 0.94,
+        "new": 0.97,
+        "samples": 1,
+        "hits": 1,
+        "hit_rate": 100.0
       },
       {
         "signal": "social",
-        "old": 0.82,
-        "new": 0.79,
-        "samples": 2,
-        "hits": 0,
-        "hit_rate": 0.0
+        "old": 0.79,
+        "new": 0.82,
+        "samples": 1,
+        "hits": 1,
+        "hit_rate": 100.0
       }
     ]
   },
@@ -245,10 +245,80 @@
         "pending": 2,
         "horizon_bars": 3
       }
+    },
+    {
+      "at": "2026-11-19T22:55:38.192790+00:00",
+      "newly_settled": 1,
+      "weight_updates": [
+        {
+          "signal": "rsi",
+          "old": 0.94,
+          "new": 0.97,
+          "samples": 1,
+          "hits": 1,
+          "hit_rate": 100.0
+        },
+        {
+          "signal": "fear_greed",
+          "old": 0.94,
+          "new": 0.97,
+          "samples": 1,
+          "hits": 1,
+          "hit_rate": 100.0
+        },
+        {
+          "signal": "funding",
+          "old": 0.94,
+          "new": 0.97,
+          "samples": 1,
+          "hits": 1,
+          "hit_rate": 100.0
+        },
+        {
+          "signal": "oi_price",
+          "old": 0.94,
+          "new": 0.97,
+          "samples": 1,
+          "hits": 1,
+          "hit_rate": 100.0
+        },
+        {
+          "signal": "price",
+          "old": 0.94,
+          "new": 0.97,
+          "samples": 1,
+          "hits": 1,
+          "hit_rate": 100.0
+        },
+        {
+          "signal": "news",
+          "old": 0.94,
+          "new": 0.97,
+          "samples": 1,
+          "hits": 1,
+          "hit_rate": 100.0
+        },
+        {
+          "signal": "social",
+          "old": 0.79,
+          "new": 0.82,
+          "samples": 1,
+          "hits": 1,
+          "hit_rate": 100.0
+        }
+      ],
+      "metrics": {
+        "samples": 4,
+        "direction_accuracy": 25.0,
+        "hits": 1,
+        "trusted": false,
+        "pending": 2,
+        "horizon_bars": 3
+      }
     }
   ],
   "notes": [
-    "Need >=12 settled market-agent samples before treating weights as trusted (have 3).",
+    "Need >=12 settled market-agent samples before treating weights as trusted (have 4).",
     "Technical states underperforming: fresh-long-buildup, short-covering."
   ],
   "method": "market_agent horizon settle + technical by_state multipliers"

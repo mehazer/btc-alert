@@ -1,6 +1,6 @@
 {
   "agent": "ledger-evaluator",
-  "evaluated_at": "2026-11-19T12:31:14.101604+00:00",
+  "evaluated_at": "2026-11-19T22:55:44.061930+00:00",
   "horizons": [
     1,
     3,
@@ -8,16 +8,16 @@
     12,
     24
   ],
-  "decisions_total": 270,
-  "records_total": 1050,
-  "settled_records": 1050,
-  "pending_records": 300,
-  "directional_records": 238,
-  "directional_hits": 100,
-  "direction_accuracy_pct": 42.02,
-  "guarded_records": 248,
-  "supported_risk_warnings": 179,
-  "risk_warning_support_pct": 72.18,
+  "decisions_total": 275,
+  "records_total": 1090,
+  "settled_records": 1090,
+  "pending_records": 285,
+  "directional_records": 253,
+  "directional_hits": 102,
+  "direction_accuracy_pct": 40.32,
+  "guarded_records": 261,
+  "supported_risk_warnings": 190,
+  "risk_warning_support_pct": 72.8,
   "by_decision": {
     "OBSERVE": {
       "records": 200,
@@ -30,41 +30,41 @@
       "pending": 0
     },
     "ALERT": {
-      "records": 795,
-      "settled": 795,
+      "records": 835,
+      "settled": 835,
       "pending": 0
     }
   },
   "by_horizon": {
     "1": {
-      "settled": 265,
+      "settled": 270,
       "directional": 66,
       "hits": 34,
       "accuracy_pct": 51.52
     },
     "3": {
-      "settled": 255,
-      "directional": 58,
-      "hits": 20,
-      "accuracy_pct": 34.48
+      "settled": 260,
+      "directional": 61,
+      "hits": 21,
+      "accuracy_pct": 34.43
     },
     "6": {
-      "settled": 220,
-      "directional": 52,
+      "settled": 240,
+      "directional": 57,
       "hits": 22,
-      "accuracy_pct": 42.31
+      "accuracy_pct": 38.6
     },
     "12": {
-      "settled": 185,
-      "directional": 36,
-      "hits": 14,
-      "accuracy_pct": 38.89
+      "settled": 190,
+      "directional": 40,
+      "hits": 15,
+      "accuracy_pct": 37.5
     },
     "24": {
-      "settled": 125,
-      "directional": 26,
+      "settled": 130,
+      "directional": 29,
       "hits": 10,
-      "accuracy_pct": 38.46
+      "accuracy_pct": 34.48
     }
   },
   "limitations": [
