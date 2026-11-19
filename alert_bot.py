@@ -11,6 +11,8 @@ from pathlib import Path
 
 import requests
 
+import trending
+
 SYMBOLS = [s.strip().upper() for s in os.environ.get("SYMBOLS", "BTCUSDT,ETHUSDT,SOLUSDT").split(",") if s.strip()]
 PRIMARY = "BTCUSDT"
 INTERVAL = os.environ.get("INTERVAL", "4h")
@@ -74,7 +76,22 @@ def pct(a, b):
     return (a - b) / b * 100
 
 
+_KLINE_CACHE = {}
+
+
 def fetch_binance(symbol, limit=80):
+    """Candles for one symbol, cached for the lifetime of the process.
+
+    main() needs BTC closes for the relative-strength line and then processes
+    BTCUSDT again; without the cache the same request went out twice per run.
+    Rows are copied out so the caller's in-place OI/funding annotation cannot
+    leak into another caller.
+    """
+    key = (symbol, limit)
+    cached = _KLINE_CACHE.get(key)
+    if cached is not None:
+        history, closes = cached
+        return [dict(row) for row in history], list(closes)
     r = requests.get(BINANCE_KLINES, params={"symbol": symbol, "interval": INTERVAL, "limit": limit}, timeout=20)
     r.raise_for_status()
     rows = r.json()
@@ -84,6 +101,7 @@ def fetch_binance(symbol, limit=80):
         vol = float(row[5])
         closes.append(close)
         history.append({"price": close, "volume": vol, "oi": None, "funding": None, "ts": row[0]})
+    _KLINE_CACHE[key] = ([dict(row) for row in history], list(closes))
     return history, closes
 
 
@@ -360,7 +378,7 @@ def update_rich_history(symbol, price, volume, oi, funding, rsi_val, prev_oi, pr
     return {"path": str(p), "bars": len(rows), "oi": oi, "oi_change_pct": oi_chg, "updated_in_place": update_in_place}
 
 
-def process(symbol, fg_val, fg_label, btc_chg=None):
+def process(symbol, fg_val, fg_label, btc_chg=None, trending_data=None):
     print(f"--- {symbol} ---")
     history, closes = fetch_binance(symbol)
     oi, funding = fetch_okx(symbol)
@@ -383,6 +401,9 @@ def process(symbol, fg_val, fg_label, btc_chg=None):
 
     print(f"  OI now={oi} prev={prev_oi} chg={pct(oi, prev_oi) if oi is not None and prev_oi not in (None, 0) else None}")
     text = build_card(symbol, history, closes, oi, funding, fg_val, fg_label, btc_chg=btc_chg, prev_oi=prev_oi)
+    trending_line = trending.format_line(trending_data)
+    if trending_line:
+        text = f"{text}\n\n{trending_line}"
     ok = send_telegram(text)
     print(f"Telegram {symbol}:", "sent" if ok else "failed")
     save_hist(symbol, history)
@@ -404,9 +425,12 @@ def main():
     except Exception as e:
         print("BTC relative:", e)
 
+    trending_data = trending.fetch_trending()
+    print(f"Trending: {trending_data.get('status')} ({len(trending_data.get('items') or [])} items)")
+
     for sym in SYMBOLS:
         try:
-            process(sym, fg_val, fg_label, btc_chg=btc_chg)
+            process(sym, fg_val, fg_label, btc_chg=btc_chg, trending_data=trending_data)
             time.sleep(0.35)
         except Exception as e:
             print("Error", sym, e)

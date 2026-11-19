@@ -198,7 +198,10 @@ def ai_interpret(digests):
         return fallback
 
 
-def build_intelligence(headlines, sources):
-    ranked = enrich_and_rank(headlines)
+def build_intelligence(headlines, sources, ranked=None):
+    # `ranked` lets the caller reuse one ranking pass. Ranking twice produced two
+    # same-shaped but separately ordered lists, and the snapshot stored the second
+    # while categories were built from the first.
+    ranked = enrich_and_rank(headlines) if ranked is None else ranked
     digests = category_digest(ranked)
     return {"updated_at": datetime.now(timezone.utc).isoformat(), "source_count": len(sources or []), "headline_count": len(ranked), "categories": digests, "ai": ai_interpret(digests), "quality": getattr(enrich_and_rank, "last_quality", {}), "method": "crypto-relevance filtered, near-duplicate suppressed, quality-tiered and recency-ranked; optional grounded AI layer"}
