@@ -1,5 +1,5 @@
 {
-  "evaluated_at": "2026-11-18T16:58:13.764415+00:00",
+  "evaluated_at": "2026-11-19T01:44:19.457649+00:00",
   "phase": 7,
   "schema_version": 2,
   "horizons": [
@@ -9,15 +9,15 @@
     12,
     24
   ],
-  "decisions_total": 255,
-  "settled_evaluation_rows": 945,
+  "decisions_total": 260,
+  "settled_evaluation_rows": 990,
   "agents": {
     "technical": {
       "agent": "technical",
-      "samples": 206,
-      "hits": 86,
+      "samples": 214,
+      "hits": 88,
       "primary_metric": "direction_accuracy_pct",
-      "primary_metric_pct": 41.75,
+      "primary_metric_pct": 41.12,
       "by_state": {
         "unknown": {
           "n": 10,
@@ -30,14 +30,14 @@
           "accuracy_pct": 89.74
         },
         "fresh-long-buildup": {
-          "n": 35,
+          "n": 39,
           "hits": 14,
-          "accuracy_pct": 40.0
+          "accuracy_pct": 35.9
         },
         "short-covering": {
-          "n": 122,
-          "hits": 28,
-          "accuracy_pct": 22.95
+          "n": 126,
+          "hits": 30,
+          "accuracy_pct": 23.81
         }
       },
       "notes": [
@@ -47,13 +47,13 @@
     },
     "risk": {
       "agent": "risk",
-      "samples": 244,
-      "hits": 183,
+      "samples": 256,
+      "hits": 186,
       "primary_metric": "warning_support_pct",
-      "primary_metric_pct": 75.0,
-      "low_risk_samples": 680,
-      "false_calm_count": 434,
-      "false_calm_pct": 63.82,
+      "primary_metric_pct": 72.66,
+      "low_risk_samples": 713,
+      "false_calm_count": 456,
+      "false_calm_pct": 63.96,
       "notes": [
         "Warning support: guarded/medium/high/veto with >=1% adverse excursion.",
         "False calm: low risk with later >=2% adverse excursion."
@@ -61,9 +61,9 @@
     },
     "challenge": {
       "agent": "challenge",
-      "samples": 920,
+      "samples": 965,
       "fail_samples": 0,
-      "warn_samples": 920,
+      "warn_samples": 965,
       "pass_samples": 0,
       "hits": 0,
       "primary_metric": "fail_useful_pct",

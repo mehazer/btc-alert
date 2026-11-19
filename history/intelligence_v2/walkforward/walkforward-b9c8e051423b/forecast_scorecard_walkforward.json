@@ -1,0 +1,85 @@
+{
+  "agent": "forecast-scorecard",
+  "evaluated_at": "2026-11-19T01:44:21.146120+00:00",
+  "forecasts_total": 321,
+  "active_forecasts": 10,
+  "abstain_count": 311,
+  "abstain_rate_pct": 96.88,
+  "settled_rows": 31,
+  "pending_rows": 9,
+  "directional_settled": 31,
+  "directional_hits": 20,
+  "direction_accuracy_pct": 64.52,
+  "by_horizon": {
+    "1": {
+      "directional": 10,
+      "hits": 2,
+      "accuracy_pct": 20.0,
+      "pending": 0
+    },
+    "3": {
+      "directional": 8,
+      "hits": 6,
+      "accuracy_pct": 75.0,
+      "pending": 2
+    },
+    "6": {
+      "directional": 8,
+      "hits": 7,
+      "accuracy_pct": 87.5,
+      "pending": 2
+    },
+    "12": {
+      "directional": 5,
+      "hits": 5,
+      "accuracy_pct": 100.0,
+      "pending": 5
+    }
+  },
+  "by_probability_band": {
+    "low": {
+      "directional": 18,
+      "hits": 12,
+      "accuracy_pct": 66.67
+    },
+    "medium": {
+      "directional": 10,
+      "hits": 7,
+      "accuracy_pct": 70.0
+    },
+    "high": {
+      "directional": 3,
+      "hits": 1,
+      "accuracy_pct": 33.33
+    }
+  },
+  "calibration": [
+    {
+      "probability_band": "high",
+      "implied_mid": 0.7,
+      "empirical_hit_rate": 0.3333,
+      "n": 3,
+      "note": "Needs larger n before adjusting bands."
+    },
+    {
+      "probability_band": "low",
+      "implied_mid": 0.55,
+      "empirical_hit_rate": 0.6667000000000001,
+      "n": 18,
+      "note": "Needs larger n before adjusting bands."
+    },
+    {
+      "probability_band": "medium",
+      "implied_mid": 0.62,
+      "empirical_hit_rate": 0.7,
+      "n": 10,
+      "note": "Needs larger n before adjusting bands."
+    }
+  ],
+  "limitations": [
+    "Shadow-only: forecasts never execute or alter production alerts.",
+    "Direction accuracy excludes ABSTAIN rows (abstain is tracked separately).",
+    "Probability bands are conservative priors pending walk-forward calibration.",
+    "Do not enable self-learning until calibration is stable out of sample."
+  ]
+}

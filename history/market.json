@@ -1,17 +1,17 @@
 {
-  "updated_at": "2026-11-18T16:57:24.995977+00:00",
-  "fear_greed_value": 11,
+  "updated_at": "2026-11-19T01:44:14.535252+00:00",
+  "fear_greed_value": 10,
   "fear_greed_label": "Extreme Fear",
-  "funding_rate": 7.75225372139e-05,
-  "rsi": 30.955955021950402,
-  "oi_change_pct": 11.296843,
-  "price_change_pct": -0.989393,
-  "price": 62498.0,
-  "btc_observed_at": "2026-11-18T16:57:17.147487+00:00",
-  "news_sentiment": 3.6,
+  "funding_rate": -2.79571935736e-05,
+  "rsi": 33.603246832315946,
+  "oi_change_pct": -4.38172,
+  "price_change_pct": -0.399916,
+  "price": 62816.0,
+  "btc_observed_at": "2026-11-19T01:44:07.358971+00:00",
+  "news_sentiment": 2.2,
   "news_label": "Neutral",
-  "news_macro_score": -0.6,
-  "social_sentiment": 15.9,
+  "news_macro_score": -4.7,
+  "social_sentiment": 36.5,
   "social_status": "ok",
   "social_source": "StockTwits",
   "market_agent": {
@@ -20,9 +20,9 @@
     "intensity": 32,
     "confidence": 93,
     "reasons": [
-      "RSI zayif (31.0) -> ayi egilimi",
-      "Fear&Greed asiri korku (11)",
-      "Sosyal sentiment hafif pozitif (+16)"
+      "RSI zayif (33.6) -> ayi egilimi",
+      "Fear&Greed asiri korku (10)",
+      "Sosyal sentiment hafif pozitif (+36)"
     ],
     "bullish_points": 4.2,
     "bearish_points": 32.0,
@@ -35,25 +35,27 @@
       "news": 1.0,
       "social": 0.85
     },
-    "evaluated_at": "2026-11-18T16:57:24.995967+00:00"
+    "evaluated_at": "2026-11-19T01:44:14.535243+00:00"
   },
   "method": "BTC history + F&G + news_sentiment + StockTwits → calibrated market_agent",
   "limitations": [],
   "calibration": {
     "metrics": {
-      "samples": 0,
-      "direction_accuracy": null,
+      "samples": 1,
+      "direction_accuracy": 0.0,
+      "hits": 0,
       "trusted": false,
-      "pending": 3
+      "pending": 3,
+      "horizon_bars": 3
     },
     "signal_weights": {
-      "rsi": 1.0,
-      "fear_greed": 1.0,
-      "funding": 1.0,
-      "oi_price": 1.0,
-      "price": 1.0,
-      "news": 1.0,
-      "social": 0.85
+      "rsi": 0.97,
+      "fear_greed": 0.97,
+      "funding": 0.97,
+      "oi_price": 0.97,
+      "price": 0.97,
+      "news": 0.97,
+      "social": 0.82
     },
     "state_multipliers": {
       "unknown": {
@@ -69,26 +71,83 @@
         "advice": "upweight"
       },
       "fresh-long-buildup": {
-        "multiplier": 0.952,
-        "samples": 31,
-        "accuracy_pct": 41.94,
+        "multiplier": 0.94,
+        "samples": 35,
+        "accuracy_pct": 40.0,
         "advice": "neutral"
       },
       "short-covering": {
-        "multiplier": 0.837,
-        "samples": 118,
-        "accuracy_pct": 22.88,
+        "multiplier": 0.838,
+        "samples": 122,
+        "accuracy_pct": 22.95,
         "advice": "downweight"
       }
     },
     "last_cycle": {
-      "newly_settled": 0,
-      "weight_updates": []
+      "newly_settled": 1,
+      "weight_updates": [
+        {
+          "signal": "rsi",
+          "old": 1.0,
+          "new": 0.97,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "fear_greed",
+          "old": 1.0,
+          "new": 0.97,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "funding",
+          "old": 1.0,
+          "new": 0.97,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "oi_price",
+          "old": 1.0,
+          "new": 0.97,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "price",
+          "old": 1.0,
+          "new": 0.97,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "news",
+          "old": 1.0,
+          "new": 0.97,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "social",
+          "old": 0.85,
+          "new": 0.82,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        }
+      ]
     },
     "notes": [
-      "Need >=12 settled market-agent samples before treating weights as trusted (have 0).",
+      "Need >=12 settled market-agent samples before treating weights as trusted (have 1).",
       "Technical states underperforming: short-covering."
     ],
-    "updated_at": "2026-11-18T16:57:24.996866+00:00"
+    "updated_at": "2026-11-19T01:44:14.536205+00:00"
   }
 }
