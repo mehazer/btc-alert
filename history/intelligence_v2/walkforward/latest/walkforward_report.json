@@ -1,9 +1,9 @@
 {
-  "walkforward_batch_id": "walkforward-bab30381d772",
+  "walkforward_batch_id": "walkforward-b64398eef629",
   "evaluation_mode": "walkforward_backtest",
   "lookahead_safe": true,
-  "started_at": "2026-11-20T05:48:08.683287+00:00",
-  "completed_at": "2026-11-20T05:48:08.683290+00:00",
+  "started_at": "2026-11-20T16:43:19.794892+00:00",
+  "completed_at": "2026-11-20T16:43:19.794895+00:00",
   "symbols": [
     "BTCUSDT",
     "ETHUSDT",
@@ -11,17 +11,17 @@
   ],
   "timeframe": "4h",
   "history_lengths": {
-    "BTCUSDT": 131,
-    "ETHUSDT": 131,
-    "SOLUSDT": 131
+    "BTCUSDT": 132,
+    "ETHUSDT": 132,
+    "SOLUSDT": 132
   },
-  "common_bars": 131,
+  "common_bars": 132,
   "warmup_bars": 20,
-  "eligible_timestamps": 111,
-  "decision_count": 333,
-  "evaluation_count": 1665,
+  "eligible_timestamps": 112,
+  "decision_count": 336,
+  "evaluation_count": 1680,
   "coverage": {
-    "settled": 1527,
+    "settled": 1542,
     "pending": 138,
     "insufficient_data": 0
   },
@@ -31,40 +31,40 @@
     "source_order_normalized": true,
     "future_rows_used_for_decisions": false
   },
-  "determinism_hash": "db35a7e16552494e5feab800c6280b1ad095c2bbb845bc08d069a4502c225837",
+  "determinism_hash": "a8dee5f290c0b59cdc28b2168c7c7293ac082296625a22ed6d90c5c94d739b8a",
   "scorecard": {
-    "settled_records": 1527,
+    "settled_records": 1542,
     "pending_records": 138,
     "directional_records": 360,
     "directional_hits": 185,
     "direction_accuracy_pct": 51.39,
     "by_horizon": {
       "1": {
-        "settled": 330,
+        "settled": 333,
         "directional": 79,
         "hits": 42,
         "accuracy_pct": 53.16
       },
       "3": {
-        "settled": 324,
+        "settled": 327,
         "directional": 79,
         "hits": 37,
         "accuracy_pct": 46.84
       },
       "6": {
-        "settled": 315,
+        "settled": 318,
         "directional": 73,
         "hits": 38,
         "accuracy_pct": 52.05
       },
       "12": {
-        "settled": 297,
+        "settled": 300,
         "directional": 67,
         "hits": 35,
         "accuracy_pct": 52.24
       },
       "24": {
-        "settled": 261,
+        "settled": 264,
         "directional": 62,
         "hits": 33,
         "accuracy_pct": 53.23
@@ -77,8 +77,8 @@
         "pending": 0
       },
       "ALERT": {
-        "records": 840,
-        "settled": 702,
+        "records": 855,
+        "settled": 717,
         "pending": 138
       }
     }
@@ -93,19 +93,19 @@
     "Forecast self-learning remains disabled until calibration is stable."
   ],
   "forecast": {
-    "forecasts_total": 333,
+    "forecasts_total": 336,
     "active_forecasts": 13,
-    "abstain_count": 320,
-    "abstain_rate_pct": 96.1,
-    "directional_settled": 37,
-    "directional_hits": 23,
-    "direction_accuracy_pct": 62.16,
+    "abstain_count": 323,
+    "abstain_rate_pct": 96.13,
+    "directional_settled": 41,
+    "directional_hits": 27,
+    "direction_accuracy_pct": 65.85,
     "by_horizon": {
       "1": {
-        "directional": 11,
-        "hits": 3,
-        "accuracy_pct": 27.27,
-        "pending": 2
+        "directional": 13,
+        "hits": 5,
+        "accuracy_pct": 38.46,
+        "pending": 0
       },
       "3": {
         "directional": 10,
@@ -114,10 +114,10 @@
         "pending": 3
       },
       "6": {
-        "directional": 8,
-        "hits": 7,
-        "accuracy_pct": 87.5,
-        "pending": 5
+        "directional": 10,
+        "hits": 9,
+        "accuracy_pct": 90.0,
+        "pending": 3
       },
       "12": {
         "directional": 8,
@@ -133,9 +133,9 @@
         "accuracy_pct": 66.67
       },
       "medium": {
-        "directional": 12,
-        "hits": 7,
-        "accuracy_pct": 58.33
+        "directional": 16,
+        "hits": 11,
+        "accuracy_pct": 68.75
       },
       "high": {
         "directional": 4,
@@ -161,8 +161,8 @@
       {
         "probability_band": "medium",
         "implied_mid": 0.62,
-        "empirical_hit_rate": 0.5832999999999999,
-        "n": 12,
+        "empirical_hit_rate": 0.6875,
+        "n": 16,
         "note": "Needs larger n before adjusting bands."
       }
     ]

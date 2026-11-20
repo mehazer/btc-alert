@@ -11292,18 +11292,16 @@
     "symbol": "ZECUSDT",
     "timeframe": "4h",
     "horizon_bars": 12,
-    "status": "pending",
+    "status": "settled",
     "issued_at": "2026-11-16T17:57:55.482899+00:00",
     "direction": "up",
     "probability_low": 0.5,
     "probability_high": 0.54,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Only 11/12 future bars available."
-    ]
+    "forward_return_pct": -12.2341,
+    "direction_correct": false,
+    "inside_move_band": false,
+    "invalidated": false,
+    "notes": []
   },
   {
     "agent": "forecast-evaluator",
@@ -11366,18 +11364,16 @@
     "symbol": "ZAMAUSDT",
     "timeframe": "4h",
     "horizon_bars": 12,
-    "status": "pending",
+    "status": "settled",
     "issued_at": "2026-11-16T17:57:55.483689+00:00",
     "direction": "up",
     "probability_low": 0.61,
     "probability_high": 0.7,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Only 11/12 future bars available."
-    ]
+    "forward_return_pct": 3.7071,
+    "direction_correct": true,
+    "inside_move_band": true,
+    "invalidated": false,
+    "notes": []
   },
   {
     "agent": "forecast-evaluator",
@@ -13610,7 +13606,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 7/12 future bars available."
+      "Only 8/12 future bars available."
     ]
   },
   {
@@ -13684,7 +13680,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 7/12 future bars available."
+      "Only 8/12 future bars available."
     ]
   },
   {
@@ -13758,7 +13754,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 7/12 future bars available."
+      "Only 8/12 future bars available."
     ]
   },
   {
@@ -15004,18 +15000,16 @@
     "symbol": "BTCUSDT",
     "timeframe": "4h",
     "horizon_bars": 6,
-    "status": "pending",
+    "status": "settled",
     "issued_at": "2026-11-18T16:57:30.939704+00:00",
     "direction": "down",
     "probability_low": 0.55,
     "probability_high": 0.64,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Only 5/6 future bars available."
-    ]
+    "forward_return_pct": -4.8703,
+    "direction_correct": true,
+    "inside_move_band": false,
+    "invalidated": false,
+    "notes": []
   },
   {
     "agent": "forecast-evaluator",
@@ -15034,7 +15028,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 5/12 future bars available."
+      "Only 6/12 future bars available."
     ]
   },
   {
@@ -15080,18 +15074,16 @@
     "symbol": "ETHUSDT",
     "timeframe": "4h",
     "horizon_bars": 6,
-    "status": "pending",
+    "status": "settled",
     "issued_at": "2026-11-18T16:57:30.942110+00:00",
     "direction": "down",
     "probability_low": 0.55,
     "probability_high": 0.64,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Only 5/6 future bars available."
-    ]
+    "forward_return_pct": -5.6954,
+    "direction_correct": true,
+    "inside_move_band": false,
+    "invalidated": false,
+    "notes": []
   },
   {
     "agent": "forecast-evaluator",
@@ -15110,7 +15102,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 5/12 future bars available."
+      "Only 6/12 future bars available."
     ]
   },
   {
@@ -15396,18 +15388,16 @@
     "symbol": "BTCUSDT",
     "timeframe": "4h",
     "horizon_bars": 6,
-    "status": "pending",
+    "status": "settled",
     "issued_at": "2026-11-18T16:58:13.369627+00:00",
     "direction": "down",
     "probability_low": 0.55,
     "probability_high": 0.64,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Only 5/6 future bars available."
-    ]
+    "forward_return_pct": -4.8703,
+    "direction_correct": true,
+    "inside_move_band": false,
+    "invalidated": false,
+    "notes": []
   },
   {
     "agent": "forecast-evaluator",
@@ -15426,7 +15416,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 5/12 future bars available."
+      "Only 6/12 future bars available."
     ]
   },
   {
@@ -15472,18 +15462,16 @@
     "symbol": "ETHUSDT",
     "timeframe": "4h",
     "horizon_bars": 6,
-    "status": "pending",
+    "status": "settled",
     "issued_at": "2026-11-18T16:58:13.371650+00:00",
     "direction": "down",
     "probability_low": 0.55,
     "probability_high": 0.64,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Only 5/6 future bars available."
-    ]
+    "forward_return_pct": -5.6954,
+    "direction_correct": true,
+    "inside_move_band": false,
+    "invalidated": false,
+    "notes": []
   },
   {
     "agent": "forecast-evaluator",
@@ -15502,7 +15490,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 5/12 future bars available."
+      "Only 6/12 future bars available."
     ]
   },
   {
@@ -16980,7 +16968,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 1/3 future bars available."
+      "Only 2/3 future bars available."
     ]
   },
   {
@@ -17000,7 +16988,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 1/6 future bars available."
+      "Only 2/6 future bars available."
     ]
   },
   {
@@ -17020,428 +17008,424 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
+      "Only 2/12 future bars available."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-e0438a4c67a1",
+    "run_id": "shadow-20261119T225539Z-627eea28",
+    "symbol": "ETHUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 1,
+    "status": "abstained",
+    "issued_at": "2026-11-19T22:55:43.652265+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-e0438a4c67a1",
+    "run_id": "shadow-20261119T225539Z-627eea28",
+    "symbol": "ETHUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 3,
+    "status": "abstained",
+    "issued_at": "2026-11-19T22:55:43.652265+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-e0438a4c67a1",
+    "run_id": "shadow-20261119T225539Z-627eea28",
+    "symbol": "ETHUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 6,
+    "status": "abstained",
+    "issued_at": "2026-11-19T22:55:43.652265+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-e0438a4c67a1",
+    "run_id": "shadow-20261119T225539Z-627eea28",
+    "symbol": "ETHUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 12,
+    "status": "abstained",
+    "issued_at": "2026-11-19T22:55:43.652265+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-508abe32b6a3",
+    "run_id": "shadow-20261119T225539Z-627eea28",
+    "symbol": "SOLUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 1,
+    "status": "abstained",
+    "issued_at": "2026-11-19T22:55:43.653171+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-508abe32b6a3",
+    "run_id": "shadow-20261119T225539Z-627eea28",
+    "symbol": "SOLUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 3,
+    "status": "abstained",
+    "issued_at": "2026-11-19T22:55:43.653171+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-508abe32b6a3",
+    "run_id": "shadow-20261119T225539Z-627eea28",
+    "symbol": "SOLUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 6,
+    "status": "abstained",
+    "issued_at": "2026-11-19T22:55:43.653171+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-508abe32b6a3",
+    "run_id": "shadow-20261119T225539Z-627eea28",
+    "symbol": "SOLUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 12,
+    "status": "abstained",
+    "issued_at": "2026-11-19T22:55:43.653171+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-81f1a617bbc0",
+    "run_id": "shadow-20261119T225539Z-627eea28",
+    "symbol": "ZECUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 1,
+    "status": "abstained",
+    "issued_at": "2026-11-19T22:55:43.654071+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-81f1a617bbc0",
+    "run_id": "shadow-20261119T225539Z-627eea28",
+    "symbol": "ZECUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 3,
+    "status": "abstained",
+    "issued_at": "2026-11-19T22:55:43.654071+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-81f1a617bbc0",
+    "run_id": "shadow-20261119T225539Z-627eea28",
+    "symbol": "ZECUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 6,
+    "status": "abstained",
+    "issued_at": "2026-11-19T22:55:43.654071+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-81f1a617bbc0",
+    "run_id": "shadow-20261119T225539Z-627eea28",
+    "symbol": "ZECUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 12,
+    "status": "abstained",
+    "issued_at": "2026-11-19T22:55:43.654071+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-95a378f94de2",
+    "run_id": "shadow-20261119T225539Z-627eea28",
+    "symbol": "ZAMAUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 1,
+    "status": "abstained",
+    "issued_at": "2026-11-19T22:55:43.654951+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-95a378f94de2",
+    "run_id": "shadow-20261119T225539Z-627eea28",
+    "symbol": "ZAMAUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 3,
+    "status": "abstained",
+    "issued_at": "2026-11-19T22:55:43.654951+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-95a378f94de2",
+    "run_id": "shadow-20261119T225539Z-627eea28",
+    "symbol": "ZAMAUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 6,
+    "status": "abstained",
+    "issued_at": "2026-11-19T22:55:43.654951+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-95a378f94de2",
+    "run_id": "shadow-20261119T225539Z-627eea28",
+    "symbol": "ZAMAUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 12,
+    "status": "abstained",
+    "issued_at": "2026-11-19T22:55:43.654951+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-124d98f9105f",
+    "run_id": "shadow-20261120T054802Z-6100e974",
+    "symbol": "BTCUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 1,
+    "status": "settled",
+    "issued_at": "2026-11-20T05:48:06.103980+00:00",
+    "direction": "down",
+    "probability_low": 0.58,
+    "probability_high": 0.66,
+    "forward_return_pct": -3.9141,
+    "direction_correct": true,
+    "inside_move_band": false,
+    "invalidated": false,
+    "notes": []
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-124d98f9105f",
+    "run_id": "shadow-20261120T054802Z-6100e974",
+    "symbol": "BTCUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 3,
+    "status": "pending",
+    "issued_at": "2026-11-20T05:48:06.103980+00:00",
+    "direction": "down",
+    "probability_low": 0.58,
+    "probability_high": 0.66,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 1/3 future bars available."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-124d98f9105f",
+    "run_id": "shadow-20261120T054802Z-6100e974",
+    "symbol": "BTCUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 6,
+    "status": "pending",
+    "issued_at": "2026-11-20T05:48:06.103980+00:00",
+    "direction": "down",
+    "probability_low": 0.55,
+    "probability_high": 0.64,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 1/6 future bars available."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-124d98f9105f",
+    "run_id": "shadow-20261120T054802Z-6100e974",
+    "symbol": "BTCUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 12,
+    "status": "pending",
+    "issued_at": "2026-11-20T05:48:06.103980+00:00",
+    "direction": "down",
+    "probability_low": 0.53,
+    "probability_high": 0.62,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
       "Only 1/12 future bars available."
     ]
   },
   {
     "agent": "forecast-evaluator",
-    "forecast_id": "fc-e0438a4c67a1",
-    "run_id": "shadow-20261119T225539Z-627eea28",
-    "symbol": "ETHUSDT",
-    "timeframe": "4h",
-    "horizon_bars": 1,
-    "status": "abstained",
-    "issued_at": "2026-11-19T22:55:43.652265+00:00",
-    "direction": "abstain",
-    "probability_low": 0.45,
-    "probability_high": 0.55,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Forecast abstained — not scored for direction accuracy."
-    ]
-  },
-  {
-    "agent": "forecast-evaluator",
-    "forecast_id": "fc-e0438a4c67a1",
-    "run_id": "shadow-20261119T225539Z-627eea28",
-    "symbol": "ETHUSDT",
-    "timeframe": "4h",
-    "horizon_bars": 3,
-    "status": "abstained",
-    "issued_at": "2026-11-19T22:55:43.652265+00:00",
-    "direction": "abstain",
-    "probability_low": 0.45,
-    "probability_high": 0.55,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Forecast abstained — not scored for direction accuracy."
-    ]
-  },
-  {
-    "agent": "forecast-evaluator",
-    "forecast_id": "fc-e0438a4c67a1",
-    "run_id": "shadow-20261119T225539Z-627eea28",
-    "symbol": "ETHUSDT",
-    "timeframe": "4h",
-    "horizon_bars": 6,
-    "status": "abstained",
-    "issued_at": "2026-11-19T22:55:43.652265+00:00",
-    "direction": "abstain",
-    "probability_low": 0.45,
-    "probability_high": 0.55,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Forecast abstained — not scored for direction accuracy."
-    ]
-  },
-  {
-    "agent": "forecast-evaluator",
-    "forecast_id": "fc-e0438a4c67a1",
-    "run_id": "shadow-20261119T225539Z-627eea28",
-    "symbol": "ETHUSDT",
-    "timeframe": "4h",
-    "horizon_bars": 12,
-    "status": "abstained",
-    "issued_at": "2026-11-19T22:55:43.652265+00:00",
-    "direction": "abstain",
-    "probability_low": 0.45,
-    "probability_high": 0.55,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Forecast abstained — not scored for direction accuracy."
-    ]
-  },
-  {
-    "agent": "forecast-evaluator",
-    "forecast_id": "fc-508abe32b6a3",
-    "run_id": "shadow-20261119T225539Z-627eea28",
-    "symbol": "SOLUSDT",
-    "timeframe": "4h",
-    "horizon_bars": 1,
-    "status": "abstained",
-    "issued_at": "2026-11-19T22:55:43.653171+00:00",
-    "direction": "abstain",
-    "probability_low": 0.45,
-    "probability_high": 0.55,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Forecast abstained — not scored for direction accuracy."
-    ]
-  },
-  {
-    "agent": "forecast-evaluator",
-    "forecast_id": "fc-508abe32b6a3",
-    "run_id": "shadow-20261119T225539Z-627eea28",
-    "symbol": "SOLUSDT",
-    "timeframe": "4h",
-    "horizon_bars": 3,
-    "status": "abstained",
-    "issued_at": "2026-11-19T22:55:43.653171+00:00",
-    "direction": "abstain",
-    "probability_low": 0.45,
-    "probability_high": 0.55,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Forecast abstained — not scored for direction accuracy."
-    ]
-  },
-  {
-    "agent": "forecast-evaluator",
-    "forecast_id": "fc-508abe32b6a3",
-    "run_id": "shadow-20261119T225539Z-627eea28",
-    "symbol": "SOLUSDT",
-    "timeframe": "4h",
-    "horizon_bars": 6,
-    "status": "abstained",
-    "issued_at": "2026-11-19T22:55:43.653171+00:00",
-    "direction": "abstain",
-    "probability_low": 0.45,
-    "probability_high": 0.55,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Forecast abstained — not scored for direction accuracy."
-    ]
-  },
-  {
-    "agent": "forecast-evaluator",
-    "forecast_id": "fc-508abe32b6a3",
-    "run_id": "shadow-20261119T225539Z-627eea28",
-    "symbol": "SOLUSDT",
-    "timeframe": "4h",
-    "horizon_bars": 12,
-    "status": "abstained",
-    "issued_at": "2026-11-19T22:55:43.653171+00:00",
-    "direction": "abstain",
-    "probability_low": 0.45,
-    "probability_high": 0.55,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Forecast abstained — not scored for direction accuracy."
-    ]
-  },
-  {
-    "agent": "forecast-evaluator",
-    "forecast_id": "fc-81f1a617bbc0",
-    "run_id": "shadow-20261119T225539Z-627eea28",
-    "symbol": "ZECUSDT",
-    "timeframe": "4h",
-    "horizon_bars": 1,
-    "status": "abstained",
-    "issued_at": "2026-11-19T22:55:43.654071+00:00",
-    "direction": "abstain",
-    "probability_low": 0.45,
-    "probability_high": 0.55,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Forecast abstained — not scored for direction accuracy."
-    ]
-  },
-  {
-    "agent": "forecast-evaluator",
-    "forecast_id": "fc-81f1a617bbc0",
-    "run_id": "shadow-20261119T225539Z-627eea28",
-    "symbol": "ZECUSDT",
-    "timeframe": "4h",
-    "horizon_bars": 3,
-    "status": "abstained",
-    "issued_at": "2026-11-19T22:55:43.654071+00:00",
-    "direction": "abstain",
-    "probability_low": 0.45,
-    "probability_high": 0.55,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Forecast abstained — not scored for direction accuracy."
-    ]
-  },
-  {
-    "agent": "forecast-evaluator",
-    "forecast_id": "fc-81f1a617bbc0",
-    "run_id": "shadow-20261119T225539Z-627eea28",
-    "symbol": "ZECUSDT",
-    "timeframe": "4h",
-    "horizon_bars": 6,
-    "status": "abstained",
-    "issued_at": "2026-11-19T22:55:43.654071+00:00",
-    "direction": "abstain",
-    "probability_low": 0.45,
-    "probability_high": 0.55,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Forecast abstained — not scored for direction accuracy."
-    ]
-  },
-  {
-    "agent": "forecast-evaluator",
-    "forecast_id": "fc-81f1a617bbc0",
-    "run_id": "shadow-20261119T225539Z-627eea28",
-    "symbol": "ZECUSDT",
-    "timeframe": "4h",
-    "horizon_bars": 12,
-    "status": "abstained",
-    "issued_at": "2026-11-19T22:55:43.654071+00:00",
-    "direction": "abstain",
-    "probability_low": 0.45,
-    "probability_high": 0.55,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Forecast abstained — not scored for direction accuracy."
-    ]
-  },
-  {
-    "agent": "forecast-evaluator",
-    "forecast_id": "fc-95a378f94de2",
-    "run_id": "shadow-20261119T225539Z-627eea28",
-    "symbol": "ZAMAUSDT",
-    "timeframe": "4h",
-    "horizon_bars": 1,
-    "status": "abstained",
-    "issued_at": "2026-11-19T22:55:43.654951+00:00",
-    "direction": "abstain",
-    "probability_low": 0.45,
-    "probability_high": 0.55,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Forecast abstained — not scored for direction accuracy."
-    ]
-  },
-  {
-    "agent": "forecast-evaluator",
-    "forecast_id": "fc-95a378f94de2",
-    "run_id": "shadow-20261119T225539Z-627eea28",
-    "symbol": "ZAMAUSDT",
-    "timeframe": "4h",
-    "horizon_bars": 3,
-    "status": "abstained",
-    "issued_at": "2026-11-19T22:55:43.654951+00:00",
-    "direction": "abstain",
-    "probability_low": 0.45,
-    "probability_high": 0.55,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Forecast abstained — not scored for direction accuracy."
-    ]
-  },
-  {
-    "agent": "forecast-evaluator",
-    "forecast_id": "fc-95a378f94de2",
-    "run_id": "shadow-20261119T225539Z-627eea28",
-    "symbol": "ZAMAUSDT",
-    "timeframe": "4h",
-    "horizon_bars": 6,
-    "status": "abstained",
-    "issued_at": "2026-11-19T22:55:43.654951+00:00",
-    "direction": "abstain",
-    "probability_low": 0.45,
-    "probability_high": 0.55,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Forecast abstained — not scored for direction accuracy."
-    ]
-  },
-  {
-    "agent": "forecast-evaluator",
-    "forecast_id": "fc-95a378f94de2",
-    "run_id": "shadow-20261119T225539Z-627eea28",
-    "symbol": "ZAMAUSDT",
-    "timeframe": "4h",
-    "horizon_bars": 12,
-    "status": "abstained",
-    "issued_at": "2026-11-19T22:55:43.654951+00:00",
-    "direction": "abstain",
-    "probability_low": 0.45,
-    "probability_high": 0.55,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Forecast abstained — not scored for direction accuracy."
-    ]
-  },
-  {
-    "agent": "forecast-evaluator",
-    "forecast_id": "fc-124d98f9105f",
-    "run_id": "shadow-20261120T054802Z-6100e974",
-    "symbol": "BTCUSDT",
-    "timeframe": "4h",
-    "horizon_bars": 1,
-    "status": "pending",
-    "issued_at": "2026-11-20T05:48:06.103980+00:00",
-    "direction": "down",
-    "probability_low": 0.58,
-    "probability_high": 0.66,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Only 0/1 future bars available."
-    ]
-  },
-  {
-    "agent": "forecast-evaluator",
-    "forecast_id": "fc-124d98f9105f",
-    "run_id": "shadow-20261120T054802Z-6100e974",
-    "symbol": "BTCUSDT",
-    "timeframe": "4h",
-    "horizon_bars": 3,
-    "status": "pending",
-    "issued_at": "2026-11-20T05:48:06.103980+00:00",
-    "direction": "down",
-    "probability_low": 0.58,
-    "probability_high": 0.66,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Only 0/3 future bars available."
-    ]
-  },
-  {
-    "agent": "forecast-evaluator",
-    "forecast_id": "fc-124d98f9105f",
-    "run_id": "shadow-20261120T054802Z-6100e974",
-    "symbol": "BTCUSDT",
-    "timeframe": "4h",
-    "horizon_bars": 6,
-    "status": "pending",
-    "issued_at": "2026-11-20T05:48:06.103980+00:00",
-    "direction": "down",
-    "probability_low": 0.55,
-    "probability_high": 0.64,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Only 0/6 future bars available."
-    ]
-  },
-  {
-    "agent": "forecast-evaluator",
-    "forecast_id": "fc-124d98f9105f",
-    "run_id": "shadow-20261120T054802Z-6100e974",
-    "symbol": "BTCUSDT",
-    "timeframe": "4h",
-    "horizon_bars": 12,
-    "status": "pending",
-    "issued_at": "2026-11-20T05:48:06.103980+00:00",
-    "direction": "down",
-    "probability_low": 0.53,
-    "probability_high": 0.62,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Only 0/12 future bars available."
-    ]
-  },
-  {
-    "agent": "forecast-evaluator",
     "forecast_id": "fc-52e99aadfdea",
     "run_id": "shadow-20261120T054802Z-6100e974",
     "symbol": "ETHUSDT",
     "timeframe": "4h",
     "horizon_bars": 1,
-    "status": "pending",
+    "status": "settled",
     "issued_at": "2026-11-20T05:48:06.106392+00:00",
     "direction": "down",
     "probability_low": 0.58,
     "probability_high": 0.66,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Only 0/1 future bars available."
-    ]
+    "forward_return_pct": -5.4816,
+    "direction_correct": true,
+    "inside_move_band": false,
+    "invalidated": false,
+    "notes": []
   },
   {
     "agent": "forecast-evaluator",
@@ -17460,7 +17444,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/3 future bars available."
+      "Only 1/3 future bars available."
     ]
   },
   {
@@ -17480,7 +17464,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/6 future bars available."
+      "Only 1/6 future bars available."
     ]
   },
   {
@@ -17500,7 +17484,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/12 future bars available."
+      "Only 1/12 future bars available."
     ]
   },
   {
@@ -17590,18 +17574,16 @@
     "symbol": "ZECUSDT",
     "timeframe": "4h",
     "horizon_bars": 1,
-    "status": "pending",
+    "status": "settled",
     "issued_at": "2026-11-20T05:48:06.108822+00:00",
     "direction": "down",
     "probability_low": 0.66,
     "probability_high": 0.74,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Only 0/1 future bars available."
-    ]
+    "forward_return_pct": -9.1296,
+    "direction_correct": true,
+    "inside_move_band": false,
+    "invalidated": false,
+    "notes": []
   },
   {
     "agent": "forecast-evaluator",
@@ -17620,7 +17602,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/3 future bars available."
+      "Only 1/3 future bars available."
     ]
   },
   {
@@ -17640,7 +17622,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/6 future bars available."
+      "Only 1/6 future bars available."
     ]
   },
   {
@@ -17660,7 +17642,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/12 future bars available."
+      "Only 1/12 future bars available."
     ]
   },
   {
@@ -17670,18 +17652,16 @@
     "symbol": "ZAMAUSDT",
     "timeframe": "4h",
     "horizon_bars": 1,
-    "status": "pending",
+    "status": "settled",
     "issued_at": "2026-11-20T05:48:06.110012+00:00",
     "direction": "up",
     "probability_low": 0.52,
     "probability_high": 0.58,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Only 0/1 future bars available."
-    ]
+    "forward_return_pct": -2.7472,
+    "direction_correct": false,
+    "inside_move_band": false,
+    "invalidated": false,
+    "notes": []
   },
   {
     "agent": "forecast-evaluator",
@@ -17700,7 +17680,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/3 future bars available."
+      "Only 1/3 future bars available."
     ]
   },
   {
@@ -17720,7 +17700,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/6 future bars available."
+      "Only 1/6 future bars available."
     ]
   },
   {
@@ -17740,7 +17720,407 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/12 future bars available."
+      "Only 1/12 future bars available."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-a318bd02bffa",
+    "run_id": "shadow-20261120T164313Z-3774bbb5",
+    "symbol": "BTCUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 1,
+    "status": "abstained",
+    "issued_at": "2026-11-20T16:43:17.199560+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-a318bd02bffa",
+    "run_id": "shadow-20261120T164313Z-3774bbb5",
+    "symbol": "BTCUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 3,
+    "status": "abstained",
+    "issued_at": "2026-11-20T16:43:17.199560+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-a318bd02bffa",
+    "run_id": "shadow-20261120T164313Z-3774bbb5",
+    "symbol": "BTCUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 6,
+    "status": "abstained",
+    "issued_at": "2026-11-20T16:43:17.199560+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-a318bd02bffa",
+    "run_id": "shadow-20261120T164313Z-3774bbb5",
+    "symbol": "BTCUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 12,
+    "status": "abstained",
+    "issued_at": "2026-11-20T16:43:17.199560+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-3819c7eb5737",
+    "run_id": "shadow-20261120T164313Z-3774bbb5",
+    "symbol": "ETHUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 1,
+    "status": "abstained",
+    "issued_at": "2026-11-20T16:43:17.201965+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-3819c7eb5737",
+    "run_id": "shadow-20261120T164313Z-3774bbb5",
+    "symbol": "ETHUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 3,
+    "status": "abstained",
+    "issued_at": "2026-11-20T16:43:17.201965+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-3819c7eb5737",
+    "run_id": "shadow-20261120T164313Z-3774bbb5",
+    "symbol": "ETHUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 6,
+    "status": "abstained",
+    "issued_at": "2026-11-20T16:43:17.201965+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-3819c7eb5737",
+    "run_id": "shadow-20261120T164313Z-3774bbb5",
+    "symbol": "ETHUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 12,
+    "status": "abstained",
+    "issued_at": "2026-11-20T16:43:17.201965+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-c601c33cd5ad",
+    "run_id": "shadow-20261120T164313Z-3774bbb5",
+    "symbol": "SOLUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 1,
+    "status": "abstained",
+    "issued_at": "2026-11-20T16:43:17.203160+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-c601c33cd5ad",
+    "run_id": "shadow-20261120T164313Z-3774bbb5",
+    "symbol": "SOLUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 3,
+    "status": "abstained",
+    "issued_at": "2026-11-20T16:43:17.203160+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-c601c33cd5ad",
+    "run_id": "shadow-20261120T164313Z-3774bbb5",
+    "symbol": "SOLUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 6,
+    "status": "abstained",
+    "issued_at": "2026-11-20T16:43:17.203160+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-c601c33cd5ad",
+    "run_id": "shadow-20261120T164313Z-3774bbb5",
+    "symbol": "SOLUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 12,
+    "status": "abstained",
+    "issued_at": "2026-11-20T16:43:17.203160+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-adf9ce5ac0bc",
+    "run_id": "shadow-20261120T164313Z-3774bbb5",
+    "symbol": "ZECUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 1,
+    "status": "abstained",
+    "issued_at": "2026-11-20T16:43:17.204346+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-adf9ce5ac0bc",
+    "run_id": "shadow-20261120T164313Z-3774bbb5",
+    "symbol": "ZECUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 3,
+    "status": "abstained",
+    "issued_at": "2026-11-20T16:43:17.204346+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-adf9ce5ac0bc",
+    "run_id": "shadow-20261120T164313Z-3774bbb5",
+    "symbol": "ZECUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 6,
+    "status": "abstained",
+    "issued_at": "2026-11-20T16:43:17.204346+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-adf9ce5ac0bc",
+    "run_id": "shadow-20261120T164313Z-3774bbb5",
+    "symbol": "ZECUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 12,
+    "status": "abstained",
+    "issued_at": "2026-11-20T16:43:17.204346+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-9f7b598c28b4",
+    "run_id": "shadow-20261120T164313Z-3774bbb5",
+    "symbol": "ZAMAUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 1,
+    "status": "abstained",
+    "issued_at": "2026-11-20T16:43:17.205540+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-9f7b598c28b4",
+    "run_id": "shadow-20261120T164313Z-3774bbb5",
+    "symbol": "ZAMAUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 3,
+    "status": "abstained",
+    "issued_at": "2026-11-20T16:43:17.205540+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-9f7b598c28b4",
+    "run_id": "shadow-20261120T164313Z-3774bbb5",
+    "symbol": "ZAMAUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 6,
+    "status": "abstained",
+    "issued_at": "2026-11-20T16:43:17.205540+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
+    ]
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-9f7b598c28b4",
+    "run_id": "shadow-20261120T164313Z-3774bbb5",
+    "symbol": "ZAMAUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 12,
+    "status": "abstained",
+    "issued_at": "2026-11-20T16:43:17.205540+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Forecast abstained — not scored for direction accuracy."
     ]
   }
 ]
