@@ -1,9 +1,9 @@
 {
-  "walkforward_batch_id": "walkforward-5b7a1d6b0c5f",
+  "walkforward_batch_id": "walkforward-bab30381d772",
   "evaluation_mode": "walkforward_backtest",
   "lookahead_safe": true,
-  "started_at": "2026-11-19T22:55:45.584196+00:00",
-  "completed_at": "2026-11-19T22:55:45.584199+00:00",
+  "started_at": "2026-11-20T05:48:08.683287+00:00",
+  "completed_at": "2026-11-20T05:48:08.683290+00:00",
   "symbols": [
     "BTCUSDT",
     "ETHUSDT",
@@ -11,17 +11,17 @@
   ],
   "timeframe": "4h",
   "history_lengths": {
-    "BTCUSDT": 130,
-    "ETHUSDT": 130,
-    "SOLUSDT": 130
+    "BTCUSDT": 131,
+    "ETHUSDT": 131,
+    "SOLUSDT": 131
   },
-  "common_bars": 130,
+  "common_bars": 131,
   "warmup_bars": 20,
-  "eligible_timestamps": 110,
-  "decision_count": 330,
-  "evaluation_count": 1650,
+  "eligible_timestamps": 111,
+  "decision_count": 333,
+  "evaluation_count": 1665,
   "coverage": {
-    "settled": 1512,
+    "settled": 1527,
     "pending": 138,
     "insufficient_data": 0
   },
@@ -31,40 +31,40 @@
     "source_order_normalized": true,
     "future_rows_used_for_decisions": false
   },
-  "determinism_hash": "e77980c13fad1e7fef4e28458c588113a5d1c915ecdcf0db99e6c37389fa4a81",
+  "determinism_hash": "db35a7e16552494e5feab800c6280b1ad095c2bbb845bc08d069a4502c225837",
   "scorecard": {
-    "settled_records": 1512,
+    "settled_records": 1527,
     "pending_records": 138,
-    "directional_records": 357,
+    "directional_records": 360,
     "directional_hits": 185,
-    "direction_accuracy_pct": 51.82,
+    "direction_accuracy_pct": 51.39,
     "by_horizon": {
       "1": {
-        "settled": 327,
+        "settled": 330,
         "directional": 79,
         "hits": 42,
         "accuracy_pct": 53.16
       },
       "3": {
-        "settled": 321,
-        "directional": 76,
+        "settled": 324,
+        "directional": 79,
         "hits": 37,
-        "accuracy_pct": 48.68
+        "accuracy_pct": 46.84
       },
       "6": {
-        "settled": 312,
+        "settled": 315,
         "directional": 73,
         "hits": 38,
         "accuracy_pct": 52.05
       },
       "12": {
-        "settled": 294,
+        "settled": 297,
         "directional": 67,
         "hits": 35,
         "accuracy_pct": 52.24
       },
       "24": {
-        "settled": 258,
+        "settled": 261,
         "directional": 62,
         "hits": 33,
         "accuracy_pct": 53.23
@@ -77,8 +77,8 @@
         "pending": 0
       },
       "ALERT": {
-        "records": 825,
-        "settled": 687,
+        "records": 840,
+        "settled": 702,
         "pending": 138
       }
     }
@@ -93,44 +93,44 @@
     "Forecast self-learning remains disabled until calibration is stable."
   ],
   "forecast": {
-    "forecasts_total": 330,
-    "active_forecasts": 11,
-    "abstain_count": 319,
-    "abstain_rate_pct": 96.67,
-    "directional_settled": 34,
-    "directional_hits": 20,
-    "direction_accuracy_pct": 58.82,
+    "forecasts_total": 333,
+    "active_forecasts": 13,
+    "abstain_count": 320,
+    "abstain_rate_pct": 96.1,
+    "directional_settled": 37,
+    "directional_hits": 23,
+    "direction_accuracy_pct": 62.16,
     "by_horizon": {
       "1": {
-        "directional": 10,
-        "hits": 2,
-        "accuracy_pct": 20.0,
-        "pending": 1
+        "directional": 11,
+        "hits": 3,
+        "accuracy_pct": 27.27,
+        "pending": 2
       },
       "3": {
         "directional": 10,
         "hits": 6,
         "accuracy_pct": 60.0,
-        "pending": 1
+        "pending": 3
       },
       "6": {
         "directional": 8,
         "hits": 7,
         "accuracy_pct": 87.5,
-        "pending": 3
+        "pending": 5
       },
       "12": {
-        "directional": 6,
-        "hits": 5,
-        "accuracy_pct": 83.33,
+        "directional": 8,
+        "hits": 7,
+        "accuracy_pct": 87.5,
         "pending": 5
       }
     },
     "by_probability_band": {
       "low": {
-        "directional": 19,
-        "hits": 12,
-        "accuracy_pct": 63.16
+        "directional": 21,
+        "hits": 14,
+        "accuracy_pct": 66.67
       },
       "medium": {
         "directional": 12,
@@ -138,24 +138,24 @@
         "accuracy_pct": 58.33
       },
       "high": {
-        "directional": 3,
-        "hits": 1,
-        "accuracy_pct": 33.33
+        "directional": 4,
+        "hits": 2,
+        "accuracy_pct": 50.0
       }
     },
     "calibration": [
       {
         "probability_band": "high",
         "implied_mid": 0.7,
-        "empirical_hit_rate": 0.3333,
-        "n": 3,
+        "empirical_hit_rate": 0.5,
+        "n": 4,
         "note": "Needs larger n before adjusting bands."
       },
       {
         "probability_band": "low",
         "implied_mid": 0.55,
-        "empirical_hit_rate": 0.6315999999999999,
-        "n": 19,
+        "empirical_hit_rate": 0.6667000000000001,
+        "n": 21,
         "note": "Needs larger n before adjusting bands."
       },
       {
