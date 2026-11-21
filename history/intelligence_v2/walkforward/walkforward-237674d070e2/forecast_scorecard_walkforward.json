@@ -1,0 +1,85 @@
+{
+  "agent": "forecast-scorecard",
+  "evaluated_at": "2026-11-21T12:07:54.712495+00:00",
+  "forecasts_total": 342,
+  "active_forecasts": 14,
+  "abstain_count": 328,
+  "abstain_rate_pct": 95.91,
+  "settled_rows": 45,
+  "pending_rows": 11,
+  "directional_settled": 45,
+  "directional_hits": 30,
+  "direction_accuracy_pct": 66.67,
+  "by_horizon": {
+    "1": {
+      "directional": 14,
+      "hits": 5,
+      "accuracy_pct": 35.71,
+      "pending": 0
+    },
+    "3": {
+      "directional": 13,
+      "hits": 9,
+      "accuracy_pct": 69.23,
+      "pending": 1
+    },
+    "6": {
+      "directional": 10,
+      "hits": 9,
+      "accuracy_pct": 90.0,
+      "pending": 4
+    },
+    "12": {
+      "directional": 8,
+      "hits": 7,
+      "accuracy_pct": 87.5,
+      "pending": 6
+    }
+  },
+  "by_probability_band": {
+    "low": {
+      "directional": 23,
+      "hits": 15,
+      "accuracy_pct": 65.22
+    },
+    "medium": {
+      "directional": 18,
+      "hits": 13,
+      "accuracy_pct": 72.22
+    },
+    "high": {
+      "directional": 4,
+      "hits": 2,
+      "accuracy_pct": 50.0
+    }
+  },
+  "calibration": [
+    {
+      "probability_band": "high",
+      "implied_mid": 0.7,
+      "empirical_hit_rate": 0.5,
+      "n": 4,
+      "note": "Needs larger n before adjusting bands."
+    },
+    {
+      "probability_band": "low",
+      "implied_mid": 0.55,
+      "empirical_hit_rate": 0.6522,
+      "n": 23,
+      "note": "Needs larger n before adjusting bands."
+    },
+    {
+      "probability_band": "medium",
+      "implied_mid": 0.62,
+      "empirical_hit_rate": 0.7222,
+      "n": 18,
+      "note": "Needs larger n before adjusting bands."
+    }
+  ],
+  "limitations": [
+    "Shadow-only: forecasts never execute or alter production alerts.",
+    "Direction accuracy excludes ABSTAIN rows (abstain is tracked separately).",
+    "Probability bands are conservative priors pending walk-forward calibration.",
+    "Do not enable self-learning until calibration is stable out of sample."
+  ]
+}

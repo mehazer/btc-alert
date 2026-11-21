@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-21T01:06:03.458798+00:00",
+  "updated_at": "2026-11-21T12:07:37.456000+00:00",
   "sources": [
     {
       "name": "CoinDesk",
@@ -132,16 +132,16 @@
       "quality": "reputable"
     }
   ],
-  "headline_count": 49,
+  "headline_count": 56,
   "headlines": [
     {
       "source": "CoinDesk",
       "type": "rss",
-      "headline": "Fairmint plans tokenized stock venue on Canton, Ethereum under SEC experiment",
-      "published": "Fri, 20 Nov 2026 22:05:31 +0000",
-      "category": "Regulation & Politics",
-      "importance": 2.443,
-      "age_hours": 3.0,
+      "headline": "Bitcoin nodes could be stalled by repeating one ID 50,000 times. AI found the bug",
+      "published": "Sat, 21 Nov 2026 06:16:42 +0000",
+      "category": "Market & Macro",
+      "importance": 2.379,
+      "age_hours": 5.8,
       "source_quality": "reputable",
       "evidence_status": "confirmed-source",
       "asset_scope": "market-wide"
@@ -149,11 +149,63 @@
     {
       "source": "CoinDesk",
       "type": "rss",
-      "headline": "Bitcoin plunges below $59,000 as rush to cash puts new bear market lows back in play",
-      "published": "Fri, 20 Nov 2026 18:13:52 +0000",
+      "headline": "XRP falls 10% as long bets unwind and ETF assets slip below $1 billion",
+      "published": "Sat, 21 Nov 2026 05:59:19 +0000",
+      "category": "Bitcoin & ETF",
+      "importance": 2.373,
+      "age_hours": 6.1,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "CoinDesk",
+      "type": "rss",
+      "headline": "Bitcoin tanks below $57,000 for the first time in two years, and its not alone",
+      "published": "Sat, 21 Nov 2026 04:10:07 +0000",
       "category": "Market & Macro",
-      "importance": 2.356,
-      "age_hours": 6.9,
+      "importance": 2.332,
+      "age_hours": 8.0,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "The Block",
+      "type": "rss",
+      "headline": "JPMorgan says bitcoin’s price drop pressures miners, Senate passes ‘Death Bets Act’, and more",
+      "published": "Sat, 21 Nov 2026 04:30:00 +0000",
+      "category": "Market & Macro",
+      "importance": 2.288,
+      "age_hours": 7.6,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Yahoo Finance (BTC)",
+      "type": "yahoo",
+      "symbol": "BTC",
+      "headline": "Bitcoin falls below $56,000 as liquidity squeeze deepens crypto selloff",
+      "published": "Sat, 21 Nov 2026 06:16:26 +0000",
+      "link": "https://finance.yahoo.com/markets/crypto/articles/bitcoin-crashes-below-56-000-061626263.html?.tsrc=rss",
+      "category": "Market & Macro",
+      "importance": 2.115,
+      "age_hours": 5.9,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Yahoo Finance (ETH)",
+      "type": "yahoo",
+      "symbol": "ETH",
+      "headline": "ARK Invest Adds More Anthropic Shares While Trimming Crypto Stocks As Bitcoin Slides",
+      "published": "Sat, 21 Nov 2026 04:19:37 +0000",
+      "link": "https://stocktwits.com/news-articles/markets/equity/cathie-wood-sells-crypto-bets-piles-into-anthropic-after-ai-firm-s-market-debut/cNbm9L8R910?.tsrc=rss",
+      "category": "Market & Macro",
+      "importance": 2.079,
+      "age_hours": 7.8,
       "source_quality": "reputable",
       "evidence_status": "confirmed-source",
       "asset_scope": "market-wide"
@@ -164,34 +216,36 @@
       "headline": "Binance hack laundering ramps up as $149 million in bitcoin mixed through coinjoins: Elliptic",
       "published": "Fri, 20 Nov 2026 18:22:39 +0000",
       "category": "Security & Hacks",
-      "importance": 2.308,
-      "age_hours": 6.7,
+      "importance": 2.07,
+      "age_hours": 17.7,
       "source_quality": "reputable",
       "evidence_status": "confirmed-source",
       "asset_scope": "market-wide"
     },
     {
-      "source": "The Block",
-      "type": "rss",
-      "headline": "JPMorgan says bitcoin price correction widens gap to estimated $86,000 production cost",
-      "published": "Fri, 20 Nov 2026 18:17:39 +0000",
-      "category": "Market & Macro",
-      "importance": 2.306,
-      "age_hours": 6.8,
-      "source_quality": "reputable",
-      "evidence_status": "confirmed-source",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Yahoo Finance (BTC)",
+      "source": "Yahoo Finance (ETH)",
       "type": "yahoo",
-      "symbol": "BTC",
+      "symbol": "ETH",
       "headline": "Weekly Wrap: Crypto Falls As Stocks Struggle",
       "published": "Fri, 20 Nov 2026 22:38:00 +0000",
       "link": "https://www.cryptoprowl.com/releases/weekly-wrap-crypto-falls-as-stocks-struggle-8016?.tsrc=rss",
       "category": "Market & Macro",
-      "importance": 2.177,
-      "age_hours": 2.5,
+      "importance": 1.975,
+      "age_hours": 13.5,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Yahoo Finance (SOL)",
+      "type": "yahoo",
+      "symbol": "SOL",
+      "headline": "Crypto Market Today, Nov. 20: Bitcoin Plunges Below $60,000 as Wall Street's Sell-Off Spreads to Crypto",
+      "published": "Fri, 20 Nov 2026 22:05:03 +0000",
+      "link": "https://www.fool.com/coverage/stock-market-today/2026/11/20/crypto-market-today-nov-20-bitcoin-plunges-below-usd60-000-as-wall-street-s-sell-off-spreads-to-crypto/?.tsrc=rss",
+      "category": "Market & Macro",
+      "importance": 1.965,
+      "age_hours": 14.0,
       "source_quality": "reputable",
       "evidence_status": "confirmed-source",
       "asset_scope": "market-wide"
@@ -202,68 +256,20 @@
       "headline": "Nvidia Shares Sink to 52-Week Low After Report SEC Is Probing Accounting",
       "published": "Fri, 20 Nov 2026 20:36:54 +0000",
       "category": "Regulation & Politics",
-      "importance": 2.086,
-      "age_hours": 4.5,
+      "importance": 1.892,
+      "age_hours": 15.5,
       "source_quality": "reputable",
       "evidence_status": "confirmed-source",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "CoinDesk",
-      "type": "rss",
-      "headline": "Kalshi races to get ahead of New York order that could shut down exchange",
-      "published": "Fri, 20 Nov 2026 22:51:14 +0000",
-      "category": "Institutional & Exchanges",
-      "importance": 1.81,
-      "age_hours": 2.2,
-      "source_quality": "reputable",
-      "evidence_status": "confirmed-source",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "The Block",
-      "type": "rss",
-      "headline": "DCG’s Zcash miner Fortitude clears vote for Nasdaq listing as ZEC retreats from all-time high",
-      "published": "Fri, 20 Nov 2026 21:40:01 +0000",
-      "category": "Altcoins & Projects",
-      "importance": 1.728,
-      "age_hours": 3.4,
-      "source_quality": "reputable",
-      "evidence_status": "confirmed-source",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "CoinTelegraph",
-      "type": "rss",
-      "headline": "Wrapped Monero token crashes 99.8% amid suspected $13.5M exploit",
-      "published": "Fri, 20 Nov 2026 19:37:27 +0000",
-      "category": "Security & Hacks",
-      "importance": 1.644,
-      "age_hours": 5.5,
-      "source_quality": "unknown",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "CoinTelegraph",
-      "type": "rss",
-      "headline": "Bitcoin falls below $60K for first time since July amid broader market selloff",
-      "published": "Fri, 20 Nov 2026 16:55:51 +0000",
-      "category": "Market & Macro",
-      "importance": 1.614,
-      "age_hours": 8.2,
-      "source_quality": "unknown",
-      "evidence_status": "unconfirmed-social",
       "asset_scope": "market-wide"
     },
     {
       "source": "Google News (BTC)",
       "type": "google_news",
-      "headline": "3 signals the biggest Bitcoin treasury company checks before its next move",
-      "published": "Sat, 21 Nov 2026 00:30:00 GMT",
+      "headline": "BTC price range on Nov 21, 2026 at 8am EST Crypto Prediction Market",
+      "published": "Sat, 21 Nov 2026 12:03:35 GMT",
       "category": "Market & Macro",
-      "importance": 1.614,
-      "age_hours": 0.6,
+      "importance": 1.619,
+      "age_hours": 0.1,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -271,21 +277,9 @@
     {
       "source": "Google News (BTC)",
       "type": "google_news",
-      "headline": "Bitcoin Falls Below $60,000 Level",
-      "published": "Sat, 21 Nov 2026 00:21:43 GMT",
+      "headline": "Artemis co-founder plans Bitcoin exit as Anthropic lists",
+      "published": "Sat, 21 Nov 2026 11:17:53 GMT",
       "category": "Market & Macro",
-      "importance": 1.613,
-      "age_hours": 0.7,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (Macro)",
-      "type": "google_news",
-      "headline": "XRP ETF News: Roundhill Abandons XRP Income Fund After 13 Months of SEC Delays",
-      "published": "Sat, 21 Nov 2026 00:18:03 GMT",
-      "category": "Regulation & Politics",
       "importance": 1.612,
       "age_hours": 0.8,
       "source_quality": "discovery",
@@ -293,10 +287,10 @@
       "asset_scope": "market-wide"
     },
     {
-      "source": "Google News (BTC)",
+      "source": "Google News (Macro)",
       "type": "google_news",
-      "headline": "BTC price range on Nov 20, 2026 at 8pm EST Prediction Market",
-      "published": "Sat, 21 Nov 2026 00:07:22 GMT",
+      "headline": "Le dogecoin au plus bas depuis juin 2023, le bitcoin sous 60 000 dollars : ce qui se cache derrière la glissade",
+      "published": "Sat, 21 Nov 2026 11:08:13 GMT",
       "category": "Market & Macro",
       "importance": 1.61,
       "age_hours": 1.0,
@@ -305,13 +299,25 @@
       "asset_scope": "market-wide"
     },
     {
-      "source": "Google News (Macro)",
+      "source": "Google News (SOL)",
       "type": "google_news",
-      "headline": "Bitcoin sinks to roughly $58,000, and ‘digital gold’ has an awkward day",
-      "published": "Fri, 20 Nov 2026 21:41:49 GMT",
+      "headline": "Solana ETFs See $4.4M Inflows Amid Broader Crypto Sell-Off",
+      "published": "Sat, 21 Nov 2026 11:03:34 GMT",
+      "category": "Bitcoin & ETF",
+      "importance": 1.609,
+      "age_hours": 1.1,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "How Low Will Bitcoin Price Drop? Analysts Predict",
+      "published": "Sat, 21 Nov 2026 11:04:05 GMT",
       "category": "Market & Macro",
-      "importance": 1.586,
-      "age_hours": 3.4,
+      "importance": 1.609,
+      "age_hours": 1.1,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
@@ -319,8 +325,56 @@
     {
       "source": "Google News (SOL)",
       "type": "google_news",
-      "headline": "Crypto Market Today, Nov. 20: Bitcoin Plunges Below $60,000 as Wall Street's Sell-Off Spreads to Crypto",
-      "published": "Fri, 20 Nov 2026 21:45:03 GMT",
+      "headline": "Solana ETFs Defy Wall Street’s Big Crypto Sell-Off",
+      "published": "Sat, 21 Nov 2026 11:04:05 GMT",
+      "category": "Bitcoin & ETF",
+      "importance": 1.609,
+      "age_hours": 1.1,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (SOL)",
+      "type": "google_news",
+      "headline": "Strategy Reports $35 Billion Net Reserve: All Bitcoin Holdings Now Unencumbered",
+      "published": "Sat, 21 Nov 2026 10:56:00 GMT",
+      "category": "Market & Macro",
+      "importance": 1.608,
+      "age_hours": 1.2,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "Bitcoin, Gold Outlook: Bullish Hold or Bearish Shift?",
+      "published": "Sat, 21 Nov 2026 10:50:37 GMT",
+      "category": "Market & Macro",
+      "importance": 1.607,
+      "age_hours": 1.3,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (Macro)",
+      "type": "google_news",
+      "headline": "Bitcoin Price Drops 6.4% To $57,757, Strategy Inc. Keeps Holdings",
+      "published": "Sat, 21 Nov 2026 09:36:12 GMT",
+      "category": "Market & Macro",
+      "importance": 1.595,
+      "age_hours": 2.5,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Google News (BTC)",
+      "type": "google_news",
+      "headline": "Why Is Bitcoin Falling? What the 4-Year Cycle Says About the Bottom",
+      "published": "Sat, 21 Nov 2026 08:44:24 GMT",
       "category": "Market & Macro",
       "importance": 1.586,
       "age_hours": 3.4,
@@ -329,59 +383,47 @@
       "asset_scope": "market-wide"
     },
     {
-      "source": "Google News (BTC)",
+      "source": "CoinDesk",
+      "type": "rss",
+      "headline": "Kalshi races to get ahead of New York order that could shut down exchange",
+      "published": "Fri, 20 Nov 2026 22:51:14 +0000",
+      "category": "Institutional & Exchanges",
+      "importance": 1.563,
+      "age_hours": 13.3,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Google News (ZAMA)",
       "type": "google_news",
-      "headline": "Bitcoin sinks to lowest level since July, crypto stocks diverge",
-      "published": "Fri, 20 Nov 2026 21:28:58 GMT",
+      "headline": "JPMorgan Warns Bitcoin’s Drop Below $60K Squeezes Struggling Miners",
+      "published": "Sat, 21 Nov 2026 01:23:50 GMT",
       "category": "Market & Macro",
-      "importance": 1.584,
-      "age_hours": 3.6,
+      "importance": 1.513,
+      "age_hours": 10.7,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "market-wide"
     },
     {
-      "source": "Google News (Macro)",
-      "type": "google_news",
-      "headline": "$1,000 in Anthropic or Bitcoin: Which Could Be Worth More by 2030?",
-      "published": "Fri, 20 Nov 2026 21:12:00 GMT",
-      "category": "Market & Macro",
-      "importance": 1.581,
-      "age_hours": 3.9,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (BTC)",
-      "type": "google_news",
-      "headline": "Bitcoin Falls to More than Two-Year Low as Global Markets Sink",
-      "published": "Fri, 20 Nov 2026 21:14:27 GMT",
-      "category": "Market & Macro",
-      "importance": 1.581,
-      "age_hours": 3.9,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "Google News (ZEC)",
-      "type": "google_news",
-      "headline": "Zcash Falls Below $800 as Losses Outpace Bitcoin, Ether",
-      "published": "Fri, 20 Nov 2026 16:33:05 GMT",
-      "category": "Market & Macro",
-      "importance": 1.535,
-      "age_hours": 8.5,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "market-wide"
+      "source": "The Block",
+      "type": "rss",
+      "headline": "DCG’s Zcash miner Fortitude clears vote for Nasdaq listing as ZEC retreats from all-time high",
+      "published": "Fri, 20 Nov 2026 21:40:01 +0000",
+      "category": "Altcoins & Projects",
+      "importance": 1.491,
+      "age_hours": 14.5,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "asset-or-sector"
     },
     {
       "source": "CoinTelegraph (Telegram)",
       "type": "telegram",
-      "headline": "🇰🇵 JUST IN: North Korea-linked hackers have laundered at least $149 million in Bitcoin stolen from Binance through coinjoin transactions, with 90% of the activity occurring since Tuesday, according to Elliptic. News | Markets | YouTube",
-      "published": "2026-11-21T01:06:00.172813+00:00",
-      "category": "Security & Hacks",
+      "headline": "🚨 REKT: The total crypto market lost $200B in less than 24 hours. News | Markets | YouTube",
+      "published": "2026-11-21T12:07:33.506425+00:00",
+      "category": "Market & Macro",
       "importance": 1.417,
       "age_hours": 0.0,
       "source_quality": "social",
@@ -389,13 +431,27 @@
       "asset_scope": "market-wide"
     },
     {
+      "source": "Yahoo Finance (ETH)",
+      "type": "yahoo",
+      "symbol": "ETH",
+      "headline": "Ethereum founder takes aim at keeping homes expensive",
+      "published": "Fri, 20 Nov 2026 22:30:00 +0000",
+      "link": "https://www.thestreet.com/crypto/ethereum/ethereum-founder-takes-aim-at-keeping-homes-expensive?.tsrc=rss",
+      "category": "Ethereum & L2",
+      "importance": 1.322,
+      "age_hours": 13.6,
+      "source_quality": "reputable",
+      "evidence_status": "confirmed-source",
+      "asset_scope": "asset-or-sector"
+    },
+    {
       "source": "Decrypt",
       "type": "rss",
       "headline": "Cathie Wood Bets $91M on Anthropic IPO While Paring Crypto Exposure",
       "published": "Fri, 20 Nov 2026 18:46:03 +0000",
       "category": "Other",
-      "importance": 1.404,
-      "age_hours": 6.3,
+      "importance": 1.21,
+      "age_hours": 17.4,
       "source_quality": "reputable",
       "evidence_status": "confirmed-source",
       "asset_scope": "asset-or-sector"
@@ -403,8 +459,8 @@
     {
       "source": "Watcher.Guru (Telegram)",
       "type": "telegram",
-      "headline": "JUST IN: $150,000,000,000 wiped out from the crypto market cap today. @WatcherGuru",
-      "published": "2026-11-21T01:06:00.850130+00:00",
+      "headline": "JUST IN: Bitcoin falls under $57,000 for the first time in over 2 years. $385 million liquidated from the crypto market in the past 5 minutes. 📰 https://watcherguru.com @WatcherGuru",
+      "published": "2026-11-21T12:07:34.524884+00:00",
       "category": "Market & Macro",
       "importance": 1.192,
       "age_hours": 0.0,
@@ -415,8 +471,20 @@
     {
       "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "Luxor: West Texas Power Prices Drove Bitcoin Mining Difficulty Down 9.13% Bitcoin mining difficulty fell 9.13% on November 14, its largest decline since June. According to Luxor’s Hashrate Index, the drop was driven primarily by surging electricity prices in West Texas rather than falling BTC prices. A sharp decline in wind generation and transmission constraints pushed daily average power prices to $64–$122/MWh from November 7 to 11, above the roughly $54/MWh average breakeven level for miners operating at 25 J/TH. During the October 29–November 14 difficulty period, electricity prices exceeded that breakeven level for 45% of hours, up from 9% in the previous period. Luxor’s analysis attributed 30 percentage points of the 36-point increase to higher electricity prices alone. Based on Texas’s estimated 17% share of global hashrate and the increase in uneconomic mining hours, Luxor calculated that additional curtailment could explain roughly 65 EH/s, or 71%, of the 91 EH/s decline in the network’s 14-day average hashrate. As West Texas power prices eased to $26–$43/MWh from November 13 to 15, estimated network hashrate rebounded to nearly 1,100 EH/s despite a 13% drop in BTC prices between November 11 and 16. With blocks averaging 9.1 minutes since the adjustment, Luxor projected that mining difficulty could rise roughly 10% in the next adjustment if the pace persists, though the estimate remains preliminary. — link",
-      "published": "2026-11-21T01:06:01.209601+00:00",
+      "headline": "Investigation: Only $32M Recovered Three Weeks After $6.4B Binance Hack, $2.82B Frozen According to blockchain investigator SomaXBT, three weeks after the $6.4 billion Binance hack, approximately $2.82 billion has been frozen, $2.67 billion remains under attacker control, and only $32 million has been recovered. The attackers still hold 18,270 BTC stolen directly from Binance, which remains untouched. Over 5,100 BTC has been transferred through THORChain, while 1,482 BTC has entered CoinJoin mixing, primarily via the kruw coordinator. The FBI previously attributed the attack to North Korea-linked TraderTraitor. — link",
+      "published": "2026-11-21T12:07:35.071755+00:00",
+      "category": "Security & Hacks",
+      "importance": 1.192,
+      "age_hours": 0.0,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "Wu Blockchain (Telegram)",
+      "type": "telegram",
+      "headline": "Strategy: Net Reserve Stands at $35 Billion, All Bitcoin Holdings Unencumbered Strategy said its Net Reserve now stands at $35 billion, with all of its bitcoin holdings unencumbered. During the 2022 bear market, its Net Reserve was negative and one-third of its BTC was pledged as collateral. The company said it survived that downturn and emerged stronger, adding that its \"conviction and optionality have never been stronger.\" — link",
+      "published": "2026-11-21T12:07:35.071760+00:00",
       "category": "Market & Macro",
       "importance": 1.192,
       "age_hours": 0.0,
@@ -427,8 +495,8 @@
     {
       "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
-      "headline": "AI Investment Concerns Trigger Market Selloff as Nasdaq 100 Posts Worst Week Since 2020 According to Bloomberg, U.S. stocks tumbled on November 20 as concerns over the sustainability of AI investment, slowing data center expansion and tech earnings prospects intensified. The S&P 500 fell 3.7%, marking its seventh consecutive daily decline and entering correction territory. The Nasdaq 100 dropped 5.6%, posting its worst weekly performance since March 2020. Nvidia plunged 14%, while a semiconductor stock index fell 11%. The selloff spread to cryptocurrencies, precious metals and emerging markets. Bitcoin declined 5.1% to approximately $58,333, Ether fell 8% to $1,601, and spot gold dropped 2.8%. The U.S. 10-year Treasury yield declined 11 basis points to 4.93%. Analysts said the market downturn reflected investors reassessing the pace of AI infrastructure development, financing prospects for related projects and expectations for tech earnings growth. — link",
-      "published": "2026-11-21T01:06:01.209608+00:00",
+      "headline": "Highlight Clip: Arthur Hayes: Why Is Bitcoin Sold First When Markets Turn Risk-Off? Arthur Hayes: Why Is Bitcoin Sold First When Markets Turn Risk-Off? On November 17, 2026, Maelstrom CIO Arthur Hayes said on the New Era Finance podcast that Bitcoin and crypto remain risk assets. Because crypto markets operate around the clock, investors facing losses elsewhere often sell their readily accessible crypto holdings first to meet margin calls or repay bank loans. This leaves Bitcoin exposed to selling during global risk-off events, particularly when stress is concentrated in technology stocks. Even if investors expect eventual bailouts to drive prices higher, they may still need cash now to avoid liquidation in less liquid positions. WuBlockchain notes that Arthur Hayes has a mixed track record of market predictions and frequently revises his views. Readers should focus on his analytical framework rather than treating specific price targets or timelines as investment guidance. — link",
+      "published": "2026-11-21T12:07:35.071766+00:00",
       "category": "Market & Macro",
       "importance": 1.192,
       "age_hours": 0.0,
@@ -439,8 +507,8 @@
     {
       "source": "Whale Alert (Telegram)",
       "type": "telegram",
-      "headline": "🚨 🚨 🚨 933 $BTC (55,067,934 USD) transferred from #Gemini to unknown wallet Details",
-      "published": "2026-11-21T01:06:01.566959+00:00",
+      "headline": "📉 📉 📉 Dogecoin co-founder says weak demand helped drive a $2.56 billion crypto market selloff as Bitcoin and Dogecoin fall Read Analysis",
+      "published": "2026-11-21T12:07:35.612192+00:00",
       "category": "Market & Macro",
       "importance": 1.192,
       "age_hours": 0.0,
@@ -451,52 +519,52 @@
     {
       "source": "StockTwits (BTC)",
       "type": "stocktwits",
-      "headline": "$BTC.X BULLS DEFENDING 58k",
-      "published": "2026-11-21T01:00:24Z",
-      "sentiment_label": "none",
+      "headline": "$BTC.X 42k next",
+      "published": "2026-11-21T12:04:47Z",
+      "sentiment_label": "bearish",
       "symbol": "BTC",
       "category": "Market & Macro",
-      "importance": 1.125,
-      "age_hours": 0.1,
-      "source_quality": "social",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "StockTwits (BTC)",
-      "type": "stocktwits",
-      "headline": "$BTC.X $GLD $QQQ $SPY",
-      "published": "2026-11-21T01:01:26Z",
-      "sentiment_label": "none",
-      "symbol": "BTC",
-      "category": "Market & Macro",
-      "importance": 1.125,
-      "age_hours": 0.1,
-      "source_quality": "social",
-      "evidence_status": "unconfirmed-social",
-      "asset_scope": "market-wide"
-    },
-    {
-      "source": "StockTwits (BTC)",
-      "type": "stocktwits",
-      "headline": "$BTC.X nothing to see here till Sunday evening. This turd is not run by the common people  anymore. Have to wait and see what the MMs and ETFs want to do!!￼",
-      "published": "2026-11-21T01:04:19Z",
-      "sentiment_label": "none",
-      "symbol": "BTC",
-      "category": "Bitcoin & ETF",
       "importance": 1.125,
       "age_hours": 0.0,
       "source_quality": "social",
       "evidence_status": "unconfirmed-social",
-      "asset_scope": "asset-or-sector"
+      "asset_scope": "market-wide"
     },
     {
-      "source": "StockTwits (SOL)",
+      "source": "StockTwits (BTC)",
       "type": "stocktwits",
-      "headline": "$TRUMP.X \nDo you really think Trump’s wealthy friends won’t support him on Sunday? They’re going to pump up the crypto market just like they did a year ago! Trump Crypto is going to explode! 🚀🔥🇺🇸\n\nYou’re the best president, Trump! We all love you! ❤️🇺🇸👑\n\n$BTC.X $PEPE.X $XRP.X $SO",
-      "published": "2026-11-21T01:06:01Z",
+      "headline": "$BTC.X $MSTR $ETH.X $XRP.X \nWhen do we uber hookers? 🤔",
+      "published": "2026-11-21T12:05:18Z",
+      "sentiment_label": "none",
+      "symbol": "BTC",
+      "category": "Market & Macro",
+      "importance": 1.125,
+      "age_hours": 0.0,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "StockTwits (BTC)",
+      "type": "stocktwits",
+      "headline": "$BTC.X 63k next",
+      "published": "2026-11-21T12:05:21Z",
       "sentiment_label": "bullish",
-      "symbol": "SOL",
+      "symbol": "BTC",
+      "category": "Market & Macro",
+      "importance": 1.125,
+      "age_hours": 0.0,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "market-wide"
+    },
+    {
+      "source": "StockTwits (BTC)",
+      "type": "stocktwits",
+      "headline": "$BTC.X next stop 52k",
+      "published": "2026-11-21T12:07:27Z",
+      "sentiment_label": "bearish",
+      "symbol": "BTC",
       "category": "Market & Macro",
       "importance": 1.125,
       "age_hours": 0.0,
@@ -507,13 +575,13 @@
     {
       "source": "StockTwits (ETH)",
       "type": "stocktwits",
-      "headline": "$TRX.X look at 5 year chart. Only alt coin you would not be down along with  say $ETH.X $BTC.X and $BNB.X - although $TRX.X is least volatile",
-      "published": "2026-11-21T00:32:01Z",
-      "sentiment_label": "bullish",
+      "headline": "$BTC.X $MSTR $ETH.X $XRP.X \nThis is my wormhole stay tf out or I’ll meltdown the entire operation test it",
+      "published": "2026-11-21T11:53:15Z",
+      "sentiment_label": "none",
       "symbol": "ETH",
       "category": "Market & Macro",
-      "importance": 1.123,
-      "age_hours": 0.6,
+      "importance": 1.124,
+      "age_hours": 0.2,
       "source_quality": "social",
       "evidence_status": "unconfirmed-social",
       "asset_scope": "market-wide"
@@ -521,9 +589,21 @@
     {
       "source": "CoinTelegraph",
       "type": "rss",
-      "headline": "Sky Protocol sees $2 billion in stablecoin withdrawals, disputes illicit fund claims",
-      "published": "Fri, 20 Nov 2026 18:37:10 +0000",
-      "category": "DeFi & Stablecoins",
+      "headline": "Here’s what happened in crypto today",
+      "published": "Sat, 21 Nov 2026 11:18:52 +0000",
+      "category": "Other",
+      "importance": 1.046,
+      "age_hours": 0.8,
+      "source_quality": "unknown",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "CoinTelegraph",
+      "type": "rss",
+      "headline": "Hong Kong pushes to bring crypto custodians, advisers under licensing rules",
+      "published": "Sat, 21 Nov 2026 05:40:35 +0000",
+      "category": "Other",
       "importance": 0.983,
       "age_hours": 6.5,
       "source_quality": "unknown",
@@ -531,13 +611,25 @@
       "asset_scope": "asset-or-sector"
     },
     {
+      "source": "Google News (ETH)",
+      "type": "google_news",
+      "headline": "Ethereum’s Glamsterdam delay reveals a troubling pattern behind its biggest network upgrades",
+      "published": "Sat, 21 Nov 2026 12:00:31 GMT",
+      "category": "Ethereum & L2",
+      "importance": 0.969,
+      "age_hours": 0.1,
+      "source_quality": "discovery",
+      "evidence_status": "discovery-lead",
+      "asset_scope": "asset-or-sector"
+    },
+    {
       "source": "Google News (ZEC)",
       "type": "google_news",
-      "headline": "Zcash falls 11.4% over 20-hour window, hitting low of 726.97 USD",
-      "published": "Sat, 21 Nov 2026 00:15:06 GMT",
+      "headline": "Zcash Just Dropped Below $1,000 for the First Time Since September. Is This a Buy-the-Dip Opportunity?",
+      "published": "Sat, 21 Nov 2026 11:23:02 GMT",
       "category": "Altcoins & Projects",
-      "importance": 0.962,
-      "age_hours": 0.8,
+      "importance": 0.963,
+      "age_hours": 0.7,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -545,35 +637,23 @@
     {
       "source": "Google News (ETH)",
       "type": "google_news",
-      "headline": "Ethereum's 'Glamsterdam' Upgrade Delayed to Late January Next Year Due to App Fix Fallout",
-      "published": "Sat, 21 Nov 2026 00:05:00 GMT",
-      "category": "Ethereum & L2",
-      "importance": 0.96,
-      "age_hours": 1.0,
+      "headline": "Weekly Project Updates: Ethereum Glamsterdam Upgrade Delayed, Solana 2027 Roadmap, First Tokenized Stock On-Chain Dividend, etc",
+      "published": "Sat, 21 Nov 2026 11:28:10 GMT",
+      "category": "Altcoins & Projects",
+      "importance": 0.963,
+      "age_hours": 0.7,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
     },
     {
-      "source": "Google News (SOL)",
+      "source": "Google News (ZEC)",
       "type": "google_news",
-      "headline": "Sunrise CEO says Solana is not being left behind in the tokenization race",
-      "published": "Sat, 21 Nov 2026 00:05:26 GMT",
+      "headline": "Zcash Miner Fortitude Clears Shareholder Vote, Nears Nasdaq Debut Under TUDE Ticker",
+      "published": "Sat, 21 Nov 2026 10:55:00 GMT",
       "category": "Altcoins & Projects",
-      "importance": 0.96,
-      "age_hours": 1.0,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (SOL)",
-      "type": "google_news",
-      "headline": "Solana price struggles despite major upgrade: is another sell-off coming?",
-      "published": "Fri, 20 Nov 2026 23:46:39 GMT",
-      "category": "Altcoins & Projects",
-      "importance": 0.957,
-      "age_hours": 1.3,
+      "importance": 0.958,
+      "age_hours": 1.2,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -581,8 +661,8 @@
     {
       "source": "Google News (ETH)",
       "type": "google_news",
-      "headline": "Ethereum price falls below $1,800: is a bigger crash coming?",
-      "published": "Fri, 20 Nov 2026 23:36:54 GMT",
+      "headline": "Peter Schiff Doubles Down On His ‘Black Monday’ Call Again: Ethereum Could Hit $1,000 In Two Days",
+      "published": "Sat, 21 Nov 2026 10:40:25 GMT",
       "category": "Ethereum & L2",
       "importance": 0.955,
       "age_hours": 1.5,
@@ -593,47 +673,11 @@
     {
       "source": "Google News (ZEC)",
       "type": "google_news",
-      "headline": "Zcash Miner Fortitude Wins Shareholder Approval for Merger, Approaches Nasdaq Listing",
-      "published": "Fri, 20 Nov 2026 23:16:13 GMT",
+      "headline": "Zcash sees heavy ETF outflows and long liquidations: Can ZEC avoid deeper losses?",
+      "published": "Sat, 21 Nov 2026 06:46:22 GMT",
       "category": "Altcoins & Projects",
-      "importance": 0.952,
-      "age_hours": 1.8,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (ETH)",
-      "type": "google_news",
-      "headline": "Ethereum founder takes aim at keeping homes expensive",
-      "published": "Fri, 20 Nov 2026 22:30:00 GMT",
-      "category": "Ethereum & L2",
-      "importance": 0.944,
-      "age_hours": 2.6,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (SOL)",
-      "type": "google_news",
-      "headline": "Which Could Rebound First After the Anthropic IPO: Bitcoin, XRP or Solana?",
-      "published": "Fri, 20 Nov 2026 22:08:00 GMT",
-      "category": "Altcoins & Projects",
-      "importance": 0.94,
-      "age_hours": 3.0,
-      "source_quality": "discovery",
-      "evidence_status": "discovery-lead",
-      "asset_scope": "asset-or-sector"
-    },
-    {
-      "source": "Google News (SOL)",
-      "type": "google_news",
-      "headline": "'From curiosity to execution': with Solana Foundation's Rachel Conlan | CoinDesk Videos",
-      "published": "Fri, 20 Nov 2026 22:00:00 GMT",
-      "category": "Altcoins & Projects",
-      "importance": 0.939,
-      "age_hours": 3.1,
+      "importance": 0.916,
+      "age_hours": 5.4,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -644,8 +688,8 @@
       "headline": "Ethereum Eyes FHE to Hide DeFi Transactions and Protect User Balances",
       "published": "Fri, 20 Nov 2026 20:40:04 GMT",
       "category": "DeFi & Stablecoins",
-      "importance": 0.926,
-      "age_hours": 4.4,
+      "importance": 0.815,
+      "age_hours": 15.5,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
@@ -653,21 +697,21 @@
     {
       "source": "Google News (ZAMA)",
       "type": "google_news",
-      "headline": "EthSystems Compares Five Ethereum Privacy Technologies",
-      "published": "Fri, 20 Nov 2026 19:44:28 GMT",
-      "category": "Ethereum & L2",
-      "importance": 0.916,
-      "age_hours": 5.4,
+      "headline": "Sky Protocol sees $2 billion in stablecoin withdrawals, disputes illicit fund claims",
+      "published": "Fri, 20 Nov 2026 18:37:10 GMT",
+      "category": "DeFi & Stablecoins",
+      "importance": 0.795,
+      "age_hours": 17.5,
       "source_quality": "discovery",
       "evidence_status": "discovery-lead",
       "asset_scope": "asset-or-sector"
     },
     {
-      "source": "Wu Blockchain (Telegram)",
+      "source": "Watcher.Guru (Telegram)",
       "type": "telegram",
-      "headline": "BTC Falls Below $60,000, ETH Drops Below $1,700 as 24H Liquidations Reach $1.57B According to Binance market data, BTC fell below $60,000 and is trading at $59,378.87, with a 24-hour low of $58,768.73. ETH dropped below $1,700 and is trading at $1,644.13, with a 24-hour low of $1,624.37. According to CoinGlass, total liquidations over the past 24 hours reached $1.57 billion, including $1.42 billion in long positions and $143.23 million in short positions, affecting 264,734 traders. The largest single liquidation occurred on Binance's ETHUSDT pair, valued at $11.98 million. — link",
-      "published": "2026-11-21T01:06:01.209583+00:00",
-      "category": "Institutional & Exchanges",
+      "headline": "JUST IN: Crypto continues to crash $BTC falls under $56,000 $ETH falls under $1,550 $XRP falls under $0.88 $SOL falls under $66 $650,000,000 in leveraged cryptocurrency positions liquidated in the past 60 minutes. 📰 https://watcherguru.com @WatcherGuru",
+      "published": "2026-11-21T12:07:34.524905+00:00",
+      "category": "Altcoins & Projects",
       "importance": 0.542,
       "age_hours": 0.0,
       "source_quality": "social",
@@ -678,7 +722,7 @@
       "source": "Wu Blockchain (Telegram)",
       "type": "telegram",
       "headline": "Sonic Audit Reveals S Token Supply Is 48% Higher Than Initially Announced Sonic disclosed that its total S token supply stands at 4.70 billion, approximately 48% above the initially announced 3.175 billion. An independent audit found that when 2.12 billion native FTM tokens were minted on Fantom Opera in 2019, approximately 1.47 billion corresponding ERC-20 FTM tokens remained unlocked instead of being locked or burned, becoming a major source of the increased S supply. Sonic said the historical discrepancy remains under investigation. It plans to remove manual minting functionality and burn 91.7 million unallocated S tokens on December 15. — link",
-      "published": "2026-11-21T01:06:01.209612+00:00",
+      "published": "2026-11-21T12:07:35.071737+00:00",
       "category": "Other",
       "importance": 0.542,
       "age_hours": 0.0,
@@ -687,11 +731,49 @@
       "asset_scope": "asset-or-sector"
     },
     {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "🚨 🚨 🚨 🚨 🚨 1,850 $BTC (107,382,550 USD) transferred from #Coinbase to #Kraken Details",
+      "published": "2026-11-21T12:07:35.612147+00:00",
+      "category": "Institutional & Exchanges",
+      "importance": 0.542,
+      "age_hours": 0.0,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "Whale Alert (Telegram)",
+      "type": "telegram",
+      "headline": "📉 📉 📉 Chainflip Ethereum vault reportedly loses $4.86M in ETH, USDC, and USDT after valid-signature withdrawal Read Analysis",
+      "published": "2026-11-21T12:07:35.612165+00:00",
+      "category": "DeFi & Stablecoins",
+      "importance": 0.542,
+      "age_hours": 0.0,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "StockTwits (SOL)",
+      "type": "stocktwits",
+      "headline": "$SOL.X weekly swept (pwl)",
+      "published": "2026-11-21T11:58:43Z",
+      "sentiment_label": "bullish",
+      "symbol": "SOL",
+      "category": "Altcoins & Projects",
+      "importance": 0.475,
+      "age_hours": 0.1,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "asset-or-sector"
+    },
+    {
       "source": "StockTwits (ETH)",
       "type": "stocktwits",
-      "headline": "$ETH.X imo more pain coming next week. Monday will see a little bounce and then close red if i were to guess, bleeding will continue until after thanksgiving could get some ETH at $1400 $SPY $NVDA",
-      "published": "2026-11-21T01:00:11Z",
-      "sentiment_label": "none",
+      "headline": "$ETH.X I&#39;ll be buying in the 900s somewhere, sometime in January. And I&#39;m not even bearish, cycles need to cycle.",
+      "published": "2026-11-21T12:02:24Z",
+      "sentiment_label": "bearish",
       "symbol": "ETH",
       "category": "Ethereum & L2",
       "importance": 0.475,
@@ -703,9 +785,9 @@
     {
       "source": "StockTwits (SOL)",
       "type": "stocktwits",
-      "headline": "$SOL.X  \n \nGOING  TO  50&#39;S AND BELOW!!! \n \n🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣 \n \nGOODBYE  PRICES!! \n \n📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉 \n \nWOOOOOOOO!!!!",
-      "published": "2026-11-21T00:55:13Z",
-      "sentiment_label": "bearish",
+      "headline": "$ETH.X $XRP.X $SOL.X $ZEC.X $LINK.X",
+      "published": "2026-11-21T11:52:38Z",
+      "sentiment_label": "bullish",
       "symbol": "SOL",
       "category": "Altcoins & Projects",
       "importance": 0.474,
@@ -717,13 +799,13 @@
     {
       "source": "StockTwits (ETH)",
       "type": "stocktwits",
-      "headline": "$ETH.X • ⚡ BOS (BEARISH) STRUCTURAL SHIFT\n🧭 INSTITUTIONAL MARKET STRUCTURE SCAN\n\nTape printed a confirmed BOS on Ethereum near 1,716.60. Structural trend reads 🔴 BEARISH (BOS) as price establishes fresh swing parameters between 1,711.76 and 2,520.98.\n\n• Current Price: 1,621.31 | ",
-      "published": "2026-11-21T00:31:08Z",
-      "sentiment_label": "bearish",
+      "headline": "$ETH.X IH&amp;S with upward facing neckline.",
+      "published": "2026-11-21T11:53:49Z",
+      "sentiment_label": "none",
       "symbol": "ETH",
       "category": "Ethereum & L2",
-      "importance": 0.473,
-      "age_hours": 0.6,
+      "importance": 0.474,
+      "age_hours": 0.2,
       "source_quality": "social",
       "evidence_status": "unconfirmed-social",
       "asset_scope": "asset-or-sector"
@@ -731,13 +813,27 @@
     {
       "source": "StockTwits (SOL)",
       "type": "stocktwits",
-      "headline": "$TRUMP.X ❤️❤️❤️❤️❤️❤️❤️\n🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀\nMy President❤️ Donald Trump❤️ and his friends won’t let us down on November 22. 2026. The cryptocurrency is going to explode! We’ll see what happens! We will Fly to 100%🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀$BTC.X $XRP.X $SOL.X $DOGE.X",
-      "published": "2026-11-21T00:36:54Z",
-      "sentiment_label": "bullish",
+      "headline": "$SOL.X \nhttps://dexscreener.com/solana/2Hg7xqFU6jHuKbQU3cEKShATdqP9rxdTjHFMNiRY9SRZ",
+      "published": "2026-11-21T10:25:19Z",
+      "sentiment_label": "none",
       "symbol": "SOL",
       "category": "Altcoins & Projects",
-      "importance": 0.473,
-      "age_hours": 0.5,
+      "importance": 0.47,
+      "age_hours": 1.7,
+      "source_quality": "social",
+      "evidence_status": "unconfirmed-social",
+      "asset_scope": "asset-or-sector"
+    },
+    {
+      "source": "StockTwits (SOL)",
+      "type": "stocktwits",
+      "headline": "$SOL.X Be like whats in your wallet",
+      "published": "2026-11-21T10:36:22Z",
+      "sentiment_label": "none",
+      "symbol": "SOL",
+      "category": "Altcoins & Projects",
+      "importance": 0.47,
+      "age_hours": 1.5,
       "source_quality": "social",
       "evidence_status": "unconfirmed-social",
       "asset_scope": "asset-or-sector"
@@ -746,7 +842,7 @@
   "categories": [
     {
       "category": "Security & Hacks",
-      "count": 3,
+      "count": 2,
       "headlines": [
         {
           "source": "The Block",
@@ -754,31 +850,19 @@
           "headline": "Binance hack laundering ramps up as $149 million in bitcoin mixed through coinjoins: Elliptic",
           "published": "Fri, 20 Nov 2026 18:22:39 +0000",
           "category": "Security & Hacks",
-          "importance": 2.308,
-          "age_hours": 6.7,
+          "importance": 2.07,
+          "age_hours": 17.7,
           "source_quality": "reputable",
           "evidence_status": "confirmed-source",
           "asset_scope": "market-wide"
         },
         {
-          "source": "CoinTelegraph",
-          "type": "rss",
-          "headline": "Wrapped Monero token crashes 99.8% amid suspected $13.5M exploit",
-          "published": "Fri, 20 Nov 2026 19:37:27 +0000",
-          "category": "Security & Hacks",
-          "importance": 1.644,
-          "age_hours": 5.5,
-          "source_quality": "unknown",
-          "evidence_status": "unconfirmed-social",
-          "asset_scope": "market-wide"
-        },
-        {
-          "source": "CoinTelegraph (Telegram)",
+          "source": "Wu Blockchain (Telegram)",
           "type": "telegram",
-          "headline": "🇰🇵 JUST IN: North Korea-linked hackers have laundered at least $149 million in Bitcoin stolen from Binance through coinjoin transactions, with 90% of the activity occurring since Tuesday, according to Elliptic. News | Markets | YouTube",
-          "published": "2026-11-21T01:06:00.172813+00:00",
+          "headline": "Investigation: Only $32M Recovered Three Weeks After $6.4B Binance Hack, $2.82B Frozen According to blockchain investigator SomaXBT, three weeks after the $6.4 billion Binance hack, approximately $2.82 billion has been frozen, $2.67 billion remains under attacker control, and only $32 million has been recovered. The attackers still hold 18,270 BTC stolen directly from Binance, which remains untouched. Over 5,100 BTC has been transferred through THORChain, while 1,482 BTC has entered CoinJoin mixing, primarily via the kruw coordinator. The FBI previously attributed the attack to North Korea-linked TraderTraitor. — link",
+          "published": "2026-11-21T12:07:35.071755+00:00",
           "category": "Security & Hacks",
-          "importance": 1.417,
+          "importance": 1.192,
           "age_hours": 0.0,
           "source_quality": "social",
           "evidence_status": "unconfirmed-social",
@@ -786,93 +870,101 @@
         }
       ],
       "top_sources": [
-        "CoinTelegraph",
-        "CoinTelegraph (Telegram)",
-        "The Block"
+        "The Block",
+        "Wu Blockchain (Telegram)"
       ]
     },
     {
       "category": "Regulation & Politics",
-      "count": 3,
+      "count": 1,
       "headlines": [
-        {
-          "source": "CoinDesk",
-          "type": "rss",
-          "headline": "Fairmint plans tokenized stock venue on Canton, Ethereum under SEC experiment",
-          "published": "Fri, 20 Nov 2026 22:05:31 +0000",
-          "category": "Regulation & Politics",
-          "importance": 2.443,
-          "age_hours": 3.0,
-          "source_quality": "reputable",
-          "evidence_status": "confirmed-source",
-          "asset_scope": "market-wide"
-        },
         {
           "source": "Decrypt",
           "type": "rss",
           "headline": "Nvidia Shares Sink to 52-Week Low After Report SEC Is Probing Accounting",
           "published": "Fri, 20 Nov 2026 20:36:54 +0000",
           "category": "Regulation & Politics",
-          "importance": 2.086,
-          "age_hours": 4.5,
+          "importance": 1.892,
+          "age_hours": 15.5,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "market-wide"
+        }
+      ],
+      "top_sources": [
+        "Decrypt"
+      ]
+    },
+    {
+      "category": "Bitcoin & ETF",
+      "count": 3,
+      "headlines": [
+        {
+          "source": "CoinDesk",
+          "type": "rss",
+          "headline": "XRP falls 10% as long bets unwind and ETF assets slip below $1 billion",
+          "published": "Sat, 21 Nov 2026 05:59:19 +0000",
+          "category": "Bitcoin & ETF",
+          "importance": 2.373,
+          "age_hours": 6.1,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (SOL)",
+          "type": "google_news",
+          "headline": "Solana ETFs See $4.4M Inflows Amid Broader Crypto Sell-Off",
+          "published": "Sat, 21 Nov 2026 11:03:34 GMT",
+          "category": "Bitcoin & ETF",
+          "importance": 1.609,
+          "age_hours": 1.1,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (SOL)",
+          "type": "google_news",
+          "headline": "Solana ETFs Defy Wall Street’s Big Crypto Sell-Off",
+          "published": "Sat, 21 Nov 2026 11:04:05 GMT",
+          "category": "Bitcoin & ETF",
+          "importance": 1.609,
+          "age_hours": 1.1,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        }
+      ],
+      "top_sources": [
+        "CoinDesk",
+        "Google News (SOL)"
+      ]
+    },
+    {
+      "category": "Market & Macro",
+      "count": 26,
+      "headlines": [
+        {
+          "source": "CoinDesk",
+          "type": "rss",
+          "headline": "Bitcoin nodes could be stalled by repeating one ID 50,000 times. AI found the bug",
+          "published": "Sat, 21 Nov 2026 06:16:42 +0000",
+          "category": "Market & Macro",
+          "importance": 2.379,
+          "age_hours": 5.8,
           "source_quality": "reputable",
           "evidence_status": "confirmed-source",
           "asset_scope": "market-wide"
         },
         {
-          "source": "Google News (Macro)",
-          "type": "google_news",
-          "headline": "XRP ETF News: Roundhill Abandons XRP Income Fund After 13 Months of SEC Delays",
-          "published": "Sat, 21 Nov 2026 00:18:03 GMT",
-          "category": "Regulation & Politics",
-          "importance": 1.612,
-          "age_hours": 0.8,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "market-wide"
-        }
-      ],
-      "top_sources": [
-        "CoinDesk",
-        "Decrypt",
-        "Google News (Macro)"
-      ]
-    },
-    {
-      "category": "Bitcoin & ETF",
-      "count": 1,
-      "headlines": [
-        {
-          "source": "StockTwits (BTC)",
-          "type": "stocktwits",
-          "headline": "$BTC.X nothing to see here till Sunday evening. This turd is not run by the common people  anymore. Have to wait and see what the MMs and ETFs want to do!!￼",
-          "published": "2026-11-21T01:04:19Z",
-          "sentiment_label": "none",
-          "symbol": "BTC",
-          "category": "Bitcoin & ETF",
-          "importance": 1.125,
-          "age_hours": 0.0,
-          "source_quality": "social",
-          "evidence_status": "unconfirmed-social",
-          "asset_scope": "asset-or-sector"
-        }
-      ],
-      "top_sources": [
-        "StockTwits (BTC)"
-      ]
-    },
-    {
-      "category": "Market & Macro",
-      "count": 21,
-      "headlines": [
-        {
           "source": "CoinDesk",
           "type": "rss",
-          "headline": "Bitcoin plunges below $59,000 as rush to cash puts new bear market lows back in play",
-          "published": "Fri, 20 Nov 2026 18:13:52 +0000",
+          "headline": "Bitcoin tanks below $57,000 for the first time in two years, and its not alone",
+          "published": "Sat, 21 Nov 2026 04:10:07 +0000",
           "category": "Market & Macro",
-          "importance": 2.356,
-          "age_hours": 6.9,
+          "importance": 2.332,
+          "age_hours": 8.0,
           "source_quality": "reputable",
           "evidence_status": "confirmed-source",
           "asset_scope": "market-wide"
@@ -880,11 +972,11 @@
         {
           "source": "The Block",
           "type": "rss",
-          "headline": "JPMorgan says bitcoin price correction widens gap to estimated $86,000 production cost",
-          "published": "Fri, 20 Nov 2026 18:17:39 +0000",
+          "headline": "JPMorgan says bitcoin’s price drop pressures miners, Senate passes ‘Death Bets Act’, and more",
+          "published": "Sat, 21 Nov 2026 04:30:00 +0000",
           "category": "Market & Macro",
-          "importance": 2.306,
-          "age_hours": 6.8,
+          "importance": 2.288,
+          "age_hours": 7.6,
           "source_quality": "reputable",
           "evidence_status": "confirmed-source",
           "asset_scope": "market-wide"
@@ -893,44 +985,34 @@
           "source": "Yahoo Finance (BTC)",
           "type": "yahoo",
           "symbol": "BTC",
-          "headline": "Weekly Wrap: Crypto Falls As Stocks Struggle",
-          "published": "Fri, 20 Nov 2026 22:38:00 +0000",
-          "link": "https://www.cryptoprowl.com/releases/weekly-wrap-crypto-falls-as-stocks-struggle-8016?.tsrc=rss",
+          "headline": "Bitcoin falls below $56,000 as liquidity squeeze deepens crypto selloff",
+          "published": "Sat, 21 Nov 2026 06:16:26 +0000",
+          "link": "https://finance.yahoo.com/markets/crypto/articles/bitcoin-crashes-below-56-000-061626263.html?.tsrc=rss",
           "category": "Market & Macro",
-          "importance": 2.177,
-          "age_hours": 2.5,
+          "importance": 2.115,
+          "age_hours": 5.9,
           "source_quality": "reputable",
           "evidence_status": "confirmed-source",
           "asset_scope": "market-wide"
         },
         {
-          "source": "CoinTelegraph",
-          "type": "rss",
-          "headline": "Bitcoin falls below $60K for first time since July amid broader market selloff",
-          "published": "Fri, 20 Nov 2026 16:55:51 +0000",
+          "source": "Yahoo Finance (ETH)",
+          "type": "yahoo",
+          "symbol": "ETH",
+          "headline": "ARK Invest Adds More Anthropic Shares While Trimming Crypto Stocks As Bitcoin Slides",
+          "published": "Sat, 21 Nov 2026 04:19:37 +0000",
+          "link": "https://stocktwits.com/news-articles/markets/equity/cathie-wood-sells-crypto-bets-piles-into-anthropic-after-ai-firm-s-market-debut/cNbm9L8R910?.tsrc=rss",
           "category": "Market & Macro",
-          "importance": 1.614,
-          "age_hours": 8.2,
-          "source_quality": "unknown",
-          "evidence_status": "unconfirmed-social",
-          "asset_scope": "market-wide"
-        },
-        {
-          "source": "Google News (BTC)",
-          "type": "google_news",
-          "headline": "3 signals the biggest Bitcoin treasury company checks before its next move",
-          "published": "Sat, 21 Nov 2026 00:30:00 GMT",
-          "category": "Market & Macro",
-          "importance": 1.614,
-          "age_hours": 0.6,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
+          "importance": 2.079,
+          "age_hours": 7.8,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
           "asset_scope": "market-wide"
         }
       ],
       "top_sources": [
         "CoinDesk",
-        "CoinTelegraph",
+        "CoinTelegraph (Telegram)",
         "Google News (BTC)",
         "Google News (Macro)",
         "Google News (SOL)"
@@ -946,17 +1028,17 @@
           "headline": "Kalshi races to get ahead of New York order that could shut down exchange",
           "published": "Fri, 20 Nov 2026 22:51:14 +0000",
           "category": "Institutional & Exchanges",
-          "importance": 1.81,
-          "age_hours": 2.2,
+          "importance": 1.563,
+          "age_hours": 13.3,
           "source_quality": "reputable",
           "evidence_status": "confirmed-source",
           "asset_scope": "asset-or-sector"
         },
         {
-          "source": "Wu Blockchain (Telegram)",
+          "source": "Whale Alert (Telegram)",
           "type": "telegram",
-          "headline": "BTC Falls Below $60,000, ETH Drops Below $1,700 as 24H Liquidations Reach $1.57B According to Binance market data, BTC fell below $60,000 and is trading at $59,378.87, with a 24-hour low of $58,768.73. ETH dropped below $1,700 and is trading at $1,644.13, with a 24-hour low of $1,624.37. According to CoinGlass, total liquidations over the past 24 hours reached $1.57 billion, including $1.42 billion in long positions and $143.23 million in short positions, affecting 264,734 traders. The largest single liquidation occurred on Binance's ETHUSDT pair, valued at $11.98 million. — link",
-          "published": "2026-11-21T01:06:01.209583+00:00",
+          "headline": "🚨 🚨 🚨 🚨 🚨 1,850 $BTC (107,382,550 USD) transferred from #Coinbase to #Kraken Details",
+          "published": "2026-11-21T12:07:35.612147+00:00",
           "category": "Institutional & Exchanges",
           "importance": 0.542,
           "age_hours": 0.0,
@@ -967,55 +1049,81 @@
       ],
       "top_sources": [
         "CoinDesk",
-        "Wu Blockchain (Telegram)"
+        "Whale Alert (Telegram)"
       ]
     },
     {
       "category": "DeFi & Stablecoins",
-      "count": 2,
+      "count": 3,
       "headlines": [
-        {
-          "source": "CoinTelegraph",
-          "type": "rss",
-          "headline": "Sky Protocol sees $2 billion in stablecoin withdrawals, disputes illicit fund claims",
-          "published": "Fri, 20 Nov 2026 18:37:10 +0000",
-          "category": "DeFi & Stablecoins",
-          "importance": 0.983,
-          "age_hours": 6.5,
-          "source_quality": "unknown",
-          "evidence_status": "unconfirmed-social",
-          "asset_scope": "asset-or-sector"
-        },
         {
           "source": "Google News (ZAMA)",
           "type": "google_news",
           "headline": "Ethereum Eyes FHE to Hide DeFi Transactions and Protect User Balances",
           "published": "Fri, 20 Nov 2026 20:40:04 GMT",
           "category": "DeFi & Stablecoins",
-          "importance": 0.926,
-          "age_hours": 4.4,
+          "importance": 0.815,
+          "age_hours": 15.5,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (ZAMA)",
+          "type": "google_news",
+          "headline": "Sky Protocol sees $2 billion in stablecoin withdrawals, disputes illicit fund claims",
+          "published": "Fri, 20 Nov 2026 18:37:10 GMT",
+          "category": "DeFi & Stablecoins",
+          "importance": 0.795,
+          "age_hours": 17.5,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Whale Alert (Telegram)",
+          "type": "telegram",
+          "headline": "📉 📉 📉 Chainflip Ethereum vault reportedly loses $4.86M in ETH, USDC, and USDT after valid-signature withdrawal Read Analysis",
+          "published": "2026-11-21T12:07:35.612165+00:00",
+          "category": "DeFi & Stablecoins",
+          "importance": 0.542,
+          "age_hours": 0.0,
+          "source_quality": "social",
+          "evidence_status": "unconfirmed-social",
           "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
-        "CoinTelegraph",
-        "Google News (ZAMA)"
+        "Google News (ZAMA)",
+        "Whale Alert (Telegram)"
       ]
     },
     {
       "category": "Ethereum & L2",
-      "count": 6,
+      "count": 5,
       "headlines": [
+        {
+          "source": "Yahoo Finance (ETH)",
+          "type": "yahoo",
+          "symbol": "ETH",
+          "headline": "Ethereum founder takes aim at keeping homes expensive",
+          "published": "Fri, 20 Nov 2026 22:30:00 +0000",
+          "link": "https://www.thestreet.com/crypto/ethereum/ethereum-founder-takes-aim-at-keeping-homes-expensive?.tsrc=rss",
+          "category": "Ethereum & L2",
+          "importance": 1.322,
+          "age_hours": 13.6,
+          "source_quality": "reputable",
+          "evidence_status": "confirmed-source",
+          "asset_scope": "asset-or-sector"
+        },
         {
           "source": "Google News (ETH)",
           "type": "google_news",
-          "headline": "Ethereum's 'Glamsterdam' Upgrade Delayed to Late January Next Year Due to App Fix Fallout",
-          "published": "Sat, 21 Nov 2026 00:05:00 GMT",
+          "headline": "Ethereum’s Glamsterdam delay reveals a troubling pattern behind its biggest network upgrades",
+          "published": "Sat, 21 Nov 2026 12:00:31 GMT",
           "category": "Ethereum & L2",
-          "importance": 0.96,
-          "age_hours": 1.0,
+          "importance": 0.969,
+          "age_hours": 0.1,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -1023,8 +1131,8 @@
         {
           "source": "Google News (ETH)",
           "type": "google_news",
-          "headline": "Ethereum price falls below $1,800: is a bigger crash coming?",
-          "published": "Fri, 20 Nov 2026 23:36:54 GMT",
+          "headline": "Peter Schiff Doubles Down On His ‘Black Monday’ Call Again: Ethereum Could Hit $1,000 In Two Days",
+          "published": "Sat, 21 Nov 2026 10:40:25 GMT",
           "category": "Ethereum & L2",
           "importance": 0.955,
           "age_hours": 1.5,
@@ -1033,35 +1141,11 @@
           "asset_scope": "asset-or-sector"
         },
         {
-          "source": "Google News (ETH)",
-          "type": "google_news",
-          "headline": "Ethereum founder takes aim at keeping homes expensive",
-          "published": "Fri, 20 Nov 2026 22:30:00 GMT",
-          "category": "Ethereum & L2",
-          "importance": 0.944,
-          "age_hours": 2.6,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (ZAMA)",
-          "type": "google_news",
-          "headline": "EthSystems Compares Five Ethereum Privacy Technologies",
-          "published": "Fri, 20 Nov 2026 19:44:28 GMT",
-          "category": "Ethereum & L2",
-          "importance": 0.916,
-          "age_hours": 5.4,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
           "source": "StockTwits (ETH)",
           "type": "stocktwits",
-          "headline": "$ETH.X imo more pain coming next week. Monday will see a little bounce and then close red if i were to guess, bleeding will continue until after thanksgiving could get some ETH at $1400 $SPY $NVDA",
-          "published": "2026-11-21T01:00:11Z",
-          "sentiment_label": "none",
+          "headline": "$ETH.X I&#39;ll be buying in the 900s somewhere, sometime in January. And I&#39;m not even bearish, cycles need to cycle.",
+          "published": "2026-11-21T12:02:24Z",
+          "sentiment_label": "bearish",
           "symbol": "ETH",
           "category": "Ethereum & L2",
           "importance": 0.475,
@@ -1069,17 +1153,31 @@
           "source_quality": "social",
           "evidence_status": "unconfirmed-social",
           "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "StockTwits (ETH)",
+          "type": "stocktwits",
+          "headline": "$ETH.X IH&amp;S with upward facing neckline.",
+          "published": "2026-11-21T11:53:49Z",
+          "sentiment_label": "none",
+          "symbol": "ETH",
+          "category": "Ethereum & L2",
+          "importance": 0.474,
+          "age_hours": 0.2,
+          "source_quality": "social",
+          "evidence_status": "unconfirmed-social",
+          "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
         "Google News (ETH)",
-        "Google News (ZAMA)",
-        "StockTwits (ETH)"
+        "StockTwits (ETH)",
+        "Yahoo Finance (ETH)"
       ]
     },
     {
       "category": "Altcoins & Projects",
-      "count": 9,
+      "count": 10,
       "headlines": [
         {
           "source": "The Block",
@@ -1087,8 +1185,8 @@
           "headline": "DCG’s Zcash miner Fortitude clears vote for Nasdaq listing as ZEC retreats from all-time high",
           "published": "Fri, 20 Nov 2026 21:40:01 +0000",
           "category": "Altcoins & Projects",
-          "importance": 1.728,
-          "age_hours": 3.4,
+          "importance": 1.491,
+          "age_hours": 14.5,
           "source_quality": "reputable",
           "evidence_status": "confirmed-source",
           "asset_scope": "asset-or-sector"
@@ -1096,35 +1194,23 @@
         {
           "source": "Google News (ZEC)",
           "type": "google_news",
-          "headline": "Zcash falls 11.4% over 20-hour window, hitting low of 726.97 USD",
-          "published": "Sat, 21 Nov 2026 00:15:06 GMT",
+          "headline": "Zcash Just Dropped Below $1,000 for the First Time Since September. Is This a Buy-the-Dip Opportunity?",
+          "published": "Sat, 21 Nov 2026 11:23:02 GMT",
           "category": "Altcoins & Projects",
-          "importance": 0.962,
-          "age_hours": 0.8,
+          "importance": 0.963,
+          "age_hours": 0.7,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
         },
         {
-          "source": "Google News (SOL)",
+          "source": "Google News (ETH)",
           "type": "google_news",
-          "headline": "Sunrise CEO says Solana is not being left behind in the tokenization race",
-          "published": "Sat, 21 Nov 2026 00:05:26 GMT",
+          "headline": "Weekly Project Updates: Ethereum Glamsterdam Upgrade Delayed, Solana 2027 Roadmap, First Tokenized Stock On-Chain Dividend, etc",
+          "published": "Sat, 21 Nov 2026 11:28:10 GMT",
           "category": "Altcoins & Projects",
-          "importance": 0.96,
-          "age_hours": 1.0,
-          "source_quality": "discovery",
-          "evidence_status": "discovery-lead",
-          "asset_scope": "asset-or-sector"
-        },
-        {
-          "source": "Google News (SOL)",
-          "type": "google_news",
-          "headline": "Solana price struggles despite major upgrade: is another sell-off coming?",
-          "published": "Fri, 20 Nov 2026 23:46:39 GMT",
-          "category": "Altcoins & Projects",
-          "importance": 0.957,
-          "age_hours": 1.3,
+          "importance": 0.963,
+          "age_hours": 0.7,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
@@ -1132,26 +1218,39 @@
         {
           "source": "Google News (ZEC)",
           "type": "google_news",
-          "headline": "Zcash Miner Fortitude Wins Shareholder Approval for Merger, Approaches Nasdaq Listing",
-          "published": "Fri, 20 Nov 2026 23:16:13 GMT",
+          "headline": "Zcash Miner Fortitude Clears Shareholder Vote, Nears Nasdaq Debut Under TUDE Ticker",
+          "published": "Sat, 21 Nov 2026 10:55:00 GMT",
           "category": "Altcoins & Projects",
-          "importance": 0.952,
-          "age_hours": 1.8,
+          "importance": 0.958,
+          "age_hours": 1.2,
+          "source_quality": "discovery",
+          "evidence_status": "discovery-lead",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "Google News (ZEC)",
+          "type": "google_news",
+          "headline": "Zcash sees heavy ETF outflows and long liquidations: Can ZEC avoid deeper losses?",
+          "published": "Sat, 21 Nov 2026 06:46:22 GMT",
+          "category": "Altcoins & Projects",
+          "importance": 0.916,
+          "age_hours": 5.4,
           "source_quality": "discovery",
           "evidence_status": "discovery-lead",
           "asset_scope": "asset-or-sector"
         }
       ],
       "top_sources": [
-        "Google News (SOL)",
+        "Google News (ETH)",
         "Google News (ZEC)",
         "StockTwits (SOL)",
-        "The Block"
+        "The Block",
+        "Watcher.Guru (Telegram)"
       ]
     },
     {
       "category": "Other",
-      "count": 2,
+      "count": 4,
       "headlines": [
         {
           "source": "Decrypt",
@@ -1159,17 +1258,41 @@
           "headline": "Cathie Wood Bets $91M on Anthropic IPO While Paring Crypto Exposure",
           "published": "Fri, 20 Nov 2026 18:46:03 +0000",
           "category": "Other",
-          "importance": 1.404,
-          "age_hours": 6.3,
+          "importance": 1.21,
+          "age_hours": 17.4,
           "source_quality": "reputable",
           "evidence_status": "confirmed-source",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "CoinTelegraph",
+          "type": "rss",
+          "headline": "Here’s what happened in crypto today",
+          "published": "Sat, 21 Nov 2026 11:18:52 +0000",
+          "category": "Other",
+          "importance": 1.046,
+          "age_hours": 0.8,
+          "source_quality": "unknown",
+          "evidence_status": "unconfirmed-social",
+          "asset_scope": "asset-or-sector"
+        },
+        {
+          "source": "CoinTelegraph",
+          "type": "rss",
+          "headline": "Hong Kong pushes to bring crypto custodians, advisers under licensing rules",
+          "published": "Sat, 21 Nov 2026 05:40:35 +0000",
+          "category": "Other",
+          "importance": 0.983,
+          "age_hours": 6.5,
+          "source_quality": "unknown",
+          "evidence_status": "unconfirmed-social",
           "asset_scope": "asset-or-sector"
         },
         {
           "source": "Wu Blockchain (Telegram)",
           "type": "telegram",
           "headline": "Sonic Audit Reveals S Token Supply Is 48% Higher Than Initially Announced Sonic disclosed that its total S token supply stands at 4.70 billion, approximately 48% above the initially announced 3.175 billion. An independent audit found that when 2.12 billion native FTM tokens were minted on Fantom Opera in 2019, approximately 1.47 billion corresponding ERC-20 FTM tokens remained unlocked instead of being locked or burned, becoming a major source of the increased S supply. Sonic said the historical discrepancy remains under investigation. It plans to remove manual minting functionality and burn 91.7 million unallocated S tokens on December 15. — link",
-          "published": "2026-11-21T01:06:01.209612+00:00",
+          "published": "2026-11-21T12:07:35.071737+00:00",
           "category": "Other",
           "importance": 0.542,
           "age_hours": 0.0,
@@ -1179,6 +1302,7 @@
         }
       ],
       "top_sources": [
+        "CoinTelegraph",
         "Decrypt",
         "Wu Blockchain (Telegram)"
       ]
@@ -1190,35 +1314,36 @@
     "summary": "Security-related headlines are prominent; verify affected protocols and whether contagion is material.",
     "key_points": [
       "Binance hack laundering ramps up as $149 million in bitcoin mixed through coinjoins: Elliptic",
-      "Wrapped Monero token crashes 99.8% amid suspected $13.5M exploit",
-      "Fairmint plans tokenized stock venue on Canton, Ethereum under SEC experiment",
+      "Investigation: Only $32M Recovered Three Weeks After $6.4B Binance Hack, $2.82B Frozen According to blockchain investigator SomaXBT, three weeks after the $6.4 billion Binance hack, approximately $2.82 billion has been frozen, $2.67 billion remains under attacker control, and only $32 million has been recovered. The attackers still hold 18,270 BTC stolen directly from Binance, which remains untouched. Over 5,100 BTC has been transferred through THORChain, while 1,482 BTC has entered CoinJoin mixing, primarily via the kruw coordinator. The FBI previously attributed the attack to North Korea-linked TraderTraitor. — link",
       "Nvidia Shares Sink to 52-Week Low After Report SEC Is Probing Accounting",
-      "$BTC.X nothing to see here till Sunday evening. This turd is not run by the common people  anymore. Have to wait and see what the MMs and ETFs want to do!!￼"
+      "XRP falls 10% as long bets unwind and ETF assets slip below $1 billion",
+      "Solana ETFs See $4.4M Inflows Amid Broader Crypto Sell-Off"
     ],
-    "updated_at": "2026-11-21T01:06:03.191558+00:00",
+    "updated_at": "2026-11-21T12:07:36.957346+00:00",
     "reason": "NEWS_AI_API_KEY is not configured"
   },
   "quality": {
-    "trusted_headlines": 9,
-    "discovery_headlines": 21,
-    "social_headlines": 16,
+    "trusted_headlines": 14,
+    "discovery_headlines": 19,
+    "social_headlines": 21,
     "quality_tiers": {
-      "reputable": 9,
-      "unknown": 3,
-      "discovery": 21,
-      "social": 16
+      "reputable": 14,
+      "discovery": 19,
+      "social": 21,
+      "unknown": 2
     },
     "interpretation_policy": "Only primary/reputable sources are treated as confirmation; discovery and social sources are leads.",
-    "excluded_count": 38,
+    "excluded_count": 33,
     "excluded_reasons": {
-      "exact-duplicate": 11,
-      "near-duplicate": 1,
-      "not-crypto-relevant": 26
+      "exact-duplicate": 9,
+      "low-information-or-promotional": 1,
+      "near-duplicate": 2,
+      "not-crypto-relevant": 21
     }
   },
   "stocktwits": {
     "status": "ok",
-    "aggregate_score": 46.1,
+    "aggregate_score": 15.9,
     "symbols": {
       "BTC": {
         "status": "ok",
@@ -1234,213 +1359,213 @@
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "BTC",
-            "headline": "$TRUMP.X \nDo you really think Trump’s wealthy friends won’t support him on Sunday? They’re going to pump up the crypto market just like they did a year ago! Trump Crypto is going to explode! 🚀🔥🇺🇸\n\nYou’re the best president, Trump! We all love you! ❤️🇺🇸👑\n\n$BTC.X $PEPE.X $XRP.X $SO",
-            "published": "2026-11-21T01:06:01Z",
-            "user": "altinaygo",
-            "sentiment_label": "bullish",
-            "message_id": 669834691
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$BTC.X nothing to see here till Sunday evening. This turd is not run by the common people  anymore. Have to wait and see what the MMs and ETFs want to do!!￼",
-            "published": "2026-11-21T01:04:19Z",
-            "user": "LoveShtBoxes",
-            "sentiment_label": "none",
-            "message_id": 669834580
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$BTC.X",
-            "published": "2026-11-21T01:01:33Z",
-            "user": "8AMTunein",
-            "sentiment_label": "none",
-            "message_id": 669834407
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$BTC.X $GLD $QQQ $SPY",
-            "published": "2026-11-21T01:01:26Z",
-            "user": "coin2222",
-            "sentiment_label": "none",
-            "message_id": 669834402
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$BTC.X BULLS DEFENDING 58k",
-            "published": "2026-11-21T01:00:24Z",
-            "user": "bond1971",
-            "sentiment_label": "none",
-            "message_id": 669834355
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$BTC.X  $MSTR \n\nIf below the 55, next is the 53-51/50.",
-            "published": "2026-11-21T00:59:36Z",
-            "user": "TMStrader",
-            "sentiment_label": "none",
-            "message_id": 669834304
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$SPY $QQQ $BTC.X $GLD",
-            "published": "2026-11-21T00:58:24Z",
-            "user": "PaidGuruWorstNightmare",
-            "sentiment_label": "none",
-            "message_id": 669834227
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$BTC.X 65K incoming",
-            "published": "2026-11-21T00:57:19Z",
-            "user": "bobst2003",
-            "sentiment_label": "none",
-            "message_id": 669834158
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$BTC.X $TRUMP.X the crypto President loves cent because then all simple Americans can afford speculate with the money they own and he’s hoping all crypto is continuing going down so you’ll can afford buying crypto to feel your wealth even there’s not enough money for food/gasolin",
-            "published": "2026-11-21T00:56:40Z",
-            "user": "bginvest",
+            "headline": "$BTC.X next stop 52k",
+            "published": "2026-11-21T12:07:27Z",
+            "user": "marti837",
             "sentiment_label": "bearish",
-            "message_id": 669834114
+            "message_id": 669850984
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "BTC",
-            "headline": "$BTC.X $ZEC.X told ya!",
-            "published": "2026-11-21T00:56:22Z",
-            "user": "TheRealGrimace",
+            "headline": "$BTC.X 63k next",
+            "published": "2026-11-21T12:05:21Z",
+            "user": "BMNR2",
             "sentiment_label": "bullish",
-            "message_id": 669834098
+            "message_id": 669850940
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "BTC",
-            "headline": "$BTC.X if we hold 59 it’s bullish this weekend? Please?🙏",
-            "published": "2026-11-21T00:55:06Z",
-            "user": "TickleMyMACD",
-            "sentiment_label": "bullish",
-            "message_id": 669833995
+            "headline": "$BTC.X $MSTR $ETH.X $XRP.X \nWhen do we uber hookers? 🤔",
+            "published": "2026-11-21T12:05:18Z",
+            "user": "BoomerDeathclock",
+            "sentiment_label": "none",
+            "message_id": 669850937
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$BTC.X 42k next",
+            "published": "2026-11-21T12:04:47Z",
+            "user": "xio8up",
+            "sentiment_label": "bearish",
+            "message_id": 669850925
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$SPY $DJT $BTC.X $SPCX",
+            "published": "2026-11-21T12:00:00Z",
+            "user": "drunkpete",
+            "sentiment_label": "bearish",
+            "message_id": 669850833
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$BTC.X looks like its forming a hammer with 2 globes on the 69 second chart",
+            "published": "2026-11-21T11:58:26Z",
+            "user": "okmfer69",
+            "sentiment_label": "none",
+            "message_id": 669850805
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$BTC.X  ,,,, Trump will Pardon a Turkey and his family on Thanksgiving ....",
+            "published": "2026-11-21T11:56:15Z",
+            "user": "Waldo_5150",
+            "sentiment_label": "none",
+            "message_id": 669850768
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$BTC.X $MSTR $ETH.X $XRP.X \nThis is my wormhole stay tf out or I’ll meltdown the entire operation test it",
+            "published": "2026-11-21T11:53:15Z",
+            "user": "BoomerDeathclock",
+            "sentiment_label": "none",
+            "message_id": 669850715
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$BTC.X Market markers failed on Kraken this morning. BTC fell over 50%, traded at a massive discount to other exchanges. Arb traders eating very good after correction. Clearly a wide spread liquidity crisis in all markets but crypto getting it the worst for obvious reasons.\n\nYou ",
+            "published": "2026-11-21T11:51:56Z",
+            "user": "OsitoElCulito",
+            "sentiment_label": "none",
+            "message_id": 669850692
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "BTC",
             "headline": "$BTC.X",
-            "published": "2026-11-21T00:53:52Z",
-            "user": "SolomanWisdom247",
+            "published": "2026-11-21T11:51:44Z",
+            "user": "LongBallBarn",
             "sentiment_label": "none",
-            "message_id": 669833911
+            "message_id": 669850689
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "BTC",
-            "headline": "$BTC.X $MSTR no different to the hyperscalers..\n\nMuch more cash, though.\n\nBut sure, this sector is the problem.. 🤷‍♂️\n\nJesus Christ.. 🙄",
-            "published": "2026-11-21T00:53:27Z",
-            "user": "Tommojg",
+            "headline": "$BTC.X oufffff!",
+            "published": "2026-11-21T11:51:34Z",
+            "user": "rick4u",
             "sentiment_label": "none",
-            "message_id": 669833884
+            "message_id": 669850687
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "BTC",
-            "headline": "$TRUMP.X trancing because this idiot is desperate!! This shit is a scam!! \n\n$BTC.X 34k will bring this dog shit to $DOGE.X prices !!!",
-            "published": "2026-11-21T00:52:31Z",
-            "user": "Peterdaguru",
+            "headline": "$BTC.X exit all markets",
+            "published": "2026-11-21T11:51:05Z",
+            "user": "Omicron_Investments_LP",
             "sentiment_label": "none",
-            "message_id": 669833817
+            "message_id": 669850681
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "BTC",
-            "headline": "$SPY $QQQ $BTC.X $GLD",
-            "published": "2026-11-21T00:52:20Z",
-            "user": "PaidGuruWorstNightmare",
-            "sentiment_label": "none",
-            "message_id": 669833807
+            "headline": "$BTC.X knowing literally no one talks about crypto anymore or talks about purchasing It , this is likely just a slow death to 0 for the next two years for all of crypto",
+            "published": "2026-11-21T11:50:15Z",
+            "user": "reginaldbaker32",
+            "sentiment_label": "bearish",
+            "message_id": 669850661
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "BTC",
-            "headline": "$BTC.X pack it up ladies she’s done",
-            "published": "2026-11-21T00:51:29Z",
-            "user": "_RickWithASilentP",
-            "sentiment_label": "none",
-            "message_id": 669833748
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$BTC.X $MSTR All they do is financial engineering slop that downgrades the world, change my mind.\n\nIf Strategy disappeared tomorrow no one would care  since they don’t provide anything of value to the world. Just an endless slopfest of wall st jargon.",
-            "published": "2026-11-21T00:49:16Z",
-            "user": "xbt",
-            "sentiment_label": "none",
-            "message_id": 669833566
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$SPY $QQQ $BTC.X $MSFT",
-            "published": "2026-11-21T00:48:26Z",
-            "user": "PaidGuruWorstNightmare",
-            "sentiment_label": "none",
-            "message_id": 669833520
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "BTC",
-            "headline": "$SPY $BTC.X $DJT $TSLA \n\nHey look, the stock market matches Trump’s approval ratings.",
-            "published": "2026-11-21T00:46:58Z",
-            "user": "ZenAgain",
+            "headline": "$BTC.X \n\nHere it is !!!\n\n$SPY $QQQ $AMC $GME \n\nhttps://x.com/saylor/status/2123826627759264099",
+            "published": "2026-11-21T11:49:30Z",
+            "user": "NatoshiSakomato",
             "sentiment_label": "bullish",
-            "message_id": 669833426
+            "message_id": 669850641
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "BTC",
-            "headline": "$TRUMP.X \n❤️🇺🇸❤️🇺🇸❤️LOVE USA❤️🇺🇸❤️🇺🇸❤️\nThe APEC summit in Shenzhen was a success for Trump, and the dinner on November 22, 2026, will also be a success for my president. Trump Coin is going to skyrocket! In my opinion, it could even double in value — a 100% increase!\n\nTrump forev",
-            "published": "2026-11-21T00:44:48Z",
-            "user": "altinaygo",
+            "headline": "$INTU @topstockalerts @topstocksalert  \n \nwhat do others think? \n \n$ZEC.X $BTC.X $CYPH $ROLR",
+            "published": "2026-11-21T11:46:50Z",
+            "user": "DubLad76",
             "sentiment_label": "bullish",
-            "message_id": 669833271
+            "message_id": 669850601
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$BTC.X 💡&quot;Red or Green&quot; the outcome will remain he same kids 😏\n\nAn inverted hammer at the bottom of a downtrend signals a potential bullish reversal whether the candle is green or red, though a green candle shows slightly stronger buying pressure at the close.",
+            "published": "2026-11-21T11:46:24Z",
+            "user": "JaredSotken",
+            "sentiment_label": "bullish",
+            "message_id": 669850594
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$BTC.X hasnt been over 100k in more than 52w??🤢🤢",
+            "published": "2026-11-21T11:46:06Z",
+            "user": "JewishJesus99",
+            "sentiment_label": "none",
+            "message_id": 669850591
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$BTC.X look at the one week. Y’all claim the bottom is in with no evidence at all.",
+            "published": "2026-11-21T11:45:48Z",
+            "user": "Hyperion_Corp",
+            "sentiment_label": "none",
+            "message_id": 669850586
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$MSTR  $BTC.X  .....  Saylors  CEO  is telling you,  Bank Issued   Stablecoins are the Future  (Not Bitcoin)   Lol  ....",
+            "published": "2026-11-21T11:45:33Z",
+            "user": "Waldo_5150",
+            "sentiment_label": "none",
+            "message_id": 669850581
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "BTC",
+            "headline": "$BTC.X  \n \nbottom",
+            "published": "2026-11-21T11:43:43Z",
+            "user": "Nfty",
+            "sentiment_label": "none",
+            "message_id": 669850554
           }
         ],
         "summary": {
           "message_count": 20,
-          "bullish": 5,
-          "bearish": 1,
-          "neutral": 14,
-          "bullish_ratio": 0.833,
-          "score": 66.7
+          "bullish": 4,
+          "bearish": 4,
+          "neutral": 12,
+          "bullish_ratio": 0.5,
+          "score": 0.0
         },
         "coverage_gap": null,
-        "updated_at": "2026-11-21T01:06:03.191579+00:00"
+        "updated_at": "2026-11-21T12:07:36.957368+00:00"
       },
       "ETH": {
         "status": "ok",
@@ -1456,213 +1581,213 @@
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "ETH",
-            "headline": "$ETH.X imo more pain coming next week. Monday will see a little bounce and then close red if i were to guess, bleeding will continue until after thanksgiving could get some ETH at $1400 $SPY $NVDA",
-            "published": "2026-11-21T01:00:11Z",
-            "user": "bagholdking",
+            "headline": "$BTC.X $MSTR $ETH.X $XRP.X \nWhen do we uber hookers? 🤔",
+            "published": "2026-11-21T12:05:18Z",
+            "user": "BoomerDeathclock",
             "sentiment_label": "none",
-            "message_id": 669834344
+            "message_id": 669850937
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "ETH",
-            "headline": "$ETH.X",
-            "published": "2026-11-21T00:34:28Z",
-            "user": "stockandsex",
-            "sentiment_label": "none",
-            "message_id": 669832484
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "ETH",
-            "headline": "$TRX.X look at 5 year chart. Only alt coin you would not be down along with  say $ETH.X $BTC.X and $BNB.X - although $TRX.X is least volatile",
-            "published": "2026-11-21T00:32:01Z",
-            "user": "sammed",
-            "sentiment_label": "bullish",
-            "message_id": 669832287
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "ETH",
-            "headline": "$ETH.X • ⚡ BOS (BEARISH) STRUCTURAL SHIFT\n🧭 INSTITUTIONAL MARKET STRUCTURE SCAN\n\nTape printed a confirmed BOS on Ethereum near 1,716.60. Structural trend reads 🔴 BEARISH (BOS) as price establishes fresh swing parameters between 1,711.76 and 2,520.98.\n\n• Current Price: 1,621.31 | ",
-            "published": "2026-11-21T00:31:08Z",
-            "user": "RajatPatel",
+            "headline": "$ETH.X I&#39;ll be buying in the 900s somewhere, sometime in January. And I&#39;m not even bearish, cycles need to cycle.",
+            "published": "2026-11-21T12:02:24Z",
+            "user": "Good_Morning_736am",
             "sentiment_label": "bearish",
-            "message_id": 669832230
+            "message_id": 669850881
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "ETH",
-            "headline": "$MSTR $BTC.X I would not sell unless you need money because you are staving to death. Everyone else will regret it. The fact remains the US Dollar is unlimited garbage. And the banks are clearly not safe and technically do not even have your money! They lend out 98% of the money!",
-            "published": "2026-11-21T00:27:46Z",
-            "user": "sammed",
+            "headline": "$ETH.X IH&amp;S with upward facing neckline.",
+            "published": "2026-11-21T11:53:49Z",
+            "user": "DeFi_Wookie",
+            "sentiment_label": "none",
+            "message_id": 669850727
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "ETH",
+            "headline": "$BTC.X $MSTR $ETH.X $XRP.X \nThis is my wormhole stay tf out or I’ll meltdown the entire operation test it",
+            "published": "2026-11-21T11:53:15Z",
+            "user": "BoomerDeathclock",
+            "sentiment_label": "none",
+            "message_id": 669850715
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "ETH",
+            "headline": "$ETH.X $XRP.X $SOL.X $ZEC.X $LINK.X",
+            "published": "2026-11-21T11:52:38Z",
+            "user": "NatoshiSakomato",
             "sentiment_label": "bullish",
-            "message_id": 669831958
+            "message_id": 669850704
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "ETH",
-            "headline": "$TRUMP.X $BTC.X $XRP.X $DOGE.X $ETH.X",
-            "published": "2026-11-21T00:25:47Z",
-            "user": "d12345678982",
-            "sentiment_label": "none",
-            "message_id": 669831793
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "ETH",
-            "headline": "$TRUMP.X \n🚀🚀 Trump’s dinner is taking place on Sunday, November 22, 2026. A year ago, when Trump hosted the same dinner, the stock surged by approximately 15% just one day before the event.🚀🚀🚀🚀🚀🚀\n$BTC.X $XRP.X $DOGE.X $ETH.X",
-            "published": "2026-11-21T00:25:08Z",
-            "user": "altinaygo",
-            "sentiment_label": "bullish",
-            "message_id": 669831743
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "ETH",
-            "headline": "$BTC.X  \nLots of downside Juice for the MMS to drink, why stop now that their so close!!! $ETH.X  $NVDA",
-            "published": "2026-11-21T00:07:16Z",
-            "user": "Jay767",
-            "sentiment_label": "bearish",
-            "message_id": 669830285
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "ETH",
-            "headline": "$ETH.X whole market is leveraged positions liquidated by guys who are basically gambling the good thing about it is you won’t be seeing them again because now they’re broke let’s get some real investors like myself who actually have the capital to back up their investment",
-            "published": "2026-11-20T23:58:42Z",
-            "user": "Cvn71",
-            "sentiment_label": "none",
-            "message_id": 669829549
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "ETH",
-            "headline": "$ETH.X",
-            "published": "2026-11-20T23:57:42Z",
-            "user": "DigitalBone",
-            "sentiment_label": "none",
-            "message_id": 669829463
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "ETH",
-            "headline": "$ETH.X problem ks crypto in general is in a bear mkt… which means ETH will also suffer",
-            "published": "2026-11-20T23:52:55Z",
-            "user": "CPA_",
-            "sentiment_label": "none",
-            "message_id": 669829078
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "ETH",
-            "headline": "$QQQ $SPY $COIN $ETH.X $BTC.X You guys! Why aren’t you buying my valuable poops? They are on sale now.",
-            "published": "2026-11-20T23:37:48Z",
-            "user": "Blackspoon",
-            "sentiment_label": "none",
-            "message_id": 669827636
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "ETH",
-            "headline": "$ETH.X bull trap",
-            "published": "2026-11-20T23:20:22Z",
+            "headline": "$ETH.X looking at the one week it’s blatantly early to claim the bottom is in. We need sustained levels above the dip. Has sent happens yet. Be cautious. The same people saying the bottom is in are leveraging short positions on your back.",
+            "published": "2026-11-21T11:47:13Z",
             "user": "Hyperion_Corp",
             "sentiment_label": "none",
-            "message_id": 669826089
+            "message_id": 669850607
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "ETH",
-            "headline": "$BTC.X $ETH.X $BMNR $MSTR If you think all this liquidity is coming back into crypto and wont pile into this historic tech correction instead good luck. Why would this horrible industry recover? All out of fresh use case narratives.",
-            "published": "2026-11-20T23:09:41Z",
-            "user": "DannyTanner1",
+            "headline": "$BTC.X $MSTR $ETH.X $XRP.X \nCrazy how it happens isn’t it?",
+            "published": "2026-11-21T11:36:32Z",
+            "user": "BoomerDeathclock",
+            "sentiment_label": "none",
+            "message_id": 669850439
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "ETH",
+            "headline": "$BTC.X $SPY $QQQ $ETH.X $XRP.X \n\nWhat does it look like it ?",
+            "published": "2026-11-21T11:35:58Z",
+            "user": "NatoshiSakomato",
+            "sentiment_label": "bullish",
+            "message_id": 669850428
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "ETH",
+            "headline": "$ETH.X starting position",
+            "published": "2026-11-21T11:35:11Z",
+            "user": "Rampant00",
             "sentiment_label": "bearish",
-            "message_id": 669825291
+            "message_id": 669850412
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "ETH",
-            "headline": "$ETH.X don’t miss out on the opportunity 🚀🚀🚀🚀🚀",
-            "published": "2026-11-20T23:06:27Z",
-            "user": "thomasgt3rs",
+            "headline": "$BTC.X $MSTR $ETH.X $XRP.X \nYou kids ready to rip open another wormhole?",
+            "published": "2026-11-21T11:29:09Z",
+            "user": "BoomerDeathclock",
+            "sentiment_label": "none",
+            "message_id": 669850326
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "ETH",
+            "headline": "$BTC.X $MSTR $ETH.X $XRP.X 😉",
+            "published": "2026-11-21T11:27:14Z",
+            "user": "BoomerDeathclock",
+            "sentiment_label": "none",
+            "message_id": 669850306
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "ETH",
+            "headline": "$ETH.X we could fill the gap back but we are still headed down. Bitcoin did not escape the downturn trend. The bottom is not in!",
+            "published": "2026-11-21T11:24:24Z",
+            "user": "Hyperion_Corp",
+            "sentiment_label": "none",
+            "message_id": 669850266
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "ETH",
+            "headline": "$BTC.X $MSTR $ETH.X $XRP.X \nhttps://youtube.com/watch?v=49oTgF4sD6Q&amp;si=2CupykEfYL4YW7L1",
+            "published": "2026-11-21T11:21:26Z",
+            "user": "BoomerDeathclock",
+            "sentiment_label": "none",
+            "message_id": 669850221
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "ETH",
+            "headline": "Peter Schiff Doubles Down On His ‘Black Monday’ Call Again: Ethereum Could Hit $1,000 In Two Days\n\n$ETH.X $ETHA $ETHB $ETH $ETHU\n\nhttps://stocktwits.com/news/cryptocurrency/markets/peter-schiff-doubles-down-on-his-black-monday-call-again-ethereum-could-hit-1-000-in-two-days/cNbmk",
+            "published": "2026-11-21T10:40:25Z",
+            "user": "StocktwitsNews",
+            "sentiment_label": "none",
+            "message_id": 669849725
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "ETH",
+            "headline": "$ETH.X bought heavy at the bottom",
+            "published": "2026-11-21T10:30:34Z",
+            "user": "TrollsBipolar",
             "sentiment_label": "bullish",
-            "message_id": 669825054
+            "message_id": 669849600
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "ETH",
-            "headline": "$ETH.X maybe i will get eth at $1400 on monday",
-            "published": "2026-11-20T23:05:30Z",
-            "user": "bagholdking",
+            "headline": "$BTC.X $ETH.X $SOL.X i warned and i’m warning again. bitcoin $15K eth $500 sol $10",
+            "published": "2026-11-21T10:25:12Z",
+            "user": "TheMer0vingian",
+            "sentiment_label": "bearish",
+            "message_id": 669849532
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "ETH",
+            "headline": "$BTC.X $ETH.X $XRP.X $SOL.X $QRL.X",
+            "published": "2026-11-21T09:36:09Z",
+            "user": "ChillerID",
             "sentiment_label": "none",
-            "message_id": 669824975
+            "message_id": 669848936
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "ETH",
-            "headline": "$ETH.X it will be a perfect time to full blast eth just like GME etc in 2021 👀",
-            "published": "2026-11-20T22:59:47Z",
-            "user": "Donnydon1234",
-            "sentiment_label": "none",
-            "message_id": 669824532
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "ETH",
-            "headline": "$ETH.X see it&#39;s simple.. gravity only matters..\nHow ever it deeps its going to retest 2400$ ..🤷‍♂️",
-            "published": "2026-11-20T22:34:25Z",
-            "user": "flopy",
-            "sentiment_label": "none",
-            "message_id": 669822522
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "ETH",
-            "headline": "$ETH.X about to shoot up quick",
-            "published": "2026-11-20T22:28:23Z",
-            "user": "thomasgt3rs",
+            "headline": "$ETH.X",
+            "published": "2026-11-21T09:35:41Z",
+            "user": "BMNR2",
             "sentiment_label": "bullish",
-            "message_id": 669821970
+            "message_id": 669848933
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "ETH",
-            "headline": "$BTC.X $ETH.X  $SPY $ANT $NVDA",
-            "published": "2026-11-20T22:27:29Z",
-            "user": "Jonathan_Morgan",
+            "headline": "$BTC.X $MSTR $ETH.X $XRP.X \nStop runs about to trigger and there’s nothing you degens  can do about it but stick your thumbs up your asses",
+            "published": "2026-11-21T09:09:46Z",
+            "user": "BoomerDeathclock",
             "sentiment_label": "none",
-            "message_id": 669821891
+            "message_id": 669848658
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "ETH",
+            "headline": "$BTC.X $MSTR $ETH.X $XRP.X \nSad watching this hope you kids come to your senses but we all know what happens in the end",
+            "published": "2026-11-21T09:02:04Z",
+            "user": "BoomerDeathclock",
+            "sentiment_label": "none",
+            "message_id": 669848570
           }
         ],
         "summary": {
           "message_count": 20,
-          "bullish": 5,
+          "bullish": 4,
           "bearish": 3,
-          "neutral": 12,
-          "bullish_ratio": 0.625,
-          "score": 25.0
+          "neutral": 13,
+          "bullish_ratio": 0.571,
+          "score": 14.3
         },
         "coverage_gap": null,
-        "updated_at": "2026-11-21T01:06:03.279475+00:00"
+        "updated_at": "2026-11-21T12:07:37.143901+00:00"
       },
       "SOL": {
         "status": "ok",
@@ -1678,222 +1803,222 @@
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "SOL",
-            "headline": "$TRUMP.X \nDo you really think Trump’s wealthy friends won’t support him on Sunday? They’re going to pump up the crypto market just like they did a year ago! Trump Crypto is going to explode! 🚀🔥🇺🇸\n\nYou’re the best president, Trump! We all love you! ❤️🇺🇸👑\n\n$BTC.X $PEPE.X $XRP.X $SO",
-            "published": "2026-11-21T01:06:01Z",
-            "user": "altinaygo",
+            "headline": "$SOL.X weekly swept (pwl)",
+            "published": "2026-11-21T11:58:43Z",
+            "user": "moncef_fahim",
             "sentiment_label": "bullish",
-            "message_id": 669834691
+            "message_id": 669850813
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "SOL",
-            "headline": "$SOL.X  \n \nGOING  TO  50&#39;S AND BELOW!!! \n \n🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣🤣 \n \nGOODBYE  PRICES!! \n \n📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉📉 \n \nWOOOOOOOO!!!!",
-            "published": "2026-11-21T00:55:13Z",
-            "user": "ThomSquires",
+            "headline": "$ETH.X $XRP.X $SOL.X $ZEC.X $LINK.X",
+            "published": "2026-11-21T11:52:38Z",
+            "user": "NatoshiSakomato",
+            "sentiment_label": "bullish",
+            "message_id": 669850704
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "SOL",
+            "headline": "$SOL.X Be like whats in your wallet",
+            "published": "2026-11-21T10:36:22Z",
+            "user": "MrProfits",
+            "sentiment_label": "none",
+            "message_id": 669849672
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "SOL",
+            "headline": "$SOL.X \nhttps://dexscreener.com/solana/2Hg7xqFU6jHuKbQU3cEKShATdqP9rxdTjHFMNiRY9SRZ",
+            "published": "2026-11-21T10:25:19Z",
+            "user": "shoakyskibidi",
+            "sentiment_label": "none",
+            "message_id": 669849535
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "SOL",
+            "headline": "$BTC.X $ETH.X $SOL.X i warned and i’m warning again. bitcoin $15K eth $500 sol $10",
+            "published": "2026-11-21T10:25:12Z",
+            "user": "TheMer0vingian",
             "sentiment_label": "bearish",
-            "message_id": 669834009
+            "message_id": 669849532
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "SOL",
-            "headline": "$TRUMP.X \n❤️🇺🇸❤️🇺🇸❤️LOVE USA❤️🇺🇸❤️🇺🇸❤️\nThe APEC summit in Shenzhen was a success for Trump, and the dinner on November 22, 2026, will also be a success for my president. Trump Coin is going to skyrocket! In my opinion, it could even double in value — a 100% increase!\n\nTrump forev",
-            "published": "2026-11-21T00:44:48Z",
-            "user": "altinaygo",
+            "headline": "$SOL.X buy the dip!!!",
+            "published": "2026-11-21T10:07:04Z",
+            "user": "JohnnyDoughnut",
             "sentiment_label": "bullish",
-            "message_id": 669833271
+            "message_id": 669849320
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "SOL",
-            "headline": "$TRUMP.X ❤️❤️❤️❤️❤️❤️❤️\n🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀\nMy President❤️ Donald Trump❤️ and his friends won’t let us down on November 22. 2026. The cryptocurrency is going to explode! We’ll see what happens! We will Fly to 100%🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀$BTC.X $XRP.X $SOL.X $DOGE.X",
-            "published": "2026-11-21T00:36:54Z",
-            "user": "altinaygo",
+            "headline": "$SOL.X buying more…!!",
+            "published": "2026-11-21T10:06:12Z",
+            "user": "JohnnyDoughnut",
             "sentiment_label": "bullish",
-            "message_id": 669832689
+            "message_id": 669849304
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "SOL",
-            "headline": "$TRUMP.X $BTC.X $SOL.X $XRP.X $DOGE.X",
-            "published": "2026-11-21T00:27:59Z",
-            "user": "d12345678982",
+            "headline": "$SOL.X $APLD dividends",
+            "published": "2026-11-21T09:55:25Z",
+            "user": "cryptokrunch",
+            "sentiment_label": "bullish",
+            "message_id": 669849174
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "SOL",
+            "headline": "$BTC.X $ETH.X $XRP.X $SOL.X $QRL.X",
+            "published": "2026-11-21T09:36:09Z",
+            "user": "ChillerID",
             "sentiment_label": "none",
-            "message_id": 669831977
+            "message_id": 669848936
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "SOL",
-            "headline": "$SOL.X all of you who voted for the democrats I hope you are feeling max pain.",
-            "published": "2026-11-21T00:15:09Z",
-            "user": "Rcgree8",
+            "headline": "$SOL.X • ⚡ BOS (BEARISH) STRUCTURAL SHIFT\n🧭 INSTITUTIONAL MARKET STRUCTURE SCAN\n\nTape printed a confirmed BOS on Solana near 71.55. Structural trend reads 🔴 BEARISH (BOS) as price establishes fresh swing parameters between 67.43 and 109.11.\n\n• Current Price: 67.93 | 🔴 BEARISH (BO",
+            "published": "2026-11-21T09:31:08Z",
+            "user": "RajatPatel",
             "sentiment_label": "bearish",
-            "message_id": 669830951
+            "message_id": 669848906
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "SOL",
-            "headline": "$SOL.X On track!",
-            "published": "2026-11-20T23:15:49Z",
-            "user": "Slapppy",
-            "sentiment_label": "none",
-            "message_id": 669825719
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "SOL",
-            "headline": "$SOL.X still hasn’t hit my cost basis 🖕",
-            "published": "2026-11-20T23:03:10Z",
-            "user": "Tommojg",
-            "sentiment_label": "none",
-            "message_id": 669824803
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "SOL",
-            "headline": "$SOL.X  Obviously that’s because the Stock market is closed.  No one can to sell there leveraged stocks , until Friday. \n\nFace it, Wednesday is a half day of trading.  Most traders don’t even go to work. They are traveling. Hoping the transportation system doesn’t hiccup. \n\nThurs",
-            "published": "2026-11-20T22:29:33Z",
+            "headline": "$SOL.X  \n\nWe got 5 weeks of Sketchy playing with the markets.  I’m all setup for Mondays buy.",
+            "published": "2026-11-21T06:53:14Z",
             "user": "SOL_Meek",
             "sentiment_label": "bullish",
-            "message_id": 669822077
+            "message_id": 669846880
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "SOL",
-            "headline": "$SOL.X Bought in today: \n\nGood luck to all:",
-            "published": "2026-11-20T22:16:46Z",
-            "user": "GypsyGirl2",
-            "sentiment_label": "bullish",
-            "message_id": 669820888
+            "headline": "$SOL.X • 🎯 LIQUIDITY HARVEST &amp; REVERSAL THESIS\n🏛️ INSTITUTIONAL ORDER FLOW DISPATCH\n\nSmart money raided sell-side liquidity at PDL (72.13) [SWEPT]. With price positioned in DISCOUNT (25.5% off 50% EQ), institutional desks are monitoring refined absorption for a rotation towar",
+            "published": "2026-11-21T06:25:06Z",
+            "user": "RajatPatel",
+            "sentiment_label": "bearish",
+            "message_id": 669846420
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "SOL",
-            "headline": "$BTC.X $ETH $SOL.X I&#39;ll buy all day long!",
-            "published": "2026-11-20T21:41:26Z",
-            "user": "CatTracks",
-            "sentiment_label": "bullish",
-            "message_id": 669817151
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "SOL",
-            "headline": "btc served a three-course breakdown: $60,075 lost, $57,780 swept, $58k barely back on the plate. \n \nasia gets the next bite. hold $58k or the kitchen drops another floor. \n \nfull level map: https://starvingchartist.ai \n \n$BTC.X $ETH.X $SOL.X",
-            "published": "2026-11-20T21:40:07Z",
-            "user": "Jonos_SC",
+            "headline": "$BTC.X $ETH.X $SOL.X LoL see this he ain’t wrong.. all you bulls were laughing at monkey and 👇",
+            "published": "2026-11-21T06:14:44Z",
+            "user": "funkymonkey_",
             "sentiment_label": "none",
-            "message_id": 669816965
+            "message_id": 669846210
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "SOL",
-            "headline": "I’m in a good spot.  My $SOL.X  average is slightly over 100. I’m slow buying staking and staking dips. \n\nStarted accumulating in 2022, I buy an average of 100 tokens  a year, buying the dips. \n\nMy stake is producing 22 tokens a year, and Growing. \n\nMy goal is to accumulate 2500 ",
-            "published": "2026-11-20T21:31:48Z",
+            "headline": "$SOL.X  After the Wall Street finishes adjusting, we’ll be at 400 next fall and staking😉\n\nTake it easy for the next 5 weeks. Let it come to you.  Flushing out leveraged assets is what this cycle is all about. 😉",
+            "published": "2026-11-21T06:12:36Z",
             "user": "SOL_Meek",
             "sentiment_label": "bullish",
-            "message_id": 669815772
+            "message_id": 669846159
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "SOL",
-            "headline": "$SOL.X  Will get back there, but probably not until Early next year. \n\nBuy the dip, and stake. Staking helps with the down side,",
-            "published": "2026-11-20T21:19:16Z",
+            "headline": "$SOL.X y’all remember when we almost hit 300$",
+            "published": "2026-11-21T05:58:22Z",
+            "user": "MrChronoice",
+            "sentiment_label": "none",
+            "message_id": 669845891
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "SOL",
+            "headline": "$BTC.X $ETH.X $SOL.X Allahmdullilah",
+            "published": "2026-11-21T05:55:26Z",
+            "user": "Josros",
+            "sentiment_label": "none",
+            "message_id": 669845820
+          },
+          {
+            "source": "StockTwits",
+            "type": "stocktwits",
+            "symbol": "SOL",
+            "headline": "$SOL.X It’s going to continue to be very Sketchy for the next 5 weeks.  \n\nI would not take on any short positions, or for that matter leverage a position.",
+            "published": "2026-11-21T05:35:51Z",
             "user": "SOL_Meek",
             "sentiment_label": "none",
-            "message_id": 669813757
+            "message_id": 669845348
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "SOL",
-            "headline": "$SOL.X Bullish but buying the dips.  \n\nWe got another 5 weeks before we see the direction. For now, AI is almost 90% responsible for this weeks correction, and it’s not over. \n\nMany saying privately to expect another 50% downside, as we learn more about the sever issues that were",
-            "published": "2026-11-20T21:17:15Z",
-            "user": "SOL_Meek",
-            "sentiment_label": "bullish",
-            "message_id": 669813427
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "SOL",
-            "headline": "$SOL.X go back to $69 and stay there",
-            "published": "2026-11-20T21:16:34Z",
-            "user": "Droidhustler",
-            "sentiment_label": "bullish",
-            "message_id": 669813289
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "SOL",
-            "headline": "$ADA.X $ETH.X $LINK.X $SOL.X $XRP.X \n\nLet Mookie II know he’s always welcome🤣🤣🤣🤣🤣",
-            "published": "2026-11-20T21:07:28Z",
+            "headline": "$SOL.X $BTC.X $ETH.X $DJT",
+            "published": "2026-11-21T05:27:49Z",
             "user": "SOL_Meek",
             "sentiment_label": "bearish",
-            "message_id": 669811432
+            "message_id": 669845158
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "SOL",
-            "headline": "$ADA.X $ETH.X $LINK.X $SOL.X $XRP.X \n\nOr possibly and Idiot, but it’s not going to change things🤣🤣🤣🤣😁",
-            "published": "2026-11-20T21:04:27Z",
-            "user": "SOL_Meek",
-            "sentiment_label": "bearish",
-            "message_id": 669810736
-          },
-          {
-            "source": "StockTwits",
-            "type": "stocktwits",
-            "symbol": "SOL",
-            "headline": "$SOL.X not bad when Nasdaq is almost -6%",
-            "published": "2026-11-20T20:58:48Z",
-            "user": "Gmblr777",
+            "headline": "$BTC.X $ETH.X $SOL.X $SUI.X ￼ \n\nI regretted not buying more when it was at this price long ago.\n\nThank you to a higher entity for giving me another chance.\n\nThe only way is up from around here.",
+            "published": "2026-11-21T05:24:47Z",
+            "user": "Bro_Care",
             "sentiment_label": "bullish",
-            "message_id": 669809206
+            "message_id": 669845095
           },
           {
             "source": "StockTwits",
             "type": "stocktwits",
             "symbol": "SOL",
-            "headline": "$SOL.X extremely bullish from here",
-            "published": "2026-11-20T20:40:51Z",
-            "user": "Eth_60k_Bitcoin_1M",
-            "sentiment_label": "bullish",
-            "message_id": 669805234
+            "headline": "$SOL.X is $10 possible?????",
+            "published": "2026-11-21T05:21:52Z",
+            "user": "Judy11",
+            "sentiment_label": "none",
+            "message_id": 669845034
           }
         ],
         "summary": {
           "message_count": 20,
-          "bullish": 11,
+          "bullish": 8,
           "bearish": 4,
-          "neutral": 5,
-          "bullish_ratio": 0.733,
-          "score": 46.7
+          "neutral": 8,
+          "bullish_ratio": 0.667,
+          "score": 33.3
         },
         "coverage_gap": null,
-        "updated_at": "2026-11-21T01:06:03.366663+00:00"
+        "updated_at": "2026-11-21T12:07:37.308630+00:00"
       }
     },
-    "updated_at": "2026-11-21T01:06:03.457944+00:00",
+    "updated_at": "2026-11-21T12:07:37.455104+00:00",
     "note": "Live-only social sentiment; not point-in-time historical archive."
   },
   "fred": {
     "status": "unavailable",
     "source": "FRED",
-    "updated_at": "2026-11-21T01:06:03.458791+00:00",
+    "updated_at": "2026-11-21T12:07:37.455993+00:00",
     "series": {},
     "limitations": [
       "FRED_API_KEY is not configured; macro series were not fetched."
