@@ -313,7 +313,11 @@
       "news_sentiment": -9.7,
       "social_sentiment": 15.9
     },
-    "settled": false
+    "settled": true,
+    "settled_at": "2026-11-22T15:56:28.734472+00:00",
+    "actual_direction": "up",
+    "forward_return_pct": 4.7634,
+    "direction_hit": false
   },
   {
     "prediction_id": "ma-20261121T212752Z",
@@ -368,6 +372,34 @@
       "price_change_pct": -0.419727,
       "news_sentiment": 1.8,
       "social_sentiment": 25.5
+    },
+    "settled": false
+  },
+  {
+    "prediction_id": "ma-20261122T155628Z",
+    "issued_at": "2026-11-22T15:56:28.733485+00:00",
+    "entry_price": 60951.38,
+    "state": "NEUTRAL",
+    "predicted_direction": "flat",
+    "bias_score": -15,
+    "confidence": 93,
+    "active_signals": {
+      "rsi": true,
+      "fear_greed": true,
+      "funding": true,
+      "oi_price": true,
+      "price": true,
+      "news": true,
+      "social": true
+    },
+    "inputs": {
+      "rsi": 48.68803934180858,
+      "fear_greed_value": 11,
+      "funding_rate": 2.32540201483e-05,
+      "oi_change_pct": 1.324858,
+      "price_change_pct": -0.18237,
+      "news_sentiment": 6.6,
+      "social_sentiment": 58.9
     },
     "settled": false
   }
