@@ -17002,7 +17002,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 8/12 future bars available."
+      "Only 9/12 future bars available."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -17399,7 +17399,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 7/12 future bars available."
+      "Only 8/12 future bars available."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -17476,7 +17476,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 7/12 future bars available."
+      "Only 8/12 future bars available."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -17633,7 +17633,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 7/12 future bars available."
+      "Only 8/12 future bars available."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -17710,7 +17710,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 7/12 future bars available."
+      "Only 8/12 future bars available."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -18239,18 +18239,16 @@
     "symbol": "ETHUSDT",
     "timeframe": "4h",
     "horizon_bars": 6,
-    "status": "pending",
+    "status": "settled",
     "issued_at": "2026-11-21T01:06:21.270830+00:00",
     "direction": "down",
     "probability_low": 0.5,
     "probability_high": 0.56,
-    "forward_return_pct": null,
-    "direction_correct": null,
-    "inside_move_band": null,
-    "invalidated": null,
-    "notes": [
-      "Only 5/6 future bars available."
-    ],
+    "forward_return_pct": 5.7904,
+    "direction_correct": false,
+    "inside_move_band": false,
+    "invalidated": false,
+    "notes": [],
     "baseline_directions": {
       "persistence": "down"
     }
@@ -18272,7 +18270,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 5/12 future bars available."
+      "Only 6/12 future bars available."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -18811,7 +18809,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 4/6 future bars available."
+      "Only 5/6 future bars available."
     ],
     "baseline_directions": {
       "persistence": "up"
@@ -18834,7 +18832,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 4/12 future bars available."
+      "Only 5/12 future bars available."
     ],
     "baseline_directions": {
       "persistence": "up"
@@ -18893,7 +18891,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 4/6 future bars available."
+      "Only 5/6 future bars available."
     ],
     "baseline_directions": {
       "persistence": "up"
@@ -18916,7 +18914,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 4/12 future bars available."
+      "Only 5/12 future bars available."
     ],
     "baseline_directions": {
       "persistence": "up"
@@ -20129,17 +20127,17 @@
     "symbol": "BTCUSDT",
     "timeframe": "4h",
     "horizon_bars": 1,
-    "status": "pending",
+    "status": "abstained",
     "issued_at": "2026-11-22T17:13:00.311483+00:00",
     "direction": "abstain",
     "probability_low": 0.45,
     "probability_high": 0.55,
-    "forward_return_pct": null,
+    "forward_return_pct": -0.2591,
     "direction_correct": null,
     "inside_move_band": null,
-    "invalidated": null,
+    "invalidated": false,
     "notes": [
-      "Only 0/1 future bars available."
+      "Forecast abstained — outcome retained for baselines; not scored for directional accuracy."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -20162,7 +20160,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/3 future bars available."
+      "Only 1/3 future bars available."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -20185,7 +20183,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/6 future bars available."
+      "Only 1/6 future bars available."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -20208,7 +20206,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/12 future bars available."
+      "Only 1/12 future bars available."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -20221,17 +20219,17 @@
     "symbol": "ETHUSDT",
     "timeframe": "4h",
     "horizon_bars": 1,
-    "status": "pending",
+    "status": "abstained",
     "issued_at": "2026-11-22T17:13:00.313756+00:00",
     "direction": "abstain",
     "probability_low": 0.45,
     "probability_high": 0.55,
-    "forward_return_pct": null,
+    "forward_return_pct": -0.156,
     "direction_correct": null,
     "inside_move_band": null,
-    "invalidated": null,
+    "invalidated": false,
     "notes": [
-      "Only 0/1 future bars available."
+      "Forecast abstained — outcome retained for baselines; not scored for directional accuracy."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -20254,7 +20252,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/3 future bars available."
+      "Only 1/3 future bars available."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -20277,7 +20275,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/6 future bars available."
+      "Only 1/6 future bars available."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -20300,7 +20298,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/12 future bars available."
+      "Only 1/12 future bars available."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -20313,17 +20311,17 @@
     "symbol": "SOLUSDT",
     "timeframe": "4h",
     "horizon_bars": 1,
-    "status": "pending",
+    "status": "abstained",
     "issued_at": "2026-11-22T17:13:00.315023+00:00",
     "direction": "abstain",
     "probability_low": 0.45,
     "probability_high": 0.55,
-    "forward_return_pct": null,
+    "forward_return_pct": 0.0,
     "direction_correct": null,
     "inside_move_band": null,
-    "invalidated": null,
+    "invalidated": false,
     "notes": [
-      "Only 0/1 future bars available."
+      "Forecast abstained — outcome retained for baselines; not scored for directional accuracy."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -20346,7 +20344,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/3 future bars available."
+      "Only 1/3 future bars available."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -20369,7 +20367,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/6 future bars available."
+      "Only 1/6 future bars available."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -20392,7 +20390,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/12 future bars available."
+      "Only 1/12 future bars available."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -20405,17 +20403,17 @@
     "symbol": "ZECUSDT",
     "timeframe": "4h",
     "horizon_bars": 1,
-    "status": "pending",
+    "status": "abstained",
     "issued_at": "2026-11-22T17:13:00.316277+00:00",
     "direction": "abstain",
     "probability_low": 0.45,
     "probability_high": 0.55,
-    "forward_return_pct": null,
+    "forward_return_pct": -0.6854,
     "direction_correct": null,
     "inside_move_band": null,
-    "invalidated": null,
+    "invalidated": false,
     "notes": [
-      "Only 0/1 future bars available."
+      "Forecast abstained — outcome retained for baselines; not scored for directional accuracy."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -20438,7 +20436,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/3 future bars available."
+      "Only 1/3 future bars available."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -20461,7 +20459,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/6 future bars available."
+      "Only 1/6 future bars available."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -20484,7 +20482,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/12 future bars available."
+      "Only 1/12 future bars available."
     ],
     "baseline_directions": {
       "persistence": "down"
@@ -20497,17 +20495,17 @@
     "symbol": "ZAMAUSDT",
     "timeframe": "4h",
     "horizon_bars": 1,
-    "status": "pending",
+    "status": "abstained",
     "issued_at": "2026-11-22T17:13:00.317493+00:00",
     "direction": "abstain",
     "probability_low": 0.45,
     "probability_high": 0.55,
-    "forward_return_pct": null,
+    "forward_return_pct": -0.2765,
     "direction_correct": null,
     "inside_move_band": null,
-    "invalidated": null,
+    "invalidated": false,
     "notes": [
-      "Only 0/1 future bars available."
+      "Forecast abstained — outcome retained for baselines; not scored for directional accuracy."
     ],
     "baseline_directions": {
       "persistence": "up"
@@ -20530,7 +20528,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/3 future bars available."
+      "Only 1/3 future bars available."
     ],
     "baseline_directions": {
       "persistence": "up"
@@ -20553,7 +20551,7 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/6 future bars available."
+      "Only 1/6 future bars available."
     ],
     "baseline_directions": {
       "persistence": "up"
@@ -20576,10 +20574,470 @@
     "inside_move_band": null,
     "invalidated": null,
     "notes": [
-      "Only 0/12 future bars available."
+      "Only 1/12 future bars available."
     ],
     "baseline_directions": {
       "persistence": "up"
+    }
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-bc9e2c2c777a",
+    "run_id": "shadow-20261122T213547Z-e6177fbb",
+    "symbol": "BTCUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 1,
+    "status": "pending",
+    "issued_at": "2026-11-22T21:35:50.288421+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 0/1 future bars available."
+    ],
+    "baseline_directions": {
+      "persistence": "down"
+    }
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-bc9e2c2c777a",
+    "run_id": "shadow-20261122T213547Z-e6177fbb",
+    "symbol": "BTCUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 3,
+    "status": "pending",
+    "issued_at": "2026-11-22T21:35:50.288421+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 0/3 future bars available."
+    ],
+    "baseline_directions": {
+      "persistence": "down"
+    }
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-bc9e2c2c777a",
+    "run_id": "shadow-20261122T213547Z-e6177fbb",
+    "symbol": "BTCUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 6,
+    "status": "pending",
+    "issued_at": "2026-11-22T21:35:50.288421+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 0/6 future bars available."
+    ],
+    "baseline_directions": {
+      "persistence": "down"
+    }
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-bc9e2c2c777a",
+    "run_id": "shadow-20261122T213547Z-e6177fbb",
+    "symbol": "BTCUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 12,
+    "status": "pending",
+    "issued_at": "2026-11-22T21:35:50.288421+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 0/12 future bars available."
+    ],
+    "baseline_directions": {
+      "persistence": "down"
+    }
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-78620488f4a2",
+    "run_id": "shadow-20261122T213547Z-e6177fbb",
+    "symbol": "ETHUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 1,
+    "status": "pending",
+    "issued_at": "2026-11-22T21:35:50.290567+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 0/1 future bars available."
+    ],
+    "baseline_directions": {
+      "persistence": "down"
+    }
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-78620488f4a2",
+    "run_id": "shadow-20261122T213547Z-e6177fbb",
+    "symbol": "ETHUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 3,
+    "status": "pending",
+    "issued_at": "2026-11-22T21:35:50.290567+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 0/3 future bars available."
+    ],
+    "baseline_directions": {
+      "persistence": "down"
+    }
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-78620488f4a2",
+    "run_id": "shadow-20261122T213547Z-e6177fbb",
+    "symbol": "ETHUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 6,
+    "status": "pending",
+    "issued_at": "2026-11-22T21:35:50.290567+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 0/6 future bars available."
+    ],
+    "baseline_directions": {
+      "persistence": "down"
+    }
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-78620488f4a2",
+    "run_id": "shadow-20261122T213547Z-e6177fbb",
+    "symbol": "ETHUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 12,
+    "status": "pending",
+    "issued_at": "2026-11-22T21:35:50.290567+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 0/12 future bars available."
+    ],
+    "baseline_directions": {
+      "persistence": "down"
+    }
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-68a3b8182d7f",
+    "run_id": "shadow-20261122T213547Z-e6177fbb",
+    "symbol": "SOLUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 1,
+    "status": "pending",
+    "issued_at": "2026-11-22T21:35:50.291759+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 0/1 future bars available."
+    ],
+    "baseline_directions": {
+      "persistence": "flat"
+    }
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-68a3b8182d7f",
+    "run_id": "shadow-20261122T213547Z-e6177fbb",
+    "symbol": "SOLUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 3,
+    "status": "pending",
+    "issued_at": "2026-11-22T21:35:50.291759+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 0/3 future bars available."
+    ],
+    "baseline_directions": {
+      "persistence": "flat"
+    }
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-68a3b8182d7f",
+    "run_id": "shadow-20261122T213547Z-e6177fbb",
+    "symbol": "SOLUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 6,
+    "status": "pending",
+    "issued_at": "2026-11-22T21:35:50.291759+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 0/6 future bars available."
+    ],
+    "baseline_directions": {
+      "persistence": "flat"
+    }
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-68a3b8182d7f",
+    "run_id": "shadow-20261122T213547Z-e6177fbb",
+    "symbol": "SOLUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 12,
+    "status": "pending",
+    "issued_at": "2026-11-22T21:35:50.291759+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 0/12 future bars available."
+    ],
+    "baseline_directions": {
+      "persistence": "flat"
+    }
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-e9602926f99f",
+    "run_id": "shadow-20261122T213547Z-e6177fbb",
+    "symbol": "ZECUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 1,
+    "status": "pending",
+    "issued_at": "2026-11-22T21:35:50.292946+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 0/1 future bars available."
+    ],
+    "baseline_directions": {
+      "persistence": "down"
+    }
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-e9602926f99f",
+    "run_id": "shadow-20261122T213547Z-e6177fbb",
+    "symbol": "ZECUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 3,
+    "status": "pending",
+    "issued_at": "2026-11-22T21:35:50.292946+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 0/3 future bars available."
+    ],
+    "baseline_directions": {
+      "persistence": "down"
+    }
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-e9602926f99f",
+    "run_id": "shadow-20261122T213547Z-e6177fbb",
+    "symbol": "ZECUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 6,
+    "status": "pending",
+    "issued_at": "2026-11-22T21:35:50.292946+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 0/6 future bars available."
+    ],
+    "baseline_directions": {
+      "persistence": "down"
+    }
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-e9602926f99f",
+    "run_id": "shadow-20261122T213547Z-e6177fbb",
+    "symbol": "ZECUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 12,
+    "status": "pending",
+    "issued_at": "2026-11-22T21:35:50.292946+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 0/12 future bars available."
+    ],
+    "baseline_directions": {
+      "persistence": "down"
+    }
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-8842da439ac5",
+    "run_id": "shadow-20261122T213547Z-e6177fbb",
+    "symbol": "ZAMAUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 1,
+    "status": "pending",
+    "issued_at": "2026-11-22T21:35:50.294006+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 0/1 future bars available."
+    ],
+    "baseline_directions": {
+      "persistence": "down"
+    }
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-8842da439ac5",
+    "run_id": "shadow-20261122T213547Z-e6177fbb",
+    "symbol": "ZAMAUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 3,
+    "status": "pending",
+    "issued_at": "2026-11-22T21:35:50.294006+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 0/3 future bars available."
+    ],
+    "baseline_directions": {
+      "persistence": "down"
+    }
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-8842da439ac5",
+    "run_id": "shadow-20261122T213547Z-e6177fbb",
+    "symbol": "ZAMAUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 6,
+    "status": "pending",
+    "issued_at": "2026-11-22T21:35:50.294006+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 0/6 future bars available."
+    ],
+    "baseline_directions": {
+      "persistence": "down"
+    }
+  },
+  {
+    "agent": "forecast-evaluator",
+    "forecast_id": "fc-8842da439ac5",
+    "run_id": "shadow-20261122T213547Z-e6177fbb",
+    "symbol": "ZAMAUSDT",
+    "timeframe": "4h",
+    "horizon_bars": 12,
+    "status": "pending",
+    "issued_at": "2026-11-22T21:35:50.294006+00:00",
+    "direction": "abstain",
+    "probability_low": 0.45,
+    "probability_high": 0.55,
+    "forward_return_pct": null,
+    "direction_correct": null,
+    "inside_move_band": null,
+    "invalidated": null,
+    "notes": [
+      "Only 0/12 future bars available."
+    ],
+    "baseline_directions": {
+      "persistence": "down"
     }
   }
 ]

@@ -1,51 +1,51 @@
 {
   "agent": "forecast-scorecard",
-  "evaluated_at": "2026-11-22T17:13:00.377707+00:00",
-  "forecasts_total": 260,
+  "evaluated_at": "2026-11-22T21:35:50.355208+00:00",
+  "forecasts_total": 265,
   "active_forecasts": 43,
-  "abstain_count": 217,
-  "abstain_rate_pct": 83.46,
-  "settled_rows": 161,
-  "pending_rows": 31,
-  "directional_settled": 161,
+  "abstain_count": 222,
+  "abstain_rate_pct": 83.77,
+  "settled_rows": 162,
+  "pending_rows": 45,
+  "directional_settled": 162,
   "directional_hits": 92,
-  "direction_accuracy_pct": 57.14,
+  "direction_accuracy_pct": 56.79,
   "by_horizon": {
     "1": {
       "directional": 43,
       "hits": 28,
       "accuracy_pct": 65.12,
       "pending": 5,
-      "outcomes_including_abstentions": 43,
-      "fired_coverage_pct": 100.0,
-      "gross_policy_return_mean_pct": 1.439705,
+      "outcomes_including_abstentions": 48,
+      "fired_coverage_pct": 89.58,
+      "gross_policy_return_mean_pct": 1.289735,
       "cost_adjusted_return": null
     },
     "3": {
       "directional": 43,
       "hits": 21,
       "accuracy_pct": 48.84,
-      "pending": 5,
+      "pending": 10,
       "outcomes_including_abstentions": 43,
       "fired_coverage_pct": 100.0,
       "gross_policy_return_mean_pct": 1.069902,
       "cost_adjusted_return": null
     },
     "6": {
-      "directional": 40,
+      "directional": 41,
       "hits": 25,
-      "accuracy_pct": 62.5,
-      "pending": 8,
-      "outcomes_including_abstentions": 40,
+      "accuracy_pct": 60.98,
+      "pending": 12,
+      "outcomes_including_abstentions": 41,
       "fired_coverage_pct": 100.0,
-      "gross_policy_return_mean_pct": 1.662685,
+      "gross_policy_return_mean_pct": 1.480902,
       "cost_adjusted_return": null
     },
     "12": {
       "directional": 35,
       "hits": 18,
       "accuracy_pct": 51.43,
-      "pending": 13,
+      "pending": 18,
       "outcomes_including_abstentions": 35,
       "fired_coverage_pct": 100.0,
       "gross_policy_return_mean_pct": -1.002197,
@@ -54,9 +54,9 @@
   },
   "by_probability_band": {
     "low": {
-      "directional": 88,
+      "directional": 89,
       "hits": 42,
-      "accuracy_pct": 47.73
+      "accuracy_pct": 47.19
     },
     "high": {
       "directional": 21,
@@ -80,8 +80,8 @@
     {
       "probability_band": "low",
       "implied_mid": 0.55,
-      "empirical_hit_rate": 0.47729999999999995,
-      "n": 88,
+      "empirical_hit_rate": 0.4719,
+      "n": 89,
       "note": "Needs larger n before adjusting bands."
     },
     {
@@ -104,21 +104,21 @@
   "benchmarks_by_horizon": {
     "1": {
       "always_up": {
-        "n": 43,
+        "n": 48,
         "hits": 28,
-        "accuracy_pct": 65.12
+        "accuracy_pct": 58.33
       },
       "always_down": {
-        "n": 43,
-        "hits": 15,
-        "accuracy_pct": 34.88
+        "n": 48,
+        "hits": 19,
+        "accuracy_pct": 39.58
       },
       "persistence": {
-        "n": 0,
-        "hits": 0,
-        "accuracy_pct": null
+        "n": 5,
+        "hits": 3,
+        "accuracy_pct": 60.0
       },
-      "outcome_n": 43,
+      "outcome_n": 48,
       "note": "Baselines use settled outcomes including abstentions where forward returns are available; persistence uses the last observed price move at issue time."
     },
     "3": {
@@ -142,21 +142,21 @@
     },
     "6": {
       "always_up": {
-        "n": 40,
-        "hits": 6,
-        "accuracy_pct": 15.0
+        "n": 41,
+        "hits": 7,
+        "accuracy_pct": 17.07
       },
       "always_down": {
-        "n": 40,
+        "n": 41,
         "hits": 34,
-        "accuracy_pct": 85.0
+        "accuracy_pct": 82.93
       },
       "persistence": {
-        "n": 0,
+        "n": 1,
         "hits": 0,
-        "accuracy_pct": null
+        "accuracy_pct": 0.0
       },
-      "outcome_n": 40,
+      "outcome_n": 41,
       "note": "Baselines use settled outcomes including abstentions where forward returns are available; persistence uses the last observed price move at issue time."
     },
     "12": {
