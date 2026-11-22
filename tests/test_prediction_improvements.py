@@ -90,9 +90,9 @@ class CompletedCandleTests(unittest.TestCase):
                  patch.object(alert_bot, "send_telegram", side_effect=lambda text: captured.append(text) or True):
                 alert_bot.process("BTCUSDT", None, None)
         self.assertEqual(len(captured), 1)
-        self.assertIn("BTCUSDT · 4h close · 2026-01-01 08:00 UTC", captured[0])
-        self.assertIn("Price 1,010.00 (+1.00%)", captured[0])
-        self.assertIn("Vol 2.00x", captured[0])
+        self.assertIn("BTCUSDT · 4h · 2026-01-01 08:00 UTC", captured[0])
+        self.assertIn("• Price: Rising — +1.00%", captured[0])
+        self.assertIn("Volume: Climactic (2.00x avg)", captured[0])
         self.assertNotIn("9,999.00", captured[0])
 
 
@@ -139,7 +139,7 @@ class ForecastBaselineTests(unittest.TestCase):
 
 
 class TelegramPredictionSummaryTests(unittest.TestCase):
-    def test_renders_pooled_horizon_baselines_and_shadow_candidate(self):
+    def test_renders_plain_language_shadow_summary_and_baseline_comparison(self):
         with tempfile.TemporaryDirectory() as temp:
             v2 = Path(temp, "intelligence_v2")
             v2.mkdir()
@@ -150,11 +150,17 @@ class TelegramPredictionSummaryTests(unittest.TestCase):
                 "direction_accuracy_pct": 60.0,
                 "abstain_count": 5,
                 "abstain_rate_pct": 33.3,
-                "by_horizon": {"1": {"directional": 4, "hits": 2, "accuracy_pct": 50.0}},
+                "by_horizon": {
+                    "1": {"directional": 4, "hits": 2, "accuracy_pct": 50.0},
+                    "3": {"directional": 8, "hits": 4, "accuracy_pct": 50.0},
+                },
                 "benchmarks_by_horizon": {"1": {
                     "always_up": {"n": 6, "accuracy_pct": 66.7},
                     "always_down": {"n": 6, "accuracy_pct": 33.3},
                     "persistence": {"n": 2, "accuracy_pct": 50.0},
+                }, "3": {
+                    "always_up": {"n": 8, "accuracy_pct": 62.5},
+                    "always_down": {"n": 8, "accuracy_pct": 37.5},
                 }},
             }))
             Path(v2, "trend_volume_candidate_ledger.json").write_text(json.dumps([
@@ -168,12 +174,12 @@ class TelegramPredictionSummaryTests(unittest.TestCase):
             ]))
             lines = prediction_history_lines(temp)
             text = "\n".join(lines)
-            self.assertIn("History · pooled shadow · abstain 33%", text)
-            self.assertIn("4h 50% (2/4) vs U67%(6)/D33%(6)/P50%(2)", text)
-            self.assertIn("Trend/volume shadow: 100% (1/1) vs U/D/P 50%/50%/0%", text)
-            self.assertIn("calls 1/2", text)
+            self.assertIn("4h: got direction right 50% of the time (4 forecasts)", text)
+            self.assertIn("It sat out 33% of forecasts", text)
+            self.assertIn("always-guess-up/down: 67% / 33%", text)
+            self.assertIn("Trend/volume test (shadow-only): right 100% on 1 calls", text)
 
-    def test_card_is_compact_and_uses_closed_bar_timestamp(self):
+    def test_card_restores_familiar_sections_and_uses_closed_bar_timestamp(self):
         with tempfile.TemporaryDirectory() as temp:
             Path(temp, "intelligence_v2").mkdir()
             base = int(datetime(2026, 1, 1, tzinfo=timezone.utc).timestamp() * 1000)
@@ -187,13 +193,16 @@ class TelegramPredictionSummaryTests(unittest.TestCase):
                     "BTCUSDT", history, [row["price"] for row in history],
                     500.0, 0.00001, None, None, prev_oi=500.0,
                 )
-            self.assertIn("BTCUSDT · 4h close · 2026-01-04 12:00 UTC", card)
-            self.assertIn("Vol 1.00x", card)
-            self.assertIn("History · pooled shadow", card)
-            self.assertNotIn("Figures:", card)
-            self.assertNotIn("Why:", card)
-            self.assertNotIn("Watch:", card)
-            self.assertLess(len(card), 600)
+            self.assertIn("BTCUSDT · 4h · 2026-01-04 12:00 UTC", card)
+            self.assertIn("Stance: Wait — no clear edge", card)
+            self.assertIn("Figures:", card)
+            self.assertIn("• Price:", card)
+            self.assertIn("S/R:", card)
+            self.assertIn("Volume: Normal (1.00x avg)", card)
+            self.assertIn("Market: Regime:", card)
+            self.assertIn("Why:", card)
+            self.assertIn("Watch:", card)
+            self.assertIn("Note: Mechanism read, not a trade signal.", card)
 
 
 class TrendVolumeCandidateTests(unittest.TestCase):

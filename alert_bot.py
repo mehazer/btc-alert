@@ -193,71 +193,46 @@ def _rate_text(row):
 
 
 def prediction_history_lines(history_dir=None):
-    """Return a compact, honest summary of the latest persisted shadow results."""
-    history_dir = Path(history_dir or HISTORY_DIR)
-    v2_dir = history_dir / "intelligence_v2"
+    """Explain pooled shadow results in short, user-friendly language."""
+    v2_dir = Path(history_dir or HISTORY_DIR) / "intelligence_v2"
     scorecard = _read_json_file(v2_dir / "forecast_scorecard.json", {})
-    def horizon_text(bars, label):
+    summaries = []
+    for bars, label in (("1", "4h"), ("3", "12h"), ("6", "24h"), ("12", "48h")):
         result = (scorecard.get("by_horizon") or {}).get(bars) or {}
-        bases = (scorecard.get("benchmarks_by_horizon") or {}).get(bars) or {}
-        if not result:
-            return f"{label} n/a"
-        n = int(result.get("directional") or 0)
-        hit_pct = result.get("accuracy_pct")
-        hits = int(result.get("hits") or 0)
-        model = f"{float(hit_pct):.0f}% ({hits}/{n})" if hit_pct is not None else f"n/a (0/{n})"
-        baseline_text = []
-        for key, short in (("always_up", "U"), ("always_down", "D"), ("persistence", "P")):
-            base = bases.get(key) or {}
-            rate = base.get("accuracy_pct")
-            base_n = int(base.get("n") or 0)
-            value = f"{float(rate):.0f}%" if rate is not None else "—"
-            if base_n != n or rate is None:
-                value += f"({base_n})"
-            baseline_text.append(f"{short}{value}")
-        return f"{label} {model} vs {'/'.join(baseline_text)}"
-
+        n, accuracy = int(result.get("directional") or 0), result.get("accuracy_pct")
+        if n and accuracy is not None:
+            summaries.append(f"{label}: got direction right {float(accuracy):.0f}% of the time ({n} forecasts)")
     abstain = scorecard.get("abstain_rate_pct")
-    abstain_text = f"abstain {float(abstain):.0f}%" if abstain is not None else "abstain n/a"
-    lines = [
-        f"History · pooled shadow · {abstain_text}: "
-        f"{horizon_text('1', '4h')}; {horizon_text('3', '12h')}"
-    ]
+    if summaries:
+        text = "Prediction history (shadow-only; not a trade signal): " + "; ".join(summaries[:2]) + "."
+        if abstain is not None:
+            text += f" It sat out {float(abstain):.0f}% of forecasts."
+        lines = [text]
+        bases = scorecard.get("benchmarks_by_horizon") or {}
+        comparisons = []
+        for bars, label in (("1", "4h"), ("3", "12h")):
+            row = bases.get(bars) or {}
+            up = (row.get("always_up") or {}).get("accuracy_pct")
+            down = (row.get("always_down") or {}).get("accuracy_pct")
+            if up is not None and down is not None:
+                comparisons.append(f"{label} simple always-guess-up/down: {float(up):.0f}% / {float(down):.0f}%")
+        if comparisons:
+            lines.append("For comparison, " + "; ".join(comparisons) + ".")
+    else:
+        lines = ["Prediction history (shadow-only): no scored results yet; not a trade signal."]
 
     predictions = _read_json_file(v2_dir / "trend_volume_candidate_ledger.json", [])
     evaluations = _read_json_file(v2_dir / "trend_volume_candidate_evaluations.json", [])
     predictions = predictions if isinstance(predictions, list) else []
     evaluations = evaluations if isinstance(evaluations, list) else []
-    outcomes = [
-        row for row in evaluations
-        if isinstance(row, dict) and row.get("status") == "settled" and row.get("forward_return_pct") is not None
-    ]
-    active = [row for row in outcomes if row.get("direction") in {"up", "down"}]
-    hits = sum(1 for row in active if row.get("direction_correct") is True)
-    fired = sum(1 for row in predictions if isinstance(row, dict) and row.get("direction") in {"up", "down"})
-    coverage = f"{100 * fired / len(predictions):.0f}%" if predictions else "n/a"
-
-    candidate_baselines = []
-    for name, fixed in (("always_up", "up"), ("always_down", "down"), ("persistence", None)):
-        eligible = hits_n = 0
-        for row in outcomes:
-            try:
-                ret = float(row["forward_return_pct"])
-            except (KeyError, TypeError, ValueError):
-                continue
-            direction = fixed or (row.get("baseline_directions") or {}).get(name)
-            if direction not in {"up", "down"}:
-                continue
-            eligible += 1
-            hits_n += int((direction == "up" and ret > 0) or (direction == "down" and ret < 0))
-        pct_text = f"{100 * hits_n / eligible:.0f}%" if eligible else "—"
-        candidate_baselines.append(f"{pct_text}({eligible})" if not eligible else pct_text)
-
-    if active:
-        candidate_text = f"{100 * hits / len(active):.0f}% ({hits}/{len(active)}) vs U/D/P {'/'.join(candidate_baselines)}"
-        lines.append(f"Trend/volume shadow: {candidate_text}; calls {fired}/{len(predictions)}.")
+    outcomes = [row for row in evaluations if isinstance(row, dict) and row.get("status") == "settled" and row.get("forward_return_pct") is not None]
+    directional = [row for row in outcomes if row.get("direction") in {"up", "down"}]
+    calls = sum(1 for row in predictions if isinstance(row, dict) and row.get("direction") in {"up", "down"})
+    if directional:
+        hits = sum(row.get("direction_correct") is True for row in directional)
+        lines.append(f"Trend/volume test (shadow-only): right {100 * hits / len(directional):.0f}% on {len(directional)} calls.")
     else:
-        lines.append("Trend/volume: unscored, shadow-only.")
+        lines.append(f"Trend/volume test (shadow-only): not scored yet ({calls} calls; waiting for outcomes).")
     return lines
 
 
@@ -280,6 +255,7 @@ def build_card(symbol, history, closes, oi, funding, fg_val, fg_label, btc_chg=N
     vol_ratio = (history[-1]["volume"] / avg_vol) if avg_vol and avg_vol > 0 else None
 
     rsi_val = rsi(closes, RSI_PERIOD)
+    sup, res = support_resistance(history)
     primary, secondary, risk = classify(price_chg, oi_chg, vol_ratio, funding)
 
     bullish = primary in ("Fresh long buildup", "Spot-led buying", "Short covering")
@@ -291,24 +267,70 @@ def build_card(symbol, history, closes, oi, funding, fg_val, fg_label, btc_chg=N
     else:
         stance = "Wait — no clear edge"
 
+    if funding is not None and funding > 0.0003:
+        regime, pressure = "Risk-on / crowded", "Crowded long"
+    elif funding is not None and funding < -0.0003:
+        regime, pressure = "Risk-off / shorts", "Crowded short"
+    elif funding is not None and funding > 0.00005:
+        regime, pressure = "Mild risk-on", "Mild long bias"
+    elif funding is not None and funding < -0.00005:
+        regime, pressure = "Mild risk-off", "Mild short bias"
+    else:
+        regime, pressure = "Neutral", "Normal"
+
     def fnum(x, d=2):
         return f"{x:,.{d}f}" if isinstance(x, (int, float)) else "n/a"
 
-    oi_text = f"{oi_chg:+.2f}%" if oi_chg is not None else "n/a"
-    funding_text = f"{funding * 100:+.4f}%" if funding is not None else "n/a"
-    volume_text = f"{vol_ratio:.2f}x" if vol_ratio is not None else "n/a"
-    price_text = f"{fnum(price)} ({price_chg:+.2f}%)" if price_chg is not None else fnum(price)
-    stance_short = "Positive" if stance.startswith("Constructive") else "Cautious" if stance.startswith(("Defensive", "Cautious")) else "Wait"
-    lines = [
-        f"{symbol} · {INTERVAL} close · {now} UTC",
-        f"Price {price_text} | RSI {fnum(rsi_val, 0)} | Vol {volume_text} | OI {oi_text} | Funding {funding_text}",
-        f"Read: {primary} | {stance_short} | Risk {risk}",
-        *prediction_history_lines(),
+    def fchg(label, change):
+        if change is None:
+            return f"{label}: n/a"
+        direction = "Rising" if change > 0.3 else ("Falling" if change < -0.3 else "Flat")
+        return f"{label}: {direction} — {change:+.2f}%"
+
+    volume_text = "Volume: n/a"
+    if vol_ratio is not None:
+        category = "Climactic" if vol_ratio >= 2.0 else ("Increasing" if vol_ratio >= 1.35 else ("Decreasing" if vol_ratio <= 0.7 else "Normal"))
+        volume_text = f"Volume: {category} ({vol_ratio:.2f}x avg)"
+    if funding is None:
+        funding_text = "Funding: n/a"
+    else:
+        category = "Strongly Positive" if funding >= 0.0003 else ("Positive" if funding > 0.00005 else ("Strongly Negative" if funding <= -0.0003 else ("Negative" if funding < -0.00005 else "Neutral")))
+        funding_text = f"Funding: {category} ({funding * 100:.4f}%)"
+    trend = "Bullish-leaning" if rsi_val is not None and rsi_val >= 60 else ("Bearish-leaning" if rsi_val is not None and rsi_val <= 40 else "Range / neutral")
+    lines = [f"{symbol} · {INTERVAL} · {now} UTC", f"Read: {primary}"]
+    if secondary:
+        lines.append(f"Also: {secondary}")
+    lines += [
+        f"Stance: {stance}", f"Drop-risk: {risk}", "", "Figures:",
+        f"• Price: {fnum(price)}  |  RSI: {fnum(rsi_val, 1)}",
+        f"• S/R: {fnum(sup)} / {fnum(res)}", f"• {fchg('Price', price_chg)}",
+        f"• OI: {fnum(oi, 0)}" + (f"  ({oi_chg:+.2f}%)" if oi_chg is not None else "  (chg n/a — need 2 runs)"),
+        f"• {volume_text}", f"• {funding_text}", f"• Trend: {trend}",
     ]
     if symbol != PRIMARY and btc_chg is not None:
-        lines[2] += f" | BTC {btc_chg:+.2f}%"
+        if price_chg is not None:
+            relative = price_chg - btc_chg
+            relative_label = "Outperforming" if relative > 1 else ("Underperforming" if relative < -1 else "Similar")
+            lines.append(f"• vs BTC: {relative_label} (BTC {btc_chg:+.2f}%)")
+    market = [f"Regime: {regime}", f"Pressure: {pressure}"]
     if symbol == PRIMARY and fg_val is not None:
-        lines[2] += f" | F&G {fg_val}"
+        market.append(f"F&G: {fg_val} ({fg_label or 'n/a'})")
+    lines += ["", "Market: " + " | ".join(market), "", "Why:"]
+    if primary == "Fresh long buildup":
+        lines.append("• Price up with OI expansion → leveraged participation / new longs.")
+    elif primary == "Short covering":
+        lines.append("• Price up while OI contracts → short covering.")
+    elif primary == "Long liquidation":
+        lines.append("• Price down with OI contraction on volume → long unwinding.")
+    elif primary == "Fresh short buildup":
+        lines.append("• Price down with OI expansion → fresh short positioning.")
+    else:
+        lines.append(f"• Classified from price/OI/volume as {primary}.")
+    if risk in ("High", "Moderate"):
+        driver = "Sharp OI + positive funding" if (oi_chg or 0) > 3 else "Participation / funding imbalance"
+        lines += ["", f"Risk driver: {driver}"]
+    watch = "Crowded positioning — watch for flush or rejection." if risk == "High" else ("Wait for clearer price + OI agreement before acting." if primary == "Range / no clear mechanism" else "Price holds key level; OI does not spike vertically.")
+    lines += ["", f"Watch: {watch}", "", *prediction_history_lines(), "", "Note: Mechanism read, not a trade signal."]
     return "\n".join(lines)
 
 
