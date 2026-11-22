@@ -74,16 +74,33 @@ def pct(a, b):
     return (a - b) / b * 100
 
 
-def fetch_binance(symbol, limit=80):
+def fetch_binance(symbol, limit=80, include_partial=False):
     r = requests.get(BINANCE_KLINES, params={"symbol": symbol, "interval": INTERVAL, "limit": limit}, timeout=20)
     r.raise_for_status()
     rows = r.json()
     history, closes = [], []
+    captured_at_ms = int(datetime.now(timezone.utc).timestamp() * 1000)
     for row in rows:
+        bar_close_ts = int(row[6])
+        # Binance includes the currently forming candle. Never mix its partial
+        # OHLCV into closed-bar indicators or prediction features.
+        bar_complete = captured_at_ms > bar_close_ts
+        if not bar_complete and not include_partial:
+            continue
         close = float(row[4])
         vol = float(row[5])
         closes.append(close)
-        history.append({"price": close, "volume": vol, "oi": None, "funding": None, "ts": row[0]})
+        history.append({
+            "price": close,
+            "volume": vol,
+            "oi": None,
+            "funding": None,
+            "ts": int(row[0]),
+            "bar_open_ts": int(row[0]),
+            "bar_close_ts": bar_close_ts,
+            "captured_at_ms": captured_at_ms,
+            "bar_complete": bar_complete,
+        })
     return history, closes
 
 
@@ -95,13 +112,15 @@ def fetch_okx(symbol):
     try:
         r = requests.get(OKX_OI, params={"instId": inst}, timeout=15)
         if r.ok and r.json().get("data"):
-            oi = float(r.json()["data"][0].get("oi") or 0)
+            raw_oi = r.json()["data"][0].get("oi")
+            oi = float(raw_oi) if raw_oi not in (None, "") else None
     except Exception as e:
         print("OI", symbol, e)
     try:
         r = requests.get(OKX_FUNDING, params={"instId": inst}, timeout=15)
         if r.ok and r.json().get("data"):
-            funding = float(r.json()["data"][0].get("fundingRate") or 0)
+            raw_funding = r.json()["data"][0].get("fundingRate")
+            funding = float(raw_funding) if raw_funding not in (None, "") else None
     except Exception as e:
         print("Funding", symbol, e)
     return oi, funding
@@ -285,7 +304,8 @@ def save_hist(symbol, history):
     p.write_text(json.dumps(history[-200:]))
 
 
-def update_rich_history(symbol, price, volume, oi, funding, rsi_val, prev_oi, price_chg):
+def update_rich_history(symbol, price, volume, oi, funding, rsi_val, prev_oi, price_chg,
+                        bar_open_ts=None, bar_close_ts=None, captured_at_ms=None):
     """Append/update SYMBOL.json used by intelligence_v2 (open_interest field)."""
     p = HISTORY_DIR / f"{symbol}.json"
     rows = []
@@ -297,30 +317,27 @@ def update_rich_history(symbol, price, volume, oi, funding, rsi_val, prev_oi, pr
         except Exception:
             rows = []
 
-    now = datetime.now(timezone.utc).isoformat()
+    captured_at_ms = captured_at_ms or int(datetime.now(timezone.utc).timestamp() * 1000)
+    observed_ms = int(bar_close_ts) if bar_close_ts is not None else captured_at_ms
+    now = datetime.fromtimestamp(observed_ms / 1000, tz=timezone.utc).isoformat()
     oi_chg = pct(oi, prev_oi) if oi is not None and prev_oi not in (None, 0) else None
-    now_ms = int(datetime.now(timezone.utc).timestamp() * 1000)
-    update_in_place = False
-    if rows:
-        last = rows[-1]
-        last_ts = last.get("ts") or last.get("timestamp")
-        if last_ts is None and last.get("date"):
-            try:
-                last_dt = datetime.fromisoformat(str(last["date"]).replace("Z", "+00:00"))
-                last_ts = int(last_dt.timestamp() * 1000)
-            except Exception:
-                last_ts = None
-        if last_ts is not None:
-            try:
-                if abs(int(float(last_ts)) - now_ms) < 3 * 3600 * 1000:
-                    update_in_place = True
-            except Exception:
-                pass
+    # Upsert only the same candle, not any row that happens to be within a
+    # three-hour wall-clock window. This keeps delayed workflow runs aligned.
+    update_index = None
+    if bar_close_ts is not None:
+        for index in range(len(rows) - 1, -1, -1):
+            if str(rows[index].get("bar_close_ts")) == str(bar_close_ts):
+                update_index = index
+                break
 
     row = {
         "date": now,
-        "retrieved_at": now,
+        "retrieved_at": datetime.fromtimestamp(captured_at_ms / 1000, tz=timezone.utc).isoformat(),
         "timeframe": INTERVAL,
+        "bar_open_ts": int(bar_open_ts) if bar_open_ts is not None else None,
+        "bar_close_ts": int(bar_close_ts) if bar_close_ts is not None else None,
+        "captured_at_ms": int(captured_at_ms),
+        "bar_complete": bar_close_ts is not None,
         "price_venue": "Binance",
         "price_dataset": "spot-klines",
         "price_unit": "USDT per base asset",
@@ -342,14 +359,11 @@ def update_rich_history(symbol, price, volume, oi, funding, rsi_val, prev_oi, pr
         "funding": funding,
         "oi_change_pct": round(oi_chg, 6) if oi_chg is not None else None,
         "price_change_pct": round(price_chg, 6) if price_chg is not None else None,
-        "ts": now_ms,
+        "ts": observed_ms,
     }
 
-    if update_in_place:
-        rows[-1] = row
-        if len(rows) >= 2 and rows[-2].get("open_interest") is None and prev_oi is not None:
-            rows[-2]["open_interest"] = prev_oi
-            rows[-2]["oi"] = prev_oi
+    if update_index is not None:
+        rows[update_index] = row
     else:
         if rows and prev_oi is not None and rows[-1].get("open_interest") is None:
             rows[-1]["open_interest"] = prev_oi
@@ -357,12 +371,16 @@ def update_rich_history(symbol, price, volume, oi, funding, rsi_val, prev_oi, pr
         rows.append(row)
 
     p.write_text(json.dumps(rows[-500:]))
-    return {"path": str(p), "bars": len(rows), "oi": oi, "oi_change_pct": oi_chg, "updated_in_place": update_in_place}
+    return {"path": str(p), "bars": len(rows), "oi": oi, "oi_change_pct": oi_chg, "updated_in_place": update_index is not None}
 
 
 def process(symbol, fg_val, fg_label, btc_chg=None):
     print(f"--- {symbol} ---")
-    history, closes = fetch_binance(symbol)
+    # Keep the existing Telegram card's current-bar behavior. Prediction
+    # history and indicators below are derived only from completed bars.
+    history, all_closes = fetch_binance(symbol, include_partial=True)
+    closed_history = [bar for bar in history if bar.get("bar_complete") is True]
+    closed_closes = [bar["price"] for bar in closed_history]
     oi, funding = fetch_okx(symbol)
     prev_oi = load_prev_oi(symbol)
 
@@ -375,19 +393,25 @@ def process(symbol, fg_val, fg_label, btc_chg=None):
             history[-2]["oi"] = prev_oi
             history[-2]["open_interest"] = prev_oi
 
-    price = history[-1]["price"] if history else None
-    volume = history[-1]["volume"] if history else None
-    prev_price = history[-2]["price"] if history and len(history) >= 2 else None
+    price = closed_history[-1]["price"] if closed_history else None
+    volume = closed_history[-1]["volume"] if closed_history else None
+    prev_price = closed_history[-2]["price"] if len(closed_history) >= 2 else None
     price_chg = pct(price, prev_price)
-    rsi_val = rsi(closes, RSI_PERIOD)
+    rsi_val = rsi(closed_closes, RSI_PERIOD)
 
     print(f"  OI now={oi} prev={prev_oi} chg={pct(oi, prev_oi) if oi is not None and prev_oi not in (None, 0) else None}")
-    text = build_card(symbol, history, closes, oi, funding, fg_val, fg_label, btc_chg=btc_chg, prev_oi=prev_oi)
+    text = build_card(symbol, history, all_closes, oi, funding, fg_val, fg_label, btc_chg=btc_chg, prev_oi=prev_oi)
     ok = send_telegram(text)
     print(f"Telegram {symbol}:", "sent" if ok else "failed")
-    save_hist(symbol, history)
+    save_hist(symbol, closed_history)
     save_last_oi(symbol, oi)
-    rich = update_rich_history(symbol, price, volume, oi, funding, rsi_val, prev_oi, price_chg)
+    latest = closed_history[-1] if closed_history else {}
+    rich = update_rich_history(
+        symbol, price, volume, oi, funding, rsi_val, prev_oi, price_chg,
+        bar_open_ts=latest.get("bar_open_ts"),
+        bar_close_ts=latest.get("bar_close_ts"),
+        captured_at_ms=latest.get("captured_at_ms"),
+    )
     print(f"  Rich history: bars={rich['bars']} oi={rich['oi']} oi_chg={rich['oi_change_pct']} in_place={rich['updated_in_place']}")
 
 

@@ -23,6 +23,7 @@ from . import forecast_eval
 from .ledger import process_shadow_run
 from .risk import evaluate as evaluate_risk
 from .technical import evaluate
+from .trend_volume_candidate import make_candidate, process_candidates
 
 DEFAULT_SYMBOLS = ["BTCUSDT", "ETHUSDT", "SOLUSDT", "ZECUSDT", "ZAMAUSDT"]
 
@@ -58,6 +59,7 @@ def run(history_dir: str, symbols: list[str], timeframe: str, persist_ledger: bo
     interpretations = []
     coin_theses = []
     forecasts = []
+    trend_volume_candidates = []
     for pack, technical in zip(packs, outputs):
         risk = evaluate_risk(pack, technical)
         risks.append(risk)
@@ -74,6 +76,7 @@ def run(history_dir: str, symbols: list[str], timeframe: str, persist_ledger: bo
         decision = synthesize(pack, technical, risk, challenge, comparison)
         decisions.append(decision)
         forecasts.append(forecast_engine.issue(pack, technical, risk, decision))
+        trend_volume_candidates.append(make_candidate(history_dir, pack.symbol, technical.state))
         interpretations.append(
             interpreter.interpret(pack, technical, risk, challenge, comparison, decision)
         )
@@ -89,6 +92,7 @@ def run(history_dir: str, symbols: list[str], timeframe: str, persist_ledger: bo
     scorecard = build_scorecard(decisions, risks, history_dir)
     evaluations = scorecard.records
     forecast_summary = forecast_eval.process_forecasts(history_dir, forecasts) if persist_ledger else {}
+    candidate_summary = process_candidates(history_dir, trend_volume_candidates, persist=persist_ledger)
     forecast_scorecard = None
     if forecast_summary.get("settle", {}).get("scorecard"):
         sc = forecast_summary["settle"]["scorecard"]
@@ -132,6 +136,7 @@ def run(history_dir: str, symbols: list[str], timeframe: str, persist_ledger: bo
     if persist_ledger:
         ledger_summary = process_shadow_run(history_dir, shadow)
         ledger_summary["forecast"] = forecast_summary
+        ledger_summary["trend_volume_candidate"] = candidate_summary
     promo = promotion.evaluate(run_id, history_dir=history_dir)
     shadow = ShadowRun(
         run_id=shadow.run_id,

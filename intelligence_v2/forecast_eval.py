@@ -77,6 +77,26 @@ def _future_prices(rows: List[dict], issued_at: str) -> Tuple[Optional[float], L
     return prior, future
 
 
+def _baseline_directions(rows: List[dict], issued_at: str) -> Dict[str, str]:
+    """Return issue-time-only baselines; never inspect prices after issue time."""
+    issued = _parse_time(issued_at)
+    if issued is None:
+        return {}
+    past = []
+    for row in rows:
+        ts = _parse_time(row.get("date") or row.get("timestamp"))
+        try:
+            price = float(row.get("price"))
+        except (TypeError, ValueError):
+            continue
+        if ts is not None and ts <= issued:
+            past.append((ts, price))
+    past.sort(key=lambda item: item[0])
+    if len(past) < 2 or past[-2][1] == 0:
+        return {"persistence": "unknown"}
+    return {"persistence": "up" if past[-1][1] > past[-2][1] else "down" if past[-1][1] < past[-2][1] else "flat"}
+
+
 def append_forecasts(history_dir: str, forecasts: List[ForecastRecord]) -> dict:
     path = os.path.join(_ledger_dir(history_dir), LEDGER_NAME)
     existing = _read_json(path, [])
@@ -95,31 +115,13 @@ def append_forecasts(history_dir: str, forecasts: List[ForecastRecord]) -> dict:
 
 def evaluate_forecast(fc: ForecastRecord, history_dir: str, horizon_bars: int) -> ForecastEvaluation:
     band = next((h for h in fc.horizons if h.horizon_bars == horizon_bars), None)
-    if fc.stance == "ABSTAIN" or (band and band.status == "abstain"):
-        return ForecastEvaluation(
-            agent="forecast-evaluator",
-            forecast_id=fc.forecast_id,
-            run_id=fc.run_id,
-            symbol=fc.symbol,
-            timeframe=fc.timeframe,
-            horizon_bars=horizon_bars,
-            status="abstained",
-            issued_at=fc.issued_at,
-            direction="abstain",
-            probability_low=band.probability_low if band else 0.45,
-            probability_high=band.probability_high if band else 0.55,
-            forward_return_pct=None,
-            direction_correct=None,
-            inside_move_band=None,
-            invalidated=None,
-            notes=["Forecast abstained — not scored for direction accuracy."],
-        )
-
-    direction = band.direction if band else fc.primary_direction
+    abstained = fc.stance == "ABSTAIN" or (band and band.status == "abstain")
+    direction = "abstain" if abstained else (band.direction if band else fc.primary_direction)
     p_lo = band.probability_low if band else 0.5
     p_hi = band.probability_high if band else 0.5
     rows = _load_price_history(history_dir, fc.symbol)
     anchor, future = _future_prices(rows, fc.issued_at)
+    baselines = _baseline_directions(rows, fc.issued_at)
     notes: List[str] = []
     if anchor is None:
         return ForecastEvaluation(
@@ -136,10 +138,11 @@ def evaluate_forecast(fc: ForecastRecord, history_dir: str, horizon_bars: int) -
             probability_high=p_hi,
             forward_return_pct=None,
             direction_correct=None,
-            inside_move_band=None,
-            invalidated=None,
-            notes=["No anchor price at issue time."],
-        )
+                inside_move_band=None,
+                invalidated=None,
+                notes=["No anchor price at issue time."],
+                baseline_directions=baselines,
+            )
     if len(future) < horizon_bars:
         notes.append(f"Only {len(future)}/{horizon_bars} future bars available.")
         return ForecastEvaluation(
@@ -156,14 +159,18 @@ def evaluate_forecast(fc: ForecastRecord, history_dir: str, horizon_bars: int) -
             probability_high=p_hi,
             forward_return_pct=None,
             direction_correct=None,
-            inside_move_band=None,
-            invalidated=None,
-            notes=notes,
-        )
+                inside_move_band=None,
+                invalidated=None,
+                notes=notes,
+                baseline_directions=baselines,
+            )
 
     end_price = future[horizon_bars - 1]
     fwd = (end_price - anchor) / anchor * 100.0
-    if direction == "up":
+    if abstained:
+        correct = None
+        notes.append("Forecast abstained — outcome retained for baselines; not scored for directional accuracy.")
+    elif direction == "up":
         correct = fwd > 0
     elif direction == "down":
         correct = fwd < 0
@@ -182,7 +189,7 @@ def evaluate_forecast(fc: ForecastRecord, history_dir: str, horizon_bars: int) -
         symbol=fc.symbol,
         timeframe=fc.timeframe,
         horizon_bars=horizon_bars,
-        status="settled",
+        status="abstained" if abstained else "settled",
         issued_at=fc.issued_at,
         direction=direction,
         probability_low=p_lo,
@@ -192,6 +199,7 @@ def evaluate_forecast(fc: ForecastRecord, history_dir: str, horizon_bars: int) -
         inside_move_band=inside,
         invalidated=False,
         notes=notes,
+        baseline_directions=baselines,
     )
 
 
@@ -264,7 +272,7 @@ def settle_forecasts(history_dir: str) -> dict:
             else:
                 existing_keys[key] = len(evaluations)
                 evaluations.append(payload)
-            if ev.status == "settled":
+            if ev.status in {"settled", "abstained"} and ev.forward_return_pct is not None:
                 new_settled += 1
 
     _write_json(eval_path, evaluations)
@@ -289,14 +297,62 @@ def build_forecast_scorecard(forecasts: List[dict], evaluations: List[dict]) -> 
     hits = [e for e in directional if e.get("direction_correct") is True]
 
     by_horizon: Dict[str, Dict[str, Any]] = {}
+    benchmarks_by_horizon: Dict[str, Dict[str, Any]] = {}
+    forecast_by_id = {f.get("forecast_id"): f for f in forecasts if isinstance(f, dict)}
+    outcome_rows = [
+        e for e in evaluations
+        if e.get("status") in {"settled", "abstained"} and e.get("forward_return_pct") is not None
+    ]
     for h in HORIZONS:
         rows = [e for e in directional if int(e.get("horizon_bars") or 0) == h]
         h_hits = [e for e in rows if e.get("direction_correct")]
+        outcomes = [e for e in outcome_rows if int(e.get("horizon_bars") or 0) == h]
+        horizon_forecasts = [
+            e for e in outcomes
+            if forecast_by_id.get(e.get("forecast_id"), {}).get("stance") == "FORECAST"
+            and e.get("direction") in {"up", "down"}
+        ]
+        signed_returns = []
+        for e in outcomes:
+            direction = e.get("direction")
+            ret = float(e["forward_return_pct"])
+            if direction == "up":
+                signed_returns.append(ret)
+            elif direction == "down":
+                signed_returns.append(-ret)
+            else:
+                signed_returns.append(0.0)
+
+        baseline_results = {}
+        for name in ("always_up", "always_down", "persistence"):
+            hits_n = 0
+            eligible_n = 0
+            for e in outcomes:
+                ret = float(e["forward_return_pct"])
+                direction = "up" if name == "always_up" else "down" if name == "always_down" else (e.get("baseline_directions") or {}).get("persistence")
+                if direction not in {"up", "down"}:
+                    continue
+                eligible_n += 1
+                hits_n += int((direction == "up" and ret > 0) or (direction == "down" and ret < 0))
+            baseline_results[name] = {
+                "n": eligible_n,
+                "hits": hits_n,
+                "accuracy_pct": round(100 * hits_n / eligible_n, 2) if eligible_n else None,
+            }
         by_horizon[str(h)] = {
             "directional": len(rows),
             "hits": len(h_hits),
             "accuracy_pct": round(len(h_hits) / len(rows) * 100, 2) if rows else None,
             "pending": sum(1 for e in pending if int(e.get("horizon_bars") or 0) == h),
+            "outcomes_including_abstentions": len(outcomes),
+            "fired_coverage_pct": round(100 * len(horizon_forecasts) / len(outcomes), 2) if outcomes else None,
+            "gross_policy_return_mean_pct": round(sum(signed_returns) / len(signed_returns), 6) if signed_returns else None,
+            "cost_adjusted_return": None,
+        }
+        benchmarks_by_horizon[str(h)] = {
+            **baseline_results,
+            "outcome_n": len(outcomes),
+            "note": "Baselines use settled outcomes including abstentions where forward returns are available; persistence uses the last observed price move at issue time.",
         }
 
     by_band: Dict[str, Dict[str, Any]] = {}
@@ -340,9 +396,13 @@ def build_forecast_scorecard(forecasts: List[dict], evaluations: List[dict]) -> 
         limitations=[
             "Shadow-only: forecasts never execute or alter production alerts.",
             "Direction accuracy excludes ABSTAIN rows (abstain is tracked separately).",
+            "Gross policy return assigns zero return to abstentions and signs active returns by forecast direction; fees, spread, slippage, and funding are not included.",
+            "Adjacent issue times and overlapping horizons may not be independent observations.",
+            "Legacy evaluations lack stored baseline directions and abstention outcomes; benchmark coverage grows prospectively.",
             "Probability bands are conservative priors pending walk-forward calibration.",
             "Do not enable self-learning until calibration is stable out of sample.",
         ],
+        benchmarks_by_horizon=benchmarks_by_horizon,
     )
 
 

@@ -1,0 +1,166 @@
+import json
+import tempfile
+import unittest
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from unittest.mock import patch
+
+import alert_bot
+from intelligence_v2.contracts import ForecastHorizonBand, ForecastRecord
+from intelligence_v2.forecast_eval import build_forecast_scorecard, evaluate_forecast
+from intelligence_v2.trend_volume_candidate import make_candidate, process_candidates
+
+
+class CompletedCandleTests(unittest.TestCase):
+    def test_fetch_binance_excludes_unfinished_candle(self):
+        now_ms = int(datetime.now(timezone.utc).timestamp() * 1000)
+        interval_ms = 4 * 60 * 60 * 1000
+        closed = [now_ms - 2 * interval_ms, "0", "0", "0", "101", "12", now_ms - 1]
+        open_bar = [now_ms, "0", "0", "0", "102", "99", now_ms + interval_ms - 1]
+
+        class Response:
+            def raise_for_status(self):
+                pass
+
+            def json(self):
+                return [closed, open_bar]
+
+        with patch.object(alert_bot.requests, "get", return_value=Response()):
+            history, closes = alert_bot.fetch_binance("BTCUSDT", limit=2)
+            card_history, card_closes = alert_bot.fetch_binance("BTCUSDT", limit=2, include_partial=True)
+        self.assertEqual(closes, [101.0])
+        self.assertEqual(len(history), 1)
+        self.assertTrue(history[0]["bar_complete"])
+        self.assertEqual(history[0]["bar_close_ts"], now_ms - 1)
+        self.assertEqual(card_closes, [101.0, 102.0])
+        self.assertFalse(card_history[-1]["bar_complete"])
+
+    def test_rich_history_upserts_by_bar_close_not_wall_clock(self):
+        with tempfile.TemporaryDirectory() as temp:
+            with patch.object(alert_bot, "HISTORY_DIR", Path(temp)):
+                ts = int(datetime.now(timezone.utc).timestamp() * 1000)
+                first = alert_bot.update_rich_history(
+                    "BTCUSDT", 100.0, 10.0, None, None, 50.0, None, 1.0,
+                    bar_open_ts=ts - 4 * 3600_000, bar_close_ts=ts, captured_at_ms=ts + 1000,
+                )
+                second = alert_bot.update_rich_history(
+                    "BTCUSDT", 101.0, 11.0, 3.0, 0.0, 51.0, None, 1.0,
+                    bar_open_ts=ts - 4 * 3600_000, bar_close_ts=ts, captured_at_ms=ts + 2000,
+                )
+            rows = json.loads((Path(temp) / "BTCUSDT.json").read_text())
+            self.assertEqual(len(rows), 1)
+            self.assertTrue(rows[0]["bar_complete"])
+            self.assertEqual(rows[0]["price"], 101.0)
+            self.assertFalse(first["updated_in_place"])
+            self.assertTrue(second["updated_in_place"])
+
+    def test_missing_okx_fields_remain_none(self):
+        class Response:
+            ok = True
+
+            def __init__(self, data):
+                self.data = data
+
+            def json(self):
+                return {"data": [self.data]}
+
+        with patch.object(alert_bot.requests, "get", side_effect=[Response({"oi": ""}), Response({"fundingRate": None})]):
+            self.assertEqual(alert_bot.fetch_okx("BTCUSDT"), (None, None))
+
+
+class ForecastBaselineTests(unittest.TestCase):
+    def test_abstention_keeps_market_outcome_for_baselines(self):
+        with tempfile.TemporaryDirectory() as temp:
+            base = datetime(2026, 1, 1, tzinfo=timezone.utc)
+            rows = [
+                {"date": (base + timedelta(hours=4 * i)).isoformat(), "price": price}
+                for i, price in enumerate([100, 101, 102, 99, 98])
+            ]
+            Path(temp, "BTCUSDT.json").write_text(json.dumps(rows))
+            issued = (base + timedelta(hours=8, minutes=1)).isoformat()
+            band = ForecastHorizonBand(1, "abstain", 0.45, 0.55, None, None, "abstain")
+            fc = ForecastRecord(
+                agent="forecast-engine", run_id="test", symbol="BTCUSDT", timeframe="4h",
+                forecast_id="abstain-test", issued_at=issued, stance="ABSTAIN",
+                primary_direction="abstain", horizons=[band], confidence=20,
+                probability_band="abstain", drivers=[], invalidation=[], abstain_reasons=["test"],
+                evidence_ids=[], model_version="test", calibration_notes=[], execution_allowed=False,
+            )
+            ev = evaluate_forecast(fc, temp, 1)
+            self.assertEqual(ev.status, "abstained")
+            self.assertIsNone(ev.direction_correct)
+            self.assertIsNotNone(ev.forward_return_pct)
+            self.assertEqual(ev.baseline_directions["persistence"], "up")
+
+    def test_scorecard_reports_same_outcome_baselines_and_coverage(self):
+        forecasts = [
+            {"forecast_id": "a", "stance": "FORECAST", "probability_band": "medium"},
+            {"forecast_id": "b", "stance": "ABSTAIN", "probability_band": "abstain"},
+        ]
+        evaluations = [
+            {"forecast_id": "a", "horizon_bars": 1, "status": "settled", "direction": "up", "direction_correct": True, "forward_return_pct": 1.0, "baseline_directions": {"persistence": "down"}},
+            {"forecast_id": "b", "horizon_bars": 1, "status": "abstained", "direction": "abstain", "direction_correct": None, "forward_return_pct": -1.0, "baseline_directions": {"persistence": "up"}},
+        ]
+        score = build_forecast_scorecard(forecasts, evaluations)
+        h = score.by_horizon["1"]
+        self.assertEqual(h["directional"], 1)
+        self.assertEqual(h["outcomes_including_abstentions"], 2)
+        self.assertEqual(h["fired_coverage_pct"], 50.0)
+        self.assertEqual(h["gross_policy_return_mean_pct"], 0.5)
+        self.assertEqual(score.benchmarks_by_horizon["1"]["always_up"]["accuracy_pct"], 50.0)
+
+
+class TrendVolumeCandidateTests(unittest.TestCase):
+    def _write_history(self, root, volumes):
+        base = int(datetime(2026, 1, 1, tzinfo=timezone.utc).timestamp() * 1000)
+        rows = []
+        for i, volume in enumerate(volumes):
+            rows.append({
+                "bar_open_ts": base + i * 4 * 3600_000,
+                "bar_close_ts": base + (i + 1) * 4 * 3600_000,
+                "bar_complete": True,
+                "captured_at_ms": base + (i + 1) * 4 * 3600_000 + 1000,
+                "price": 100 + i,
+                "volume": volume,
+            })
+        Path(root, "BTCUSDT.json").write_text(json.dumps(rows))
+
+    def test_candidate_fires_only_on_trend_alignment_and_volume_confirmation(self):
+        with tempfile.TemporaryDirectory() as temp:
+            self._write_history(temp, [100.0] * 20 + [200.0])
+            candidate = make_candidate(temp, "BTCUSDT", "bullish")
+            self.assertEqual(candidate["direction"], "up")
+            self.assertEqual(candidate["model_version"], "trend-volume-shadow-v1")
+            self.assertFalse(candidate["execution_allowed"])
+
+    def test_candidate_abstains_when_volume_does_not_confirm(self):
+        with tempfile.TemporaryDirectory() as temp:
+            self._write_history(temp, [100.0] * 21)
+            candidate = make_candidate(temp, "BTCUSDT", "bullish")
+            self.assertEqual(candidate["direction"], "abstain")
+
+    def test_candidate_ledger_deduplicates_and_settles(self):
+        with tempfile.TemporaryDirectory() as temp:
+            self._write_history(temp, [100.0] * 20 + [200.0])
+            candidate = make_candidate(temp, "BTCUSDT", "bullish")
+            first = process_candidates(temp, [candidate])
+            second = process_candidates(temp, [candidate])
+            self.assertEqual(first["new_predictions"], 1)
+            self.assertEqual(second["new_predictions"], 0)
+            self.assertEqual(second["predictions_total"], 1)
+            history_path = Path(temp, "BTCUSDT.json")
+            rows = json.loads(history_path.read_text())
+            next_row = dict(rows[-1])
+            next_row["bar_open_ts"] = int(next_row["bar_open_ts"]) + 4 * 3600_000
+            next_row["bar_close_ts"] = int(next_row["bar_close_ts"]) + 4 * 3600_000
+            next_row["price"] = 220.0
+            rows.append(next_row)
+            history_path.write_text(json.dumps(rows))
+            settled = process_candidates(temp, [candidate])
+            self.assertEqual(settled["outcome_n_including_abstentions"], 1)
+            self.assertEqual(settled["settled_directional"], 1)
+            self.assertEqual(settled["direction_accuracy_pct"], 100.0)
+
+
+if __name__ == "__main__":
+    unittest.main()

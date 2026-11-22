@@ -335,6 +335,7 @@ class ForecastEvaluation:
     inside_move_band: Optional[bool]
     invalidated: Optional[bool]
     notes: List[str]
+    baseline_directions: Dict[str, str] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -354,6 +355,7 @@ class ForecastScorecard:
     by_probability_band: Dict[str, Dict[str, Any]]
     calibration: List[Dict[str, Any]]
     limitations: List[str]
+    benchmarks_by_horizon: Dict[str, Dict[str, Any]] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
