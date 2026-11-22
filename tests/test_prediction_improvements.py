@@ -68,6 +68,33 @@ class CompletedCandleTests(unittest.TestCase):
         with patch.object(alert_bot.requests, "get", side_effect=[Response({"oi": ""}), Response({"fundingRate": None})]):
             self.assertEqual(alert_bot.fetch_okx("BTCUSDT"), (None, None))
 
+    def test_process_formats_latest_closed_bar_not_forming_bar(self):
+        captured = []
+        base = int(datetime(2026, 1, 1, tzinfo=timezone.utc).timestamp() * 1000)
+        closed_rows = [
+            {"price": 1000.0, "volume": 10.0, "oi": None, "bar_open_ts": base,
+             "bar_close_ts": base + 4 * 3600_000 - 1, "captured_at_ms": base + 4 * 3600_000,
+             "bar_complete": True},
+            {"price": 1010.0, "volume": 20.0, "oi": None, "bar_open_ts": base + 4 * 3600_000,
+             "bar_close_ts": base + 8 * 3600_000 - 1, "captured_at_ms": base + 8 * 3600_000,
+             "bar_complete": True},
+        ]
+        forming = {"price": 9999.0, "volume": 999.0, "oi": None,
+                   "bar_open_ts": base + 8 * 3600_000,
+                   "bar_close_ts": base + 12 * 3600_000 - 1,
+                   "captured_at_ms": base + 9 * 3600_000, "bar_complete": False}
+        with tempfile.TemporaryDirectory() as temp:
+            with patch.object(alert_bot, "HISTORY_DIR", Path(temp)), \
+                 patch.object(alert_bot, "fetch_binance", return_value=(closed_rows + [forming], [1000.0, 1010.0, 9999.0])), \
+                 patch.object(alert_bot, "fetch_okx", return_value=(500.0, 0.0)), \
+                 patch.object(alert_bot, "send_telegram", side_effect=lambda text: captured.append(text) or True):
+                alert_bot.process("BTCUSDT", None, None)
+        self.assertEqual(len(captured), 1)
+        self.assertIn("BTCUSDT · 4h close · 2026-01-01 08:00 UTC", captured[0])
+        self.assertIn("Price 1,010.00 (+1.00%)", captured[0])
+        self.assertIn("Vol 2.00x", captured[0])
+        self.assertNotIn("9,999.00", captured[0])
+
 
 class ForecastBaselineTests(unittest.TestCase):
     def test_abstention_keeps_market_outcome_for_baselines(self):
@@ -123,7 +150,7 @@ class TelegramPredictionSummaryTests(unittest.TestCase):
                 "direction_accuracy_pct": 60.0,
                 "abstain_count": 5,
                 "abstain_rate_pct": 33.3,
-                "by_horizon": {"1": {"directional": 4, "accuracy_pct": 50.0}},
+                "by_horizon": {"1": {"directional": 4, "hits": 2, "accuracy_pct": 50.0}},
                 "benchmarks_by_horizon": {"1": {
                     "always_up": {"n": 6, "accuracy_pct": 66.7},
                     "always_down": {"n": 6, "accuracy_pct": 33.3},
@@ -141,11 +168,32 @@ class TelegramPredictionSummaryTests(unittest.TestCase):
             ]))
             lines = prediction_history_lines(temp)
             text = "\n".join(lines)
-            self.assertIn("Across overlapping horizons: 60.0% directional (6/10)", text)
-            self.assertIn("4h: model 50.0% (n=4)", text)
-            self.assertIn("same-outcome baselines U 66.7% (n=6)", text)
-            self.assertIn("Trend/volume candidate (shadow-only): 100.0% (1/1 active)", text)
-            self.assertIn("execution disabled", text)
+            self.assertIn("History · pooled shadow · abstain 33%", text)
+            self.assertIn("4h 50% (2/4) vs U67%(6)/D33%(6)/P50%(2)", text)
+            self.assertIn("Trend/volume shadow: 100% (1/1) vs U/D/P 50%/50%/0%", text)
+            self.assertIn("calls 1/2", text)
+
+    def test_card_is_compact_and_uses_closed_bar_timestamp(self):
+        with tempfile.TemporaryDirectory() as temp:
+            Path(temp, "intelligence_v2").mkdir()
+            base = int(datetime(2026, 1, 1, tzinfo=timezone.utc).timestamp() * 1000)
+            history = [{
+                "price": 100 + i / 10,
+                "volume": 20.0,
+                "bar_close_ts": base + (i + 1) * 4 * 3600_000 - 1,
+            } for i in range(21)]
+            with patch.object(alert_bot, "HISTORY_DIR", Path(temp)):
+                card = alert_bot.build_card(
+                    "BTCUSDT", history, [row["price"] for row in history],
+                    500.0, 0.00001, None, None, prev_oi=500.0,
+                )
+            self.assertIn("BTCUSDT · 4h close · 2026-01-04 12:00 UTC", card)
+            self.assertIn("Vol 1.00x", card)
+            self.assertIn("History · pooled shadow", card)
+            self.assertNotIn("Figures:", card)
+            self.assertNotIn("Why:", card)
+            self.assertNotIn("Watch:", card)
+            self.assertLess(len(card), 600)
 
 
 class TrendVolumeCandidateTests(unittest.TestCase):
