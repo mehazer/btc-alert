@@ -6,6 +6,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 import alert_bot
+from alert_bot import prediction_history_lines
 from intelligence_v2.contracts import ForecastHorizonBand, ForecastRecord
 from intelligence_v2.forecast_eval import build_forecast_scorecard, evaluate_forecast
 from intelligence_v2.trend_volume_candidate import make_candidate, process_candidates
@@ -108,6 +109,43 @@ class ForecastBaselineTests(unittest.TestCase):
         self.assertEqual(h["fired_coverage_pct"], 50.0)
         self.assertEqual(h["gross_policy_return_mean_pct"], 0.5)
         self.assertEqual(score.benchmarks_by_horizon["1"]["always_up"]["accuracy_pct"], 50.0)
+
+
+class TelegramPredictionSummaryTests(unittest.TestCase):
+    def test_renders_pooled_horizon_baselines_and_shadow_candidate(self):
+        with tempfile.TemporaryDirectory() as temp:
+            v2 = Path(temp, "intelligence_v2")
+            v2.mkdir()
+            Path(v2, "forecast_scorecard.json").write_text(json.dumps({
+                "evaluated_at": "2026-11-22T17:13:00+00:00",
+                "directional_settled": 10,
+                "directional_hits": 6,
+                "direction_accuracy_pct": 60.0,
+                "abstain_count": 5,
+                "abstain_rate_pct": 33.3,
+                "by_horizon": {"1": {"directional": 4, "accuracy_pct": 50.0}},
+                "benchmarks_by_horizon": {"1": {
+                    "always_up": {"n": 6, "accuracy_pct": 66.7},
+                    "always_down": {"n": 6, "accuracy_pct": 33.3},
+                    "persistence": {"n": 2, "accuracy_pct": 50.0},
+                }},
+            }))
+            Path(v2, "trend_volume_candidate_ledger.json").write_text(json.dumps([
+                {"direction": "up"}, {"direction": "abstain"},
+            ]))
+            Path(v2, "trend_volume_candidate_evaluations.json").write_text(json.dumps([
+                {"status": "settled", "direction": "up", "forward_return_pct": 1.0,
+                 "direction_correct": True, "baseline_directions": {"persistence": "down"}},
+                {"status": "settled", "direction": "abstain", "forward_return_pct": -1.0,
+                 "direction_correct": None, "baseline_directions": {"persistence": "up"}},
+            ]))
+            lines = prediction_history_lines(temp)
+            text = "\n".join(lines)
+            self.assertIn("Across overlapping horizons: 60.0% directional (6/10)", text)
+            self.assertIn("4h: model 50.0% (n=4)", text)
+            self.assertIn("same-outcome baselines U 66.7% (n=6)", text)
+            self.assertIn("Trend/volume candidate (shadow-only): 100.0% (1/1 active)", text)
+            self.assertIn("execution disabled", text)
 
 
 class TrendVolumeCandidateTests(unittest.TestCase):

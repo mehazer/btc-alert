@@ -177,6 +177,110 @@ def classify(price_chg, oi_chg, vol_ratio, funding):
     return "Range / no clear mechanism", None, "Low"
 
 
+def _read_json_file(path, default):
+    try:
+        with open(path, "r", encoding="utf-8") as handle:
+            return json.load(handle)
+    except (FileNotFoundError, json.JSONDecodeError, OSError):
+        return default
+
+
+def _rate_text(row):
+    if not isinstance(row, dict) or row.get("accuracy_pct") is None:
+        n = (row.get("n") or 0) if isinstance(row, dict) else 0
+        return f"n/a (n={n})"
+    return f"{float(row['accuracy_pct']):.1f}% (n={int(row.get('n') or 0)})"
+
+
+def prediction_history_lines(history_dir=None):
+    """Format persisted v2 results without recomputing or implying execution."""
+    history_dir = Path(history_dir or HISTORY_DIR)
+    v2_dir = history_dir / "intelligence_v2"
+    scorecard = _read_json_file(v2_dir / "forecast_scorecard.json", {})
+    lines = ["Prediction history (pooled · shadow-only):"]
+
+    if scorecard:
+        evaluated_at = scorecard.get("evaluated_at")
+        if evaluated_at:
+            try:
+                stamp = datetime.fromisoformat(str(evaluated_at).replace("Z", "+00:00"))
+                evaluated_at = stamp.astimezone(timezone.utc).strftime("%m-%d %H:%M UTC")
+            except (TypeError, ValueError):
+                evaluated_at = str(evaluated_at)
+        directional_n = int(scorecard.get("directional_settled") or 0)
+        directional_hits = int(scorecard.get("directional_hits") or 0)
+        accuracy = scorecard.get("direction_accuracy_pct")
+        accuracy_text = f"{float(accuracy):.1f}%" if accuracy is not None else "n/a"
+        abstain_n = int(scorecard.get("abstain_count") or 0)
+        abstain_rate = scorecard.get("abstain_rate_pct")
+        abstain_text = f"{float(abstain_rate):.1f}%" if abstain_rate is not None else "n/a"
+        horizon_note = f"; as of {evaluated_at}" if evaluated_at else ""
+        lines.append(
+            f"• Across overlapping horizons: {accuracy_text} directional ({directional_hits}/{directional_n}); "
+            f"abstained {abstain_text} ({abstain_n}){horizon_note}."
+        )
+
+        horizons = scorecard.get("by_horizon") or {}
+        benchmarks = scorecard.get("benchmarks_by_horizon") or {}
+        for bars, label in (("1", "4h"), ("3", "12h"), ("6", "24h"), ("12", "48h")):
+            result = horizons.get(bars) or {}
+            base = benchmarks.get(bars) or {}
+            if not result and not base:
+                continue
+            model_n = int(result.get("directional") or 0)
+            model_pct = result.get("accuracy_pct")
+            model_text = f"{float(model_pct):.1f}% (n={model_n})" if model_pct is not None else f"n/a (n={model_n})"
+            lines.append(
+                f"• {label}: model {model_text}; same-outcome baselines U {_rate_text(base.get('always_up'))}, "
+                f"D {_rate_text(base.get('always_down'))}, persistence {_rate_text(base.get('persistence'))}."
+            )
+    else:
+        lines.append("• Forecast scorecard not available yet.")
+
+    predictions = _read_json_file(v2_dir / "trend_volume_candidate_ledger.json", [])
+    evaluations = _read_json_file(v2_dir / "trend_volume_candidate_evaluations.json", [])
+    predictions = predictions if isinstance(predictions, list) else []
+    evaluations = evaluations if isinstance(evaluations, list) else []
+    outcomes = [
+        row for row in evaluations
+        if isinstance(row, dict) and row.get("status") == "settled" and row.get("forward_return_pct") is not None
+    ]
+    active = [row for row in outcomes if row.get("direction") in {"up", "down"}]
+    hits = sum(1 for row in active if row.get("direction_correct") is True)
+    fired = sum(1 for row in predictions if isinstance(row, dict) and row.get("direction") in {"up", "down"})
+    coverage = f"{100 * fired / len(predictions):.0f}%" if predictions else "n/a"
+
+    candidate_baselines = {}
+    for name, fixed in (("always_up", "up"), ("always_down", "down"), ("persistence", None)):
+        eligible = hits_n = 0
+        for row in outcomes:
+            try:
+                ret = float(row["forward_return_pct"])
+            except (KeyError, TypeError, ValueError):
+                continue
+            direction = fixed or (row.get("baseline_directions") or {}).get(name)
+            if direction not in {"up", "down"}:
+                continue
+            eligible += 1
+            hits_n += int((direction == "up" and ret > 0) or (direction == "down" and ret < 0))
+        candidate_baselines[name] = _rate_text({
+            "accuracy_pct": round(100 * hits_n / eligible, 2) if eligible else None,
+            "n": eligible,
+        })
+
+    if active:
+        candidate_text = f"{100 * hits / len(active):.1f}% ({hits}/{len(active)} active)"
+    else:
+        candidate_text = f"unscored ({len(outcomes)} settled outcomes)"
+    lines.append(
+        f"• Trend/volume candidate (shadow-only): {candidate_text}; coverage {fired}/{len(predictions)} ({coverage}); "
+        f"baselines U {candidate_baselines['always_up']}, D {candidate_baselines['always_down']}, "
+        f"persistence {candidate_baselines['persistence']}; execution disabled."
+    )
+    lines.append("• Pooled samples overlap across symbols/horizons; baselines include abstentions; no costs included.")
+    return lines
+
+
 def build_card(symbol, history, closes, oi, funding, fg_val, fg_label, btc_chg=None, prev_oi=None):
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")
     price = history[-1]["price"]
@@ -267,7 +371,9 @@ def build_card(symbol, history, closes, oi, funding, fg_val, fg_label, btc_chg=N
         lines.append(f"• Classified from price/OI/volume as {primary}." if oi_chg is not None else f"• Classified mainly from price + volume ({primary}); OI change not yet available.")
     if risk in ("High", "Moderate"):
         lines += ["", f"Risk driver: {'Sharp OI + positive funding' if (oi_chg or 0) > 3 else 'Participation / funding imbalance'}"]
-    lines += ["", "Watch: Crowded positioning — watch for flush or rejection." if risk == "High" else ("Watch: Wait for clearer price + OI agreement before acting." if primary == "Range / no clear mechanism" else "Watch: Price holds key level; OI does not spike vertically."), "", "Note: Mechanism read, not a trade signal."]
+    lines += ["", "Watch: Crowded positioning — watch for flush or rejection." if risk == "High" else ("Watch: Wait for clearer price + OI agreement before acting." if primary == "Range / no clear mechanism" else "Watch: Price holds key level; OI does not spike vertically.")]
+    lines += ["", *prediction_history_lines()]
+    lines += ["", "Note: Mechanism read, not a trade signal."]
     return "\n".join(lines)
 
 
