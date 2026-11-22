@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: crypto-pipeline
+  group: crypto-history-writers
   cancel-in-progress: false
 
 jobs:
@@ -135,26 +135,9 @@ jobs:
       - name: Commit history + dashboard meta to main
         if: always()
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add history/ docs/build_meta.json || true
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "pipeline update: news→technical→market→whale→v2 [skip ci]"
-            for attempt in 1 2 3 4 5; do
-              git fetch origin main
-              if git rebase origin/main && git push origin HEAD:main; then
-                echo "Push ok"
-                exit 0
-              fi
-              git rebase --abort || true
-              echo "Push retry $attempt/5"
-              sleep $((attempt * 8))
-            done
-            echo "Push failed after retries"
-            exit 1
-          fi
+          bash scripts/persist-generated-data.sh \
+            "Pipeline generated data update [skip ci]" \
+            history/ docs/build_meta.json
 
       - name: Pipeline summary
         if: always()

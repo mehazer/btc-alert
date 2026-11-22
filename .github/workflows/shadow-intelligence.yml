@@ -16,6 +16,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: crypto-history-writers
+  cancel-in-progress: false
+
 jobs:
   shadow-analysis:
     runs-on: ubuntu-latest
@@ -65,20 +69,4 @@ jobs:
       - name: Persist v2 ledger to repo
         if: always()
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add history/intelligence_v2/
-          if git diff --cached --quiet; then
-            echo "No v2 ledger changes to commit."
-          else
-            git commit -m "v2 ledger update [skip ci]"
-            for attempt in 1 2 3; do
-              git fetch origin main
-              if git rebase origin/main && git push origin HEAD:main; then
-                exit 0
-              fi
-              git rebase --abort || true
-              sleep $((attempt * 5))
-            done
-            exit 1
-          fi
+          bash scripts/persist-generated-data.sh "v2 ledger update [skip ci]" history/intelligence_v2/
