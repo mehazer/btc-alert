@@ -1,0 +1,186 @@
+{
+  "walkforward_batch_id": "walkforward-fd23a87a3239",
+  "evaluation_mode": "walkforward_backtest",
+  "lookahead_safe": true,
+  "started_at": "2026-11-23T19:51:33.510590+00:00",
+  "completed_at": "2026-11-23T19:51:33.510591+00:00",
+  "symbols": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT"
+  ],
+  "timeframe": "4h",
+  "history_lengths": {
+    "BTCUSDT": 141,
+    "ETHUSDT": 141,
+    "SOLUSDT": 141
+  },
+  "common_bars": 141,
+  "warmup_bars": 20,
+  "eligible_timestamps": 121,
+  "decision_count": 363,
+  "evaluation_count": 1815,
+  "coverage": {
+    "settled": 1677,
+    "pending": 138,
+    "insufficient_data": 0
+  },
+  "leakage_checks": {
+    "violations": [],
+    "violation_count": 0,
+    "source_order_normalized": true,
+    "future_rows_used_for_decisions": false
+  },
+  "determinism_hash": "5a9c1e13562343439d0f5f641eb4142ab0d0a6fc784696d7221b9071133ed638",
+  "scorecard": {
+    "settled_records": 1677,
+    "pending_records": 138,
+    "directional_records": 397,
+    "directional_hits": 199,
+    "direction_accuracy_pct": 50.13,
+    "by_horizon": {
+      "1": {
+        "settled": 360,
+        "directional": 87,
+        "hits": 46,
+        "accuracy_pct": 52.87
+      },
+      "3": {
+        "settled": 354,
+        "directional": 84,
+        "hits": 41,
+        "accuracy_pct": 48.81
+      },
+      "6": {
+        "settled": 345,
+        "directional": 83,
+        "hits": 43,
+        "accuracy_pct": 51.81
+      },
+      "12": {
+        "settled": 327,
+        "directional": 79,
+        "hits": 36,
+        "accuracy_pct": 45.57
+      },
+      "24": {
+        "settled": 291,
+        "directional": 64,
+        "hits": 33,
+        "accuracy_pct": 51.56
+      }
+    },
+    "by_decision": {
+      "PAPER_PLAN": {
+        "records": 825,
+        "settled": 825,
+        "pending": 0
+      },
+      "ALERT": {
+        "records": 990,
+        "settled": 852,
+        "pending": 138
+      }
+    }
+  },
+  "limitations": [
+    "ZECUSDT and ZAMAUSDT are intentionally excluded because their history is too short.",
+    "Legacy date-only rows are assigned monotonic synthetic timestamps preserving source order.",
+    "Legacy mechanism comparison is only used when a mechanism record exists at or before the replay timestamp.",
+    "Historical replay is diagnostic and excluded from live promotion calibration.",
+    "This replays deterministic v2 agents; it does not recreate unavailable historical news or venue snapshots.",
+    "Forecast walk-forward uses the same point-in-time prefixes as decisions.",
+    "Forecast self-learning remains disabled until calibration is stable."
+  ],
+  "forecast": {
+    "forecasts_total": 363,
+    "active_forecasts": 15,
+    "abstain_count": 348,
+    "abstain_rate_pct": 95.87,
+    "directional_settled": 53,
+    "directional_hits": 36,
+    "direction_accuracy_pct": 67.92,
+    "by_horizon": {
+      "1": {
+        "directional": 15,
+        "hits": 6,
+        "accuracy_pct": 40.0,
+        "pending": 3,
+        "outcomes_including_abstentions": 360,
+        "fired_coverage_pct": 4.17,
+        "gross_policy_return_mean_pct": 0.027308,
+        "cost_adjusted_return": null
+      },
+      "3": {
+        "directional": 14,
+        "hits": 9,
+        "accuracy_pct": 64.29,
+        "pending": 9,
+        "outcomes_including_abstentions": 354,
+        "fired_coverage_pct": 3.95,
+        "gross_policy_return_mean_pct": 0.058018,
+        "cost_adjusted_return": null
+      },
+      "6": {
+        "directional": 14,
+        "hits": 12,
+        "accuracy_pct": 85.71,
+        "pending": 18,
+        "outcomes_including_abstentions": 345,
+        "fired_coverage_pct": 4.06,
+        "gross_policy_return_mean_pct": 0.120773,
+        "cost_adjusted_return": null
+      },
+      "12": {
+        "directional": 10,
+        "hits": 9,
+        "accuracy_pct": 90.0,
+        "pending": 36,
+        "outcomes_including_abstentions": 327,
+        "fired_coverage_pct": 3.06,
+        "gross_policy_return_mean_pct": 0.145761,
+        "cost_adjusted_return": null
+      }
+    },
+    "by_probability_band": {
+      "low": {
+        "directional": 26,
+        "hits": 16,
+        "accuracy_pct": 61.54
+      },
+      "medium": {
+        "directional": 22,
+        "hits": 17,
+        "accuracy_pct": 77.27
+      },
+      "high": {
+        "directional": 5,
+        "hits": 3,
+        "accuracy_pct": 60.0
+      }
+    },
+    "calibration": [
+      {
+        "probability_band": "high",
+        "implied_mid": 0.7,
+        "empirical_hit_rate": 0.6,
+        "n": 5,
+        "note": "Needs larger n before adjusting bands."
+      },
+      {
+        "probability_band": "low",
+        "implied_mid": 0.55,
+        "empirical_hit_rate": 0.6154,
+        "n": 26,
+        "note": "Needs larger n before adjusting bands."
+      },
+      {
+        "probability_band": "medium",
+        "implied_mid": 0.62,
+        "empirical_hit_rate": 0.7726999999999999,
+        "n": 22,
+        "note": "Needs larger n before adjusting bands."
+      }
+    ]
+  }
+}

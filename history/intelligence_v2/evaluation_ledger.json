@@ -75303,5 +75303,1381 @@
     "challenge_status": "warn",
     "risk_veto": false,
     "risk_overall_level": "low"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261115T152250Z-1d758f8f",
+    "symbol": "BTCUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "flat",
+    "horizon_bars": 24,
+    "status": "settled",
+    "decision_timestamp": "2026-11-15T15:22:54.320061+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": -2.857901,
+    "max_favorable_excursion_pct": 0.471673,
+    "max_adverse_excursion_pct": -10.144246,
+    "direction_correct": null,
+    "guarded": true,
+    "risk_warning_supported": true,
+    "confidence": 49,
+    "notes": [
+      "Guarded decision was supported by a >=1% adverse excursion."
+    ],
+    "agents": {
+      "technical": {
+        "state": "long-liquidation",
+        "confidence": 49,
+        "risk_flags": [],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "medium",
+        "veto": false,
+        "downside_risk": "medium",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "long-liquidation",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "medium"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261115T152250Z-1d758f8f",
+    "symbol": "ETHUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "flat",
+    "horizon_bars": 24,
+    "status": "settled",
+    "decision_timestamp": "2026-11-15T15:22:54.322056+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": -1.949567,
+    "max_favorable_excursion_pct": 1.227116,
+    "max_adverse_excursion_pct": -10.353653,
+    "direction_correct": null,
+    "guarded": false,
+    "risk_warning_supported": null,
+    "confidence": 49,
+    "notes": [],
+    "agents": {
+      "technical": {
+        "state": "soft-selling-/-drift",
+        "confidence": 49,
+        "risk_flags": [],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "low",
+        "veto": false,
+        "downside_risk": "low",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "soft-selling-/-drift",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "low"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261115T152250Z-1d758f8f",
+    "symbol": "SOLUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "flat",
+    "horizon_bars": 24,
+    "status": "settled",
+    "decision_timestamp": "2026-11-15T15:22:54.322964+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": 6.293903,
+    "max_favorable_excursion_pct": 6.293903,
+    "max_adverse_excursion_pct": -3.329587,
+    "direction_correct": null,
+    "guarded": true,
+    "risk_warning_supported": true,
+    "confidence": 49,
+    "notes": [
+      "Guarded decision was supported by a >=1% adverse excursion."
+    ],
+    "agents": {
+      "technical": {
+        "state": "low-conviction-/-wait",
+        "confidence": 49,
+        "risk_flags": [],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "medium",
+        "veto": false,
+        "downside_risk": "medium",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "low-conviction-/-wait",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "medium"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261115T152250Z-1d758f8f",
+    "symbol": "ZECUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "flat",
+    "horizon_bars": 24,
+    "status": "settled",
+    "decision_timestamp": "2026-11-15T15:22:54.323843+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": -3.732363,
+    "max_favorable_excursion_pct": 7.493841,
+    "max_adverse_excursion_pct": -15.834267,
+    "direction_correct": null,
+    "guarded": true,
+    "risk_warning_supported": true,
+    "confidence": 49,
+    "notes": [
+      "Guarded decision was supported by a >=1% adverse excursion."
+    ],
+    "agents": {
+      "technical": {
+        "state": "fresh-short-buildup",
+        "confidence": 49,
+        "risk_flags": [],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "medium",
+        "veto": false,
+        "downside_risk": "medium",
+        "squeeze_risk": "medium",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "fresh-short-buildup",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "medium"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261115T152250Z-1d758f8f",
+    "symbol": "ZAMAUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "flat",
+    "horizon_bars": 24,
+    "status": "settled",
+    "decision_timestamp": "2026-11-15T15:22:54.324733+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": 13.206502,
+    "max_favorable_excursion_pct": 14.868859,
+    "max_adverse_excursion_pct": -1.514592,
+    "direction_correct": null,
+    "guarded": true,
+    "risk_warning_supported": true,
+    "confidence": 49,
+    "notes": [
+      "Guarded decision was supported by a >=1% adverse excursion."
+    ],
+    "agents": {
+      "technical": {
+        "state": "long-liquidation",
+        "confidence": 49,
+        "risk_flags": [],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "medium",
+        "veto": false,
+        "downside_risk": "medium",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "long-liquidation",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "medium"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261119T123109Z-a70db00c",
+    "symbol": "BTCUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "flat",
+    "horizon_bars": 12,
+    "status": "settled",
+    "decision_timestamp": "2026-11-19T12:31:13.616421+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": -1.357673,
+    "max_favorable_excursion_pct": -1.357673,
+    "max_adverse_excursion_pct": -8.756547,
+    "direction_correct": null,
+    "guarded": false,
+    "risk_warning_supported": null,
+    "confidence": 45,
+    "notes": [],
+    "agents": {
+      "technical": {
+        "state": "low-conviction-/-wait",
+        "confidence": 45,
+        "risk_flags": [],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "low",
+        "veto": false,
+        "downside_risk": "low",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "low-conviction-/-wait",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "low"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261119T123109Z-a70db00c",
+    "symbol": "ETHUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "flat",
+    "horizon_bars": 12,
+    "status": "settled",
+    "decision_timestamp": "2026-11-19T12:31:13.618443+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": -1.287709,
+    "max_favorable_excursion_pct": -1.287709,
+    "max_adverse_excursion_pct": -9.748524,
+    "direction_correct": null,
+    "guarded": false,
+    "risk_warning_supported": null,
+    "confidence": 45,
+    "notes": [],
+    "agents": {
+      "technical": {
+        "state": "low-conviction-/-wait",
+        "confidence": 45,
+        "risk_flags": [],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "low",
+        "veto": false,
+        "downside_risk": "low",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "low-conviction-/-wait",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "low"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261119T123109Z-a70db00c",
+    "symbol": "SOLUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "flat",
+    "horizon_bars": 12,
+    "status": "settled",
+    "decision_timestamp": "2026-11-19T12:31:13.619320+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": 1.816714,
+    "max_favorable_excursion_pct": 1.816714,
+    "max_adverse_excursion_pct": -7.401426,
+    "direction_correct": null,
+    "guarded": false,
+    "risk_warning_supported": null,
+    "confidence": 45,
+    "notes": [],
+    "agents": {
+      "technical": {
+        "state": "low-conviction-/-wait",
+        "confidence": 45,
+        "risk_flags": [],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "low",
+        "veto": false,
+        "downside_risk": "low",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "low-conviction-/-wait",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "low"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261119T123109Z-a70db00c",
+    "symbol": "ZECUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "flat",
+    "horizon_bars": 12,
+    "status": "settled",
+    "decision_timestamp": "2026-11-19T12:31:13.620136+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": -8.744759,
+    "max_favorable_excursion_pct": -5.498647,
+    "max_adverse_excursion_pct": -20.216549,
+    "direction_correct": null,
+    "guarded": true,
+    "risk_warning_supported": true,
+    "confidence": 45,
+    "notes": [
+      "Guarded decision was supported by a >=1% adverse excursion."
+    ],
+    "agents": {
+      "technical": {
+        "state": "low-conviction-/-wait",
+        "confidence": 45,
+        "risk_flags": [],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "medium",
+        "veto": false,
+        "downside_risk": "medium",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "low-conviction-/-wait",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "medium"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261119T123109Z-a70db00c",
+    "symbol": "ZAMAUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "flat",
+    "horizon_bars": 12,
+    "status": "settled",
+    "decision_timestamp": "2026-11-19T12:31:13.620967+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": 0.822504,
+    "max_favorable_excursion_pct": 1.151505,
+    "max_adverse_excursion_pct": -6.218128,
+    "direction_correct": null,
+    "guarded": false,
+    "risk_warning_supported": null,
+    "confidence": 45,
+    "notes": [],
+    "agents": {
+      "technical": {
+        "state": "soft-selling-/-drift",
+        "confidence": 45,
+        "risk_flags": [],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "low",
+        "veto": false,
+        "downside_risk": "low",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "soft-selling-/-drift",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "low"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261121T212856Z-a04d9312",
+    "symbol": "BTCUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "up",
+    "horizon_bars": 6,
+    "status": "settled",
+    "decision_timestamp": "2026-11-21T21:28:59.622926+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": 3.984189,
+    "max_favorable_excursion_pct": 3.984189,
+    "max_adverse_excursion_pct": -2.276507,
+    "direction_correct": true,
+    "guarded": true,
+    "risk_warning_supported": true,
+    "confidence": 45,
+    "notes": [
+      "Guarded decision was supported by a >=1% adverse excursion."
+    ],
+    "agents": {
+      "technical": {
+        "state": "short-covering",
+        "confidence": 45,
+        "risk_flags": [
+          "short-covering-rally"
+        ],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "medium",
+        "veto": false,
+        "downside_risk": "medium",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "short-covering",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "medium"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261121T212856Z-a04d9312",
+    "symbol": "ETHUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "up",
+    "horizon_bars": 6,
+    "status": "settled",
+    "decision_timestamp": "2026-11-21T21:28:59.625295+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": 5.073451,
+    "max_favorable_excursion_pct": 5.073451,
+    "max_adverse_excursion_pct": -1.636654,
+    "direction_correct": true,
+    "guarded": false,
+    "risk_warning_supported": null,
+    "confidence": 45,
+    "notes": [],
+    "agents": {
+      "technical": {
+        "state": "short-covering",
+        "confidence": 45,
+        "risk_flags": [
+          "short-covering-rally"
+        ],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "low",
+        "veto": false,
+        "downside_risk": "low",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "short-covering",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "low"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261121T212856Z-a04d9312",
+    "symbol": "SOLUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "up",
+    "horizon_bars": 6,
+    "status": "settled",
+    "decision_timestamp": "2026-11-21T21:28:59.626462+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": 7.12162,
+    "max_favorable_excursion_pct": 7.12162,
+    "max_adverse_excursion_pct": -1.982161,
+    "direction_correct": true,
+    "guarded": false,
+    "risk_warning_supported": null,
+    "confidence": 45,
+    "notes": [],
+    "agents": {
+      "technical": {
+        "state": "short-covering",
+        "confidence": 45,
+        "risk_flags": [
+          "short-covering-rally"
+        ],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "low",
+        "veto": false,
+        "downside_risk": "low",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "short-covering",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "low"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261121T212856Z-a04d9312",
+    "symbol": "ZECUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "up",
+    "horizon_bars": 6,
+    "status": "settled",
+    "decision_timestamp": "2026-11-21T21:28:59.627629+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": 8.141393,
+    "max_favorable_excursion_pct": 8.141393,
+    "max_adverse_excursion_pct": -3.163721,
+    "direction_correct": true,
+    "guarded": false,
+    "risk_warning_supported": null,
+    "confidence": 45,
+    "notes": [],
+    "agents": {
+      "technical": {
+        "state": "short-covering",
+        "confidence": 45,
+        "risk_flags": [
+          "short-covering-rally"
+        ],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "low",
+        "veto": false,
+        "downside_risk": "low",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "short-covering",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "low"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261121T212856Z-a04d9312",
+    "symbol": "ZAMAUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "up",
+    "horizon_bars": 6,
+    "status": "settled",
+    "decision_timestamp": "2026-11-21T21:28:59.628786+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": 1.861393,
+    "max_favorable_excursion_pct": 2.193784,
+    "max_adverse_excursion_pct": -0.531826,
+    "direction_correct": true,
+    "guarded": true,
+    "risk_warning_supported": false,
+    "confidence": 45,
+    "notes": [
+      "Guarded decision did not reach the 1% adverse-excursion support threshold."
+    ],
+    "agents": {
+      "technical": {
+        "state": "short-covering",
+        "confidence": 45,
+        "risk_flags": [
+          "short-covering-rally"
+        ],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "medium",
+        "veto": false,
+        "downside_risk": "medium",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "short-covering",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "medium"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261122T171256Z-34a94484",
+    "symbol": "BTCUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "flat",
+    "horizon_bars": 3,
+    "status": "settled",
+    "decision_timestamp": "2026-11-22T17:13:00.311444+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": 3.289076,
+    "max_favorable_excursion_pct": 3.289076,
+    "max_adverse_excursion_pct": -0.259119,
+    "direction_correct": null,
+    "guarded": false,
+    "risk_warning_supported": null,
+    "confidence": 45,
+    "notes": [],
+    "agents": {
+      "technical": {
+        "state": "low-conviction-/-wait",
+        "confidence": 45,
+        "risk_flags": [],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "low",
+        "veto": false,
+        "downside_risk": "low",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "low-conviction-/-wait",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "low"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261122T171256Z-34a94484",
+    "symbol": "ETHUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "flat",
+    "horizon_bars": 3,
+    "status": "settled",
+    "decision_timestamp": "2026-11-22T17:13:00.313727+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": 3.226839,
+    "max_favorable_excursion_pct": 3.226839,
+    "max_adverse_excursion_pct": -0.155959,
+    "direction_correct": null,
+    "guarded": false,
+    "risk_warning_supported": null,
+    "confidence": 45,
+    "notes": [],
+    "agents": {
+      "technical": {
+        "state": "low-conviction-/-wait",
+        "confidence": 45,
+        "risk_flags": [],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "low",
+        "veto": false,
+        "downside_risk": "low",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "low-conviction-/-wait",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "low"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261122T171256Z-34a94484",
+    "symbol": "SOLUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "flat",
+    "horizon_bars": 3,
+    "status": "settled",
+    "decision_timestamp": "2026-11-22T17:13:00.314997+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": 7.593857,
+    "max_favorable_excursion_pct": 7.593857,
+    "max_adverse_excursion_pct": 0.0,
+    "direction_correct": null,
+    "guarded": false,
+    "risk_warning_supported": null,
+    "confidence": 45,
+    "notes": [],
+    "agents": {
+      "technical": {
+        "state": "low-conviction-/-wait",
+        "confidence": 45,
+        "risk_flags": [],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "low",
+        "veto": false,
+        "downside_risk": "low",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "low-conviction-/-wait",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "low"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261122T171256Z-34a94484",
+    "symbol": "ZECUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "flat",
+    "horizon_bars": 3,
+    "status": "settled",
+    "decision_timestamp": "2026-11-22T17:13:00.316253+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": 8.308975,
+    "max_favorable_excursion_pct": 8.308975,
+    "max_adverse_excursion_pct": -0.68538,
+    "direction_correct": null,
+    "guarded": false,
+    "risk_warning_supported": null,
+    "confidence": 45,
+    "notes": [],
+    "agents": {
+      "technical": {
+        "state": "low-conviction-/-wait",
+        "confidence": 45,
+        "risk_flags": [],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "low",
+        "veto": false,
+        "downside_risk": "low",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "low-conviction-/-wait",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "low"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261122T171256Z-34a94484",
+    "symbol": "ZAMAUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "flat",
+    "horizon_bars": 3,
+    "status": "settled",
+    "decision_timestamp": "2026-11-22T17:13:00.317459+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": -0.325256,
+    "max_favorable_excursion_pct": -0.276468,
+    "max_adverse_excursion_pct": -1.122134,
+    "direction_correct": null,
+    "guarded": false,
+    "risk_warning_supported": null,
+    "confidence": 45,
+    "notes": [],
+    "agents": {
+      "technical": {
+        "state": "low-conviction-/-wait",
+        "confidence": 45,
+        "risk_flags": [],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "low",
+        "veto": false,
+        "downside_risk": "low",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "low-conviction-/-wait",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "low"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261123T055123Z-0ce945a1",
+    "symbol": "BTCUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "up",
+    "horizon_bars": 1,
+    "status": "settled",
+    "decision_timestamp": "2026-11-23T05:51:26.733443+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": 2.630065,
+    "max_favorable_excursion_pct": 2.630065,
+    "max_adverse_excursion_pct": 2.630065,
+    "direction_correct": true,
+    "guarded": false,
+    "risk_warning_supported": null,
+    "confidence": 45,
+    "notes": [],
+    "agents": {
+      "technical": {
+        "state": "fresh-long-buildup",
+        "confidence": 45,
+        "risk_flags": [],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "low",
+        "veto": false,
+        "downside_risk": "low",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "fresh-long-buildup",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "low"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261123T055123Z-0ce945a1",
+    "symbol": "ETHUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "up",
+    "horizon_bars": 1,
+    "status": "settled",
+    "decision_timestamp": "2026-11-23T05:51:26.736192+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": 2.391452,
+    "max_favorable_excursion_pct": 2.391452,
+    "max_adverse_excursion_pct": 2.391452,
+    "direction_correct": true,
+    "guarded": false,
+    "risk_warning_supported": null,
+    "confidence": 45,
+    "notes": [],
+    "agents": {
+      "technical": {
+        "state": "fresh-long-buildup",
+        "confidence": 45,
+        "risk_flags": [],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "low",
+        "veto": false,
+        "downside_risk": "low",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "fresh-long-buildup",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "low"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261123T055123Z-0ce945a1",
+    "symbol": "SOLUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "up",
+    "horizon_bars": 1,
+    "status": "settled",
+    "decision_timestamp": "2026-11-23T05:51:26.737713+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": 5.98123,
+    "max_favorable_excursion_pct": 5.98123,
+    "max_adverse_excursion_pct": 5.98123,
+    "direction_correct": true,
+    "guarded": false,
+    "risk_warning_supported": null,
+    "confidence": 45,
+    "notes": [],
+    "agents": {
+      "technical": {
+        "state": "short-covering",
+        "confidence": 45,
+        "risk_flags": [
+          "short-covering-rally"
+        ],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "low",
+        "veto": false,
+        "downside_risk": "low",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "short-covering",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "low"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261123T055123Z-0ce945a1",
+    "symbol": "ZECUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "up",
+    "horizon_bars": 1,
+    "status": "settled",
+    "decision_timestamp": "2026-11-23T05:51:26.739167+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": 8.691035,
+    "max_favorable_excursion_pct": 8.691035,
+    "max_adverse_excursion_pct": 8.691035,
+    "direction_correct": true,
+    "guarded": false,
+    "risk_warning_supported": null,
+    "confidence": 45,
+    "notes": [],
+    "agents": {
+      "technical": {
+        "state": "fresh-long-buildup",
+        "confidence": 45,
+        "risk_flags": [],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "low",
+        "veto": false,
+        "downside_risk": "low",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "fresh-long-buildup",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "low"
+  },
+  {
+    "agent": "evaluator",
+    "run_id": "shadow-20261123T055123Z-0ce945a1",
+    "symbol": "ZAMAUSDT",
+    "timeframe": "4h",
+    "decision": "ALERT",
+    "signal_direction": "flat",
+    "horizon_bars": 1,
+    "status": "settled",
+    "decision_timestamp": "2026-11-23T05:51:26.740462+00:00",
+    "outcome_timestamp": "2026-11-23T15:59:59.999000+00:00",
+    "forward_return_pct": 0.805921,
+    "max_favorable_excursion_pct": 0.805921,
+    "max_adverse_excursion_pct": 0.805921,
+    "direction_correct": null,
+    "guarded": false,
+    "risk_warning_supported": null,
+    "confidence": 45,
+    "notes": [],
+    "agents": {
+      "technical": {
+        "state": "fresh-short-buildup",
+        "confidence": 45,
+        "risk_flags": [],
+        "model_version": "technical-shadow-v0.1-adapter"
+      },
+      "risk": {
+        "overall_level": "low",
+        "veto": false,
+        "downside_risk": "low",
+        "squeeze_risk": "low",
+        "data_risk": "low",
+        "confidence": 90,
+        "model_version": "risk-shadow-v0.2-sensitive"
+      },
+      "challenge": {
+        "status": "warn",
+        "challenges": [
+          "OI does not identify long versus short direction without additional positioning evidence."
+        ],
+        "missing_evidence": [
+          "derivatives volume",
+          "liquidation feed"
+        ],
+        "contradictions": [],
+        "confidence_cap": 75,
+        "model_version": "challenge-shadow-v0.1-deterministic"
+      }
+    },
+    "technical_state": "fresh-short-buildup",
+    "challenge_status": "warn",
+    "risk_veto": false,
+    "risk_overall_level": "low"
   }
 ]

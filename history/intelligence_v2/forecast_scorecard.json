@@ -1,24 +1,24 @@
 {
   "agent": "forecast-scorecard",
-  "evaluated_at": "2026-11-23T05:51:26.825386+00:00",
-  "forecasts_total": 270,
+  "evaluated_at": "2026-11-23T19:51:31.366826+00:00",
+  "forecasts_total": 275,
   "active_forecasts": 44,
-  "abstain_count": 226,
-  "abstain_rate_pct": 83.7,
-  "settled_rows": 164,
-  "pending_rows": 58,
-  "directional_settled": 164,
-  "directional_hits": 94,
-  "direction_accuracy_pct": 57.32,
+  "abstain_count": 231,
+  "abstain_rate_pct": 84.0,
+  "settled_rows": 165,
+  "pending_rows": 68,
+  "directional_settled": 165,
+  "directional_hits": 95,
+  "direction_accuracy_pct": 57.58,
   "by_horizon": {
     "1": {
-      "directional": 43,
-      "hits": 28,
-      "accuracy_pct": 65.12,
+      "directional": 44,
+      "hits": 29,
+      "accuracy_pct": 65.91,
       "pending": 5,
-      "outcomes_including_abstentions": 53,
-      "fired_coverage_pct": 81.13,
-      "gross_policy_return_mean_pct": 1.168062,
+      "outcomes_including_abstentions": 58,
+      "fired_coverage_pct": 75.86,
+      "gross_policy_return_mean_pct": 1.1086,
       "cost_adjusted_return": null
     },
     "3": {
@@ -26,16 +26,16 @@
       "hits": 21,
       "accuracy_pct": 48.84,
       "pending": 15,
-      "outcomes_including_abstentions": 43,
-      "fired_coverage_pct": 100.0,
-      "gross_policy_return_mean_pct": 1.069902,
+      "outcomes_including_abstentions": 48,
+      "fired_coverage_pct": 89.58,
+      "gross_policy_return_mean_pct": 0.958454,
       "cost_adjusted_return": null
     },
     "6": {
       "directional": 43,
       "hits": 27,
       "accuracy_pct": 62.79,
-      "pending": 15,
+      "pending": 20,
       "outcomes_including_abstentions": 43,
       "fired_coverage_pct": 100.0,
       "gross_policy_return_mean_pct": 1.5884,
@@ -45,7 +45,7 @@
       "directional": 35,
       "hits": 18,
       "accuracy_pct": 51.43,
-      "pending": 23,
+      "pending": 28,
       "outcomes_including_abstentions": 35,
       "fired_coverage_pct": 100.0,
       "gross_policy_return_mean_pct": -1.002197,
@@ -59,9 +59,9 @@
       "accuracy_pct": 47.19
     },
     "high": {
-      "directional": 22,
-      "hits": 17,
-      "accuracy_pct": 77.27
+      "directional": 23,
+      "hits": 18,
+      "accuracy_pct": 78.26
     },
     "medium": {
       "directional": 53,
@@ -73,8 +73,8 @@
     {
       "probability_band": "high",
       "implied_mid": 0.7,
-      "empirical_hit_rate": 0.7726999999999999,
-      "n": 22,
+      "empirical_hit_rate": 0.7826000000000001,
+      "n": 23,
       "note": "Needs larger n before adjusting bands."
     },
     {
@@ -104,40 +104,40 @@
   "benchmarks_by_horizon": {
     "1": {
       "always_up": {
-        "n": 53,
-        "hits": 32,
-        "accuracy_pct": 60.38
+        "n": 58,
+        "hits": 37,
+        "accuracy_pct": 63.79
       },
       "always_down": {
-        "n": 53,
+        "n": 58,
         "hits": 20,
-        "accuracy_pct": 37.74
+        "accuracy_pct": 34.48
       },
       "persistence": {
-        "n": 9,
-        "hits": 4,
-        "accuracy_pct": 44.44
+        "n": 14,
+        "hits": 8,
+        "accuracy_pct": 57.14
       },
-      "outcome_n": 53,
+      "outcome_n": 58,
       "note": "Baselines use settled outcomes including abstentions where forward returns are available; persistence uses the last observed price move at issue time."
     },
     "3": {
       "always_up": {
-        "n": 43,
-        "hits": 13,
-        "accuracy_pct": 30.23
+        "n": 48,
+        "hits": 17,
+        "accuracy_pct": 35.42
       },
       "always_down": {
-        "n": 43,
-        "hits": 30,
-        "accuracy_pct": 69.77
+        "n": 48,
+        "hits": 31,
+        "accuracy_pct": 64.58
       },
       "persistence": {
-        "n": 0,
+        "n": 5,
         "hits": 0,
-        "accuracy_pct": null
+        "accuracy_pct": 0.0
       },
-      "outcome_n": 43,
+      "outcome_n": 48,
       "note": "Baselines use settled outcomes including abstentions where forward returns are available; persistence uses the last observed price move at issue time."
     },
     "6": {
