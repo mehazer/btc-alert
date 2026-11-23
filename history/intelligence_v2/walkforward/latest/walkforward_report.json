@@ -1,9 +1,9 @@
 {
-  "walkforward_batch_id": "walkforward-983274c7068d",
+  "walkforward_batch_id": "walkforward-21bd5f2be0a2",
   "evaluation_mode": "walkforward_backtest",
   "lookahead_safe": true,
-  "started_at": "2026-11-22T21:35:52.739465+00:00",
-  "completed_at": "2026-11-22T21:35:52.739466+00:00",
+  "started_at": "2026-11-23T05:51:29.964522+00:00",
+  "completed_at": "2026-11-23T05:51:29.964524+00:00",
   "symbols": [
     "BTCUSDT",
     "ETHUSDT",
@@ -11,17 +11,17 @@
   ],
   "timeframe": "4h",
   "history_lengths": {
-    "BTCUSDT": 139,
-    "ETHUSDT": 139,
-    "SOLUSDT": 139
+    "BTCUSDT": 140,
+    "ETHUSDT": 140,
+    "SOLUSDT": 140
   },
-  "common_bars": 139,
+  "common_bars": 140,
   "warmup_bars": 20,
-  "eligible_timestamps": 119,
-  "decision_count": 357,
-  "evaluation_count": 1785,
+  "eligible_timestamps": 120,
+  "decision_count": 360,
+  "evaluation_count": 1800,
   "coverage": {
-    "settled": 1647,
+    "settled": 1662,
     "pending": 138,
     "insufficient_data": 0
   },
@@ -31,40 +31,40 @@
     "source_order_normalized": true,
     "future_rows_used_for_decisions": false
   },
-  "determinism_hash": "c583504a71613531617bc9cc12c5aa53f5be0f7edf6acb09715b89e5acb732c5",
+  "determinism_hash": "98931fcbc989c2d164611e79a4b00d37cf8239829d0f73926c7e96cd24845649",
   "scorecard": {
-    "settled_records": 1647,
+    "settled_records": 1662,
     "pending_records": 138,
-    "directional_records": 386,
-    "directional_hits": 191,
-    "direction_accuracy_pct": 49.48,
+    "directional_records": 391,
+    "directional_hits": 193,
+    "direction_accuracy_pct": 49.36,
     "by_horizon": {
       "1": {
-        "settled": 354,
+        "settled": 357,
         "directional": 84,
         "hits": 43,
         "accuracy_pct": 51.19
       },
       "3": {
-        "settled": 348,
-        "directional": 83,
-        "hits": 40,
-        "accuracy_pct": 48.19
+        "settled": 351,
+        "directional": 84,
+        "hits": 41,
+        "accuracy_pct": 48.81
       },
       "6": {
-        "settled": 339,
-        "directional": 79,
-        "hits": 39,
-        "accuracy_pct": 49.37
+        "settled": 342,
+        "directional": 80,
+        "hits": 40,
+        "accuracy_pct": 50.0
       },
       "12": {
-        "settled": 321,
-        "directional": 76,
+        "settled": 324,
+        "directional": 79,
         "hits": 36,
-        "accuracy_pct": 47.37
+        "accuracy_pct": 45.57
       },
       "24": {
-        "settled": 285,
+        "settled": 288,
         "directional": 64,
         "hits": 33,
         "accuracy_pct": 51.56
@@ -77,8 +77,8 @@
         "pending": 0
       },
       "ALERT": {
-        "records": 960,
-        "settled": 822,
+        "records": 975,
+        "settled": 837,
         "pending": 138
       }
     }
@@ -93,10 +93,10 @@
     "Forecast self-learning remains disabled until calibration is stable."
   ],
   "forecast": {
-    "forecasts_total": 357,
-    "active_forecasts": 14,
-    "abstain_count": 343,
-    "abstain_rate_pct": 96.08,
+    "forecasts_total": 360,
+    "active_forecasts": 15,
+    "abstain_count": 345,
+    "abstain_rate_pct": 95.83,
     "directional_settled": 52,
     "directional_hits": 35,
     "direction_accuracy_pct": 67.31,
@@ -106,9 +106,9 @@
         "hits": 5,
         "accuracy_pct": 35.71,
         "pending": 3,
-        "outcomes_including_abstentions": 354,
-        "fired_coverage_pct": 3.95,
-        "gross_policy_return_mean_pct": 0.021015,
+        "outcomes_including_abstentions": 357,
+        "fired_coverage_pct": 3.92,
+        "gross_policy_return_mean_pct": 0.020838,
         "cost_adjusted_return": null
       },
       "3": {
@@ -116,9 +116,9 @@
         "hits": 9,
         "accuracy_pct": 64.29,
         "pending": 9,
-        "outcomes_including_abstentions": 348,
-        "fired_coverage_pct": 4.02,
-        "gross_policy_return_mean_pct": 0.059018,
+        "outcomes_including_abstentions": 351,
+        "fired_coverage_pct": 3.99,
+        "gross_policy_return_mean_pct": 0.058513,
         "cost_adjusted_return": null
       },
       "6": {
@@ -126,9 +126,9 @@
         "hits": 12,
         "accuracy_pct": 85.71,
         "pending": 18,
-        "outcomes_including_abstentions": 339,
-        "fired_coverage_pct": 4.13,
-        "gross_policy_return_mean_pct": 0.122911,
+        "outcomes_including_abstentions": 342,
+        "fired_coverage_pct": 4.09,
+        "gross_policy_return_mean_pct": 0.121833,
         "cost_adjusted_return": null
       },
       "12": {
@@ -136,9 +136,9 @@
         "hits": 9,
         "accuracy_pct": 90.0,
         "pending": 36,
-        "outcomes_including_abstentions": 321,
-        "fired_coverage_pct": 3.12,
-        "gross_policy_return_mean_pct": 0.148486,
+        "outcomes_including_abstentions": 324,
+        "fired_coverage_pct": 3.09,
+        "gross_policy_return_mean_pct": 0.147111,
         "cost_adjusted_return": null
       }
     },

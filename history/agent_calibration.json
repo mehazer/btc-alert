@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "updated_at": "2026-11-22T21:35:44.679689+00:00",
+  "updated_at": "2026-11-23T05:51:21.104861+00:00",
   "signal_weights": {
-    "rsi": 0.85,
-    "fear_greed": 0.85,
-    "funding": 0.85,
-    "oi_price": 0.85,
-    "price": 0.85,
-    "news": 0.85,
-    "social": 0.7
+    "rsi": 0.82,
+    "fear_greed": 0.82,
+    "funding": 0.82,
+    "oi_price": 0.82,
+    "price": 0.82,
+    "news": 0.82,
+    "social": 0.67
   },
   "state_multipliers": {
     "unknown": {
@@ -18,9 +18,9 @@
       "advice": "upweight"
     },
     "weakening-participation": {
-      "multiplier": 1.23,
-      "samples": 43,
-      "accuracy_pct": 88.37,
+      "multiplier": 1.232,
+      "samples": 44,
+      "accuracy_pct": 88.64,
       "advice": "upweight"
     },
     "fresh-long-buildup": {
@@ -30,15 +30,15 @@
       "advice": "downweight"
     },
     "short-covering": {
-      "multiplier": 0.855,
-      "samples": 178,
-      "accuracy_pct": 25.84,
+      "multiplier": 0.853,
+      "samples": 180,
+      "accuracy_pct": 25.56,
       "advice": "downweight"
     }
   },
   "metrics": {
-    "samples": 12,
-    "direction_accuracy": 25.0,
+    "samples": 13,
+    "direction_accuracy": 23.1,
     "hits": 3,
     "trusted": true,
     "pending": 3,
@@ -49,56 +49,56 @@
     "weight_updates": [
       {
         "signal": "rsi",
-        "old": 0.88,
-        "new": 0.85,
+        "old": 0.85,
+        "new": 0.82,
         "samples": 1,
         "hits": 0,
         "hit_rate": 0.0
       },
       {
         "signal": "fear_greed",
-        "old": 0.88,
-        "new": 0.85,
+        "old": 0.85,
+        "new": 0.82,
         "samples": 1,
         "hits": 0,
         "hit_rate": 0.0
       },
       {
         "signal": "funding",
-        "old": 0.88,
-        "new": 0.85,
+        "old": 0.85,
+        "new": 0.82,
         "samples": 1,
         "hits": 0,
         "hit_rate": 0.0
       },
       {
         "signal": "oi_price",
-        "old": 0.88,
-        "new": 0.85,
+        "old": 0.85,
+        "new": 0.82,
         "samples": 1,
         "hits": 0,
         "hit_rate": 0.0
       },
       {
         "signal": "price",
-        "old": 0.88,
-        "new": 0.85,
+        "old": 0.85,
+        "new": 0.82,
         "samples": 1,
         "hits": 0,
         "hit_rate": 0.0
       },
       {
         "signal": "news",
-        "old": 0.88,
-        "new": 0.85,
+        "old": 0.85,
+        "new": 0.82,
         "samples": 1,
         "hits": 0,
         "hit_rate": 0.0
       },
       {
         "signal": "social",
-        "old": 0.73,
-        "new": 0.7,
+        "old": 0.7,
+        "new": 0.67,
         "samples": 1,
         "hits": 0,
         "hit_rate": 0.0
@@ -870,6 +870,76 @@
       "metrics": {
         "samples": 12,
         "direction_accuracy": 25.0,
+        "hits": 3,
+        "trusted": true,
+        "pending": 3,
+        "horizon_bars": 3
+      }
+    },
+    {
+      "at": "2026-11-23T05:51:21.104855+00:00",
+      "newly_settled": 1,
+      "weight_updates": [
+        {
+          "signal": "rsi",
+          "old": 0.85,
+          "new": 0.82,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "fear_greed",
+          "old": 0.85,
+          "new": 0.82,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "funding",
+          "old": 0.85,
+          "new": 0.82,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "oi_price",
+          "old": 0.85,
+          "new": 0.82,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "price",
+          "old": 0.85,
+          "new": 0.82,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "news",
+          "old": 0.85,
+          "new": 0.82,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "social",
+          "old": 0.7,
+          "new": 0.67,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        }
+      ],
+      "metrics": {
+        "samples": 13,
+        "direction_accuracy": 23.1,
         "hits": 3,
         "trusted": true,
         "pending": 3,
