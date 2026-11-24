@@ -185,7 +185,7 @@ def ai_interpret(digests):
         resp = requests.post(f"{base}/chat/completions", headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}, json={"model": model, "messages": [{"role": "system", "content": "You are a cautious crypto-news analyst. Output valid JSON only."}, {"role": "user", "content": json.dumps(prompt, ensure_ascii=False)}], "temperature": 0.1, "max_tokens": 900}, timeout=45)
         resp.raise_for_status()
         content = resp.json()["choices"][0]["message"]["content"]
-        content = re.sub(r"^```json\\s*|\\s*```$", "", content.strip())
+        content = re.sub(r"^\s*```(?:json)?\s*|\s*```\s*$", "", content.strip(), flags=re.IGNORECASE)
         result = json.loads(content)
         supplied = {x["headline"] for d in compact for x in d["headlines"]}
         cited = [x for x in result.get("cited_headlines", []) if x in supplied]
