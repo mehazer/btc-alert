@@ -1,6 +1,6 @@
 {
   "status": "ok",
-  "aggregate_score": 17.0,
+  "aggregate_score": 23.9,
   "symbols": {
     "BTC": {
       "status": "ok",
@@ -12,6 +12,16 @@
         "hours": 24
       },
       "messages": [
+        {
+          "source": "StockTwits",
+          "type": "stocktwits",
+          "symbol": "BTC",
+          "headline": "$BTC.X $DOGE.X $ETH.X $SOL.X don’t be upset once secure $103,000 we will pump your little dog 🐕 coin 🪙 relax we in control",
+          "published": "2026-11-24T05:22:00Z",
+          "user": "Web30",
+          "sentiment_label": "bullish",
+          "message_id": 670028975
+        },
         {
           "source": "StockTwits",
           "type": "stocktwits",
@@ -201,16 +211,6 @@
           "user": "Beyonder44",
           "sentiment_label": "bullish",
           "message_id": 670028561
-        },
-        {
-          "source": "StockTwits",
-          "type": "stocktwits",
-          "symbol": "BTC",
-          "headline": "$BTC.X you think Larry Fink cares about you bears 🐻?",
-          "published": "2026-11-24T04:55:30Z",
-          "user": "Web30",
-          "sentiment_label": "bullish",
-          "message_id": 670028417
         }
       ],
       "summary": {
@@ -222,7 +222,7 @@
         "score": 86.7
       },
       "coverage_gap": null,
-      "updated_at": "2026-11-24T05:21:08.422817+00:00"
+      "updated_at": "2026-11-24T05:22:23.267888+00:00"
     },
     "ETH": {
       "status": "ok",
@@ -234,6 +234,16 @@
         "hours": 24
       },
       "messages": [
+        {
+          "source": "StockTwits",
+          "type": "stocktwits",
+          "symbol": "ETH",
+          "headline": "$BTC.X $DOGE.X $ETH.X $SOL.X don’t be upset once secure $103,000 we will pump your little dog 🐕 coin 🪙 relax we in control",
+          "published": "2026-11-24T05:22:00Z",
+          "user": "Web30",
+          "sentiment_label": "bullish",
+          "message_id": 670028975
+        },
         {
           "source": "StockTwits",
           "type": "stocktwits",
@@ -423,28 +433,18 @@
           "user": "Kuradick",
           "sentiment_label": "bullish",
           "message_id": 670026735
-        },
-        {
-          "source": "StockTwits",
-          "type": "stocktwits",
-          "symbol": "ETH",
-          "headline": "$BTC.X $ETH.X $MSTR $XRP.X",
-          "published": "2026-11-24T03:41:50Z",
-          "user": "Fawl3r",
-          "sentiment_label": "none",
-          "message_id": 670026520
         }
       ],
       "summary": {
         "message_count": 20,
-        "bullish": 2,
+        "bullish": 3,
         "bearish": 7,
-        "neutral": 11,
-        "bullish_ratio": 0.222,
-        "score": -55.6
+        "neutral": 10,
+        "bullish_ratio": 0.3,
+        "score": -40.0
       },
       "coverage_gap": null,
-      "updated_at": "2026-11-24T05:21:08.498722+00:00"
+      "updated_at": "2026-11-24T05:22:23.331149+00:00"
     },
     "SOL": {
       "status": "ok",
@@ -456,6 +456,16 @@
         "hours": 24
       },
       "messages": [
+        {
+          "source": "StockTwits",
+          "type": "stocktwits",
+          "symbol": "SOL",
+          "headline": "$BTC.X $DOGE.X $ETH.X $SOL.X don’t be upset once secure $103,000 we will pump your little dog 🐕 coin 🪙 relax we in control",
+          "published": "2026-11-24T05:22:00Z",
+          "user": "Web30",
+          "sentiment_label": "bullish",
+          "message_id": 670028975
+        },
         {
           "source": "StockTwits",
           "type": "stocktwits",
@@ -645,30 +655,20 @@
           "user": "Gmblr777",
           "sentiment_label": "bearish",
           "message_id": 670011476
-        },
-        {
-          "source": "StockTwits",
-          "type": "stocktwits",
-          "symbol": "SOL",
-          "headline": "$BTC.X $MSTR $ETH.X $SOL.X $ADA.X 📊\n\nBitcoin’s absolute scarcity enforced by a hard 21 million coin cap and quadrennial halving events creates completely inelastic supply, meaning any surge or drop in demand must be absorbed entirely through price rather than new issuance. \n\nBeca",
-          "published": "2026-11-23T22:21:36Z",
-          "user": "JaredSotken",
-          "sentiment_label": "none",
-          "message_id": 670010188
         }
       ],
       "summary": {
         "message_count": 20,
-        "bullish": 9,
+        "bullish": 10,
         "bearish": 6,
-        "neutral": 5,
-        "bullish_ratio": 0.6,
-        "score": 20.0
+        "neutral": 4,
+        "bullish_ratio": 0.625,
+        "score": 25.0
       },
       "coverage_gap": null,
-      "updated_at": "2026-11-24T05:21:08.585182+00:00"
+      "updated_at": "2026-11-24T05:22:23.402710+00:00"
     }
   },
-  "updated_at": "2026-11-24T05:21:08.662061+00:00",
+  "updated_at": "2026-11-24T05:22:23.491672+00:00",
   "note": "Live-only social sentiment; not point-in-time historical archive."
 }
