@@ -1,0 +1,182 @@
+{
+  "agent": "forecast-scorecard",
+  "evaluated_at": "2026-11-24T04:37:37.981450+00:00",
+  "forecasts_total": 366,
+  "active_forecasts": 17,
+  "abstain_count": 349,
+  "abstain_rate_pct": 95.36,
+  "settled_rows": 54,
+  "pending_rows": 66,
+  "directional_settled": 54,
+  "directional_hits": 37,
+  "direction_accuracy_pct": 68.52,
+  "by_horizon": {
+    "1": {
+      "directional": 15,
+      "hits": 6,
+      "accuracy_pct": 40.0,
+      "pending": 3,
+      "outcomes_including_abstentions": 363,
+      "fired_coverage_pct": 4.13,
+      "gross_policy_return_mean_pct": 0.027082,
+      "cost_adjusted_return": null
+    },
+    "3": {
+      "directional": 14,
+      "hits": 9,
+      "accuracy_pct": 64.29,
+      "pending": 9,
+      "outcomes_including_abstentions": 357,
+      "fired_coverage_pct": 3.92,
+      "gross_policy_return_mean_pct": 0.05753,
+      "cost_adjusted_return": null
+    },
+    "6": {
+      "directional": 14,
+      "hits": 12,
+      "accuracy_pct": 85.71,
+      "pending": 18,
+      "outcomes_including_abstentions": 348,
+      "fired_coverage_pct": 4.02,
+      "gross_policy_return_mean_pct": 0.119732,
+      "cost_adjusted_return": null
+    },
+    "12": {
+      "directional": 11,
+      "hits": 10,
+      "accuracy_pct": 90.91,
+      "pending": 36,
+      "outcomes_including_abstentions": 330,
+      "fired_coverage_pct": 3.33,
+      "gross_policy_return_mean_pct": 0.153557,
+      "cost_adjusted_return": null
+    }
+  },
+  "by_probability_band": {
+    "low": {
+      "directional": 27,
+      "hits": 17,
+      "accuracy_pct": 62.96
+    },
+    "medium": {
+      "directional": 22,
+      "hits": 17,
+      "accuracy_pct": 77.27
+    },
+    "high": {
+      "directional": 5,
+      "hits": 3,
+      "accuracy_pct": 60.0
+    }
+  },
+  "calibration": [
+    {
+      "probability_band": "high",
+      "implied_mid": 0.7,
+      "empirical_hit_rate": 0.6,
+      "n": 5,
+      "note": "Needs larger n before adjusting bands."
+    },
+    {
+      "probability_band": "low",
+      "implied_mid": 0.55,
+      "empirical_hit_rate": 0.6296,
+      "n": 27,
+      "note": "Needs larger n before adjusting bands."
+    },
+    {
+      "probability_band": "medium",
+      "implied_mid": 0.62,
+      "empirical_hit_rate": 0.7726999999999999,
+      "n": 22,
+      "note": "Needs larger n before adjusting bands."
+    }
+  ],
+  "limitations": [
+    "Shadow-only: forecasts never execute or alter production alerts.",
+    "Direction accuracy excludes ABSTAIN rows (abstain is tracked separately).",
+    "Gross policy return assigns zero return to abstentions and signs active returns by forecast direction; fees, spread, slippage, and funding are not included.",
+    "Adjacent issue times and overlapping horizons may not be independent observations.",
+    "Legacy evaluations lack stored baseline directions and abstention outcomes; benchmark coverage grows prospectively.",
+    "Probability bands are conservative priors pending walk-forward calibration.",
+    "Do not enable self-learning until calibration is stable out of sample."
+  ],
+  "benchmarks_by_horizon": {
+    "1": {
+      "always_up": {
+        "n": 363,
+        "hits": 154,
+        "accuracy_pct": 42.42
+      },
+      "always_down": {
+        "n": 363,
+        "hits": 208,
+        "accuracy_pct": 57.3
+      },
+      "persistence": {
+        "n": 362,
+        "hits": 168,
+        "accuracy_pct": 46.41
+      },
+      "outcome_n": 363,
+      "note": "Baselines use settled outcomes including abstentions where forward returns are available; persistence uses the last observed price move at issue time."
+    },
+    "3": {
+      "always_up": {
+        "n": 357,
+        "hits": 153,
+        "accuracy_pct": 42.86
+      },
+      "always_down": {
+        "n": 357,
+        "hits": 204,
+        "accuracy_pct": 57.14
+      },
+      "persistence": {
+        "n": 356,
+        "hits": 162,
+        "accuracy_pct": 45.51
+      },
+      "outcome_n": 357,
+      "note": "Baselines use settled outcomes including abstentions where forward returns are available; persistence uses the last observed price move at issue time."
+    },
+    "6": {
+      "always_up": {
+        "n": 348,
+        "hits": 113,
+        "accuracy_pct": 32.47
+      },
+      "always_down": {
+        "n": 348,
+        "hits": 235,
+        "accuracy_pct": 67.53
+      },
+      "persistence": {
+        "n": 348,
+        "hits": 178,
+        "accuracy_pct": 51.15
+      },
+      "outcome_n": 348,
+      "note": "Baselines use settled outcomes including abstentions where forward returns are available; persistence uses the last observed price move at issue time."
+    },
+    "12": {
+      "always_up": {
+        "n": 330,
+        "hits": 56,
+        "accuracy_pct": 16.97
+      },
+      "always_down": {
+        "n": 330,
+        "hits": 274,
+        "accuracy_pct": 83.03
+      },
+      "persistence": {
+        "n": 330,
+        "hits": 183,
+        "accuracy_pct": 55.45
+      },
+      "outcome_n": 330,
+      "note": "Baselines use settled outcomes including abstentions where forward returns are available; persistence uses the last observed price move at issue time."
+    }
+  }
+}
