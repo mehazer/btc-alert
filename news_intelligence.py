@@ -1,4 +1,4 @@
-"""Crypto news intelligence: category tagging, ranking, deduplication and optional AI summary."""
+"""Crypto news intelligence: category tagging, ranking, deduplication and optional AI summary. Gemini-first provider enabled."""
 import json
 import os
 import re
