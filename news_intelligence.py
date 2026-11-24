@@ -172,7 +172,7 @@ def _fallback_interpretation(digests):
 def ai_interpret(digests):
     api_key = os.environ.get("NEWS_AI_API_KEY") or os.environ.get("OPENAI_API_KEY")
     base = (os.environ.get("NEWS_AI_BASE_URL") or os.environ.get("OPENAI_API_BASE") or "https://api.openai.com/v1").rstrip("/")
-    model = os.environ.get("NEWS_AI_MODEL", "gpt-4o-mini")
+    model = os.environ.get("NEWS_AI_MODEL") or "gpt-4o-mini"
     fallback = _fallback_interpretation(digests)
     if not api_key:
         fallback["status"] = "unavailable"
