@@ -4,6 +4,10 @@ on:
   # Scheduled runs are handled by pipeline.yml (news → technical → v2).
   # Keep manual dispatch for debugging.
   workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - 'news_intelligence.py'
 
 permissions:
   contents: write
