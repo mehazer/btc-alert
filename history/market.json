@@ -1,30 +1,28 @@
 {
-  "updated_at": "2026-11-24T05:00:18.431675+00:00",
+  "updated_at": "2026-11-24T19:21:20.243478+00:00",
   "fear_greed_value": 11,
   "fear_greed_label": "Extreme Fear",
-  "funding_rate": 3.51150502204e-05,
-  "rsi": 44.67849779391188,
-  "oi_change_pct": -0.286086,
-  "price_change_pct": -1.522076,
-  "price": 60338.34,
-  "btc_observed_at": "2026-11-24T03:59:59.999000+00:00",
-  "news_sentiment": 44.4,
-  "news_label": "Bullish",
-  "news_macro_score": null,
-  "social_sentiment": 44.4,
+  "funding_rate": 8.38383932653e-05,
+  "rsi": 41.3376196984708,
+  "oi_change_pct": 2.255574,
+  "price_change_pct": -1.163041,
+  "price": 59721.61,
+  "btc_observed_at": "2026-11-24T15:59:59.999000+00:00",
+  "news_sentiment": -0.4,
+  "news_label": "Neutral",
+  "news_macro_score": -1.2,
+  "social_sentiment": 4.9,
   "social_status": "ok",
   "social_source": "StockTwits",
   "market_agent": {
     "state": "NEUTRAL",
-    "bias_score": 3,
-    "intensity": 17,
+    "bias_score": -21,
+    "intensity": 15,
     "confidence": 93,
     "reasons": [
-      "Fear&Greed asiri korku (11)",
-      "Haber sentimenti iyimser (+44)",
-      "Sosyal sentiment iyimser (+44)"
+      "Fear&Greed asiri korku (11)"
     ],
-    "bullish_points": 17.5,
+    "bullish_points": 0.0,
     "bearish_points": 15.2,
     "signal_weights_applied": {
       "rsi": 0.76,
@@ -35,27 +33,27 @@
       "news": 0.76,
       "social": 0.61
     },
-    "evaluated_at": "2026-11-24T05:00:18.431667+00:00"
+    "evaluated_at": "2026-11-24T19:21:20.243470+00:00"
   },
   "method": "BTC history + F&G + news_sentiment + StockTwits → calibrated market_agent",
   "limitations": [],
   "calibration": {
     "metrics": {
-      "samples": 15,
-      "direction_accuracy": 20.0,
+      "samples": 16,
+      "direction_accuracy": 18.8,
       "hits": 3,
       "trusted": true,
       "pending": 4,
       "horizon_bars": 3
     },
     "signal_weights": {
-      "rsi": 0.76,
-      "fear_greed": 0.76,
-      "funding": 0.76,
-      "oi_price": 0.76,
-      "price": 0.76,
-      "news": 0.76,
-      "social": 0.61
+      "rsi": 0.73,
+      "fear_greed": 0.73,
+      "funding": 0.73,
+      "oi_price": 0.73,
+      "price": 0.73,
+      "news": 0.73,
+      "social": 0.58
     },
     "state_multipliers": {
       "unknown": {
@@ -84,12 +82,69 @@
       }
     },
     "last_cycle": {
-      "newly_settled": 0,
-      "weight_updates": []
+      "newly_settled": 1,
+      "weight_updates": [
+        {
+          "signal": "rsi",
+          "old": 0.76,
+          "new": 0.73,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "fear_greed",
+          "old": 0.76,
+          "new": 0.73,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "funding",
+          "old": 0.76,
+          "new": 0.73,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "oi_price",
+          "old": 0.76,
+          "new": 0.73,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "price",
+          "old": 0.76,
+          "new": 0.73,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "news",
+          "old": 0.76,
+          "new": 0.73,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "social",
+          "old": 0.61,
+          "new": 0.58,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        }
+      ]
     },
     "notes": [
       "Technical states underperforming: fresh-long-buildup, short-covering."
     ],
-    "updated_at": "2026-11-24T05:00:18.432483+00:00"
+    "updated_at": "2026-11-24T19:21:20.244937+00:00"
   }
 }

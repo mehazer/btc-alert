@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "updated_at": "2026-11-24T05:00:18.432483+00:00",
+  "updated_at": "2026-11-24T19:21:20.244937+00:00",
   "signal_weights": {
-    "rsi": 0.76,
-    "fear_greed": 0.76,
-    "funding": 0.76,
-    "oi_price": 0.76,
-    "price": 0.76,
-    "news": 0.76,
-    "social": 0.61
+    "rsi": 0.73,
+    "fear_greed": 0.73,
+    "funding": 0.73,
+    "oi_price": 0.73,
+    "price": 0.73,
+    "news": 0.73,
+    "social": 0.58
   },
   "state_multipliers": {
     "unknown": {
@@ -37,16 +37,73 @@
     }
   },
   "metrics": {
-    "samples": 15,
-    "direction_accuracy": 20.0,
+    "samples": 16,
+    "direction_accuracy": 18.8,
     "hits": 3,
     "trusted": true,
     "pending": 4,
     "horizon_bars": 3
   },
   "last_cycle": {
-    "newly_settled": 0,
-    "weight_updates": []
+    "newly_settled": 1,
+    "weight_updates": [
+      {
+        "signal": "rsi",
+        "old": 0.76,
+        "new": 0.73,
+        "samples": 1,
+        "hits": 0,
+        "hit_rate": 0.0
+      },
+      {
+        "signal": "fear_greed",
+        "old": 0.76,
+        "new": 0.73,
+        "samples": 1,
+        "hits": 0,
+        "hit_rate": 0.0
+      },
+      {
+        "signal": "funding",
+        "old": 0.76,
+        "new": 0.73,
+        "samples": 1,
+        "hits": 0,
+        "hit_rate": 0.0
+      },
+      {
+        "signal": "oi_price",
+        "old": 0.76,
+        "new": 0.73,
+        "samples": 1,
+        "hits": 0,
+        "hit_rate": 0.0
+      },
+      {
+        "signal": "price",
+        "old": 0.76,
+        "new": 0.73,
+        "samples": 1,
+        "hits": 0,
+        "hit_rate": 0.0
+      },
+      {
+        "signal": "news",
+        "old": 0.76,
+        "new": 0.73,
+        "samples": 1,
+        "hits": 0,
+        "hit_rate": 0.0
+      },
+      {
+        "signal": "social",
+        "old": 0.61,
+        "new": 0.58,
+        "samples": 1,
+        "hits": 0,
+        "hit_rate": 0.0
+      }
+    ]
   },
   "history": [
     {
@@ -1026,6 +1083,76 @@
         "hits": 3,
         "trusted": true,
         "pending": 3,
+        "horizon_bars": 3
+      }
+    },
+    {
+      "at": "2026-11-24T19:21:20.244930+00:00",
+      "newly_settled": 1,
+      "weight_updates": [
+        {
+          "signal": "rsi",
+          "old": 0.76,
+          "new": 0.73,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "fear_greed",
+          "old": 0.76,
+          "new": 0.73,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "funding",
+          "old": 0.76,
+          "new": 0.73,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "oi_price",
+          "old": 0.76,
+          "new": 0.73,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "price",
+          "old": 0.76,
+          "new": 0.73,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "news",
+          "old": 0.76,
+          "new": 0.73,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "social",
+          "old": 0.61,
+          "new": 0.58,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        }
+      ],
+      "metrics": {
+        "samples": 16,
+        "direction_accuracy": 18.8,
+        "hits": 3,
+        "trusted": true,
+        "pending": 4,
         "horizon_bars": 3
       }
     }
