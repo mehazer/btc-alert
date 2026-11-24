@@ -170,9 +170,19 @@ def _fallback_interpretation(digests):
 
 
 def ai_interpret(digests):
-    api_key = os.environ.get("NEWS_AI_API_KEY") or os.environ.get("OPENAI_API_KEY")
-    base = (os.environ.get("NEWS_AI_BASE_URL") or os.environ.get("OPENAI_API_BASE") or "https://api.openai.com/v1").rstrip("/")
-    model = os.environ.get("NEWS_AI_MODEL") or "gpt-4o-mini"
+    # Prefer Gemini when its key is configured, while retaining OpenAI fallback.
+    gemini_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+    openai_key = os.environ.get("NEWS_AI_API_KEY") or os.environ.get("OPENAI_API_KEY")
+    if gemini_key:
+        api_key = gemini_key
+        base = (os.environ.get("GEMINI_BASE_URL") or "https://generativelanguage.googleapis.com/v1beta/openai").rstrip("/")
+        model = os.environ.get("GEMINI_MODEL") or "gemini-2.5-flash"
+        provider = "Gemini"
+    else:
+        api_key = openai_key
+        base = (os.environ.get("NEWS_AI_BASE_URL") or os.environ.get("OPENAI_API_BASE") or "https://api.openai.com/v1").rstrip("/")
+        model = os.environ.get("NEWS_AI_MODEL") or "gpt-4o-mini"
+        provider = "OpenAI"
     fallback = _fallback_interpretation(digests)
     if not api_key:
         fallback["status"] = "unavailable"
@@ -213,7 +223,7 @@ def ai_interpret(digests):
                 detail += f" (request_id={request_id})"
         if api_key:
             detail = detail.replace(api_key, "[REDACTED]")
-        print(f"AI interpretation request failed, model={model}, endpoint={base}/chat/completions: {detail[:1200]}")
+        print(f"{provider} AI interpretation request failed, model={model}, endpoint={base}/chat/completions: {detail[:1200]}")
         fallback["reason"] = f"AI interpretation failed: {detail[:500]}"
         return fallback
 
