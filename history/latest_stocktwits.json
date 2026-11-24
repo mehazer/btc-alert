@@ -1,6 +1,6 @@
 {
   "status": "ok",
-  "aggregate_score": 23.9,
+  "aggregate_score": 19.4,
   "symbols": {
     "BTC": {
       "status": "ok",
@@ -12,6 +12,16 @@
         "hours": 24
       },
       "messages": [
+        {
+          "source": "StockTwits",
+          "type": "stocktwits",
+          "symbol": "BTC",
+          "headline": "$BTC.X Pattern developing. Treaded water at 80k for awhile, then treaded water at 75k, then 70k, then 65k and now 60k. Do you bitcoin fanboys see a pattern here? DUH!",
+          "published": "2026-11-24T05:27:24Z",
+          "user": "MisterTim2020",
+          "sentiment_label": "bearish",
+          "message_id": 670029078
+        },
         {
           "source": "StockTwits",
           "type": "stocktwits",
@@ -201,28 +211,18 @@
           "user": "monstertrades1",
           "sentiment_label": "bullish",
           "message_id": 670028693
-        },
-        {
-          "source": "StockTwits",
-          "type": "stocktwits",
-          "symbol": "BTC",
-          "headline": "$BTC.X don’t be upset 🐻",
-          "published": "2026-11-24T05:05:17Z",
-          "user": "Web30",
-          "sentiment_label": "bullish",
-          "message_id": 670028617
         }
       ],
       "summary": {
         "message_count": 20,
-        "bullish": 14,
-        "bearish": 1,
+        "bullish": 13,
+        "bearish": 2,
         "neutral": 5,
-        "bullish_ratio": 0.933,
-        "score": 86.7
+        "bullish_ratio": 0.867,
+        "score": 73.3
       },
       "coverage_gap": null,
-      "updated_at": "2026-11-24T05:26:49.276395+00:00"
+      "updated_at": "2026-11-24T05:29:06.321079+00:00"
     },
     "ETH": {
       "status": "ok",
@@ -444,7 +444,7 @@
         "score": -40.0
       },
       "coverage_gap": null,
-      "updated_at": "2026-11-24T05:26:49.359292+00:00"
+      "updated_at": "2026-11-24T05:29:06.470815+00:00"
     },
     "SOL": {
       "status": "ok",
@@ -666,9 +666,9 @@
         "score": 25.0
       },
       "coverage_gap": null,
-      "updated_at": "2026-11-24T05:26:49.441121+00:00"
+      "updated_at": "2026-11-24T05:29:06.633729+00:00"
     }
   },
-  "updated_at": "2026-11-24T05:26:49.533748+00:00",
+  "updated_at": "2026-11-24T05:29:06.787722+00:00",
   "note": "Live-only social sentiment; not point-in-time historical archive."
 }
