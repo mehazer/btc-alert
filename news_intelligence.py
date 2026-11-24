@@ -194,7 +194,27 @@ def ai_interpret(digests):
         result.update({"status": "ai", "model": model, "updated_at": datetime.now(timezone.utc).isoformat(), "grounded": bool(cited)})
         return result
     except Exception as exc:
-        fallback["reason"] = f"AI interpretation failed: {type(exc).__name__}"
+        # Preserve actionable API diagnostics without ever logging credentials.
+        detail = f"{type(exc).__name__}: {exc}"
+        response = getattr(exc, "response", None)
+        if response is not None:
+            request_id = response.headers.get("x-request-id") or response.headers.get("request-id")
+            try:
+                payload = response.json()
+                error = payload.get("error", {}) if isinstance(payload, dict) else {}
+                if isinstance(error, dict):
+                    api_detail = error.get("message") or error.get("code") or error.get("type")
+                else:
+                    api_detail = str(error)
+            except Exception:
+                api_detail = (response.text or "").strip()[:800]
+            detail = f"HTTP {response.status_code}: {api_detail or detail}"
+            if request_id:
+                detail += f" (request_id={request_id})"
+        if api_key:
+            detail = detail.replace(api_key, "[REDACTED]")
+        print(f"AI interpretation request failed, model={model}, endpoint={base}/chat/completions: {detail[:1200]}")
+        fallback["reason"] = f"AI interpretation failed: {detail[:500]}"
         return fallback
 
 
