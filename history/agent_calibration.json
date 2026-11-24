@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-11-24T04:37:28.261709+00:00",
+  "updated_at": "2026-11-24T05:00:18.432483+00:00",
   "signal_weights": {
     "rsi": 0.76,
     "fear_greed": 0.76,
@@ -30,9 +30,9 @@
       "advice": "downweight"
     },
     "short-covering": {
-      "multiplier": 0.866,
-      "samples": 191,
-      "accuracy_pct": 27.75,
+      "multiplier": 0.859,
+      "samples": 200,
+      "accuracy_pct": 26.5,
       "advice": "downweight"
     }
   },
@@ -41,69 +41,12 @@
     "direction_accuracy": 20.0,
     "hits": 3,
     "trusted": true,
-    "pending": 3,
+    "pending": 4,
     "horizon_bars": 3
   },
   "last_cycle": {
-    "newly_settled": 1,
-    "weight_updates": [
-      {
-        "signal": "rsi",
-        "old": 0.79,
-        "new": 0.76,
-        "samples": 1,
-        "hits": 0,
-        "hit_rate": 0.0
-      },
-      {
-        "signal": "fear_greed",
-        "old": 0.79,
-        "new": 0.76,
-        "samples": 1,
-        "hits": 0,
-        "hit_rate": 0.0
-      },
-      {
-        "signal": "funding",
-        "old": 0.79,
-        "new": 0.76,
-        "samples": 1,
-        "hits": 0,
-        "hit_rate": 0.0
-      },
-      {
-        "signal": "oi_price",
-        "old": 0.79,
-        "new": 0.76,
-        "samples": 1,
-        "hits": 0,
-        "hit_rate": 0.0
-      },
-      {
-        "signal": "price",
-        "old": 0.79,
-        "new": 0.76,
-        "samples": 1,
-        "hits": 0,
-        "hit_rate": 0.0
-      },
-      {
-        "signal": "news",
-        "old": 0.79,
-        "new": 0.76,
-        "samples": 1,
-        "hits": 0,
-        "hit_rate": 0.0
-      },
-      {
-        "signal": "social",
-        "old": 0.64,
-        "new": 0.61,
-        "samples": 1,
-        "hits": 0,
-        "hit_rate": 0.0
-      }
-    ]
+    "newly_settled": 0,
+    "weight_updates": []
   },
   "history": [
     {

@@ -562,5 +562,33 @@
       "social_sentiment": 44.4
     },
     "settled": false
+  },
+  {
+    "prediction_id": "ma-20261124T050018Z",
+    "issued_at": "2026-11-24T05:00:18.431667+00:00",
+    "entry_price": 60338.34,
+    "state": "NEUTRAL",
+    "predicted_direction": "flat",
+    "bias_score": 3,
+    "confidence": 93,
+    "active_signals": {
+      "rsi": true,
+      "fear_greed": true,
+      "funding": true,
+      "oi_price": true,
+      "price": true,
+      "news": true,
+      "social": true
+    },
+    "inputs": {
+      "rsi": 44.67849779391188,
+      "fear_greed_value": 11,
+      "funding_rate": 3.51150502204e-05,
+      "oi_change_pct": -0.286086,
+      "price_change_pct": -1.522076,
+      "news_sentiment": 44.4,
+      "social_sentiment": 44.4
+    },
+    "settled": false
   }
 ]
