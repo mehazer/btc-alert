@@ -5,7 +5,6 @@ from datetime import datetime, timezone
 
 import requests
 
-import google_trends
 import news_intelligence
 import news_sources
 
@@ -205,10 +204,16 @@ def main():
     save_json("latest_stocktwits.json", stocktwits)
     save_json("latest_fred.json", fred)
     try:
+        # Google Trends is optional. Import lazily so removing/disabling this
+        # enrichment source cannot prevent the core news pipeline from running.
+        import google_trends
         trends = google_trends.collect_daily()
+    except ImportError as exc:
+        print(f"Google Trends unavailable (optional dependency/module): {exc}")
+        trends = {"status": "unavailable", "reason": "google_trends module is not installed"}
     except Exception as exc:
         print(f"Google Trends failed: {type(exc).__name__}: {exc}")
-        trends = {"status": "error"}
+        trends = {"status": "error", "error": f"{type(exc).__name__}: {exc}"}
     append_json("news_runs.json", {
         "run_id": datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ"),
         "updated_at": snapshot["updated_at"],
