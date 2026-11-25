@@ -1,26 +1,22 @@
 {
   "agent": "whale-onchain",
   "model_version": "whale-shadow-v0.1-free",
-  "generated_at": "2026-11-24T19:21:21.729917+00:00",
+  "generated_at": "2026-11-25T03:22:52.164787+00:00",
   "execution_allowed": false,
   "telegram_enabled": false,
   "overview": {
     "source": "mempool.space",
     "fees": {
-      "fastestFee": 3,
-      "halfHourFee": 3,
+      "fastestFee": 2,
+      "halfHourFee": 1,
       "hourFee": 1,
       "economyFee": 1,
       "minimumFee": 1
     },
-    "mempool_tx_count": 63327,
-    "mempool_vsize": 29770300,
+    "mempool_tx_count": 61044,
+    "mempool_vsize": 30030513,
     "hashrate_sample": {
       "hashrates": [
-        {
-          "timestamp": 1792886400,
-          "avgHashrate": 1.00699931123892e+21
-        },
         {
           "timestamp": 1792972800,
           "avgHashrate": 1.095302950403567e+21
@@ -140,6 +136,10 @@
         {
           "timestamp": 1795478400,
           "avgHashrate": 1.125857627558675e+21
+        },
+        {
+          "timestamp": 1795564800,
+          "avgHashrate": 949003874714419100000
         }
       ],
       "difficulty": [
@@ -156,7 +156,7 @@
           "adjustment": 0.9087330102920532
         }
       ],
-      "currentHashrate": 1.039416974621695e+21,
+      "currentHashrate": 1.039368853122716e+21,
       "currentDifficulty": 134823837323272.7
     }
   },
@@ -172,7 +172,7 @@
     "direction_bias": "Neutral",
     "impact_tier": "LOW",
     "notes": [
-      "Large gap between fastest and hour fee \u2014 priority fee pressure.",
+      "No extreme fee/mempool stress from free endpoints.",
       "Free APIs do not provide reliable labeled exchange whale flow without paid attribution data."
     ],
     "limitations": [

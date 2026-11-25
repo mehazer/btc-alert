@@ -1,6 +1,6 @@
 {
   "agent": "ledger-evaluator",
-  "evaluated_at": "2026-11-24T19:21:28.836995+00:00",
+  "evaluated_at": "2026-11-25T03:22:57.594821+00:00",
   "horizons": [
     1,
     3,
@@ -8,16 +8,16 @@
     12,
     24
   ],
-  "decisions_total": 369,
-  "records_total": 1845,
-  "settled_records": 1707,
+  "decisions_total": 372,
+  "records_total": 1860,
+  "settled_records": 1722,
   "pending_records": 138,
-  "directional_records": 407,
+  "directional_records": 410,
   "directional_hits": 199,
-  "direction_accuracy_pct": 48.89,
-  "guarded_records": 888,
-  "supported_risk_warnings": 591,
-  "risk_warning_support_pct": 66.55,
+  "direction_accuracy_pct": 48.54,
+  "guarded_records": 894,
+  "supported_risk_warnings": 594,
+  "risk_warning_support_pct": 66.44,
   "by_decision": {
     "PAPER_PLAN": {
       "records": 825,
@@ -25,38 +25,38 @@
       "pending": 0
     },
     "ALERT": {
-      "records": 1020,
-      "settled": 882,
+      "records": 1035,
+      "settled": 897,
       "pending": 138
     }
   },
   "by_horizon": {
     "1": {
-      "settled": 366,
+      "settled": 369,
       "directional": 90,
       "hits": 46,
       "accuracy_pct": 51.11
     },
     "3": {
-      "settled": 360,
-      "directional": 87,
+      "settled": 363,
+      "directional": 90,
       "hits": 41,
-      "accuracy_pct": 47.13
+      "accuracy_pct": 45.56
     },
     "6": {
-      "settled": 351,
+      "settled": 354,
       "directional": 84,
       "hits": 43,
       "accuracy_pct": 51.19
     },
     "12": {
-      "settled": 333,
+      "settled": 336,
       "directional": 79,
       "hits": 36,
       "accuracy_pct": 45.57
     },
     "24": {
-      "settled": 297,
+      "settled": 300,
       "directional": 67,
       "hits": 33,
       "accuracy_pct": 49.25
@@ -71,5 +71,5 @@
   "schema_version": 2,
   "phase": 7,
   "evaluation_mode": "walkforward_backtest",
-  "walkforward_batch_id": "walkforward-38e9b4569016"
+  "walkforward_batch_id": "walkforward-f712896ad0e9"
 }
