@@ -1,5 +1,5 @@
 {
-  "evaluated_at": "2026-11-25T23:59:55.763507+00:00",
+  "evaluated_at": "2026-11-26T08:01:07.793582+00:00",
   "phase": 7,
   "schema_version": 2,
   "horizons": [
@@ -9,15 +9,15 @@
     12,
     24
   ],
-  "decisions_total": 360,
-  "settled_evaluation_rows": 1530,
+  "decisions_total": 365,
+  "settled_evaluation_rows": 1560,
   "agents": {
     "technical": {
       "agent": "technical",
-      "samples": 373,
-      "hits": 133,
+      "samples": 393,
+      "hits": 141,
       "primary_metric": "direction_accuracy_pct",
-      "primary_metric_pct": 35.66,
+      "primary_metric_pct": 35.88,
       "by_state": {
         "unknown": {
           "n": 10,
@@ -30,14 +30,14 @@
           "accuracy_pct": 88.64
         },
         "fresh-long-buildup": {
-          "n": 105,
-          "hits": 31,
-          "accuracy_pct": 29.52
+          "n": 108,
+          "hits": 32,
+          "accuracy_pct": 29.63
         },
         "short-covering": {
-          "n": 214,
-          "hits": 54,
-          "accuracy_pct": 25.23
+          "n": 231,
+          "hits": 61,
+          "accuracy_pct": 26.41
         }
       },
       "notes": [
@@ -47,13 +47,13 @@
     },
     "risk": {
       "agent": "risk",
-      "samples": 421,
-      "hits": 318,
+      "samples": 436,
+      "hits": 328,
       "primary_metric": "warning_support_pct",
-      "primary_metric_pct": 75.53,
-      "low_risk_samples": 1088,
-      "false_calm_count": 695,
-      "false_calm_pct": 63.88,
+      "primary_metric_pct": 75.23,
+      "low_risk_samples": 1103,
+      "false_calm_count": 708,
+      "false_calm_pct": 64.19,
       "notes": [
         "Warning support: guarded/medium/high/veto with >=1% adverse excursion.",
         "False calm: low risk with later >=2% adverse excursion."
@@ -61,9 +61,9 @@
     },
     "challenge": {
       "agent": "challenge",
-      "samples": 1505,
+      "samples": 1535,
       "fail_samples": 0,
-      "warn_samples": 1505,
+      "warn_samples": 1535,
       "pass_samples": 0,
       "hits": 0,
       "primary_metric": "fail_useful_pct",
