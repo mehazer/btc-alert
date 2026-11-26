@@ -1,57 +1,7 @@
 {
-  "updated_at": "2026-11-26T08:01:10.433262+00:00",
+  "updated_at": "2026-11-26T20:57:28.033093+00:00",
   "purpose": "Lightweight dashboard payload — do not load full decision_ledger.json in the browser",
   "recent_decisions": [
-    {
-      "symbol": "BTCUSDT",
-      "decision": "ALERT",
-      "signal_direction": "flat",
-      "confidence": 45,
-      "gate": "human-approval-required",
-      "thesis": "A directional condition exists, but v2 disagrees with the legacy interpretation; review is required.",
-      "evaluated_at": "2026-11-25T03:22:55.456979+00:00",
-      "risk_overall_level": "low"
-    },
-    {
-      "symbol": "ETHUSDT",
-      "decision": "ALERT",
-      "signal_direction": "flat",
-      "confidence": 45,
-      "gate": "human-approval-required",
-      "thesis": "A directional condition exists, but v2 disagrees with the legacy interpretation; review is required.",
-      "evaluated_at": "2026-11-25T03:22:55.458785+00:00",
-      "risk_overall_level": "low"
-    },
-    {
-      "symbol": "SOLUSDT",
-      "decision": "ALERT",
-      "signal_direction": "up",
-      "confidence": 45,
-      "gate": "human-approval-required",
-      "thesis": "A directional condition exists, but v2 disagrees with the legacy interpretation; review is required.",
-      "evaluated_at": "2026-11-25T03:22:55.459695+00:00",
-      "risk_overall_level": "low"
-    },
-    {
-      "symbol": "ZECUSDT",
-      "decision": "ALERT",
-      "signal_direction": "up",
-      "confidence": 45,
-      "gate": "human-approval-required",
-      "thesis": "A directional condition exists, but v2 disagrees with the legacy interpretation; review is required.",
-      "evaluated_at": "2026-11-25T03:22:55.460558+00:00",
-      "risk_overall_level": "medium"
-    },
-    {
-      "symbol": "ZAMAUSDT",
-      "decision": "ALERT",
-      "signal_direction": "flat",
-      "confidence": 45,
-      "gate": "human-approval-required",
-      "thesis": "A directional condition exists, but v2 disagrees with the legacy interpretation; review is required.",
-      "evaluated_at": "2026-11-25T03:22:55.461357+00:00",
-      "risk_overall_level": "low"
-    },
     {
       "symbol": "BTCUSDT",
       "decision": "ALERT",
@@ -201,17 +151,67 @@
       "thesis": "A directional condition exists, but v2 disagrees with the legacy interpretation; review is required.",
       "evaluated_at": "2026-11-26T08:01:07.220605+00:00",
       "risk_overall_level": "low"
+    },
+    {
+      "symbol": "BTCUSDT",
+      "decision": "ALERT",
+      "signal_direction": "up",
+      "confidence": 45,
+      "gate": "human-approval-required",
+      "thesis": "A directional condition exists, but v2 disagrees with the legacy interpretation; review is required.",
+      "evaluated_at": "2026-11-26T20:57:22.985040+00:00",
+      "risk_overall_level": "low"
+    },
+    {
+      "symbol": "ETHUSDT",
+      "decision": "ALERT",
+      "signal_direction": "up",
+      "confidence": 45,
+      "gate": "human-approval-required",
+      "thesis": "A directional condition exists, but v2 disagrees with the legacy interpretation; review is required.",
+      "evaluated_at": "2026-11-26T20:57:22.988065+00:00",
+      "risk_overall_level": "low"
+    },
+    {
+      "symbol": "SOLUSDT",
+      "decision": "ALERT",
+      "signal_direction": "up",
+      "confidence": 45,
+      "gate": "human-approval-required",
+      "thesis": "A directional condition exists, but v2 disagrees with the legacy interpretation; review is required.",
+      "evaluated_at": "2026-11-26T20:57:22.989851+00:00",
+      "risk_overall_level": "medium"
+    },
+    {
+      "symbol": "ZECUSDT",
+      "decision": "ALERT",
+      "signal_direction": "flat",
+      "confidence": 45,
+      "gate": "human-approval-required",
+      "thesis": "A directional condition exists, but v2 disagrees with the legacy interpretation; review is required.",
+      "evaluated_at": "2026-11-26T20:57:22.991581+00:00",
+      "risk_overall_level": "medium"
+    },
+    {
+      "symbol": "ZAMAUSDT",
+      "decision": "ALERT",
+      "signal_direction": "flat",
+      "confidence": 45,
+      "gate": "human-approval-required",
+      "thesis": "A directional condition exists, but v2 disagrees with the legacy interpretation; review is required.",
+      "evaluated_at": "2026-11-26T20:57:22.993226+00:00",
+      "risk_overall_level": "low"
     }
   ],
   "latest_by_symbol": {
     "BTCUSDT": {
       "symbol": "BTCUSDT",
       "decision": "ALERT",
-      "signal_direction": "down",
+      "signal_direction": "up",
       "confidence": 45,
       "gate": "human-approval-required",
       "thesis": "A directional condition exists, but v2 disagrees with the legacy interpretation; review is required.",
-      "evaluated_at": "2026-11-26T08:01:07.214672+00:00",
+      "evaluated_at": "2026-11-26T20:57:22.985040+00:00",
       "risk_overall_level": "low"
     },
     "ETHUSDT": {
@@ -221,7 +221,7 @@
       "confidence": 45,
       "gate": "human-approval-required",
       "thesis": "A directional condition exists, but v2 disagrees with the legacy interpretation; review is required.",
-      "evaluated_at": "2026-11-26T08:01:07.216881+00:00",
+      "evaluated_at": "2026-11-26T20:57:22.988065+00:00",
       "risk_overall_level": "low"
     },
     "SOLUSDT": {
@@ -231,7 +231,7 @@
       "confidence": 45,
       "gate": "human-approval-required",
       "thesis": "A directional condition exists, but v2 disagrees with the legacy interpretation; review is required.",
-      "evaluated_at": "2026-11-26T08:01:07.218171+00:00",
+      "evaluated_at": "2026-11-26T20:57:22.989851+00:00",
       "risk_overall_level": "medium"
     },
     "ZECUSDT": {
@@ -241,17 +241,17 @@
       "confidence": 45,
       "gate": "human-approval-required",
       "thesis": "A directional condition exists, but v2 disagrees with the legacy interpretation; review is required.",
-      "evaluated_at": "2026-11-26T08:01:07.219440+00:00",
+      "evaluated_at": "2026-11-26T20:57:22.991581+00:00",
       "risk_overall_level": "medium"
     },
     "ZAMAUSDT": {
       "symbol": "ZAMAUSDT",
       "decision": "ALERT",
-      "signal_direction": "up",
+      "signal_direction": "flat",
       "confidence": 45,
       "gate": "human-approval-required",
       "thesis": "A directional condition exists, but v2 disagrees with the legacy interpretation; review is required.",
-      "evaluated_at": "2026-11-26T08:01:07.220605+00:00",
+      "evaluated_at": "2026-11-26T20:57:22.993226+00:00",
       "risk_overall_level": "low"
     }
   },
@@ -262,7 +262,7 @@
       "confidence": 45,
       "horizon": "1",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.220605+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.993226+00:00"
     },
     {
       "symbol": "ZAMAUSDT",
@@ -270,7 +270,7 @@
       "confidence": 45,
       "horizon": "3",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.220605+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.993226+00:00"
     },
     {
       "symbol": "ZAMAUSDT",
@@ -278,7 +278,7 @@
       "confidence": 45,
       "horizon": "6",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.220605+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.993226+00:00"
     },
     {
       "symbol": "ZAMAUSDT",
@@ -286,7 +286,7 @@
       "confidence": 45,
       "horizon": "12",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.220605+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.993226+00:00"
     },
     {
       "symbol": "ZAMAUSDT",
@@ -294,7 +294,7 @@
       "confidence": 45,
       "horizon": "24",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.220605+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.993226+00:00"
     },
     {
       "symbol": "ZECUSDT",
@@ -302,7 +302,7 @@
       "confidence": 45,
       "horizon": "1",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.219440+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.991581+00:00"
     },
     {
       "symbol": "ZECUSDT",
@@ -310,7 +310,7 @@
       "confidence": 45,
       "horizon": "3",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.219440+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.991581+00:00"
     },
     {
       "symbol": "ZECUSDT",
@@ -318,7 +318,7 @@
       "confidence": 45,
       "horizon": "6",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.219440+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.991581+00:00"
     },
     {
       "symbol": "ZECUSDT",
@@ -326,7 +326,7 @@
       "confidence": 45,
       "horizon": "12",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.219440+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.991581+00:00"
     },
     {
       "symbol": "ZECUSDT",
@@ -334,7 +334,7 @@
       "confidence": 45,
       "horizon": "24",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.219440+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.991581+00:00"
     },
     {
       "symbol": "SOLUSDT",
@@ -342,7 +342,7 @@
       "confidence": 45,
       "horizon": "1",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.218171+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.989851+00:00"
     },
     {
       "symbol": "SOLUSDT",
@@ -350,7 +350,7 @@
       "confidence": 45,
       "horizon": "3",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.218171+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.989851+00:00"
     },
     {
       "symbol": "SOLUSDT",
@@ -358,7 +358,7 @@
       "confidence": 45,
       "horizon": "6",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.218171+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.989851+00:00"
     },
     {
       "symbol": "SOLUSDT",
@@ -366,7 +366,7 @@
       "confidence": 45,
       "horizon": "12",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.218171+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.989851+00:00"
     },
     {
       "symbol": "SOLUSDT",
@@ -374,7 +374,7 @@
       "confidence": 45,
       "horizon": "24",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.218171+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.989851+00:00"
     },
     {
       "symbol": "ETHUSDT",
@@ -382,7 +382,7 @@
       "confidence": 45,
       "horizon": "1",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.216881+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.988065+00:00"
     },
     {
       "symbol": "ETHUSDT",
@@ -390,7 +390,7 @@
       "confidence": 45,
       "horizon": "3",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.216881+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.988065+00:00"
     },
     {
       "symbol": "ETHUSDT",
@@ -398,7 +398,7 @@
       "confidence": 45,
       "horizon": "6",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.216881+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.988065+00:00"
     },
     {
       "symbol": "ETHUSDT",
@@ -406,7 +406,7 @@
       "confidence": 45,
       "horizon": "12",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.216881+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.988065+00:00"
     },
     {
       "symbol": "ETHUSDT",
@@ -414,7 +414,7 @@
       "confidence": 45,
       "horizon": "24",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.216881+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.988065+00:00"
     },
     {
       "symbol": "BTCUSDT",
@@ -422,7 +422,167 @@
       "confidence": 45,
       "horizon": "1",
       "status": "pending",
-      "evaluated_at": "2026-11-26T08:01:07.214672+00:00"
+      "evaluated_at": "2026-11-26T20:57:22.985040+00:00"
+    },
+    {
+      "symbol": "BTCUSDT",
+      "decision": "ALERT",
+      "confidence": 45,
+      "horizon": "3",
+      "status": "pending",
+      "evaluated_at": "2026-11-26T20:57:22.985040+00:00"
+    },
+    {
+      "symbol": "BTCUSDT",
+      "decision": "ALERT",
+      "confidence": 45,
+      "horizon": "6",
+      "status": "pending",
+      "evaluated_at": "2026-11-26T20:57:22.985040+00:00"
+    },
+    {
+      "symbol": "BTCUSDT",
+      "decision": "ALERT",
+      "confidence": 45,
+      "horizon": "12",
+      "status": "pending",
+      "evaluated_at": "2026-11-26T20:57:22.985040+00:00"
+    },
+    {
+      "symbol": "BTCUSDT",
+      "decision": "ALERT",
+      "confidence": 45,
+      "horizon": "24",
+      "status": "pending",
+      "evaluated_at": "2026-11-26T20:57:22.985040+00:00"
+    },
+    {
+      "symbol": "ZAMAUSDT",
+      "decision": "ALERT",
+      "confidence": 45,
+      "horizon": "3",
+      "status": "pending",
+      "evaluated_at": "2026-11-26T08:01:07.220605+00:00"
+    },
+    {
+      "symbol": "ZAMAUSDT",
+      "decision": "ALERT",
+      "confidence": 45,
+      "horizon": "6",
+      "status": "pending",
+      "evaluated_at": "2026-11-26T08:01:07.220605+00:00"
+    },
+    {
+      "symbol": "ZAMAUSDT",
+      "decision": "ALERT",
+      "confidence": 45,
+      "horizon": "12",
+      "status": "pending",
+      "evaluated_at": "2026-11-26T08:01:07.220605+00:00"
+    },
+    {
+      "symbol": "ZAMAUSDT",
+      "decision": "ALERT",
+      "confidence": 45,
+      "horizon": "24",
+      "status": "pending",
+      "evaluated_at": "2026-11-26T08:01:07.220605+00:00"
+    },
+    {
+      "symbol": "ZECUSDT",
+      "decision": "ALERT",
+      "confidence": 45,
+      "horizon": "3",
+      "status": "pending",
+      "evaluated_at": "2026-11-26T08:01:07.219440+00:00"
+    },
+    {
+      "symbol": "ZECUSDT",
+      "decision": "ALERT",
+      "confidence": 45,
+      "horizon": "6",
+      "status": "pending",
+      "evaluated_at": "2026-11-26T08:01:07.219440+00:00"
+    },
+    {
+      "symbol": "ZECUSDT",
+      "decision": "ALERT",
+      "confidence": 45,
+      "horizon": "12",
+      "status": "pending",
+      "evaluated_at": "2026-11-26T08:01:07.219440+00:00"
+    },
+    {
+      "symbol": "ZECUSDT",
+      "decision": "ALERT",
+      "confidence": 45,
+      "horizon": "24",
+      "status": "pending",
+      "evaluated_at": "2026-11-26T08:01:07.219440+00:00"
+    },
+    {
+      "symbol": "SOLUSDT",
+      "decision": "ALERT",
+      "confidence": 45,
+      "horizon": "3",
+      "status": "pending",
+      "evaluated_at": "2026-11-26T08:01:07.218171+00:00"
+    },
+    {
+      "symbol": "SOLUSDT",
+      "decision": "ALERT",
+      "confidence": 45,
+      "horizon": "6",
+      "status": "pending",
+      "evaluated_at": "2026-11-26T08:01:07.218171+00:00"
+    },
+    {
+      "symbol": "SOLUSDT",
+      "decision": "ALERT",
+      "confidence": 45,
+      "horizon": "12",
+      "status": "pending",
+      "evaluated_at": "2026-11-26T08:01:07.218171+00:00"
+    },
+    {
+      "symbol": "SOLUSDT",
+      "decision": "ALERT",
+      "confidence": 45,
+      "horizon": "24",
+      "status": "pending",
+      "evaluated_at": "2026-11-26T08:01:07.218171+00:00"
+    },
+    {
+      "symbol": "ETHUSDT",
+      "decision": "ALERT",
+      "confidence": 45,
+      "horizon": "3",
+      "status": "pending",
+      "evaluated_at": "2026-11-26T08:01:07.216881+00:00"
+    },
+    {
+      "symbol": "ETHUSDT",
+      "decision": "ALERT",
+      "confidence": 45,
+      "horizon": "6",
+      "status": "pending",
+      "evaluated_at": "2026-11-26T08:01:07.216881+00:00"
+    },
+    {
+      "symbol": "ETHUSDT",
+      "decision": "ALERT",
+      "confidence": 45,
+      "horizon": "12",
+      "status": "pending",
+      "evaluated_at": "2026-11-26T08:01:07.216881+00:00"
+    },
+    {
+      "symbol": "ETHUSDT",
+      "decision": "ALERT",
+      "confidence": 45,
+      "horizon": "24",
+      "status": "pending",
+      "evaluated_at": "2026-11-26T08:01:07.216881+00:00"
     },
     {
       "symbol": "BTCUSDT",
@@ -620,14 +780,6 @@
       "symbol": "ZAMAUSDT",
       "decision": "ALERT",
       "confidence": 45,
-      "horizon": "3",
-      "status": "pending",
-      "evaluated_at": "2026-11-25T13:54:11.237089+00:00"
-    },
-    {
-      "symbol": "ZAMAUSDT",
-      "decision": "ALERT",
-      "confidence": 45,
       "horizon": "6",
       "status": "pending",
       "evaluated_at": "2026-11-25T13:54:11.237089+00:00"
@@ -652,14 +804,6 @@
       "symbol": "ZECUSDT",
       "decision": "ALERT",
       "confidence": 45,
-      "horizon": "3",
-      "status": "pending",
-      "evaluated_at": "2026-11-25T13:54:11.235905+00:00"
-    },
-    {
-      "symbol": "ZECUSDT",
-      "decision": "ALERT",
-      "confidence": 45,
       "horizon": "6",
       "status": "pending",
       "evaluated_at": "2026-11-25T13:54:11.235905+00:00"
@@ -679,14 +823,6 @@
       "horizon": "24",
       "status": "pending",
       "evaluated_at": "2026-11-25T13:54:11.235905+00:00"
-    },
-    {
-      "symbol": "SOLUSDT",
-      "decision": "ALERT",
-      "confidence": 45,
-      "horizon": "3",
-      "status": "pending",
-      "evaluated_at": "2026-11-25T13:54:11.234636+00:00"
     },
     {
       "symbol": "SOLUSDT",
@@ -716,14 +852,6 @@
       "symbol": "ETHUSDT",
       "decision": "ALERT",
       "confidence": 45,
-      "horizon": "3",
-      "status": "pending",
-      "evaluated_at": "2026-11-25T13:54:11.233335+00:00"
-    },
-    {
-      "symbol": "ETHUSDT",
-      "decision": "ALERT",
-      "confidence": 45,
       "horizon": "6",
       "status": "pending",
       "evaluated_at": "2026-11-25T13:54:11.233335+00:00"
@@ -743,14 +871,6 @@
       "horizon": "24",
       "status": "pending",
       "evaluated_at": "2026-11-25T13:54:11.233335+00:00"
-    },
-    {
-      "symbol": "BTCUSDT",
-      "decision": "ALERT",
-      "confidence": 45,
-      "horizon": "3",
-      "status": "pending",
-      "evaluated_at": "2026-11-25T13:54:11.230933+00:00"
     },
     {
       "symbol": "BTCUSDT",
@@ -935,129 +1055,9 @@
       "horizon": "12",
       "status": "pending",
       "evaluated_at": "2026-11-24T19:21:24.374656+00:00"
-    },
-    {
-      "symbol": "ZECUSDT",
-      "decision": "ALERT",
-      "confidence": 45,
-      "horizon": "24",
-      "status": "pending",
-      "evaluated_at": "2026-11-24T19:21:24.374656+00:00"
-    },
-    {
-      "symbol": "SOLUSDT",
-      "decision": "ALERT",
-      "confidence": 45,
-      "horizon": "6",
-      "status": "pending",
-      "evaluated_at": "2026-11-24T19:21:24.372937+00:00"
-    },
-    {
-      "symbol": "SOLUSDT",
-      "decision": "ALERT",
-      "confidence": 45,
-      "horizon": "12",
-      "status": "pending",
-      "evaluated_at": "2026-11-24T19:21:24.372937+00:00"
-    },
-    {
-      "symbol": "SOLUSDT",
-      "decision": "ALERT",
-      "confidence": 45,
-      "horizon": "24",
-      "status": "pending",
-      "evaluated_at": "2026-11-24T19:21:24.372937+00:00"
-    },
-    {
-      "symbol": "ETHUSDT",
-      "decision": "ALERT",
-      "confidence": 45,
-      "horizon": "6",
-      "status": "pending",
-      "evaluated_at": "2026-11-24T19:21:24.371236+00:00"
-    },
-    {
-      "symbol": "ETHUSDT",
-      "decision": "ALERT",
-      "confidence": 45,
-      "horizon": "12",
-      "status": "pending",
-      "evaluated_at": "2026-11-24T19:21:24.371236+00:00"
-    },
-    {
-      "symbol": "ETHUSDT",
-      "decision": "ALERT",
-      "confidence": 45,
-      "horizon": "24",
-      "status": "pending",
-      "evaluated_at": "2026-11-24T19:21:24.371236+00:00"
-    },
-    {
-      "symbol": "BTCUSDT",
-      "decision": "ALERT",
-      "confidence": 45,
-      "horizon": "6",
-      "status": "pending",
-      "evaluated_at": "2026-11-24T19:21:24.368387+00:00"
-    },
-    {
-      "symbol": "BTCUSDT",
-      "decision": "ALERT",
-      "confidence": 45,
-      "horizon": "12",
-      "status": "pending",
-      "evaluated_at": "2026-11-24T19:21:24.368387+00:00"
-    },
-    {
-      "symbol": "BTCUSDT",
-      "decision": "ALERT",
-      "confidence": 45,
-      "horizon": "24",
-      "status": "pending",
-      "evaluated_at": "2026-11-24T19:21:24.368387+00:00"
-    },
-    {
-      "symbol": "ZAMAUSDT",
-      "decision": "ALERT",
-      "confidence": 45,
-      "horizon": "6",
-      "status": "pending",
-      "evaluated_at": "2026-11-24T05:00:24.253360+00:00"
-    },
-    {
-      "symbol": "ZAMAUSDT",
-      "decision": "ALERT",
-      "confidence": 45,
-      "horizon": "12",
-      "status": "pending",
-      "evaluated_at": "2026-11-24T05:00:24.253360+00:00"
-    },
-    {
-      "symbol": "ZAMAUSDT",
-      "decision": "ALERT",
-      "confidence": 45,
-      "horizon": "24",
-      "status": "pending",
-      "evaluated_at": "2026-11-24T05:00:24.253360+00:00"
-    },
-    {
-      "symbol": "ZECUSDT",
-      "decision": "ALERT",
-      "confidence": 45,
-      "horizon": "6",
-      "status": "pending",
-      "evaluated_at": "2026-11-24T05:00:24.252509+00:00"
-    },
-    {
-      "symbol": "ZECUSDT",
-      "decision": "ALERT",
-      "confidence": 45,
-      "horizon": "12",
-      "status": "pending",
-      "evaluated_at": "2026-11-24T05:00:24.252509+00:00"
     }
   ],
-  "pending_count": 265,
-  "total_decisions": 365,
-  "last_run_id": "shadow-20261126T080103Z-db2c809a"
+  "pending_count": 245,
+  "total_decisions": 370,
+  "last_run_id": "shadow-20261126T205719Z-f9cc21b1"
 }
