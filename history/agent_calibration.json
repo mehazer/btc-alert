@@ -1,13 +1,13 @@
 {
   "version": 1,
-  "updated_at": "2026-11-27T06:49:28.289637+00:00",
+  "updated_at": "2026-11-27T17:51:00.647097+00:00",
   "signal_weights": {
-    "rsi": 0.55,
-    "fear_greed": 0.55,
-    "funding": 0.55,
-    "oi_price": 0.55,
-    "price": 0.55,
-    "news": 0.55,
+    "rsi": 0.52,
+    "fear_greed": 0.52,
+    "funding": 0.52,
+    "oi_price": 0.52,
+    "price": 0.52,
+    "news": 0.52,
     "social": 0.4
   },
   "state_multipliers": {
@@ -24,21 +24,21 @@
       "advice": "upweight"
     },
     "fresh-long-buildup": {
-      "multiplier": 0.877,
-      "samples": 112,
-      "accuracy_pct": 29.46,
+      "multiplier": 0.881,
+      "samples": 116,
+      "accuracy_pct": 30.17,
       "advice": "downweight"
     },
     "short-covering": {
-      "multiplier": 0.858,
-      "samples": 236,
-      "accuracy_pct": 26.27,
+      "multiplier": 0.868,
+      "samples": 243,
+      "accuracy_pct": 27.98,
       "advice": "downweight"
     }
   },
   "metrics": {
-    "samples": 23,
-    "direction_accuracy": 13.0,
+    "samples": 24,
+    "direction_accuracy": 12.5,
     "hits": 3,
     "trusted": true,
     "pending": 3,
@@ -49,56 +49,48 @@
     "weight_updates": [
       {
         "signal": "rsi",
-        "old": 0.58,
-        "new": 0.55,
+        "old": 0.55,
+        "new": 0.52,
         "samples": 1,
         "hits": 0,
         "hit_rate": 0.0
       },
       {
         "signal": "fear_greed",
-        "old": 0.58,
-        "new": 0.55,
+        "old": 0.55,
+        "new": 0.52,
         "samples": 1,
         "hits": 0,
         "hit_rate": 0.0
       },
       {
         "signal": "funding",
-        "old": 0.58,
-        "new": 0.55,
+        "old": 0.55,
+        "new": 0.52,
         "samples": 1,
         "hits": 0,
         "hit_rate": 0.0
       },
       {
         "signal": "oi_price",
-        "old": 0.58,
-        "new": 0.55,
+        "old": 0.55,
+        "new": 0.52,
         "samples": 1,
         "hits": 0,
         "hit_rate": 0.0
       },
       {
         "signal": "price",
-        "old": 0.58,
-        "new": 0.55,
+        "old": 0.55,
+        "new": 0.52,
         "samples": 1,
         "hits": 0,
         "hit_rate": 0.0
       },
       {
         "signal": "news",
-        "old": 0.58,
-        "new": 0.55,
-        "samples": 1,
-        "hits": 0,
-        "hit_rate": 0.0
-      },
-      {
-        "signal": "social",
-        "old": 0.43,
-        "new": 0.4,
+        "old": 0.55,
+        "new": 0.52,
         "samples": 1,
         "hits": 0,
         "hit_rate": 0.0
@@ -1570,6 +1562,68 @@
       "metrics": {
         "samples": 23,
         "direction_accuracy": 13.0,
+        "hits": 3,
+        "trusted": true,
+        "pending": 3,
+        "horizon_bars": 3
+      }
+    },
+    {
+      "at": "2026-11-27T17:51:00.647092+00:00",
+      "newly_settled": 1,
+      "weight_updates": [
+        {
+          "signal": "rsi",
+          "old": 0.55,
+          "new": 0.52,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "fear_greed",
+          "old": 0.55,
+          "new": 0.52,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "funding",
+          "old": 0.55,
+          "new": 0.52,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "oi_price",
+          "old": 0.55,
+          "new": 0.52,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "price",
+          "old": 0.55,
+          "new": 0.52,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "news",
+          "old": 0.55,
+          "new": 0.52,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        }
+      ],
+      "metrics": {
+        "samples": 24,
+        "direction_accuracy": 12.5,
         "hits": 3,
         "trusted": true,
         "pending": 3,

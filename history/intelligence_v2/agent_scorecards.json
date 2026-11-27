@@ -1,5 +1,5 @@
 {
-  "evaluated_at": "2026-11-27T06:49:34.705277+00:00",
+  "evaluated_at": "2026-11-27T17:51:07.007515+00:00",
   "phase": 7,
   "schema_version": 2,
   "horizons": [
@@ -9,15 +9,15 @@
     12,
     24
   ],
-  "decisions_total": 375,
-  "settled_evaluation_rows": 1630,
+  "decisions_total": 380,
+  "settled_evaluation_rows": 1660,
   "agents": {
     "technical": {
       "agent": "technical",
-      "samples": 414,
-      "hits": 151,
+      "samples": 424,
+      "hits": 155,
       "primary_metric": "direction_accuracy_pct",
-      "primary_metric_pct": 36.47,
+      "primary_metric_pct": 36.56,
       "by_state": {
         "unknown": {
           "n": 10,
@@ -25,19 +25,19 @@
           "accuracy_pct": 90.0
         },
         "weakening-participation": {
-          "n": 45,
-          "hits": 39,
-          "accuracy_pct": 86.67
+          "n": 46,
+          "hits": 40,
+          "accuracy_pct": 86.96
         },
         "fresh-long-buildup": {
-          "n": 116,
-          "hits": 35,
-          "accuracy_pct": 30.17
+          "n": 122,
+          "hits": 36,
+          "accuracy_pct": 29.51
         },
         "short-covering": {
-          "n": 243,
-          "hits": 68,
-          "accuracy_pct": 27.98
+          "n": 246,
+          "hits": 70,
+          "accuracy_pct": 28.46
         }
       },
       "notes": [
@@ -47,13 +47,13 @@
     },
     "risk": {
       "agent": "risk",
-      "samples": 464,
-      "hits": 346,
+      "samples": 474,
+      "hits": 355,
       "primary_metric": "warning_support_pct",
-      "primary_metric_pct": 74.57,
-      "low_risk_samples": 1145,
-      "false_calm_count": 739,
-      "false_calm_pct": 64.54,
+      "primary_metric_pct": 74.89,
+      "low_risk_samples": 1165,
+      "false_calm_count": 753,
+      "false_calm_pct": 64.64,
       "notes": [
         "Warning support: guarded/medium/high/veto with >=1% adverse excursion.",
         "False calm: low risk with later >=2% adverse excursion."
@@ -61,9 +61,9 @@
     },
     "challenge": {
       "agent": "challenge",
-      "samples": 1605,
+      "samples": 1635,
       "fail_samples": 0,
-      "warn_samples": 1605,
+      "warn_samples": 1635,
       "pass_samples": 0,
       "hits": 0,
       "primary_metric": "fail_useful_pct",
