@@ -1,26 +1,22 @@
 {
   "agent": "whale-onchain",
   "model_version": "whale-shadow-v0.1-free",
-  "generated_at": "2026-11-26T20:57:19.259661+00:00",
+  "generated_at": "2026-11-27T06:49:29.540798+00:00",
   "execution_allowed": false,
   "telegram_enabled": false,
   "overview": {
     "source": "mempool.space",
     "fees": {
-      "fastestFee": 5,
-      "halfHourFee": 4,
-      "hourFee": 4,
-      "economyFee": 2,
+      "fastestFee": 3,
+      "halfHourFee": 1,
+      "hourFee": 1,
+      "economyFee": 1,
       "minimumFee": 1
     },
-    "mempool_tx_count": 89906,
-    "mempool_vsize": 37806197,
+    "mempool_tx_count": 71677,
+    "mempool_vsize": 31586712,
     "hashrate_sample": {
       "hashrates": [
-        {
-          "timestamp": 1793059200,
-          "avgHashrate": 1.124381176973027e+21
-        },
         {
           "timestamp": 1793145600,
           "avgHashrate": 1.105322203304151e+21
@@ -140,6 +136,10 @@
         {
           "timestamp": 1795651200,
           "avgHashrate": 1.072741947642342e+21
+        },
+        {
+          "timestamp": 1795737600,
+          "avgHashrate": 908808857072957300000
         }
       ],
       "difficulty": [
@@ -154,10 +154,16 @@
           "height": 975744,
           "difficulty": 134823837323272.7,
           "adjustment": 0.9087330102920532
+        },
+        {
+          "time": 1795756640,
+          "height": 977760,
+          "difficulty": 145088938867954.3,
+          "adjustment": 1.0761369466781616
         }
       ],
-      "currentHashrate": 1.025635178835782e+21,
-      "currentDifficulty": 134823837323272.7
+      "currentHashrate": 1.036138394452362e+21,
+      "currentDifficulty": 145088938867954.3
     }
   },
   "stats_fallback": {
@@ -172,7 +178,7 @@
     "direction_bias": "Neutral",
     "impact_tier": "LOW",
     "notes": [
-      "No extreme fee/mempool stress from free endpoints.",
+      "Large gap between fastest and hour fee \u2014 priority fee pressure.",
       "Free APIs do not provide reliable labeled exchange whale flow without paid attribution data."
     ],
     "limitations": [

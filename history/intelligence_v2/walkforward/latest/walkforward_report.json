@@ -1,9 +1,9 @@
 {
-  "walkforward_batch_id": "walkforward-105ceaade006",
+  "walkforward_batch_id": "walkforward-0c5f665e0a90",
   "evaluation_mode": "walkforward_backtest",
   "lookahead_safe": true,
-  "started_at": "2026-11-26T20:57:27.743684+00:00",
-  "completed_at": "2026-11-26T20:57:27.743687+00:00",
+  "started_at": "2026-11-27T06:49:36.687994+00:00",
+  "completed_at": "2026-11-27T06:49:36.687995+00:00",
   "symbols": [
     "BTCUSDT",
     "ETHUSDT",
@@ -11,17 +11,17 @@
   ],
   "timeframe": "4h",
   "history_lengths": {
-    "BTCUSDT": 148,
-    "ETHUSDT": 148,
-    "SOLUSDT": 148
+    "BTCUSDT": 149,
+    "ETHUSDT": 149,
+    "SOLUSDT": 149
   },
-  "common_bars": 148,
+  "common_bars": 149,
   "warmup_bars": 20,
-  "eligible_timestamps": 128,
-  "decision_count": 384,
-  "evaluation_count": 1920,
+  "eligible_timestamps": 129,
+  "decision_count": 387,
+  "evaluation_count": 1935,
   "coverage": {
-    "settled": 1782,
+    "settled": 1797,
     "pending": 138,
     "insufficient_data": 0
   },
@@ -31,40 +31,40 @@
     "source_order_normalized": true,
     "future_rows_used_for_decisions": false
   },
-  "determinism_hash": "11c8e8972b369b1f7b6e7d8985b926628d349caf9b4091a9a1742b3a31e2cc88",
+  "determinism_hash": "89d9702c155aab491aa4f74947f7d5918af1fecafcfe7a8e7eb1879b7bf1c021",
   "scorecard": {
-    "settled_records": 1782,
+    "settled_records": 1797,
     "pending_records": 138,
-    "directional_records": 434,
-    "directional_hits": 209,
-    "direction_accuracy_pct": 48.16,
+    "directional_records": 441,
+    "directional_hits": 216,
+    "direction_accuracy_pct": 48.98,
     "by_horizon": {
       "1": {
-        "settled": 381,
-        "directional": 97,
-        "hits": 51,
-        "accuracy_pct": 52.58
+        "settled": 384,
+        "directional": 100,
+        "hits": 54,
+        "accuracy_pct": 54.0
       },
       "3": {
-        "settled": 375,
-        "directional": 91,
-        "hits": 42,
-        "accuracy_pct": 46.15
+        "settled": 378,
+        "directional": 94,
+        "hits": 45,
+        "accuracy_pct": 47.87
       },
       "6": {
-        "settled": 366,
+        "settled": 369,
         "directional": 90,
         "hits": 43,
         "accuracy_pct": 47.78
       },
       "12": {
-        "settled": 348,
-        "directional": 83,
-        "hits": 40,
-        "accuracy_pct": 48.19
+        "settled": 351,
+        "directional": 84,
+        "hits": 41,
+        "accuracy_pct": 48.81
       },
       "24": {
-        "settled": 312,
+        "settled": 315,
         "directional": 73,
         "hits": 33,
         "accuracy_pct": 45.21
@@ -77,8 +77,8 @@
         "pending": 0
       },
       "ALERT": {
-        "records": 1095,
-        "settled": 957,
+        "records": 1110,
+        "settled": 972,
         "pending": 138
       }
     }
@@ -93,22 +93,22 @@
     "Forecast self-learning remains disabled until calibration is stable."
   ],
   "forecast": {
-    "forecasts_total": 384,
-    "active_forecasts": 19,
+    "forecasts_total": 387,
+    "active_forecasts": 22,
     "abstain_count": 365,
-    "abstain_rate_pct": 95.05,
-    "directional_settled": 65,
-    "directional_hits": 39,
-    "direction_accuracy_pct": 60.0,
+    "abstain_rate_pct": 94.32,
+    "directional_settled": 68,
+    "directional_hits": 40,
+    "direction_accuracy_pct": 58.82,
     "by_horizon": {
       "1": {
-        "directional": 18,
-        "hits": 6,
-        "accuracy_pct": 33.33,
+        "directional": 19,
+        "hits": 7,
+        "accuracy_pct": 36.84,
         "pending": 3,
-        "outcomes_including_abstentions": 381,
-        "fired_coverage_pct": 4.72,
-        "gross_policy_return_mean_pct": 0.01734,
+        "outcomes_including_abstentions": 384,
+        "fired_coverage_pct": 4.95,
+        "gross_policy_return_mean_pct": 0.020174,
         "cost_adjusted_return": null
       },
       "3": {
@@ -116,19 +116,19 @@
         "hits": 9,
         "accuracy_pct": 50.0,
         "pending": 9,
-        "outcomes_including_abstentions": 375,
-        "fired_coverage_pct": 4.8,
-        "gross_policy_return_mean_pct": 0.031291,
+        "outcomes_including_abstentions": 378,
+        "fired_coverage_pct": 4.76,
+        "gross_policy_return_mean_pct": 0.031043,
         "cost_adjusted_return": null
       },
       "6": {
-        "directional": 15,
+        "directional": 17,
         "hits": 12,
-        "accuracy_pct": 80.0,
+        "accuracy_pct": 70.59,
         "pending": 18,
-        "outcomes_including_abstentions": 366,
-        "fired_coverage_pct": 4.1,
-        "gross_policy_return_mean_pct": 0.106261,
+        "outcomes_including_abstentions": 369,
+        "fired_coverage_pct": 4.61,
+        "gross_policy_return_mean_pct": 0.083209,
         "cost_adjusted_return": null
       },
       "12": {
@@ -136,9 +136,9 @@
         "hits": 12,
         "accuracy_pct": 85.71,
         "pending": 36,
-        "outcomes_including_abstentions": 348,
-        "fired_coverage_pct": 4.02,
-        "gross_policy_return_mean_pct": 0.162538,
+        "outcomes_including_abstentions": 351,
+        "fired_coverage_pct": 3.99,
+        "gross_policy_return_mean_pct": 0.161149,
         "cost_adjusted_return": null
       }
     },
@@ -149,22 +149,22 @@
         "accuracy_pct": 60.71
       },
       "medium": {
-        "directional": 26,
-        "hits": 19,
-        "accuracy_pct": 73.08
+        "directional": 27,
+        "hits": 20,
+        "accuracy_pct": 74.07
       },
       "high": {
-        "directional": 11,
+        "directional": 13,
         "hits": 3,
-        "accuracy_pct": 27.27
+        "accuracy_pct": 23.08
       }
     },
     "calibration": [
       {
         "probability_band": "high",
         "implied_mid": 0.7,
-        "empirical_hit_rate": 0.2727,
-        "n": 11,
+        "empirical_hit_rate": 0.23079999999999998,
+        "n": 13,
         "note": "Needs larger n before adjusting bands."
       },
       {
@@ -177,8 +177,8 @@
       {
         "probability_band": "medium",
         "implied_mid": 0.62,
-        "empirical_hit_rate": 0.7308,
-        "n": 26,
+        "empirical_hit_rate": 0.7406999999999999,
+        "n": 27,
         "note": "Needs larger n before adjusting bands."
       }
     ]

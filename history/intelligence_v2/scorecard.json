@@ -1,6 +1,6 @@
 {
   "agent": "ledger-evaluator",
-  "evaluated_at": "2026-11-26T20:57:23.836838+00:00",
+  "evaluated_at": "2026-11-27T06:49:34.649322+00:00",
   "horizons": [
     1,
     3,
@@ -8,16 +8,16 @@
     12,
     24
   ],
-  "decisions_total": 370,
-  "records_total": 1605,
-  "settled_records": 1605,
+  "decisions_total": 375,
+  "records_total": 1630,
+  "settled_records": 1630,
   "pending_records": 245,
-  "directional_records": 403,
-  "directional_hits": 143,
-  "direction_accuracy_pct": 35.48,
-  "guarded_records": 420,
-  "supported_risk_warnings": 321,
-  "risk_warning_support_pct": 76.43,
+  "directional_records": 414,
+  "directional_hits": 151,
+  "direction_accuracy_pct": 36.47,
+  "guarded_records": 433,
+  "supported_risk_warnings": 327,
+  "risk_warning_support_pct": 75.52,
   "by_decision": {
     "OBSERVE": {
       "records": 200,
@@ -30,41 +30,41 @@
       "pending": 0
     },
     "ALERT": {
-      "records": 1350,
-      "settled": 1350,
+      "records": 1375,
+      "settled": 1375,
       "pending": 0
     }
   },
   "by_horizon": {
     "1": {
-      "settled": 365,
-      "directional": 97,
-      "hits": 47,
-      "accuracy_pct": 48.45
+      "settled": 370,
+      "directional": 100,
+      "hits": 50,
+      "accuracy_pct": 50.0
     },
     "3": {
-      "settled": 355,
-      "directional": 89,
-      "hits": 30,
-      "accuracy_pct": 33.71
+      "settled": 360,
+      "directional": 93,
+      "hits": 34,
+      "accuracy_pct": 36.56
     },
     "6": {
-      "settled": 340,
+      "settled": 345,
       "directional": 86,
       "hits": 31,
       "accuracy_pct": 36.05
     },
     "12": {
-      "settled": 305,
-      "directional": 74,
-      "hits": 23,
-      "accuracy_pct": 31.08
+      "settled": 310,
+      "directional": 77,
+      "hits": 24,
+      "accuracy_pct": 31.17
     },
     "24": {
-      "settled": 240,
-      "directional": 57,
+      "settled": 245,
+      "directional": 58,
       "hits": 12,
-      "accuracy_pct": 21.05
+      "accuracy_pct": 20.69
     }
   },
   "limitations": [
