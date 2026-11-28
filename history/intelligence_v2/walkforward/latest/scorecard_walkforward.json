@@ -1,6 +1,6 @@
 {
   "agent": "ledger-evaluator",
-  "evaluated_at": "2026-11-28T02:29:47.206466+00:00",
+  "evaluated_at": "2026-11-28T12:43:46.709092+00:00",
   "horizons": [
     1,
     3,
@@ -8,15 +8,15 @@
     12,
     24
   ],
-  "decisions_total": 393,
-  "records_total": 1965,
-  "settled_records": 1827,
+  "decisions_total": 396,
+  "records_total": 1980,
+  "settled_records": 1842,
   "pending_records": 138,
-  "directional_records": 454,
-  "directional_hits": 221,
-  "direction_accuracy_pct": 48.68,
-  "guarded_records": 927,
-  "supported_risk_warnings": 613,
+  "directional_records": 466,
+  "directional_hits": 222,
+  "direction_accuracy_pct": 47.64,
+  "guarded_records": 930,
+  "supported_risk_warnings": 615,
   "risk_warning_support_pct": 66.13,
   "by_decision": {
     "PAPER_PLAN": {
@@ -25,41 +25,41 @@
       "pending": 0
     },
     "ALERT": {
-      "records": 1140,
-      "settled": 1002,
+      "records": 1155,
+      "settled": 1017,
       "pending": 138
     }
   },
   "by_horizon": {
     "1": {
-      "settled": 390,
+      "settled": 393,
       "directional": 103,
       "hits": 54,
       "accuracy_pct": 52.43
     },
     "3": {
-      "settled": 384,
-      "directional": 100,
+      "settled": 387,
+      "directional": 103,
       "hits": 48,
-      "accuracy_pct": 48.0
+      "accuracy_pct": 46.6
     },
     "6": {
-      "settled": 375,
-      "directional": 91,
-      "hits": 44,
-      "accuracy_pct": 48.35
+      "settled": 378,
+      "directional": 94,
+      "hits": 45,
+      "accuracy_pct": 47.87
     },
     "12": {
-      "settled": 357,
-      "directional": 84,
+      "settled": 360,
+      "directional": 87,
       "hits": 41,
-      "accuracy_pct": 48.81
+      "accuracy_pct": 47.13
     },
     "24": {
-      "settled": 321,
-      "directional": 76,
+      "settled": 324,
+      "directional": 79,
       "hits": 34,
-      "accuracy_pct": 44.74
+      "accuracy_pct": 43.04
     }
   },
   "limitations": [
@@ -71,5 +71,5 @@
   "schema_version": 2,
   "phase": 7,
   "evaluation_mode": "walkforward_backtest",
-  "walkforward_batch_id": "walkforward-53812029841e"
+  "walkforward_batch_id": "walkforward-9ebacf965f67"
 }

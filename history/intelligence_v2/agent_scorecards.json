@@ -1,5 +1,5 @@
 {
-  "evaluated_at": "2026-11-28T02:29:43.390274+00:00",
+  "evaluated_at": "2026-11-28T12:43:42.824126+00:00",
   "phase": 7,
   "schema_version": 2,
   "horizons": [
@@ -9,15 +9,15 @@
     12,
     24
   ],
-  "decisions_total": 385,
-  "settled_evaluation_rows": 1685,
+  "decisions_total": 390,
+  "settled_evaluation_rows": 1710,
   "agents": {
     "technical": {
       "agent": "technical",
-      "samples": 432,
-      "hits": 159,
+      "samples": 450,
+      "hits": 160,
       "primary_metric": "direction_accuracy_pct",
-      "primary_metric_pct": 36.81,
+      "primary_metric_pct": 35.56,
       "by_state": {
         "unknown": {
           "n": 10,
@@ -30,14 +30,14 @@
           "accuracy_pct": 87.23
         },
         "fresh-long-buildup": {
-          "n": 124,
+          "n": 134,
           "hits": 37,
-          "accuracy_pct": 29.84
+          "accuracy_pct": 27.61
         },
         "short-covering": {
-          "n": 251,
-          "hits": 72,
-          "accuracy_pct": 28.69
+          "n": 259,
+          "hits": 73,
+          "accuracy_pct": 28.19
         }
       },
       "notes": [
@@ -47,13 +47,13 @@
     },
     "risk": {
       "agent": "risk",
-      "samples": 485,
-      "hits": 357,
+      "samples": 493,
+      "hits": 364,
       "primary_metric": "warning_support_pct",
-      "primary_metric_pct": 73.61,
-      "low_risk_samples": 1179,
-      "false_calm_count": 762,
-      "false_calm_pct": 64.63,
+      "primary_metric_pct": 73.83,
+      "low_risk_samples": 1196,
+      "false_calm_count": 776,
+      "false_calm_pct": 64.88,
       "notes": [
         "Warning support: guarded/medium/high/veto with >=1% adverse excursion.",
         "False calm: low risk with later >=2% adverse excursion."
@@ -61,9 +61,9 @@
     },
     "challenge": {
       "agent": "challenge",
-      "samples": 1660,
+      "samples": 1685,
       "fail_samples": 0,
-      "warn_samples": 1660,
+      "warn_samples": 1685,
       "pass_samples": 0,
       "hits": 0,
       "primary_metric": "fail_useful_pct",

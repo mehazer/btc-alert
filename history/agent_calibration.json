@@ -1,13 +1,13 @@
 {
   "version": 1,
-  "updated_at": "2026-11-28T02:29:36.979701+00:00",
+  "updated_at": "2026-11-28T12:43:36.731643+00:00",
   "signal_weights": {
-    "rsi": 0.49,
-    "fear_greed": 0.49,
-    "funding": 0.49,
-    "oi_price": 0.49,
-    "price": 0.49,
-    "news": 0.49,
+    "rsi": 0.46,
+    "fear_greed": 0.46,
+    "funding": 0.46,
+    "oi_price": 0.46,
+    "price": 0.46,
+    "news": 0.46,
     "social": 0.4
   },
   "state_multipliers": {
@@ -18,27 +18,27 @@
       "advice": "upweight"
     },
     "weakening-participation": {
-      "multiplier": 1.222,
-      "samples": 46,
-      "accuracy_pct": 86.96,
+      "multiplier": 1.223,
+      "samples": 47,
+      "accuracy_pct": 87.23,
       "advice": "upweight"
     },
     "fresh-long-buildup": {
-      "multiplier": 0.877,
-      "samples": 122,
-      "accuracy_pct": 29.51,
+      "multiplier": 0.879,
+      "samples": 124,
+      "accuracy_pct": 29.84,
       "advice": "downweight"
     },
     "short-covering": {
-      "multiplier": 0.871,
-      "samples": 246,
-      "accuracy_pct": 28.46,
+      "multiplier": 0.872,
+      "samples": 251,
+      "accuracy_pct": 28.69,
       "advice": "downweight"
     }
   },
   "metrics": {
-    "samples": 25,
-    "direction_accuracy": 12.0,
+    "samples": 26,
+    "direction_accuracy": 11.5,
     "hits": 3,
     "trusted": true,
     "pending": 3,
@@ -49,48 +49,48 @@
     "weight_updates": [
       {
         "signal": "rsi",
-        "old": 0.52,
-        "new": 0.49,
+        "old": 0.49,
+        "new": 0.46,
         "samples": 1,
         "hits": 0,
         "hit_rate": 0.0
       },
       {
         "signal": "fear_greed",
-        "old": 0.52,
-        "new": 0.49,
+        "old": 0.49,
+        "new": 0.46,
         "samples": 1,
         "hits": 0,
         "hit_rate": 0.0
       },
       {
         "signal": "funding",
-        "old": 0.52,
-        "new": 0.49,
+        "old": 0.49,
+        "new": 0.46,
         "samples": 1,
         "hits": 0,
         "hit_rate": 0.0
       },
       {
         "signal": "oi_price",
-        "old": 0.52,
-        "new": 0.49,
+        "old": 0.49,
+        "new": 0.46,
         "samples": 1,
         "hits": 0,
         "hit_rate": 0.0
       },
       {
         "signal": "price",
-        "old": 0.52,
-        "new": 0.49,
+        "old": 0.49,
+        "new": 0.46,
         "samples": 1,
         "hits": 0,
         "hit_rate": 0.0
       },
       {
         "signal": "news",
-        "old": 0.52,
-        "new": 0.49,
+        "old": 0.49,
+        "new": 0.46,
         "samples": 1,
         "hits": 0,
         "hit_rate": 0.0
@@ -1686,6 +1686,68 @@
       "metrics": {
         "samples": 25,
         "direction_accuracy": 12.0,
+        "hits": 3,
+        "trusted": true,
+        "pending": 3,
+        "horizon_bars": 3
+      }
+    },
+    {
+      "at": "2026-11-28T12:43:36.731636+00:00",
+      "newly_settled": 1,
+      "weight_updates": [
+        {
+          "signal": "rsi",
+          "old": 0.49,
+          "new": 0.46,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "fear_greed",
+          "old": 0.49,
+          "new": 0.46,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "funding",
+          "old": 0.49,
+          "new": 0.46,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "oi_price",
+          "old": 0.49,
+          "new": 0.46,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "price",
+          "old": 0.49,
+          "new": 0.46,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        },
+        {
+          "signal": "news",
+          "old": 0.49,
+          "new": 0.46,
+          "samples": 1,
+          "hits": 0,
+          "hit_rate": 0.0
+        }
+      ],
+      "metrics": {
+        "samples": 26,
+        "direction_accuracy": 11.5,
         "hits": 3,
         "trusted": true,
         "pending": 3,
