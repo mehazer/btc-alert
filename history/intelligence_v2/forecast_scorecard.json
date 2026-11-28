@@ -1,44 +1,44 @@
 {
   "agent": "forecast-scorecard",
-  "evaluated_at": "2026-11-27T17:51:06.581859+00:00",
-  "forecasts_total": 325,
-  "active_forecasts": 61,
-  "abstain_count": 264,
-  "abstain_rate_pct": 81.23,
-  "settled_rows": 208,
+  "evaluated_at": "2026-11-28T02:29:42.750121+00:00",
+  "forecasts_total": 330,
+  "active_forecasts": 62,
+  "abstain_count": 268,
+  "abstain_rate_pct": 81.21,
+  "settled_rows": 213,
   "pending_rows": 115,
-  "directional_settled": 208,
-  "directional_hits": 112,
-  "direction_accuracy_pct": 53.85,
+  "directional_settled": 213,
+  "directional_hits": 114,
+  "direction_accuracy_pct": 53.52,
   "by_horizon": {
     "1": {
-      "directional": 59,
-      "hits": 34,
-      "accuracy_pct": 57.63,
+      "directional": 61,
+      "hits": 36,
+      "accuracy_pct": 59.02,
       "pending": 5,
-      "outcomes_including_abstentions": 108,
-      "fired_coverage_pct": 54.63,
-      "gross_policy_return_mean_pct": 0.514835,
+      "outcomes_including_abstentions": 113,
+      "fired_coverage_pct": 53.98,
+      "gross_policy_return_mean_pct": 0.503345,
       "cost_adjusted_return": null
     },
     "3": {
-      "directional": 54,
+      "directional": 55,
       "hits": 26,
-      "accuracy_pct": 48.15,
+      "accuracy_pct": 47.27,
       "pending": 15,
-      "outcomes_including_abstentions": 98,
-      "fired_coverage_pct": 55.1,
-      "gross_policy_return_mean_pct": 0.463385,
+      "outcomes_including_abstentions": 103,
+      "fired_coverage_pct": 53.4,
+      "gross_policy_return_mean_pct": 0.428171,
       "cost_adjusted_return": null
     },
     "6": {
-      "directional": 52,
+      "directional": 54,
       "hits": 30,
-      "accuracy_pct": 57.69,
+      "accuracy_pct": 55.56,
       "pending": 30,
-      "outcomes_including_abstentions": 83,
-      "fired_coverage_pct": 62.65,
-      "gross_policy_return_mean_pct": 0.719984,
+      "outcomes_including_abstentions": 88,
+      "fired_coverage_pct": 61.36,
+      "gross_policy_return_mean_pct": 0.629385,
       "cost_adjusted_return": null
     },
     "12": {
@@ -46,9 +46,9 @@
       "hits": 22,
       "accuracy_pct": 51.16,
       "pending": 65,
-      "outcomes_including_abstentions": 48,
-      "fired_coverage_pct": 89.58,
-      "gross_policy_return_mean_pct": -0.430927,
+      "outcomes_including_abstentions": 53,
+      "fired_coverage_pct": 81.13,
+      "gross_policy_return_mean_pct": -0.390274,
       "cost_adjusted_return": null
     }
   },
@@ -59,22 +59,22 @@
       "accuracy_pct": 46.74
     },
     "high": {
-      "directional": 51,
-      "hits": 30,
-      "accuracy_pct": 58.82
+      "directional": 54,
+      "hits": 32,
+      "accuracy_pct": 59.26
     },
     "medium": {
-      "directional": 65,
+      "directional": 67,
       "hits": 39,
-      "accuracy_pct": 60.0
+      "accuracy_pct": 58.21
     }
   },
   "calibration": [
     {
       "probability_band": "high",
       "implied_mid": 0.7,
-      "empirical_hit_rate": 0.5882000000000001,
-      "n": 51,
+      "empirical_hit_rate": 0.5926,
+      "n": 54,
       "note": "Needs larger n before adjusting bands."
     },
     {
@@ -87,8 +87,8 @@
     {
       "probability_band": "medium",
       "implied_mid": 0.62,
-      "empirical_hit_rate": 0.6,
-      "n": 65,
+      "empirical_hit_rate": 0.5821000000000001,
+      "n": 67,
       "note": "Needs larger n before adjusting bands."
     }
   ],
@@ -104,78 +104,78 @@
   "benchmarks_by_horizon": {
     "1": {
       "always_up": {
-        "n": 108,
-        "hits": 58,
-        "accuracy_pct": 53.7
+        "n": 113,
+        "hits": 59,
+        "accuracy_pct": 52.21
       },
       "always_down": {
-        "n": 108,
-        "hits": 49,
-        "accuracy_pct": 45.37
+        "n": 113,
+        "hits": 53,
+        "accuracy_pct": 46.9
       },
       "persistence": {
-        "n": 64,
-        "hits": 30,
-        "accuracy_pct": 46.88
+        "n": 69,
+        "hits": 35,
+        "accuracy_pct": 50.72
       },
-      "outcome_n": 108,
+      "outcome_n": 113,
       "note": "Baselines use settled outcomes including abstentions where forward returns are available; persistence uses the last observed price move at issue time."
     },
     "3": {
       "always_up": {
-        "n": 98,
-        "hits": 35,
-        "accuracy_pct": 35.71
+        "n": 103,
+        "hits": 38,
+        "accuracy_pct": 36.89
       },
       "always_down": {
-        "n": 98,
-        "hits": 63,
-        "accuracy_pct": 64.29
+        "n": 103,
+        "hits": 65,
+        "accuracy_pct": 63.11
       },
       "persistence": {
-        "n": 54,
-        "hits": 28,
-        "accuracy_pct": 51.85
+        "n": 59,
+        "hits": 29,
+        "accuracy_pct": 49.15
       },
-      "outcome_n": 98,
+      "outcome_n": 103,
       "note": "Baselines use settled outcomes including abstentions where forward returns are available; persistence uses the last observed price move at issue time."
     },
     "6": {
       "always_up": {
-        "n": 83,
-        "hits": 20,
-        "accuracy_pct": 24.1
+        "n": 88,
+        "hits": 25,
+        "accuracy_pct": 28.41
       },
       "always_down": {
-        "n": 83,
+        "n": 88,
         "hits": 63,
-        "accuracy_pct": 75.9
+        "accuracy_pct": 71.59
       },
       "persistence": {
-        "n": 42,
-        "hits": 22,
-        "accuracy_pct": 52.38
+        "n": 47,
+        "hits": 23,
+        "accuracy_pct": 48.94
       },
-      "outcome_n": 83,
+      "outcome_n": 88,
       "note": "Baselines use settled outcomes including abstentions where forward returns are available; persistence uses the last observed price move at issue time."
     },
     "12": {
       "always_up": {
-        "n": 48,
-        "hits": 7,
-        "accuracy_pct": 14.58
+        "n": 53,
+        "hits": 8,
+        "accuracy_pct": 15.09
       },
       "always_down": {
-        "n": 48,
-        "hits": 41,
-        "accuracy_pct": 85.42
+        "n": 53,
+        "hits": 45,
+        "accuracy_pct": 84.91
       },
       "persistence": {
-        "n": 17,
-        "hits": 12,
-        "accuracy_pct": 70.59
+        "n": 21,
+        "hits": 16,
+        "accuracy_pct": 76.19
       },
-      "outcome_n": 48,
+      "outcome_n": 53,
       "note": "Baselines use settled outcomes including abstentions where forward returns are available; persistence uses the last observed price move at issue time."
     }
   }
